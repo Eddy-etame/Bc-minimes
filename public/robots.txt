@@ -1,0 +1,18 @@
+# Boxing Center Minimes — robots.txt
+# Salle de boxe historique · Barrière de Paris, Toulouse 31200
+User-agent: *
+Allow: /
+
+# Bots IA bienvenus sur les faits publics de la salle (voir llms.txt)
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+
+Sitemap: https://minimes.boxingcenter.fr/sitemap.xml

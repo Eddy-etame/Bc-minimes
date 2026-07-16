@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page introuvable (404) — Boxing Center Minimes, Toulouse</title>
+  <meta name="description" content="Cette page est hors des cordes. Retour à l'accueil de Boxing Center Minimes, la salle de boxe historique des Minimes à Toulouse." />
+  <meta name="robots" content="noindex, follow" />
+  <meta name="theme-color" content="#0a0908" />
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=b5" />
+
+  <style is:inline>
+    .nf { min-height: 100svh; display: flex; flex-direction: column; overflow: hidden; position: relative; background: var(--black); }
+    .nf__brand { display: flex; align-items: center; gap: .8ch; padding: clamp(1.2rem,3vw,1.8rem) var(--gut); }
+    .nf__brand img { height: clamp(24px,3vw,32px); width: auto; filter: brightness(0) invert(1); }
+    /* loi rouge : le nom de salle est une info, pas un décor → bone, et le
+       filet de gauche passe en rouge (même traitement que .nav__salle) */
+    .nf__salle { font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .2em; text-transform: uppercase; color: var(--bone); padding-left: .8ch; border-left: 2px solid var(--red); }
+    .nf__main { flex: 1; display: grid; place-items: center; text-align: center; padding: 2rem var(--gut) clamp(3rem,8vw,6rem); position: relative; }
+    .nf__code { font-family: var(--f-display); text-transform: uppercase; line-height: .8; font-size: clamp(6rem,30vw,20rem); color: transparent; -webkit-text-stroke: 2px var(--line); letter-spacing: -.02em; }
+    .nf__ko { display: block; font-size: clamp(2.4rem,10vw,6rem); color: var(--red); -webkit-text-stroke: 0; margin-top: -.1em; }
+    .nf__title { font-family: var(--f-display); text-transform: uppercase; font-size: clamp(1.4rem,4vw,2.4rem); line-height: 1; margin: 1.4rem 0 .8rem; color: var(--bone); }
+    .nf__sub { color: var(--muted); max-width: 46ch; margin: 0 auto 2rem; font-size: var(--step-0); }
+    .nf__cta { display: inline-flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+    .nf__links { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: .6rem 1.6rem; justify-content: center; font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; }
+    .nf__links a { display: inline-flex; align-items: center; min-height: 44px; color: var(--bone-dim); transition: color .3s; }
+    .nf__links a:hover, .nf__links a:active { color: var(--white); }
+  </style>
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <div class="nf">
+    <a class="nf__brand" href="/" aria-label="Boxing Center Minimes — accueil">
+      <img src="/assets/img/logo.png" alt="" width="342" height="160" />
+      <span class="nf__salle">Minimes</span>
+    </a>
+
+    <main class="nf__main">
+      <div>
+        <p class="nf__code">404<span class="nf__ko">K.O.</span></p>
+        <h1 class="nf__title">Cette page est hors des cordes</h1>
+        <p class="nf__sub">Le lien a pris un crochet et n'existe plus — ou pas encore. Reviens au centre du ring : l'accueil, le planning, ou un coup de fil à la salle.</p>
+        <div class="nf__cta">
+          <a class="btn btn--primary" href="/"><span>Retour à l'accueil</span></a>
+          <a class="btn btn--ghost" href="tel:+33562244682"><span>05 62 24 46 82</span></a>
+        </div>
+        <nav class="nf__links" aria-label="Pages principales">
+          <a href="/le-club/">Le club</a>
+          <a href="/plannings/">Planning</a>
+          <a href="/tarifs/">Tarifs</a>
+          <a href="/contact/">Contact</a>
+          <a href="https://box-plus.vercel.app/seance-essai">Essai · 10€</a>
+        </nav>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,316 @@
+/* =====================================================================
+   BOXING CENTER — MINIMES · "LE BERCEAU" (v2 — raw & loud)
+   base.css — design system. Identity: BLACK + BOXING RED + bone.
+   Energy: Rocky / Philadelphia / champions' cradle. Heavy motion.
+   No navy. No premium serif. Gritty, athletic, kinetic.
+
+   ⚠ LOI ROUGE (STANDARDS §5.1 — légibilité n°1) : #e10600 mesure 4.01:1 sur
+   --ink et 4.26:1 sur --bone. Il est donc INTERDIT comme texte ≤18px.
+   Le rouge vit en APLAT (fond de bouton), en BARRE (::before), en FILET
+   (border) et en DISPLAY ≥24px (qui passe le seuil 3:1 grand texte).
+   Les micro-labels sont en --bone / --read. L'identité est portée par les
+   barres et les aplats rouges — ça rend la page plus forte, pas plus sage.
+   (Même correction déjà payée à Ramonville avec le cuivre profond.)
+   ===================================================================== */
+
+/* ----------------------------- TOKENS ----------------------------- */
+:root {
+  --black:    #000000;
+  --ink:      #0a0908;
+  --ink-2:    #131110;
+  --char:     #1b1917;   /* charcoal card */
+  --red:      #e10600;   /* boxing red — THE accent. Aplat/barre/filet/display ONLY */
+  --red-2:    #b00500;
+  --red-deep: #6e0a08;
+  --red-glow: rgba(225,6,0,.45);
+  --bone:     #f2ede3;
+  --bone-dim: #aaa49a;
+  --read:     #e3ddd2;   /* reading copy — ~14.7:1 on --ink / ~13.9:1 on --ink-2 (legibility law §5.1) */
+  --steel:    #87827b;   /* micro-labels ONLY — never reading copy */
+  --white:    #ffffff;
+
+  /* texte POSÉ SUR un aplat rouge — un seul token, partout (4.97:1).
+     --ink sur --red = 4.01:1 → échoue. Ne jamais réinventer la paire. */
+  --on-accent: var(--white);
+  /* texte secondaire sur la carte bone (--bone #f2ede3) — mesuré 8.6:1.
+     Remplace les rgba(0,0,0,.5)/.55 réglés à l'œil qui tombaient à 3.8/4.5:1. */
+  --on-bone-dim: rgba(0,0,0,.72);
+
+  --bg:       var(--ink);
+  --fg:       var(--bone);
+  --accent:   var(--red);
+  --muted:    var(--read);
+  --line:     rgba(242,237,227,.13);
+  --line-soft:rgba(242,237,227,.06);
+
+  /* Type — chunky athletic, not premium */
+  --f-display:"Archivo Black", "Arial Black", Impact, sans-serif;
+  --f-ui:     "Archivo", system-ui, sans-serif;
+  --f-mono:   "Space Mono", "JetBrains Mono", monospace;
+
+  --step--1: clamp(.78rem, .72rem + .3vw, .9rem);
+  --step-0:  clamp(1rem, .94rem + .3vw, 1.15rem);
+  --step-1:  clamp(1.3rem, 1.05rem + 1.1vw, 1.9rem);
+  --step-2:  clamp(2.1rem, 1.4rem + 3vw, 4rem);
+  --step-3:  clamp(3rem, 1.5rem + 7vw, 8rem);
+  --step-4:  clamp(4.5rem, 2rem + 13vw, 16rem);
+
+  --wrap: min(92vw, 1340px);
+  --gut: clamp(1.2rem, 4vw, 3rem);
+  /* rythme vertical — TROIS pas, pas six nombres magiques en inline style.
+     Toute section utilise --sec, .section--tight ou .section--flush. */
+  --sec: clamp(5rem, 10vw, 11rem);
+  --sec-tight: clamp(2.5rem, 6vw, 4rem);
+  --sec-flush: 0rem;
+
+  --ease: cubic-bezier(.22,.61,.36,1);
+  --ease-out: cubic-bezier(.16,1,.3,1);
+  --ease-punch: cubic-bezier(.2,1.4,.3,1);
+  --radius: 0px;            /* hard corners — poster, not app */
+}
+
+/* ----------------------------- RESET ------------------------------ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  font-family: var(--f-ui);
+  font-size: var(--step-0); line-height: 1.55;
+  color: var(--fg); background: var(--bg);
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+img, video, svg, canvas { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; -webkit-tap-highlight-color: rgba(225,6,0,.28); }
+button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; -webkit-tap-highlight-color: rgba(225,6,0,.28); }
+ul { list-style: none; }
+::selection { background: var(--red); color: var(--on-accent); }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+html.is-locked, html.is-locked body { overflow: hidden; height: 100%; }
+
+/* --------------------------- TEXTURE ------------------------------ */
+.grain {
+  position: fixed; inset: -50%; z-index: 9000; pointer-events: none;
+  opacity: .07; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain .6s steps(3) infinite;
+}
+@keyframes grain { 0%{transform:translate(0,0)} 33%{transform:translate(-3%,2%)} 66%{transform:translate(2%,-2%)} 100%{transform:translate(-2%,1%)} }
+.vignette { position: fixed; inset: 0; z-index: 8990; pointer-events: none; background: radial-gradient(125% 95% at 50% 38%, transparent 52%, rgba(0,0,0,.62) 100%); }
+@media (prefers-reduced-motion: reduce){ .grain{ animation: none; } }
+
+/* --------------------------- CURSOR ------------------------------- */
+.cursor { position: fixed; top: 0; left: 0; z-index: 9500; pointer-events: none; mix-blend-mode: difference; will-change: transform; }
+.cursor__ring { width: 40px; height: 40px; margin: -20px 0 0 -20px; border: 1.5px solid var(--bone); border-radius: 50%; transition: width .3s var(--ease), height .3s var(--ease), margin .3s var(--ease), background .3s, border-color .3s; }
+.cursor__dot { position: fixed; top: 0; left: 0; width: 6px; height: 6px; margin: -3px 0 0 -3px; background: var(--red); border-radius: 50%; z-index: 9501; pointer-events: none; }
+.cursor.is-hover .cursor__ring { width: 74px; height: 74px; margin: -37px 0 0 -37px; background: var(--red); border-color: var(--red); }
+.cursor__label { position: absolute; inset: 0; display: grid; place-items: center; font: 700 9px/1 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--on-accent); opacity: 0; transition: opacity .25s; }
+.cursor.is-hover .cursor__label { opacity: 1; }
+@media (hover: none) { .cursor, .cursor__dot { display: none; } }
+
+/* --------------------------- LAYOUT ------------------------------- */
+.wrap { width: var(--wrap); margin-inline: auto; }
+.section { padding-block: var(--sec); position: relative; }
+/* les deux seuls écarts autorisés au rythme — utilisés en CLASSE, jamais en
+   style="padding-top:…" (sinon on a six rythmes pour huit pages) */
+.section--tight { padding-block: var(--sec-tight); }
+.section--flush { padding-top: var(--sec-flush); }
+.split { display: grid; gap: clamp(2rem,5vw,5rem); grid-template-columns: 1fr; }
+@media (min-width: 900px){ .split { grid-template-columns: 1.05fr 1fr; align-items: center; } }
+
+/* eyebrow — la BARRE reste rouge (l'identité), les MOTS passent en bone.
+   4.01:1 → 15.6:1 sans perdre un gramme de rouge à l'écran. */
+.eyebrow { display: inline-flex; align-items: center; gap: .7ch; font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .22em; text-transform: uppercase; color: var(--bone); }
+.eyebrow::before { content: ""; width: 28px; height: 2px; background: var(--red); flex: 0 0 28px; }
+
+.display { font-family: var(--f-display); font-weight: 400; line-height: .9; letter-spacing: -.01em; text-transform: uppercase; font-size: var(--step-3); }
+/* enforced scale steps — use instead of ad-hoc inline font-size overrides */
+.display--sm { font-size: clamp(1.9rem, 1.3rem + 3vw, 3.4rem); }
+.tint { color: var(--red); }   /* display ≥24px only — passe le seuil 3:1 */
+.lead { font-size: var(--step-1); line-height: 1.4; color: var(--bone); font-weight: 500; }
+.muted { color: var(--muted); }
+
+/* split-letter reveal helper (JS fills .char) */
+.char { display: inline-block; will-change: transform; }
+
+/* ---------------------------- BUTTONS ----------------------------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .8ch;
+  min-height: 44px;         /* ≥44px thumb target (QA) */
+  padding: 1em 1.7em; font: 700 var(--step--1)/1 var(--f-ui);
+  letter-spacing: .1em; text-transform: uppercase;
+  border: 2px solid var(--bone); border-radius: var(--radius);
+  position: relative; overflow: hidden; isolation: isolate; color: var(--bone);
+  transition: color .35s var(--ease), border-color .35s;
+}
+.btn span { position: relative; z-index: 2; }
+.btn::after { content: ""; position: absolute; inset: 0; z-index: 1; background: var(--bone); transform: translateY(101%); transition: transform .45s var(--ease-out); }
+.btn:hover::after, .btn:active::after { transform: translateY(0); }
+.btn:hover, .btn:active { color: var(--ink); }
+.btn--primary { background: var(--red); border-color: var(--red); color: var(--on-accent); }
+.btn--primary::after { background: var(--bone); }
+.btn--primary:hover, .btn--primary:active { color: var(--ink); border-color: var(--bone); }
+/* le secondaire — déclaré, parce qu'une classe posée sur 17 boutons et
+   stylée nulle part est un piège pour le prochain dev */
+.btn--ghost { background: transparent; }
+.btn sup { font-size: .6em; }
+
+/* keyboard focus — branded ring, never invisible (QA) */
+:where(a, button, [tabindex]):focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+.btn:focus-visible { outline-color: var(--bone); }
+
+/* ------------------------- MEDIA (une seule définition) ------------
+   §5.2 : un composant = une définition. Avant, home.css et club.css
+   déclaraient chacun `.media` avec un grade différent → les photos ne
+   racontaient pas la même salle selon la page. Le grade vit ICI ;
+   home.css / club.css n'overrident QUE le filtre par contexte. */
+.media { position: relative; overflow: hidden; background: var(--char); border: 0; }
+.media::before { content: ""; position: absolute; inset: 0; z-index: -1;
+  background: repeating-linear-gradient(120deg, #16110f 0 9px, #1c1512 9px 10px); }
+.media::after { content: attr(data-label); position: absolute; left: 1rem; bottom: .85rem; z-index: 2; font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--bone); opacity: .85; }
+.media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; filter: grayscale(1) contrast(1.18) brightness(.86); }
+
+/* ----------------------- PAGE HEAD (partagé) ----------------------
+   §5.2 : les 5 sous-pages posaient LA MÊME règle sous 5 préfixes
+   (.act-head/.co-head/.con-head/.ga-head/.tar-head). La répétition est
+   maintenant HONNÊTE — un composant — et chaque page se différencie par
+   sa STRUCTURE (modifieur + élément propre), pas par un préfixe renommé.
+   /le-club/ garde son hero bespoke 78svh : c'est la page « la salle ». */
+.page-head { position: relative; overflow: hidden; padding-top: clamp(8.5rem,17vh,12rem); padding-bottom: clamp(2.2rem,5vw,3.4rem); background: var(--black); border-bottom: 2px solid var(--red); }
+.page-head__bg { position: absolute; inset: 0; z-index: 0; opacity: .2; }
+.page-head__bg .media { position: absolute; inset: 0; }
+.page-head__bg .media img { filter: grayscale(1) contrast(1.3) brightness(.3); }
+.page-head .wrap { position: relative; z-index: 1; }
+.page-head__lead { max-width: 54ch; margin-top: 1.2rem; }
+
+/* ----------------------------- NAV -------------------------------- */
+.nav { position: fixed; inset: 0 0 auto 0; z-index: 8000; display: flex; align-items: center; justify-content: space-between; padding: clamp(.9rem,2vw,1.4rem) var(--gut); transition: transform .5s var(--ease), background .4s; }
+.nav.is-scrolled { background: rgba(10,9,8,.72); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.nav.is-hidden { transform: translateY(-110%); }
+/* the open menu owns the screen — the nav (higher z) must fully yield,
+   otherwise its burger-X doubles the menu's FERMER ✕ */
+html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; transition: none; }
+/* le logo mesure 24-34px de haut : le LIEN autour doit rester une cible
+   de pouce (QA ≥44px) */
+.nav__brand { display: inline-flex; align-items: center; gap: .8ch; min-height: 44px; }
+.nav__logo { height: clamp(24px, 3vw, 34px); width: auto; filter: brightness(0) invert(1); transition: opacity .3s; }
+.nav__brand:hover .nav__logo { opacity: .8; }
+/* le nom de la salle : info, pas décor → bone (loi rouge) */
+.nav__salle { font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .2em; text-transform: uppercase; color: var(--bone); padding-left: .8ch; border-left: 2px solid var(--red); }
+.nav__links { display: none; gap: clamp(1rem,1.8vw,1.9rem); }
+.nav__links a { font: 600 var(--step--1)/1 var(--f-ui); letter-spacing: .02em; text-transform: uppercase; position: relative; padding-block: .4em; color: var(--bone); }
+.nav__links a::after { content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 2px; background: var(--red); transform: scaleX(0); transform-origin: right; transition: transform .35s var(--ease); }
+.nav__links a:hover::after, .nav__links a:active::after, .nav__links a[aria-current="page"]::after { transform: scaleX(1); transform-origin: left; }
+.nav__right { display: flex; align-items: center; gap: 1rem; }
+.nav__cta { display: none; }
+@media (min-width: 1100px){ .nav__links { display: flex; } .nav__cta { display: inline-flex; } }
+
+/* Burger → animated, becomes X */
+.burger { display: inline-flex; flex-direction: column; justify-content: center; gap: 6px; width: 46px; height: 46px; padding: 0 8px; border: 2px solid var(--line); border-radius: 50%; transition: border-color .3s, background .3s; }
+.burger:hover, .burger:active { border-color: var(--red); }
+.burger:active { background: rgba(225,6,0,.14); }
+.burger span { height: 2px; background: var(--bone); transform-origin: center; transition: transform .4s var(--ease-punch), opacity .25s, width .3s; }
+.burger span:nth-child(1){ width: 100%; }
+.burger span:nth-child(2){ width: 70%; }
+.burger span:nth-child(3){ width: 100%; }
+.burger:hover span:nth-child(2){ width: 100%; }
+.is-menu-open .burger span:nth-child(1){ transform: translateY(8px) rotate(45deg); }
+.is-menu-open .burger span:nth-child(2){ opacity: 0; }
+.is-menu-open .burger span:nth-child(3){ transform: translateY(-8px) rotate(-45deg); width: 100%; }
+
+/* ---------------------- FULL-SCREEN MENU --------------------------
+   ⚠ `visibility` est OBLIGATOIRE, pas cosmétique : sans elle, le menu
+   fermé (aria-hidden=true) gardait ses 13 liens focusables → le Tab
+   tombait dans un trou noir de 13 arrêts invisibles (WCAG 4.1.2).
+   clip-path + pointer-events ne retirent RIEN du parcours clavier. */
+.menu { position: fixed; inset: 0; z-index: 7990; background: var(--black); color: var(--bone); display: grid; grid-template-rows: auto 1fr auto; padding: clamp(1.2rem,3vw,2rem) var(--gut) clamp(1.5rem,3vw,2.4rem); clip-path: inset(0 0 100% 0); pointer-events: none; visibility: hidden; transition: clip-path .7s var(--ease-out), visibility 0s linear .7s; }
+.menu.is-open { clip-path: inset(0 0 0 0); pointer-events: auto; visibility: visible; transition: clip-path .7s var(--ease-out), visibility 0s linear 0s; }
+.menu__bg { position: absolute; inset: 0; z-index: 0; opacity: .16; }
+.menu__bg video { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.2) brightness(.6); }
+.menu__bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(120deg, var(--red-deep), transparent 60%); mix-blend-mode: multiply; }
+.menu__top { position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: center; }
+.menu__close { font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .2em; text-transform: uppercase; color: var(--bone); display: inline-flex; align-items: center; gap: .7ch; min-height: 44px; padding: .4em .2em; transition: color .3s; }
+/* 12.6px : le rouge échoue même en :hover (4.23:1) — le hover éclaircit */
+.menu__close:hover, .menu__close:active { color: var(--white); }
+.menu__nav { position: relative; z-index: 2; align-self: center; display: flex; flex-direction: column; gap: clamp(.35rem,1vw,.4rem); }
+/* padding-block : la taille du mot est l'identité, la boîte autour ne l'est
+   pas — 39.5px → ~49px sans toucher à l'échelle typo (QA thumb ≥44px) */
+.menu__link { font-family: var(--f-display); font-size: clamp(2.6rem,11vw,7rem); line-height: .95; padding-block: .12em; text-transform: uppercase; color: var(--bone); display: inline-flex; align-items: baseline; gap: 1.2rem; width: max-content; max-width: 100%; transition: color .3s, transform .5s var(--ease-out); }
+.menu__link .n { font: 700 clamp(.7rem,1.4vw,1rem)/1 var(--f-mono); color: var(--bone-dim); }
+.menu__link:hover, .menu__link:active { color: var(--red); transform: translateX(18px); }
+.menu__link:hover .n, .menu__link:active .n { color: var(--bone); }
+.menu__foot { position: relative; z-index: 2; display: flex; flex-wrap: wrap; gap: 1rem 2rem; justify-content: space-between; align-items: center; border-top: 1px solid var(--line); padding-top: 1.4rem; }
+/* :not(.btn) — sinon cette règle repeignait le CTA principal du menu mobile
+   en bone-dim SUR ROUGE = 2.01:1 (le bouton le plus important du site).
+   Le footer avait déjà le :not(.btn) 24 lignes plus bas. */
+.menu__foot a:not(.btn) { display: inline-flex; align-items: center; min-height: 44px; padding-inline: .2em; font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--bone-dim); transition: color .3s; }
+.menu__foot a:not(.btn):hover, .menu__foot a:not(.btn):active { color: var(--white); }
+
+/* --------------------------- MARQUEE ------------------------------ */
+.marquee { overflow: hidden; border-block: 1px solid var(--line); padding-block: 1rem; background: var(--ink-2); color: var(--bone); }
+.marquee__track { display: inline-flex; gap: 2.2rem; white-space: nowrap; will-change: transform; }
+.marquee__track span { font-family: var(--f-display); font-size: clamp(1.4rem,3.6vw,2.8rem); text-transform: uppercase; display: inline-flex; align-items: center; gap: 2.2rem; }
+.marquee__track span::after { content: "✦"; font-size: .5em; color: var(--red); }
+
+/* --------------------------- REVEAL FX ---------------------------- */
+html.fx [data-reveal] { opacity: 0; transform: translateY(40px); }
+.reveal-mask { display: block; overflow: hidden; }
+.reveal-mask > span { display: block; }
+html.fx .reveal-mask > span { opacity: 0; }
+
+/* ---------------------------- FOOTER ------------------------------ */
+.footer { background: var(--black); border-top: 2px solid var(--red); padding-block: clamp(2.5rem,5vw,4rem) 2rem; position: relative; overflow: hidden; }
+.footer__big { font-family: var(--f-display); text-transform: uppercase; line-height: .86; font-size: clamp(2.4rem, 8.5vw, 7rem); color: transparent; -webkit-text-stroke: 1.5px var(--line); letter-spacing: -.01em; padding-bottom: clamp(1rem,3vw,2.4rem); max-width: 14ch; }
+.footer__grid { display: grid; gap: 2.2rem; grid-template-columns: 1fr; padding-block: 2.2rem; border-top: 1px solid var(--line); }
+@media (min-width: 760px){ .footer__grid { grid-template-columns: 1.4fr 1fr 1fr 1fr; } }
+/* titre de colonne : bone + filet rouge (loi rouge) */
+.footer__col h4 { display: flex; align-items: center; gap: .7ch; font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .18em; text-transform: uppercase; color: var(--bone); margin-bottom: 1rem; }
+.footer__col h4::before { content: ""; width: 18px; height: 2px; background: var(--red); flex: 0 0 18px; }
+/* ≥44px : le footer est la nav secondaire du site — 13 liens à 36.4px, sur
+   les 8 pages, c'était le manque systématique (QA) */
+.footer__col a:not(.btn) { display: flex; align-items: center; min-height: 44px; color: var(--muted); padding-block: .7em; transition: color .3s; }
+.footer__col p { display: block; color: var(--muted); padding-block: .35em; }
+.footer__col a:not(.btn):hover, .footer__col a:not(.btn):active { color: var(--bone); }
+.footer__bottom { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; padding-top: 1.6rem; border-top: 1px solid var(--line); font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .08em; color: var(--bone-dim); }
+
+/* ========================= FINAL GONG ==========================
+   Shared closing-CTA chrome — lives here (base) because it appears on
+   ALL 8 pages (home.css / club.css both rely on it). Page CSS only sets
+   the .gong__bg .media img photo filter.
+   ⚠ L'EYEBROW de chaque gong est PROPRE À SA PAGE (§5.9) — « Le gong
+   final » ×7 + États-Unis, c'était un template, pas une formule. */
+.gong { position: relative; overflow: hidden; text-align: center; padding-block: clamp(5rem,12vw,10rem); background: var(--black); }
+.gong__bg { position: absolute; inset: 0; z-index: 0; opacity: .35; }
+.gong__bg .media { position: absolute; inset: 0; }
+.gong__inner { position: relative; z-index: 2; width: min(92vw, 60ch); margin-inline: auto; }
+.gong h2 { margin-block: 1rem 1.4rem; }
+.gong .lead { margin-inline: auto; max-width: 46ch; color: var(--read); }
+.gong__cta { margin-top: 2rem; display: inline-flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+.gong .eyebrow { justify-content: center; }
+
+/* ----------------------- CHATBOT placeholder ---------------------- */
+.chatbot { position: fixed; right: clamp(1rem,2.5vw,2rem); bottom: clamp(1rem,2.5vw,2rem); z-index: 8500; height: 56px; width: 56px; display: inline-flex; align-items: center; overflow: hidden; background: var(--red); color: var(--on-accent); border-radius: 100px; box-shadow: 0 10px 30px var(--red-glow); transition: width .45s var(--ease-punch), transform .35s var(--ease), box-shadow .35s; }
+.chatbot__icon { flex: 0 0 56px; width: 56px; height: 56px; display: grid; place-items: center; }
+.chatbot__icon svg { width: 23px; height: 23px; }
+.chatbot__label { white-space: nowrap; font: 700 var(--step--1)/1 var(--f-ui); letter-spacing: .05em; text-transform: uppercase; padding-right: 1.5rem; opacity: 0; transform: translateX(-8px); transition: opacity .3s, transform .35s var(--ease); }
+.chatbot:hover, .chatbot:active { width: 15rem; transform: translateY(-3px); box-shadow: 0 16px 42px var(--red-glow); }
+.chatbot:hover .chatbot__label, .chatbot:active .chatbot__label { opacity: 1; transform: none; }
+.chatbot::after { content: ""; position: absolute; inset: 0; border-radius: 100px; border: 2px solid var(--red); opacity: .55; animation: chatpulse 2.4s var(--ease) infinite; pointer-events: none; }
+.chatbot:hover::after { animation: none; opacity: 0; }
+@keyframes chatpulse { 0% { transform: scale(1); opacity: .55; } 70%, 100% { transform: scale(1.3); opacity: 0; } }
+/* touch : pas de hover → le libellé doit être LÀ. Sinon le chemin le plus
+   court vers la salle est une pastille rouge muette (§5.4 touch-life) */
+@media (hover: none) {
+  .chatbot { width: auto; }
+  .chatbot__label { opacity: 1; transform: none; }
+  .chatbot::after { animation: none; opacity: 0; }
+}
+
+/* --------------------------- HELPERS ------------------------------ */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.scroll-cue { display: inline-flex; align-items: center; gap: 1ch; font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--bone); }
+.scroll-cue .line { width: 60px; height: 2px; background: var(--red); position: relative; overflow: hidden; }
+.scroll-cue .line::after { content: ""; position: absolute; inset: 0; background: var(--bone); transform: translateX(-100%); animation: cue 1.8s var(--ease) infinite; }
+@keyframes cue { 0%{transform:translateX(-100%)} 60%,100%{transform:translateX(100%)} }

@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tarifs & offres — Boxing Center Minimes, Toulouse (essai 10€, Duo, saison 259€)</title>
+  <meta name="description" content="Les tarifs de la salle de boxe des Minimes (Toulouse 31200) : séance d'essai 10€, offre Duo 29€ par personne, saison complète 259€ les 12 mois en 4× sans frais, école dès 3 ans. Accès libre aux 5 clubs du réseau." />
+  <meta name="keywords" content="tarif salle de boxe Toulouse, prix boxe Minimes, séance d'essai boxe 10€, abonnement boxe Toulouse, offre duo boxe, saison boxe 259€, tarif boxe enfant Toulouse" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="canonical" href="https://minimes.boxingcenter.fr/tarifs/" />
+  <meta name="theme-color" content="#0a0908" />
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+  <meta name="geo.region" content="FR-31" />
+  <meta name="geo.placename" content="Toulouse — Les Minimes" />
+  <meta name="geo.position" content="43.6256;1.4309" />
+  <meta name="ICBM" content="43.6256, 1.4309" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="Boxing Center Minimes" />
+  <meta property="og:title" content="Tarifs & offres — Boxing Center Minimes, Toulouse" />
+  <meta property="og:description" content="Essai 10€, Duo 29€ par personne, saison 259€ les 12 mois en 4× sans frais, école dès 3 ans. Accès libre aux 5 clubs." />
+  <meta property="og:url" content="https://minimes.boxingcenter.fr/tarifs/" />
+  <meta property="og:image" content="https://minimes.boxingcenter.fr/assets/img/og.png" />
+  <meta property="og:image:alt" content="Tarifs Boxing Center Minimes — essai 10€, offre Duo, saison complète." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Tarifs & offres — Boxing Center Minimes, Toulouse" />
+  <meta name="twitter:description" content="Essai 10€, Duo 29€/personne, saison 259€ les 12 mois. Accès libre aux 5 clubs." />
+  <meta name="twitter:image" content="https://minimes.boxingcenter.fr/assets/img/og.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- LCP : le hero est construit en JS → invisible au preload scanner (§5.8) -->
+  <link rel="preload" as="image" href="/assets/img/bc/cross-1.webp" fetchpriority="high" />
+
+  <link rel="stylesheet" href="/assets/css/base.css?v=b5" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=b5" />
+
+  <script is:inline type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://minimes.boxingcenter.fr/" },
+      { "@type": "ListItem", "position": 2, "name": "Tarifs", "item": "https://minimes.boxingcenter.fr/tarifs/" }
+    ]
+  }
+  </script>
+  <script is:inline type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "OfferCatalog",
+    "name": "Tarifs & offres — Boxing Center Minimes",
+    "url": "https://minimes.boxingcenter.fr/tarifs/",
+    "provider": { "@type": "SportsActivityLocation", "@id": "https://minimes.boxingcenter.fr/#salle", "name": "Boxing Center Minimes" },
+    "itemListElement": [
+      { "@type": "Offer", "name": "Séance d'essai", "price": "10", "priceCurrency": "EUR", "description": "Toutes disciplines, matériel prêté, sans engagement.", "url": "https://box-plus.vercel.app/seance-essai" },
+      { "@type": "Offer", "name": "Offre Duo — 29€ par personne", "price": "29", "priceCurrency": "EUR", "description": "4 semaines de cours illimités à deux, sans engagement (au lieu de 44€).", "url": "https://box-plus.vercel.app/abonnements#promotions" },
+      { "@type": "Offer", "name": "Saison complète — 259€ les 12 mois", "price": "259", "priceCurrency": "EUR", "description": "Payable en 4× sans frais, accès libre aux 5 clubs du réseau (au lieu de 400€).", "url": "https://box-plus.vercel.app/abonnements#promotions" },
+      { "@type": "Offer", "name": "École de boxe — dès 3 ans", "price": "280", "priceCurrency": "EUR", "description": "Baby Boxe 3/6, éducative 7/11, ados 12/16, compétiteurs.", "url": "https://box-plus.vercel.app/abonnements#enfants" }
+    ]
+  }
+  </script>
+
+  <!-- page-scoped : cartes d'offres, bandeau bonus, avis — squelette propre à /tarifs/ -->
+  <style is:inline>
+    /* l'en-tête partage .page-head (base.css) — la répétition est honnête.
+       Ce qui appartient à CETTE page : les 10€ comme OBJET PHYSIQUE. C'est
+       la page du prix : elle commence par le billet, pas par un paragraphe. */
+    .page-head--tar { padding-bottom: clamp(2.5rem,6vw,4rem); }
+    .page-head--tar .page-head__bg { opacity: .22; }
+    .tar-note { position: absolute; right: var(--gut); top: 42%; z-index: 1; display: none; width: 15rem; padding: 1rem 1.1rem; background: var(--bone); color: var(--ink); border: 1px solid var(--bone); transform: rotate(-7deg); box-shadow: 0 24px 50px rgba(0,0,0,.6); }
+    @media (min-width: 1000px){ .tar-note { display: block; } }
+    .tar-note::before { content: ""; position: absolute; inset: 5px; border: 1px dashed rgba(0,0,0,.35); pointer-events: none; }
+    .tar-note__v { font-family: var(--f-display); font-size: 3.4rem; line-height: .8; }
+    .tar-note__l { margin-top: .5rem; font: 700 .6rem/1.3 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--ink); }
+    .tar-note__s { margin-top: .35rem; font: 700 .55rem/1.3 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--on-bone-dim); }
+
+    .tar-head__meta { display: flex; flex-wrap: wrap; gap: .7rem 2rem; margin-top: 1.4rem; font: 700 var(--step--1)/1.5 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--bone-dim); }
+    /* prices/data must be legible — bone (17:1), not 4:1 red */
+    .tar-head__meta b { color: var(--bone); font-weight: 700; }
+
+    /* offer cards — plus élevé que le teaser accueil */
+    .offers { display: grid; gap: .7rem; grid-template-columns: 1fr; margin-top: 0; }
+    @media (min-width: 680px){ .offers { grid-template-columns: repeat(2,1fr); } }
+    @media (min-width: 1120px){ .offers { grid-template-columns: repeat(4,1fr); } }
+    .offer { position: relative; display: flex; flex-direction: column; gap: 1.1rem; padding: clamp(1.6rem,3vw,2.3rem); background: var(--ink); border: 1px solid var(--line); overflow: hidden; transition: transform .5s var(--ease-punch), border-color .4s, background .4s; }
+    .offer::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--red); transform: scaleY(0); transform-origin: bottom; transition: transform .5s var(--ease-out); }
+    .offer:hover, .offer:active { transform: translateY(-8px); border-color: rgba(242,237,227,.28); }
+    .offer:hover::before, .offer:active::before { transform: scaleY(1); }
+    .offer--hot { background: var(--bone); color: var(--ink); border-color: var(--bone); }
+    .offer--hot::before { background: var(--ink); }
+    .offer__tag { align-self: flex-start; font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--bone); background: rgba(225,6,0,.14); padding: .45em .8em; border: 1px solid var(--red); }
+    .offer--hot .offer__tag { color: var(--on-accent); background: var(--red); border-color: var(--red); }
+    .offer__name { font-family: var(--f-display); text-transform: uppercase; font-size: clamp(1.35rem,2.6vw,1.9rem); line-height: .95; color: inherit; }
+    .offer__price { display: flex; align-items: baseline; flex-wrap: wrap; gap: .5ch; }
+    .offer__was { font: 700 1rem/1 var(--f-mono); color: var(--bone-dim); text-decoration: line-through; text-decoration-color: var(--red); }
+    .offer--hot .offer__was { color: var(--on-bone-dim); }
+    .offer__now { font-family: var(--f-display); font-size: clamp(2.8rem,6.5vw,4rem); line-height: .8; color: inherit; }
+    .offer__unit { font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .04em; text-transform: uppercase; color: var(--bone); }
+    .offer--hot .offer__unit { color: var(--ink); }
+    .offer__period { font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--bone-dim); width: 100%; }
+    .offer--hot .offer__period { color: var(--on-bone-dim); }
+    .offer__feature { font-size: var(--step--1); font-weight: 600; color: var(--bone); }
+    .offer--hot .offer__feature { color: var(--ink); }
+    .offer__items { display: grid; gap: .55rem; margin-top: auto; }
+    .offer__items li { display: flex; gap: .8ch; align-items: flex-start; font-size: var(--step--1); color: var(--read); }
+    .offer--hot .offer__items li { color: var(--ink); }
+    .offer__items li::before { content: ""; flex: 0 0 7px; height: 7px; margin-top: .5em; background: var(--red); }
+    .offer .btn { margin-top: .4rem; }
+
+    /* bonus */
+    .bonus { position: relative; margin-top: clamp(1.6rem,4vw,2.4rem); display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.6rem; padding: clamp(1.4rem,3vw,2rem) clamp(1.4rem,3vw,2.2rem); border: 1px solid var(--red); background: linear-gradient(100deg, rgba(110,10,8,.35), rgba(19,17,16,.4) 70%); }
+    .bonus__badge { font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--white); background: var(--red); padding: .6em .9em; }
+    .bonus__txt { font-family: var(--f-display); text-transform: uppercase; font-size: clamp(1.1rem,2.6vw,1.7rem); line-height: 1.05; color: var(--bone); }
+    .bonus__txt b { color: var(--white); }
+
+    /* réassurance / avis */
+    .rev-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1rem; margin-bottom: clamp(1.6rem,4vw,2.4rem); }
+    .rev-rating { display: inline-flex; align-items: baseline; gap: .6ch; }
+    .rev-rating__v { font-family: var(--f-display); font-size: clamp(2.4rem,5vw,3.4rem); line-height: .85; color: var(--bone); }
+    .rev-rating__v small { font-size: .34em; color: var(--bone-dim); }
+    .rev-rating__src { font: 700 var(--step--1)/1.3 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--bone); }
+    .reviews { display: grid; gap: .7rem; grid-template-columns: 1fr; }
+    @media (min-width: 760px){ .reviews { grid-template-columns: repeat(3,1fr); } }
+    .review { display: flex; flex-direction: column; gap: 1rem; padding: clamp(1.4rem,3vw,2rem); background: var(--ink-2); border: 1px solid var(--line); transition: border-color .4s, transform .5s var(--ease); }
+    .review:hover, .review:active { border-color: rgba(242,237,227,.24); transform: translateY(-4px); }
+    .review__stars { color: var(--bone); letter-spacing: .25em; font-size: .9rem; }
+    .review__text { color: var(--bone); font-size: var(--step-0); line-height: 1.5; }
+    .review__author { margin-top: auto; font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--bone-dim); }
+    .review__author::before { content: "— "; color: var(--red); }
+  </style>
+
+  <script is:inline>
+    document.documentElement.classList.add('fx');
+    (function () {
+      var off = function () { document.documentElement.classList.remove('fx'); };
+      setTimeout(off, 2500);
+      addEventListener('error', off);
+      addEventListener('unhandledrejection', off);
+    })();
+  </script>
+</head>
+
+<body data-page="tarifs">
+  <div class="grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="cursor" aria-hidden="true"><div class="cursor__ring"><span class="cursor__label">voir</span></div></div>
+  <div class="cursor__dot" aria-hidden="true"></div>
+
+  <a class="sr-only" href="#main">Aller au contenu</a>
+  <div id="nav"></div>
+  <div id="drawer"></div>
+
+  <main id="main">
+
+    <!-- ========================= EN-TÊTE ========================== -->
+    <section class="page-head page-head--tar" aria-label="Tarifs et offres">
+      <div class="page-head__bg" aria-hidden="true"><div class="media" data-img="/assets/img/bc/cross-1.webp" data-eager data-label=""></div></div>
+      <div class="wrap">
+        <span class="eyebrow" data-reveal>Tarifs · <span id="season">Saison 2026 — 2027</span></span>
+        <h1 class="display" style="margin:1rem 0 0"><span class="reveal-mask"><span>Le prix,</span></span><span class="reveal-mask"><span class="tint">sans détour.</span></span></h1>
+        <p class="lead page-head__lead" data-reveal>Tu commences à 10€. Tu vois si le ring te parle. Tu t'engages seulement si tu reviens. Trois lignes, tout est dessous — noir sur blanc.</p>
+        <div class="tar-note" aria-hidden="true" data-reveal>
+          <div class="tar-note__v">10€</div>
+          <div class="tar-note__l">La séance d'essai</div>
+          <div class="tar-note__s">Toutes disciplines · gants prêtés</div>
+        </div>
+        <div class="tar-head__meta" data-reveal>
+          <span><b>10€</b> l'essai</span>
+          <span><b>4×</b> sans frais sur la saison</span>
+          <span>Accès libre aux <b>5 clubs</b></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= LES OFFRES ======================= -->
+    <section class="section section--tight" aria-label="Les formules">
+      <div class="wrap">
+        <div class="reel__head" style="margin-bottom:clamp(1.8rem,4vw,2.6rem)">
+          <div data-reveal>
+            <span class="eyebrow">Les formules</span>
+            <h2 class="display display--sm" style="margin-top:1rem">Choisis ton <span class="tint">entrée</span></h2>
+          </div>
+          <p class="muted" data-reveal style="max-width:34ch">L'essai d'abord. Le Duo pour venir à deux. La saison pour t'installer. L'école pour les petits.</p>
+        </div>
+        <div class="offers" id="offers" data-reveal-group></div>
+        <div class="bonus" data-reveal id="bonus"></div>
+      </div>
+    </section>
+
+    <!-- ==================== AVIS GOOGLE (réels) =================== -->
+    <section class="section band" aria-label="Les avis">
+      <div class="wrap">
+        <div class="rev-head">
+          <div data-reveal>
+            <span class="eyebrow">Ils y sont passés</span>
+            <h2 class="display display--sm" style="margin-top:1rem">La salle, <span class="tint">jugée</span></h2>
+          </div>
+          <div class="rev-rating" data-reveal id="rating"></div>
+        </div>
+        <div class="reviews" id="reviews" data-reveal-group></div>
+      </div>
+    </section>
+
+    <!-- ========================= FINAL GONG ====================== -->
+    <section class="gong" aria-label="Réserver une séance">
+      <div class="gong__bg" aria-hidden="true"><div class="media" data-img="/assets/img/bc/anglaise-4.webp" data-label=""></div></div>
+      <div class="gong__inner">
+        <span class="eyebrow" data-reveal>L'addition</span>
+        <h2 class="display" data-reveal style="font-size:var(--step-3)">Commence par<br><span class="tint">les 10€.</span></h2>
+        <p class="lead" data-reveal>Un billet de 10 pour toutes les disciplines. Si tu reviens, on parlera abonnement — pas avant.</p>
+        <div class="gong__cta" data-reveal>
+          <a class="btn btn--primary" data-magnetic href="https://box-plus.vercel.app/seance-essai"><span>Réserver mon essai · 10€</span></a>
+          <a class="btn btn--ghost" data-magnetic href="tel:+33562244682"><span>05 62 24 46 82</span></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer"></div>
+
+  <!-- pastille "Une question ?" → appel direct de la salle (STANDARDS §1) -->
+  <a class="chatbot" href="tel:+33562244682" aria-label="Une question ? Appelle la salle Boxing Center Minimes — 05 62 24 46 82">
+    <span class="chatbot__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+    <span class="chatbot__label">Appelle la salle</span>
+  </a>
+
+  <!-- Libs (CDN — la team remplace par des imports npm en Astro/Next) -->
+  <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script is:inline src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=b5"></script>
+  <script is:inline type="module" src="/assets/js/tarifs.js?v=b5"></script>
+</body>
+</html>

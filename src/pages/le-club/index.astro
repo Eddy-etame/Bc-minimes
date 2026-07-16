@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Le club — Salle de boxe historique des Minimes | Boxing Center Toulouse</title>
+  <meta name="description" content="Entre dans Boxing Center Minimes : la salle de boxe historique de Toulouse, 3 rings, ambiance Philadelphie, accès métro Barrière de Paris. Histoire, équipement, accès et FAQ locale." />
+  <meta name="keywords" content="salle de boxe Minimes Toulouse, club boxe Barrière de Paris, histoire Boxing Center, 3 rings boxe Toulouse, accès salle boxe métro B" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://minimes.boxingcenter.fr/le-club/" />
+  <meta name="theme-color" content="#0a0908" />
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+  <meta name="geo.region" content="FR-31" />
+  <meta name="geo.placename" content="Toulouse — Les Minimes" />
+  <meta name="geo.position" content="43.6256;1.4309" />
+  <meta name="ICBM" content="43.6256, 1.4309" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="Boxing Center Minimes" />
+  <meta property="og:title" content="Le club — Boxing Center Minimes, la salle historique" />
+  <meta property="og:description" content="Trois rings, une école qui tourne depuis 2016, métro Barrière de Paris. La salle qui a formé des pros à Toulouse." />
+  <meta property="og:url" content="https://minimes.boxingcenter.fr/le-club/" />
+  <meta property="og:image" content="https://minimes.boxingcenter.fr/assets/img/og.png" />
+  <meta property="og:image:alt" content="La salle historique Boxing Center Minimes — les trois rings." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Le club — Boxing Center Minimes, la salle historique" />
+  <meta name="twitter:description" content="Trois rings, une école qui tourne depuis 2016, métro Barrière de Paris. La salle qui a formé des pros à Toulouse." />
+  <meta name="twitter:image" content="https://minimes.boxingcenter.fr/assets/img/og.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <!-- LCP : le hero est construit en JS → invisible au preload scanner (§5.8) -->
+  <link rel="preload" as="image" href="/assets/img/bc/salle-1.webp" fetchpriority="high" />
+
+  <link rel="stylesheet" href="/assets/css/base.css?v=b5" />
+  <link rel="stylesheet" href="/assets/css/club.css?v=b5" />
+
+  <!-- ⚠ PAS de FAQPage ici. La FAQ canonique (+ son FAQPage) vit sur
+       /contact/ et nulle part ailleurs (§4). Avant, les deux pages rendaient
+       les MÊMES six réponses depuis data.js sur deux URL indexées —
+       duplicate content — et ce bloc-ci déclarait 3 questions pendant que la
+       page en affichait 6. /le-club/ est la VISITE. -->
+  <script is:inline type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://minimes.boxingcenter.fr/" },
+      { "@type": "ListItem", "position": 2, "name": "Le club", "item": "https://minimes.boxingcenter.fr/le-club/" }
+    ]
+  }
+  </script>
+  <script is:inline>
+    document.documentElement.classList.add('fx');
+    (function () {
+      var off = function () { document.documentElement.classList.remove('fx'); };
+      setTimeout(off, 2500);
+      addEventListener('error', off);
+      addEventListener('unhandledrejection', off);
+    })();
+  </script>
+</head>
+
+<body data-page="le-club">
+  <div class="grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="cursor" aria-hidden="true"><div class="cursor__ring"><span class="cursor__label">voir</span></div></div>
+  <div class="cursor__dot" aria-hidden="true"></div>
+
+  <a class="sr-only" href="#main">Aller au contenu</a>
+  <div id="nav"></div>
+  <div id="drawer"></div>
+
+  <main id="main">
+
+    <!-- ========================= PAGE HEAD ======================== -->
+    <header class="club-head">
+      <div class="club-head__media" aria-hidden="true"><div class="media" data-img="/assets/img/bc/salle-1.webp" data-eager data-label="La salle historique"></div></div>
+      <div class="hero__scrim" aria-hidden="true"></div>
+      <div class="wrap club-head__inner">
+        <p class="eyebrow" data-reveal>Le club · Les Minimes</p>
+        <h1 class="club-head__title">
+          <span class="reveal-mask"><span>La salle</span></span>
+          <span class="reveal-mask"><span class="tint">historique.</span></span>
+        </h1>
+        <p class="lead" data-reveal style="max-width:48ch;margin-top:1.2rem">Celle par laquelle tout a commencé. Trois rings, une odeur de cuir qui ne part pas, et 2016 dans les murs. Bienvenue au berceau.</p>
+      </div>
+      <div class="hero__foot" aria-hidden="true" style="z-index:4">
+        <span class="scroll-cue">L'histoire <span class="line"></span></span>
+      </div>
+    </header>
+
+    <!-- ========================= HISTOIRE ========================= -->
+    <section class="section" aria-label="L'histoire de la salle">
+      <div class="wrap">
+        <div class="sec-head" data-reveal>
+          <span class="eyebrow">Depuis 2016</span>
+          <h2 class="display" style="margin-top:1rem">Une école, <span class="tint">une lignée</span></h2>
+        </div>
+        <ol class="timeline" id="timeline"></ol>
+      </div>
+    </section>
+
+    <!-- ===================== AMBIANCE (parallax) ================== -->
+    <section class="ambiance" aria-label="L'ambiance de la salle">
+      <div class="ambiance__media" aria-hidden="true"><div class="media" data-img="/assets/img/bc/anglaise-4.webp" data-label="Entre les cordes"></div></div>
+      <div class="ambiance__quote wrap">
+        <p class="serif" data-reveal>Philadelphie a ses salles. Toulouse a la sienne, au 12 rue de Fenouillet.<br>Les champions, eux, sont les mêmes : <span class="tint">bien réels.</span></p>
+      </div>
+    </section>
+
+    <!-- ====================== ÉQUIPEMENT ========================= -->
+    <section class="section" aria-label="L'équipement">
+      <div class="wrap split">
+        <div data-reveal>
+          <span class="eyebrow">L'équipement</span>
+          <h2 class="display" style="margin:1rem 0 1.4rem">Du matériel<br>de <span class="tint">boxeur.</span></h2>
+          <p class="lead">Trois rings, douze sacs lourds, une zone de pattes d'ours, la prépa à l'étage. Le matériel est usé : c'est le compliment.</p>
+          <p class="muted" style="margin-top:1.2rem">Affilié FFBoxe · FFKMDA · FMMAF. Des coachs passés par l'amateur et la compétition avant de tenir les pattes.</p>
+        </div>
+        <div class="feature-card" id="specs" data-reveal></div>
+      </div>
+    </section>
+
+    <!-- ====================== ACCÈS / INFOS ====================== -->
+    <section class="section band" aria-label="Accès et infos pratiques">
+      <div class="wrap">
+        <div class="sec-head" data-reveal>
+          <span class="eyebrow">Infos pratiques</span>
+          <h2 class="display" style="margin-top:1rem">Venir au <span class="tint">club</span></h2>
+        </div>
+        <!-- une seule ligne : le reste (horaires, accès, téléphone, FAQ) est
+             sur /contact/. Deux pages qui répètent la même grille avec les
+             mêmes ids, c'est une page de trop. -->
+        <div class="contact-grid">
+          <div data-reveal-group>
+            <div class="contact-line"><span>Adresse</span><a id="addr" href="#" target="_blank" rel="noopener"></a></div>
+            <div class="contact-line"><span>Le reste</span><p>Horaires, accès, téléphone et les questions qu'on nous pose : <a href="/contact/">tout est sur la page contact</a>.</p></div>
+            <div class="contact-line"><a class="btn btn--primary" data-magnetic href="https://box-plus.vercel.app/seance-essai"><span>Réserver mon essai · 10€</span></a></div>
+          </div>
+          <div class="map-frame" data-reveal>
+            <iframe id="map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Carte Boxing Center Minimes"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CE QU'ON DEMANDE EN POUSSANT LA PORTE =========
+         Des questions de LIEU, propres à cette page — pas la FAQ de
+         /contact/ recopiée. Prose, pas accordéon : une visite répond en
+         marchant. -->
+    <section class="section" aria-label="Ce qu'on demande en poussant la porte">
+      <div class="wrap">
+        <div class="sec-head" data-reveal>
+          <span class="eyebrow">Sur le pas de la porte</span>
+          <h2 class="display" style="margin-top:1rem">Ce qu'on demande <span class="tint">en entrant</span></h2>
+        </div>
+        <div class="asks" id="asks" data-reveal-group></div>
+      </div>
+    </section>
+
+    <!-- ========================= LE RÉSEAU ======================= -->
+    <section class="section" aria-label="Le réseau Boxing Center">
+      <div class="wrap">
+        <div class="sec-head" data-reveal>
+          <span class="eyebrow">Le réseau</span>
+          <h2 class="display" style="margin-top:1rem">Nos autres <span class="tint">salles</span></h2>
+        </div>
+        <div class="network" id="network" data-reveal-group></div>
+      </div>
+    </section>
+
+    <!-- ========================= FINAL GONG ====================== -->
+    <section class="gong" aria-label="Rejoindre la salle">
+      <div class="gong__bg" aria-hidden="true"><div class="media" data-img="/assets/img/bc/anglaise-3.webp" data-label=""></div></div>
+      <div class="gong__inner">
+        <span class="eyebrow" data-reveal>La porte</span>
+        <h2 class="display" data-reveal style="font-size:var(--step-3)">Pousse la porte<br><span class="tint">des Minimes.</span></h2>
+        <p class="lead" data-reveal>Le prix d'un ciné pour ta première fois sur un ring. Pousse la porte.</p>
+        <div class="gong__cta" data-reveal>
+          <a class="btn btn--primary" data-magnetic href="https://box-plus.vercel.app/seance-essai"><span>Réserver mon essai · 10€</span></a>
+          <a class="btn btn--ghost" data-magnetic href="/"><span>Retour à l'accueil</span></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer"></div>
+  <!-- pastille "Une question ?" → appel direct de la salle (STANDARDS §1) -->
+  <a class="chatbot" href="tel:+33562244682" aria-label="Une question ? Appelle la salle Boxing Center Minimes — 05 62 24 46 82">
+    <span class="chatbot__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+    <span class="chatbot__label">Appelle la salle</span>
+  </a>
+
+  <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script is:inline src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=b5"></script>
+  <script is:inline type="module" src="/assets/js/club.js?v=b5"></script>
+</body>
+</html>
