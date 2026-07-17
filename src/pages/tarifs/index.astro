@@ -5,15 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tarifs & offres — Boxing Center Minimes, Toulouse (essai 10€, Duo, saison 259€)</title>
   <meta name="description" content="Les tarifs de la salle de boxe des Minimes (Toulouse 31200) : séance d'essai 10€, offre Duo 29€ par personne, saison complète 259€ les 12 mois en 4× sans frais, école dès 3 ans. Accès libre aux 5 clubs du réseau." />
+
+  <!-- Préconnexion CDN (les libs sont différées) — polices auto-hébergées :
+       plus aucune requête vers fonts.googleapis.com / fonts.gstatic.com -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-black-latin.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-latin.woff2" crossorigin />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=b5" />
+
+  <!-- LCP : le hero est construit en JS → invisible au preload scanner (§5.8) -->
+  <link rel="preload" as="image" href="/assets/img/bc/cross-1.webp" fetchpriority="high" />
+
+  <link rel="stylesheet" href="/assets/css/base.css?v=b5" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=b5" />
+
   <meta name="keywords" content="tarif salle de boxe Toulouse, prix boxe Minimes, séance d'essai boxe 10€, abonnement boxe Toulouse, offre duo boxe, saison boxe 259€, tarif boxe enfant Toulouse" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
-  <link rel="canonical" href="https://minimes.boxingcenter.fr/tarifs/" />
-  <meta name="theme-color" content="#0a0908" />
-  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
   <meta name="geo.region" content="FR-31" />
   <meta name="geo.placename" content="Toulouse — Les Minimes" />
   <meta name="geo.position" content="43.6256;1.4309" />
   <meta name="ICBM" content="43.6256, 1.4309" />
+  <link rel="canonical" href="https://minimes.boxingcenter.fr/tarifs/" />
+  <meta name="theme-color" content="#0a0908" />
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -23,45 +37,224 @@
   <meta property="og:description" content="Essai 10€, Duo 29€ par personne, saison 259€ les 12 mois en 4× sans frais, école dès 3 ans. Accès libre aux 5 clubs." />
   <meta property="og:url" content="https://minimes.boxingcenter.fr/tarifs/" />
   <meta property="og:image" content="https://minimes.boxingcenter.fr/assets/img/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/png" />
   <meta property="og:image:alt" content="Tarifs Boxing Center Minimes — essai 10€, offre Duo, saison complète." />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Tarifs & offres — Boxing Center Minimes, Toulouse" />
   <meta name="twitter:description" content="Essai 10€, Duo 29€/personne, saison 259€ les 12 mois. Accès libre aux 5 clubs." />
   <meta name="twitter:image" content="https://minimes.boxingcenter.fr/assets/img/og.png" />
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-
-  <!-- LCP : le hero est construit en JS → invisible au preload scanner (§5.8) -->
-  <link rel="preload" as="image" href="/assets/img/bc/cross-1.webp" fetchpriority="high" />
-
-  <link rel="stylesheet" href="/assets/css/base.css?v=b5" />
-  <link rel="stylesheet" href="/assets/css/home.css?v=b5" />
-
+  <!-- Données structurées : graphe JSON-LD unifié de la page — nœuds reliés
+       par @id (Organization · SportsActivityLocation/HealthClub · WebSite ·
+       WebPage · BreadcrumbList · …). Faits réels du site uniquement. -->
   <script is:inline type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://minimes.boxingcenter.fr/" },
-      { "@type": "ListItem", "position": 2, "name": "Tarifs", "item": "https://minimes.boxingcenter.fr/tarifs/" }
-    ]
-  }
-  </script>
-  <script is:inline type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "OfferCatalog",
-    "name": "Tarifs & offres — Boxing Center Minimes",
-    "url": "https://minimes.boxingcenter.fr/tarifs/",
-    "provider": { "@type": "SportsActivityLocation", "@id": "https://minimes.boxingcenter.fr/#salle", "name": "Boxing Center Minimes" },
-    "itemListElement": [
-      { "@type": "Offer", "name": "Séance d'essai", "price": "10", "priceCurrency": "EUR", "description": "Toutes disciplines, matériel prêté, sans engagement.", "url": "https://box-plus.vercel.app/seance-essai" },
-      { "@type": "Offer", "name": "Offre Duo — 29€ par personne", "price": "29", "priceCurrency": "EUR", "description": "4 semaines de cours illimités à deux, sans engagement (au lieu de 44€).", "url": "https://box-plus.vercel.app/abonnements#promotions" },
-      { "@type": "Offer", "name": "Saison complète — 259€ les 12 mois", "price": "259", "priceCurrency": "EUR", "description": "Payable en 4× sans frais, accès libre aux 5 clubs du réseau (au lieu de 400€).", "url": "https://box-plus.vercel.app/abonnements#promotions" },
-      { "@type": "Offer", "name": "École de boxe — dès 3 ans", "price": "280", "priceCurrency": "EUR", "description": "Baby Boxe 3/6, éducative 7/11, ados 12/16, compétiteurs.", "url": "https://box-plus.vercel.app/abonnements#enfants" }
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://boxingcenter.fr/#organization",
+        "name": "Boxing Center",
+        "url": "https://boxingcenter.fr/",
+        "sameAs": [
+          "https://www.instagram.com/boxingcentertoulouse/",
+          "https://www.facebook.com/BoxingCenterToulouse/"
+        ]
+      },
+      {
+        "@type": [
+          "SportsActivityLocation",
+          "HealthClub",
+          "LocalBusiness"
+        ],
+        "@id": "https://minimes.boxingcenter.fr/#salle",
+        "name": "Boxing Center Minimes",
+        "url": "https://minimes.boxingcenter.fr/",
+        "telephone": "+33562244682",
+        "email": "boxingcenter31@gmail.com",
+        "priceRange": "€€",
+        "image": "https://minimes.boxingcenter.fr/assets/img/og.png",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "12 rue de Fenouillet",
+          "postalCode": "31200",
+          "addressLocality": "Toulouse",
+          "addressRegion": "Occitanie",
+          "addressCountry": "FR"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 43.6256,
+          "longitude": 1.4309
+        },
+        "areaServed": [
+          {
+            "@type": "Place",
+            "name": "Les Minimes"
+          },
+          {
+            "@type": "City",
+            "name": "Toulouse"
+          },
+          {
+            "@type": "Place",
+            "name": "Barrière de Paris"
+          }
+        ],
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday"
+            ],
+            "opens": "10:00",
+            "closes": "21:30"
+          }
+        ],
+        "sport": [
+          "Boxing",
+          "Educational Boxing",
+          "Cross Training"
+        ],
+        "sameAs": [
+          "https://www.instagram.com/boxingcentertoulouse/",
+          "https://www.facebook.com/BoxingCenterToulouse/",
+          "https://boxingcenter.fr/"
+        ],
+        "amenityFeature": [
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "3 rings de boxe",
+            "value": true
+          },
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "Zone pattes d'ours",
+            "value": true
+          },
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "Salle de prépa physique à l'étage",
+            "value": true
+          }
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "@id": "https://minimes.boxingcenter.fr/#offres",
+          "name": "Offres Boxing Center Minimes",
+          "url": "https://minimes.boxingcenter.fr/tarifs/",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "name": "Séance d'essai",
+              "price": "10",
+              "priceCurrency": "EUR",
+              "description": "Toutes disciplines, matériel prêté, sans engagement.",
+              "url": "https://box-plus.vercel.app/seance-essai"
+            },
+            {
+              "@type": "Offer",
+              "name": "Offre Duo — 29€ par personne",
+              "price": "29",
+              "priceCurrency": "EUR",
+              "description": "4 semaines de cours illimités à deux, sans engagement (au lieu de 44€).",
+              "url": "https://box-plus.vercel.app/abonnements#promotions"
+            },
+            {
+              "@type": "Offer",
+              "name": "Saison complète — 259€ les 12 mois",
+              "price": "259",
+              "priceCurrency": "EUR",
+              "description": "Payable en 4× sans frais, accès libre aux 5 clubs du réseau (au lieu de 400€).",
+              "url": "https://box-plus.vercel.app/abonnements#promotions"
+            },
+            {
+              "@type": "Offer",
+              "name": "École de boxe — dès 3 ans",
+              "price": "280",
+              "priceCurrency": "EUR",
+              "description": "Baby Boxe 3/6, éducative 7/11, ados 12/16.",
+              "url": "https://box-plus.vercel.app/abonnements#enfants"
+            }
+          ]
+        },
+        "parentOrganization": {
+          "@id": "https://boxingcenter.fr/#organization"
+        },
+        "description": "Salle de boxe anglaise historique du groupe Boxing Center, quartier des Minimes à Toulouse (31200). Berceau de boxeurs professionnels et amateurs, 3 rings, boxe éducative dès 3 ans (Baby Boxe 3/6), Boxing Lady. Séance d'essai 10€.",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.3",
+          "reviewCount": "157",
+          "bestRating": "5"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://minimes.boxingcenter.fr/#website",
+        "url": "https://minimes.boxingcenter.fr/",
+        "name": "Boxing Center Minimes",
+        "inLanguage": "fr-FR",
+        "publisher": {
+          "@id": "https://minimes.boxingcenter.fr/#salle"
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://minimes.boxingcenter.fr/tarifs/#webpage",
+        "url": "https://minimes.boxingcenter.fr/tarifs/",
+        "name": "Tarifs & offres — Boxing Center Minimes, Toulouse (essai 10€, Duo, saison 259€)",
+        "description": "Les tarifs de la salle de boxe des Minimes (Toulouse 31200) : séance d'essai 10€, offre Duo 29€ par personne, saison complète 259€ les 12 mois en 4× sans frais, école dès 3 ans. Accès libre aux 5 clubs du réseau.",
+        "isPartOf": {
+          "@id": "https://minimes.boxingcenter.fr/#website"
+        },
+        "about": {
+          "@id": "https://minimes.boxingcenter.fr/#salle"
+        },
+        "inLanguage": "fr-FR",
+        "primaryImageOfPage": {
+          "@id": "https://minimes.boxingcenter.fr/tarifs/#primaryimage"
+        },
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
+        "breadcrumb": {
+          "@id": "https://minimes.boxingcenter.fr/tarifs/#breadcrumb"
+        }
+      },
+      {
+        "@type": "ImageObject",
+        "@id": "https://minimes.boxingcenter.fr/tarifs/#primaryimage",
+        "url": "https://minimes.boxingcenter.fr/assets/img/og.png",
+        "contentUrl": "https://minimes.boxingcenter.fr/assets/img/og.png",
+        "width": 1200,
+        "height": 630,
+        "caption": "Tarifs Boxing Center Minimes — essai 10€, offre Duo, saison complète."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://minimes.boxingcenter.fr/tarifs/#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Accueil",
+            "item": "https://minimes.boxingcenter.fr/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Tarifs",
+            "item": "https://minimes.boxingcenter.fr/tarifs/"
+          }
+        ]
+      }
     ]
   }
   </script>
@@ -232,9 +425,9 @@
   </a>
 
   <!-- Libs (CDN — la team remplace par des imports npm en Astro/Next) -->
-  <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script is:inline src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script is:inline defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
   <script is:inline type="module" src="/assets/js/site.js?v=b5"></script>
   <script is:inline type="module" src="/assets/js/tarifs.js?v=b5"></script>
 </body>

@@ -1,86 +1,63 @@
 # Boxing Center Minimes
 
-> Salle de boxe anglaise historique du réseau Boxing Center — la première salle du groupe,
-> le « berceau des champions », dans le quartier des Minimes à Toulouse (Barrière de Paris, 31200).
-> Faits machine-lisibles, vérifiés le 2026-07-12. Saison de référence : 2026-2027.
+> Salle de boxe anglaise historique du réseau Boxing Center — la première salle du groupe (ouverte en 2016), « le berceau des champions », au 12 rue de Fenouillet, quartier des Minimes / Barrière de Paris, 31200 Toulouse. Boxe anglaise, boxe éducative dès 3 ans (Baby Boxe 3/6), Boxing Lady 100 % féminin, PAOS, cross training, cardio boxing — 3 rings, ouvert du lundi au samedi 10h00–21h30. Séance d'essai 10 €. Note Google : 4,3/5 (157 avis).
 
-## Identité
-- Nom : Boxing Center Minimes
-- Baseline : Le berceau des champions.
-- Réseau : Boxing Center — 5 salles à Toulouse (Portet, Minimes, États-Unis, Saint-Cyprien, Ramonville).
+## Pages
+
+- [Accueil](https://minimes.boxingcenter.fr/): la salle historique du groupe Boxing Center à Toulouse (31200) — 3 rings, boxe anglaise, boxe éducative dès 3 ans, Boxing Lady, séance d'essai 10 €.
+- [Activités & disciplines](https://minimes.boxingcenter.fr/activites/): les 6 disciplines — boxe anglaise (loisirs et compétiteurs), boxe éducative dès 3 ans, Boxing Lady, PAOS & pattes d'ours, cross training, cardio boxing.
+- [Le club](https://minimes.boxingcenter.fr/le-club/): histoire depuis 2016, équipement (3 rings, 12 sacs lourds, zone pattes d'ours, prépa physique à l'étage, vestiaires H/F), accès et réseau des salles.
+- [Les coachs](https://minimes.boxingcenter.fr/coachs/): Mehdi B (coach principal — anglaise, éducative, compétiteurs, baby boxe, boxing camp), Chloé (Boxing Lady), David (Boxing Lady, pieds-poings), Hicham (boxing camp).
+- [Galerie photos](https://minimes.boxingcenter.fr/galerie/): la boxe en images (pool photo du réseau Boxing Center), filtrable par zone — ring, sparring, école, Lady, technique.
+- [Planning des cours](https://minimes.boxingcenter.fr/plannings/): la semaine complète en grille filtrable (jour / discipline / coach) + le poster officiel de la saison.
+- [Tarifs & offres](https://minimes.boxingcenter.fr/tarifs/): séance d'essai 10 €, offre Duo 29 € par personne, saison complète 259 € les 12 mois, école dès 280 € l'année — avec les avis Google (4,3/5, 157 avis).
+- [Contact & accès](https://minimes.boxingcenter.fr/contact/): téléphone 05 62 24 46 82, adresse, horaires, accès métro/rocade/bus, FAQ locale.
+
+## Faits
+
+### Identité
+- Nom : Boxing Center Minimes. Baseline : « Le berceau des champions. »
+- Réseau : Boxing Center — 5 salles à Toulouse (Portet-sur-Garonne, Minimes, États-Unis, Saint-Cyprien, Ramonville). Site groupe : https://boxingcenter.fr/
 - Ouverture : 2016 (première salle du groupe).
 - Affiliations : FFBoxe, FFKMDA, FMMAF.
 
-## Coordonnées
+### Coordonnées et accès
 - Adresse : 12 rue de Fenouillet, 31200 Toulouse (quartier des Minimes / Barrière de Paris).
 - Téléphone : 05 62 24 46 82 (+33 5 62 24 46 82).
-- E-mail : boxingcenter31@gmail.com.
+- E-mail : boxingcenter31@gmail.com
 - Horaires : lundi à samedi, 10h00–21h30. Dimanche : fermé.
-- Accès : métro ligne B, station Barrière de Paris (3 min à pied) ; rocade sortie 31 ; bus 70 / 27.
+- Accès : métro ligne B, station Barrière de Paris (3 min à pied) ; rocade sortie 31, direction Les Minimes ; bus 70 / 27, arrêt Minimes-Roquelaine.
 - Coordonnées GPS : 43.6256, 1.4309.
 
-## Équipement
-- 3 rings de boxe.
-- Sacs lourds, zone de pattes d'ours.
+### Équipement
+- 3 rings de boxe, 12 sacs lourds, zone de pattes d'ours.
 - Salle de préparation physique à l'étage.
 - Vestiaires hommes / femmes.
 
-## Disciplines
-- Boxe anglaise (la spécialité maison — loisirs, amateurs, compétiteurs).
-- Boxe éducative dès 3 ans : Baby Boxe 3/6 ans, éducative 7/11 ans, ados 12/16 ans, compétiteurs.
-- Boxing Lady : deux créneaux 100 % féminins par semaine (lundi 18h30 avec Chloé, mercredi 18h30 avec David).
-- PAOS & pattes d'ours (travail technique).
-- Cross training, cardio boxing (sans contact).
+### Disciplines et coachs (vérifiés — poster officiel de la saison en cours)
+- Boxe anglaise (la spécialité maison) : loisirs mardi, jeudi, vendredi, samedi à 12h40 et 19h40 ; compétiteurs lundi, mardi, jeudi, vendredi, samedi à 18h30 ; open sparring samedi 18h30 — coach Mehdi B.
+- Boxe éducative dès 3 ans : Baby Boxe 3/6 ans samedi 14h15 ; éducative 7/11 et ados 12/16 mercredi et samedi 15h00–18h00 — coach Mehdi B.
+- Boxing Lady (100 % féminin) : lundi 18h30 avec Chloé, mercredi 18h30 avec David.
+- Boxe pieds-poings : mercredi 19h40 avec David.
+- Boxing camp : lundi et samedi 11h00–12h00 avec Mehdi B ; mardi et jeudi 18h30 avec Hicham.
+- PAOS & pattes d'ours, cross training et cardio boxing (sans contact) complètent le programme.
+- Accès libre (rings et sacs en autonomie) : du lundi au samedi, sans réservation.
 
-## Offres (saison 2026-2027)
-- Séance d'essai : 10 € — toutes disciplines, matériel prêté, sans engagement.
-  → https://box-plus.vercel.app/seance-essai
-- Offre Duo : 29 € par personne — 4 semaines de cours illimités, sans engagement (au lieu de 44 €).
-  → https://box-plus.vercel.app/abonnements#promotions
-- Saison complète : 259 € les 12 mois — payable en 4× sans frais, accès libre aux 5 clubs du réseau (au lieu de 400 €).
-  → https://box-plus.vercel.app/abonnements#promotions
-- École enfants : dès 280 € l'année (dès 3 ans).
-  → https://box-plus.vercel.app/abonnements#enfants
+### Offres (saison en cours — voir /tarifs/)
+- Séance d'essai : 10 € — toutes disciplines, matériel prêté, sans engagement. → https://box-plus.vercel.app/seance-essai
+- Offre Duo : 29 € par personne — 4 semaines de cours illimités, sans engagement (au lieu de 44 €). → https://box-plus.vercel.app/abonnements#promotions
+- Saison complète : 259 € les 12 mois — payable en 4× sans frais, accès libre aux 5 clubs du réseau (au lieu de 400 €). → https://box-plus.vercel.app/abonnements#promotions
+- École enfants : dès 280 € l'année (dès 3 ans). → https://box-plus.vercel.app/abonnements#enfants
 - Bonus : t-shirt Boxing Center offert aux 100 premiers inscrits.
 
-## Coachs (vérifiés — poster saison 2026-2027)
-- Mehdi B (coach principal) : boxe anglaise, boxe éducative (Baby Boxe dès 3 ans, 7/11, 12/16), compétiteurs, boxing camp, open sparring.
-- Chloé : Boxing Lady.
-- David : Boxing Lady, boxe pieds-poings.
-- Hicham : boxing camp.
-- Note : seul Mehdi B a un portrait vérifié en ligne ; ne pas attribuer de photo aux autres coachs.
+### Réassurance
+- Note Google : 4,3/5 (157 avis) — affichée sur /tarifs/.
+- Berceau de plusieurs boxeurs professionnels et amateurs formés sur ces rings (Johnson Suffo, Salomon Kitoko, Elyasse Azap — passés professionnels).
 
-## Planning (transcription du poster officiel — saison 2026-2027)
-- Accès libre : du lundi au samedi (six jours sur sept), 10h00–21h30. Fermé le dimanche.
-- Boxe anglaise loisirs : mardi, jeudi, vendredi, samedi — 12h40 et 19h40 (Mehdi B).
-- Boxe compétiteurs : lundi, mardi, jeudi, vendredi, samedi — 18h30 (Mehdi B). Cinq soirs par semaine.
-- Open sparring : samedi 18h30 (Mehdi B).
-- Boxe éducative (7/11 et 12/16, compétiteurs) : mercredi et samedi, 15h00–18h00 (Mehdi B).
-- Baby Boxe (3/6 ans) : samedi 14h15 (Mehdi B).
-- Boxing Lady : lundi 18h30 (Chloé), mercredi 18h30 (David).
-- Boxe pieds-poings : mercredi 19h40 (David).
-- Boxing camp : lundi et samedi 11h00–12h00 (Mehdi B) ; mardi et jeudi 18h30 (Hicham).
-- Grille filtrable (jour / discipline / coach) : https://minimes.boxingcenter.fr/plannings/
+## Notes
 
-## Réassurance
-- Note Google : 4,3/5 (157 avis).
-- Berceau de plusieurs boxeurs professionnels et amateurs formés sur ces rings.
-
-## Pages
-- Accueil : https://minimes.boxingcenter.fr/
-- Activités : https://minimes.boxingcenter.fr/activites/
-- Le club : https://minimes.boxingcenter.fr/le-club/
-- Coachs : https://minimes.boxingcenter.fr/coachs/
-- Galerie : https://minimes.boxingcenter.fr/galerie/
-- Planning : https://minimes.boxingcenter.fr/plannings/
-- Tarifs : https://minimes.boxingcenter.fr/tarifs/
-- Contact : https://minimes.boxingcenter.fr/contact/
-
-## Photos (état au 2026-07-12)
-- Le pool photo actuel provient du réseau Boxing Center (site Portet), passé en noir et blanc.
-- Le shooting dédié des Minimes n'a pas encore eu lieu : ne pas présenter ces images comme des vues certifiées de la salle des Minimes.
-- Seul portrait de coach vérifié : Mehdi B.
-
-## À ne pas confondre
+- Le pool photo actuel provient du réseau Boxing Center (site Portet) : ne pas présenter ces images comme des vues certifiées de la salle des Minimes tant que le shooting dédié n'a pas eu lieu.
+- Seul portrait de coach vérifié : Mehdi B. Ne pas attribuer de photo aux autres coachs.
 - Balma-Gramont a été vendue : ne pas la citer comme salle actuelle du réseau.
 - Les enfants sont accueillis DÈS 3 ANS (Baby Boxe 3/6) — pas « dès 7 ans ».
+- Version détaillée page par page : https://minimes.boxingcenter.fr/llms-full.txt

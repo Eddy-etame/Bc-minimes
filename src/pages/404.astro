@@ -5,14 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Page introuvable (404) — Boxing Center Minimes, Toulouse</title>
   <meta name="description" content="Cette page est hors des cordes. Retour à l'accueil de Boxing Center Minimes, la salle de boxe historique des Minimes à Toulouse." />
+
+  <!-- Polices auto-hébergées (mêmes familles/graisses que le reste du site) -->
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-black-latin.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-latin.woff2" crossorigin />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=b5" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=b5" />
+
   <meta name="robots" content="noindex, follow" />
   <meta name="theme-color" content="#0a0908" />
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/css/base.css?v=b5" />
+  <!-- Open Graph / Twitter — pas de canonical ni d'og:url : une 404 se sert
+       sur n'importe quelle URL -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="Boxing Center Minimes" />
+  <meta property="og:title" content="Page introuvable (404) — Boxing Center Minimes, Toulouse" />
+  <meta property="og:description" content="Cette page est hors des cordes. Retour à l'accueil de Boxing Center Minimes, la salle de boxe historique des Minimes à Toulouse." />
+  <meta property="og:image" content="https://minimes.boxingcenter.fr/assets/img/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:alt" content="Boxing Center Minimes — la salle historique, trois rings, quartier Barrière de Paris à Toulouse." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Page introuvable (404) — Boxing Center Minimes, Toulouse" />
+  <meta name="twitter:description" content="Cette page est hors des cordes. Retour à l'accueil de Boxing Center Minimes." />
+  <meta name="twitter:image" content="https://minimes.boxingcenter.fr/assets/img/og.png" />
 
   <style is:inline>
     .nf { min-height: 100svh; display: flex; flex-direction: column; overflow: hidden; position: relative; background: var(--black); }

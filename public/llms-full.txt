@@ -1,0 +1,143 @@
+# Boxing Center Minimes — contenu factuel complet, page par page
+
+> Complément de /llms.txt : le contenu factuel intégral du site, en markdown,
+> sans habillage marketing. Salle de boxe anglaise historique du réseau
+> Boxing Center, 12 rue de Fenouillet, 31200 Toulouse (Minimes / Barrière de Paris).
+
+## Accueil — https://minimes.boxingcenter.fr/
+
+- Boxing Center Minimes est la salle historique (la première, ouverte en 2016) du réseau Boxing Center à Toulouse.
+- Quartier : Les Minimes / Barrière de Paris (31200), métro ligne B.
+- Spécialité : boxe anglaise. 3 rings, 12 sacs lourds, zone pattes d'ours, prépa physique à l'étage.
+- Palmarès de l'école : 3 boxeurs professionnels et plus de 30 amateurs formés sur ces rings.
+- Disciplines : boxe anglaise, boxe éducative dès 3 ans (Baby Boxe 3/6), Boxing Lady, PAOS & pattes d'ours, cross training, cardio boxing.
+- Publics : débutants, femmes (Boxing Lady 100 % féminin), enfants dès 3 ans, compétiteurs.
+- Séance d'essai : 10 €, toutes disciplines, sans engagement.
+- Téléphone : 05 62 24 46 82.
+
+## Activités & disciplines — https://minimes.boxingcenter.fr/activites/
+
+### Boxe anglaise (la spécialité maison)
+- Pour : du grand débutant au compétiteur licencié.
+- Anglaise loisirs à 12h40 et 19h40 — mardi, jeudi, vendredi, samedi.
+- Compétiteurs encadrés cinq soirs par semaine, 18h30.
+- Open sparring le samedi.
+- Gants et protections prêtés le temps de l'essai.
+
+### Boxe éducative (dès 3 ans)
+- Pour : les enfants et les ados, du jeu au ring.
+- Baby Boxe dès 3 ans (3/6 ans), le samedi.
+- Éducative 7/11 et ados 12/16, mercredi et samedi.
+- Passage compétiteurs possible.
+- Encadrement par Mehdi B, le coach de l'école.
+
+### Boxing Lady (100 % féminin)
+- Pour : les femmes, débutantes comme habituées.
+- Deux créneaux par semaine : lundi 18h30 avec Chloé, mercredi 18h30 avec David.
+- Sac, technique, cardio.
+
+### PAOS & pattes d'ours (travail technique)
+- En tête-à-tête avec le coach, sur les pattes : précision, vitesse, lecture.
+- Intégré au travail d'anglaise.
+
+### Cross training
+- Gainage, cardio, explosivité — en circuit, sur la zone de prépa physique à l'étage.
+- Zéro contact.
+
+### Cardio boxing (sans contact)
+- Tout le geste de boxe, aucun coup reçu — la porte d'entrée des débutants.
+
+## Le club — https://minimes.boxingcenter.fr/le-club/
+
+- Histoire : Boxing Center ouvre sa première salle aux Minimes en 2016 (concept des salles américaines, accès six jours sur sept, trois rings). En 2018, la boxe éducative et le Boxing Lady décollent. Johnson Suffo et Salomon Kitoko passent professionnels. Une trentaine de combattants formés à la maison.
+- Équipement : 3 rings de boxe, 12 sacs lourds, zone pattes d'ours, prépa physique à l'étage, vestiaires hommes/femmes.
+- Affiliations : FFBoxe, FFKMDA, FMMAF.
+- Adresse : 12 rue de Fenouillet, 31200 Toulouse.
+- Le réseau Boxing Center : Portet-sur-Garonne (vaisseau amiral — 800 m², ring olympique, cage MMA — https://www.boxing-center-portet.fr/), États-Unis, Saint-Cyprien (1 200 m²), Ramonville (ring + octogone 7 m) — https://boxingcenter.fr/
+- Questions du lieu : la zone prépa physique est à l'étage et surplombe les rings ; on peut venir voir un cours aux heures d'ouverture sans rien demander ; vestiaires hommes et femmes séparés.
+
+## Les coachs — https://minimes.boxingcenter.fr/coachs/
+
+- Mehdi B. — coach principal. Disciplines : boxe anglaise, boxe éducative, compétiteurs, Baby Boxe, boxing camp, open sparring. Présent presque tous les créneaux de la semaine, du lundi au samedi. Portrait vérifié en ligne.
+- Chloé — Boxing Lady (lundi soir).
+- David — Boxing Lady et boxe pieds-poings (mercredi).
+- Hicham — boxing camp (mardi et jeudi).
+- Note : seul Mehdi B a un portrait vérifié ; aucune photo n'est attribuée aux autres coachs.
+
+## Galerie — https://minimes.boxingcenter.fr/galerie/
+
+- Galerie noir et blanc filtrable par zone : la salle, boxe anglaise, Lady, l'école, technique.
+- Les photos proviennent du pool réel du réseau Boxing Center (site Portet) ; le shooting dédié des Minimes n'a pas encore eu lieu.
+
+## Planning — https://minimes.boxingcenter.fr/plannings/
+
+Transcription du poster officiel de la saison (grille filtrable jour / discipline / coach sur la page) :
+
+### Lundi
+- 11h00–12h00 · Boxing camp · Mehdi B · adultes
+- 18h30 · Boxing Lady · Chloé · 100 % féminin
+- 18h30 · Boxe compétiteurs · Mehdi B · licenciés
+
+### Mardi
+- 12h40 · Anglaise loisirs · Mehdi B · tous niveaux
+- 18h30 · Boxing camp · Hicham · adultes
+- 18h30 · Boxe compétiteurs · Mehdi B · licenciés
+- 19h40 · Anglaise loisirs · Mehdi B · tous niveaux
+
+### Mercredi
+- 15h00–18h00 · Boxe éducative (enfants, ados, compétiteurs) · Mehdi B · 7/11 et 12/16
+- 18h30 · Boxing Lady · David · 100 % féminin
+- 19h40 · Boxe pieds-poings · David · tous niveaux
+
+### Jeudi
+- 12h40 · Anglaise loisirs · Mehdi B · tous niveaux
+- 18h30 · Boxing camp · Hicham · adultes
+- 18h30 · Boxe compétiteurs · Mehdi B · licenciés
+- 19h40 · Anglaise loisirs · Mehdi B · tous niveaux
+
+### Vendredi
+- 12h40 · Anglaise loisirs · Mehdi B · tous niveaux
+- 18h30 · Boxe compétiteurs · Mehdi B · licenciés
+- 19h40 · Anglaise loisirs · Mehdi B · tous niveaux
+
+### Samedi
+- 11h00–12h00 · Boxing camp · Mehdi B · adultes
+- 12h40 · Anglaise loisirs · Mehdi B · tous niveaux
+- 14h15 · Baby Boxe · Mehdi B · 3/6 ans
+- 15h00–18h00 · Boxe éducative (enfants, ados, compétiteurs) · Mehdi B · 7/11 et 12/16
+- 18h30 · Boxe compétiteurs · Mehdi B · licenciés
+- 18h30 · Open sparring · Mehdi B · licenciés
+- 19h40 · Anglaise loisirs · Mehdi B · tous niveaux
+
+### Repères
+- Accès libre (rings et sacs en autonomie) du lundi au samedi, sans réservation.
+- Ouvert 6 jours sur 7, 10h00–21h30. Fermé le dimanche.
+
+## Tarifs & offres — https://minimes.boxingcenter.fr/tarifs/
+
+- Séance d'essai : 10 € la séance — toutes les disciplines, gants et protections prêtés, sans engagement, sans dossier. → https://box-plus.vercel.app/seance-essai
+- Offre Duo : 29 € par personne (au lieu de 44 €) — 4 semaines de cours illimités à deux, toutes disciplines, sans engagement. → https://box-plus.vercel.app/abonnements#promotions
+- Saison complète : 259 € les 12 mois (au lieu de 400 €) — payable en 4× sans frais ; anglaise, MMA, pieds-poings, Lady, fitness ; accès libre aux 5 clubs du réseau. → https://box-plus.vercel.app/abonnements#promotions
+- École de boxe : dès 280 € l'année — Baby Boxe dès 3 ans (3/6), éducative 7/11, ados 12/16, compétiteurs encadrés par Mehdi B. → https://box-plus.vercel.app/abonnements#enfants
+- Bonus : t-shirt Boxing Center offert aux 100 premiers inscrits.
+- Avis Google : 4,3/5 sur 157 avis (affichés sur la page, verbatim) :
+  - « Très belle salle de boxe. Matos au top, coach et staff accueillant. » — Hamed S.
+  - « J'ai adoré mes trois ans passés à faire du sport à Boxing Center. Équipe au top. » — Salomé C.
+  - « Superbe salle, très bonne ambiance. Je pratique les cours de boxe anglaise loisir. » — Pascal L.
+
+## Contact & accès — https://minimes.boxingcenter.fr/contact/
+
+- Adresse : 12 rue de Fenouillet, 31200 Toulouse.
+- Téléphone : 05 62 24 46 82 (+33 5 62 24 46 82).
+- E-mail : boxingcenter31@gmail.com
+- Horaires : lundi–vendredi 10h00–21h30 ; samedi 10h00–21h30 ; dimanche fermé.
+- Accès : métro ligne B station Barrière de Paris (3 min à pied) ; rocade sortie 31 direction Les Minimes ; bus 70 / 27 arrêt Minimes-Roquelaine.
+- Réservation de la séance d'essai (10 €) : https://box-plus.vercel.app/seance-essai
+
+### FAQ
+- Où se trouve Boxing Center Minimes ? — Au 12 rue de Fenouillet, 31200 Toulouse, dans le quartier des Minimes — Barrière de Paris, à 3 minutes du métro ligne B.
+- Je n'ai jamais boxé. Je peux venir ? — Oui. Il y a des créneaux débutants et du cardio boxing sans aucun coup reçu.
+- Quelle est la spécialité de la salle des Minimes ? — La boxe anglaise. C'est la salle historique du groupe, le berceau de plusieurs boxeurs professionnels et amateurs — avec trois rings dédiés.
+- Y a-t-il des cours pour les enfants ? — Oui, dès 3 ans : Baby Boxe 3/6, éducative 7/11, ados 12/16, puis compétiteurs. À partir de 280 € l'année.
+- Il y a des cours pour les femmes ? — Le Boxing Lady est 100 % féminin : lundi 18h30 avec Chloé, mercredi 18h30 avec David. Tous les autres cours sont ouverts.
+- Quels sont les horaires ? — Du lundi au samedi, de 10h00 à 21h30. Fermé le dimanche.
