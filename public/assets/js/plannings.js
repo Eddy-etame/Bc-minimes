@@ -148,9 +148,13 @@ function renderGrid() {
   ];
   box.innerHTML = PLANNING_DAYS.map((day) => {
     const slots = all.filter((s) => s.d === day).sort((a, b) => mins(a.h) - mins(b.h) || (a.free ? 1 : -1));
-    const nCours = slots.filter((s) => !s.free).length;
+    /* ⚠ le compteur du bandeau est VIDE au rendu : il est écrit par
+       apply(), depuis les créneaux réellement retenus par le filtre.
+       Le figer ici, une fois, sur la semaine entière, c'était afficher
+       « MERCREDI · 6 COURS » au-dessus de deux créneaux — et parfois
+       au-dessus de « Rien ce jour-là ». */
     return `<section class="pl-day" data-day="${day}">
-      <h3 class="pl-day__h">${day}<i>${nCours} cours</i></h3>
+      <h3 class="pl-day__h">${day}<i data-count></i></h3>
       <ul class="pl-day__list">${slots.map(slotHTML).join("")}</ul>
       <p class="pl-day__empty">Rien ce jour-là avec ce filtre.</p>
     </section>`;
@@ -200,28 +204,56 @@ function markNow() {
   }
 }
 
-/* ------------------------------ FILTRAGE ---------------------------- */
+/* ------------------------------ FILTRAGE ----------------------------
+   UN SEUL prédicat pour tout ce qui compte des créneaux : ce qu'on
+   affiche, ce que dit le bandeau du jour, ce que dit le rail de la
+   semaine. Chaque compteur calculé à côté du filtre finit par mentir —
+   c'était le cas du bandeau, figé au rendu sur la semaine entière.
+   `ignoreDay` sert au rail : il RESTE le sélecteur de jour, il doit donc
+   montrer les six jours même quand un jour est sélectionné. */
+function matches(el, { ignoreDay = false } = {}) {
+  return (
+    (ignoreDay || state.d === "all" || el.dataset.day === state.d) &&
+    (state.disc === "all" || el.dataset.disc === state.disc) &&
+    (state.coach === "all" || el.dataset.coach === state.coach)
+  );
+}
+
+/* « 4 cours » quand ce sont des cours, « 3 accès libre » quand ce sont
+   des bandes, les deux quand il y a les deux, et RIEN quand il n'y a
+   rien — un « 0 » au-dessus de « Rien ce jour-là » est du bruit. */
+function countLabel(cours, free) {
+  const parts = [];
+  if (cours) parts.push(`${cours} cours`);
+  if (free) parts.push(`${free} accès libre`);
+  return parts.join(" · ");
+}
+
 function apply() {
   let shown = 0;
   let shownFree = 0;
   $$(".pl-day").forEach((dayEl) => {
     const dayOk = state.d === "all" || dayEl.dataset.day === state.d;
     let visibleInDay = 0;
+    let freeInDay = 0;
     $$(".pl-slot", dayEl).forEach((s) => {
-      const ok =
-        dayOk &&
-        (state.disc === "all" || s.dataset.disc === state.disc) &&
-        (state.coach === "all" || s.dataset.coach === state.coach);
+      const ok = matches(s);
       s.classList.toggle("is-hidden", !ok);
       if (ok) {
         visibleInDay++;
-        if (s.classList.contains("pl-slot--free")) shownFree++;
+        if (s.classList.contains("pl-slot--free")) freeInDay++;
       }
     });
+    /* le compteur est écrit ICI, après le filtre, depuis ce qui vient
+       d'être rendu visible — jamais depuis PLANNING complet */
+    const tag = $("[data-count]", dayEl);
+    if (tag) tag.textContent = countLabel(visibleInDay - freeInDay, freeInDay);
     dayEl.classList.toggle("is-empty", visibleInDay === 0);
     dayEl.classList.toggle("is-hidden", !dayOk);
     shown += visibleInDay;
+    shownFree += freeInDay;
   });
+  syncWeek();
 
   /* compteur en région live : au clavier et au lecteur d'écran, sans lui,
      rien ne dit que le filtre a changé quoi que ce soit */
@@ -286,14 +318,15 @@ function initFilters() {
 function renderWeek() {
   const box = $("#pl-week");
   if (!box) return;
-  box.innerHTML = PLANNING_DAYS.map((day) => {
-    const n = PLANNING.filter((s) => s.d === day).length;
-    return `<button class="pl-week__d" type="button" data-day="${day}" aria-label="Voir uniquement le ${day.toLowerCase()}">
+  /* barres et compte laissés VIDES : même règle que le bandeau de jour,
+     c'est syncWeek() qui les écrit depuis le filtre courant. */
+  box.innerHTML = PLANNING_DAYS.map(
+    (day) => `<button class="pl-week__d" type="button" data-day="${day}" aria-label="Voir uniquement le ${day.toLowerCase()}">
       <span class="pl-week__n">${day.slice(0, 3)}</span>
-      <span class="pl-week__bar" aria-hidden="true">${Array.from({ length: n }, () => "<i></i>").join("")}</span>
-      <span class="pl-week__c">${n} cours</span>
-    </button>`;
-  }).join("");
+      <span class="pl-week__bar" aria-hidden="true"></span>
+      <span class="pl-week__c"></span>
+    </button>`
+  ).join("");
   $$(".pl-week__d", box).forEach((b) =>
     b.addEventListener("click", () => {
       const day = b.dataset.day;
@@ -307,6 +340,34 @@ function renderWeek() {
       $("#pl-grid")?.scrollIntoView({ behavior: "smooth", block: "start" });
     })
   );
+}
+
+/* Le rail suit le filtre discipline/coach — pas le filtre jour, dont il
+   est le sélecteur. « Mer · 6 cours » au-dessus d'un mercredi filtré à 2
+   créneaux, c'est la même erreur que le bandeau, un cran plus haut :
+   corrigée à la même source, le prédicat matches(). */
+function syncWeek() {
+  const box = $("#pl-week");
+  if (!box) return;
+  $$(".pl-week__d", box).forEach((btn) => {
+    const day = btn.dataset.day;
+    const kept = $$(`.pl-slot[data-day="${day}"]`).filter((s) => matches(s, { ignoreDay: true }));
+    const free = kept.filter((s) => s.classList.contains("pl-slot--free")).length;
+    const bar = $(".pl-week__bar", btn);
+    if (bar) bar.innerHTML = kept.map(() => "<i></i>").join("");
+    /* le rail est étroit — six boutons sur 375px : le même compte, mais
+       empilé sur deux lignes plutôt qu'étalé, sinon la semaine passe de
+       deux rangées à trois sur téléphone. Même chiffres, autre mise en
+       forme : jamais un autre calcul. */
+    const cours = kept.length - free;
+    const c = $(".pl-week__c", btn);
+    if (c)
+      c.innerHTML =
+        (cours ? `<span>${cours} cours</span>` : "") +
+          (free ? `<span class="pl-week__f">${free} libre</span>` : "") || "<span>rien</span>";
+    btn.classList.toggle("is-empty", kept.length === 0);
+    btn.setAttribute("aria-pressed", String(state.d === day));
+  });
 }
 
 /* les repères — rendus depuis data.js, jamais tapés dans le markup */

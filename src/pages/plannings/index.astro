@@ -449,9 +449,14 @@
     .pl-week__d { display: inline-flex; flex-direction: column; gap: .45rem; min-width: 3.4rem; min-height: 44px; padding: .6rem .7rem; border: 1px solid var(--line); background: rgba(10,9,8,.5); text-align: left; transition: border-color .3s, background .3s; }
     .pl-week__d:hover, .pl-week__d:active { border-color: var(--red); background: rgba(225,6,0,.1); }
     .pl-week__n { font: 700 .62rem/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--bone); }
-    .pl-week__bar { display: flex; gap: 2px; }
+    .pl-week__bar { display: flex; flex-wrap: wrap; gap: 2px; min-height: 10px; }
     .pl-week__bar i { width: 4px; height: 10px; background: var(--red); }
-    .pl-week__c { font: 700 .58rem/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--bone-dim); }
+    /* barres et compte sont écrits par le filtre : un jour que le filtre
+       vide s'éteint au lieu de mentir sur une semaine qu'on ne voit plus */
+    .pl-week__d.is-empty { opacity: .45; }
+    .pl-week__d[aria-pressed="true"] { border-color: var(--red); background: rgba(225,6,0,.12); }
+    .pl-week__c { display: flex; flex-direction: column; gap: .22rem; font: 700 .58rem/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--bone-dim); }
+    .pl-week__f { opacity: .68; }
 
     /* --- le repère « en ce moment » — calculé à l'exécution, jamais écrit
        dans le markup (une heure en dur, c'est une page fausse à 21h). --- */

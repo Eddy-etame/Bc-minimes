@@ -167,9 +167,18 @@ export const STATS = [
   { v: 2016, suffix: "", l: "depuis", raw: true },
 ];
 
-/* ⚠ Les 4 premiers champs (key/name/tag/desc/img) nourrissent le reel de
-   l'accueil. Les champs `for` + `points` sont ADDITIFS : seule la page
-   /activites/ les lit (un écran par discipline), l'accueil les ignore.
+/* ⚠ DEUX textes par discipline, JAMAIS un seul (§5.9 « une bonne formule
+   une seule fois par site ») :
+   · `teaser` — l'accueil, et l'accueil SEUL. Une ligne qui oriente : le
+     reel de la home est un aiguillage, pas un catalogue.
+   · `desc` (+ `for` + `points`) — /activites/, et elle seule. C'est la
+     page qui a le droit de développer.
+   Les deux URL sont indexées : la même phrase rendue sur les deux, c'est
+   du duplicate content et une bonne formule brûlée deux fois. Le défaut
+   avait déjà été corrigé pour la FAQ (/le-club/ vs /contact/) ; il vivait
+   encore ici. Toute discipline ajoutée doit arriver avec SES deux textes.
+
+   `for` + `points` sont ADDITIFS : seule la page /activites/ les lit.
 
    `plan` = clé PLANNING correspondante, ou null. C'est le champ qui rend
    le catalogue HONNÊTE : cinq disciplines ont un créneau prouvé par le
@@ -187,6 +196,7 @@ export const DISCIPLINES = [
     plan: "anglaise",
     name: "Boxe Anglaise",
     tag: "La spécialité maison",
+    teaser: "Le geste de base, repris jusqu'à ce qu'il tienne tout seul.",
     desc: "Le noble art, à la source. Jab, esquive, jeu de jambes — la discipline qui a fait le nom des Minimes.",
     img: "/assets/img/bc/anglaise-1.webp",
     for: "Du grand débutant au compétiteur licencié.",
@@ -202,6 +212,7 @@ export const DISCIPLINES = [
     plan: "competiteurs",
     name: "Boxe Compétiteurs",
     tag: "Le ring, pour de vrai",
+    teaser: "Le cours qui mène au ring, et nulle part ailleurs.",
     desc: "18h à 19h30, quatre soirs par semaine. Ceux qui se frottent au sparring du samedi ont fait leurs heures ici. Licence exigée, excuses interdites.",
     img: "/assets/img/bc/anglaise-2.webp",
     for: "Les licenciés, et ceux que le coach juge prêts à le devenir.",
@@ -217,6 +228,7 @@ export const DISCIPLINES = [
     plan: "educative",
     name: "Boxe Éducative",
     tag: "Dès 3 ans",
+    teaser: "Le mercredi et le samedi appartiennent aux enfants.",
     desc: "De la Baby Boxe 3/6 aux jeunes compétiteurs : on apprend à se tenir droit avant d'apprendre à frapper. Ils arrivent en courant partout, ils repartent en marchant droit.",
     img: "/assets/img/bc/educative-1.webp",
     for: "Les enfants et les ados, du jeu au ring.",
@@ -232,6 +244,7 @@ export const DISCIPLINES = [
     plan: "lady",
     name: "Boxing Lady",
     tag: "100 % féminin",
+    teaser: "Entre femmes, le lundi et le mercredi soir.",
     desc: "Deux soirs, une bande, et le sac qui prend tout. Tu repars plus solide qu'en arrivant.",
     img: "/assets/img/bc/lady-2.webp",
     for: "Les femmes, débutantes comme habituées.",
@@ -247,6 +260,7 @@ export const DISCIPLINES = [
     plan: "camp",
     name: "Boxing Camp",
     tag: "Le circuit",
+    teaser: "Cinq rendez-vous par semaine, juste pour le moteur.",
     desc: "Le cours qui te construit la caisse d'un boxeur sans te demander de savoir boxer. Ça enchaîne, ça ne discute pas, et à la fin tu es cuit.",
     img: "/assets/img/bc/levels-1.webp",
     for: "Les adultes, tous niveaux — aucune technique exigée.",
@@ -262,6 +276,7 @@ export const DISCIPLINES = [
     plan: "pieds-poings",
     name: "Boxe Pieds-Poings",
     tag: "L'autre garde",
+    teaser: "Le mercredi soir, on boxe aussi avec les jambes.",
     noPhoto: true,
     desc: "Une fois par semaine, la garde change et les jambes entrent dans l'histoire. Même exigence de geste que l'anglaise, deux armes de plus.",
     img: null,
@@ -279,6 +294,7 @@ export const DISCIPLINES = [
     freeNote: "Dans le cours d'anglaise",
     name: "PAOS & Pattes d'ours",
     tag: "Travail technique",
+    teaser: "Le travail aux pattes, à l'intérieur du cours d'anglaise.",
     desc: "Face au coach, sur les pattes : précision, vitesse, lecture. Le vrai boulot de boxeur, celui qu'on ne triche pas.",
     img: "/assets/img/bc/training-2.webp",
     for: "Ceux qui veulent le geste juste, pas juste la sueur.",
@@ -295,6 +311,7 @@ export const DISCIPLINES = [
     freeNote: "En accès libre, à l'étage",
     name: "Cross Training",
     tag: "La caisse",
+    teaser: "L'étage t'est ouvert dès que la salle l'est.",
     desc: "Gainage, cardio, explosivité. La caisse qui te fait tenir le dernier round. À l'étage, quand tu veux.",
     img: "/assets/img/bc/cross-1.webp",
     for: "Ceux qui veulent la caisse d'un boxeur.",
@@ -311,6 +328,7 @@ export const DISCIPLINES = [
     freeNote: "En accès libre, sur les sacs",
     name: "Cardio Boxing",
     tag: "Sans contact",
+    teaser: "Tu frappes le sac, personne ne te frappe.",
     desc: "Tout le geste, toute la sueur, aucun coup encaissé. La porte d'entrée quand on n'a jamais boxé.",
     img: "/assets/img/bc/training-1.webp",
     for: "Les débutants et ceux qui veulent transpirer sans encaisser.",

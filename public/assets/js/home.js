@@ -57,7 +57,14 @@ function renderChampions() {
   else setTimeout(warm, 2500);
 }
 function renderDisciplines() {
-  /* ⚠ `data-img="${d.img}"` avec d.img = null écrivait la chaîne "null"
+  /* ⚠ `d.teaser`, PAS `d.desc` : le texte long est celui de /activites/.
+     Les deux pages lisaient le même champ — dix-sept lignes de copie
+     travaillée servies mot pour mot sur deux URL indexées. L'accueil
+     aiguille en une ligne, le catalogue développe. Pas de repli sur
+     `desc` : une discipline sans teaser sort SANS ligne plutôt que de
+     rouvrir le doublon en silence.
+
+     ⚠ `data-img="${d.img}"` avec d.img = null écrivait la chaîne "null"
      dans l'attribut : hydrateMedia ne la reconnaît pas comme chemin local
      et la préfixe du domaine Portet → une requête vers /null qui répond
      403, en console, sur la page d'accueil. Une discipline sans photo
@@ -71,7 +78,7 @@ function renderDisciplines() {
         <span class="disc__name">${d.name}</span>
         <span class="disc__tag">${d.tag}</span>
       </div>
-      <p class="disc__desc">${d.desc}</p>
+      ${d.teaser ? `<p class="disc__desc">${d.teaser}</p>` : ""}
     </div>`
   ).join("");
 }
