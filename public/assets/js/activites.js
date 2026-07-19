@@ -14,7 +14,7 @@
       disciplines qui n'ONT pas de créneau (paos, cross, cardio), il ne
       ment plus : il le dit et renvoie vers l'accès libre.
    ===================================================================== */
-import { DISCIPLINES, PLANNING, LINKS, CTA } from "./data.js?v=b7";
+import { DISCIPLINES, PLANNING, LINKS, CTA } from "./data.js?v=b8";
 
 const $ = (s, r = document) => r.querySelector(s);
 

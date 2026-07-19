@@ -3,7 +3,7 @@
    Mosaïque N&B du pool photo réel (data.js GALLERY), filtres par zone,
    légendes mono, lazy, + lightbox plein écran. Énergie mur-de-champion.
    ===================================================================== */
-import { GALLERY, DISCIPLINES } from "./data.js?v=b7";
+import { GALLERY, DISCIPLINES } from "./data.js?v=b8";
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];

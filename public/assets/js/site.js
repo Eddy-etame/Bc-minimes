@@ -3,7 +3,7 @@
    window.BC = { reveal, magnetic, refresh, media, split, scramble,
                  initKinetics, faq, lenis, velocity }
    ===================================================================== */
-import { NAV, LINKS, SALLE, MEDIA, CTA } from "./data.js?v=b7";
+import { NAV, LINKS, SALLE, MEDIA, CTA } from "./data.js?v=b8";
 
 const gsap = window.gsap;
 const ScrollTrigger = window.ScrollTrigger;

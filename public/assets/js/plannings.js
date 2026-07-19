@@ -27,7 +27,7 @@ import {
   PLANNING_DAYS,
   PLANNING_DISCIPLINES,
   PLANNING_KEYS,
-} from "./data.js?v=b7";
+} from "./data.js?v=b8";
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
