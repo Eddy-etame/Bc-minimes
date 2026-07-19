@@ -2,12 +2,18 @@
    MINIMES · hero.js — A/B hero with toggle
    A "Pochoir"  : real training footage shows THROUGH the word MINIMES
                   (black multiply panel + white letters = video knockout)
-   B "Shader"   : Three.js video-texture, duotone (black→bone, faint red),
-                  pointer ripple + RGB-shift (Lusion / Active Theory lesson)
+   B "Shader"   : video-texture en WebGL brut, duotone (noir→os, rouge
+                  ténu), ondulation au pointeur + décalage RVB.
    Red stays a spark.
+
+   Pourquoi WebGL brut et plus three.js : le mode B n'est qu'un quad
+   plein écran avec UN fragment shader. On importait 608 ko de moteur 3D
+   (152 ko gzip) pour six classes — sur la page d'accueil, c'est-à-dire
+   sur le LCP, et pour une vue qui n'est même pas celle par défaut.
+   Le shader ci-dessous est repris CARACTÈRE POUR CARACTÈRE : le rendu
+   est le même pixel pour pixel, il ne reste que le moteur en moins.
    ===================================================================== */
 const gsap = window.gsap;
-const THREE = window.THREE;
 const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 export function initHero() {
@@ -15,7 +21,7 @@ export function initHero() {
   if (!hero) return;
   setupToggle(hero);
   intro(hero);
-  if (THREE && !reduce) { try { initWebGL(hero); } catch (e) { /* B falls back to plain video */ } }
+  if (!reduce) { try { initWebGL(hero); } catch (e) { /* B falls back to plain video */ } }
 }
 
 function setupToggle(hero) {
@@ -54,25 +60,8 @@ function intro(hero) {
   gsap.to(".hero__stage", { yPercent: 12, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
 }
 
-function initWebGL(hero) {
-  const canvas = document.getElementById("hero-canvas");
-  const video = document.getElementById("hero-video");
-  if (!canvas || !video) return;
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: true });
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-  const scene = new THREE.Scene();
-  const cam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-  const tex = new THREE.VideoTexture(video);
-  tex.minFilter = THREE.LinearFilter; tex.magFilter = THREE.LinearFilter;
-  const u = {
-    uTex: { value: tex }, uTime: { value: 0 },
-    uRes: { value: new THREE.Vector2(1, 1) }, uTexRes: { value: new THREE.Vector2(16, 9) },
-    uMouse: { value: new THREE.Vector2(0.5, 0.5) }, uHover: { value: 0 },
-  };
-  const mat = new THREE.ShaderMaterial({
-    uniforms: u,
-    vertexShader: "varying vec2 vUv; void main(){ vUv=uv; gl_Position=vec4(position,1.0); }",
-    fragmentShader: `precision highp float; varying vec2 vUv;
+/* Le fragment shader, inchangé (GLSL ES 1.00, comme sous three.js). */
+const FRAG = `precision highp float; varying vec2 vUv;
       uniform sampler2D uTex; uniform vec2 uRes,uTexRes,uMouse; uniform float uTime,uHover;
       void main(){
         vec2 uv=vUv; float sA=uRes.x/uRes.y, tA=uTexRes.x/uTexRes.y; vec2 c=uv;
@@ -90,27 +79,116 @@ function initWebGL(hero) {
         col=mix(col,hi,smoothstep(0.5,1.0,l));
         float v=distance(uv,vec2(0.5)); col*=1.0-0.55*v*v;
         gl_FragColor=vec4(col,1.0);
-      }`,
-  });
-  scene.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), mat));
+      }`;
+
+/* Même quad que PlaneGeometry(2,2) : position déjà en espace de clip,
+   uv.y = 1 en haut. On ne déclare que ce que three.js injectait. */
+const VERT = `attribute vec3 position; attribute vec2 uv;
+      varying vec2 vUv; void main(){ vUv=uv; gl_Position=vec4(position,1.0); }`;
+
+function compile(gl, type, src) {
+  const s = gl.createShader(type);
+  gl.shaderSource(s, src); gl.compileShader(s);
+  if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s) || "shader");
+  return s;
+}
+
+function initWebGL(hero) {
+  const canvas = document.getElementById("hero-canvas");
+  const video = document.getElementById("hero-video");
+  if (!canvas || !video) return;
+
+  const gl = canvas.getContext("webgl", { antialias: false, alpha: true, premultipliedAlpha: true })
+          || canvas.getContext("experimental-webgl", { antialias: false, alpha: true });
+  if (!gl) return;   /* pas de WebGL → le mode B retombe sur la vidéo nue */
+
+  const prog = gl.createProgram();
+  gl.attachShader(prog, compile(gl, gl.VERTEX_SHADER, VERT));
+  gl.attachShader(prog, compile(gl, gl.FRAGMENT_SHADER, FRAG));
+  gl.linkProgram(prog);
+  if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(prog) || "link");
+  gl.useProgram(prog);
+
+  /* TRIANGLE_STRIP : 4 sommets, position (xyz) + uv entrelacés. */
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+    -1, -1, 0, 0, 0,
+     1, -1, 0, 1, 0,
+    -1,  1, 0, 0, 1,
+     1,  1, 0, 1, 1,
+  ]), gl.STATIC_DRAW);
+  const STRIDE = 5 * 4;
+  const aPos = gl.getAttribLocation(prog, "position");
+  const aUv = gl.getAttribLocation(prog, "uv");
+  gl.enableVertexAttribArray(aPos);
+  gl.vertexAttribPointer(aPos, 3, gl.FLOAT, false, STRIDE, 0);
+  gl.enableVertexAttribArray(aUv);
+  gl.vertexAttribPointer(aUv, 2, gl.FLOAT, false, STRIDE, 3 * 4);
+
+  /* Texture vidéo : LINEAR sans mipmap + CLAMP — obligatoire en NPOT,
+     et c'est exactement ce que faisait THREE.VideoTexture ici. */
+  const tex = gl.createTexture();
+  gl.bindTexture(gl.TEXTURE_2D, tex);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  /* three.js posait flipY : sans lui la vidéo sort à l'envers. */
+  gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+
+  const loc = (n) => gl.getUniformLocation(prog, n);
+  const uTex = loc("uTex"), uTime = loc("uTime"), uRes = loc("uRes"),
+        uTexRes = loc("uTexRes"), uMouse = loc("uMouse"), uHover = loc("uHover");
+  gl.uniform1i(uTex, 0);
+
+  /* Objets nus, mais de la même FORME que les uniformes three.js :
+     gsap.to(u.uHover, {value: …}) continue de marcher tel quel. */
+  const u = {
+    time: 0, hover: { value: 0 },
+    res: [1, 1], texRes: [16, 9], mouse: [0.5, 0.5],
+  };
+
   const resize = () => {
     const r = canvas.getBoundingClientRect();
-    renderer.setSize(r.width, r.height, false);
-    u.uRes.value.set(r.width, r.height);
+    const pr = Math.min(devicePixelRatio || 1, 2);
+    const w = Math.max(1, Math.round(r.width * pr)), h = Math.max(1, Math.round(r.height * pr));
+    if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
+    gl.viewport(0, 0, w, h);
+    /* uRes ne sert qu'au RATIO : on garde les unités CSS, comme avant. */
+    u.res[0] = r.width; u.res[1] = r.height;
   };
   resize(); addEventListener("resize", resize);
-  video.addEventListener("loadedmetadata", () => u.uTexRes.value.set(video.videoWidth || 16, video.videoHeight || 9));
+
+  video.addEventListener("loadedmetadata", () => {
+    u.texRes[0] = video.videoWidth || 16; u.texRes[1] = video.videoHeight || 9;
+  });
   hero.addEventListener("mousemove", (e) => {
     const r = hero.getBoundingClientRect();
-    u.uMouse.value.set((e.clientX - r.left) / r.width, 1 - (e.clientY - r.top) / r.height);
+    u.mouse[0] = (e.clientX - r.left) / r.width;
+    u.mouse[1] = 1 - (e.clientY - r.top) / r.height;
   });
-  hero.addEventListener("mouseenter", () => gsap.to(u.uHover, { value: 1, duration: 0.6 }));
-  hero.addEventListener("mouseleave", () => gsap.to(u.uHover, { value: 0, duration: 0.8 }));
+  hero.addEventListener("mouseenter", () => gsap.to(u.hover, { value: 1, duration: 0.6 }));
+  hero.addEventListener("mouseleave", () => gsap.to(u.hover, { value: 0, duration: 0.8 }));
+
+  let lost = false;
+  canvas.addEventListener("webglcontextlost", (e) => { e.preventDefault(); lost = true; });
+  canvas.addEventListener("webglcontextrestored", () => { lost = true; /* on n'y revient pas : la vidéo nue reprend */ });
+
   hero.classList.add("is-webgl");
   gsap.ticker.add(() => {
-    u.uTime.value += 0.016;
-    if (hero.dataset.hero === "b" && video.readyState >= 2) {
-      try { renderer.render(scene, cam); } catch (e) { /* never break the shared ticker */ }
-    }
+    u.time += 0.016;
+    if (lost || hero.dataset.hero !== "b" || video.readyState < 2) return;
+    try {
+      gl.useProgram(prog);
+      gl.bindTexture(gl.TEXTURE_2D, tex);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, video);
+      gl.uniform1f(uTime, u.time);
+      gl.uniform1f(uHover, u.hover.value);
+      gl.uniform2f(uRes, u.res[0], u.res[1]);
+      gl.uniform2f(uTexRes, u.texRes[0], u.texRes[1]);
+      gl.uniform2f(uMouse, u.mouse[0], u.mouse[1]);
+      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    } catch (e) { /* never break the shared ticker */ }
   });
 }

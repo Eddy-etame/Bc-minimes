@@ -14,7 +14,10 @@ import { createServer } from "node:http";
 import { readFile, stat } from "node:fs/promises";
 import { join, extname, resolve } from "node:path";
 
-const ROOT = resolve(process.cwd(), "dist");
+/* Racine du site : 3ᵉ argument si fourni, sinon le dossier courant.
+   Permet de lancer le serveur depuis n'importe où (outil de vérif). */
+const SITE = resolve(process.argv[3] || process.cwd());
+const ROOT = resolve(SITE, "dist");
 const PORT = Number(process.argv[2] || 6902);
 const TYPES = {
   ".html": "text/html; charset=utf-8", ".js": "text/javascript; charset=utf-8",

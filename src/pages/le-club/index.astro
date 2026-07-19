@@ -39,15 +39,15 @@ import SiteContent from "../../components/SiteContent.astro";
   <meta property="og:title" content="Le club — Boxing Center Minimes, la salle historique" />
   <meta property="og:description" content="Trois rings, une école qui tourne depuis 2016, métro Barrière de Paris. La salle qui a formé des pros à Toulouse." />
   <meta property="og:url" content="https://minimes.boxingcenter.fr/le-club/" />
-  <meta property="og:image" content="https://minimes.boxingcenter.fr/assets/img/og.png" />
+  <meta property="og:image" content="https://minimes.boxingcenter.fr/assets/img/og.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:alt" content="La salle historique Boxing Center Minimes — les trois rings." />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Le club — Boxing Center Minimes, la salle historique" />
   <meta name="twitter:description" content="Trois rings, une école qui tourne depuis 2016, métro Barrière de Paris. La salle qui a formé des pros à Toulouse." />
-  <meta name="twitter:image" content="https://minimes.boxingcenter.fr/assets/img/og.png" />
+  <meta name="twitter:image" content="https://minimes.boxingcenter.fr/assets/img/og.jpg" />
 
   <!-- ⚠ PAS de FAQPage ici. La FAQ canonique (+ son FAQPage) vit sur
        /contact/ et nulle part ailleurs (§4). Avant, les deux pages rendaient
@@ -105,7 +105,7 @@ import SiteContent from "../../components/SiteContent.astro";
         "telephone": "+33562244682",
         "email": "boxingcenter31@gmail.com",
         "priceRange": "€€",
-        "image": "https://minimes.boxingcenter.fr/assets/img/og.png",
+        "image": "https://minimes.boxingcenter.fr/assets/img/og.jpg",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "12 rue de Fenouillet",
@@ -215,6 +215,23 @@ import SiteContent from "../../components/SiteContent.astro";
             }
           ]
         },
+        "potentialAction": {
+          "@type": "ReserveAction",
+          "name": "Réserver une séance d'essai",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://box-plus.vercel.app/seance-essai",
+            "inLanguage": "fr-FR",
+            "actionPlatform": [
+              "http://schema.org/DesktopWebPlatform",
+              "http://schema.org/MobileWebPlatform"
+            ]
+          },
+          "result": {
+            "@type": "Reservation",
+            "name": "Séance d'essai — 10 €, toutes disciplines, matériel prêté"
+          }
+        },
         "parentOrganization": {
           "@id": "https://boxingcenter.fr/#organization"
         },
@@ -243,6 +260,13 @@ import SiteContent from "../../components/SiteContent.astro";
           "@id": "https://minimes.boxingcenter.fr/#salle"
         },
         "inLanguage": "fr-FR",
+        "speakable": {
+          "@type": "SpeakableSpecification",
+          "cssSelector": [
+            "h1",
+            ".lead"
+          ]
+        },
         "primaryImageOfPage": {
           "@id": "https://minimes.boxingcenter.fr/le-club/#primaryimage"
         },
@@ -255,8 +279,8 @@ import SiteContent from "../../components/SiteContent.astro";
       {
         "@type": "ImageObject",
         "@id": "https://minimes.boxingcenter.fr/le-club/#primaryimage",
-        "url": "https://minimes.boxingcenter.fr/assets/img/og.png",
-        "contentUrl": "https://minimes.boxingcenter.fr/assets/img/og.png",
+        "url": "https://minimes.boxingcenter.fr/assets/img/og.jpg",
+        "contentUrl": "https://minimes.boxingcenter.fr/assets/img/og.jpg",
         "width": 1200,
         "height": 630,
         "caption": "La salle historique Boxing Center Minimes — les trois rings."

@@ -42,15 +42,15 @@ import SiteContent from "../components/SiteContent.astro";
   <meta property="og:title" content="Boxing Center Minimes — Le berceau des champions, Toulouse" />
   <meta property="og:description" content="Salle historique de boxe anglaise aux Minimes (Toulouse 31200). 3 rings, boxe éducative dès 3 ans, Boxing Lady. Séance d'essai 10€." />
   <meta property="og:url" content="https://minimes.boxingcenter.fr/" />
-  <meta property="og:image" content="https://minimes.boxingcenter.fr/assets/img/og.png" />
+  <meta property="og:image" content="https://minimes.boxingcenter.fr/assets/img/og.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:alt" content="Boxing Center Minimes — la salle historique, trois rings, quartier Barrière de Paris à Toulouse." />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Boxing Center Minimes — Le berceau des champions, Toulouse" />
   <meta name="twitter:description" content="Salle historique de boxe anglaise aux Minimes (31200). 3 rings, boxe éducative dès 3 ans, Boxing Lady. Essai 10€." />
-  <meta name="twitter:image" content="https://minimes.boxingcenter.fr/assets/img/og.png" />
+  <meta name="twitter:image" content="https://minimes.boxingcenter.fr/assets/img/og.jpg" />
 
   <!-- Données structurées : graphe JSON-LD unifié de la page — nœuds reliés
        par @id (Organization · SportsActivityLocation/HealthClub · WebSite ·
@@ -103,7 +103,7 @@ import SiteContent from "../components/SiteContent.astro";
         "telephone": "+33562244682",
         "email": "boxingcenter31@gmail.com",
         "priceRange": "€€",
-        "image": "https://minimes.boxingcenter.fr/assets/img/og.png",
+        "image": "https://minimes.boxingcenter.fr/assets/img/og.jpg",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "12 rue de Fenouillet",
@@ -213,6 +213,23 @@ import SiteContent from "../components/SiteContent.astro";
             }
           ]
         },
+        "potentialAction": {
+          "@type": "ReserveAction",
+          "name": "Réserver une séance d'essai",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://box-plus.vercel.app/seance-essai",
+            "inLanguage": "fr-FR",
+            "actionPlatform": [
+              "http://schema.org/DesktopWebPlatform",
+              "http://schema.org/MobileWebPlatform"
+            ]
+          },
+          "result": {
+            "@type": "Reservation",
+            "name": "Séance d'essai — 10 €, toutes disciplines, matériel prêté"
+          }
+        },
         "parentOrganization": {
           "@id": "https://boxingcenter.fr/#organization"
         },
@@ -241,6 +258,13 @@ import SiteContent from "../components/SiteContent.astro";
           "@id": "https://minimes.boxingcenter.fr/#salle"
         },
         "inLanguage": "fr-FR",
+        "speakable": {
+          "@type": "SpeakableSpecification",
+          "cssSelector": [
+            "h1",
+            ".lead"
+          ]
+        },
         "primaryImageOfPage": {
           "@id": "https://minimes.boxingcenter.fr/#primaryimage"
         },
@@ -250,8 +274,8 @@ import SiteContent from "../components/SiteContent.astro";
       {
         "@type": "ImageObject",
         "@id": "https://minimes.boxingcenter.fr/#primaryimage",
-        "url": "https://minimes.boxingcenter.fr/assets/img/og.png",
-        "contentUrl": "https://minimes.boxingcenter.fr/assets/img/og.png",
+        "url": "https://minimes.boxingcenter.fr/assets/img/og.jpg",
+        "contentUrl": "https://minimes.boxingcenter.fr/assets/img/og.jpg",
         "width": 1200,
         "height": 630,
         "caption": "Boxing Center Minimes — la salle historique, trois rings, quartier Barrière de Paris à Toulouse."
@@ -343,7 +367,7 @@ import SiteContent from "../components/SiteContent.astro";
           <p class="story__quote" style="margin-top:1.4rem">L'odeur du cuir.<br>Le bruit du cuir.<br>Et le silence quand le coach parle.</p>
         </div>
         <div class="story__body" data-reveal>
-          <p class="lead">Les Minimes, c'est la salle historique de Boxing Center — celle par laquelle tout a commencé. Une ambiance brute, authentique, digne des grandes salles de Philadelphie : ici, on ne décore pas, on travaille.</p>
+          <p class="lead">Les Minimes, c'est la première salle que Boxing Center ait ouverte — et rien n'a été lissé depuis. On tient plus de la vieille salle de Philadelphie que du club de sport : ici, on ne décore pas, on travaille.</p>
           <p class="muted">Trois boxeurs professionnels et une trentaine d'amateurs sont sortis de ces rings. Pas par hasard. Par le travail, la transmission, et une règle qu'on n'écrit nulle part mais que tout le monde respecte : <strong style="color:var(--bone)">le ring ne ment jamais.</strong></p>
         </div>
       </div>
@@ -454,7 +478,7 @@ import SiteContent from "../components/SiteContent.astro";
     <section class="section localseo" aria-labelledby="seo-title">
       <div class="wrap" style="max-width:74ch">
         <h2 id="seo-title" class="display" style="font-size:clamp(1.8rem,4.2vw,3rem);margin-bottom:1rem">Salle de boxe anglaise aux Minimes — Toulouse Barrière de Paris (31200)</h2>
-        <p class="lead">Boxing Center Minimes est la <strong>salle historique</strong> du réseau Boxing Center à Toulouse, au cœur du quartier des <strong>Minimes</strong>, à deux pas de la <strong>Barrière de Paris</strong> (métro ligne B). Spécialisée en <strong>boxe anglaise</strong>, elle accueille débutants comme confirmés sur ses trois rings, avec aussi de la <strong>boxe éducative dès 3 ans</strong> (Baby Boxe 3/6), du <strong>Boxing Lady</strong> et du cross training.</p>
+        <p class="lead">Tu es aux <strong>Minimes</strong>, à Toulouse, trois minutes à pied de la <strong>Barrière de Paris</strong> en <strong>métro ligne B</strong> — dans la <strong>salle historique</strong> du réseau Boxing Center. Ce qu'on y travaille d'abord, c'est la <strong>boxe anglaise</strong>, sur trois rings : que tu n'aies jamais enfilé de gants ou que tu prépares un combat, tu as ta place. Autour, il y a la <strong>boxe éducative dès 3 ans</strong> (Baby Boxe 3/6), le <strong>Boxing Lady</strong> et le cross training.</p>
         <p class="lead" style="margin-top:1rem">Première visite ? Réserve ta <strong>séance d'essai à 10€</strong>, toutes disciplines, sans engagement. 12 rue de Fenouillet, 31200 Toulouse — ouvert du lundi au samedi, 10h–21h30.</p>
       </div>
     </section>
@@ -487,7 +511,6 @@ import SiteContent from "../components/SiteContent.astro";
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script is:inline defer src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
   <script is:inline type="module" src="/assets/js/site.js?v=b8"></script>
   <script is:inline type="module" src="/assets/js/home.js?v=b8"></script>
 </body>

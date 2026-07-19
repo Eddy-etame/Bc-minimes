@@ -5,9 +5,8 @@
    ===================================================================== */
 import { NAV, LINKS, SALLE, MEDIA, CTA, NETWORK } from "./data.js?v=b8";
 /* L'assistant : il promeut la pastille `.chatbot` (qui reste un lien tel:
-   dans le HTML) en vraie conversation. Chargé ici → présent sur les 8
-   pages sans toucher un seul <script> de page. */
-import "./chatbot.js?v=b8";
+   dans le HTML) en vraie conversation. Voir armChatbot() plus bas — le
+   module ne descend QU'À l'intention de parler, jamais au premier rendu. */
 
 const gsap = window.gsap;
 const ScrollTrigger = window.ScrollTrigger;
@@ -398,6 +397,51 @@ function faq(box, items) {
   });
 }
 
+/* --------------------------- L'ASSISTANT --------------------------- */
+/* Le module de conversation pèse 14 ko : il n'a rien à faire dans le
+   premier rendu d'un visiteur qui vient lire les horaires. On l'arme
+   ici en trois lignes, et il ne descend QUE sur une intention de
+   parler — survol, focus clavier, doigt posé, ou clic.
+
+   La pastille reste un <a href="tel:"> dans le HTML : sans JS elle
+   appelle la salle, et si le module tombe (réseau coupé, 404) on
+   REPART sur le tel:. Jamais de bouton mort, à aucun moment de la
+   chaîne — y compris pendant la seconde de chargement. */
+function armChatbot() {
+  const launcher = document.querySelector(".chatbot");
+  if (!launcher) return;
+  let state = "idle";   // idle → loading → ready | failed
+  let pending = null;
+
+  const load = () => {
+    if (state !== "idle") return pending;
+    state = "loading";
+    pending = import("./chatbot.js?v=b9")
+      .then(() => { state = "ready"; })
+      .catch(() => { state = "failed"; });
+    return pending;
+  };
+
+  /* Pré-chargement à l'intention : au clic, c'est déjà là. */
+  ["pointerenter", "focus", "touchstart"].forEach((ev) =>
+    launcher.addEventListener(ev, load, { once: true, passive: true }));
+
+  launcher.addEventListener("click", (e) => {
+    /* Une fois le module en place, c'est LUI qui pilote la pastille :
+       on s'efface pour ne pas doubler l'ouverture. */
+    if (state === "ready") return;
+    /* Module injoignable : on laisse le tel: partir, comme sans JS. */
+    if (state === "failed") return;
+    e.preventDefault();
+    load().then(() => {
+      /* Le module s'est branché sur la pastille pendant l'import :
+         on rejoue le clic pour qu'il ouvre le panneau lui-même. */
+      if (state === "ready") launcher.click();
+      else location.href = launcher.href;   // repli : on appelle la salle
+    });
+  });
+}
+
 /* ------------------------------ BOOT ------------------------------ */
 window.BC = { reveal, magnetic, refresh, media: hydrateMedia, split, scramble, initKinetics, faq, get lenis() { return lenis; }, get velocity() { return velocity; } };
 mountNav();
@@ -406,5 +450,6 @@ initSmooth();
 initCursor();
 hydrateMedia(document);   // hydrate menu/footer bg video etc.
 magnetic(document);
+armChatbot();
 
 export const BC = window.BC;
