@@ -7,20 +7,20 @@ import SiteContent from "../../components/SiteContent.astro";
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Galerie photos — Boxing Center Minimes, Toulouse (rings, sparring, Lady, école)</title>
-  <meta name="description" content="La boxe des Minimes en images (Toulouse 31200) : le ring, le sparring, la boxe éducative dès 3 ans, le Boxing Lady, les pattes d'ours et le cross training. Galerie noir et blanc du réseau Boxing Center, filtrable par zone. Séance d'essai 10€." />
+  <meta name="description" content="Le ring, le sparring, les gants des petits, le Boxing Lady, les pattes d'ours : la salle des Minimes en noir et blanc, filtrable zone par zone." />
 
   <!-- Préconnexion CDN (les libs sont différées) — polices auto-hébergées :
        plus aucune requête vers fonts.googleapis.com / fonts.gstatic.com -->
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-black-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-latin.woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/css/fonts.css?v=b8" />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=b9" />
 
   <!-- LCP : le hero est construit en JS → invisible au preload scanner (§5.8) -->
   <link rel="preload" as="image" href="/assets/img/bc/levels-1.webp" fetchpriority="high" />
 
-  <link rel="stylesheet" href="/assets/css/base.css?v=b8" />
-  <link rel="stylesheet" href="/assets/css/home.css?v=b8" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=b9" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=b9" />
 
   <meta name="keywords" content="photos salle de boxe Minimes Toulouse, galerie Boxing Center, rings boxe Toulouse, images club de boxe 31200, salle boxe Barrière de Paris" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -247,7 +247,7 @@ import SiteContent from "../../components/SiteContent.astro";
         "@id": "https://minimes.boxingcenter.fr/galerie/#webpage",
         "url": "https://minimes.boxingcenter.fr/galerie/",
         "name": "Galerie photos — Boxing Center Minimes, Toulouse (rings, sparring, Lady, école)",
-        "description": "La boxe des Minimes en images (Toulouse 31200) : le ring, le sparring, la boxe éducative dès 3 ans, le Boxing Lady, les pattes d'ours et le cross training. Galerie noir et blanc du réseau Boxing Center, filtrable par zone. Séance d'essai 10€.",
+        "description": "Le ring, le sparring, les gants des petits, le Boxing Lady, les pattes d'ours : la salle des Minimes en noir et blanc, filtrable zone par zone.",
         "isPartOf": {
           "@id": "https://minimes.boxingcenter.fr/#website"
         },
@@ -266,7 +266,7 @@ import SiteContent from "../../components/SiteContent.astro";
           "@id": "https://minimes.boxingcenter.fr/galerie/#primaryimage"
         },
         "datePublished": "2026-07-17",
-        "dateModified": "2026-07-19",
+        "dateModified": "@BUILT@",
         "breadcrumb": {
           "@id": "https://minimes.boxingcenter.fr/galerie/#breadcrumb"
         }
@@ -398,7 +398,7 @@ import SiteContent from "../../components/SiteContent.astro";
       <div class="page-head__bg" aria-hidden="true"><div class="media" data-img="/assets/img/bc/levels-1.webp" data-eager data-label=""></div></div>
       <div class="wrap">
         <span class="eyebrow" data-reveal>En images · Les Minimes</span>
-        <h1 class="display" style="margin:1rem 0 0"><span class="reveal-mask"><span>Ce que tu verras</span></span><span class="reveal-mask"><span class="tint">en poussant la porte.</span></span></h1>
+        <h1 class="display" style="margin:1rem 0 0"><span class="reveal-mask"><span>Ce que tu verras </span></span><span class="reveal-mask"><span class="tint">en poussant la porte.</span></span></h1>
         <p class="lead page-head__lead" data-reveal>Ce que tu vois, c'est ce qu'il y a. Le ring, le cuir, la sueur, les gamins de l'école et les femmes du Lady. Le noir et blanc, c'est pour l'honnêteté.</p>
       </div>
       <div class="ga-sprockets" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
@@ -479,7 +479,7 @@ import SiteContent from "../../components/SiteContent.astro";
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=b8"></script>
-  <script is:inline type="module" src="/assets/js/galerie.js?v=b8"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=b9"></script>
+  <script is:inline type="module" src="/assets/js/galerie.js?v=b9"></script>
 </body>
 </html>

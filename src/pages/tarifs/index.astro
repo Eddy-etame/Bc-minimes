@@ -7,20 +7,20 @@ import SiteContent from "../../components/SiteContent.astro";
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tarifs & offres — Boxing Center Minimes, Toulouse (essai 10€, Duo, saison 259€)</title>
-  <meta name="description" content="Les tarifs de la salle de boxe des Minimes (Toulouse 31200) : séance d'essai 10€, offre Duo 29€ par personne, saison complète 259€ les 12 mois en 4× sans frais, école dès 3 ans. Accès libre aux 5 clubs du réseau." />
+  <meta name="description" content="Essai 10€. Duo 29€ par personne. Saison 259€ les douze mois, payable en 4× sans frais. École dès 3 ans à 280€. Les prix sont écrits, pas négociés." />
 
   <!-- Préconnexion CDN (les libs sont différées) — polices auto-hébergées :
        plus aucune requête vers fonts.googleapis.com / fonts.gstatic.com -->
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-black-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-latin.woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/css/fonts.css?v=b8" />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=b9" />
 
   <!-- LCP : le hero est construit en JS → invisible au preload scanner (§5.8) -->
   <link rel="preload" as="image" href="/assets/img/bc/cross-1.webp" fetchpriority="high" />
 
-  <link rel="stylesheet" href="/assets/css/base.css?v=b8" />
-  <link rel="stylesheet" href="/assets/css/home.css?v=b8" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=b9" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=b9" />
 
   <meta name="keywords" content="tarif salle de boxe Toulouse, prix boxe Minimes, séance d'essai boxe 10€, abonnement boxe Toulouse, offre duo boxe, saison boxe 259€, tarif boxe enfant Toulouse" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -230,13 +230,7 @@ import SiteContent from "../../components/SiteContent.astro";
         "parentOrganization": {
           "@id": "https://boxingcenter.fr/#organization"
         },
-        "description": "Salle de boxe anglaise historique du groupe Boxing Center, quartier des Minimes à Toulouse (31200). Berceau de boxeurs professionnels et amateurs, 3 rings, boxe éducative dès 3 ans (Baby Boxe 3/6), Boxing Lady. Séance d'essai 10€.",
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.3",
-          "reviewCount": "157",
-          "bestRating": "5"
-        }
+        "description": "Salle de boxe anglaise historique du groupe Boxing Center, quartier des Minimes à Toulouse (31200). Berceau de boxeurs professionnels et amateurs, 3 rings, boxe éducative dès 3 ans (Baby Boxe 3/6), Boxing Lady. Séance d'essai 10€."
       },
       {
         "@type": "WebSite",
@@ -253,7 +247,7 @@ import SiteContent from "../../components/SiteContent.astro";
         "@id": "https://minimes.boxingcenter.fr/tarifs/#webpage",
         "url": "https://minimes.boxingcenter.fr/tarifs/",
         "name": "Tarifs & offres — Boxing Center Minimes, Toulouse (essai 10€, Duo, saison 259€)",
-        "description": "Les tarifs de la salle de boxe des Minimes (Toulouse 31200) : séance d'essai 10€, offre Duo 29€ par personne, saison complète 259€ les 12 mois en 4× sans frais, école dès 3 ans. Accès libre aux 5 clubs du réseau.",
+        "description": "Essai 10€. Duo 29€ par personne. Saison 259€ les douze mois, payable en 4× sans frais. École dès 3 ans à 280€. Les prix sont écrits, pas négociés.",
         "isPartOf": {
           "@id": "https://minimes.boxingcenter.fr/#website"
         },
@@ -272,7 +266,7 @@ import SiteContent from "../../components/SiteContent.astro";
           "@id": "https://minimes.boxingcenter.fr/tarifs/#primaryimage"
         },
         "datePublished": "2026-07-17",
-        "dateModified": "2026-07-19",
+        "dateModified": "@BUILT@",
         "breadcrumb": {
           "@id": "https://minimes.boxingcenter.fr/tarifs/#breadcrumb"
         }
@@ -406,7 +400,7 @@ import SiteContent from "../../components/SiteContent.astro";
       <div class="page-head__bg" aria-hidden="true"><div class="media" data-img="/assets/img/bc/cross-1.webp" data-eager data-label=""></div></div>
       <div class="wrap">
         <span class="eyebrow" data-reveal>Tarifs · <span id="season">Saison 2026 — 2027</span></span>
-        <h1 class="display" style="margin:1rem 0 0"><span class="reveal-mask"><span>Le prix,</span></span><span class="reveal-mask"><span class="tint">sans détour.</span></span></h1>
+        <h1 class="display" style="margin:1rem 0 0"><span class="reveal-mask"><span>Le prix, </span></span><span class="reveal-mask"><span class="tint">sans détour.</span></span></h1>
         <p class="lead page-head__lead" data-reveal>Tu commences à 10€. Tu vois si le ring te parle. Tu t'engages seulement si tu reviens. Trois lignes, tout est dessous — noir sur blanc.</p>
         <div class="tar-note" aria-hidden="true" data-reveal>
           <div class="tar-note__v">10€</div>
@@ -499,7 +493,7 @@ import SiteContent from "../../components/SiteContent.astro";
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=b8"></script>
-  <script is:inline type="module" src="/assets/js/tarifs.js?v=b8"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=b9"></script>
+  <script is:inline type="module" src="/assets/js/tarifs.js?v=b9"></script>
 </body>
 </html>

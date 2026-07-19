@@ -7,21 +7,21 @@ import SiteContent from "../../components/SiteContent.astro";
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Les coachs — Boxing Center Minimes, Toulouse (Mehdi B, Boxing Lady, boxing camp)</title>
-  <meta name="description" content="L'encadrement de la salle des Minimes (Toulouse 31200) : Mehdi B, coach principal — boxe anglaise, éducative dès 3 ans, compétiteurs, baby boxe. Boxing Lady avec Chloé et David, boxing camp avec Hicham. Séance d'essai 10€." />
+  <meta name="description" content="Mehdi B tient la maison, du premier gant de Baby Boxe au sparring. Chloé et David sur le Boxing Lady, Hicham sur le camp. Voilà qui te coache." />
 
   <!-- Préconnexion CDN (les libs sont différées) — polices auto-hébergées :
        plus aucune requête vers fonts.googleapis.com / fonts.gstatic.com -->
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-black-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-latin.woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/css/fonts.css?v=b8" />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=b9" />
 
   <!-- LCP : le portrait de Mehdi est le sujet de la page, et il est construit
        en JS → invisible au preload scanner (§5.8) -->
   <link rel="preload" as="image" href="/assets/img/bc/cutouts/coach-mehdi.webp" fetchpriority="high" />
 
-  <link rel="stylesheet" href="/assets/css/base.css?v=b8" />
-  <link rel="stylesheet" href="/assets/css/home.css?v=b8" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=b9" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=b9" />
 
   <meta name="keywords" content="coach boxe Minimes Toulouse, entraîneur boxe anglaise Toulouse, Mehdi Boxing Center, coach Boxing Lady, coach boxe éducative enfant, encadrement boxe 31200" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -248,7 +248,7 @@ import SiteContent from "../../components/SiteContent.astro";
         "@id": "https://minimes.boxingcenter.fr/coachs/#webpage",
         "url": "https://minimes.boxingcenter.fr/coachs/",
         "name": "Les coachs — Boxing Center Minimes, Toulouse (Mehdi B, Boxing Lady, boxing camp)",
-        "description": "L'encadrement de la salle des Minimes (Toulouse 31200) : Mehdi B, coach principal — boxe anglaise, éducative dès 3 ans, compétiteurs, baby boxe. Boxing Lady avec Chloé et David, boxing camp avec Hicham. Séance d'essai 10€.",
+        "description": "Mehdi B tient la maison, du premier gant de Baby Boxe au sparring. Chloé et David sur le Boxing Lady, Hicham sur le camp. Voilà qui te coache.",
         "isPartOf": {
           "@id": "https://minimes.boxingcenter.fr/#website"
         },
@@ -267,7 +267,7 @@ import SiteContent from "../../components/SiteContent.astro";
           "@id": "https://minimes.boxingcenter.fr/coachs/#primaryimage"
         },
         "datePublished": "2026-07-17",
-        "dateModified": "2026-07-19",
+        "dateModified": "@BUILT@",
         "breadcrumb": {
           "@id": "https://minimes.boxingcenter.fr/coachs/#breadcrumb"
         }
@@ -461,7 +461,7 @@ import SiteContent from "../../components/SiteContent.astro";
       <img class="co-head__cut" src="/assets/img/bc/cutouts/coach-mehdi.webp" width="236" height="452" alt="" aria-hidden="true" decoding="async" />
       <div class="wrap">
         <span class="eyebrow" data-reveal>L'encadrement · Les Minimes</span>
-        <h1 class="display" style="margin:1rem 0 0"><span class="reveal-mask"><span>Ceux qui</span></span><span class="reveal-mask"><span class="tint">tiennent les pattes.</span></span></h1>
+        <h1 class="display" style="margin:1rem 0 0"><span class="reveal-mask"><span>Ceux qui </span></span><span class="reveal-mask"><span class="tint">tiennent les pattes.</span></span></h1>
         <p class="lead page-head__lead" data-reveal>Une salle vaut ses coachs. Aux Minimes, on ne fait pas de la garderie sportive : on te reprend le geste, on te pousse au round de trop, on te connaît par ton prénom. Voilà les gens à qui tu vas serrer la main.</p>
       </div>
     </section>
@@ -544,7 +544,7 @@ import SiteContent from "../../components/SiteContent.astro";
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=b8"></script>
-  <script is:inline type="module" src="/assets/js/coachs.js?v=b8"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=b9"></script>
+  <script is:inline type="module" src="/assets/js/coachs.js?v=b9"></script>
 </body>
 </html>

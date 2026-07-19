@@ -7,20 +7,20 @@ import SiteContent from "../../components/SiteContent.astro";
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Le club — Salle de boxe historique des Minimes | Boxing Center Toulouse</title>
-  <meta name="description" content="Entre dans Boxing Center Minimes : la salle de boxe historique de Toulouse, 3 rings, ambiance Philadelphie, accès métro Barrière de Paris. Histoire, équipement, accès et FAQ locale." />
+  <meta name="description" content="Trois rings, douze sacs, un étage de prépa, et 2016 au compteur : la première salle que Boxing Center ait ouverte. Métro B, Barrière de Paris." />
 
   <!-- Préconnexion CDN (les libs sont différées) — polices auto-hébergées :
        plus aucune requête vers fonts.googleapis.com / fonts.gstatic.com -->
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-black-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-latin.woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/css/fonts.css?v=b8" />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=b9" />
 
   <!-- LCP : le hero est construit en JS → invisible au preload scanner (§5.8) -->
   <link rel="preload" as="image" href="/assets/img/bc/salle-1.webp" fetchpriority="high" />
 
-  <link rel="stylesheet" href="/assets/css/base.css?v=b8" />
-  <link rel="stylesheet" href="/assets/css/club.css?v=b8" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=b9" />
+  <link rel="stylesheet" href="/assets/css/club.css?v=b9" />
 
   <meta name="keywords" content="salle de boxe Minimes Toulouse, club boxe Barrière de Paris, histoire Boxing Center, 3 rings boxe Toulouse, accès salle boxe métro B" />
   <meta name="robots" content="index, follow" />
@@ -252,7 +252,7 @@ import SiteContent from "../../components/SiteContent.astro";
         "@id": "https://minimes.boxingcenter.fr/le-club/#webpage",
         "url": "https://minimes.boxingcenter.fr/le-club/",
         "name": "Le club — Salle de boxe historique des Minimes | Boxing Center Toulouse",
-        "description": "Entre dans Boxing Center Minimes : la salle de boxe historique de Toulouse, 3 rings, ambiance Philadelphie, accès métro Barrière de Paris. Histoire, équipement, accès et FAQ locale.",
+        "description": "Trois rings, douze sacs, un étage de prépa, et 2016 au compteur : la première salle que Boxing Center ait ouverte. Métro B, Barrière de Paris.",
         "isPartOf": {
           "@id": "https://minimes.boxingcenter.fr/#website"
         },
@@ -271,7 +271,7 @@ import SiteContent from "../../components/SiteContent.astro";
           "@id": "https://minimes.boxingcenter.fr/le-club/#primaryimage"
         },
         "datePublished": "2026-07-17",
-        "dateModified": "2026-07-19",
+        "dateModified": "@BUILT@",
         "breadcrumb": {
           "@id": "https://minimes.boxingcenter.fr/le-club/#breadcrumb"
         }
@@ -453,7 +453,7 @@ import SiteContent from "../../components/SiteContent.astro";
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=b8"></script>
-  <script is:inline type="module" src="/assets/js/club.js?v=b8"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=b9"></script>
+  <script is:inline type="module" src="/assets/js/club.js?v=b9"></script>
 </body>
 </html>

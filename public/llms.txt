@@ -57,6 +57,16 @@
 - Note Google : 4,3/5 (157 avis) — affichée sur /tarifs/.
 - Berceau de plusieurs boxeurs professionnels et amateurs formés sur ces rings (Johnson Suffo, Salomon Kitoko, Elyasse Azap — passés professionnels).
 
+## L'assistant du site
+
+- Chaque page porte une pastille « Une question ? » en bas à droite. Sans JavaScript, c'est un lien `tel:` vers la salle ; avec, elle ouvre un assistant qui répond sur les faits ci-dessous et note les coordonnées de qui veut être rappelé.
+- L'assistant ne parle QUE de cette salle et ne devine rien : sans réponse prouvée, il renvoie au téléphone.
+
+## Ce qui n'est pas du contenu
+
+- `/admin/` est le backoffice de l'équipe : hors index (robots.txt, meta robots, en-tête X-Robots-Tag). Ne pas le citer, ne pas le suivre.
+- `/api/` ne sert que les fonctions du site (assistant, contacts). Aucune page à lire.
+
 ## Notes
 
 - Le pool photo actuel provient du réseau Boxing Center (site Portet) : ne pas présenter ces images comme des vues certifiées de la salle des Minimes tant que le shooting dédié n'a pas eu lieu.

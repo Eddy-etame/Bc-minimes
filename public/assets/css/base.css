@@ -357,67 +357,6 @@ html.fx .reveal-mask > span { opacity: 0; }
 .faq__item.is-open .faq__a, .faq__a.is-closing { visibility: visible; }
 .faq__a p { padding-bottom: clamp(1.2rem,3vw,2rem); color: var(--muted); max-width: 70ch; }
 
-/* =====================================================================
-   L'ASSISTANT — le coin du coach.
-   La pastille rouge ne change pas d'un pixel : c'est elle qui ouvre le
-   panneau (sans JS elle appelle toujours la salle — cf. chatbot.js).
-   Identité Minimes : noir, filet rouge, Archivo Black en tête. Le rouge
-   reste en APLAT / BARRE / FILET — jamais en petit texte (LOI ROUGE
-   §5.1). Le corps de bulle est en --read (~14.7:1 sur --ink-2).
-   ===================================================================== */
-.bcm-chat { position: fixed; inset: auto clamp(1rem,2.5vw,2rem) clamp(1rem,2.5vw,2rem) auto; z-index: 8600; }
-.bcm-chat[hidden] { display: none; }
-.bcm-chat__panel {
-  width: min(92vw, 25.5rem); height: min(78vh, 34rem); display: flex; flex-direction: column;
-  background: var(--ink-2); color: var(--read); border: 1px solid var(--line);
-  border-top: 3px solid var(--red); border-radius: 4px;
-  box-shadow: 0 26px 70px rgba(0,0,0,.7), 0 0 0 1px rgba(0,0,0,.5);
-  overflow: hidden; transform-origin: 100% 100%;
-  animation: bcm-in .42s var(--ease-out) both;
-}
-@media (prefers-reduced-motion: reduce) { .bcm-chat__panel { animation: none; } }
-@keyframes bcm-in { from { opacity: 0; transform: translateY(14px) scale(.97); } to { opacity: 1; transform: none; } }
-
-.bcm-chat__head { display: flex; align-items: center; gap: .75rem; padding: .9rem 1rem; background: var(--char); border-bottom: 1px solid var(--line); }
-.bcm-chat__head img { width: 38px; height: auto; flex: 0 0 auto; }
-.bcm-chat__head-text { display: flex; flex-direction: column; min-width: 0; }
-.bcm-chat__head strong { font: 400 1rem/1.1 var(--f-display); letter-spacing: .01em; color: var(--bone); text-transform: uppercase; }
-.bcm-chat__status { font: 400 .7rem/1.4 var(--f-mono); color: var(--bone-dim); display: flex; align-items: center; gap: .4rem; }
-.bcm-chat__status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--red); flex: 0 0 auto; }
-.bcm-chat__close { margin-left: auto; width: 34px; height: 34px; display: grid; place-items: center; color: var(--bone-dim); background: none; border: 1px solid var(--line); border-radius: 2px; transition: color .25s, border-color .25s; }
-.bcm-chat__close:hover, .bcm-chat__close:focus-visible { color: var(--bone); border-color: var(--red); }
-
-.bcm-chat__log { flex: 1 1 auto; overflow-y: auto; overscroll-behavior: contain; padding: 1rem; display: flex; flex-direction: column; gap: .7rem; scrollbar-width: thin; }
-.bcm-chat__msg { display: flex; gap: .55rem; align-items: flex-end; max-width: 92%; }
-.bcm-chat__msg--user { margin-left: auto; flex-direction: row-reverse; }
-.bcm-chat__msg img { width: 24px; height: auto; flex: 0 0 auto; margin-bottom: 2px; }
-.bcm-chat__bubble { padding: .6rem .8rem; border-radius: 3px; font: 400 .9rem/1.5 var(--f-ui); white-space: pre-wrap; overflow-wrap: anywhere; }
-.bcm-chat__msg--bot .bcm-chat__bubble { background: var(--char); color: var(--read); border-left: 2px solid var(--red); }
-.bcm-chat__msg--user .bcm-chat__bubble { background: var(--red); color: var(--on-accent); }
-.bcm-chat__dots { display: inline-flex; gap: 4px; padding: .15rem 0; }
-.bcm-chat__dots i { width: 6px; height: 6px; border-radius: 50%; background: var(--bone-dim); animation: bcm-dot 1.2s infinite; }
-.bcm-chat__dots i:nth-child(2) { animation-delay: .18s; } .bcm-chat__dots i:nth-child(3) { animation-delay: .36s; }
-@keyframes bcm-dot { 0%,60%,100% { opacity: .28; } 30% { opacity: 1; } }
-@media (prefers-reduced-motion: reduce) { .bcm-chat__dots i { animation: none; opacity: .6; } }
-
-.bcm-chat__chips { display: flex; flex-wrap: wrap; gap: .35rem; padding: 0 1rem .6rem; }
-.bcm-chat__chips[hidden] { display: none; }
-.bcm-chat__chips button { font: 700 .7rem/1 var(--f-ui); letter-spacing: .04em; text-transform: uppercase; color: var(--read); background: none; border: 1px solid var(--line); border-radius: 100px; padding: .45rem .7rem; transition: border-color .25s, color .25s; }
-.bcm-chat__chips button:hover, .bcm-chat__chips button:focus-visible { border-color: var(--red); color: var(--bone); }
-.bcm-chat__chips button[data-callback] { border-color: var(--red); }
-
-.bcm-chat__form { display: flex; gap: .5rem; padding: .75rem 1rem 1rem; border-top: 1px solid var(--line-soft); }
-.bcm-chat__form input { flex: 1 1 auto; min-width: 0; background: var(--ink); color: var(--bone); border: 1px solid var(--line); border-radius: 3px; padding: .6rem .7rem; font: 400 .9rem/1.4 var(--f-ui); }
-.bcm-chat__form input::placeholder { color: var(--steel); }
-.bcm-chat__form input:focus-visible { outline: none; border-color: var(--red); }
-.bcm-chat__send { flex: 0 0 auto; width: 42px; display: grid; place-items: center; background: var(--red); color: var(--on-accent); border: none; border-radius: 3px; transition: transform .25s var(--ease-punch); }
-.bcm-chat__send:hover { transform: translateY(-2px); }
-.bcm-chat__send:disabled { opacity: .5; transform: none; cursor: default; }
-.bcm-chat :focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
-
-/* la pastille reste identique — on lui ajoute juste l'état "ouvert" */
-.chatbot[aria-expanded="true"]::after { animation: none; opacity: 0; }
-@media (max-width: 480px) { .bcm-chat__panel { width: calc(100vw - 2rem); height: min(80vh, 32rem); } }
 
 /* =====================================================================
    MAILLAGE DE MARQUE — liens sortants et salles sœurs.

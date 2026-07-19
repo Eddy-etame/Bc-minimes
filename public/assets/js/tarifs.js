@@ -9,7 +9,8 @@
    l'accordéon partagé (window.BC.faq). ⚠ SANS FAQPage : la seule du site
    est celle de /contact/ — deux FAQPage, c'est deux URL en concurrence.
    ===================================================================== */
-import { PROMOS, REVIEWS, SEASON_LABEL, MONEY_FAQ } from "./data.js?v=b8";
+import { PROMOS, SEASON_LABEL } from "./data.js?v=b9";
+import { REVIEWS, MONEY_FAQ } from "./data-argent.js?v=b9";
 
 const $ = (s, r = document) => r.querySelector(s);
 

@@ -3,7 +3,8 @@
    Mosaïque N&B du pool photo réel (data.js GALLERY), filtres par zone,
    légendes mono, lazy, + lightbox plein écran. Énergie mur-de-champion.
    ===================================================================== */
-import { GALLERY, DISCIPLINES } from "./data.js?v=b8";
+import { GALLERY } from "./data-galerie.js?v=b9";
+import { DISCIPLINES } from "./data-disciplines.js?v=b9";
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -85,6 +86,10 @@ function initFilters() {
         const show = z === "all" || c.dataset.zone === z;
         c.classList.toggle("is-hidden", !show);
       });
+      /* Les vignettes qui reviennent réclament leur photo tout de suite :
+         masquées, elles n'entraient dans aucun champ, donc l'observer ne
+         les avait jamais servies. Jamais de cadre vide après un filtre. */
+      window.BC.serveMedia(document);
       window.BC.refresh();
     })
   );

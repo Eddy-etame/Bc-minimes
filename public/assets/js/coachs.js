@@ -4,7 +4,8 @@
    en avant (Mehdi B, photo prouvée), les autres en tuiles nom N&B.
    Loi §0.10 : nom ≡ photo, jamais de stock, jamais de croisement.
    ===================================================================== */
-import { COACHES, PLANNING, PLANNING_DAYS, LINKS, CTA } from "./data.js?v=b8";
+import { COACHES, LINKS, CTA } from "./data.js?v=b9";
+import { PLANNING, PLANNING_DAYS } from "./data-planning.js?v=b9";
 
 const $ = (s, r = document) => r.querySelector(s);
 

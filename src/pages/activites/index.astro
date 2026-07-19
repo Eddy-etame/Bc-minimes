@@ -7,20 +7,20 @@ import SiteContent from "../../components/SiteContent.astro";
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Activités & disciplines — Boxing Center Minimes, Toulouse (boxe anglaise, éducative dès 3 ans, Lady)</title>
-  <meta name="description" content="Toutes les disciplines de la salle des Minimes (Toulouse 31200) : boxe anglaise loisirs et compétiteurs, boxe éducative dès 3 ans (Baby Boxe 3/6), Boxing Lady, boxing camp, boxe pieds-poings, PAOS, cross training, cardio boxing. Un écran par discipline, avec le nombre de créneaux réels. Séance d'essai 10€." />
+  <meta name="description" content="Anglaise loisirs ou compétiteurs, école dès 3 ans, Boxing Lady, boxing camp, pieds-poings, cross training : chaque discipline avec ses vrais créneaux." />
 
   <!-- Préconnexion CDN (les libs sont différées) — polices auto-hébergées :
        plus aucune requête vers fonts.googleapis.com / fonts.gstatic.com -->
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-black-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-latin.woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/css/fonts.css?v=b8" />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=b9" />
 
   <!-- LCP : le hero est construit en JS → invisible au preload scanner (§5.8) -->
   <link rel="preload" as="image" href="/assets/img/bc/training-2.webp" fetchpriority="high" />
 
-  <link rel="stylesheet" href="/assets/css/base.css?v=b8" />
-  <link rel="stylesheet" href="/assets/css/home.css?v=b8" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=b9" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=b9" />
 
   <meta name="keywords" content="disciplines boxe Minimes Toulouse, boxe anglaise Toulouse, boxe éducative enfant, Boxing Lady Toulouse, boxing camp Toulouse, boxe pieds-poings Toulouse, cross training boxe, cardio boxing 31200, cours de boxe Barrière de Paris" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -247,7 +247,7 @@ import SiteContent from "../../components/SiteContent.astro";
         "@id": "https://minimes.boxingcenter.fr/activites/#webpage",
         "url": "https://minimes.boxingcenter.fr/activites/",
         "name": "Activités & disciplines — Boxing Center Minimes, Toulouse (boxe anglaise, éducative dès 3 ans, Lady)",
-        "description": "Toutes les disciplines de la salle des Minimes (Toulouse 31200) : boxe anglaise loisirs et compétiteurs, boxe éducative dès 3 ans (Baby Boxe 3/6), Boxing Lady, boxing camp, boxe pieds-poings, PAOS, cross training, cardio boxing. Un écran par discipline, avec le nombre de créneaux réels. Séance d'essai 10€.",
+        "description": "Anglaise loisirs ou compétiteurs, école dès 3 ans, Boxing Lady, boxing camp, pieds-poings, cross training : chaque discipline avec ses vrais créneaux.",
         "isPartOf": {
           "@id": "https://minimes.boxingcenter.fr/#website"
         },
@@ -266,7 +266,7 @@ import SiteContent from "../../components/SiteContent.astro";
           "@id": "https://minimes.boxingcenter.fr/activites/#primaryimage"
         },
         "datePublished": "2026-07-17",
-        "dateModified": "2026-07-19",
+        "dateModified": "@BUILT@",
         "breadcrumb": {
           "@id": "https://minimes.boxingcenter.fr/activites/#breadcrumb"
         }
@@ -473,7 +473,7 @@ import SiteContent from "../../components/SiteContent.astro";
       <div class="page-head__bg" aria-hidden="true"><div class="media" data-img="/assets/img/bc/training-2.webp" data-eager data-label=""></div></div>
       <div class="wrap">
         <span class="eyebrow" data-reveal>Les activités · Les Minimes</span>
-        <h1 class="display" style="margin:1rem 0 0"><span class="reveal-mask"><span>Tout ce qui</span></span><span class="reveal-mask"><span class="tint">se boxe ici.</span></span></h1>
+        <h1 class="display" style="margin:1rem 0 0"><span class="reveal-mask"><span>Tout ce qui </span></span><span class="reveal-mask"><span class="tint">se boxe ici.</span></span></h1>
         <p class="lead page-head__lead" data-reveal>Neuf portes. Un seul geste au bout : le tien. Six ont leur créneau au planning, trois se travaillent en accès libre — c'est écrit sur chacune. Tu choisis, on te montre le mouvement.</p>
       </div>
     </section>
@@ -514,7 +514,7 @@ import SiteContent from "../../components/SiteContent.astro";
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=b8"></script>
-  <script is:inline type="module" src="/assets/js/activites.js?v=b8"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=b9"></script>
+  <script is:inline type="module" src="/assets/js/activites.js?v=b9"></script>
 </body>
 </html>

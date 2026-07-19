@@ -3,7 +3,7 @@
    window.BC = { reveal, magnetic, refresh, media, split, scramble,
                  initKinetics, faq, lenis, velocity }
    ===================================================================== */
-import { NAV, LINKS, SALLE, MEDIA, CTA, NETWORK } from "./data.js?v=b8";
+import { NAV, LINKS, SALLE, MEDIA, CTA, NETWORK } from "./data.js?v=b9";
 /* L'assistant : il promeut la pastille `.chatbot` (qui reste un lien tel:
    dans le HTML) en vraie conversation. Voir armChatbot() plus bas — le
    module ne descend QU'À l'intention de parler, jamais au premier rendu. */
@@ -56,7 +56,7 @@ function mountNav() {
   ).join("");
   document.getElementById("drawer").innerHTML = `
     <div class="menu" id="menu" aria-hidden="true">
-      <div class="menu__bg" aria-hidden="true"><video data-video="/assets/media/clip-mats.mp4" data-poster="/assets/img/bc/salle-1.webp" muted loop playsinline></video></div>
+      <div class="menu__bg" aria-hidden="true"><video data-video-defer data-video="/assets/media/clip-mats.mp4" data-poster="/assets/img/bc/salle-1.webp" muted loop playsinline></video></div>
       <div class="menu__top">
         <a class="nav__brand" href="/" aria-label="Boxing Center Minimes — accueil">
           <img class="nav__logo" src="/assets/img/logo.png" alt="" width="342" height="160" />
@@ -81,6 +81,7 @@ function mountNav() {
   const menu = document.getElementById("menu");
   const items = menu.querySelectorAll(".menu__link");
   const setOpen = (open) => {
+    if (open) armMenuBg();
     document.documentElement.classList.toggle("is-menu-open", open);
     menu.classList.toggle("is-open", open);
     menu.setAttribute("aria-hidden", String(!open));
@@ -91,6 +92,22 @@ function mountNav() {
       if (open) gsap.fromTo(items, { yPercent: 120, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.7, ease: "power4.out", stagger: 0.06, delay: 0.18 });
     }
   };
+  /* La texture du menu descend à l'INTENTION d'ouvrir, jamais avant : la
+     souris qui arrive sur le burger, le focus clavier, le doigt qui se
+     pose. Ces trois signaux précèdent le clic, donc le poster est déjà là
+     quand le panneau s'ouvre (l'animation d'entrée dure 0,18 s + 0,7 s).
+     Si aucun ne passe — ouverture programmée — setOpen l'arme lui-même :
+     jamais de fond vide, jamais de trou noir. */
+  let bgArmed = false;
+  const armMenuBg = () => {
+    if (bgArmed) return; bgArmed = true;
+    menu.querySelectorAll("video[data-video-defer]").forEach((v) => v.removeAttribute("data-video-defer"));
+    hydrateMedia(menu);
+  };
+  ["pointerenter", "focus", "pointerdown", "touchstart"].forEach((ev) =>
+    burger.addEventListener(ev, armMenuBg, { once: true, passive: true })
+  );
+
   burger.addEventListener("click", () => setOpen(!menu.classList.contains("is-open")));
   document.getElementById("menu-close").addEventListener("click", () => setOpen(false));
   menu.querySelectorAll(".menu__link, .menu__foot a").forEach((a) => a.addEventListener("click", () => setOpen(false)));
@@ -268,16 +285,99 @@ function reveal(scope = document) {
    l'anti-scraping → une erreur console sur les 8 pages. Une maquette
    Minimes ne dépend JAMAIS du domaine de Portet pour son propre poster. */
 const local = (p) => /^(https?:|data:|\/assets|\/media|\/img)/.test(p);
+
+/* ------------------- LES PHOTOS ARRIVENT À L'APPROCHE --------------
+   Le défaut mesuré : `new Image()` recevait son `src` AVANT d'entrer
+   dans le document. Sur une image détachée, le navigateur part chercher
+   le fichier tout de suite — le `loading="lazy"` posé juste après ne
+   gouverne plus rien. Résultat sur l'accueil : 20 photos marquées
+   « lazy », 20 téléchargées au premier rendu, 571 ko dont la plus haute
+   attendait à 3 000 px sous le pli. Un visiteur qui vient lire les
+   horaires payait la page entière avant d'avoir lu une ligne.
+
+   On ne se contente pas de remettre l'attribut dans le bon ordre : on
+   tient la porte nous-mêmes, avec 1 200 px de marge devant. Une photo
+   est donc déjà en route quand elle est encore un écran et demi plus
+   bas — elle est peinte bien avant d'entrer dans le champ, et le reveal
+   GSAP qui la découvre dure encore 1 s après. Rien ne change à l'œil.
+
+   FILET DEAD-MAN — la règle de la maison : si l'IntersectionObserver
+   n'existe pas, ou existe mais ne parle jamais (contextes automatisés,
+   impression, moteurs qui rendent la page sans la « regarder »), la
+   première salve de callbacks n'arrive pas. On le détecte — un
+   observer sain rend TOUJOURS un premier verdict par cible — et on
+   sert alors la totalité des photos, en priorité basse, une fois la
+   page chargée. Le pire scénario redevient exactement le comportement
+   d'avant : tout arrive. Une photo ne peut jamais rester vide. */
+let _io = null, _ioAlive = false, _netArmed = false;
+const _waiting = new Set();
+
+function _serve(img) {
+  if (!img || !img.dataset.src) return;
+  const url = img.dataset.src;
+  delete img.dataset.src;
+  _waiting.delete(img);
+  if (_io) _io.unobserve(img);
+  /* on repasse en `eager` À L'INSTANT du service : c'est nous la porte,
+     le lazy natif n'a plus à ajouter son propre seuil par-dessus. */
+  img.loading = "eager";
+  img.src = url;
+}
+
+/** Sert tout ce qui attend encore — priorité basse, jamais devant le LCP. */
+function _serveAll() {
+  _waiting.forEach((img) => { img.fetchPriority = "low"; _serve(img); });
+}
+
+/* Une photo qu'on vient de RÉAFFICHER n'attend pas le prochain tour de
+   l'observer : la galerie filtre en `display:none`, et une vignette qui
+   revient doit avoir son image, pas un trou. */
+function serveMedia(scope = document) {
+  scope.querySelectorAll("img[data-src]").forEach(_serve);
+}
+/* À l'impression, la page n'est pas « regardée » : on sert tout. */
+addEventListener("beforeprint", _serveAll);
+
+function _defer(img) {
+  _waiting.add(img);
+  if (!("IntersectionObserver" in window)) return _serve(img);
+  if (!_io) {
+    _io = new IntersectionObserver((entries) => {
+      _ioAlive = true;                 // l'observer répond : le filet peut dormir
+      entries.forEach((e) => { if (e.isIntersecting) _serve(e.target); });
+    }, { rootMargin: "1200px 0px" });
+  }
+  _io.observe(img);
+  if (_netArmed) return; _netArmed = true;
+  /* Le filet s'arme une fois, après le chargement complet : s'il n'a
+     toujours pas eu signe de vie de l'observer, il sert tout. */
+  const arm = () => setTimeout(() => { if (!_ioAlive) _serveAll(); }, 2000);
+  if (document.readyState === "complete") arm();
+  else addEventListener("load", arm, { once: true });
+}
+
 function hydrateMedia(scope = document) {
   scope.querySelectorAll(".media[data-img]").forEach((el) => {
     if (el.dataset.mediaBound) return; el.dataset.mediaBound = "1";
-    const img = new Image();
-    img.src = (local(el.dataset.img) ? "" : MEDIA) + el.dataset.img;
-    img.alt = el.dataset.label || ""; img.loading = el.hasAttribute("data-eager") ? "eager" : "lazy"; img.decoding = "async";
-    if (el.hasAttribute("data-eager")) img.fetchPriority = "high";
-    el.prepend(img);
+    const eager = el.hasAttribute("data-eager");
+    const url = (local(el.dataset.img) ? "" : MEDIA) + el.dataset.img;
+    const img = document.createElement("img");
+    img.alt = el.dataset.label || "";
+    img.decoding = "async";
+    img.loading = eager ? "eager" : "lazy";
+    if (eager) img.fetchPriority = "high";
+    el.prepend(img);                   // DANS le document d'abord…
+    if (eager) img.src = url;          // …le src ensuite, et seulement alors.
+    else { img.dataset.src = url; _defer(img); }
   });
   scope.querySelectorAll("video[data-video]").forEach((v) => {
+    /* [data-video-defer] : la vidéo existe dans le DOM mais ne part PAS au
+       premier rendu. Une seule porteuse aujourd'hui — le fond du menu, une
+       texture en opacité .16, grise, à 60 % de luminosité, que 1,8 Mo
+       payait sur les 8 pages y compris quand le menu n'était jamais
+       ouvert (mesuré : 2 279 904 octets servis sur /tarifs/). Elle part
+       maintenant à l'INTENTION d'ouvrir — voir armMenuBg(). */
+    if (v.hasAttribute("data-video-defer")) return;
     if (v.dataset.mediaBound) return; v.dataset.mediaBound = "1";
     v.muted = true; v.defaultMuted = true; v.playsInline = true; v.loop = true;
     if (v.dataset.poster) v.poster = (local(v.dataset.poster) ? "" : MEDIA) + v.dataset.poster;
@@ -443,7 +543,7 @@ function armChatbot() {
 }
 
 /* ------------------------------ BOOT ------------------------------ */
-window.BC = { reveal, magnetic, refresh, media: hydrateMedia, split, scramble, initKinetics, faq, get lenis() { return lenis; }, get velocity() { return velocity; } };
+window.BC = { reveal, magnetic, refresh, media: hydrateMedia, serveMedia, split, scramble, initKinetics, faq, get lenis() { return lenis; }, get velocity() { return velocity; } };
 mountNav();
 mountFooter();
 initSmooth();

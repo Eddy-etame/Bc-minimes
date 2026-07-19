@@ -16,7 +16,7 @@
    le fil, respect de prefers-reduced-motion (l'animation d'ouverture est
    coupée en CSS, la frappe simulée est raccourcie ici).
    ===================================================================== */
-import { SALLE, NETWORK } from "./data.js?v=b8";
+import { SALLE, NETWORK } from "./data.js?v=b9";
 
 const EMAIL_RE = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/i;
 /* numéro FR : +33 ou 0, puis 9 chiffres groupés librement */
@@ -87,6 +87,26 @@ export function initChatbot() {
   let leadSig = "";        // signature du dernier lead envoyé (anti-doublon)
   let callbackAsked = false;
   let lastFocus = null;
+
+  /* ---------- l'habillage ----------
+     La feuille du panneau ne vit plus dans base.css : elle ne servait
+     qu'ici, et base.css bloque le rendu des 8 pages. On la pose dès que
+     le module s'exécute — c'est-à-dire à l'INTENTION de parler, avant
+     tout affichage. `open()` attend qu'elle soit appliquée : le panneau
+     ne peut donc pas apparaître nu une seule image. */
+  const feuille = new Promise((resolu) => {
+    const dejaLa = document.querySelector('link[data-bcm-chat-css]');
+    if (dejaLa) return resolu();
+    const l = document.createElement("link");
+    l.rel = "stylesheet";
+    l.href = "/assets/css/chatbot.css?v=b9";
+    l.setAttribute("data-bcm-chat-css", "");
+    /* résolu dans les deux cas : une feuille manquante ne doit jamais
+       retenir le panneau prisonnier — mieux vaut brut que rien. */
+    l.addEventListener("load", () => resolu(), { once: true });
+    l.addEventListener("error", () => resolu(), { once: true });
+    document.head.appendChild(l);
+  });
 
   /* ---------- l'échafaudage ---------- */
   const root = document.createElement("div");
@@ -252,6 +272,7 @@ export function initChatbot() {
 
   async function open() {
     lastFocus = document.activeElement;
+    await feuille;              // jamais de panneau nu, pas une image
     root.hidden = false;
     launcher.setAttribute("aria-expanded", "true");
     document.addEventListener("keydown", trap, true);
