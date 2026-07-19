@@ -1,9 +1,9 @@
 /* =====================================================================
    MINIMES · home.js (v2) — kinetic accueil
    ===================================================================== */
-import { STATS, DISCIPLINES, CHAMPIONS, VALUES, AUDIENCES, TARIFS } from "./data.js?v=b5";
-import { initHero } from "./hero.js?v=b5";
-import { initRounds } from "./rounds.js?v=b5";
+import { STATS, DISCIPLINES, CHAMPIONS, VALUES, AUDIENCES, TARIFS } from "./data.js?v=b7";
+import { initHero } from "./hero.js?v=b7";
+import { initRounds } from "./rounds.js?v=b7";
 
 const gsap = window.gsap;
 const ScrollTrigger = window.ScrollTrigger;
@@ -57,9 +57,15 @@ function renderChampions() {
   else setTimeout(warm, 2500);
 }
 function renderDisciplines() {
+  /* ⚠ `data-img="${d.img}"` avec d.img = null écrivait la chaîne "null"
+     dans l'attribut : hydrateMedia ne la reconnaît pas comme chemin local
+     et la préfixe du domaine Portet → une requête vers /null qui répond
+     403, en console, sur la page d'accueil. Une discipline sans photo
+     (loi §0.10 : on n'illustre pas un geste avec un autre) doit sortir
+     SANS bloc media, pas avec un bloc media cassé. */
   $("#disciplines").innerHTML = DISCIPLINES.map(
-    (d, i) => `<div class="disc" data-key="${d.key}" tabindex="0">
-      <div class="disc__bg media" data-img="${d.img}" aria-hidden="true"></div>
+    (d, i) => `<div class="disc${d.img ? "" : " disc--nobg"}" data-key="${d.key}" tabindex="0">
+      ${d.img ? `<div class="disc__bg media" data-img="${d.img}" aria-hidden="true"></div>` : ""}
       <div class="disc__row">
         <span class="disc__idx">${String(i + 1).padStart(2, "0")}</span>
         <span class="disc__name">${d.name}</span>

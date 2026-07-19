@@ -11,13 +11,13 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-black-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-latin.woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/css/fonts.css?v=b5" />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=b7" />
 
   <!-- LCP : le hero est construit en JS → invisible au preload scanner (§5.8) -->
   <link rel="preload" as="image" href="/assets/img/bc/levels-1.webp" fetchpriority="high" />
 
-  <link rel="stylesheet" href="/assets/css/base.css?v=b5" />
-  <link rel="stylesheet" href="/assets/css/home.css?v=b5" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=b7" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=b7" />
 
   <meta name="keywords" content="photos salle de boxe Minimes Toulouse, galerie Boxing Center, rings boxe Toulouse, images club de boxe 31200, salle boxe Barrière de Paris" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -217,7 +217,7 @@
           "@id": "https://minimes.boxingcenter.fr/galerie/#primaryimage"
         },
         "datePublished": "2026-07-17",
-        "dateModified": "2026-07-17",
+        "dateModified": "2026-07-19",
         "breadcrumb": {
           "@id": "https://minimes.boxingcenter.fr/galerie/#breadcrumb"
         }
@@ -269,6 +269,22 @@
     .ga-filter { display: inline-flex; align-items: center; min-height: 44px; padding: .55em .95em; border: 1px solid var(--line); font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--bone-dim); transition: color .3s, border-color .3s, background .3s; }
     .ga-filter:hover { color: var(--bone); border-color: var(--bone-dim); }
     .ga-filter:active, .ga-filter.is-on { color: var(--on-accent); background: var(--red); border-color: var(--red); }
+    /* le compte par zone — dérivé des photos (galerie.js). Un filtre qui
+       annonce combien il en reste évite le clic dans le vide. */
+    .ga-filter i { font-style: normal; margin-left: .8ch; padding-left: .8ch; border-left: 1px solid currentColor; opacity: .7; }
+
+    /* --- le pont galerie → disciplines : la page ne s'arrête plus à la
+       mosaïque, chaque zone photo mène au cours correspondant --- */
+    .ga-bridge { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); grid-template-columns: 1fr; }
+    @media (min-width: 640px){ .ga-bridge { grid-template-columns: repeat(2,1fr); } }
+    @media (min-width: 1020px){ .ga-bridge { grid-template-columns: repeat(4,1fr); } }
+    .ga-bridge__card { background: var(--ink); padding: clamp(1.3rem,2.6vw,1.8rem); min-height: 12rem; display: flex; flex-direction: column; gap: .5rem; border-top: 2px solid transparent; transition: background .35s, border-color .35s; }
+    .ga-bridge__card:hover, .ga-bridge__card:active { background: var(--ink-2); border-top-color: var(--red); }
+    .ga-bridge__z { font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--bone-dim); }
+    .ga-bridge__n { font-family: var(--f-display); text-transform: uppercase; font-size: var(--step-1); line-height: .95; color: var(--bone); }
+    .ga-bridge__d { font-size: var(--step--1); line-height: 1.5; color: var(--muted); }
+    .ga-bridge__go { margin-top: auto; font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--bone); border-top: 2px solid var(--red); padding-top: .8rem; transition: color .3s; }
+    .ga-bridge__card:hover .ga-bridge__go { color: var(--white); }
 
     /* mosaïque */
     .ga-grid { display: grid; gap: .6rem; grid-template-columns: repeat(2,1fr); grid-auto-flow: dense; }
@@ -347,6 +363,37 @@
       </div>
     </section>
 
+    <!-- ==================== CE QUE LE CADRE COUPE ==================
+         La page s'arrêtait à la mosaïque : trois écrans, le plus maigre
+         des huit. Puisqu'elle ne peut PAS prétendre montrer cette salle-ci
+         tant que le shooting n'a pas eu lieu, elle prend le problème par
+         l'autre bout et dit ce qu'aucune photo ne rend. Rendu depuis
+         GALLERY.offFrame — rien en dur dans ce fichier. -->
+    <section class="section band" aria-label="Ce qu'une photo ne rend pas">
+      <div class="wrap">
+        <div data-reveal style="margin-bottom:clamp(1.6rem,4vw,2.4rem)">
+          <span class="eyebrow">Hors champ</span>
+          <h2 class="display display--sm" style="margin-top:1rem">Trois choses <span class="tint">que l'image rate</span></h2>
+          <p class="lead" data-reveal style="margin-top:1.2rem;max-width:56ch">Une salle de boxe, ça se regarde mal et ça s'entend bien. Voilà ce que tu ne trouveras sur aucune de ces photos.</p>
+        </div>
+        <div class="values" id="ga-offframe" data-reveal-group></div>
+      </div>
+    </section>
+
+    <!-- ==================== DE LA PHOTO AU CRÉNEAU =================
+         Une galerie sans sortie est un cul-de-sac : on regardait douze
+         photos et on retombait sur le CTA. Chaque zone photo mène
+         maintenant à sa discipline. -->
+    <section class="section section--flush" aria-label="Les disciplines derrière les photos">
+      <div class="wrap">
+        <div data-reveal style="margin-bottom:clamp(1.4rem,3vw,2rem)">
+          <span class="eyebrow">Derrière l'image</span>
+          <h2 class="display display--sm" style="margin-top:1rem">Ce que tu viens de <span class="tint">regarder</span></h2>
+        </div>
+        <div class="ga-bridge" id="ga-bridge" data-reveal-group></div>
+      </div>
+    </section>
+
     <!-- ========================= FINAL GONG ====================== -->
     <section class="gong" aria-label="Réserver une séance">
       <div class="gong__bg" aria-hidden="true"><div class="media" data-img="/assets/img/bc/anglaise-1.webp" data-label=""></div></div>
@@ -382,7 +429,7 @@
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=b5"></script>
-  <script is:inline type="module" src="/assets/js/galerie.js?v=b5"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=b7"></script>
+  <script is:inline type="module" src="/assets/js/galerie.js?v=b7"></script>
 </body>
 </html>

@@ -3,10 +3,50 @@
    Catalogue complet : un écran par discipline (rangées, pas de grille),
    avec sommaire ancré (#<key>). Rendu depuis data.js (DISCIPLINES enrichi
    des champs `for` + `points`). Rien en dur dans le markup répété.
+
+   Deux dettes réglées ici :
+   1. Le catalogue s'arrêtait à six disciplines alors que le poster
+      officiel en prouve DEUX de plus (Boxing camp — cinq créneaux par
+      semaine — et Boxe pieds-poings). Elles y sont.
+   2. Le bouton « Voir les créneaux » envoyait sur la semaine entière,
+      non filtrée : il promettait un créneau et livrait un planning. Il
+      pointe maintenant sur /plannings/?disc=… — et pour les trois
+      disciplines qui n'ONT pas de créneau (paos, cross, cardio), il ne
+      ment plus : il le dit et renvoie vers l'accès libre.
    ===================================================================== */
-import { DISCIPLINES, LINKS, CTA } from "./data.js?v=b5";
+import { DISCIPLINES, PLANNING, LINKS, CTA } from "./data.js?v=b7";
 
 const $ = (s, r = document) => r.querySelector(s);
+
+/* Le badge est DÉRIVÉ du planning, jamais compté à la main : le jour où
+   un créneau bouge dans data.js, le badge bouge avec lui. */
+const slotCount = (d) => (d.plan ? PLANNING.filter((s) => s.disc === d.plan).length : 0);
+
+function badgeOf(d) {
+  const n = slotCount(d);
+  if (n > 0) return `<span class="act__slots"><b>${n}</b> créneau${n > 1 ? "x" : ""} par semaine</span>`;
+  /* état honnête : pas un placeholder, une information */
+  return `<span class="act__slots act__slots--free">${d.freeNote}</span>`;
+}
+
+function mediaOf(d, i) {
+  /* Loi §0.10 étendue au geste : aucune photo du pool ne montre des
+     pieds-poings. Plutôt qu'illustrer avec une photo de poings, on
+     assume — même tuile dessinée que le roster des coachs sans portrait. */
+  if (d.noPhoto) {
+    return `<div class="act__media act__media--none" aria-hidden="true">
+      <span class="act__glyph">${d.name.split(" ").map((w) => w[0]).join("").slice(0, 2)}</span>
+      <span class="act__nophoto">Photo à venir</span>
+    </div>`;
+  }
+  return `<div class="act__media media" data-img="${d.img}" data-label="${d.name}" aria-hidden="true"></div>`;
+}
+
+function ctaOf(d) {
+  const href = d.plan ? `/plannings/?disc=${encodeURIComponent(d.plan)}` : "/plannings/?disc=libre";
+  const label = d.plan ? "Voir ses créneaux" : "Voir l'accès libre";
+  return `<a class="btn btn--ghost" data-magnetic href="${href}"><span>${label}</span></a>`;
+}
 
 function renderIndex() {
   const box = $("#act-index");
@@ -23,17 +63,18 @@ function renderRows() {
   if (!box) return;
   box.innerHTML = DISCIPLINES.map(
     (d, i) => `<article class="act ${i % 2 ? "act--rev" : ""}" id="${d.key}">
-      <div class="act__media media" data-img="${d.img}" data-label="${d.name}" aria-hidden="true"></div>
+      ${mediaOf(d, i)}
       <div class="act__body">
         <span class="act__bigidx" aria-hidden="true">${String(i + 1).padStart(2, "0")}</span>
         <span class="act__tag">${d.tag}</span>
         <h2 class="act__name">${d.name}</h2>
+        ${badgeOf(d)}
         <p class="act__desc">${d.desc}</p>
         <p class="act__for"><span>Pour qui</span>${d.for}</p>
         <ul class="act__points">${d.points.map((p) => `<li>${p}</li>`).join("")}</ul>
         <div class="act__cta">
           <a class="btn btn--primary" data-magnetic href="${LINKS.essai}"><span>${CTA.primary}</span></a>
-          <a class="btn btn--ghost" data-magnetic href="/plannings/"><span>Voir les créneaux</span></a>
+          ${ctaOf(d)}
         </div>
       </div>
     </article>`

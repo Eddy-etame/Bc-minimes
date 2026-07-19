@@ -2,8 +2,14 @@
    MINIMES · tarifs.js — "Tarifs & offres" subpage
    Rendu depuis data.js : PROMOS (cartes essai/duo/saison/école), le
    bandeau bonus, et les AVIS Google réels (REVIEWS). Rien en dur.
+
+   La page affichait quatre prix et s'arrêtait là — le visiteur repartait
+   avec ses objections entières (« 29€ à deux ou chacun ? », « 259€ d'un
+   coup ? », « je dois acheter des gants ? »). MONEY_FAQ y répond, dans
+   l'accordéon partagé (window.BC.faq). ⚠ SANS FAQPage : la seule du site
+   est celle de /contact/ — deux FAQPage, c'est deux URL en concurrence.
    ===================================================================== */
-import { PROMOS, REVIEWS, SEASON_LABEL } from "./data.js?v=b5";
+import { PROMOS, REVIEWS, SEASON_LABEL, MONEY_FAQ } from "./data.js?v=b7";
 
 const $ = (s, r = document) => r.querySelector(s);
 
@@ -63,6 +69,7 @@ function boot() {
   renderOffers();
   renderBonus();
   renderReviews();
+  window.BC.faq($("#money-faq"), MONEY_FAQ);
 
   window.BC.media(document);
   window.BC.reveal(document);

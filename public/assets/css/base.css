@@ -119,6 +119,11 @@ html.is-locked, html.is-locked body { overflow: hidden; height: 100%; }
 .section--flush { padding-top: var(--sec-flush); }
 .split { display: grid; gap: clamp(2rem,5vw,5rem); grid-template-columns: 1fr; }
 @media (min-width: 900px){ .split { grid-template-columns: 1.05fr 1fr; align-items: center; } }
+/* bande de contraste — utilisée par /le-club/, /contact/, /coachs/,
+   /tarifs/ et /galerie/. Elle vivait dans club.css, que deux de ces cinq
+   pages ne chargent pas : la moitié des « band » du site étaient donc
+   des sections nues. Un composant partagé vit dans le socle (§5.2). */
+.band { background: var(--ink-2); border-block: 1px solid var(--line); }
 
 /* eyebrow — la BARRE reste rouge (l'identité), les MOTS passent en bone.
    4.01:1 → 15.6:1 sans perdre un gramme de rouge à l'écran. */
@@ -314,3 +319,31 @@ html.fx .reveal-mask > span { opacity: 0; }
 .scroll-cue .line { width: 60px; height: 2px; background: var(--red); position: relative; overflow: hidden; }
 .scroll-cue .line::after { content: ""; position: absolute; inset: 0; background: var(--bone); transform: translateX(-100%); animation: cue 1.8s var(--ease) infinite; }
 @keyframes cue { 0%{transform:translateX(-100%)} 60%,100%{transform:translateX(100%)} }
+
+/* ---------------------- FAQ / ACCORDÉON (partagé) -----------------
+   Composant du SYSTÈME, pas d'une page : /contact/ porte la FAQ
+   canonique (+ son FAQPage) et /tarifs/ les questions d'argent — deux
+   pages qui ne chargent pas la même feuille secondaire. Il a donc sa
+   place ici, une fois, et pas deux copies qui divergent.
+   ⚠ `visibility` obligatoire : sans elle, `max-height:0` laisse les
+   réponses dans l'arbre d'accessibilité pendant qu'aria-expanded="false"
+   affirme le contraire — un mur de texte au lecteur d'écran.
+   ⚠ Et elle n'est PAS transitionnée. L'astuce `visibility 0s linear .5s`
+   (garder le texte visible le temps du repli) ne retombait pas : mesuré
+   sur la page servie, un panneau ouvert puis refermé restait `visible`,
+   donc lisible au lecteur d'écran, pendant qu'aria-expanded disait
+   « fermé ». Le sursis est maintenant porté par `.is-closing`, posé et
+   retiré par site.js sur une horloge — un état qu'on peut vérifier.
+   ⚠ La question est un <button> pleine largeur : la zone de clic fait
+   toute la ligne, pas seulement les mots. */
+.faq { border-top: 1px solid var(--line); }
+.faq__item { border-bottom: 1px solid var(--line); }
+.faq__q { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; padding: clamp(1.2rem,3vw,2rem) 0; text-align: left; font-family: var(--f-display); text-transform: uppercase; font-size: clamp(1.1rem,2.6vw,1.7rem); line-height: 1.1; color: var(--bone-dim); transition: color .3s; }
+.faq__item.is-open .faq__q, .faq__q:hover, .faq__q:active { color: var(--bone); }
+.faq__sign { flex: 0 0 auto; width: 22px; height: 22px; position: relative; }
+.faq__sign::before, .faq__sign::after { content: ""; position: absolute; inset: 50% 0 auto 0; height: 1.5px; background: currentColor; transition: transform .4s var(--ease); }
+.faq__sign::after { transform: rotate(90deg); }
+.faq__item.is-open .faq__sign::after { transform: rotate(0); }
+.faq__a { max-height: 0; overflow: hidden; visibility: hidden; transition: max-height .5s var(--ease); }
+.faq__item.is-open .faq__a, .faq__a.is-closing { visibility: visible; }
+.faq__a p { padding-bottom: clamp(1.2rem,3vw,2rem); color: var(--muted); max-width: 70ch; }

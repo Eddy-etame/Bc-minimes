@@ -3,18 +3,59 @@
    Mosaïque N&B du pool photo réel (data.js GALLERY), filtres par zone,
    légendes mono, lazy, + lightbox plein écran. Énergie mur-de-champion.
    ===================================================================== */
-import { GALLERY } from "./data.js?v=b5";
+import { GALLERY, DISCIPLINES } from "./data.js?v=b7";
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+
+/* Le compte par zone est dérivé des photos elles-mêmes : un filtre qui
+   annonce « 4 » et en montre 3 est un filtre qui ment. */
+const countIn = (key) => (key === "all" ? GALLERY.shots.length : GALLERY.shots.filter((s) => s.zone === key).length);
 
 function renderFilters() {
   const box = $("#ga-filters");
   if (!box) return;
   box.innerHTML = GALLERY.filters
     .map(
-      (f, i) => `<button class="ga-filter ${i === 0 ? "is-on" : ""}" type="button" data-zone="${f.key}" aria-pressed="${i === 0}">${f.label}</button>`
+      (f, i) => `<button class="ga-filter ${i === 0 ? "is-on" : ""}" type="button" data-zone="${f.key}" aria-pressed="${i === 0}">${f.label}<i>${countIn(f.key)}</i></button>`
     )
+    .join("");
+}
+
+/* ------------------- CE QUE LE CADRE COUPE ------------------------
+   La page ne montrait qu'une mosaïque et s'arrêtait là — l'écran le plus
+   maigre des huit. Elle ne peut pas prétendre montrer LA salle des
+   Minimes (le shooting n'a pas eu lieu) : elle assume donc l'inverse et
+   dit ce qu'aucune photo ne rend. Honnête, et propre à cette page. */
+function renderOffFrame() {
+  const box = $("#ga-offframe");
+  if (!box) return;
+  box.innerHTML = GALLERY.offFrame.map(
+    (v) => `<div class="value"><span class="value__n">${v.n}</span><div><h3 class="value__t">${v.t}</h3><p class="value__d">${v.d}</p></div></div>`
+  ).join("");
+}
+
+/* ------------------- DE LA PHOTO AU CRÉNEAU ------------------------
+   Une galerie qui ne mène nulle part est un cul-de-sac. Chaque zone
+   photo renvoie vers la discipline correspondante — jointure par clé,
+   donc aucune discipline fantôme ne peut apparaître ici. */
+const ZONE_TO_DISC = { anglaise: "anglaise", lady: "lady", educative: "educative", technique: "paos", salle: null };
+
+function renderBridge() {
+  const box = $("#ga-bridge");
+  if (!box) return;
+  box.innerHTML = GALLERY.filters
+    .filter((f) => ZONE_TO_DISC[f.key])
+    .map((f) => {
+      const d = DISCIPLINES.find((x) => x.key === ZONE_TO_DISC[f.key]);
+      if (!d) return "";
+      return `<a class="ga-bridge__card" href="/activites/#${d.key}">
+        <span class="ga-bridge__z">${f.label}</span>
+        <span class="ga-bridge__n">${d.name}</span>
+        <span class="ga-bridge__d">${d.tag}</span>
+        <span class="ga-bridge__go" aria-hidden="true">Voir la discipline →</span>
+      </a>`;
+    })
     .join("");
 }
 
@@ -103,6 +144,8 @@ function initLightbox() {
 function boot() {
   renderFilters();
   renderGrid();
+  renderOffFrame();
+  renderBridge();
 
   window.BC.media(document);
   window.BC.reveal(document);

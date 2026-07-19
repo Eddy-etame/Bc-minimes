@@ -9,7 +9,11 @@
    ===================================================================== */
 
 .sec-head { margin-bottom: clamp(2rem,5vw,3.4rem); }
-.band { background: var(--ink-2); border-block: 1px solid var(--line); }
+/* ⚠ .band a DÉMÉNAGÉ dans base.css. Elle était déclarée ici alors que
+   /coachs/ et /tarifs/ l'utilisent SANS charger club.css : leurs sections
+   « band » n'ont jamais eu ni fond ni filets, et la bande de contraste
+   qui rythme /le-club/ et /contact/ sautait sur les deux autres pages.
+   Une classe partagée par quatre pages appartient au socle. */
 .feature-card { border: 1px solid var(--line); display: grid; }
 
 /* filtres photo par contexte (le grade de base est dans base.css) */
@@ -78,22 +82,11 @@
 .map-frame iframe { width: 100%; height: 100%; border: 0; }
 
 /* ------------------------------- FAQ ------------------------------
-   /contact/ UNIQUEMENT (la FAQ canonique + son FAQPage). /le-club/ pose
-   ses propres questions de LIEU, en prose, sans accordéon ni schema.
-   ⚠ `visibility` obligatoire : sans elle, `max-height:0` laissait les six
-   réponses dans l'arbre d'accessibilité pendant qu'aria-expanded="false"
-   affirmait le contraire — un mur de texte au lecteur d'écran. */
-.faq { border-top: 1px solid var(--line); }
-.faq__item { border-bottom: 1px solid var(--line); }
-.faq__q { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; padding: clamp(1.2rem,3vw,2rem) 0; text-align: left; font-family: var(--f-display); text-transform: uppercase; font-size: clamp(1.1rem,2.6vw,1.7rem); line-height: 1.1; color: var(--bone-dim); transition: color .3s; }
-.faq__item.is-open .faq__q, .faq__q:hover, .faq__q:active { color: var(--bone); }
-.faq__sign { flex: 0 0 auto; width: 22px; height: 22px; position: relative; }
-.faq__sign::before, .faq__sign::after { content: ""; position: absolute; inset: 50% 0 auto 0; height: 1.5px; background: currentColor; transition: transform .4s var(--ease); }
-.faq__sign::after { transform: rotate(90deg); }
-.faq__item.is-open .faq__sign::after { transform: rotate(0); }
-.faq__a { max-height: 0; overflow: hidden; visibility: hidden; transition: max-height .5s var(--ease), visibility 0s linear .5s; }
-.faq__item.is-open .faq__a { visibility: visible; transition: max-height .5s var(--ease), visibility 0s linear 0s; }
-.faq__a p { padding-bottom: clamp(1.2rem,3vw,2rem); color: var(--muted); max-width: 70ch; }
+   L'accordéon a DÉMÉNAGÉ dans base.css : /tarifs/ en a besoin (les
+   questions d'argent) et cette page-là charge home.css, pas club.css.
+   Dupliquer le composant, c'était programmer deux accordéons qui
+   divergeraient à la première retouche. Il vit maintenant une seule fois,
+   dans le système. /le-club/ garde ses questions de LIEU en prose. */
 
 /* -------------------- LES QUESTIONS DU LIEU (/le-club/) -----------
    Pas un accordéon, pas un FAQPage : de la prose. Une page « visite »

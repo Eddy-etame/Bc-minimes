@@ -120,6 +120,12 @@
 .disc__bg img { filter: grayscale(1) contrast(1.12) brightness(.72); object-position: center 28%; }
 .disc__bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.82) 20%, rgba(0,0,0,.25) 100%); }
 .disc:hover .disc__bg, .disc:focus-within .disc__bg { opacity: 1; transform: scale(1); }
+/* discipline sans photo (aucune image du pool ne montre ce geste) : le
+   survol doit quand même RÉPONDRE, sinon la ligne a l'air morte. Le
+   hachuré du système remplace la photo — même langage que les tuiles
+   coach sans portrait, jamais une image empruntée. */
+.disc--nobg::before { content: ""; position: absolute; inset: 0; z-index: 0; opacity: 0; background: repeating-linear-gradient(120deg, #16110f 0 9px, #1c1512 9px 10px); transition: opacity .55s var(--ease); }
+.disc--nobg:hover::before, .disc--nobg:focus-within::before { opacity: 1; }
 .disc__row { position: relative; z-index: 1; width: var(--wrap); margin-inline: auto; display: grid; grid-template-columns: auto 1fr auto; gap: 1.2rem; align-items: center; padding-block: clamp(1.2rem,3vw,2.3rem); transition: padding .5s var(--ease); }
 .disc:hover .disc__row, .disc:focus-within .disc__row { padding-left: clamp(1rem,3vw,2.5rem); padding-block: clamp(2.4rem,6vw,4.4rem); }
 .disc__idx { font: 700 var(--step--1)/1 var(--f-mono); color: var(--bone-dim); }

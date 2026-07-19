@@ -7,14 +7,38 @@
    pour un lecteur d'écran et pour un téléphone bridé, et impossible à
    filtrer. Ce module la rend.
 
-   Source : PLANNING (data.js) ← transcription du poster SAISON 2026-2027.
+   Source : PLANNING + PLANNING_FREE (data.js) ← transcription du poster
+   SAISON 2026-2027, recollationnée cellule par cellule sur le PNG.
    Aucun créneau, aucun nom de coach n'est tapé dans le HTML (§0.10) :
    si Chloé quitte la salle, elle disparaît de la page en une ligne de data.
+
+   Trois choses que la grille ne faisait pas et qui manquaient :
+   1. L'ACCÈS LIBRE — la moitié du poster — n'apparaissait nulle part.
+   2. Les liens « voir les créneaux » des autres pages arrivaient ici sans
+      filtre : on promettait « ses créneaux » et on livrait la semaine
+      entière. La grille lit maintenant ?disc= / ?coach= / ?jour= et
+      écrit l'état dans l'URL (partageable, revenable au bouton Retour).
+   3. Rien ne disait où on en est MAINTENANT dans la semaine.
    ===================================================================== */
-import { SEASON_LABEL, PLANNING, PLANNING_DAYS, PLANNING_DISCIPLINES, PLANNING_KEYS } from "./data.js?v=b5";
+import {
+  SEASON_LABEL,
+  PLANNING,
+  PLANNING_FREE,
+  PLANNING_DAYS,
+  PLANNING_DISCIPLINES,
+  PLANNING_KEYS,
+} from "./data.js?v=b7";
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+
+/* "18h30" → 1110. Une seule conversion, partout : le tri, le marqueur
+   « en ce moment » et la durée en dépendent tous. Écrire les minutes à la
+   main dans data.js aurait été une deuxième source de vérité à maintenir. */
+const mins = (h) => {
+  const [a, b] = String(h).split("h");
+  return Number(a) * 60 + Number(b || 0);
+};
 
 /* état des trois filtres — "all" = tout */
 const state = { d: "all", disc: "all", coach: "all" };
@@ -23,16 +47,48 @@ const state = { d: "all", disc: "all", coach: "all" };
    qui se désynchronise */
 const COACHES_IN_PLANNING = [...new Set(PLANNING.map((s) => s.coach))];
 
-const labelOf = (key) => (PLANNING_DISCIPLINES.find((d) => d.key === key) || {}).label || key;
+/* « Accès libre » est un filtre à part entière côté page, mais PAS une
+   discipline dans data.js : ce n'est pas un cours, il n'a pas de coach.
+   On l'ajoute ici, au bout, là où l'utilisateur le cherche. */
+const FILTER_DISCIPLINES = [...PLANNING_DISCIPLINES, { key: "libre", label: "Accès libre" }];
+
+const labelOf = (key) => (FILTER_DISCIPLINES.find((d) => d.key === key) || {}).label || key;
+
+/* --------------------------- URL ↔ ÉTAT ----------------------------
+   Les valeurs sont validées contre les données : un ?coach=Dupont
+   inventé (ou périmé) ne doit pas vider la grille en silence, il doit
+   être ignoré comme s'il n'était pas là. */
+function readURL() {
+  const q = new URLSearchParams(location.search);
+  const day = q.get("jour");
+  const disc = q.get("disc");
+  const coach = q.get("coach");
+  if (day && PLANNING_DAYS.some((d) => d.toLowerCase() === day.toLowerCase())) {
+    state.d = PLANNING_DAYS.find((d) => d.toLowerCase() === day.toLowerCase());
+  }
+  if (disc && FILTER_DISCIPLINES.some((d) => d.key === disc)) state.disc = disc;
+  if (coach && COACHES_IN_PLANNING.some((c) => c.toLowerCase() === coach.toLowerCase())) {
+    state.coach = COACHES_IN_PLANNING.find((c) => c.toLowerCase() === coach.toLowerCase());
+  }
+}
+
+function writeURL() {
+  const q = new URLSearchParams();
+  if (state.d !== "all") q.set("jour", state.d.toLowerCase());
+  if (state.disc !== "all") q.set("disc", state.disc);
+  if (state.coach !== "all") q.set("coach", state.coach);
+  const qs = q.toString();
+  history.replaceState(null, "", qs ? `?${qs}` : location.pathname);
+}
 
 /* ------------------------------ FILTRES ---------------------------- */
 function chipRow(group, items, allLabel) {
   return (
-    `<button class="pl-chip is-on" type="button" role="radio" aria-checked="true" data-group="${group}" data-val="all">${allLabel}</button>` +
+    `<button class="pl-chip${state[group] === "all" ? " is-on" : ""}" type="button" role="radio" aria-checked="${state[group] === "all"}" data-group="${group}" data-val="all">${allLabel}</button>` +
     items
       .map(
         (it) =>
-          `<button class="pl-chip" type="button" role="radio" aria-checked="false" data-group="${group}" data-val="${it.val}">${it.label}</button>`
+          `<button class="pl-chip${state[group] === it.val ? " is-on" : ""}" type="button" role="radio" aria-checked="${state[group] === it.val}" data-group="${group}" data-val="${it.val}">${it.label}</button>`
       )
       .join("")
   );
@@ -48,7 +104,7 @@ function renderFilters() {
     </div>
     <div class="pl-fgroup" role="radiogroup" aria-label="Filtrer par discipline">
       <span class="pl-fgroup__l">Discipline</span>
-      <div class="pl-fgroup__row">${chipRow("disc", PLANNING_DISCIPLINES.map((d) => ({ val: d.key, label: d.label })), "Toutes")}</div>
+      <div class="pl-fgroup__row">${chipRow("disc", FILTER_DISCIPLINES.map((d) => ({ val: d.key, label: d.label })), "Toutes")}</div>
     </div>
     <div class="pl-fgroup" role="radiogroup" aria-label="Filtrer par coach">
       <span class="pl-fgroup__l">Coach</span>
@@ -61,33 +117,93 @@ function renderFilters() {
    Structure sémantique (h3 + ul) plutôt qu'un <table> : une semaine de
    boxe n'est pas un tableau de données croisées, et six colonnes à 375px
    sont illisibles. Chaque créneau porte ses data-* pour le filtre — et
-   son texte reste indexable, contrairement au poster. */
+   son texte reste indexable, contrairement au poster.
+
+   Les bandes d'ACCÈS LIBRE sont mêlées aux cours et triées avec eux : sur
+   le poster elles occupent la moitié de la grille, et c'est l'info qui
+   fait venir la moitié des adhérents. Elles ne portent pas de coach, donc
+   le filtre coach les masque — c'est le comportement juste : « les
+   créneaux de Chloé » ne contient pas l'accès libre du jeudi. */
+function slotHTML(s) {
+  const free = s.free === true;
+  const dur = `${s.h}<i>–${s.end}</i>`;
+  const meta = free
+    ? `<span class="pl-slot__m">Sans réservation${s.space ? ` · Espace ${s.space}` : ""}</span>`
+    : `<span class="pl-slot__m"><b>${s.coach}</b> · ${s.age}${s.space ? ` · Espace ${s.space}` : ""}</span>`;
+  return `<li class="pl-slot${free ? " pl-slot--free" : ""}"
+      data-day="${s.d}" data-disc="${free ? "libre" : s.disc}" data-coach="${free ? "" : s.coach}"
+      data-start="${mins(s.h)}" data-end="${mins(s.end)}">
+      <span class="pl-slot__h">${dur}</span>
+      <span class="pl-slot__n">${free ? "Accès libre" : s.name}</span>
+      ${meta}
+    </li>`;
+}
+
 function renderGrid() {
   const box = $("#pl-grid");
   if (!box) return;
+  const all = [
+    ...PLANNING.map((s) => ({ ...s, free: false })),
+    ...PLANNING_FREE.map((s) => ({ ...s, free: true })),
+  ];
   box.innerHTML = PLANNING_DAYS.map((day) => {
-    const slots = PLANNING.filter((s) => s.d === day).sort((a, b) => a.h.localeCompare(b.h));
+    const slots = all.filter((s) => s.d === day).sort((a, b) => mins(a.h) - mins(b.h) || (a.free ? 1 : -1));
+    const nCours = slots.filter((s) => !s.free).length;
     return `<section class="pl-day" data-day="${day}">
-      <h3 class="pl-day__h">${day}<i>${slots.length}</i></h3>
-      <ul class="pl-day__list">
-        ${slots
-          .map(
-            (s) => `<li class="pl-slot" data-day="${s.d}" data-disc="${s.disc}" data-coach="${s.coach}">
-            <span class="pl-slot__h">${s.h}${s.end ? `<i>–${s.end}</i>` : ""}</span>
-            <span class="pl-slot__n">${s.name}</span>
-            <span class="pl-slot__m"><b>${s.coach}</b> · ${s.age}</span>
-          </li>`
-          )
-          .join("")}
-      </ul>
+      <h3 class="pl-day__h">${day}<i>${nCours} cours</i></h3>
+      <ul class="pl-day__list">${slots.map(slotHTML).join("")}</ul>
       <p class="pl-day__empty">Rien ce jour-là avec ce filtre.</p>
     </section>`;
   }).join("");
 }
 
+/* --------------------- « EN CE MOMENT » / « APRÈS » -----------------
+   Calculé à l'exécution depuis l'horloge du visiteur — donc jamais une
+   date en dur dans le markup (§0.3 anti-péremption). Purement additif :
+   si le JS ne tourne pas, la grille reste juste et complète, elle perd
+   seulement ce repère. Marque le créneau en cours, sinon le suivant. */
+function markNow() {
+  const now = new Date();
+  const dayIdx = (now.getDay() + 6) % 7; // 0 = lundi
+  const today = PLANNING_DAYS[dayIdx];   // undefined le dimanche → salle fermée
+  const t = now.getHours() * 60 + now.getMinutes();
+
+  $$(".pl-slot").forEach((el) => el.classList.remove("is-now", "is-next"));
+  const badge = $("#pl-now");
+  if (!badge) return;
+
+  if (!today) {
+    badge.innerHTML = `<b>Dimanche</b> — la salle est fermée. On rouvre lundi à 10h.`;
+    return;
+  }
+
+  const todaySlots = $$(`.pl-slot[data-day="${today}"]`);
+  /* ⚠ lundi, mardi et jeudi de 18h30 à 19h30, DEUX cours tournent en
+     parallèle (les espaces 1 et 2 du poster). Un `find` n'en montrait
+     qu'un et faisait disparaître le Boxing Lady derrière les
+     compétiteurs — précisément le cours qu'une visiteuse cherche. */
+  const live = todaySlots.filter((el) => t >= +el.dataset.start && t < +el.dataset.end);
+  const liveCours = live.filter((el) => !el.classList.contains("pl-slot--free"));
+  const next = todaySlots.find((el) => +el.dataset.start > t);
+
+  if (live.length) {
+    live.forEach((el) => el.classList.add("is-now"));
+    const shownSet = liveCours.length ? liveCours : live;
+    const names = [...new Set(shownSet.map((el) => el.querySelector(".pl-slot__n").textContent))];
+    const end = shownSet[0].querySelector(".pl-slot__h i").textContent.replace("–", "");
+    badge.innerHTML = `<b>En ce moment</b> · ${names.join(" + ")} — jusqu'à ${end}`;
+  } else if (next) {
+    next.classList.add("is-next");
+    badge.innerHTML = `<b>Prochain créneau</b> · ${next.querySelector(".pl-slot__n").textContent} à ${next.querySelector(".pl-slot__h").firstChild.textContent}`;
+  } else {
+    badge.innerHTML = `<b>C'est fini pour aujourd'hui</b> — la salle rouvre demain à 10h.`;
+  }
+}
+
 /* ------------------------------ FILTRAGE ---------------------------- */
 function apply() {
   let shown = 0;
+  let shownFree = 0;
   $$(".pl-day").forEach((dayEl) => {
     const dayOk = state.d === "all" || dayEl.dataset.day === state.d;
     let visibleInDay = 0;
@@ -97,7 +213,10 @@ function apply() {
         (state.disc === "all" || s.dataset.disc === state.disc) &&
         (state.coach === "all" || s.dataset.coach === state.coach);
       s.classList.toggle("is-hidden", !ok);
-      if (ok) visibleInDay++;
+      if (ok) {
+        visibleInDay++;
+        if (s.classList.contains("pl-slot--free")) shownFree++;
+      }
     });
     dayEl.classList.toggle("is-empty", visibleInDay === 0);
     dayEl.classList.toggle("is-hidden", !dayOk);
@@ -106,17 +225,30 @@ function apply() {
 
   /* compteur en région live : au clavier et au lecteur d'écran, sans lui,
      rien ne dit que le filtre a changé quoi que ce soit */
+  /* « 43 créneaux » mélangeait 27 cours encadrés et 16 bandes d'accès
+     libre sous un seul mot — c'est exactement la confusion que la page
+     est censée lever. On compte les deux séparément. */
   const out = $("#pl-count");
   if (out) {
     const bits = [];
     if (state.disc !== "all") bits.push(labelOf(state.disc));
     if (state.coach !== "all") bits.push(`avec ${state.coach}`);
     if (state.d !== "all") bits.push(state.d.toLowerCase());
+    const cours = shown - shownFree;
+    const parts = [];
+    if (cours) parts.push(`${cours} cours`);
+    if (shownFree) parts.push(`${shownFree} bande${shownFree > 1 ? "s" : ""} d'accès libre`);
     out.textContent =
       shown === 0
         ? "Aucun créneau avec ce filtre — enlève-en un."
-        : `${shown} créneau${shown > 1 ? "x" : ""}${bits.length ? " · " + bits.join(" · ") : " sur la semaine"}`;
+        : `${parts.join(" · ")}${bits.length ? " · " + bits.join(" · ") : " sur la semaine"}`;
   }
+
+  /* le bouton « tout voir » n'existe que quand il sert à quelque chose */
+  const reset = $("#pl-reset");
+  if (reset) reset.hidden = state.d === "all" && state.disc === "all" && state.coach === "all";
+
+  writeURL();
   window.BC.refresh();
 }
 
@@ -133,23 +265,48 @@ function initFilters() {
       apply();
     })
   );
+  const reset = $("#pl-reset");
+  if (reset)
+    reset.addEventListener("click", () => {
+      state.d = state.disc = state.coach = "all";
+      $$(".pl-chip").forEach((b) => {
+        const on = b.dataset.val === "all";
+        b.classList.toggle("is-on", on);
+        b.setAttribute("aria-checked", String(on));
+      });
+      apply();
+    });
 }
 
 /* Le rail de la semaine — la structure PROPRE à cette page (les 5 autres
    sous-pages partagent .page-head, chacune avec son objet à elle : ici la
    semaine comme forme, une barre par créneau). Dérivé de PLANNING : il ne
-   peut pas mentir sur le nombre de cours. */
+   peut pas mentir sur le nombre de cours. Cliquable : c'est le raccourci
+   « montre-moi juste mercredi ». */
 function renderWeek() {
   const box = $("#pl-week");
   if (!box) return;
   box.innerHTML = PLANNING_DAYS.map((day) => {
     const n = PLANNING.filter((s) => s.d === day).length;
-    return `<span class="pl-week__d">
+    return `<button class="pl-week__d" type="button" data-day="${day}" aria-label="Voir uniquement le ${day.toLowerCase()}">
       <span class="pl-week__n">${day.slice(0, 3)}</span>
-      <span class="pl-week__bar">${Array.from({ length: n }, () => "<i></i>").join("")}</span>
+      <span class="pl-week__bar" aria-hidden="true">${Array.from({ length: n }, () => "<i></i>").join("")}</span>
       <span class="pl-week__c">${n} cours</span>
-    </span>`;
+    </button>`;
   }).join("");
+  $$(".pl-week__d", box).forEach((b) =>
+    b.addEventListener("click", () => {
+      const day = b.dataset.day;
+      state.d = state.d === day ? "all" : day;
+      $$('.pl-chip[data-group="d"]').forEach((c) => {
+        const on = c.dataset.val === state.d;
+        c.classList.toggle("is-on", on);
+        c.setAttribute("aria-checked", String(on));
+      });
+      apply();
+      $("#pl-grid")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    })
+  );
 }
 
 /* les repères — rendus depuis data.js, jamais tapés dans le markup */
@@ -165,12 +322,16 @@ function boot() {
   const season = document.getElementById("season");
   if (season) season.textContent = SEASON_LABEL;   // anti-péremption §4
 
+  readURL();
   renderWeek();
   renderFilters();
   renderGrid();
   renderKeys();
   initFilters();
   apply();
+  markNow();
+  /* la salle bouge toutes les heures, pas toutes les secondes */
+  setInterval(markNow, 60000);
 
   window.BC.media(document);
   window.BC.reveal(document);

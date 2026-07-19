@@ -1,9 +1,9 @@
 /* =====================================================================
    MINIMES · site.js (v2) — chrome + heavy motion engine
    window.BC = { reveal, magnetic, refresh, media, split, scramble,
-                 lenis, velocity }
+                 initKinetics, faq, lenis, velocity }
    ===================================================================== */
-import { NAV, LINKS, SALLE, MEDIA, CTA } from "./data.js?v=b5";
+import { NAV, LINKS, SALLE, MEDIA, CTA } from "./data.js?v=b7";
 
 const gsap = window.gsap;
 const ScrollTrigger = window.ScrollTrigger;
@@ -294,8 +294,82 @@ function initKinetics() {
 
 const refresh = () => ScrollTrigger?.refresh();
 
+/* ------------------------- FAQ / ACCORDÉON ------------------------
+   Deux pages posent des questions : /contact/ (la FAQ canonique, celle
+   qui porte le FAQPage) et /tarifs/ (les questions d'argent). Le rendu
+   ET le comportement vivent ici, une fois — sinon on maintient deux
+   accordéons dont un seul reçoit la prochaine correction d'accessibilité.
+
+   `id` préfixe les identifiants : deux accordéons sur une même page
+   auraient des `aria-controls` en collision, et le lecteur d'écran
+   ouvrirait la mauvaise réponse.
+
+   Sur ouverture, `max-height` est posé en PIXELS — c'est ce qui rend la
+   transition possible (`auto` ne s'anime pas). Mais figée à la valeur
+   mesurée, une réponse qui se re-wrappe (rotation du téléphone, zoom
+   texte, police système plus grosse) se retrouve tronquée par sa propre
+   animation : le dernier paragraphe disparaît sous le pli.
+   On relâche donc à `none` AU REDIMENSIONNEMENT, pas sur `transitionend` —
+   cet événement ne se déclenche pas de façon fiable (transition annulée,
+   onglet en arrière-plan, moteur qui coalesce le changement de style), et
+   un filet qui ne tombe que parfois n'est pas un filet. */
+let _faqResizeBound = false;
+function bindFaqResize() {
+  if (_faqResizeBound) return;
+  _faqResizeBound = true;
+  let t;
+  addEventListener("resize", () => {
+    clearTimeout(t);
+    t = setTimeout(() => {
+      document.querySelectorAll(".faq__item.is-open .faq__a").forEach((a) => (a.style.maxHeight = "none"));
+      refresh();
+    }, 150);
+  });
+}
+
+function faq(box, items) {
+  if (!box || !items?.length) return;
+  bindFaqResize();
+  const id = box.id || "faq";
+  box.innerHTML = items
+    .map(
+      (f, i) => `<div class="faq__item">
+      <button class="faq__q" type="button" id="${id}-q-${i}" aria-expanded="false" aria-controls="${id}-a-${i}"><span>${f.q}</span><span class="faq__sign" aria-hidden="true"></span></button>
+      <div class="faq__a" id="${id}-a-${i}" role="region" aria-labelledby="${id}-q-${i}"><p>${f.a}</p></div>
+    </div>`
+    )
+    .join("");
+  box.querySelectorAll(".faq__item").forEach((item) => {
+    const q = item.querySelector(".faq__q");
+    const a = item.querySelector(".faq__a");
+    q.addEventListener("click", () => {
+      const open = item.classList.toggle("is-open");
+      q.setAttribute("aria-expanded", String(open));
+      clearTimeout(a._faqT);
+      if (open) {
+        a.classList.remove("is-closing");
+        a.style.maxHeight = a.scrollHeight + "px";
+      } else {
+        /* `.is-closing` garde le texte VISIBLE le temps du repli — sinon
+           il disparaît d'un coup pendant que la boîte, elle, se ferme
+           tranquillement. Retiré sur horloge à la fin de l'animation :
+           le panneau sort alors vraiment de l'arbre d'accessibilité,
+           d'accord avec l'aria-expanded="false" du bouton. */
+        a.classList.add("is-closing");
+        /* on RE-FIXE la hauteur mesurée avant de retomber à 0 : une
+           transition qui part de `none` ne s'anime pas, elle claque. */
+        a.style.maxHeight = a.scrollHeight + "px";
+        void a.offsetHeight;
+        a.style.maxHeight = "0px";
+        a._faqT = setTimeout(() => a.classList.remove("is-closing"), 520);
+      }
+      refresh();
+    });
+  });
+}
+
 /* ------------------------------ BOOT ------------------------------ */
-window.BC = { reveal, magnetic, refresh, media: hydrateMedia, split, scramble, initKinetics, get lenis() { return lenis; }, get velocity() { return velocity; } };
+window.BC = { reveal, magnetic, refresh, media: hydrateMedia, split, scramble, initKinetics, faq, get lenis() { return lenis; }, get velocity() { return velocity; } };
 mountNav();
 mountFooter();
 initSmooth();

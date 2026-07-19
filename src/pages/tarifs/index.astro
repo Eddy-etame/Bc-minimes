@@ -11,13 +11,13 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-black-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-latin.woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/css/fonts.css?v=b5" />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=b7" />
 
   <!-- LCP : le hero est construit en JS → invisible au preload scanner (§5.8) -->
   <link rel="preload" as="image" href="/assets/img/bc/cross-1.webp" fetchpriority="high" />
 
-  <link rel="stylesheet" href="/assets/css/base.css?v=b5" />
-  <link rel="stylesheet" href="/assets/css/home.css?v=b5" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=b7" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=b7" />
 
   <meta name="keywords" content="tarif salle de boxe Toulouse, prix boxe Minimes, séance d'essai boxe 10€, abonnement boxe Toulouse, offre duo boxe, saison boxe 259€, tarif boxe enfant Toulouse" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -223,7 +223,7 @@
           "@id": "https://minimes.boxingcenter.fr/tarifs/#primaryimage"
         },
         "datePublished": "2026-07-17",
-        "dateModified": "2026-07-17",
+        "dateModified": "2026-07-19",
         "breadcrumb": {
           "@id": "https://minimes.boxingcenter.fr/tarifs/#breadcrumb"
         }
@@ -400,6 +400,27 @@
       </div>
     </section>
 
+    <!-- ==================== LES QUESTIONS D'ARGENT ================
+         La page listait quatre prix et passait directement aux avis :
+         toutes les objections d'argent restaient sur la table (« 29€ à
+         deux ou chacun ? », « 259€ d'un coup ? », « il faut acheter des
+         gants ? »). Rendu depuis MONEY_FAQ (data.js) dans l'accordéon
+         partagé — aucune question tapée dans ce fichier.
+         ⚠ AUCUN FAQPage ici : la seule FAQPage du site est celle de
+         /contact/ (§4). Deux FAQPage = deux URL qui se cannibalisent. -->
+    <section class="section section--tight" aria-label="Les questions d'argent">
+      <div class="wrap">
+        <!-- pas de .sec-head ici : cette classe vit dans club.css, que
+             /tarifs/ ne charge pas. Même rythme, posé en clair. -->
+        <div data-reveal style="margin-bottom:clamp(1.4rem,3vw,2rem)">
+          <span class="eyebrow">Avant de sortir la carte</span>
+          <h2 class="display display--sm" style="margin-top:1rem">Les questions <span class="tint">qui piquent</span></h2>
+        </div>
+        <p class="muted" data-reveal style="max-width:60ch;margin-bottom:clamp(1.2rem,3vw,1.8rem)">On préfère te les écrire ici que te les faire découvrir au comptoir. Si la réponse n'y est pas, appelle : quelqu'un décroche.</p>
+        <div class="faq" id="money-faq"></div>
+      </div>
+    </section>
+
     <!-- ========================= FINAL GONG ====================== -->
     <section class="gong" aria-label="Réserver une séance">
       <div class="gong__bg" aria-hidden="true"><div class="media" data-img="/assets/img/bc/anglaise-4.webp" data-label=""></div></div>
@@ -428,7 +449,7 @@
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=b5"></script>
-  <script is:inline type="module" src="/assets/js/tarifs.js?v=b5"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=b7"></script>
+  <script is:inline type="module" src="/assets/js/tarifs.js?v=b7"></script>
 </body>
 </html>

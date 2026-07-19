@@ -17,15 +17,15 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-black-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-latin.woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/css/fonts.css?v=b5" />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=b7" />
 
   <!-- LCP : l'image du hero est construite en JS, donc invisible au preload
        scanner (parse → module → import data.js → new Image()). Le preload
        rattrape la découverte perdue (§5.8 « preload de l'image LCP »). -->
   <link rel="preload" as="image" href="/assets/img/bc/anglaise-3.webp" fetchpriority="high" />
 
-  <link rel="stylesheet" href="/assets/css/base.css?v=b5" />
-  <link rel="stylesheet" href="/assets/css/home.css?v=b5" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=b7" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=b7" />
 
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="geo.region" content="FR-31" />
@@ -224,7 +224,7 @@
           "@id": "https://minimes.boxingcenter.fr/plannings/#primaryimage"
         },
         "datePublished": "2026-07-17",
-        "dateModified": "2026-07-17",
+        "dateModified": "2026-07-19",
         "breadcrumb": {
           "@id": "https://minimes.boxingcenter.fr/plannings/#breadcrumb"
         }
@@ -237,6 +237,184 @@
         "width": 1200,
         "height": 630,
         "caption": "Le planning des cours de la salle Boxing Center Minimes, Toulouse."
+      },
+      {
+        "@type": "ItemList",
+        "@id": "https://minimes.boxingcenter.fr/plannings/#semaine",
+        "name": "Les cours de la semaine — Boxing Center Minimes",
+        "url": "https://minimes.boxingcenter.fr/plannings/",
+        "description": "Transcription du poster officiel de la saison. Horaires réels, coach par créneau.",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+              "@type": "Schedule",
+              "name": "Boxe anglaise (loisirs) — midi",
+              "byDay": ["Tuesday", "Wednesday", "Thursday"],
+              "startTime": "12:40",
+              "endTime": "13:20",
+              "repeatFrequency": "P1W",
+              "scheduleTimezone": "Europe/Paris"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+              "@type": "Schedule",
+              "name": "Boxe anglaise (loisirs) — soir",
+              "byDay": ["Monday", "Tuesday", "Thursday", "Friday"],
+              "startTime": "19:40",
+              "endTime": "21:00",
+              "repeatFrequency": "P1W",
+              "scheduleTimezone": "Europe/Paris"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "item": {
+              "@type": "Schedule",
+              "name": "Boxe compétiteurs",
+              "byDay": ["Monday", "Tuesday", "Thursday", "Friday"],
+              "startTime": "18:00",
+              "endTime": "19:30",
+              "repeatFrequency": "P1W",
+              "scheduleTimezone": "Europe/Paris"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "item": {
+              "@type": "Schedule",
+              "name": "Boxing Lady (100 % féminin)",
+              "byDay": ["Monday", "Wednesday"],
+              "startTime": "18:30",
+              "endTime": "19:30",
+              "repeatFrequency": "P1W",
+              "scheduleTimezone": "Europe/Paris"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "item": {
+              "@type": "Schedule",
+              "name": "Boxing camp — midi",
+              "byDay": ["Monday", "Friday"],
+              "startTime": "12:40",
+              "endTime": "13:20",
+              "repeatFrequency": "P1W",
+              "scheduleTimezone": "Europe/Paris"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "item": {
+              "@type": "Schedule",
+              "name": "Boxing camp — soir",
+              "byDay": ["Tuesday", "Thursday"],
+              "startTime": "18:30",
+              "endTime": "19:30",
+              "repeatFrequency": "P1W",
+              "scheduleTimezone": "Europe/Paris"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 7,
+            "item": {
+              "@type": "Schedule",
+              "name": "Boxing camp — samedi matin",
+              "byDay": "Saturday",
+              "startTime": "11:00",
+              "endTime": "12:00",
+              "repeatFrequency": "P1W",
+              "scheduleTimezone": "Europe/Paris"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 8,
+            "item": {
+              "@type": "Schedule",
+              "name": "Baby Boxe (3/6 ans)",
+              "byDay": "Saturday",
+              "startTime": "14:15",
+              "endTime": "15:00",
+              "repeatFrequency": "P1W",
+              "scheduleTimezone": "Europe/Paris"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 9,
+            "item": {
+              "@type": "Schedule",
+              "name": "Boxe éducative enfants (7/11 ans)",
+              "byDay": ["Wednesday", "Saturday"],
+              "startTime": "15:00",
+              "endTime": "16:00",
+              "repeatFrequency": "P1W",
+              "scheduleTimezone": "Europe/Paris"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 10,
+            "item": {
+              "@type": "Schedule",
+              "name": "Boxe éducative ados (12/16 ans)",
+              "byDay": ["Wednesday", "Saturday"],
+              "startTime": "16:00",
+              "endTime": "17:00",
+              "repeatFrequency": "P1W",
+              "scheduleTimezone": "Europe/Paris"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 11,
+            "item": {
+              "@type": "Schedule",
+              "name": "Boxe éducative compétiteurs",
+              "byDay": ["Wednesday", "Saturday"],
+              "startTime": "17:00",
+              "endTime": "18:30",
+              "repeatFrequency": "P1W",
+              "scheduleTimezone": "Europe/Paris"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 12,
+            "item": {
+              "@type": "Schedule",
+              "name": "Boxe pieds-poings",
+              "byDay": "Wednesday",
+              "startTime": "19:40",
+              "endTime": "21:00",
+              "repeatFrequency": "P1W",
+              "scheduleTimezone": "Europe/Paris"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 13,
+            "item": {
+              "@type": "Schedule",
+              "name": "Open sparring",
+              "byDay": "Saturday",
+              "startTime": "18:30",
+              "endTime": "19:30",
+              "repeatFrequency": "P1W",
+              "scheduleTimezone": "Europe/Paris"
+            }
+          }
+        ]
       },
       {
         "@type": "BreadcrumbList",
@@ -264,13 +442,22 @@
        le poster en couleur, puis la grille filtrable. Le poster reste
        l'artefact ; la grille est ce qui rend la page utilisable. -->
   <style is:inline>
-    /* --- en-tête : le rail de la semaine (structure propre à cette page) --- */
+    /* --- en-tête : le rail de la semaine (structure propre à cette page) ---
+       Devenu CLIQUABLE : c'était déjà la forme de la semaine, il lui
+       manquait d'être le raccourci qu'on croit qu'il est. ≥44px de haut. */
     .pl-week { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: clamp(1.4rem,3vw,2rem); }
-    .pl-week__d { display: inline-flex; flex-direction: column; gap: .45rem; min-width: 3.4rem; padding: .6rem .7rem; border: 1px solid var(--line); background: rgba(10,9,8,.5); }
+    .pl-week__d { display: inline-flex; flex-direction: column; gap: .45rem; min-width: 3.4rem; min-height: 44px; padding: .6rem .7rem; border: 1px solid var(--line); background: rgba(10,9,8,.5); text-align: left; transition: border-color .3s, background .3s; }
+    .pl-week__d:hover, .pl-week__d:active { border-color: var(--red); background: rgba(225,6,0,.1); }
     .pl-week__n { font: 700 .62rem/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--bone); }
     .pl-week__bar { display: flex; gap: 2px; }
     .pl-week__bar i { width: 4px; height: 10px; background: var(--red); }
     .pl-week__c { font: 700 .58rem/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--bone-dim); }
+
+    /* --- le repère « en ce moment » — calculé à l'exécution, jamais écrit
+       dans le markup (une heure en dur, c'est une page fausse à 21h). --- */
+    .pl-now { display: inline-flex; align-items: center; gap: .8ch; margin-top: 1.2rem; padding: .7em 1em; border: 1px solid var(--line); border-left: 3px solid var(--red); background: rgba(10,9,8,.6); font: 500 var(--step--1)/1.4 var(--f-mono); letter-spacing: .04em; color: var(--read); }
+    .pl-now b { color: var(--bone); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+    .pl-now:empty { display: none; }
 
     .pl-meta { display: flex; flex-wrap: wrap; gap: .7rem 2rem; margin-top: 1rem; font: 700 var(--step--1)/1.5 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--bone-dim); }
     /* days/hours are real info → legible bone, not 4:1 red */
@@ -293,7 +480,12 @@
     /* actif = blanc sur rouge (4.97:1) — jamais --ink sur --red (4.01:1) */
     .pl-chip.is-on, .pl-chip:active { color: var(--on-accent); background: var(--red); border-color: var(--red); }
 
-    .pl-count { font: 700 var(--step--1)/1.4 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--bone); border-left: 2px solid var(--red); padding-left: .8rem; margin-bottom: clamp(1.2rem,3vw,1.6rem); }
+    .pl-countrow { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem 1.2rem; margin-bottom: clamp(1.2rem,3vw,1.6rem); }
+    .pl-count { font: 700 var(--step--1)/1.4 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--bone); border-left: 2px solid var(--red); padding-left: .8rem; }
+    /* n'apparaît que quand un filtre est posé (JS gère `hidden`) */
+    .pl-reset { display: inline-flex; align-items: center; gap: .7ch; min-height: 44px; padding: .4em .9em; border: 1px solid var(--line); font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--bone-dim); transition: color .3s, border-color .3s; }
+    .pl-reset:hover, .pl-reset:active { color: var(--bone); border-color: var(--bone-dim); }
+    .pl-reset[hidden] { display: none; }
 
     /* --- la grille : 6 colonnes-jour au bureau, empilée au téléphone --- */
     .pl-grid { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); grid-template-columns: 1fr; }
@@ -312,6 +504,23 @@
     .pl-slot__n { font-size: .84rem; line-height: 1.3; color: var(--read); }
     .pl-slot__m { font: 500 .68rem/1.3 var(--f-mono); letter-spacing: .04em; text-transform: uppercase; color: var(--bone-dim); }
     .pl-slot__m b { color: var(--bone); font-weight: 700; }
+
+    /* ACCÈS LIBRE — la moitié du poster. Visuellement en RETRAIT (pas de
+       coach, pas d'aplat) sans être illisible : le texte reste à --read
+       (~14:1), seul le fond et le filet changent. Un créneau libre n'est
+       pas un créneau mort, c'est juste un créneau sans encadrement. */
+    .pl-slot--free { background: transparent; border-left: 2px dashed var(--line); }
+    .pl-slot--free .pl-slot__n { color: var(--bone-dim); }
+    .pl-slot--free:hover, .pl-slot--free:active { background: var(--ink-2); border-left-color: var(--bone-dim); }
+
+    /* « en ce moment » / « juste après » — repères vivants, calculés au
+       chargement. L'aplat rouge porte le blanc (4.97:1), jamais l'inverse. */
+    .pl-slot.is-now { background: var(--red); border-left-color: var(--red); }
+    .pl-slot.is-now .pl-slot__h, .pl-slot.is-now .pl-slot__n,
+    .pl-slot.is-now .pl-slot__m, .pl-slot.is-now .pl-slot__m b,
+    .pl-slot.is-now .pl-slot__h i { color: var(--on-accent); }
+    .pl-slot.is-next { border-left-color: var(--red); background: var(--char); }
+    .pl-slot.is-next .pl-slot__h::after { content: " · à suivre"; color: var(--bone-dim); font-weight: 500; }
     .pl-day__empty { display: none; font: 500 .7rem/1.4 var(--f-mono); text-transform: uppercase; letter-spacing: .08em; color: var(--bone-dim); }
     .pl-day.is-empty .pl-day__empty { display: block; }
   </style>
@@ -357,7 +566,12 @@
              Fermé). Un visiteur se présentait le dimanche devant une porte
              fermée. -->
         <p class="lead page-head__lead" data-reveal style="max-width:52ch">Du gant posé à 10h au dernier round de 21h30, six jours sur sept : l'accès libre en journée, l'école le mercredi et le samedi, la boxe sérieuse tous les soirs. Trouve ton créneau — il t'attend.</p>
-        <div class="pl-week" id="pl-week" data-reveal aria-hidden="true"></div>
+        <div class="pl-week" id="pl-week" data-reveal role="group" aria-label="Raccourci : filtrer la grille par jour"></div>
+        <!-- repère vivant, rempli par le JS depuis l'horloge du visiteur.
+             Vide dans le HTML : une heure écrite en dur ici serait fausse
+             une minute plus tard (§0.3). `.pl-now:empty` le masque tant
+             que le JS n'a pas parlé — pas de boîte vide au chargement. -->
+        <p class="pl-now" id="pl-now" role="status" aria-live="polite" data-reveal></p>
         <div class="pl-meta" data-reveal>
           <span><b>6j/7</b> · lun–sam</span>
           <span><b>10h–21h30</b></span>
@@ -378,8 +592,16 @@
           <h2 class="display display--sm" style="margin-top:1rem">Trouve <span class="tint">ton créneau</span></h2>
         </div>
         <div class="pl-filters" id="pl-filters" data-reveal></div>
-        <p class="pl-count" id="pl-count" role="status" aria-live="polite" data-reveal></p>
+        <div class="pl-countrow" data-reveal>
+          <p class="pl-count" id="pl-count" role="status" aria-live="polite"></p>
+          <button class="pl-reset" id="pl-reset" type="button" hidden>Tout revoir <span aria-hidden="true">✕</span></button>
+        </div>
         <div class="pl-grid" id="pl-grid" data-reveal></div>
+        <!-- L'accès libre occupe la moitié du poster officiel. Il est dans
+             la grille au même titre que les cours (bandes en pointillé) :
+             c'est ce qui fait venir la moitié des adhérents, le cacher
+             faisait mentir la page par omission. -->
+        <p class="muted" data-reveal style="margin-top:clamp(1.4rem,3vw,2rem);font:500 var(--step--1)/1.6 var(--f-mono);letter-spacing:.04em;max-width:64ch;border-left:2px solid var(--red);padding-left:1rem">Les bandes en pointillé, c'est l'accès libre : la salle est ouverte, les rings et les sacs sont à toi, personne ne t'encadre et personne ne te demande de réserver. Le reste, c'est du cours avec un coach dedans.</p>
       </div>
     </section>
 
@@ -443,7 +665,7 @@
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=b5"></script>
-  <script is:inline type="module" src="/assets/js/plannings.js?v=b5"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=b7"></script>
+  <script is:inline type="module" src="/assets/js/plannings.js?v=b7"></script>
 </body>
 </html>

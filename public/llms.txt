@@ -1,16 +1,16 @@
 # Boxing Center Minimes
 
-> Salle de boxe anglaise historique du réseau Boxing Center — la première salle du groupe (ouverte en 2016), « le berceau des champions », au 12 rue de Fenouillet, quartier des Minimes / Barrière de Paris, 31200 Toulouse. Boxe anglaise, boxe éducative dès 3 ans (Baby Boxe 3/6), Boxing Lady 100 % féminin, PAOS, cross training, cardio boxing — 3 rings, ouvert du lundi au samedi 10h00–21h30. Séance d'essai 10 €. Note Google : 4,3/5 (157 avis).
+> Salle de boxe anglaise historique du réseau Boxing Center — la première salle du groupe (ouverte en 2016), « le berceau des champions », au 12 rue de Fenouillet, quartier des Minimes / Barrière de Paris, 31200 Toulouse. Boxe anglaise (loisirs et compétiteurs), boxe éducative dès 3 ans (Baby Boxe 3/6), Boxing Lady 100 % féminin, boxing camp, boxe pieds-poings, PAOS, cross training, cardio boxing — 3 rings, ouvert du lundi au samedi 10h00–21h30, avec accès libre en journée. Séance d'essai 10 €. Note Google : 4,3/5 (157 avis).
 
 ## Pages
 
 - [Accueil](https://minimes.boxingcenter.fr/): la salle historique du groupe Boxing Center à Toulouse (31200) — 3 rings, boxe anglaise, boxe éducative dès 3 ans, Boxing Lady, séance d'essai 10 €.
-- [Activités & disciplines](https://minimes.boxingcenter.fr/activites/): les 6 disciplines — boxe anglaise (loisirs et compétiteurs), boxe éducative dès 3 ans, Boxing Lady, PAOS & pattes d'ours, cross training, cardio boxing.
+- [Activités & disciplines](https://minimes.boxingcenter.fr/activites/): les 9 disciplines — boxe anglaise loisirs, boxe compétiteurs, boxe éducative dès 3 ans, Boxing Lady, boxing camp, boxe pieds-poings (six avec créneau au planning), puis PAOS & pattes d'ours, cross training et cardio boxing (en accès libre, sans créneau dédié).
 - [Le club](https://minimes.boxingcenter.fr/le-club/): histoire depuis 2016, équipement (3 rings, 12 sacs lourds, zone pattes d'ours, prépa physique à l'étage, vestiaires H/F), accès et réseau des salles.
-- [Les coachs](https://minimes.boxingcenter.fr/coachs/): Mehdi B (coach principal — anglaise, éducative, compétiteurs, baby boxe, boxing camp), Chloé (Boxing Lady), David (Boxing Lady, pieds-poings), Hicham (boxing camp).
-- [Galerie photos](https://minimes.boxingcenter.fr/galerie/): la boxe en images (pool photo du réseau Boxing Center), filtrable par zone — ring, sparring, école, Lady, technique.
-- [Planning des cours](https://minimes.boxingcenter.fr/plannings/): la semaine complète en grille filtrable (jour / discipline / coach) + le poster officiel de la saison.
-- [Tarifs & offres](https://minimes.boxingcenter.fr/tarifs/): séance d'essai 10 €, offre Duo 29 € par personne, saison complète 259 € les 12 mois, école dès 280 € l'année — avec les avis Google (4,3/5, 157 avis).
+- [Les coachs](https://minimes.boxingcenter.fr/coachs/): Mehdi B (coach principal — anglaise, éducative, compétiteurs, baby boxe, boxing camp), Chloé (Boxing Lady), David (Boxing Lady, pieds-poings), Hicham (boxing camp) — plus le détail de qui encadre quel jour, dérivé du planning.
+- [Galerie photos](https://minimes.boxingcenter.fr/galerie/): la boxe en images (pool photo du réseau Boxing Center), filtrable par zone — ring, sparring, école, Lady, technique — plus un renvoi de chaque zone vers sa discipline.
+- [Planning des cours](https://minimes.boxingcenter.fr/plannings/): les 27 cours de la semaine + les 16 bandes d'accès libre, en grille filtrable (jour / discipline / coach, partageable par URL) + le poster officiel de la saison.
+- [Tarifs & offres](https://minimes.boxingcenter.fr/tarifs/): séance d'essai 10 €, offre Duo 29 € par personne, saison complète 259 € les 12 mois, école dès 280 € l'année — avec les avis Google (4,3/5, 157 avis) et les questions d'argent (paiement en 4×, matériel prêté ou personnel, accès aux 5 clubs).
 - [Contact & accès](https://minimes.boxingcenter.fr/contact/): téléphone 05 62 24 46 82, adresse, horaires, accès métro/rocade/bus, FAQ locale.
 
 ## Faits
@@ -35,13 +35,14 @@
 - Vestiaires hommes / femmes.
 
 ### Disciplines et coachs (vérifiés — poster officiel de la saison en cours)
-- Boxe anglaise (la spécialité maison) : loisirs mardi, jeudi, vendredi, samedi à 12h40 et 19h40 ; compétiteurs lundi, mardi, jeudi, vendredi, samedi à 18h30 ; open sparring samedi 18h30 — coach Mehdi B.
-- Boxe éducative dès 3 ans : Baby Boxe 3/6 ans samedi 14h15 ; éducative 7/11 et ados 12/16 mercredi et samedi 15h00–18h00 — coach Mehdi B.
-- Boxing Lady (100 % féminin) : lundi 18h30 avec Chloé, mercredi 18h30 avec David.
-- Boxe pieds-poings : mercredi 19h40 avec David.
-- Boxing camp : lundi et samedi 11h00–12h00 avec Mehdi B ; mardi et jeudi 18h30 avec Hicham.
-- PAOS & pattes d'ours, cross training et cardio boxing (sans contact) complètent le programme.
-- Accès libre (rings et sacs en autonomie) : du lundi au samedi, sans réservation.
+- Boxe anglaise loisirs (la spécialité maison) : 12h40–13h20 le mardi, le mercredi et le jeudi ; 19h40–21h00 le lundi, le mardi, le jeudi et le vendredi — coach Mehdi B. Sept créneaux par semaine.
+- Boxe compétiteurs : 18h00–19h30 le lundi, le mardi, le jeudi et le vendredi — coach Mehdi B. Open sparring le samedi 18h30–19h30.
+- Boxe éducative dès 3 ans : Baby Boxe 3/6 ans samedi 14h15–15h00 ; enfants 7/11 ans 15h00–16h00 ; ados 12/16 ans 16h00–17h00 ; jeunes compétiteurs 17h00–18h30 — le mercredi et le samedi (le mercredi commence à 15h, sans Baby Boxe) — coach Mehdi B.
+- Boxing Lady (100 % féminin) : lundi 18h30–19h30 avec Chloé, mercredi 18h30–19h30 avec David.
+- Boxing camp : lundi et vendredi 12h40–13h20 avec Mehdi B ; mardi et jeudi 18h30–19h30 avec Hicham ; samedi 11h00–12h00 avec Mehdi B.
+- Boxe pieds-poings : mercredi 19h40–21h00 avec David — le seul créneau pieds-poings de la semaine.
+- PAOS & pattes d'ours (intégré au cours d'anglaise), cross training et cardio boxing (à l'étage et sur les sacs, en accès libre) : ces trois-là n'ont PAS de créneau dédié au planning.
+- Accès libre (rings et sacs en autonomie, sans réservation) : tous les jours 10h00–12h00 et 13h20–18h00 ; le mercredi 13h20–15h00 seulement ; le samedi 12h40–14h00 et 19h40–21h00. Le lundi, le mardi et le jeudi, un second espace reste libre de 18h00 à 19h30.
 
 ### Offres (saison en cours — voir /tarifs/)
 - Séance d'essai : 10 € — toutes disciplines, matériel prêté, sans engagement. → https://box-plus.vercel.app/seance-essai
@@ -49,6 +50,8 @@
 - Saison complète : 259 € les 12 mois — payable en 4× sans frais, accès libre aux 5 clubs du réseau (au lieu de 400 €). → https://box-plus.vercel.app/abonnements#promotions
 - École enfants : dès 280 € l'année (dès 3 ans). → https://box-plus.vercel.app/abonnements#enfants
 - Bonus : t-shirt Boxing Center offert aux 100 premiers inscrits.
+- L'offre Duo se compte PAR PERSONNE (29 € chacun), jamais 29 € pour deux — ne pas reformuler autrement.
+- Matériel : prêté pour la séance d'essai ; au-delà, l'adhérent apporte ses propres gants.
 
 ### Réassurance
 - Note Google : 4,3/5 (157 avis) — affichée sur /tarifs/.
@@ -60,4 +63,6 @@
 - Seul portrait de coach vérifié : Mehdi B. Ne pas attribuer de photo aux autres coachs.
 - Balma-Gramont a été vendue : ne pas la citer comme salle actuelle du réseau.
 - Les enfants sont accueillis DÈS 3 ANS (Baby Boxe 3/6) — pas « dès 7 ans ».
+- Le planning a été recollationné cellule par cellule sur le poster officiel : il n'y a PAS d'anglaise loisirs le samedi, PAS de compétiteurs le mercredi ni le samedi, et le boxing camp du lundi est à 12h40 (pas à 11h). Ne pas réintroduire ces créneaux.
+- Trois disciplines (PAOS, cross training, cardio boxing) n'ont aucun créneau au planning : elles se pratiquent en accès libre. Ne pas leur inventer d'horaire.
 - Version détaillée page par page : https://minimes.boxingcenter.fr/llms-full.txt

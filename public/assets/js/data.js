@@ -170,90 +170,154 @@ export const STATS = [
 /* ⚠ Les 4 premiers champs (key/name/tag/desc/img) nourrissent le reel de
    l'accueil. Les champs `for` + `points` sont ADDITIFS : seule la page
    /activites/ les lit (un écran par discipline), l'accueil les ignore.
-   Contenu calé sur le vrai programme du poster Minimes (roster.json) —
-   les jours/heures cités sont ceux du poster, jamais inventés. */
+
+   `plan` = clé PLANNING correspondante, ou null. C'est le champ qui rend
+   le catalogue HONNÊTE : cinq disciplines ont un créneau prouvé par le
+   poster, trois n'en ont pas (elles se travaillent en accès libre ou
+   dans le cours d'anglaise). La page affiche la différence au lieu de
+   laisser croire que tout est au planning — et le badge « N créneaux »
+   est DÉRIVÉ de PLANNING, donc il ne peut pas se désynchroniser.
+
+   `noPhoto: true` = aucune photo du pool ne montre ce geste. Même loi
+   que le roster des coachs : on assume l'absence avec une tuile dessinée
+   plutôt que d'illustrer des pieds-poings avec une photo de poings. */
 export const DISCIPLINES = [
   {
     key: "anglaise",
+    plan: "anglaise",
     name: "Boxe Anglaise",
     tag: "La spécialité maison",
     desc: "Le noble art, à la source. Jab, esquive, jeu de jambes — la discipline qui a fait le nom des Minimes.",
     img: "/assets/img/bc/anglaise-1.webp",
     for: "Du grand débutant au compétiteur licencié.",
     points: [
-      "Anglaise loisirs à 12h40 et 19h40 — mardi, jeudi, vendredi, samedi",
-      "Compétiteurs encadrés cinq soirs par semaine, 18h30",
-      "Open sparring le samedi pour ceux qui veulent se frotter",
+      "Le midi de 12h40 à 13h20 : mardi, mercredi, jeudi",
+      "Le soir de 19h40 à 21h : lundi, mardi, jeudi, vendredi",
+      "Sept créneaux loisirs par semaine, tous tenus par Mehdi B",
       "Gants et protections prêtés le temps de l'essai",
     ],
   },
   {
+    key: "competiteurs",
+    plan: "competiteurs",
+    name: "Boxe Compétiteurs",
+    tag: "Le ring, pour de vrai",
+    desc: "18h à 19h30, quatre soirs par semaine. Ceux qui se frottent au sparring du samedi ont fait leurs heures ici. Licence exigée, excuses interdites.",
+    img: "/assets/img/bc/anglaise-2.webp",
+    for: "Les licenciés, et ceux que le coach juge prêts à le devenir.",
+    points: [
+      "De 18h à 19h30 : lundi, mardi, jeudi, vendredi",
+      "Open sparring le samedi 18h30 — le test de la semaine",
+      "Lundi, mardi et jeudi, le second espace tourne en parallèle",
+      "On ne s'inscrit pas : c'est Mehdi B qui te fait passer",
+    ],
+  },
+  {
     key: "educative",
+    plan: "educative",
     name: "Boxe Éducative",
     tag: "Dès 3 ans",
-    desc: "De la Baby Boxe 3/6 aux ados 12/16 : on apprend à se tenir droit avant d'apprendre à frapper. Ils arrivent en courant partout, ils repartent en marchant droit.",
+    desc: "De la Baby Boxe 3/6 aux jeunes compétiteurs : on apprend à se tenir droit avant d'apprendre à frapper. Ils arrivent en courant partout, ils repartent en marchant droit.",
     img: "/assets/img/bc/educative-1.webp",
     for: "Les enfants et les ados, du jeu au ring.",
     points: [
-      "Baby Boxe dès 3 ans (3/6 ans), le samedi",
-      "Éducative 7/11 et ados 12/16, mercredi et samedi",
-      "Passage compétiteurs pour les plus mordus",
-      "Encadrement par Mehdi B, le coach de l'école",
+      "Baby Boxe 3/6 ans, le samedi à 14h15",
+      "Enfants 7/11 ans à 15h, ados 12/16 ans à 16h",
+      "Jeunes compétiteurs à 17h — pour ceux qui veulent le ring",
+      "Mercredi et samedi, la même montée d'âge, le même coach",
     ],
   },
   {
     key: "lady",
+    plan: "lady",
     name: "Boxing Lady",
     tag: "100 % féminin",
     desc: "Deux soirs, une bande, et le sac qui prend tout. Tu repars plus solide qu'en arrivant.",
     img: "/assets/img/bc/lady-2.webp",
     for: "Les femmes, débutantes comme habituées.",
     points: [
-      "Deux créneaux Boxing Lady par semaine, 100 % féminins",
       "Lundi 18h30 avec Chloé, mercredi 18h30 avec David",
+      "Une heure pleine, 18h30 à 19h30",
       "Sac, technique, cardio — la boxe sans le cliché",
       "Tu viens comme tu es, on te prête le reste",
     ],
   },
   {
+    key: "camp",
+    plan: "camp",
+    name: "Boxing Camp",
+    tag: "Le circuit",
+    desc: "Le cours qui te construit la caisse d'un boxeur sans te demander de savoir boxer. Ça enchaîne, ça ne discute pas, et à la fin tu es cuit.",
+    img: "/assets/img/bc/levels-1.webp",
+    for: "Les adultes, tous niveaux — aucune technique exigée.",
+    points: [
+      "Lundi et vendredi à 12h40, sur la pause déjeuner",
+      "Mardi et jeudi à 18h30 avec Hicham",
+      "Samedi 11h à 12h avec Mehdi B",
+      "Le seul cours où tu peux venir sans rien savoir faire",
+    ],
+  },
+  {
+    key: "pieds-poings",
+    plan: "pieds-poings",
+    name: "Boxe Pieds-Poings",
+    tag: "L'autre garde",
+    noPhoto: true,
+    desc: "Une fois par semaine, la garde change et les jambes entrent dans l'histoire. Même exigence de geste que l'anglaise, deux armes de plus.",
+    img: null,
+    for: "Tous niveaux — y compris ceux qui n'ont jamais lancé un coup de pied.",
+    points: [
+      "Mercredi 19h40 à 21h, avec David",
+      "Le seul créneau pieds-poings de la semaine",
+      "La garde et le placement d'abord, la puissance après",
+      "Aucune photo de ce cours ici — on ne t'en montrera pas une fausse",
+    ],
+  },
+  {
     key: "paos",
+    plan: null,
+    freeNote: "Dans le cours d'anglaise",
     name: "PAOS & Pattes d'ours",
     tag: "Travail technique",
     desc: "Face au coach, sur les pattes : précision, vitesse, lecture. Le vrai boulot de boxeur, celui qu'on ne triche pas.",
     img: "/assets/img/bc/training-2.webp",
     for: "Ceux qui veulent le geste juste, pas juste la sueur.",
     points: [
+      "Pas de créneau à part : ça vit dans le cours d'anglaise",
       "En tête-à-tête avec le coach, sur les pattes",
       "Le timing : partir avant que la patte arrive",
-      "Intégré au travail d'anglaise",
       "Le geste que le juge voit, celui que le sac ne t'apprendra jamais",
     ],
   },
   {
     key: "cross",
+    plan: null,
+    freeNote: "En accès libre, à l'étage",
     name: "Cross Training",
     tag: "La caisse",
-    desc: "Gainage, cardio, explosivité. La caisse qui te fait tenir le dernier round. À l'étage, en circuit.",
+    desc: "Gainage, cardio, explosivité. La caisse qui te fait tenir le dernier round. À l'étage, quand tu veux.",
     img: "/assets/img/bc/cross-1.webp",
     for: "Ceux qui veulent la caisse d'un boxeur.",
     points: [
-      "Circuit court, récup courte, sur la zone prépa",
-      "À l'étage, sur la zone prépa physique",
-      "Le complément qui muscle ta boxe",
+      "Pas de créneau : la zone prépa est à toi en accès libre",
+      "10h–12h et 13h20–18h, du lundi au samedi",
+      "À l'étage, au-dessus des rings",
       "Zéro contact, intensité réelle",
     ],
   },
   {
     key: "cardio",
+    plan: null,
+    freeNote: "En accès libre, sur les sacs",
     name: "Cardio Boxing",
     tag: "Sans contact",
     desc: "Tout le geste, toute la sueur, aucun coup encaissé. La porte d'entrée quand on n'a jamais boxé.",
     img: "/assets/img/bc/training-1.webp",
     for: "Les débutants et ceux qui veulent transpirer sans encaisser.",
     points: [
+      "Pas de créneau : douze sacs lourds, en accès libre",
       "Tout le geste de boxe, aucun coup reçu",
-      "La porte de sortie du canapé",
-      "Cardio franc, sur sac et à vide",
+      "Si tu veux le cours encadré, c'est le Boxing camp",
       "Le coach t'arrête avant que tu te fasses mal",
     ],
   },
@@ -280,51 +344,83 @@ export const PLANNING_DISCIPLINES = [
   { key: "pieds-poings", label: "Pieds-poings" },
 ];
 
+/* `h`/`end` = début/fin EXACTES du poster (chaque cours en a une : la
+   colonne HORAIRE les donne toutes). `space` = la sous-colonne « 1 » ou
+   « 2 » du poster — lundi, mardi et jeudi font tourner DEUX espaces en
+   parallèle le soir. C'est une info du poster qu'on perdait entièrement. */
 export const PLANNING = [
   /* ---- Lundi ---- */
-  { d: "Lundi", h: "11h00", end: "12h00", disc: "camp", name: "Boxing camp", coach: "Mehdi B", age: "Adultes" },
-  { d: "Lundi", h: "18h30", disc: "lady", name: "Boxing Lady", coach: "Chloé", age: "100 % féminin" },
-  { d: "Lundi", h: "18h30", disc: "competiteurs", name: "Boxe compétiteurs", coach: "Mehdi B", age: "Licenciés" },
+  { d: "Lundi", h: "12h40", end: "13h20", disc: "camp", name: "Boxing camp", coach: "Mehdi B", age: "Adultes" },
+  { d: "Lundi", h: "18h00", end: "19h30", disc: "competiteurs", name: "Boxe compétiteurs", coach: "Mehdi B", age: "Licenciés", space: 1 },
+  { d: "Lundi", h: "18h30", end: "19h30", disc: "lady", name: "Boxing Lady", coach: "Chloé", age: "100 % féminin", space: 2 },
+  { d: "Lundi", h: "19h40", end: "21h00", disc: "anglaise", name: "Boxe anglaise (loisirs)", coach: "Mehdi B", age: "Tous niveaux" },
 
   /* ---- Mardi ---- */
-  { d: "Mardi", h: "12h40", disc: "anglaise", name: "Anglaise loisirs", coach: "Mehdi B", age: "Tous niveaux" },
-  { d: "Mardi", h: "18h30", disc: "camp", name: "Boxing camp", coach: "Hicham", age: "Adultes" },
-  { d: "Mardi", h: "18h30", disc: "competiteurs", name: "Boxe compétiteurs", coach: "Mehdi B", age: "Licenciés" },
-  { d: "Mardi", h: "19h40", disc: "anglaise", name: "Anglaise loisirs", coach: "Mehdi B", age: "Tous niveaux" },
+  { d: "Mardi", h: "12h40", end: "13h20", disc: "anglaise", name: "Boxe anglaise (loisirs)", coach: "Mehdi B", age: "Tous niveaux" },
+  { d: "Mardi", h: "18h00", end: "19h30", disc: "competiteurs", name: "Boxe compétiteurs", coach: "Mehdi B", age: "Licenciés", space: 1 },
+  { d: "Mardi", h: "18h30", end: "19h30", disc: "camp", name: "Boxing camp", coach: "Hicham", age: "Adultes", space: 2 },
+  { d: "Mardi", h: "19h40", end: "21h00", disc: "anglaise", name: "Boxe anglaise (loisirs)", coach: "Mehdi B", age: "Tous niveaux" },
 
   /* ---- Mercredi ---- */
-  { d: "Mercredi", h: "15h00", end: "18h00", disc: "educative", name: "Boxe éducative — enfants, ados, compétiteurs", coach: "Mehdi B", age: "7/11 · 12/16" },
-  { d: "Mercredi", h: "18h30", disc: "lady", name: "Boxing Lady", coach: "David", age: "100 % féminin" },
-  { d: "Mercredi", h: "19h40", disc: "pieds-poings", name: "Boxe pieds-poings", coach: "David", age: "Tous niveaux" },
+  { d: "Mercredi", h: "12h40", end: "13h20", disc: "anglaise", name: "Boxe anglaise (loisirs)", coach: "Mehdi B", age: "Tous niveaux" },
+  { d: "Mercredi", h: "15h00", end: "16h00", disc: "educative", name: "Boxe éducative enfants", coach: "Mehdi B", age: "7/11 ans" },
+  { d: "Mercredi", h: "16h00", end: "17h00", disc: "educative", name: "Boxe éducative ados", coach: "Mehdi B", age: "12/16 ans" },
+  { d: "Mercredi", h: "17h00", end: "18h30", disc: "educative", name: "Boxe éducative compétiteurs", coach: "Mehdi B", age: "Jeunes licenciés" },
+  { d: "Mercredi", h: "18h30", end: "19h30", disc: "lady", name: "Boxing Lady", coach: "David", age: "100 % féminin" },
+  { d: "Mercredi", h: "19h40", end: "21h00", disc: "pieds-poings", name: "Boxe pieds-poings", coach: "David", age: "Tous niveaux" },
 
   /* ---- Jeudi ---- */
-  { d: "Jeudi", h: "12h40", disc: "anglaise", name: "Anglaise loisirs", coach: "Mehdi B", age: "Tous niveaux" },
-  { d: "Jeudi", h: "18h30", disc: "camp", name: "Boxing camp", coach: "Hicham", age: "Adultes" },
-  { d: "Jeudi", h: "18h30", disc: "competiteurs", name: "Boxe compétiteurs", coach: "Mehdi B", age: "Licenciés" },
-  { d: "Jeudi", h: "19h40", disc: "anglaise", name: "Anglaise loisirs", coach: "Mehdi B", age: "Tous niveaux" },
+  { d: "Jeudi", h: "12h40", end: "13h20", disc: "anglaise", name: "Boxe anglaise (loisirs)", coach: "Mehdi B", age: "Tous niveaux" },
+  { d: "Jeudi", h: "18h00", end: "19h30", disc: "competiteurs", name: "Boxe compétiteurs", coach: "Mehdi B", age: "Licenciés", space: 1 },
+  { d: "Jeudi", h: "18h30", end: "19h30", disc: "camp", name: "Boxing camp", coach: "Hicham", age: "Adultes", space: 2 },
+  { d: "Jeudi", h: "19h40", end: "21h00", disc: "anglaise", name: "Boxe anglaise (loisirs)", coach: "Mehdi B", age: "Tous niveaux" },
 
   /* ---- Vendredi ---- */
-  { d: "Vendredi", h: "12h40", disc: "anglaise", name: "Anglaise loisirs", coach: "Mehdi B", age: "Tous niveaux" },
-  { d: "Vendredi", h: "18h30", disc: "competiteurs", name: "Boxe compétiteurs", coach: "Mehdi B", age: "Licenciés" },
-  { d: "Vendredi", h: "19h40", disc: "anglaise", name: "Anglaise loisirs", coach: "Mehdi B", age: "Tous niveaux" },
+  { d: "Vendredi", h: "12h40", end: "13h20", disc: "camp", name: "Boxing camp", coach: "Mehdi B", age: "Adultes" },
+  { d: "Vendredi", h: "18h00", end: "19h30", disc: "competiteurs", name: "Boxe compétiteurs", coach: "Mehdi B", age: "Licenciés" },
+  { d: "Vendredi", h: "19h40", end: "21h00", disc: "anglaise", name: "Boxe anglaise (loisirs)", coach: "Mehdi B", age: "Tous niveaux" },
 
   /* ---- Samedi ---- */
   { d: "Samedi", h: "11h00", end: "12h00", disc: "camp", name: "Boxing camp", coach: "Mehdi B", age: "Adultes" },
-  { d: "Samedi", h: "12h40", disc: "anglaise", name: "Anglaise loisirs", coach: "Mehdi B", age: "Tous niveaux" },
-  { d: "Samedi", h: "14h15", disc: "educative", name: "Baby Boxe", coach: "Mehdi B", age: "3/6 ans" },
-  { d: "Samedi", h: "15h00", end: "18h00", disc: "educative", name: "Boxe éducative — enfants, ados, compétiteurs", coach: "Mehdi B", age: "7/11 · 12/16" },
-  { d: "Samedi", h: "18h30", disc: "competiteurs", name: "Boxe compétiteurs", coach: "Mehdi B", age: "Licenciés" },
-  { d: "Samedi", h: "18h30", disc: "sparring", name: "Open sparring", coach: "Mehdi B", age: "Licenciés" },
-  { d: "Samedi", h: "19h40", disc: "anglaise", name: "Anglaise loisirs", coach: "Mehdi B", age: "Tous niveaux" },
+  { d: "Samedi", h: "14h15", end: "15h00", disc: "educative", name: "Baby Boxe", coach: "Mehdi B", age: "3/6 ans" },
+  { d: "Samedi", h: "15h00", end: "16h00", disc: "educative", name: "Boxe éducative enfants", coach: "Mehdi B", age: "7/11 ans" },
+  { d: "Samedi", h: "16h00", end: "17h00", disc: "educative", name: "Boxe éducative ados", coach: "Mehdi B", age: "12/16 ans" },
+  { d: "Samedi", h: "17h00", end: "18h30", disc: "educative", name: "Boxe éducative compétiteurs", coach: "Mehdi B", age: "Jeunes licenciés" },
+  { d: "Samedi", h: "18h30", end: "19h30", disc: "sparring", name: "Open sparring", coach: "Mehdi B", age: "Licenciés" },
+];
+
+/* L'ACCÈS LIBRE — les blocs gris du poster, qui en occupent la moitié et
+   que la grille ignorait complètement. Chaque bande correspond à un
+   libellé de la colonne HORAIRE : les treize libellés du poster sont tous
+   utilisés une fois et une seule (cours ou accès libre), ce qui est le
+   contrôle de cohérence de cette transcription. Pas de coach, pas de
+   réservation : la salle est ouverte, tu bosses seul. */
+export const PLANNING_FREE = [
+  { d: "Lundi", h: "10h00", end: "12h00" },
+  { d: "Lundi", h: "13h20", end: "18h00" },
+  { d: "Lundi", h: "18h00", end: "19h30", space: 2 },
+  { d: "Mardi", h: "10h00", end: "12h00" },
+  { d: "Mardi", h: "13h20", end: "18h00" },
+  { d: "Mardi", h: "18h00", end: "19h30", space: 2 },
+  { d: "Mercredi", h: "10h00", end: "12h00" },
+  { d: "Mercredi", h: "13h20", end: "15h00" },
+  { d: "Jeudi", h: "10h00", end: "12h00" },
+  { d: "Jeudi", h: "13h20", end: "18h00" },
+  { d: "Jeudi", h: "18h00", end: "19h30", space: 2 },
+  { d: "Vendredi", h: "10h00", end: "12h00" },
+  { d: "Vendredi", h: "13h20", end: "18h00" },
+  { d: "Samedi", h: "10h00", end: "12h00" },
+  { d: "Samedi", h: "12h40", end: "14h00" },
+  { d: "Samedi", h: "19h40", end: "21h00" },
 ];
 
 /* Les repères de /plannings/ — dérivés du PLANNING ci-dessus, jamais tapés
    dans le markup (§0.10 : aucun nom de coach en dur dans un HTML). */
 export const PLANNING_KEYS = [
-  { n: "01", t: "L'accès libre", d: "Du lundi au samedi, 10h–12h et l'après-midi : rings et sacs en autonomie. Tu bosses à ton rythme, la salle est à toi." },
-  { n: "02", t: "L'école, dès 3 ans", d: "Baby Boxe 3/6 ans le samedi 14h15, éducative 7/11 et ados 12/16 le mercredi et le samedi de 15h à 18h." },
-  { n: "03", t: "Boxing Lady", d: "Lundi 18h30 avec Chloé, mercredi 18h30 avec David. Deux soirs où la salle est à elles." },
-  { n: "04", t: "La boxe sérieuse", d: "Compétiteurs cinq soirs par semaine à 18h30, open sparring le samedi 18h30, anglaise loisirs à 19h40 du mardi au samedi." },
+  { n: "01", t: "L'accès libre", d: "Tous les jours de 10h à 12h, et tout l'après-midi de 13h20 à 18h : rings et sacs en autonomie, sans réservation. Le mercredi ça s'arrête à 15h, l'école prend la salle." },
+  { n: "02", t: "L'école, dès 3 ans", d: "Baby Boxe 3/6 ans le samedi à 14h15. Puis les 7/11 à 15h, les 12/16 à 16h, les jeunes compétiteurs à 17h — le mercredi et le samedi, la même montée d'âge." },
+  { n: "03", t: "Boxing Lady", d: "Lundi 18h30 avec Chloé, mercredi 18h30 avec David. Une heure, deux soirs, et le second espace de la salle rien que pour elles le lundi." },
+  { n: "04", t: "La boxe sérieuse", d: "Compétiteurs de 18h à 19h30 le lundi, le mardi, le jeudi et le vendredi. Open sparring le samedi 18h30. Et l'anglaise loisirs à 19h40, les quatre mêmes soirs." },
 ];
 
 /* Le Mur des Champions — interaction signature.
@@ -436,6 +532,44 @@ export const FAQ = [
   { q: "Quels sont les horaires ?", a: "Du lundi au samedi, de 10h00 à 21h30. Fermé le dimanche." },
 ];
 
+/* Les questions d'ARGENT — /tarifs/ seulement. La page listait quatre prix
+   et s'arrêtait là : le visiteur repartait avec les objections intactes
+   (« 29€ à deux ou chacun ? », « 259€ d'un coup ? », « je dois acheter des
+   gants ? »). Chaque réponse ci-dessous est DÉRIVÉE de PROMOS/LINKS —
+   aucun chiffre nouveau, aucune promesse que la boutique ne tient pas.
+   ⚠ Rendues en accordéon SANS FAQPage : la seule FAQPage du site est
+   celle de /contact/ (§4). Deux FAQPage = deux URL en concurrence. */
+export const MONEY_FAQ = [
+  {
+    q: "Je paye combien pour la première fois ?",
+    a: "Dix euros. Une séance d'essai, la discipline que tu veux, gants et protections prêtés. Pas de dossier, pas de certificat à courir chercher avant d'avoir essayé, rien derrière. Tu viens, tu boxes, tu décides après.",
+  },
+  {
+    q: "Le Duo à 29€, c'est pour deux ou chacun ?",
+    a: "Chacun. 29€ par personne au lieu de 44€, pour quatre semaines de cours illimités à deux. On ne le vend pas moins cher pour faire joli : le binôme, c'est ce qui te fait pousser la porte la troisième semaine, quand la motivation du début est retombée.",
+  },
+  {
+    q: "259€ d'un coup, c'est raide.",
+    a: "C'est pour ça que c'est payable en 4× sans frais. 259€ les douze mois au lieu de 400€, ça fait moins de 65€ par échéance et à peu près 22€ par mois de salle. Un abonnement de sport classique te coûte ça sans ring dedans.",
+  },
+  {
+    q: "L'abonnement marche dans les autres salles ?",
+    a: "Oui. La saison ouvre l'accès libre aux cinq clubs du réseau. Tu t'entraînes aux Minimes le soir et ailleurs le samedi si ça t'arrange — c'est la même carte.",
+  },
+  {
+    q: "Et pour inscrire un enfant ?",
+    a: "À partir de 280€ l'année, dès 3 ans. Baby Boxe pour les 3/6, éducative pour les 7/11, ados 12/16, puis les jeunes compétiteurs. Un créneau par âge, le mercredi et le samedi.",
+  },
+  {
+    q: "Il faut acheter du matériel avant de venir ?",
+    a: "Pas pour l'essai : les gants et les protections sont prêtés. Le jour où tu t'installes, tu prends tes gants à toi — c'est une question d'hygiène avant d'être une question de style. La boutique du réseau est là pour ça, et le coach te dira quoi prendre plutôt que de te vendre le plus cher.",
+  },
+  {
+    q: "Le t-shirt offert, c'est un piège ?",
+    a: "Non, c'est un t-shirt. Offert aux cent premiers inscrits de la saison. Quand il n'y en a plus, il n'y en a plus — on ne rallonge pas la liste pour te faire signer.",
+  },
+];
+
 /* Les questions du LIEU — /le-club/ seulement. Volontairement DIFFÉRENTES
    de la FAQ canonique (/contact/) : ici on répond sur la salle, pas sur
    l'offre. Rendues en prose, sans FAQPage (une seule FAQPage par site). */
@@ -458,6 +592,11 @@ export const CLUB_QUESTIONS = [
 export const COACHES = {
   pillar: {
     name: "Mehdi B.",
+    /* clé de jointure avec PLANNING.coach — le poster écrit « MEHDI B »
+       sans point, la page écrit « Mehdi B. » avec. Sans ce champ, le
+       compte de créneaux et le lien filtré tombent silencieusement à
+       zéro : exactement le genre de bug qui ne casse rien et ment. */
+    planName: "Mehdi B",
     role: "Coach principal",
     tag: "Le patron de la maison",
     img: "/assets/img/bc/cutouts/coach-mehdi.webp",
@@ -467,9 +606,9 @@ export const COACHES = {
     note: "Présent presque tous les créneaux de la semaine, du lundi au samedi.",
   },
   roster: [
-    { initials: "C", name: "Chloé", role: "Boxing Lady", note: "Le Boxing Lady du lundi soir. Elle mène la bande et elle ne lâche rien." },
-    { initials: "D", name: "David", role: "Boxing Lady · Pieds-poings", note: "Boxing Lady et boxe pieds-poings. Le geste propre, la garde haute." },
-    { initials: "H", name: "Hicham", role: "Boxing camp", note: "Le boxing camp du mardi et du jeudi. Le cardio qui te construit une caisse." },
+    { initials: "C", name: "Chloé", planName: "Chloé", role: "Boxing Lady", note: "Le Boxing Lady du lundi soir, de 18h30 à 19h30. Elle mène la bande et elle ne lâche rien." },
+    { initials: "D", name: "David", planName: "David", role: "Boxing Lady · Pieds-poings", note: "Le Lady du mercredi 18h30, puis les pieds-poings à 19h40 dans la foulée. Le geste propre, la garde haute." },
+    { initials: "H", name: "Hicham", planName: "Hicham", role: "Boxing camp", note: "Le boxing camp du mardi et du jeudi, 18h30. Le cardio qui te construit une caisse." },
   ],
   /* honnêteté §0.10 : on assume publiquement l'absence de portrait */
   pending: "Chloé, David et Hicham rejoindront le mur dès qu'on aura leur vrai portrait. Pas de photo d'illustration : ici, un visage = la bonne personne.",
@@ -490,6 +629,29 @@ export const GALLERY = {
     { key: "lady", label: "Lady" },
     { key: "educative", label: "L'école" },
     { key: "technique", label: "Technique" },
+  ],
+  /* Ce que le cadre coupe — la page galerie ne peut pas prétendre montrer
+     la salle des Minimes (le shooting n'a pas eu lieu). Elle assume donc
+     l'inverse : trois choses qu'AUCUNE photo ne rend, écrites dans la
+     bouche du coach. C'est vrai d'une salle de boxe, ça ne prétend rien
+     sur celle-ci, et ça donne à la page une raison d'exister au-delà de
+     la mosaïque. */
+  offFrame: [
+    {
+      n: "01",
+      t: "Le bruit",
+      d: "Douze sacs, trois rings, et le minuteur qui claque toutes les trois minutes. Une photo est muette — ici, tu entends la salle avant de la voir.",
+    },
+    {
+      n: "02",
+      t: "L'odeur",
+      d: "Le cuir, la résine, l'humidité des gants qui sèchent. Ça ne se photographie pas et ça ne se nettoie pas non plus. C'est l'odeur d'une salle qui sert.",
+    },
+    {
+      n: "03",
+      t: "La voix du coach",
+      d: "« Remonte ta droite. » Dix fois. Cent fois. C'est le seul son qui compte et c'est celui qu'aucune image ne t'apportera. Viens le prendre.",
+    },
   ],
   shots: [
     { img: "/assets/img/bc/salle-1.webp", label: "Entre les cordes", zone: "salle", big: true },

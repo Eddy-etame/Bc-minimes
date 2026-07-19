@@ -3,7 +3,7 @@
    Rendu depuis data.js : coordonnées (SALLE) + carte + FAQ locale (FAQ).
    La FAQ visible est le miroir exact du FAQPage LD-JSON de la page.
    ===================================================================== */
-import { SALLE, FAQ } from "./data.js?v=b5";
+import { SALLE, FAQ } from "./data.js?v=b7";
 
 const $ = (s, r = document) => r.querySelector(s);
 
@@ -22,35 +22,14 @@ function renderContact() {
   if (map) map.src = SALLE.mapsUrl;
 }
 
-/* La FAQ CANONIQUE — /contact/ uniquement, miroir exact du FAQPage LD-JSON.
-   ⚠ chaque `role="region"` a besoin d'un NOM (aria-labelledby) : six régions
-   anonymes n'aident personne. Et le panneau replié doit vraiment être replié :
-   `max-height:0` seul le laissait dans l'arbre d'accessibilité pendant
-   qu'aria-expanded="false" prétendait le contraire (club.css ajoute le
-   `visibility:hidden` qui le retire pour de bon). */
-function renderFaq() {
-  const box = $("#faq");
-  if (!box) return;
-  box.innerHTML = FAQ.map(
-    (f, i) => `<div class="faq__item">
-      <button class="faq__q" id="faq-q-${i}" aria-expanded="false" aria-controls="faq-a-${i}"><span>${f.q}</span><span class="faq__sign" aria-hidden="true"></span></button>
-      <div class="faq__a" id="faq-a-${i}" role="region" aria-labelledby="faq-q-${i}"><p>${f.a}</p></div>
-    </div>`
-  ).join("");
-  box.querySelectorAll(".faq__item").forEach((item) => {
-    const q = item.querySelector(".faq__q");
-    const a = item.querySelector(".faq__a");
-    q.addEventListener("click", () => {
-      const open = item.classList.toggle("is-open");
-      q.setAttribute("aria-expanded", String(open));
-      a.style.maxHeight = open ? a.scrollHeight + "px" : "0px";
-    });
-  });
-}
-
 function boot() {
   renderContact();
-  renderFaq();
+  /* La FAQ CANONIQUE — /contact/ uniquement, miroir exact du FAQPage
+     LD-JSON de cette page. Le rendu et le comportement de l'accordéon
+     vivent dans site.js (window.BC.faq) depuis que /tarifs/ pose lui
+     aussi des questions : un seul composant, une seule correction
+     d'accessibilité à faire le jour où il en faut une. */
+  window.BC.faq($("#faq"), FAQ);
 
   window.BC.media(document);
   window.BC.reveal(document);

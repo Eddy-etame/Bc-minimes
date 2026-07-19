@@ -11,14 +11,14 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-black-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-latin.woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/css/fonts.css?v=b5" />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=b7" />
 
   <!-- LCP : le portrait de Mehdi est le sujet de la page, et il est construit
        en JS → invisible au preload scanner (§5.8) -->
   <link rel="preload" as="image" href="/assets/img/bc/cutouts/coach-mehdi.webp" fetchpriority="high" />
 
-  <link rel="stylesheet" href="/assets/css/base.css?v=b5" />
-  <link rel="stylesheet" href="/assets/css/home.css?v=b5" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=b7" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=b7" />
 
   <meta name="keywords" content="coach boxe Minimes Toulouse, entraîneur boxe anglaise Toulouse, Mehdi Boxing Center, coach Boxing Lady, coach boxe éducative enfant, encadrement boxe 31200" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -218,7 +218,7 @@
           "@id": "https://minimes.boxingcenter.fr/coachs/#primaryimage"
         },
         "datePublished": "2026-07-17",
-        "dateModified": "2026-07-17",
+        "dateModified": "2026-07-19",
         "breadcrumb": {
           "@id": "https://minimes.boxingcenter.fr/coachs/#breadcrumb"
         }
@@ -338,6 +338,10 @@
     .pillar__disc li { font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .05em; text-transform: uppercase; color: var(--bone-dim); border: 1px solid var(--line); padding: .5em .8em; }
     .pillar__bio { font-size: var(--step-1); line-height: 1.4; color: var(--bone); font-weight: 500; max-width: 48ch; }
     .pillar__note { margin-top: 1rem; color: var(--muted); font: 500 var(--step--1)/1.5 var(--f-mono); letter-spacing: .04em; }
+    /* la charge de travail, DÉRIVÉE du planning (coachs.js) — un chiffre
+       qui se recompte tout seul vaut mieux qu'un adjectif */
+    .pillar__week { margin-top: .9rem; display: inline-flex; align-items: center; gap: .7ch; padding: .5em .9em; border-left: 3px solid var(--red); background: var(--ink-2); font: 500 var(--step--1)/1 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--read); }
+    .pillar__week b { color: var(--bone); font-weight: 700; }
     .pillar__cta { margin-top: auto; padding-top: 1.6rem; display: flex; flex-wrap: wrap; gap: 1rem; }
 
     /* ---- LE RESTE DU STAFF (tuiles nom, pas de photo empruntée) ---- */
@@ -352,8 +356,30 @@
     .coach__role::before { content: ""; width: 14px; height: 2px; background: var(--red); flex: 0 0 14px; }
     .coach__name { font-family: var(--f-display); text-transform: uppercase; font-size: clamp(1.8rem,3.6vw,2.6rem); line-height: 1; margin: .45rem 0 .7rem; color: var(--bone); }
     .coach__note { position: relative; z-index: 1; color: var(--muted); font-size: var(--step--1); line-height: 1.5; max-width: 32ch; }
+    /* la tuile sans portrait n'était qu'un texte : elle ne menait nulle
+       part. Elle mène maintenant aux créneaux de la personne — filtrés. */
+    .coach__link { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: .7ch; min-height: 44px; margin-top: .6rem; font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--bone); border-bottom: 2px solid var(--red); align-self: flex-start; transition: color .3s, gap .3s; }
+    .coach__link:hover, .coach__link:active { color: var(--white); gap: 1.4ch; }
     .coach__pending { position: relative; z-index: 1; margin-top: auto; align-self: flex-start; font: 700 .62rem/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--bone-dim); border: 1px dashed var(--line); padding: .55em .8em; }
     .co-pending { margin-top: clamp(1.6rem,4vw,2.4rem); color: var(--muted); font: 500 var(--step--1)/1.6 var(--f-mono); letter-spacing: .04em; max-width: 64ch; border-left: 2px solid var(--red); padding-left: 1rem; }
+
+    /* ---- QUI EST LÀ, QUEL JOUR (dérivé de PLANNING) ----
+       Six colonnes-jour au bureau, empilées au téléphone. Volontairement
+       PAS le même objet que la grille de /plannings/ : là-bas on cherche
+       un créneau, ici on cherche quelqu'un. Chaque ligne est un lien de
+       44px de haut vers la grille pré-filtrée (coach + jour). */
+    .cweek { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); grid-template-columns: 1fr; }
+    @media (min-width: 640px){ .cweek { grid-template-columns: repeat(2,1fr); } }
+    @media (min-width: 1080px){ .cweek { grid-template-columns: repeat(6,1fr); } }
+    .cwd { background: var(--ink); padding: clamp(1rem,2vw,1.3rem); display: flex; flex-direction: column; gap: .8rem; }
+    .cwd__h { display: flex; align-items: baseline; justify-content: space-between; gap: .6ch; font-family: var(--f-display); text-transform: uppercase; font-size: clamp(1.05rem,2vw,1.3rem); line-height: 1; color: var(--bone); border-bottom: 2px solid var(--red); padding-bottom: .55rem; }
+    .cwd__h i { font: 700 .62rem/1 var(--f-mono); font-style: normal; color: var(--bone-dim); }
+    .cwd__list { display: grid; gap: .4rem; }
+    /* le nom est le lien : toute la ligne clique, pas seulement le mot */
+    .cwd__a { display: flex; align-items: center; justify-content: space-between; gap: .8ch; min-height: 44px; padding: .5rem .6rem; background: var(--ink-2); border-left: 2px solid var(--line); transition: border-color .3s, background .3s; }
+    .cwd__a:hover, .cwd__a:focus-visible, .cwd__a:active { border-left-color: var(--red); background: var(--char); }
+    .cwd__n { font: 700 var(--step--1)/1.2 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--bone); }
+    .cwd__c { font: 500 .66rem/1 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--bone-dim); white-space: nowrap; }
   </style>
 
   <script is:inline>
@@ -416,6 +442,30 @@
       </div>
     </section>
 
+    <!-- ================== QUI EST LÀ, QUEL JOUR ===================
+         La page présentait quatre personnes et laissait la question
+         suivante sans réponse : « d'accord, mais il est là QUAND ? ».
+         On répondait « va voir le planning » — et le planning s'ouvrait
+         sur la semaine entière.
+
+         Cette grille est DÉRIVÉE de PLANNING (data.js) : les jours, les
+         noms et les comptes sont calculés, jamais tapés ici (§0.10).
+         Elle ne peut donc pas se désynchroniser du poster, et chaque
+         nom ouvre la grille déjà filtrée sur ce coach ET ce jour-là. -->
+    <section class="section section--tight" aria-label="Les coachs jour par jour">
+      <div class="wrap">
+        <div class="reel__head" style="margin-bottom:clamp(1.8rem,4vw,2.6rem)">
+          <div data-reveal>
+            <span class="eyebrow">La semaine</span>
+            <h2 class="display display--sm" style="margin-top:1rem">Qui est là, <span class="tint">quel jour</span></h2>
+          </div>
+          <p class="muted" data-reveal style="max-width:34ch">Tu cherches quelqu'un en particulier ? Clique sur son nom : la grille s'ouvre déjà filtrée sur lui, ce jour-là.</p>
+        </div>
+        <div class="cweek" id="cweek" data-reveal-group></div>
+        <p class="muted" data-reveal style="margin-top:clamp(1.4rem,3vw,2rem);font:500 var(--step--1)/1.6 var(--f-mono);letter-spacing:.04em;max-width:64ch;border-left:2px solid var(--red);padding-left:1rem">Le dimanche n'est pas dans cette liste : la salle est fermée. Le reste du temps, en dehors des cours, les rings et les sacs sont en accès libre — personne ne t'encadre, mais il y a toujours quelqu'un dans la salle.</p>
+      </div>
+    </section>
+
     <!-- ========================= FINAL GONG ====================== -->
     <section class="gong" aria-label="Réserver une séance">
       <div class="gong__bg" aria-hidden="true"><div class="media" data-img="/assets/img/bc/anglaise-4.webp" data-label=""></div></div>
@@ -444,7 +494,7 @@
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=b5"></script>
-  <script is:inline type="module" src="/assets/js/coachs.js?v=b5"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=b7"></script>
+  <script is:inline type="module" src="/assets/js/coachs.js?v=b7"></script>
 </body>
 </html>
