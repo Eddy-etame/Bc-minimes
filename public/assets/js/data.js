@@ -686,3 +686,66 @@ export const GALLERY = {
     { img: "/assets/img/bc/levels-1.webp", label: "Tous les niveaux", zone: "salle" },
   ],
 };
+
+/* =====================================================================
+   LE CONTENU ÉDITABLE — fusion du backoffice par-dessus les constantes.
+
+   Trois couches, dans cet ordre :
+     1. tout ce qui est écrit ci-dessus (la source, versionnée) ;
+     2. window.__BC_CONTENT__ — src/content.json, injecté dans le <head>
+        au build. C'est ce que « Publier » met en ligne ;
+     3. le brouillon local du vestiaire, UNIQUEMENT sur /?apercu=1 —
+        pour relire ses modifications avant de publier. Rien n'est en
+        ligne tant qu'on n'a pas publié.
+
+   On MUTE les objets exportés au lieu de les réassigner : les modules
+   qui les ont déjà importés voient le changement (un `export const`
+   réassigné, lui, ne se propage pas).
+   ===================================================================== */
+function bcDeepAssign(target, src) {
+  if (!src || typeof src !== "object" || !target) return target;
+  for (const k of Object.keys(src)) {
+    const v = src[k];
+    if (Array.isArray(v)) {
+      if (Array.isArray(target[k])) target[k].splice(0, target[k].length, ...v);
+      else target[k] = v.slice();
+    } else if (v && typeof v === "object") {
+      if (target[k] && typeof target[k] === "object") bcDeepAssign(target[k], v);
+      else target[k] = JSON.parse(JSON.stringify(v));
+    } else if (v !== undefined) {
+      target[k] = v;
+    }
+  }
+  return target;
+}
+
+function bcOverrides() {
+  if (typeof window === "undefined") return null;
+  let base = null;
+  try { base = window.__BC_CONTENT__ || null; } catch { /* rien */ }
+  try {
+    if (new URLSearchParams(location.search).has("apercu")) {
+      const draft = JSON.parse(localStorage.getItem("bcm:draft") || "null");
+      if (draft && typeof draft === "object") base = draft;
+    }
+  } catch { /* localStorage indisponible : on garde le contenu publié */ }
+  return base;
+}
+
+(function applyContent() {
+  const c = bcOverrides();
+  if (!c) return;
+  if (c.salle) {
+    bcDeepAssign(SALLE, c.salle);
+    /* champs DÉRIVÉS : recalculés après fusion, sinon l'adresse affichée
+       change et le lien Maps continue de pointer sur l'ancienne. */
+    const a = SALLE.address;
+    a.full = `${a.street}, ${a.zip} ${a.city}`;
+    SALLE.mapsUrl = `https://www.google.com/maps?q=${encodeURIComponent(a.full)}&output=embed`;
+    SALLE.mapsLink = `https://maps.google.com/?q=${encodeURIComponent(a.full)}`;
+  }
+  if (c.promos) bcDeepAssign(PROMOS, c.promos);
+  if (c.coaches) bcDeepAssign(COACHES, c.coaches);
+  if (Array.isArray(c.planning) && c.planning.length) PLANNING.splice(0, PLANNING.length, ...c.planning);
+  if (Array.isArray(c.faq) && c.faq.length) FAQ.splice(0, FAQ.length, ...c.faq);
+})();

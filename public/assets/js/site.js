@@ -3,7 +3,11 @@
    window.BC = { reveal, magnetic, refresh, media, split, scramble,
                  initKinetics, faq, lenis, velocity }
    ===================================================================== */
-import { NAV, LINKS, SALLE, MEDIA, CTA } from "./data.js?v=b8";
+import { NAV, LINKS, SALLE, MEDIA, CTA, NETWORK } from "./data.js?v=b8";
+/* L'assistant : il promeut la pastille `.chatbot` (qui reste un lien tel:
+   dans le HTML) en vraie conversation. Chargé ici → présent sur les 8
+   pages sans toucher un seul <script> de page. */
+import "./chatbot.js?v=b8";
 
 const gsap = window.gsap;
 const ScrollTrigger = window.ScrollTrigger;
@@ -20,6 +24,15 @@ function currentPath() {
   if (!p.endsWith("/")) p += "/";
   return p;
 }
+/* Icône de lien sortant — un seul tracé, partout où on quitte le domaine.
+   Le visiteur doit voir qu'il change de site AVANT de cliquer. */
+const EXT = `<svg class="ext" width="10" height="10" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5 11L11 5M11 5H6M11 5V10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+/* Maillage de marque VOULU : les liens vers le réseau propriétaire ne
+   sont PAS en nofollow (ce serait saborder notre propre maillage).
+   target=_blank impose rel="noopener" — sécurité, pas SEO. */
+const extLink = (href, label, cls = "") =>
+  `<a${cls ? ` class="${cls}"` : ""} href="${href}" target="_blank" rel="noopener">${label} ${EXT}</a>`;
+
 function mountNav() {
   const path = currentPath();
   const links = NAV.map(
@@ -33,6 +46,7 @@ function mountNav() {
       </a>
       <div class="nav__links">${links}</div>
       <div class="nav__right">
+        ${extLink(LINKS.groupe, "Le groupe", "nav__ext")}
         <a class="btn btn--primary nav__cta" data-magnetic href="${LINKS.essai}"><span>${CTA.chrome}</span></a>
         <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
@@ -55,8 +69,9 @@ function mountNav() {
       <div class="menu__foot">
         <a class="btn btn--primary" data-magnetic href="${LINKS.essai}"><span>${CTA.primary}</span></a>
         <div style="display:flex;gap:1.4rem;flex-wrap:wrap">
-          <a href="${LINKS.boutique}" target="_blank" rel="noopener">Boutique ↗</a>
-          <a href="${LINKS.instagram}" target="_blank" rel="noopener">Instagram ↗</a>
+          ${extLink(LINKS.groupe, "Le groupe")}
+          ${extLink(LINKS.boutique, "Boutique")}
+          ${extLink(LINKS.instagram, "Instagram")}
           <a href="tel:${SALLE.phoneHref}">${SALLE.phone}</a>
         </div>
       </div>
@@ -99,9 +114,20 @@ function mountNav() {
 function mountFooter() {
   const cols = [
     { h: "Le club", links: NAV.slice(1, 5) },
-    { h: "Pratique", links: [{ href: "/plannings/", label: "Planning" }, { href: "/tarifs/", label: "Tarifs" }, { href: "/contact/", label: "Contact" }, { href: LINKS.boutique, label: "Boutique ↗" }] },
-    { h: "Le réseau", links: [{ href: LINKS.groupe, label: "Boxing Center ↗" }, { href: "https://www.boxing-center-portet.fr/", label: "Portet ↗" }, { href: LINKS.instagram, label: "Instagram ↗" }, { href: LINKS.facebook, label: "Facebook ↗" }] },
+    { h: "Pratique", links: [{ href: "/plannings/", label: "Planning" }, { href: "/tarifs/", label: "Tarifs" }, { href: "/contact/", label: "Contact" }, { href: LINKS.boutique, label: "Boutique", ext: true }] },
+    { h: "Le réseau", links: [{ href: LINKS.groupe, label: "Boxing Center", ext: true }, { href: LINKS.boutique, label: "La boutique", ext: true }, { href: LINKS.instagram, label: "Instagram", ext: true }, { href: LINKS.facebook, label: "Facebook", ext: true }] },
   ];
+  /* Les salles sœurs — le bloc réseau existait en données et n'était
+     rendu nulle part. `go` dit la VÉRITÉ sur la destination : tant qu'une
+     salle n'a pas son domaine en ligne, on n'écrit pas « Découvrir » sur
+     un lien qui atterrit sur la home du groupe. */
+  const salles = NETWORK.map((s) => `
+    <a class="netcard" href="${s.url}" target="_blank" rel="noopener">
+      <span class="netcard__tag">${s.tag}</span>
+      <span class="netcard__name">${s.name}</span>
+      <span class="netcard__feat">${s.feat}</span>
+      <span class="netcard__go">${s.go} ${EXT}</span>
+    </a>`).join("");
   document.getElementById("footer").innerHTML = `
     <footer class="footer">
       <div class="wrap">
@@ -114,7 +140,11 @@ function mountFooter() {
             <p>${SALLE.hours}</p>
             <a class="btn btn--primary" data-magnetic href="${LINKS.essai}" style="margin-top:1rem"><span>${CTA.primary}</span></a>
           </div>
-          ${cols.map((c) => `<div class="footer__col"><h4>${c.h}</h4>${c.links.map((l) => `<a href="${l.href}">${l.label}</a>`).join("")}</div>`).join("")}
+          ${cols.map((c) => `<div class="footer__col"><h4>${c.h}</h4>${c.links.map((l) => l.ext ? extLink(l.href, l.label) : `<a href="${l.href}">${l.label}</a>`).join("")}</div>`).join("")}
+        </div>
+        <div class="netband">
+          <h4 class="netband__h">Les autres salles du réseau</h4>
+          <div class="netband__grid">${salles}</div>
         </div>
         <div class="footer__bottom">
           <span>© ${new Date().getFullYear()} Boxing Center — Maquette Minimes</span>

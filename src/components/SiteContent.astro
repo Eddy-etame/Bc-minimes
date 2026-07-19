@@ -1,0 +1,39 @@
+---
+/* Le contenu éditable, injecté au build.
+
+   On n'inline PAS tout src/content.json : data.js embarque déjà les
+   mêmes valeurs par défaut, et les réexpédier dans le HTML de chaque
+   page coûtait ~2,4 ko gzip par page pour zéro information nouvelle.
+   On n'émet donc que l'ÉCART entre le contenu publié et les défauts de
+   data.js. Tant que le staff n'a rien modifié, ce bloc vaut {} — coût
+   nul. Dès qu'il change les horaires, seuls les horaires voyagent.
+
+   La fusion côté client (fin de data.js) est déjà un deep-merge : elle
+   accepte un écart partiel exactement comme un contenu complet.
+
+   data.js est importé ici pour ses valeurs par défaut ; son bloc de
+   fusion final est neutre hors navigateur (il teste `window`). */
+import content from "../content.json";
+import { SALLE, PROMOS, COACHES, PLANNING, FAQ } from "../../public/assets/js/data.js";
+
+const BASE = { salle: SALLE, promos: PROMOS, coaches: COACHES, planning: PLANNING, faq: FAQ };
+
+/** Ne garde que ce qui diffère du défaut. Renvoie undefined si identique. */
+function diff(base, ov) {
+  if (Array.isArray(ov)) return JSON.stringify(base) === JSON.stringify(ov) ? undefined : ov;
+  if (ov && typeof ov === "object") {
+    if (!base || typeof base !== "object") return ov;
+    const out = {};
+    for (const k of Object.keys(ov)) {
+      const d = diff(base[k], ov[k]);
+      if (d !== undefined) out[k] = d;
+    }
+    return Object.keys(out).length ? out : undefined;
+  }
+  return base === ov ? undefined : ov;
+}
+
+const delta = diff(BASE, content) || {};
+const json = JSON.stringify(delta);
+---
+<script is:inline set:html={`window.__BC_CONTENT__=${json}`}></script>

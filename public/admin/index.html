@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Le coin rouge — Boxing Center Minimes</title>
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+<link rel="preload" href="/fonts/archivo-black-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="/assets/css/fonts.css" />
+<link rel="stylesheet" href="/admin/admin.css" />
+</head>
+<body>
+
+<!-- ENTRÉE — le coin rouge, entre deux rounds -->
+<div class="login" id="login">
+  <div class="ropes" aria-hidden="true"><i></i><i></i><i></i></div>
+  <form id="loginForm">
+    <img class="lg-logo" src="/assets/img/logo.png" alt="Boxing Center" width="342" height="160" />
+    <span class="lg-kicker">Boxing Center · Minimes · Barrière de Paris</span>
+    <h1>Le coin rouge</h1>
+    <p>C'est d'ici qu'on change le site de la salle. Entre le mot de passe du staff.</p>
+    <div class="field">
+      <label for="token">Mot de passe</label>
+      <input type="password" id="token" autocomplete="current-password" autofocus required />
+    </div>
+    <p class="status bad" id="loginErr" role="alert"></p>
+    <button class="btn lg-btn" type="submit" id="loginBtn">Entrer</button>
+    <span class="lg-foot">Accès staff uniquement · <a href="/">← Retour au site</a></span>
+  </form>
+</div>
+
+<!-- L'ATELIER -->
+<div class="shell hidden" id="app">
+  <aside class="side">
+    <div class="brand">
+      <img src="/assets/img/logo.png" alt="" width="342" height="160" />
+      <div><b>Boxing Center</b><span>Minimes · Le coin rouge</span></div>
+    </div>
+    <div class="ropeline" aria-hidden="true"></div>
+    <nav id="nav" aria-label="Sections du site"></nav>
+    <div class="foot">
+      <a href="/" target="_blank" rel="noopener">↗ Voir le site</a>
+      <button class="navbtn" type="button" id="tourBtn">Revoir le guide</button>
+      <button class="navbtn" type="button" id="logout">Se déconnecter</button>
+    </div>
+  </aside>
+  <div class="main">
+    <div class="topbar">
+      <div class="ptitle"><span class="kicker">Section</span><h2 id="paneTitle">Accueil</h2></div>
+      <div class="right">
+        <span class="status" id="status" role="status"></span>
+        <button class="btn ghost sm" type="button" id="preview" title="Voir le site avec tes modifications, avant de publier">Aperçu</button>
+        <button class="btn ghost sm" type="button" id="reload" title="Revenir à la dernière version publiée">Annuler tout</button>
+        <button class="btn" type="button" id="publish">Publier</button>
+      </div>
+    </div>
+    <div class="content" id="pane"></div>
+  </div>
+</div>
+
+<script src="/admin/tour.js"></script>
+<script src="/admin/app.js"></script>
+</body>
+</html>

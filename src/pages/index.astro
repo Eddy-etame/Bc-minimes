@@ -1,3 +1,6 @@
+---
+import SiteContent from "../components/SiteContent.astro";
+---
 <!doctype html>
 <html lang="fr" data-theme="dark">
 <head>
@@ -64,6 +67,28 @@
         "sameAs": [
           "https://www.instagram.com/boxingcentertoulouse/",
           "https://www.facebook.com/BoxingCenterToulouse/"
+        ],
+        "subOrganization": [
+          {
+            "@id": "https://minimes.boxingcenter.fr/#salle"
+          },
+          {
+            "@type": "SportsActivityLocation",
+            "name": "Boxing Center Portet-sur-Garonne",
+            "url": "https://www.boxing-center-portet.fr/"
+          },
+          {
+            "@type": "SportsActivityLocation",
+            "name": "Boxing Center Toulouse Etats-Unis"
+          },
+          {
+            "@type": "SportsActivityLocation",
+            "name": "Boxing Center Toulouse Saint-Cyprien"
+          },
+          {
+            "@type": "SportsActivityLocation",
+            "name": "Boxing Center Ramonville"
+          }
         ]
       },
       {
@@ -245,6 +270,7 @@
       addEventListener('unhandledrejection', off);
     })();
   </script>
+  <SiteContent />
 </head>
 
 <body data-page="home">

@@ -1,0 +1,128 @@
+{
+  "salle": {
+    "name": "Boxing Center Minimes",
+    "baseline": "Le berceau des champions.",
+    "district": "Barrière de Paris · Les Minimes",
+    "phone": "05 62 24 46 82",
+    "phoneHref": "+33562244682",
+    "email": "boxingcenter31@gmail.com",
+    "hours": "Lun – Sam · 10h00 – 21h30",
+    "address": {
+      "street": "12 rue de Fenouillet",
+      "zip": "31200",
+      "city": "Toulouse"
+    },
+    "hoursData": [
+      { "d": "Lundi – Vendredi", "h": "10h00 – 21h30" },
+      { "d": "Samedi", "h": "10h00 – 21h30" },
+      { "d": "Dimanche", "h": "Fermé" }
+    ],
+    "access": [
+      "Métro ligne B — station Barrière de Paris (3 min à pied)",
+      "Rocade — sortie 31, direction Les Minimes",
+      "Bus 70 / 27 — arrêt Minimes-Roquelaine"
+    ]
+  },
+  "promos": {
+    "bonus": "T-shirt Boxing Center offert aux 100 premiers inscrits.",
+    "cards": [
+      {
+        "key": "essai",
+        "name": "La séance d'essai",
+        "price": "10€",
+        "period": "la séance",
+        "feature": "Toutes disciplines, matériel prêté, sans engagement",
+        "items": ["Toutes les disciplines de la salle", "Gants et protections prêtés", "Sans engagement, sans dossier"],
+        "cta": "Réserver mon essai · 10€",
+        "href": "https://box-plus.vercel.app/seance-essai"
+      },
+      {
+        "key": "duo",
+        "name": "L'offre Duo",
+        "price": "29€",
+        "unit": "par personne",
+        "was": "44€",
+        "period": "· 4 semaines",
+        "feature": "Cours illimités à deux, sans engagement",
+        "items": ["29€ par personne (au lieu de 44€)", "4 semaines de cours illimités", "Toutes les disciplines", "Sans engagement"],
+        "cta": "Je viens avec mon binôme",
+        "href": "https://box-plus.vercel.app/abonnements#promotions",
+        "tag": "La priorité",
+        "highlight": true
+      },
+      {
+        "key": "saison",
+        "name": "La saison complète",
+        "price": "259€",
+        "was": "400€",
+        "period": "les 12 mois",
+        "feature": "Payable en 4× sans frais · accès libre aux 5 clubs",
+        "items": ["259€ les 12 mois (au lieu de 400€)", "Payable en 4× sans frais", "Anglaise, MMA, pieds-poings, Lady, Fitness", "Accès libre aux 5 clubs du réseau"],
+        "cta": "Je prends ma saison",
+        "href": "https://box-plus.vercel.app/abonnements#promotions",
+        "tag": "L'abonnement"
+      },
+      {
+        "key": "ecole",
+        "name": "L'école, dès 3 ans",
+        "price": "dès 280€",
+        "period": "l'année",
+        "feature": "Baby Boxe 3/6 · éducative 7/11 · ados 12/16",
+        "items": ["Baby Boxe dès 3 ans (3/6 ans)", "Boxe éducative 7/11 ans", "Ados 12/16 ans", "Compétiteurs encadrés par Mehdi B"],
+        "cta": "Inscrire mon enfant",
+        "href": "https://box-plus.vercel.app/abonnements#enfants"
+      }
+    ]
+  },
+  "coaches": {
+    "pillar": {
+      "name": "Mehdi B.",
+      "planName": "Mehdi B",
+      "role": "Coach principal",
+      "tag": "Le patron de la maison",
+      "note": "Présent presque tous les créneaux de la semaine, du lundi au samedi."
+    },
+    "roster": [
+      { "initials": "C", "name": "Chloé", "planName": "Chloé", "role": "Boxing Lady", "note": "Le Boxing Lady du lundi soir, de 18h30 à 19h30. Elle mène la bande et elle ne lâche rien." },
+      { "initials": "D", "name": "David", "planName": "David", "role": "Boxing Lady · Pieds-poings", "note": "Le Lady du mercredi 18h30, puis les pieds-poings à 19h40 dans la foulée. Le geste propre, la garde haute." },
+      { "initials": "H", "name": "Hicham", "planName": "Hicham", "role": "Boxing camp", "note": "Le boxing camp du mardi et du jeudi, 18h30. Le cardio qui te construit une caisse." }
+    ]
+  },
+  "planning": [
+    { "d": "Lundi", "h": "12h40", "end": "13h20", "disc": "camp", "name": "Boxing camp", "coach": "Mehdi B", "age": "Adultes" },
+    { "d": "Lundi", "h": "18h00", "end": "19h30", "disc": "competiteurs", "name": "Boxe compétiteurs", "coach": "Mehdi B", "age": "Licenciés", "space": 1 },
+    { "d": "Lundi", "h": "18h30", "end": "19h30", "disc": "lady", "name": "Boxing Lady", "coach": "Chloé", "age": "100 % féminin", "space": 2 },
+    { "d": "Lundi", "h": "19h40", "end": "21h00", "disc": "anglaise", "name": "Boxe anglaise (loisirs)", "coach": "Mehdi B", "age": "Tous niveaux" },
+    { "d": "Mardi", "h": "12h40", "end": "13h20", "disc": "anglaise", "name": "Boxe anglaise (loisirs)", "coach": "Mehdi B", "age": "Tous niveaux" },
+    { "d": "Mardi", "h": "18h00", "end": "19h30", "disc": "competiteurs", "name": "Boxe compétiteurs", "coach": "Mehdi B", "age": "Licenciés", "space": 1 },
+    { "d": "Mardi", "h": "18h30", "end": "19h30", "disc": "camp", "name": "Boxing camp", "coach": "Hicham", "age": "Adultes", "space": 2 },
+    { "d": "Mardi", "h": "19h40", "end": "21h00", "disc": "anglaise", "name": "Boxe anglaise (loisirs)", "coach": "Mehdi B", "age": "Tous niveaux" },
+    { "d": "Mercredi", "h": "12h40", "end": "13h20", "disc": "anglaise", "name": "Boxe anglaise (loisirs)", "coach": "Mehdi B", "age": "Tous niveaux" },
+    { "d": "Mercredi", "h": "15h00", "end": "16h00", "disc": "educative", "name": "Boxe éducative enfants", "coach": "Mehdi B", "age": "7/11 ans" },
+    { "d": "Mercredi", "h": "16h00", "end": "17h00", "disc": "educative", "name": "Boxe éducative ados", "coach": "Mehdi B", "age": "12/16 ans" },
+    { "d": "Mercredi", "h": "17h00", "end": "18h30", "disc": "educative", "name": "Boxe éducative compétiteurs", "coach": "Mehdi B", "age": "Jeunes licenciés" },
+    { "d": "Mercredi", "h": "18h30", "end": "19h30", "disc": "lady", "name": "Boxing Lady", "coach": "David", "age": "100 % féminin" },
+    { "d": "Mercredi", "h": "19h40", "end": "21h00", "disc": "pieds-poings", "name": "Boxe pieds-poings", "coach": "David", "age": "Tous niveaux" },
+    { "d": "Jeudi", "h": "12h40", "end": "13h20", "disc": "anglaise", "name": "Boxe anglaise (loisirs)", "coach": "Mehdi B", "age": "Tous niveaux" },
+    { "d": "Jeudi", "h": "18h00", "end": "19h30", "disc": "competiteurs", "name": "Boxe compétiteurs", "coach": "Mehdi B", "age": "Licenciés", "space": 1 },
+    { "d": "Jeudi", "h": "18h30", "end": "19h30", "disc": "camp", "name": "Boxing camp", "coach": "Hicham", "age": "Adultes", "space": 2 },
+    { "d": "Jeudi", "h": "19h40", "end": "21h00", "disc": "anglaise", "name": "Boxe anglaise (loisirs)", "coach": "Mehdi B", "age": "Tous niveaux" },
+    { "d": "Vendredi", "h": "12h40", "end": "13h20", "disc": "camp", "name": "Boxing camp", "coach": "Mehdi B", "age": "Adultes" },
+    { "d": "Vendredi", "h": "18h00", "end": "19h30", "disc": "competiteurs", "name": "Boxe compétiteurs", "coach": "Mehdi B", "age": "Licenciés" },
+    { "d": "Vendredi", "h": "19h40", "end": "21h00", "disc": "anglaise", "name": "Boxe anglaise (loisirs)", "coach": "Mehdi B", "age": "Tous niveaux" },
+    { "d": "Samedi", "h": "11h00", "end": "12h00", "disc": "camp", "name": "Boxing camp", "coach": "Mehdi B", "age": "Adultes" },
+    { "d": "Samedi", "h": "14h15", "end": "15h00", "disc": "educative", "name": "Baby Boxe", "coach": "Mehdi B", "age": "3/6 ans" },
+    { "d": "Samedi", "h": "15h00", "end": "16h00", "disc": "educative", "name": "Boxe éducative enfants", "coach": "Mehdi B", "age": "7/11 ans" },
+    { "d": "Samedi", "h": "16h00", "end": "17h00", "disc": "educative", "name": "Boxe éducative ados", "coach": "Mehdi B", "age": "12/16 ans" },
+    { "d": "Samedi", "h": "17h00", "end": "18h30", "disc": "educative", "name": "Boxe éducative compétiteurs", "coach": "Mehdi B", "age": "Jeunes licenciés" },
+    { "d": "Samedi", "h": "18h30", "end": "19h30", "disc": "sparring", "name": "Open sparring", "coach": "Mehdi B", "age": "Licenciés" }
+  ],
+  "faq": [
+    { "q": "Où se trouve Boxing Center Minimes ?", "a": "Au 12 rue de Fenouillet, 31200 Toulouse, dans le quartier des Minimes — Barrière de Paris, à 3 minutes du métro ligne B." },
+    { "q": "Je n'ai jamais boxé. Je peux venir ?", "a": "Oui. Tu ne seras ni le premier ni le seul — on a des créneaux débutants et du cardio boxing où tu ne prends aucun coup. Tu apprends le geste avant de le recevoir." },
+    { "q": "Quelle est la spécialité de la salle des Minimes ?", "a": "La boxe anglaise. C'est la salle historique du groupe, le berceau de plusieurs boxeurs professionnels et amateurs — avec trois rings dédiés." },
+    { "q": "Y a-t-il des cours pour les enfants ?", "a": "Oui, dès 3 ans. Baby Boxe pour les 3/6 ans, boxe éducative pour les 7/11, ados 12/16, puis compétiteurs — du jeu au ring, un créneau par âge. À partir de 280 € l'année." },
+    { "q": "Il y a des cours pour les femmes ?", "a": "Le Boxing Lady est 100 % féminin : lundi 18h30 avec Chloé, mercredi 18h30 avec David. Et tous les autres cours te sont ouverts." },
+    { "q": "Quels sont les horaires ?", "a": "Du lundi au samedi, de 10h00 à 21h30. Fermé le dimanche." }
+  ]
+}

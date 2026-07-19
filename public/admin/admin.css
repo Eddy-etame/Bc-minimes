@@ -1,0 +1,183 @@
+/* =====================================================================
+   LE COIN ROUGE — backoffice Boxing Center Minimes.
+   Même charte que le site : noir, os, rouge boxe #e10600, Archivo Black.
+   AUCUNE teinte hors charte (les seules couleurs ajoutées sont un vert
+   et un jaune d'ÉTAT, réservés aux messages système — jamais décoratifs).
+
+   LOI ROUGE (§5.1) : #e10600 mesure 4.01:1 sur le noir. Il ne porte donc
+   jamais de texte de lecture. Il vit en aplat de bouton, en barre, en
+   filet, et en gros titre. Le corps est en --fg (~14.9:1).
+
+   Sommaire : 1. tokens · 2. login · 3. shell · 4. topbar & boutons
+              5. formulaires & cartes · 6. accueil & assistants
+              7. contacts · 8. visite guidée · 9. responsive
+   ===================================================================== */
+
+/* ---------- 1. tokens ---------- */
+:root{
+  --bg:#0a0908; --panel:#131110; --panel-2:#1b1917; --line:rgba(242,237,227,.13); --line-strong:rgba(242,237,227,.28);
+  --red:#e10600; --red-2:#b00500; --red-glow:rgba(225,6,0,.35);
+  --ink:#ffffff; --fg:#e3ddd2; --muted:#aaa49a; --label:#cfc9be; --steel:#87827b;
+  --on-accent:#ffffff;
+  --ok:#59d68f; --bad:#ff8a80; --warn:#f2c14e;
+  --r:4px;
+  --disp:'Archivo Black','Arial Black',Impact,sans-serif;
+  --ui:'Archivo',system-ui,'Segoe UI',Roboto,sans-serif;
+  --mono:'Space Mono',ui-monospace,monospace;
+  --ease:cubic-bezier(.22,.61,.36,1);
+  font-synthesis:none;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--ui);font-size:15px;line-height:1.55}
+button{font:inherit;cursor:pointer;color:inherit}
+input,textarea,select{font:inherit}
+a{color:var(--fg);text-underline-offset:3px}
+a:hover{color:var(--ink)}
+h1,h2,h3,h4{font-family:var(--disp);font-weight:400;text-transform:uppercase;letter-spacing:.01em;margin:0}
+.hidden{display:none!important}
+svg{display:block}
+:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+::selection{background:rgba(225,6,0,.35);color:#fff}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#2a2724;border-radius:8px;border:2px solid var(--bg)}
+::-webkit-scrollbar-thumb:hover{background:#3a3632}
+@media (prefers-reduced-motion: reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+/* ---------- 2. LOGIN ---------- */
+.login{min-height:100vh;display:grid;place-items:center;padding:24px;position:relative;overflow:hidden;
+  background:radial-gradient(60% 44% at 50% -6%, rgba(225,6,0,.16), transparent 62%), var(--bg)}
+.ropes{position:absolute;inset:0;pointer-events:none}
+.ropes i{position:absolute;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(225,6,0,.35) 18%,rgba(225,6,0,.35) 82%,transparent)}
+.ropes i:nth-child(1){top:41%}.ropes i:nth-child(2){top:50%;opacity:.7}.ropes i:nth-child(3){top:59%;opacity:.45}
+.login form{position:relative;width:min(430px,92vw);text-align:center;background:linear-gradient(180deg,#161312,#0d0b0a);
+  border:1px solid var(--line-strong);border-top:3px solid var(--red);border-radius:var(--r);padding:36px 34px 24px;
+  box-shadow:0 30px 80px rgba(0,0,0,.7)}
+.lg-logo{width:130px;height:auto;margin:0 auto 14px}
+.lg-kicker{display:block;font:400 .68rem/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--steel)}
+.login h1{font-size:2rem;margin:.35rem 0 .5rem;color:var(--ink)}
+.login p{margin:0 0 18px;color:var(--muted);font-size:.92rem}
+.lg-btn{width:100%;justify-content:center;margin-top:4px}
+.lg-foot{display:block;margin-top:16px;font:400 .72rem/1.5 var(--mono);color:var(--steel)}
+.shake{animation:shake .4s}
+@keyframes shake{25%{transform:translateX(-7px)}50%{transform:translateX(6px)}75%{transform:translateX(-3px)}}
+
+/* ---------- 3. SHELL ---------- */
+.shell{display:grid;grid-template-columns:264px 1fr;min-height:100vh}
+.side{background:var(--panel);border-right:1px solid var(--line);display:flex;flex-direction:column;padding:18px 14px;position:sticky;top:0;height:100vh}
+.brand{display:flex;align-items:center;gap:10px;padding:0 6px 14px}
+.brand img{width:52px;height:auto}
+.brand b{display:block;font-family:var(--disp);font-size:.9rem;text-transform:uppercase;color:var(--ink)}
+.brand span{display:block;font:400 .68rem/1.4 var(--mono);color:var(--steel)}
+.ropeline{height:2px;background:linear-gradient(90deg,var(--red),transparent);margin:0 6px 12px}
+#nav{display:flex;flex-direction:column;gap:2px;overflow-y:auto;flex:1 1 auto}
+.navbtn{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:none;border:none;border-left:2px solid transparent;
+  padding:9px 10px;border-radius:0 var(--r) var(--r) 0;color:var(--muted);font-size:.9rem;transition:color .2s,background .2s,border-color .2s}
+.navbtn:hover{color:var(--ink);background:rgba(242,237,227,.05)}
+.navbtn.active{color:var(--ink);background:rgba(225,6,0,.12);border-left-color:var(--red)}
+.navbtn .nico{width:18px;height:18px;flex:0 0 18px;opacity:.85}
+.navbtn .nico svg{width:18px;height:18px}
+.side .foot{display:flex;flex-direction:column;gap:2px;padding-top:12px;border-top:1px solid var(--line);margin-top:12px}
+.side .foot a{padding:8px 10px;font-size:.85rem;color:var(--muted);text-decoration:none}
+.side .foot a:hover{color:var(--ink)}
+.main{display:flex;flex-direction:column;min-width:0}
+
+/* ---------- 4. TOPBAR & BOUTONS ---------- */
+.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap;
+  padding:16px 22px;background:rgba(10,9,8,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.ptitle .kicker{display:block;font:400 .66rem/1.4 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--steel)}
+.ptitle h2{font-size:1.35rem;color:var(--ink)}
+.topbar .right{margin-left:auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:var(--on-accent);border:2px solid var(--red);
+  border-radius:var(--r);padding:9px 16px;font:700 .78rem/1 var(--ui);letter-spacing:.06em;text-transform:uppercase;
+  transition:transform .2s var(--ease),background .2s,border-color .2s}
+.btn:hover{background:var(--red-2);border-color:var(--red-2);transform:translateY(-1px)}
+.btn.ghost{background:none;color:var(--fg);border-color:var(--line-strong)}
+.btn.ghost:hover{color:var(--ink);border-color:var(--red);background:none}
+.btn.sm{padding:7px 12px;font-size:.72rem}
+.btn.attn{box-shadow:0 0 0 3px var(--red-glow)}
+.btn:disabled{opacity:.5;cursor:default;transform:none}
+.status{font:400 .76rem/1.4 var(--mono);color:var(--muted);min-height:1.2em}
+.status.ok{color:var(--ok)} .status.bad{color:var(--bad)} .status.warn{color:var(--warn)}
+.content{padding:22px;max-width:920px;width:100%}
+
+/* ---------- 5. FORMULAIRES & CARTES ---------- */
+.sec-intro{margin:0 0 18px;color:var(--muted);font-size:.93rem;max-width:70ch}
+.field{margin-bottom:14px}
+.field>label{display:block;font:700 .7rem/1.4 var(--ui);letter-spacing:.1em;text-transform:uppercase;color:var(--label);margin-bottom:5px}
+.field input[type=text],.field textarea{width:100%;background:var(--panel);color:var(--ink);border:1px solid var(--line);
+  border-radius:var(--r);padding:9px 11px;transition:border-color .2s}
+.field input[type=text]:focus,.field textarea:focus{outline:none;border-color:var(--red)}
+.field textarea{min-height:88px;resize:vertical;line-height:1.55}
+.field .hint{margin:5px 0 0;font-size:.78rem;color:var(--steel)}
+.row2{display:grid;gap:0 14px;grid-template-columns:1fr 1fr}
+.card{background:var(--panel);border:1px solid var(--line);border-left:2px solid var(--red);border-radius:var(--r);padding:16px 18px;margin-bottom:14px}
+.card__head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.card__head h3{font-size:1rem;color:var(--ink)}
+.card__head .idx{font:400 .7rem/1 var(--mono);color:var(--steel)}
+.card__head .grow{flex:1 1 auto}
+.iconbtn{background:none;border:1px solid var(--line);border-radius:var(--r);color:var(--muted);padding:5px 9px;font-size:.75rem;transition:color .2s,border-color .2s}
+.iconbtn:hover{color:var(--ink);border-color:var(--red)}
+.chiprow{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:7px}
+.chip{display:inline-flex;align-items:center;gap:6px;background:var(--panel-2);border:1px solid var(--line);border-radius:100px;padding:4px 6px 4px 11px;font-size:.82rem}
+.chip button{background:none;border:none;color:var(--steel);font-size:1rem;line-height:1;padding:0 4px}
+.chip button:hover{color:var(--red)}
+.addbar{display:flex;gap:8px;align-items:center;margin-top:10px}
+
+/* ---------- 6. ACCUEIL & ASSISTANTS ---------- */
+.hero-admin{background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--red);border-radius:var(--r);padding:22px;margin-bottom:18px}
+.hero-admin h3{font-size:1.3rem;color:var(--ink);margin-bottom:.5rem}
+.hero-admin p{margin:0;color:var(--muted);max-width:64ch}
+.lamp{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font:700 .74rem/1 var(--ui);letter-spacing:.08em;text-transform:uppercase;
+  border:1px solid var(--line-strong);border-radius:100px;padding:8px 13px}
+.lamp i{width:8px;height:8px;border-radius:50%;background:var(--ok);flex:0 0 auto}
+.lamp.dirty{border-color:var(--red)} .lamp.dirty i{background:var(--red)}
+.cards3{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr))}
+.wiz{display:flex;flex-direction:column;align-items:flex-start;gap:6px;text-align:left;background:var(--panel);border:1px solid var(--line);
+  border-radius:var(--r);padding:16px;transition:border-color .2s,transform .2s var(--ease)}
+.wiz:hover{border-color:var(--red);transform:translateY(-2px)}
+.wiz b{font-family:var(--disp);font-weight:400;text-transform:uppercase;font-size:.95rem;color:var(--ink)}
+.wiz span{font-size:.84rem;color:var(--muted)}
+.wiz em{font:400 .68rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--red);font-style:normal}
+
+/* ---------- 7. CONTACTS ---------- */
+.leadwrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r)}
+table.leads{width:100%;border-collapse:collapse;font-size:.86rem;min-width:44rem}
+table.leads th{text-align:left;font:700 .68rem/1.4 var(--ui);letter-spacing:.1em;text-transform:uppercase;color:var(--label);
+  background:var(--panel-2);padding:10px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+table.leads td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+table.leads tr:last-child td{border-bottom:none}
+table.leads tr:hover td{background:rgba(242,237,227,.03)}
+table.leads .who{color:var(--ink);font-weight:600}
+table.leads .when{font:400 .74rem/1.4 var(--mono);color:var(--steel);white-space:nowrap}
+.notice{background:var(--panel);border:1px solid var(--line);border-left:2px solid var(--warn);border-radius:var(--r);padding:14px 16px;margin-bottom:16px;color:var(--fg);font-size:.9rem}
+.notice b{color:var(--ink)}
+.notice code{font:400 .82rem var(--mono);color:var(--label);background:var(--panel-2);padding:1px 5px;border-radius:3px}
+.empty{padding:26px;text-align:center;color:var(--muted)}
+
+/* ---------- 8. VISITE GUIDÉE ---------- */
+.tour-block{position:fixed;background:rgba(6,5,5,.78);z-index:9000;backdrop-filter:blur(1px)}
+.tour-spot{position:fixed;z-index:9001;border:2px solid var(--red);border-radius:var(--r);pointer-events:none;
+  box-shadow:0 0 0 3px var(--red-glow);transition:all .3s var(--ease)}
+.tour-card{position:fixed;z-index:9002;width:min(370px,90vw);background:var(--panel);border:1px solid var(--line-strong);
+  border-top:3px solid var(--red);border-radius:var(--r);padding:18px;box-shadow:0 24px 60px rgba(0,0,0,.7)}
+.tour-card h3{font-size:1.05rem;color:var(--ink);margin-bottom:.4rem}
+.tour-card p{margin:0;color:var(--fg);font-size:.9rem}
+.tour-hint{display:inline-block;margin-top:10px;font:700 .7rem/1 var(--ui);letter-spacing:.08em;text-transform:uppercase;
+  color:var(--ink);background:var(--red);border-radius:100px;padding:6px 11px}
+.tour-card .foot{display:flex;align-items:center;gap:10px;margin-top:14px}
+.tour-card .dots{font:400 .72rem/1 var(--mono);color:var(--steel)}
+.tour-card .acts{margin-left:auto;display:flex;gap:8px;align-items:center}
+.tour-skip{background:none;border:none;color:var(--muted);font-size:.8rem;text-decoration:underline}
+.tour-skip:hover{color:var(--ink)}
+
+/* ---------- 9. RESPONSIVE ---------- */
+@media (max-width:900px){
+  .shell{grid-template-columns:1fr}
+  .side{position:static;height:auto;flex-direction:column}
+  #nav{flex-direction:row;flex-wrap:wrap;overflow:visible}
+  .navbtn{width:auto;border-left:none;border-bottom:2px solid transparent;border-radius:var(--r)}
+  .navbtn.active{border-left-color:transparent;border-bottom-color:var(--red)}
+  .side .foot{flex-direction:row;flex-wrap:wrap}
+  .row2{grid-template-columns:1fr}
+}
