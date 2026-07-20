@@ -24,7 +24,10 @@ const PHONE_RE = /(?:\+33|0)\s?[1-9](?:[\s.\-]?\d{2}){4}/;
 /* « je m'appelle X », « moi c'est X », « mon prénom est X »… Déclencheurs
    SPÉCIFIQUES : pas de « c'est » nu, qui capterait « c'est ouvert ». */
 const NAME_RE = /(?:je m['’ ]?appelle|moi c['’ ]?est|mon nom est|mon pr[ée]nom (?:est|c['’ ]?est)|je me nomme|c['’ ]est\s+moi)\s+([a-zà-öø-ÿ][a-zà-öø-ÿ'’-]+)/i;
-const STOP_NAMES = /^(bonjour|salut|coucou|hello|merci|oui|non|ok|d['’]accord|bien|super|cool|pas|ouvert|ferm[ée]?|combien|quoi|rien|voir|bof|jsp|ouais|nan|hey|yo)$/i;
+const STOP_NAMES = /^(bonjour|salut|coucou|hello|merci|oui|non|ok|d['’]accord|bien|super|cool|pas|ouvert|ferm[ée]?|combien|quoi|quel|quelle|quels|quelles|qui|quand|o[uù]|comment|pourquoi|est|c['’]est|je|tu|vous|moi|toi|rien|aucun|anonyme|voir|bof|jsp|ouais|nan|hey|yo|allo|bjr|slt|svp|stp|test|info|infos|tarif|tarifs|prix|horaire|horaires|essai|boxe|cours|planning|adresse|t[ée]l[ée]phone|mail|email)$/i;
+/* Forme d'un prénom : des lettres, éventuellement un trait d'union ou
+   une apostrophe. Deux à vingt caractères. Rien d'autre. */
+const NAME_SHAPE = /^[a-zà-öø-ÿ][a-zà-öø-ÿ'’-]{1,19}$/i;
 
 const REDUCE = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const LOGO = "/assets/img/logo.png";
@@ -195,8 +198,30 @@ export function initChatbot() {
     }).catch(() => { /* silencieux : ne bloque jamais la conversation */ });
     return true;
   }
-  /** Extrait prénom / email / téléphone / salle. true si du neuf est capté. */
-  function extract(text) {
+  /** Le prénom donné en un mot, après la question « tu t'appelles
+   *  comment ? ». On retire d'abord l'email, le numéro et les chiffres
+   *  — « Marc 06 12 34 56 78 » est une réponse parfaitement normale —
+   *  puis on n'accepte QUE s'il ne reste qu'un seul mot, de la forme
+   *  d'un prénom, hors liste noire.
+   *
+   *  La règle est volontairement stricte : le fallback précédent prenait
+   *  le premier mot de n'importe quel message, si bien qu'une question
+   *  posée à la place d'une réponse (« Quels sont les horaires ? ») se
+   *  transformait en prénom « Quels » — écrit tel quel dans le carnet du
+   *  club. Un carnet sans prénom se lit ; un carnet avec un faux prénom
+   *  ment au coach qui rappelle. Dans le doute : on ne capte rien. */
+  function loneName(text) {
+    const reste = text.replace(EMAIL_RE, " ").replace(PHONE_RE, " ").replace(/\d+/g, " ");
+    if (/[?¿]/.test(reste)) return "";                       // une question n'est pas une réponse
+    const mots = reste.trim().replace(/[!.,;:]+$/, "").split(/\s+/).filter(Boolean);
+    if (mots.length !== 1) return "";                        // un prénom seul, ou rien
+    const w = mots[0].replace(/[!.,;:]+$/, "");
+    return NAME_SHAPE.test(w) && !STOP_NAMES.test(w) ? w : "";
+  }
+  /** Extrait prénom / email / téléphone / salle. true si du neuf est capté.
+   *  `saisie` distingue une frappe au clavier d'une puce cliquée : une
+   *  puce est une question toute faite, jamais une réponse au bot. */
+  function extract(text, saisie) {
     let found = false;
     const email = text.match(EMAIL_RE);
     if (email && !profile.email) { profile.email = email[0]; found = true; }
@@ -205,21 +230,20 @@ export function initChatbot() {
     const salle = SALLES.find((s) => new RegExp(`\\b${s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "i").test(text));
     if (salle && salle !== profile.salle) { profile.salle = salle; found = true; }
     if (!profile.prenom) {
-      let name = text.match(NAME_RE)?.[1]?.trim();
-      if (!name && expectName) {
-        // le bot vient de demander le prénom : un mot simple suffit
-        const w = text.trim().replace(/[!.,;:?]+$/, "").split(/\s+/)[0];
-        if (w && !EMAIL_RE.test(w) && !/\d/.test(w) && !STOP_NAMES.test(w) && w.length > 1) name = w;
-      }
+      const name = text.match(NAME_RE)?.[1]?.trim()           // « moi c'est Marc » : explicite
+        || (expectName && saisie ? loneName(text) : "");      // ou un prénom seul, après la question
       if (name && !STOP_NAMES.test(name)) { profile.prenom = titleCase(name.split(/\s+/)[0]); found = true; }
     }
-    expectName = false;
+    /* La question du prénom ne se referme que sur une vraie réponse
+       tapée : si le visiteur clique une puce à la place, elle reste
+       posée — et un « Marc » tapé plus tard sera encore entendu. */
+    if (saisie) expectName = false;
     return found;
   }
 
   /* ---------- la conversation ---------- */
-  async function answer(text) {
-    const gotNew = extract(text);
+  async function answer(text, saisie = true) {
+    const gotNew = extract(text, saisie);
     const sent = gotNew ? maybeSubmitLead(callbackAsked ? "callback_request" : "lead_collected") : false;
 
     hideChips();
@@ -317,7 +341,7 @@ export function initChatbot() {
   chipsEl.addEventListener("click", async (e) => {
     if (e.target.closest("button[data-callback]")) return void startCallback();
     const b = e.target.closest("button[data-q]");
-    if (b) { const t = b.dataset.q; userSay(t); await answer(t); }
+    if (b) { const t = b.dataset.q; userSay(t); await answer(t, false); }  // puce = question, pas réponse
   });
   closeBtn.addEventListener("click", close);
 }

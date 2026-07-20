@@ -49,8 +49,15 @@ function renderBonus() {
 
 function renderReviews() {
   const rating = $("#rating");
-  if (rating) {
-    rating.innerHTML = `<span class="rev-rating__v">${REVIEWS.rating}<small>/${REVIEWS.scale}</small></span><span class="rev-rating__src">${REVIEWS.source}<br>${REVIEWS.count} avis</span>`;
+  const note = String(REVIEWS.rating ?? "").trim();
+  const nb = String(REVIEWS.count ?? "").trim();
+  /* Rien d'affirmé qui ne soit renseigné : pas de note → pas de bloc ;
+     pas de nombre d'avis → la source sans le compte. Un chiffre vidé
+     depuis le vestiaire disparaît de la page, il ne s'y fossilise pas. */
+  if (rating && note) {
+    rating.innerHTML =
+      `<span class="rev-rating__v">${note}<small>/${REVIEWS.scale}</small></span>` +
+      `<span class="rev-rating__src">${REVIEWS.source}${nb ? `<br>${nb} avis` : ""}</span>`;
   }
   const box = $("#reviews");
   if (!box) return;

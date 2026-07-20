@@ -6,12 +6,23 @@
    Les embarquer partout coûtait leur poids sur chaque page pour rien.
    ===================================================================== */
 
+import { bcRegister } from "./data.js?v=b9";
+
 /* Avis Google réels (verbatim, curés le 2026-07-12) — jamais inventés.
-   Source : fiche Google Boxing Center Minimes. */
+   Source : fiche Google Boxing Center Minimes.
+
+   La note et le NOMBRE d'avis étaient figés ici, dans un fichier que
+   seul un développeur peut ouvrir. Un compte d'avis bouge toutes les
+   semaines : au bout de deux mois, le site affirmait publiquement un
+   chiffre faux et personne à la salle ne pouvait le corriger. Ils sont
+   maintenant éditables depuis le vestiaire (section « Les avis »), et
+   `count` est une CHAÎNE : vidée, la page affiche la note sans compte
+   plutôt qu'un compte périmé. Les verbatims, eux, restent des citations
+   datées et attribuées. */
 export const REVIEWS = {
   rating: "4,3",
   scale: "5",
-  count: 157,
+  count: "157",
   source: "Avis Google",
   quotes: [
     { text: "Très belle salle de boxe. Matos au top, coach et staff accueillant.", author: "Hamed S.", stars: 5 },
@@ -19,6 +30,7 @@ export const REVIEWS = {
     { text: "Superbe salle, très bonne ambiance. Je pratique les cours de boxe anglaise loisir.", author: "Pascal L.", stars: 5 },
   ],
 };
+bcRegister("avis", REVIEWS);   /* ce que le staff écrit dans le vestiaire gagne */
 /* Les questions d'ARGENT — /tarifs/ seulement. La page listait quatre prix
    et s'arrêtait là : le visiteur repartait avec les objections intactes
    (« 29€ à deux ou chacun ? », « 259€ d'un coup ? », « je dois acheter des

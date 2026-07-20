@@ -18,7 +18,6 @@ const STATIC_TAIL = `- Accès : métro ligne B station Barrière de Paris, 3 min
 - L'histoire : ouverte en 2016, c'est la PREMIÈRE salle du groupe Boxing Center — la salle historique. Trois boxeurs professionnels en sont sortis : Johnson Suffo, Salomon Kitoko, Elyasse Azap.
 - Séance d'essai : 10€, toutes disciplines, gants et protections prêtés, sans engagement et sans dossier. Réservation sur box-plus.vercel.app/seance-essai ou sur place.
 - Accès libre : rings et sacs en autonomie tous les jours de 10h à 12h et de 13h20 à 18h (le mercredi jusqu'à 15h seulement, l'école prend la salle).
-- Avis Google : 4,3 sur 5 (157 avis).
 - Réseau Boxing Center : Portet-sur-Garonne (vaisseau amiral), États-Unis, Saint-Cyprien, Ramonville. L'abonnement saison ouvre l'accès libre aux 5 clubs. Groupe : boxingcenter.fr.`;
 
 /* Repli si content.json est illisible : les mêmes faits, figés. */
@@ -51,6 +50,12 @@ export function liveInfo() {
       .concat((co.roster || []).map((m) => `${m.name} (${m.role || "coach"})`))
       .filter(Boolean);
     if (names.length) L.push("Coachs : " + names.join(", ") + ".");
+    /* La note Google vient du vestiaire, jamais d'une constante figée :
+       si le staff la vide, le bot n'en parle plus au lieu d'annoncer un
+       chiffre que plus personne ne peut corriger. */
+    const av = c.avis || {};
+    const note = String(av.rating || "").trim(), nb = String(av.count || "").trim();
+    if (note) L.push(`Avis Google : ${note} sur ${String(av.scale || "5").trim()}${nb ? ` (${nb} avis)` : ""}.`);
     if (Array.isArray(c.planning) && c.planning.length) {
       const byDay = {};
       for (const p of c.planning) (byDay[p.d] ||= []).push(`${p.h}${p.end ? "–" + p.end : ""} ${p.name}${p.coach ? " (" + p.coach + ")" : ""}`);

@@ -39,6 +39,7 @@ const ICONS = {
   dashboard: I('<path d="M4 11.5 12 4l8 7.5"/><path d="M6 10v10h12V10"/><path d="M10 20v-6h4v6"/>'),
   salle:     I('<path d="M12 21s-7-5.1-7-11a7 7 0 0 1 14 0c0 5.9-7 11-7 11Z"/><circle cx="12" cy="10" r="2.6"/>'),
   promos:    I('<path d="M3.5 11.5v-8h8l9 9-8 8-9-9Z"/><circle cx="8.2" cy="8.2" r="1.5"/>'),
+  avis:      I('<path d="m12 3.6 2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L3.5 9.8l5.9-.9z"/>'),
   coaches:   I('<circle cx="9" cy="8" r="3.1"/><path d="M3.2 19.5c.5-3 2.9-5 5.8-5s5.3 2 5.8 5"/><circle cx="17" cy="9" r="2.3"/><path d="M17.5 14.6c2.1.6 3.3 2.3 3.6 4.4"/>'),
   planning:  I('<rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17"/><path d="M8 3v4"/><path d="M16 3v4"/>'),
   faq:       I('<circle cx="12" cy="12" r="8.5"/><path d="M9.6 9.4a2.5 2.5 0 0 1 4.8.9c0 1.7-2.4 2-2.4 3.4"/><path d="M12 17.2h.01"/>'),
@@ -83,6 +84,15 @@ const SCHEMA = {
       ]},
     ]},
 
+  avis: { label: "Les avis", type: "object",
+    intro: "La note Google affichée sur la page Tarifs. Un compte d'avis bouge toutes les semaines : ouvre la fiche Google du club, relis le chiffre du jour et recopie-le ici. Si tu n'es pas sûr du nombre, laisse-le vide — la page affichera la note seule plutôt qu'un chiffre faux.",
+    fields: [
+      { k: "rating", label: "La note", half: true, hint: "Exactement comme sur Google, virgule comprise : 4,3" },
+      { k: "scale", label: "Sur combien", half: true, hint: "5" },
+      { k: "count", label: "Nombre d'avis", half: true, hint: "Le chiffre seul : 157. Vide = pas de nombre affiché." },
+      { k: "source", label: "Source affichée", half: true, hint: "Ce qui est écrit sous la note. Exemple : Avis Google" },
+    ]},
+
   coaches: { label: "Les coachs", type: "object",
     intro: "Le coach principal et le reste de l'équipe. Règle de la maison : un nom = la bonne photo. Tant qu'on n'a pas le vrai portrait de quelqu'un, on garde sa tuile initiales — on ne met jamais le visage d'un autre.",
     fields: [
@@ -118,14 +128,53 @@ const SCHEMA = {
 
 /* ---------- brouillon, état « modifié », aperçu ---------- */
 const DRAFT_KEY = "bcm:draft";
-let DIRTY = false, draftT;
+let DIRTY = false, BUSY = false, draftT;
 function saveDraft() { clearTimeout(draftT); draftT = setTimeout(() => { try { localStorage.setItem(DRAFT_KEY, JSON.stringify(DATA)); } catch (e) {} }, 400); }
 function markDirty() { DIRTY = true; saveDraft(); updateDirtyUI(); }
 function clearDirty() { DIRTY = false; try { localStorage.removeItem(DRAFT_KEY); } catch (e) {} updateDirtyUI(); }
 function updateDirtyUI() {
-  document.getElementById("publish").classList.toggle("attn", DIRTY);
   if (DIRTY) setStatus("Modifications non publiées");
+  updatePublishUI();
   if (CURRENT === "dashboard") renderSection("dashboard");
+}
+
+/* ---------- PUBLIER : disponible, ou expliqué ----------
+   Le bouton était grisé sans un mot dès qu'un champ était touché : la
+   ligne d'état, seule porteuse de l'explication, était écrasée par
+   « Modifications non publiées » — l'explication disparaissait très
+   exactement au moment où elle servait. Une seule fonction décide donc
+   maintenant de l'état du bouton ET de la phrase qui l'accompagne, et
+   cette phrase a son propre bandeau que rien ne vient recouvrir. */
+function whyNoPublish() {
+  if (BUSY) return "Publication en cours — laisse-la finir avant d'en relancer une.";
+  if (READONLY) return READONLY_WHY || "Le dépôt n'est pas branché : publication indisponible.";
+  return "";
+}
+/** La phrase complète, la même partout : bandeau, infobulle, réponse au
+ *  clic. Elle commence toujours par le fait — « Publication
+ *  indisponible » — avant la cause technique. */
+const publishBlockedLine = (why) => "Publication indisponible — " + why;
+function updatePublishUI() {
+  const btn = document.getElementById("publish");
+  const bar = document.getElementById("pubwhy");
+  const why = whyNoPublish();
+  if (why) {
+    /* pas de `disabled` : un bouton désactivé sort de l'arbre
+       d'accessibilité et emporte sa raison avec lui. */
+    btn.removeAttribute("disabled");
+    btn.setAttribute("aria-disabled", "true");
+    btn.setAttribute("title", publishBlockedLine(why));
+    btn.setAttribute("aria-describedby", "pubwhy");
+    bar.textContent = publishBlockedLine(why);
+    bar.classList.remove("hidden");
+  } else {
+    btn.removeAttribute("aria-disabled");
+    btn.removeAttribute("title");
+    btn.removeAttribute("aria-describedby");
+    bar.textContent = "";
+    bar.classList.add("hidden");
+  }
+  btn.classList.toggle("attn", DIRTY && !why);
 }
 addEventListener("beforeunload", (e) => { if (DIRTY) { e.preventDefault(); e.returnValue = ""; } });
 function openPreview() {
@@ -313,7 +362,7 @@ async function load() {
     if (!r.ok) { setStatus("Erreur de chargement : " + (j.error || r.status), "bad"); return; }
     DATA = j.content || {};
     READONLY = !!j.readOnly; READONLY_WHY = j.why || "";
-    document.getElementById("publish").disabled = READONLY;
+    updatePublishUI();
 
     let draft = null; try { draft = JSON.parse(localStorage.getItem(DRAFT_KEY) || "null"); } catch (e) {}
     if (draft && typeof draft === "object" && JSON.stringify(draft) !== JSON.stringify(DATA)) showDraftBar(draft);
@@ -323,10 +372,11 @@ async function load() {
 }
 
 async function publish() {
-  if (READONLY) return setStatus("Publication indisponible : " + READONLY_WHY, "bad");
+  const why = whyNoPublish();
+  if (why) return setStatus(publishBlockedLine(why), "warn");   // le clic répond, il ne tombe pas dans le vide
   if (!confirm("Publier les modifications ? Le site se met à jour tout seul, en une minute environ.")) return;
   setStatus("Publication…");
-  const btn = document.getElementById("publish"); btn.disabled = true;
+  BUSY = true; updatePublishUI();
   try {
     const r = await fetch("/api/admin/content", {
       method: "POST", headers: { "Content-Type": "application/json", "x-admin-token": TOKEN },
@@ -336,7 +386,7 @@ async function publish() {
     if (r.ok) { clearDirty(); removeDraftBar(); setStatus(j.rebuild ? "Publié — le site se met à jour (~1 min)" : "Publié — pense à relancer un déploiement", "ok"); }
     else setStatus("Échec : " + (j.error || r.status), "bad");
   } catch (e) { setStatus("Erreur réseau : rien n'a été publié.", "bad"); }
-  finally { btn.disabled = READONLY; }
+  finally { BUSY = false; updatePublishUI(); }
 }
 
 function buildNav() {

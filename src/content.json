@@ -74,6 +74,12 @@
       }
     ]
   },
+  "avis": {
+    "rating": "4,3",
+    "scale": "5",
+    "count": "157",
+    "source": "Avis Google"
+  },
   "coaches": {
     "pillar": {
       "name": "Mehdi B.",

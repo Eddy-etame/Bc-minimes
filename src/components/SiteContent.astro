@@ -16,8 +16,9 @@
 import content from "../content.json";
 import { SALLE, PROMOS, COACHES, FAQ } from "../../public/assets/js/data.js";
 import { PLANNING } from "../../public/assets/js/data-planning.js";
+import { REVIEWS } from "../../public/assets/js/data-argent.js";
 
-const BASE = { salle: SALLE, promos: PROMOS, coaches: COACHES, planning: PLANNING, faq: FAQ };
+const BASE = { salle: SALLE, promos: PROMOS, coaches: COACHES, planning: PLANNING, faq: FAQ, avis: REVIEWS };
 
 /** Ne garde que ce qui diffère du défaut. Renvoie undefined si identique. */
 function diff(base, ov) {

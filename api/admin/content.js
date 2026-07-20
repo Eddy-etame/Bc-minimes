@@ -9,7 +9,7 @@
 import { allowCors, isAdmin, body, gh, GH_REPO, GH_BRANCH, siteContent } from "../_lib/util.js";
 
 const PATH = "src/content.json";
-const TOP_KEYS = ["salle", "promos", "coaches", "planning", "faq"];
+const TOP_KEYS = ["salle", "promos", "avis", "coaches", "planning", "faq"];
 
 export default async function handler(req, res) {
   allowCors(res);

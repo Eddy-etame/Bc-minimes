@@ -1,6 +1,6 @@
 # Boxing Center Minimes
 
-> Salle de boxe anglaise historique du réseau Boxing Center — la première salle du groupe (ouverte en 2016), « le berceau des champions », au 12 rue de Fenouillet, quartier des Minimes / Barrière de Paris, 31200 Toulouse. Boxe anglaise (loisirs et compétiteurs), boxe éducative dès 3 ans (Baby Boxe 3/6), Boxing Lady 100 % féminin, boxing camp, boxe pieds-poings, PAOS, cross training, cardio boxing — 3 rings, ouvert du lundi au samedi 10h00–21h30, avec accès libre en journée. Séance d'essai 10 €. Note Google : 4,3/5 (157 avis).
+> Salle de boxe anglaise historique du réseau Boxing Center — la première salle du groupe (ouverte en 2016), « le berceau des champions », au 12 rue de Fenouillet, quartier des Minimes / Barrière de Paris, 31200 Toulouse. Boxe anglaise (loisirs et compétiteurs), boxe éducative dès 3 ans (Baby Boxe 3/6), Boxing Lady 100 % féminin, boxing camp, boxe pieds-poings, PAOS, cross training, cardio boxing — 3 rings, ouvert du lundi au samedi 10h00–21h30, avec accès libre en journée. Séance d'essai 10 €. Note Google affichée à jour sur la page Tarifs.
 
 ## Pages
 
@@ -10,7 +10,7 @@
 - [Les coachs](https://minimes.boxingcenter.fr/coachs/): Mehdi B (coach principal — anglaise, éducative, compétiteurs, baby boxe, boxing camp), Chloé (Boxing Lady), David (Boxing Lady, pieds-poings), Hicham (boxing camp) — plus le détail de qui encadre quel jour, dérivé du planning.
 - [Galerie photos](https://minimes.boxingcenter.fr/galerie/): la boxe en images (pool photo du réseau Boxing Center), filtrable par zone — ring, sparring, école, Lady, technique — plus un renvoi de chaque zone vers sa discipline.
 - [Planning des cours](https://minimes.boxingcenter.fr/plannings/): les 27 cours de la semaine + les 16 bandes d'accès libre, en grille filtrable (jour / discipline / coach, partageable par URL) + le poster officiel de la saison.
-- [Tarifs & offres](https://minimes.boxingcenter.fr/tarifs/): séance d'essai 10 €, offre Duo 29 € par personne, saison complète 259 € les 12 mois, école dès 280 € l'année — avec les avis Google (4,3/5, 157 avis) et les questions d'argent (paiement en 4×, matériel prêté ou personnel, accès aux 5 clubs).
+- [Tarifs & offres](https://minimes.boxingcenter.fr/tarifs/): séance d'essai 10 €, offre Duo 29 € par personne, saison complète 259 € les 12 mois, école dès 280 € l'année — avec les avis Google (note à jour sur la page) et les questions d'argent (paiement en 4×, matériel prêté ou personnel, accès aux 5 clubs).
 - [Contact & accès](https://minimes.boxingcenter.fr/contact/): téléphone 05 62 24 46 82, adresse, horaires, accès métro/rocade/bus, FAQ locale.
 
 ## Faits
@@ -54,7 +54,7 @@
 - Matériel : prêté pour la séance d'essai ; au-delà, l'adhérent apporte ses propres gants.
 
 ### Réassurance
-- Note Google : 4,3/5 (157 avis) — affichée sur /tarifs/.
+- Note Google : affichée et tenue à jour par le club sur /tarifs/. Ce fichier ne la recopie pas — un compte d'avis bouge chaque semaine, et une copie figée ici deviendrait une affirmation fausse que personne à la salle ne peut corriger.
 - Berceau de plusieurs boxeurs professionnels et amateurs formés sur ces rings (Johnson Suffo, Salomon Kitoko, Elyasse Azap — passés professionnels).
 
 ## L'assistant du site

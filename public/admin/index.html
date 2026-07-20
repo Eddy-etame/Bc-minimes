@@ -55,6 +55,10 @@
         <button class="btn ghost sm" type="button" id="reload" title="Revenir à la dernière version publiée">Annuler tout</button>
         <button class="btn" type="button" id="publish">Publier</button>
       </div>
+      <!-- La raison d'un blocage de publication vit ici, et nulle part
+           ailleurs : la ligne d'état change à chaque frappe, ce bandeau
+           reste tant que la cause dure. -->
+      <p class="pubwhy hidden" id="pubwhy" role="status"></p>
     </div>
     <div class="content" id="pane"></div>
   </div>
