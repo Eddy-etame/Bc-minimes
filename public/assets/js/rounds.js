@@ -62,11 +62,22 @@ export function initRounds() {
     if (soundOn) { try { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); actx.resume(); } catch (e2) {} bell(); }
   });
 
+  /* Le compteur du héros ("Round 01/07") : il était ÉCRIT EN DUR dans le HTML
+     et ne bougeait jamais — un chiffre qui se présente comme vivant et qui
+     ment. Il est désormais piloté par la même géométrie que la scorecard, et
+     son total est DÉRIVÉ de sections.length (hardcoder 07 se désynchronisait
+     au prochain [data-round] ajouté — la même erreur que les ticks évitaient
+     déjà plus haut). */
+  const heroNum = document.getElementById("hero-round-n");
+  const heroTot = document.getElementById("hero-round-t");
+  if (heroTot) heroTot.textContent = "/" + String(sections.length).padStart(2, "0");
+
   const setRound = (n, name) => {
     if (n === current) return;
     const advancing = n > current;
     current = n;
     numEl.textContent = String(n).padStart(2, "0");
+    if (heroNum) heroNum.textContent = String(n).padStart(2, "0");
     nameEl.textContent = name || "";
     ticks.forEach((t, i) => t.classList.toggle("on", i < n));
     if (!reduce) gsap.fromTo(hud, { scale: 0.94 }, { scale: 1, duration: 0.45, ease: "back.out(2.2)" });
@@ -85,6 +96,10 @@ export function initRounds() {
     let active = null;
     for (const s of list) if (s.el.getBoundingClientRect().top <= line) active = s;
     if (active) setRound(active.r, active.name);
+    /* remonté dans le héros : aucune section n'a franchi la ligne. Sans ce
+       repli, le compteur restait figé sur le dernier round atteint alors que
+       le visiteur est revenu au premier — il faut qu'il redescende à 01. */
+    else if (list.length) setRound(list[0].r, list[0].name);
     if (heroEl) hud.classList.toggle("is-on", heroEl.getBoundingClientRect().bottom < window.innerHeight * 0.5);
   };
   const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(measure); } };

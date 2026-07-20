@@ -43,6 +43,10 @@
 .hero__foot { position: absolute; left: 0; right: 0; bottom: clamp(1rem,3vh,1.6rem); z-index: 5; width: var(--wrap); margin-inline: auto; display: flex; justify-content: space-between; align-items: center; gap: 1rem; border-top: 1px solid var(--line); padding-top: clamp(.9rem,2vw,1.2rem); }
 .hero__round { font-family: var(--f-display); font-size: clamp(1.8rem,4vw,2.8rem); color: var(--bone); line-height: 1; letter-spacing: .02em; }
 .hero__round i { font-style: normal; color: var(--bone-dim); font-size: .62em; margin-left: .08em; }
+/* Le libellé « Round » : sans lui, « 01/07 » se lisait comme une DATE
+   (1er juillet) — ambigu ET faux, puisque le compteur est un round de combat.
+   Petites capitales mono, discrètes, dans la charte. */
+.hero__round-k { font-family: var(--f-mono); font-size: .34em; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--bone-dim); vertical-align: .42em; margin-right: .35em; }
 
 /* ====================== STATS / LE PALMARÈS ====================== */
 .palmares { background: var(--black); border-block: 2px solid var(--red); position: relative; overflow: hidden; }
