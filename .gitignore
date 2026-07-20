@@ -5,3 +5,8 @@ dist/
 *.log
 _dist_before/
 .claude/
+
+# secrets — JAMAIS versionnés
+.env
+.env.*
+!.env.example
