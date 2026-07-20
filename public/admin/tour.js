@@ -1,5 +1,5 @@
 /* ============================================================
-   LE COIN ROUGE — visites guidées et assistants.
+   LE COIN BLEU — visites guidées et assistants.
    Le moteur assombrit tout l'écran SAUF la cible (quatre panneaux
    autour d'un trou : la cible reste cliquable, le reste est bloqué).
    Deux types d'étapes :
@@ -110,7 +110,7 @@ function placeFlow() {
 
 /* ---------- la grande visite (premier passage) ---------- */
 const FLOW_MAIN = [
-  { sel: null, t: "Bienvenue dans le coin rouge", ok: "C'est parti",
+  { sel: null, t: "Bienvenue dans le coin bleu", ok: "C'est parti",
     b: "Ici tu changes le site de la salle : les horaires, les prix, les coachs, le planning, les questions. Aucune connaissance technique. Et c'est toi qui pilotes cette visite — tu vas faire les gestes toi-même." },
   { sel: '#nav .navbtn[data-k="salle"]', t: "1 · Le menu",
     b: "Chaque bouton du menu ouvre une partie du site. À toi : clique sur « La salle ».",

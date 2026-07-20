@@ -1,16 +1,18 @@
 /* =====================================================================
-   LE COIN ROUGE — backoffice Boxing Center Minimes.
-   Même charte que le site : noir, os, rouge boxe #e10600, Archivo Black.
+   LE COIN BLEU — backoffice Boxing Center Minimes.
+   Même charte que le site : fond profond, os, navy #182848, Archivo Black.
    AUCUNE teinte hors charte — ici non plus. Le backoffice a longtemps
    gardé trois couleurs « système » (un vert, un rose, un jaune) sous
    prétexte qu'un message d'état n'est pas de la décoration : c'était
    trois teintes inventées de plus dans la maison. Succès, erreur et
-   avertissement se disent maintenant en rouge boxe, en os et en
-   near-black, et se DISTINGUENT par l'icône, la graisse et la bordure.
+   avertissement se disent en navy, en os et en bleu profond, et se
+   DISTINGUENT par l'icône, la graisse et la bordure.
 
-   LOI ROUGE (§5.1) : #e10600 mesure 4.01:1 sur le noir. Il ne porte donc
-   jamais de texte de lecture. Il vit en aplat de bouton, en barre, en
-   filet, et en gros titre. Le corps est en --fg (~14.9:1).
+   LOI DU NAVY (§5.1) : #182848 mesure 1.30:1 sur le fond profond. Il ne
+   porte donc jamais un TRAIT — il vit en APLAT (fond de bouton, de
+   pastille), toujours ceinturé d'un filet argent pour que la forme
+   existe, et il porte du blanc à 14.6:1. Ce qui doit se voir en trait
+   est en argent #aebccf (9.83:1). Le corps est en --fg (~14.9:1).
 
    Sommaire : 1. tokens · 2. login · 3. shell · 4. topbar & boutons
               5. formulaires & cartes · 6. accueil & assistants
@@ -19,15 +21,15 @@
 
 /* ---------- 1. tokens ---------- */
 :root{
-  --bg:#0a0908; --panel:#131110; --panel-2:#1b1917; --line:rgba(242,237,227,.13); --line-strong:rgba(242,237,227,.28);
-  --red:#e10600; --red-2:#b00500; --red-glow:rgba(225,6,0,.35);
-  --ink:#ffffff; --fg:#e3ddd2; --muted:#aaa49a; --label:#cfc9be; --steel:#87827b;
+  --bg:#0a1020; --panel:#101830; --panel-2:#17223c; --line:rgba(238,241,246,.13); --line-strong:rgba(238,241,246,.28);
+  --navy:#182848; --navy-2:#264073; --navy-glow:rgba(38,64,115,.55); --mark:#aebccf;
+  --ink:#ffffff; --fg:#dfe5ee; --muted:#aebccf; --label:#aebccf; --steel:#8e9bb0;
   --on-accent:#ffffff;
   /* ÉTATS — deux encres de la charte, pas une teinte de plus. L'os
      porte le message (14,7:1 sur --bg), l'os pur porte l'erreur
      (15,9:1). Ce qui différencie succès / erreur / avertissement, c'est
-     la pastille rouge devant, sa forme et la graisse du texte. */
-  --state:#e3ddd2; --state-strong:#ffffff;
+     la pastille navy devant, sa forme et la graisse du texte. */
+  --state:#dfe5ee; --state-strong:#ffffff;
   --r:4px;
   --disp:'Archivo Black','Arial Black',Impact,sans-serif;
   --ui:'Archivo',system-ui,'Segoe UI',Roboto,sans-serif;
@@ -44,22 +46,22 @@ a:hover{color:var(--ink)}
 h1,h2,h3,h4{font-family:var(--disp);font-weight:400;text-transform:uppercase;letter-spacing:.01em;margin:0}
 .hidden{display:none!important}
 svg{display:block}
-:focus-visible{outline:2px solid var(--red);outline-offset:2px}
-::selection{background:rgba(225,6,0,.35);color:#fff}
+:focus-visible{outline:2px solid var(--mark);outline-offset:2px}
+::selection{background:rgba(38,64,115,.65);color:#fff}
 ::-webkit-scrollbar{width:10px;height:10px}
 ::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:#2a2724;border-radius:8px;border:2px solid var(--bg)}
-::-webkit-scrollbar-thumb:hover{background:#3a3632}
+::-webkit-scrollbar-thumb{background:#1e2b47;border-radius:8px;border:2px solid var(--bg)}
+::-webkit-scrollbar-thumb:hover{background:#2b3c5e}
 @media (prefers-reduced-motion: reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 
 /* ---------- 2. LOGIN ---------- */
 .login{min-height:100vh;display:grid;place-items:center;padding:24px;position:relative;overflow:hidden;
-  background:radial-gradient(60% 44% at 50% -6%, rgba(225,6,0,.16), transparent 62%), var(--bg)}
+  background:radial-gradient(60% 44% at 50% -6%, rgba(38,64,115,.30), transparent 62%), var(--bg)}
 .ropes{position:absolute;inset:0;pointer-events:none}
-.ropes i{position:absolute;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(225,6,0,.35) 18%,rgba(225,6,0,.35) 82%,transparent)}
+.ropes i{position:absolute;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(174,188,207,.35) 18%,rgba(174,188,207,.35) 82%,transparent)}
 .ropes i:nth-child(1){top:41%}.ropes i:nth-child(2){top:50%;opacity:.7}.ropes i:nth-child(3){top:59%;opacity:.45}
-.login form{position:relative;width:min(430px,92vw);text-align:center;background:linear-gradient(180deg,#161312,#0d0b0a);
-  border:1px solid var(--line-strong);border-top:3px solid var(--red);border-radius:var(--r);padding:36px 34px 24px;
+.login form{position:relative;width:min(430px,92vw);text-align:center;background:linear-gradient(180deg,#101830,#070c18);
+  border:1px solid var(--line-strong);border-top:3px solid var(--mark);border-radius:var(--r);padding:36px 34px 24px;
   box-shadow:0 30px 80px rgba(0,0,0,.7)}
 .lg-logo{width:130px;height:auto;margin:0 auto 14px}
 .lg-kicker{display:block;font:400 .68rem/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--steel)}
@@ -77,12 +79,12 @@ svg{display:block}
 .brand img{width:52px;height:auto}
 .brand b{display:block;font-family:var(--disp);font-size:.9rem;text-transform:uppercase;color:var(--ink)}
 .brand span{display:block;font:400 .68rem/1.4 var(--mono);color:var(--steel)}
-.ropeline{height:2px;background:linear-gradient(90deg,var(--red),transparent);margin:0 6px 12px}
+.ropeline{height:2px;background:linear-gradient(90deg,var(--mark),transparent);margin:0 6px 12px}
 #nav{display:flex;flex-direction:column;gap:2px;overflow-y:auto;flex:1 1 auto}
 .navbtn{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:none;border:none;border-left:2px solid transparent;
   padding:9px 10px;border-radius:0 var(--r) var(--r) 0;color:var(--muted);font-size:.9rem;transition:color .2s,background .2s,border-color .2s}
-.navbtn:hover{color:var(--ink);background:rgba(242,237,227,.05)}
-.navbtn.active{color:var(--ink);background:rgba(225,6,0,.12);border-left-color:var(--red)}
+.navbtn:hover{color:var(--ink);background:rgba(238,241,246,.05)}
+.navbtn.active{color:var(--ink);background:rgba(38,64,115,.55);border-left-color:var(--mark)}
 .navbtn .nico{width:18px;height:18px;flex:0 0 18px;opacity:.85}
 .navbtn .nico svg{width:18px;height:18px}
 .side .foot{display:flex;flex-direction:column;gap:2px;padding-top:12px;border-top:1px solid var(--line);margin-top:12px}
@@ -92,27 +94,27 @@ svg{display:block}
 
 /* ---------- 4. TOPBAR & BOUTONS ---------- */
 .topbar{position:sticky;top:0;z-index:20;display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap;
-  padding:16px 22px;background:rgba(10,9,8,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  padding:16px 22px;background:rgba(10,16,32,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .ptitle .kicker{display:block;font:400 .66rem/1.4 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--steel)}
 .ptitle h2{font-size:1.35rem;color:var(--ink)}
 .topbar .right{margin-left:auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:var(--on-accent);border:2px solid var(--red);
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:var(--on-accent);border:2px solid var(--mark);
   border-radius:var(--r);padding:9px 16px;font:700 .78rem/1 var(--ui);letter-spacing:.06em;text-transform:uppercase;
   transition:transform .2s var(--ease),background .2s,border-color .2s}
-.btn:hover{background:var(--red-2);border-color:var(--red-2);transform:translateY(-1px)}
+.btn:hover{background:var(--navy-2);border-color:var(--ink);transform:translateY(-1px)}
 .btn.ghost{background:none;color:var(--fg);border-color:var(--line-strong)}
-.btn.ghost:hover{color:var(--ink);border-color:var(--red);background:none}
+.btn.ghost:hover{color:var(--ink);border-color:var(--mark);background:none}
 .btn.sm{padding:7px 12px;font-size:.72rem}
-.btn.attn{box-shadow:0 0 0 3px var(--red-glow)}
+.btn.attn{box-shadow:0 0 0 3px var(--navy-glow)}
 .btn:disabled{opacity:.5;cursor:default;transform:none}
 /* Bouton indisponible mais TOUJOURS focusable : `disabled` le sortirait
    de l'arbre d'accessibilité, et avec lui la raison du blocage. On le
    grise avec aria-disabled ; le clic répond au lieu de ne rien faire. */
 .btn[aria-disabled="true"]{opacity:.55;cursor:not-allowed;transform:none}
-.btn[aria-disabled="true"]:hover{background:var(--red);border-color:var(--red);transform:none}
+.btn[aria-disabled="true"]:hover{background:var(--navy);border-color:var(--mark);transform:none}
 .btn.ghost[aria-disabled="true"]:hover{background:none;border-color:var(--line-strong);color:var(--fg)}
 .status{font:400 .76rem/1.4 var(--mono);color:var(--muted);min-height:1.2em}
-/* La pastille rouge fait le tri, pas la couleur du texte :
+/* La pastille fait le tri, pas la couleur du texte :
    ✓ pleine = fait · ✕ pleine = raté · ! creuse = attention. */
 .status.ok,.status.bad,.status.warn{display:inline-flex;align-items:center;gap:7px}
 .status.ok::before,.status.bad::before,.status.warn::before{
@@ -120,18 +122,18 @@ svg{display:block}
   display:inline-flex;align-items:center;justify-content:center;
   font:700 .66rem/1 var(--ui)}
 .status.ok{color:var(--state)}
-.status.ok::before{content:"✓";background:var(--red);color:var(--on-accent)}
+.status.ok::before{content:"✓";background:var(--navy);border:1px solid var(--mark);color:var(--on-accent)}
 .status.bad{color:var(--state-strong);font-weight:700}
-.status.bad::before{content:"✕";background:var(--red);color:var(--on-accent)}
+.status.bad::before{content:"✕";background:var(--mark);color:var(--bg)}
 .status.warn{color:var(--state);font-weight:700}
-.status.warn::before{content:"!";border:2px solid var(--red);color:var(--state)}
+.status.warn::before{content:"!";border:2px solid var(--mark);color:var(--state)}
 /* La raison d'un blocage de publication : son propre bandeau, pour
    qu'aucun autre message ne puisse l'écraser tant que la cause dure. */
 .pubwhy{flex:1 0 100%;order:9;margin:2px 0 0;display:flex;align-items:center;gap:8px;
-  background:var(--panel);border:1px solid var(--line);border-left:2px solid var(--red);
+  background:var(--panel);border:1px solid var(--line);border-left:2px solid var(--mark);
   border-radius:var(--r);padding:8px 12px;color:var(--state);font:700 .82rem/1.4 var(--ui)}
 .pubwhy::before{content:"!";flex:0 0 auto;width:15px;height:15px;border-radius:50%;
-  border:2px solid var(--red);display:inline-flex;align-items:center;justify-content:center;
+  border:2px solid var(--mark);display:inline-flex;align-items:center;justify-content:center;
   font:700 .66rem/1 var(--ui);color:var(--state)}
 .content{padding:22px;max-width:920px;width:100%}
 
@@ -141,40 +143,40 @@ svg{display:block}
 .field>label{display:block;font:700 .7rem/1.4 var(--ui);letter-spacing:.1em;text-transform:uppercase;color:var(--label);margin-bottom:5px}
 .field input[type=text],.field textarea{width:100%;background:var(--panel);color:var(--ink);border:1px solid var(--line);
   border-radius:var(--r);padding:9px 11px;transition:border-color .2s}
-.field input[type=text]:focus,.field textarea:focus{outline:none;border-color:var(--red)}
+.field input[type=text]:focus,.field textarea:focus{outline:none;border-color:var(--mark)}
 .field textarea{min-height:88px;resize:vertical;line-height:1.55}
 .field .hint{margin:5px 0 0;font-size:.78rem;color:var(--steel)}
 .row2{display:grid;gap:0 14px;grid-template-columns:1fr 1fr}
-.card{background:var(--panel);border:1px solid var(--line);border-left:2px solid var(--red);border-radius:var(--r);padding:16px 18px;margin-bottom:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-left:2px solid var(--mark);border-radius:var(--r);padding:16px 18px;margin-bottom:14px}
 .card__head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
 .card__head h3{font-size:1rem;color:var(--ink)}
 .card__head .idx{font:400 .7rem/1 var(--mono);color:var(--steel)}
 .card__head .grow{flex:1 1 auto}
 .iconbtn{background:none;border:1px solid var(--line);border-radius:var(--r);color:var(--muted);padding:5px 9px;font-size:.75rem;transition:color .2s,border-color .2s}
-.iconbtn:hover{color:var(--ink);border-color:var(--red)}
+.iconbtn:hover{color:var(--ink);border-color:var(--mark)}
 .chiprow{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:7px}
 .chip{display:inline-flex;align-items:center;gap:6px;background:var(--panel-2);border:1px solid var(--line);border-radius:100px;padding:4px 6px 4px 11px;font-size:.82rem}
 .chip button{background:none;border:none;color:var(--steel);font-size:1rem;line-height:1;padding:0 4px}
-.chip button:hover{color:var(--red)}
+.chip button:hover{color:var(--mark)}
 .addbar{display:flex;gap:8px;align-items:center;margin-top:10px}
 
 /* ---------- 6. ACCUEIL & ASSISTANTS ---------- */
-.hero-admin{background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--red);border-radius:var(--r);padding:22px;margin-bottom:18px}
+.hero-admin{background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--mark);border-radius:var(--r);padding:22px;margin-bottom:18px}
 .hero-admin h3{font-size:1.3rem;color:var(--ink);margin-bottom:.5rem}
 .hero-admin p{margin:0;color:var(--muted);max-width:64ch}
 .lamp{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font:700 .74rem/1 var(--ui);letter-spacing:.08em;text-transform:uppercase;
   border:1px solid var(--line-strong);border-radius:100px;padding:8px 13px}
 /* Anneau creux = rien à faire · pastille pleine = du travail en attente.
-   La forme dit l'état ; la couleur reste le rouge de la maison. */
-.lamp i{width:10px;height:10px;border-radius:50%;border:2px solid var(--red);background:none;flex:0 0 auto}
-.lamp.dirty{border-color:var(--red)} .lamp.dirty i{background:var(--red)}
+   La forme dit l'état ; la couleur reste le bleu de la maison. */
+.lamp i{width:10px;height:10px;border-radius:50%;border:2px solid var(--mark);background:none;flex:0 0 auto}
+.lamp.dirty{border-color:var(--mark)} .lamp.dirty i{background:var(--mark)}
 .cards3{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr))}
 .wiz{display:flex;flex-direction:column;align-items:flex-start;gap:6px;text-align:left;background:var(--panel);border:1px solid var(--line);
   border-radius:var(--r);padding:16px;transition:border-color .2s,transform .2s var(--ease)}
-.wiz:hover{border-color:var(--red);transform:translateY(-2px)}
+.wiz:hover{border-color:var(--mark);transform:translateY(-2px)}
 .wiz b{font-family:var(--disp);font-weight:400;text-transform:uppercase;font-size:.95rem;color:var(--ink)}
 .wiz span{font-size:.84rem;color:var(--muted)}
-.wiz em{font:400 .68rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--red);font-style:normal}
+.wiz em{font:400 .68rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--mark);font-style:normal}
 
 /* ---------- 7. CONTACTS ---------- */
 .leadwrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r)}
@@ -183,24 +185,43 @@ table.leads th{text-align:left;font:700 .68rem/1.4 var(--ui);letter-spacing:.1em
   background:var(--panel-2);padding:10px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
 table.leads td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
 table.leads tr:last-child td{border-bottom:none}
-table.leads tr:hover td{background:rgba(242,237,227,.03)}
+table.leads tr:hover td{background:rgba(238,241,246,.03)}
 table.leads .who{color:var(--ink);font-weight:600}
 table.leads .when{font:400 .74rem/1.4 var(--mono);color:var(--steel);white-space:nowrap}
-.notice{background:var(--panel);border:1px solid var(--line);border-left:2px solid var(--red);border-radius:var(--r);padding:14px 16px;margin-bottom:16px;color:var(--fg);font-size:.9rem}
+.notice{background:var(--panel);border:1px solid var(--line);border-left:2px solid var(--mark);border-radius:var(--r);padding:14px 16px;margin-bottom:16px;color:var(--fg);font-size:.9rem}
 .notice b{color:var(--ink)}
 .notice code{font:400 .82rem var(--mono);color:var(--label);background:var(--panel-2);padding:1px 5px;border-radius:3px}
 .empty{padding:26px;text-align:center;color:var(--muted)}
 
+/* ---------- 7 bis. LA GALERIE DU CLUB (file de modération) ----------
+   On regarde AVANT de trancher : le média occupe la carte, les deux
+   boutons sont côte à côte, et « Refuser » est le fantôme — détruire un
+   fichier ne doit jamais être le geste le plus facile. */
+.modgrid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(15rem,1fr))}
+.modcard{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);
+  border-left:2px solid var(--mark);border-radius:var(--r);overflow:hidden}
+.modcard__m{position:relative;aspect-ratio:1;background:var(--panel-2)}
+.modcard__m img,.modcard__m video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.modcard__k{position:absolute;top:7px;right:7px;z-index:2;font:700 .62rem/1 var(--ui);letter-spacing:.08em;
+  text-transform:uppercase;color:var(--on-accent);background:var(--navy);border:1px solid var(--mark);
+  border-radius:100px;padding:4px 8px}
+.modcard__b{display:flex;flex-direction:column;gap:2px;padding:11px 13px}
+.modcard__b b{font-size:.9rem;color:var(--ink)}
+.modcard__b span{font-size:.8rem;color:var(--muted)}
+.modcard__d{font:400 .72rem/1.4 var(--mono);color:var(--steel)}
+.modcard__act{display:flex;gap:8px;padding:0 13px 13px;margin-top:auto}
+.modcard__act .btn{flex:1 1 auto;justify-content:center}
+
 /* ---------- 8. VISITE GUIDÉE ---------- */
-.tour-block{position:fixed;background:rgba(6,5,5,.78);z-index:9000;backdrop-filter:blur(1px)}
-.tour-spot{position:fixed;z-index:9001;border:2px solid var(--red);border-radius:var(--r);pointer-events:none;
-  box-shadow:0 0 0 3px var(--red-glow);transition:all .3s var(--ease)}
+.tour-block{position:fixed;background:rgba(4,7,14,.78);z-index:9000;backdrop-filter:blur(1px)}
+.tour-spot{position:fixed;z-index:9001;border:2px solid var(--mark);border-radius:var(--r);pointer-events:none;
+  box-shadow:0 0 0 3px var(--navy-glow);transition:all .3s var(--ease)}
 .tour-card{position:fixed;z-index:9002;width:min(370px,90vw);background:var(--panel);border:1px solid var(--line-strong);
-  border-top:3px solid var(--red);border-radius:var(--r);padding:18px;box-shadow:0 24px 60px rgba(0,0,0,.7)}
+  border-top:3px solid var(--mark);border-radius:var(--r);padding:18px;box-shadow:0 24px 60px rgba(0,0,0,.7)}
 .tour-card h3{font-size:1.05rem;color:var(--ink);margin-bottom:.4rem}
 .tour-card p{margin:0;color:var(--fg);font-size:.9rem}
 .tour-hint{display:inline-block;margin-top:10px;font:700 .7rem/1 var(--ui);letter-spacing:.08em;text-transform:uppercase;
-  color:var(--ink);background:var(--red);border-radius:100px;padding:6px 11px}
+  color:var(--ink);background:var(--navy);border:1px solid var(--mark);border-radius:100px;padding:6px 11px}
 .tour-card .foot{display:flex;align-items:center;gap:10px;margin-top:14px}
 .tour-card .dots{font:400 .72rem/1 var(--mono);color:var(--steel)}
 .tour-card .acts{margin-left:auto;display:flex;gap:8px;align-items:center}
@@ -213,7 +234,7 @@ table.leads .when{font:400 .74rem/1.4 var(--mono);color:var(--steel);white-space
   .side{position:static;height:auto;flex-direction:column}
   #nav{flex-direction:row;flex-wrap:wrap;overflow:visible}
   .navbtn{width:auto;border-left:none;border-bottom:2px solid transparent;border-radius:var(--r)}
-  .navbtn.active{border-left-color:transparent;border-bottom-color:var(--red)}
+  .navbtn.active{border-left-color:transparent;border-bottom-color:var(--mark)}
   .side .foot{flex-direction:row;flex-wrap:wrap}
   .row2{grid-template-columns:1fr}
 }

@@ -39,8 +39,8 @@
 .timeline { position: relative; margin-top: 1rem; padding-left: 0; }
 .timeline::before { content: ""; position: absolute; left: clamp(64px, 9vw, 120px); top: 0; bottom: 0; width: 1px; background: var(--line); }
 .tl { display: grid; grid-template-columns: clamp(64px,9vw,120px) 1fr; gap: clamp(1.2rem,3vw,2.6rem); padding-block: clamp(1.6rem,3.5vw,2.6rem); position: relative; }
-.tl::before { content: ""; position: absolute; left: clamp(64px,9vw,120px); top: clamp(2rem,4vw,3rem); width: 11px; height: 11px; background: var(--red); border-radius: 50%; transform: translateX(-5px); box-shadow: 0 0 0 4px var(--ink); }
-/* le millésime est du display (≥18px) → le rouge y est légal et il porte
+.tl::before { content: ""; position: absolute; left: clamp(64px,9vw,120px); top: clamp(2rem,4vw,3rem); width: 11px; height: 11px; background: var(--mark); border-radius: 50%; transform: translateX(-5px); box-shadow: 0 0 0 4px var(--ink); }
+/* le millésime est du display (≥18px) → l'argent y est légal et il porte
    l'identité. Sous 1.15rem au plus petit clamp on reste au-dessus du seuil
    3:1 grand-texte gras. */
 .tl__y { font-family: var(--f-display); font-size: clamp(1.15rem,3vw,2.2rem); color: var(--bone); line-height: 1; }
@@ -54,7 +54,7 @@
 .ambiance::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(120deg, rgba(110,10,8,.4), rgba(0,0,0,.4)); }
 .ambiance__quote { position: relative; z-index: 2; text-align: center; }
 .ambiance__quote .serif { font-family: var(--f-display); text-transform: uppercase; font-size: clamp(1.9rem,5.2vw,4.2rem); line-height: .98; max-width: 18ch; margin-inline: auto; color: var(--bone); }
-.ambiance__quote .serif .tint { color: var(--red); }
+.ambiance__quote .serif .tint { color: var(--mark); }
 
 /* ------------------------------ SPECS ----------------------------- */
 .feature-card { padding: 0; }
@@ -71,11 +71,11 @@
 /* a lone CTA row (no label) spans the full grid instead of squeezing into
    the narrow label column */
 .contact-line > .btn { grid-column: 1 / -1; justify-self: start; }
-/* étiquette de ligne : bone + filet rouge (loi rouge — c'était 4:1) */
+/* étiquette de ligne : os + filet argent (loi du navy) */
 .contact-line > span { display: inline-flex; align-items: baseline; gap: .7ch; font: 500 var(--step--1)/1.4 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--bone); }
-.contact-line > span::before { content: ""; align-self: center; width: 14px; height: 2px; background: var(--red); flex: 0 0 14px; }
+.contact-line > span::before { content: ""; align-self: center; width: 14px; height: 2px; background: var(--mark); flex: 0 0 14px; }
 .contact-line a:not(.btn) { color: var(--bone); transition: color .3s; display: inline-flex; align-items: center; min-height: 44px; }
-/* 16.2px : le rouge échoue en :hover (4.01:1) — le hover éclaircit */
+/* 16.2px : le navy échoue en :hover (1.30:1) — le hover éclaircit */
 .contact-line a:not(.btn):hover, .contact-line a:not(.btn):active { color: var(--white); }
 .contact-line ul li { color: var(--read); padding-block: .15em; }
 .map-frame { aspect-ratio: 4/3; border: 1px solid var(--line); overflow: hidden; filter: grayscale(1) contrast(1.05) brightness(.9); }
@@ -94,7 +94,7 @@
 .asks { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); grid-template-columns: 1fr; }
 @media (min-width: 900px){ .asks { grid-template-columns: repeat(3,1fr); } }
 .ask { background: var(--ink); padding: clamp(1.6rem,3vw,2.2rem); display: flex; flex-direction: column; gap: .8rem; border-top: 2px solid transparent; transition: background .35s, border-color .35s; }
-.ask:hover, .ask:active { background: var(--ink-2); border-top-color: var(--red); }
+.ask:hover, .ask:active { background: var(--ink-2); border-top-color: var(--mark); }
 .ask__q { font-family: var(--f-display); text-transform: uppercase; font-size: clamp(1.15rem,2.4vw,1.6rem); line-height: 1.05; color: var(--bone); }
 .ask__a { color: var(--muted); font-size: var(--step--1); line-height: 1.55; }
 
@@ -104,9 +104,9 @@
 @media (min-width: 1040px){ .network { grid-template-columns: repeat(3,1fr); } }
 .net { background: var(--ink); padding: clamp(1.6rem,3vw,2.2rem); min-height: 13rem; display: flex; flex-direction: column; justify-content: space-between; gap: 1.5rem; position: relative; overflow: hidden; transition: background .4s; }
 .net:hover, .net:active { background: var(--ink-2); }
-/* tag : bone + filet rouge (loi rouge) */
+/* tag : os + filet argent (loi du navy) */
 .net__tag { display: inline-flex; align-items: center; gap: .7ch; font: 500 var(--step--1)/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--bone); }
-.net__tag::before { content: ""; width: 14px; height: 2px; background: var(--red); flex: 0 0 14px; }
+.net__tag::before { content: ""; width: 14px; height: 2px; background: var(--mark); flex: 0 0 14px; }
 .net__name { font-family: var(--f-display); text-transform: uppercase; font-size: clamp(1.6rem,3vw,2.4rem); line-height: 1; margin-block: .5rem .4rem; }
 .net__name .flag { font-size: .5em; color: var(--bone-dim); vertical-align: middle; margin-left: .6ch; }
 .net__feat { color: var(--muted); font-size: var(--step--1); }

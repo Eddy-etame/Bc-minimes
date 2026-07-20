@@ -29,7 +29,7 @@ import SiteContent from "../../components/SiteContent.astro";
   <meta name="geo.position" content="43.6256;1.4309" />
   <meta name="ICBM" content="43.6256, 1.4309" />
   <link rel="canonical" href="https://minimes.boxingcenter.fr/activites/" />
-  <meta name="theme-color" content="#0a0908" />
+  <meta name="theme-color" content="#0a1020" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
   <link rel="shortcut icon" href="/favicon.png" />
@@ -420,7 +420,7 @@ import SiteContent from "../../components/SiteContent.astro";
     .act__body { position: relative; }
     .act__bigidx { position: absolute; top: -2.4rem; right: 0; font-family: var(--f-display); font-size: clamp(4rem,11vw,9rem); line-height: .8; color: transparent; -webkit-text-stroke: 1.5px var(--line); pointer-events: none; z-index: 0; }
     .act__tag { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: .7ch; font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--bone); }
-    .act__tag::before { content: ""; width: 18px; height: 2px; background: var(--red); flex: 0 0 18px; }
+    .act__tag::before { content: ""; width: 18px; height: 2px; background: var(--mark); flex: 0 0 18px; }
     .act__name { position: relative; z-index: 1; font-family: var(--f-display); text-transform: uppercase; font-size: clamp(2rem,5.5vw,4rem); line-height: .92; margin: .7rem 0 1rem; color: var(--bone); }
 
     /* le badge créneaux — DÉRIVÉ de PLANNING (voir activites.js). Deux
@@ -428,22 +428,22 @@ import SiteContent from "../../components/SiteContent.astro";
        prouve, « en accès libre » quand il ne le prouve pas. Le second
        n'est pas un manque à cacher, c'est une info que le visiteur
        cherche — d'où le même poids typographique, un filet en moins. */
-    .act__slots { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: .7ch; margin-bottom: 1.1rem; padding: .45em .9em; border: 1px solid var(--line); border-left: 3px solid var(--red); font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--bone); }
+    .act__slots { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: .7ch; margin-bottom: 1.1rem; padding: .45em .9em; border: 1px solid var(--line); border-left: 3px solid var(--mark); font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--bone); }
     .act__slots b { color: var(--bone); font-weight: 700; }
     .act__slots--free { border-left-style: dashed; color: var(--read); font-weight: 500; }
 
     /* pas de photo pour ce geste → tuile dessinée, jamais une image
        empruntée (même loi que le roster des coachs sans portrait) */
     .act__media--none { position: relative; aspect-ratio: 4/3; align-self: start; min-height: 15rem; display: grid; place-content: center; gap: .8rem; justify-items: center; background: var(--ink-2); border: 1px solid var(--line); overflow: hidden; }
-    .act__media--none::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(120deg, #16110f 0 9px, #1c1512 9px 10px); opacity: .8; }
+    .act__media--none::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(120deg, #101830 0 9px, #17223c 9px 10px); opacity: .8; }
     .act__glyph { position: relative; font-family: var(--f-display); font-size: clamp(3.4rem,9vw,6rem); line-height: 1; color: transparent; -webkit-text-stroke: 2px var(--line); }
-    .act__nophoto { position: relative; font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--bone-dim); border-top: 2px solid var(--red); padding-top: .7rem; }
+    .act__nophoto { position: relative; font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--bone-dim); border-top: 2px solid var(--mark); padding-top: .7rem; }
     .act__desc { position: relative; z-index: 1; font-size: var(--step-1); line-height: 1.4; color: var(--bone); font-weight: 500; max-width: 46ch; }
     .act__for { position: relative; z-index: 1; display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem 1ch; margin: 1.4rem 0 1rem; color: var(--read); font-size: var(--step-0); }
-    .act__for span { font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--bone); border-left: 2px solid var(--red); padding-left: .7ch; }
+    .act__for span { font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--bone); border-left: 2px solid var(--mark); padding-left: .7ch; }
     .act__points { position: relative; z-index: 1; display: grid; gap: .55rem; margin-bottom: 1.6rem; }
     .act__points li { display: flex; gap: .8ch; align-items: flex-start; font-size: var(--step--1); color: var(--read); }
-    .act__points li::before { content: ""; flex: 0 0 7px; height: 7px; margin-top: .5em; background: var(--red); }
+    .act__points li::before { content: ""; flex: 0 0 7px; height: 7px; margin-top: .5em; background: var(--mark); }
     .act__cta { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 1rem; }
   </style>
 
@@ -509,7 +509,7 @@ import SiteContent from "../../components/SiteContent.astro";
 
   <!-- pastille "Une question ?" → appel direct de la salle (STANDARDS §1) -->
   <a class="chatbot" href="tel:+33562244682" aria-label="Une question ? Appelle la salle Boxing Center Minimes — 05 62 24 46 82">
-    <span class="chatbot__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+    <span class="chatbot__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6.4 14V8.2A5.2 5.2 0 0 1 11.6 3h1.5a5.2 5.2 0 0 1 5.2 5.2V14"/><path d="M6.4 8.9H5.1a2.3 2.3 0 0 0-2.3 2.3v.6a2.3 2.3 0 0 0 2.3 2.3h1.3"/><path d="M6.4 14h11.9v3.1a1.6 1.6 0 0 1-1.6 1.6H8a1.6 1.6 0 0 1-1.6-1.6z"/><path d="M8.7 18.7V20a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-1.3"/></svg></span>
     <span class="chatbot__label">Appelle la salle</span>
   </a>
 

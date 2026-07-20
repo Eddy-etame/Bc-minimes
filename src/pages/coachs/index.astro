@@ -30,7 +30,7 @@ import SiteContent from "../../components/SiteContent.astro";
   <meta name="geo.position" content="43.6256;1.4309" />
   <meta name="ICBM" content="43.6256, 1.4309" />
   <link rel="canonical" href="https://minimes.boxingcenter.fr/coachs/" />
-  <meta name="theme-color" content="#0a0908" />
+  <meta name="theme-color" content="#0a1020" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
   <link rel="shortcut icon" href="/favicon.png" />
@@ -383,7 +383,7 @@ import SiteContent from "../../components/SiteContent.astro";
     .pillar:hover .pillar__cut, .pillar:active .pillar__cut { filter: contrast(1.06) saturate(1.05) brightness(1); transform: translateY(0) scale(1); }
     .pillar__body { padding: clamp(1.8rem,3.5vw,3rem); display: flex; flex-direction: column; }
     .pillar__role { display: inline-flex; align-items: center; gap: .7ch; font: 700 var(--step--1)/1.4 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--bone); }
-    .pillar__role::before { content: ""; width: 18px; height: 2px; background: var(--red); flex: 0 0 18px; }
+    .pillar__role::before { content: ""; width: 18px; height: 2px; background: var(--mark); flex: 0 0 18px; }
     .pillar__role i { color: var(--bone-dim); font-style: normal; }
     .pillar__name { font-family: var(--f-display); text-transform: uppercase; font-size: clamp(2.4rem,6vw,4.4rem); line-height: .9; margin: .5rem 0 1.1rem; color: var(--bone); }
     .pillar__disc { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.4rem; }
@@ -392,7 +392,7 @@ import SiteContent from "../../components/SiteContent.astro";
     .pillar__note { margin-top: 1rem; color: var(--muted); font: 500 var(--step--1)/1.5 var(--f-mono); letter-spacing: .04em; }
     /* la charge de travail, DÉRIVÉE du planning (coachs.js) — un chiffre
        qui se recompte tout seul vaut mieux qu'un adjectif */
-    .pillar__week { margin-top: .9rem; display: inline-flex; align-items: center; gap: .7ch; padding: .5em .9em; border-left: 3px solid var(--red); background: var(--ink-2); font: 500 var(--step--1)/1 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--read); }
+    .pillar__week { margin-top: .9rem; display: inline-flex; align-items: center; gap: .7ch; padding: .5em .9em; border-left: 3px solid var(--mark); background: var(--ink-2); font: 500 var(--step--1)/1 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--read); }
     .pillar__week b { color: var(--bone); font-weight: 700; }
     .pillar__cta { margin-top: auto; padding-top: 1.6rem; display: flex; flex-wrap: wrap; gap: 1rem; }
 
@@ -400,20 +400,20 @@ import SiteContent from "../../components/SiteContent.astro";
     .roster { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); grid-template-columns: 1fr; }
     @media (min-width: 680px){ .roster { grid-template-columns: repeat(3,1fr); } }
     .coach { position: relative; background: var(--ink); padding: clamp(1.8rem,3.2vw,2.4rem); min-height: 17rem; display: flex; flex-direction: column; gap: 1rem; overflow: hidden; border-top: 2px solid transparent; transition: background .35s, border-color .35s; }
-    .coach:hover, .coach:active { background: var(--ink-2); border-top-color: var(--red); }
+    .coach:hover, .coach:active { background: var(--ink-2); border-top-color: var(--mark); }
     .coach__mono { position: absolute; top: -1.5rem; right: -.5rem; font-family: var(--f-display); font-size: clamp(6rem,14vw,10rem); line-height: .7; color: transparent; -webkit-text-stroke: 1.5px var(--line-soft); pointer-events: none; z-index: 0; transition: -webkit-text-stroke-color .4s; }
-    .coach:hover .coach__mono, .coach:active .coach__mono { -webkit-text-stroke-color: rgba(225,6,0,.4); }
+    .coach:hover .coach__mono, .coach:active .coach__mono { -webkit-text-stroke-color: rgba(174,188,207,.45); }
     .coach__body { position: relative; z-index: 1; margin-top: 1.4rem; }
     .coach__role { display: inline-flex; align-items: center; gap: .7ch; font: 700 var(--step--1)/1.3 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--bone); }
-    .coach__role::before { content: ""; width: 14px; height: 2px; background: var(--red); flex: 0 0 14px; }
+    .coach__role::before { content: ""; width: 14px; height: 2px; background: var(--mark); flex: 0 0 14px; }
     .coach__name { font-family: var(--f-display); text-transform: uppercase; font-size: clamp(1.8rem,3.6vw,2.6rem); line-height: 1; margin: .45rem 0 .7rem; color: var(--bone); }
     .coach__note { position: relative; z-index: 1; color: var(--muted); font-size: var(--step--1); line-height: 1.5; max-width: 32ch; }
     /* la tuile sans portrait n'était qu'un texte : elle ne menait nulle
        part. Elle mène maintenant aux créneaux de la personne — filtrés. */
-    .coach__link { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: .7ch; min-height: 44px; margin-top: .6rem; font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--bone); border-bottom: 2px solid var(--red); align-self: flex-start; transition: color .3s, gap .3s; }
+    .coach__link { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: .7ch; min-height: 44px; margin-top: .6rem; font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--bone); border-bottom: 2px solid var(--mark); align-self: flex-start; transition: color .3s, gap .3s; }
     .coach__link:hover, .coach__link:active { color: var(--white); gap: 1.4ch; }
     .coach__pending { position: relative; z-index: 1; margin-top: auto; align-self: flex-start; font: 700 .62rem/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--bone-dim); border: 1px dashed var(--line); padding: .55em .8em; }
-    .co-pending { margin-top: clamp(1.6rem,4vw,2.4rem); color: var(--muted); font: 500 var(--step--1)/1.6 var(--f-mono); letter-spacing: .04em; max-width: 64ch; border-left: 2px solid var(--red); padding-left: 1rem; }
+    .co-pending { margin-top: clamp(1.6rem,4vw,2.4rem); color: var(--muted); font: 500 var(--step--1)/1.6 var(--f-mono); letter-spacing: .04em; max-width: 64ch; border-left: 2px solid var(--mark); padding-left: 1rem; }
 
     /* ---- QUI EST LÀ, QUEL JOUR (dérivé de PLANNING) ----
        Six colonnes-jour au bureau, empilées au téléphone. Volontairement
@@ -424,12 +424,12 @@ import SiteContent from "../../components/SiteContent.astro";
     @media (min-width: 640px){ .cweek { grid-template-columns: repeat(2,1fr); } }
     @media (min-width: 1080px){ .cweek { grid-template-columns: repeat(6,1fr); } }
     .cwd { background: var(--ink); padding: clamp(1rem,2vw,1.3rem); display: flex; flex-direction: column; gap: .8rem; }
-    .cwd__h { display: flex; align-items: baseline; justify-content: space-between; gap: .6ch; font-family: var(--f-display); text-transform: uppercase; font-size: clamp(1.05rem,2vw,1.3rem); line-height: 1; color: var(--bone); border-bottom: 2px solid var(--red); padding-bottom: .55rem; }
+    .cwd__h { display: flex; align-items: baseline; justify-content: space-between; gap: .6ch; font-family: var(--f-display); text-transform: uppercase; font-size: clamp(1.05rem,2vw,1.3rem); line-height: 1; color: var(--bone); border-bottom: 2px solid var(--mark); padding-bottom: .55rem; }
     .cwd__h i { font: 700 .62rem/1 var(--f-mono); font-style: normal; color: var(--bone-dim); }
     .cwd__list { display: grid; gap: .4rem; }
     /* le nom est le lien : toute la ligne clique, pas seulement le mot */
     .cwd__a { display: flex; align-items: center; justify-content: space-between; gap: .8ch; min-height: 44px; padding: .5rem .6rem; background: var(--ink-2); border-left: 2px solid var(--line); transition: border-color .3s, background .3s; }
-    .cwd__a:hover, .cwd__a:focus-visible, .cwd__a:active { border-left-color: var(--red); background: var(--char); }
+    .cwd__a:hover, .cwd__a:focus-visible, .cwd__a:active { border-left-color: var(--mark); background: var(--char); }
     .cwd__n { font: 700 var(--step--1)/1.2 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--bone); }
     .cwd__c { font: 500 .66rem/1 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--bone-dim); white-space: nowrap; }
   </style>
@@ -515,7 +515,7 @@ import SiteContent from "../../components/SiteContent.astro";
           <p class="muted" data-reveal style="max-width:34ch">Tu cherches quelqu'un en particulier ? Clique sur son nom : la grille s'ouvre déjà filtrée sur lui, ce jour-là.</p>
         </div>
         <div class="cweek" id="cweek" data-reveal-group></div>
-        <p class="muted" data-reveal style="margin-top:clamp(1.4rem,3vw,2rem);font:500 var(--step--1)/1.6 var(--f-mono);letter-spacing:.04em;max-width:64ch;border-left:2px solid var(--red);padding-left:1rem">Le dimanche n'est pas dans cette liste : la salle est fermée. Le reste du temps, en dehors des cours, les rings et les sacs sont en accès libre — personne ne t'encadre, mais il y a toujours quelqu'un dans la salle.</p>
+        <p class="muted" data-reveal style="margin-top:clamp(1.4rem,3vw,2rem);font:500 var(--step--1)/1.6 var(--f-mono);letter-spacing:.04em;max-width:64ch;border-left:2px solid var(--mark);padding-left:1rem">Le dimanche n'est pas dans cette liste : la salle est fermée. Le reste du temps, en dehors des cours, les rings et les sacs sont en accès libre — personne ne t'encadre, mais il y a toujours quelqu'un dans la salle.</p>
       </div>
     </section>
 
@@ -539,7 +539,7 @@ import SiteContent from "../../components/SiteContent.astro";
 
   <!-- pastille "Une question ?" → appel direct de la salle (STANDARDS §1) -->
   <a class="chatbot" href="tel:+33562244682" aria-label="Une question ? Appelle la salle Boxing Center Minimes — 05 62 24 46 82">
-    <span class="chatbot__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+    <span class="chatbot__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6.4 14V8.2A5.2 5.2 0 0 1 11.6 3h1.5a5.2 5.2 0 0 1 5.2 5.2V14"/><path d="M6.4 8.9H5.1a2.3 2.3 0 0 0-2.3 2.3v.6a2.3 2.3 0 0 0 2.3 2.3h1.3"/><path d="M6.4 14h11.9v3.1a1.6 1.6 0 0 1-1.6 1.6H8a1.6 1.6 0 0 1-1.6-1.6z"/><path d="M8.7 18.7V20a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-1.3"/></svg></span>
     <span class="chatbot__label">Appelle la salle</span>
   </a>
 

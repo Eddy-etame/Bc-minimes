@@ -146,11 +146,36 @@ function initLightbox() {
   });
 }
 
+/* ------------------------- LE MUR DU CLUB --------------------------
+   Le module participatif et sa feuille ne descendent QUE lorsque la
+   section approche de l'écran. Un visiteur venu regarder les photos ne
+   paie donc rien pour un formulaire qu'il ne verra peut-être jamais —
+   même règle que l'assistant (§5.8). */
+function armCommunity() {
+  const sec = $("#community");
+  if (!sec || !("IntersectionObserver" in window)) return;
+  let pending = null;
+  const io = new IntersectionObserver((entries) => {
+    if (!entries.some((e) => e.isIntersecting) || pending) return;
+    io.disconnect();
+    /* la feuille d'abord : le formulaire ne doit jamais paraître nu */
+    const l = document.createElement("link");
+    l.rel = "stylesheet";
+    l.href = "/assets/css/community.css?v=b9";
+    document.head.appendChild(l);
+    pending = import("./community.js?v=b9")
+      .then((m) => m.initCommunity())
+      .catch(() => { /* le reste de la page ne bouge pas */ });
+  }, { rootMargin: "400px" });
+  io.observe(sec);
+}
+
 function boot() {
   renderFilters();
   renderGrid();
   renderOffFrame();
   renderBridge();
+  armCommunity();
 
   window.BC.media(document);
   window.BC.reveal(document);

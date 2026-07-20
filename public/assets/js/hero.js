@@ -2,9 +2,9 @@
    MINIMES · hero.js — A/B hero with toggle
    A "Pochoir"  : real training footage shows THROUGH the word MINIMES
                   (black multiply panel + white letters = video knockout)
-   B "Shader"   : video-texture en WebGL brut, duotone (noir→os, rouge
-                  ténu), ondulation au pointeur + décalage RVB.
-   Red stays a spark.
+   B "Shader"   : video-texture en WebGL brut, duotone (fond profond → navy
+                  → os), ondulation au pointeur + décalage RVB.
+   Le bleu est la braise, pas le décor.
 
    Pourquoi WebGL brut et plus three.js : le mode B n'est qu'un quad
    plein écran avec UN fragment shader. On importait 608 ko de moteur 3D
@@ -74,7 +74,9 @@ const FRAG = `precision highp float; varying vec2 vUv;
         float g=texture2D(uTex,c+off).g;
         float b=texture2D(uTex,c+off-vec2(sh,0.0)).b;
         float l=dot(vec3(r,g,b),vec3(0.299,0.587,0.114));
-        vec3 sdw=vec3(0.02), mid=vec3(0.30,0.05,0.04), hi=vec3(0.95,0.93,0.89);
+        /* duotone de la charte : ombre = fond profond, MÉDIUM = navy #182848,
+           haute lumière = os #eef1f6. Le rouge a quitté le shader. */
+        vec3 sdw=vec3(0.039,0.063,0.125), mid=vec3(0.094,0.157,0.282), hi=vec3(0.933,0.945,0.965);
         vec3 col=mix(sdw,mid,smoothstep(0.0,0.5,l));
         col=mix(col,hi,smoothstep(0.5,1.0,l));
         float v=distance(uv,vec2(0.5)); col*=1.0-0.55*v*v;

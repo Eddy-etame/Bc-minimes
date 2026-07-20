@@ -45,7 +45,10 @@ function mountNav() {
       </a>
       <div class="nav__links">${links}</div>
       <div class="nav__right">
-        ${extLink(LINKS.groupe, "Le groupe", "nav__ext")}
+        <div class="nav__ext">
+          ${extLink(LINKS.groupe, "Le groupe")}
+          ${extLink(LINKS.boutique, "Boutique")}
+        </div>
         <a class="btn btn--primary nav__cta" data-magnetic href="${LINKS.essai}"><span>${CTA.chrome}</span></a>
         <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>

@@ -64,7 +64,11 @@ export const LINKS = {
   enfants: "https://box-plus.vercel.app/abonnements#enfants",
   promos: "https://box-plus.vercel.app/abonnements#promotions",
   coachings: "https://box-plus.vercel.app/coachings",
-  boutique: "https://box-plus.vercel.app/materiel",
+  materiel: "https://box-plus.vercel.app/materiel",
+  // maillage de marque : « Boutique » mène à la BOUTIQUE, pas à un rayon.
+  // Elle pointait sur /materiel sous le libellé « Boutique » — le lien
+  // mentait au clic, et Saint-Cyprien pointait déjà sur la racine. Parité.
+  boutique: "https://box-plus.vercel.app/",
   offreRentree: "/tarifs/",   // la carte "Offre Rentrée" de l'accueil reste interne → /tarifs/
   groupe: "https://boxingcenter.fr/",
   facebook: "https://www.facebook.com/BoxingCenterToulouse/",

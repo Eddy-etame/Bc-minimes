@@ -29,7 +29,7 @@ import SiteContent from "../../components/SiteContent.astro";
   <meta name="geo.position" content="43.6256;1.4309" />
   <meta name="ICBM" content="43.6256, 1.4309" />
   <link rel="canonical" href="https://minimes.boxingcenter.fr/galerie/" />
-  <meta name="theme-color" content="#0a0908" />
+  <meta name="theme-color" content="#0a1020" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
   <link rel="shortcut icon" href="/favicon.png" />
@@ -314,13 +314,13 @@ import SiteContent from "../../components/SiteContent.astro";
     .page-head--ga .page-head__bg { opacity: .22; }
     .ga-sprockets { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; display: flex; gap: 10px; padding: 7px 0; background: var(--black); border-top: 1px solid var(--line); overflow: hidden; pointer-events: none; }
     .ga-sprockets i { flex: 0 0 26px; height: 14px; border-radius: 2px; background: var(--ink-2); border: 1px solid var(--line); }
-    .ga-sprockets i:nth-child(4n) { background: var(--red-deep); }
+    .ga-sprockets i:nth-child(4n) { background: var(--navy-2); }
 
     /* filtres par zone */
     .ga-filters { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: clamp(1.4rem,3vw,2rem); }
     .ga-filter { display: inline-flex; align-items: center; min-height: 44px; padding: .55em .95em; border: 1px solid var(--line); font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--bone-dim); transition: color .3s, border-color .3s, background .3s; }
     .ga-filter:hover { color: var(--bone); border-color: var(--bone-dim); }
-    .ga-filter:active, .ga-filter.is-on { color: var(--on-accent); background: var(--red); border-color: var(--red); }
+    .ga-filter:active, .ga-filter.is-on { color: var(--on-accent); background: var(--navy); border-color: var(--silver); }
     /* le compte par zone — dérivé des photos (galerie.js). Un filtre qui
        annonce combien il en reste évite le clic dans le vide. */
     .ga-filter i { font-style: normal; margin-left: .8ch; padding-left: .8ch; border-left: 1px solid currentColor; opacity: .7; }
@@ -331,11 +331,11 @@ import SiteContent from "../../components/SiteContent.astro";
     @media (min-width: 640px){ .ga-bridge { grid-template-columns: repeat(2,1fr); } }
     @media (min-width: 1020px){ .ga-bridge { grid-template-columns: repeat(4,1fr); } }
     .ga-bridge__card { background: var(--ink); padding: clamp(1.3rem,2.6vw,1.8rem); min-height: 12rem; display: flex; flex-direction: column; gap: .5rem; border-top: 2px solid transparent; transition: background .35s, border-color .35s; }
-    .ga-bridge__card:hover, .ga-bridge__card:active { background: var(--ink-2); border-top-color: var(--red); }
+    .ga-bridge__card:hover, .ga-bridge__card:active { background: var(--ink-2); border-top-color: var(--mark); }
     .ga-bridge__z { font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--bone-dim); }
     .ga-bridge__n { font-family: var(--f-display); text-transform: uppercase; font-size: var(--step-1); line-height: .95; color: var(--bone); }
     .ga-bridge__d { font-size: var(--step--1); line-height: 1.5; color: var(--muted); }
-    .ga-bridge__go { margin-top: auto; font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--bone); border-top: 2px solid var(--red); padding-top: .8rem; transition: color .3s; }
+    .ga-bridge__go { margin-top: auto; font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--bone); border-top: 2px solid var(--mark); padding-top: .8rem; transition: color .3s; }
     .ga-bridge__card:hover .ga-bridge__go { color: var(--white); }
 
     /* mosaïque */
@@ -346,7 +346,7 @@ import SiteContent from "../../components/SiteContent.astro";
     .ga-cell.is-hidden { display: none; }
     .ga-cell img { object-position: 50% 35%; transition: transform 1s var(--ease-out), filter .6s; }
     .ga-cell:hover img, .ga-cell:active img { transform: scale(1.07); filter: grayscale(1) contrast(1.05) brightness(1); }
-    .ga-cell:hover, .ga-cell:focus-visible { outline: 2px solid var(--red); }
+    .ga-cell:hover, .ga-cell:focus-visible { outline: 2px solid var(--mark); }
     .ga-cell.media::after { opacity: 0; transform: translateY(10px); transition: opacity .4s, transform .5s var(--ease-out); }
     .ga-cell.media:hover::after, .ga-cell.media:focus-visible::after { opacity: 1; transform: none; }
     .ga-cell::before { content: "⤢"; position: absolute; top: .7rem; right: .8rem; z-index: 3; font-size: 1rem; color: var(--bone); opacity: 0; transform: scale(.8); transition: opacity .35s, transform .35s var(--ease-punch); }
@@ -367,9 +367,9 @@ import SiteContent from "../../components/SiteContent.astro";
     .ga-lightbox.is-open { opacity: 1; visibility: visible; transition: opacity .4s var(--ease), visibility 0s linear 0s; }
     .ga-lb__img { max-width: min(94vw,1100px); max-height: 80vh; width: auto; height: auto; border: 1px solid var(--line); filter: grayscale(1) contrast(1.1) brightness(.95); }
     .ga-lb__cap { font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--bone); }
-    .ga-lb__cap::before { content: "— "; color: var(--red); }
+    .ga-lb__cap::before { content: "— "; color: var(--mark); }
     .ga-lb__close { position: absolute; top: clamp(1rem,3vw,1.8rem); right: clamp(1rem,3vw,1.8rem); display: inline-flex; align-items: center; justify-content: center; gap: .7ch; min-height: 44px; font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--bone); border: 1px solid var(--line); padding: .7em 1em; transition: color .3s, background .3s, border-color .3s; }
-    .ga-lb__close:hover, .ga-lb__close:active { color: var(--on-accent); background: var(--red); border-color: var(--red); }
+    .ga-lb__close:hover, .ga-lb__close:active { color: var(--on-accent); background: var(--navy); border-color: var(--silver); }
   </style>
 
   <script is:inline>
@@ -412,7 +412,67 @@ import SiteContent from "../../components/SiteContent.astro";
       <div class="wrap">
         <div class="ga-filters" id="ga-filters" data-reveal role="group" aria-label="Filtrer les photos par zone"></div>
         <div class="ga-grid" id="ga-grid" data-reveal-group></div>
-        <p class="muted" data-reveal style="margin-top:clamp(1.4rem,3vw,2rem);font:500 var(--step--1)/1.6 var(--f-mono);letter-spacing:.04em;max-width:60ch;border-left:2px solid var(--red);padding-left:1rem">Photos Boxing Center — réseau des cinq salles. Le shooting des Minimes arrive : même grain, même noir et blanc.</p>
+        <p class="muted" data-reveal style="margin-top:clamp(1.4rem,3vw,2rem);font:500 var(--step--1)/1.6 var(--f-mono);letter-spacing:.04em;max-width:60ch;border-left:2px solid var(--mark);padding-left:1rem">Photos Boxing Center — réseau des cinq salles. Le shooting des Minimes arrive : même grain, même noir et blanc.</p>
+      </div>
+    </section>
+
+    <!-- ===================== LE MUR DU CLUB =======================
+         La galerie ne se regarde plus seulement : elle se remplit. Les
+         gens de la salle déposent leurs photos et leurs vidéos, le staff
+         valide dans Le coin bleu, et ça monte ici.
+         L'habillage ET le module ne descendent que lorsque la section
+         entre à l'écran (cf. galerie.js) — /galerie/ ne paie rien au
+         premier rendu. Sans JavaScript, la section reste un texte
+         honnête et le mur n'affiche pas un cadre vide. -->
+    <section class="section band" id="community" aria-label="Le mur du club">
+      <div class="wrap">
+        <div data-reveal style="margin-bottom:clamp(1.6rem,4vw,2.4rem)">
+          <span class="eyebrow">Vos images</span>
+          <h2 class="display display--sm" style="margin-top:1rem">Le mur <span class="tint">du club</span></h2>
+          <p class="lead" data-reveal style="margin-top:1.2rem;max-width:56ch">Les photos du haut, c'est nous qui les avons prises. Celles d'en bas, c'est vous. Un round au sac, les gants des petits, la tête d'après séance : accroche-la au mur.</p>
+        </div>
+
+        <div class="cm">
+          <div class="cm-grid" id="community-grid">
+            <p class="cm-empty">Le mur se charge…</p>
+          </div>
+
+          <form class="cm-form" id="community-form" novalidate>
+            <h3>Accroche la tienne</h3>
+            <p>Photo ou vidéo, prise ici, aux Minimes. Un coach regarde avant que ça monte — on ne publie rien à l'aveugle.</p>
+
+            <div class="cm-field">
+              <label for="cm-author">Ton prénom</label>
+              <input id="cm-author" name="author" type="text" autocomplete="given-name" maxlength="40" placeholder="Mehdi" required />
+            </div>
+
+            <div class="cm-two">
+              <div class="cm-field">
+                <label for="cm-email">Ton email <i>ou le numéro</i></label>
+                <input id="cm-email" name="email" type="email" autocomplete="email" maxlength="120" placeholder="toi@exemple.fr" />
+              </div>
+              <div class="cm-field">
+                <label for="cm-phone">Ton numéro</label>
+                <input id="cm-phone" name="phone" type="tel" autocomplete="tel" maxlength="30" placeholder="06 12 34 56 78" />
+              </div>
+            </div>
+
+            <div class="cm-field">
+              <label for="cm-title">Le titre <i>(facultatif)</i></label>
+              <input id="cm-title" name="title" type="text" maxlength="60" placeholder="Dernier round, mardi soir" />
+            </div>
+
+            <div class="cm-field">
+              <label for="cm-file">Ton fichier</label>
+              <input id="cm-file" name="file" type="file" accept="image/*,video/*" required />
+            </div>
+
+            <p class="cm-hint">Photo ou vidéo · 60 Mo max · 15 s max pour une vidéo · validée par le staff avant publication</p>
+            <div class="cm-bar" aria-hidden="true"><i></i></div>
+            <button class="btn btn--primary" type="submit"><span>Envoyer au club</span></button>
+            <p class="cm-status" id="community-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
       </div>
     </section>
 
@@ -474,7 +534,7 @@ import SiteContent from "../../components/SiteContent.astro";
 
   <!-- pastille "Une question ?" → appel direct de la salle (STANDARDS §1) -->
   <a class="chatbot" href="tel:+33562244682" aria-label="Une question ? Appelle la salle Boxing Center Minimes — 05 62 24 46 82">
-    <span class="chatbot__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+    <span class="chatbot__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6.4 14V8.2A5.2 5.2 0 0 1 11.6 3h1.5a5.2 5.2 0 0 1 5.2 5.2V14"/><path d="M6.4 8.9H5.1a2.3 2.3 0 0 0-2.3 2.3v.6a2.3 2.3 0 0 0 2.3 2.3h1.3"/><path d="M6.4 14h11.9v3.1a1.6 1.6 0 0 1-1.6 1.6H8a1.6 1.6 0 0 1-1.6-1.6z"/><path d="M8.7 18.7V20a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-1.3"/></svg></span>
     <span class="chatbot__label">Appelle la salle</span>
   </a>
 

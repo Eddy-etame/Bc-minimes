@@ -41,11 +41,24 @@ const HANDLERS = {
   "/api/lead": "../api/lead.js",
   "/api/admin/content": "../api/admin/content.js",
   "/api/admin/leads": "../api/admin/leads.js",
+  "/api/community/sign": "../api/community/sign.js",
+  "/api/community/items": "../api/community/items.js",
+  "/api/community/pending": "../api/community/pending.js",
+  "/api/community/moderate": "../api/community/moderate.js",
 };
+
+/* La CSP de production, lue dans vercel.json et appliquée ICI aussi.
+   Sans elle, on vérifiait en local un site plus permissif que le site
+   livré : un envoi vers Cloudinary bloqué en ligne passait à la
+   vérification. On teste ce qu'on livre, ou on ne teste rien. */
+const CSP = await readFile(new URL("../vercel.json", import.meta.url), "utf8")
+  .then((s) => JSON.parse(s).headers?.[0]?.headers?.find((h) => h.key === "Content-Security-Policy")?.value || "")
+  .catch(() => "");
 
 createServer(async (req, res) => {
   const url = new URL(req.url, "http://localhost");
   let path = decodeURIComponent(url.pathname);
+  if (CSP) res.setHeader("Content-Security-Policy", CSP);
 
   const route = HANDLERS[path.replace(/\/$/, "")];
   if (route) {

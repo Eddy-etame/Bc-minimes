@@ -34,6 +34,27 @@ export function ipOf(req) {
   return (req.headers["x-forwarded-for"] || "").split(",")[0].trim() || req.socket?.remoteAddress || "0.0.0.0";
 }
 
+/* ---------- le filtre d'injures (prénoms et titres du public) ----------
+   Première ligne de défense côté SERVEUR : le client a le même filtre,
+   mais un client se contourne. Ce qui passe ici part quand même en file
+   de modération — rien n'est publié sans un humain. */
+const BADWORDS = [
+  "merde", "putain", "connard", "connasse", "salope", "encule", "pute", "bite", "couille", "nique",
+  "ntm", "pd", "pede", "tapette", "bougnoule", "negro", "negre", "youpin", "salaud",
+  "fuck", "shit", "bitch", "cunt", "nigger", "faggot", "whore", "rape", "nazi", "kys", "porn", "sex",
+];
+
+/** Valide et nettoie un nom saisi par un visiteur. Renvoie { value, bad }. */
+export function cleanName(s, max) {
+  const value = String(s || "").trim().slice(0, max).replace(/[=|<>]/g, ""); // on coupe ce qui casse le contexte / le HTML
+  const norm = value.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9\s]/g, " ");
+  const bad =
+    /(.)\1{6,}/.test(norm) ||                              // spam (aaaaaaa)
+    /https?:|www\.|\.[a-z]{2,}\/?/i.test(value) ||         // liens
+    BADWORDS.some((w) => new RegExp(`\\b${w}`, "i").test(norm));
+  return { value, bad };
+}
+
 /** Le contenu éditable par le backoffice, bundlé au déploiement.
  *  Chaque publication redéploie → le bot et le site restent synchrones. */
 export function siteContent() {

@@ -16,7 +16,7 @@ import SiteContent from "../components/SiteContent.astro";
   <link rel="stylesheet" href="/assets/css/base.css?v=b9" />
 
   <meta name="robots" content="noindex, follow" />
-  <meta name="theme-color" content="#0a0908" />
+  <meta name="theme-color" content="#0a1020" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
   <link rel="shortcut icon" href="/favicon.png" />
@@ -43,12 +43,12 @@ import SiteContent from "../components/SiteContent.astro";
     .nf { min-height: 100svh; display: flex; flex-direction: column; overflow: hidden; position: relative; background: var(--black); }
     .nf__brand { display: flex; align-items: center; gap: .8ch; padding: clamp(1.2rem,3vw,1.8rem) var(--gut); }
     .nf__brand img { height: clamp(24px,3vw,32px); width: auto; filter: brightness(0) invert(1); }
-    /* loi rouge : le nom de salle est une info, pas un décor → bone, et le
-       filet de gauche passe en rouge (même traitement que .nav__salle) */
-    .nf__salle { font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .2em; text-transform: uppercase; color: var(--bone); padding-left: .8ch; border-left: 2px solid var(--red); }
+    /* loi du navy : le nom de salle est une info, pas un décor → os, et le
+       filet de gauche est en argent (même traitement que .nav__salle) */
+    .nf__salle { font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .2em; text-transform: uppercase; color: var(--bone); padding-left: .8ch; border-left: 2px solid var(--mark); }
     .nf__main { flex: 1; display: grid; place-items: center; text-align: center; padding: 2rem var(--gut) clamp(3rem,8vw,6rem); position: relative; }
     .nf__code { font-family: var(--f-display); text-transform: uppercase; line-height: .8; font-size: clamp(6rem,30vw,20rem); color: transparent; -webkit-text-stroke: 2px var(--line); letter-spacing: -.02em; }
-    .nf__ko { display: block; font-size: clamp(2.4rem,10vw,6rem); color: var(--red); -webkit-text-stroke: 0; margin-top: -.1em; }
+    .nf__ko { display: block; font-size: clamp(2.4rem,10vw,6rem); color: var(--mark); -webkit-text-stroke: 0; margin-top: -.1em; }
     .nf__title { font-family: var(--f-display); text-transform: uppercase; font-size: clamp(1.4rem,4vw,2.4rem); line-height: 1; margin: 1.4rem 0 .8rem; color: var(--bone); }
     .nf__sub { color: var(--muted); max-width: 46ch; margin: 0 auto 2rem; font-size: var(--step-0); }
     .nf__cta { display: inline-flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }

@@ -28,16 +28,17 @@ local de vérifier la chaîne complète sans déployer.
 - `src/components/SiteContent.astro` — injecte dans chaque page l'écart entre `content.json` et les défauts de `data.js`
 - `public/assets/js/data.js` — la source de vérité du contenu ; la fusion du contenu publié se fait à la fin du fichier
 - `public/assets/js/chatbot.js` — le widget conversationnel
-- `public/admin/` — le backoffice « Le coin rouge » (hors routage Astro)
+- `public/admin/` — le backoffice « Le coin bleu » (hors routage Astro)
 - `api/` — les fonctions serverless (Vercel les sert à côté du build statique)
 
 ---
 
 ## L'assistant du site (`/api/chat`)
 
-Le widget se greffe sur la pastille rouge déjà présente dans le HTML. **Sans
-JavaScript, cette pastille reste un lien `tel:` qui appelle la salle** ; le
-script la promeut en conversation. Il n'y a donc jamais de bouton mort.
+Le widget se greffe sur la pastille au **gant de boxe** déjà présente dans le
+HTML — la marque de la maison, pas la bulle de messagerie de tout le monde.
+**Sans JavaScript, cette pastille reste un lien `tel:` qui appelle la salle** ;
+le script la promeut en conversation. Il n'y a donc jamais de bouton mort.
 
 Le prompt système est ancré sur les vraies données de la salle, lues dans
 `src/content.json` (adresse, horaires, offres, coachs, planning), avec un repli
@@ -91,7 +92,52 @@ brancher au lieu d'un tableau vide qui mentirait.
 Voie recommandée pour démarrer : **Vercel KV** (gratuit, deux variables, aucune
 dépendance npm) + **Resend** pour recevoir l'alerte par email.
 
-## Le backoffice — « Le coin rouge » (`/admin/`)
+## La galerie du club (`/api/community/*`)
+
+La page `/galerie/` n'est plus seulement à regarder : les gens de la salle y
+**déposent** leurs photos et leurs vidéos, et ça sert aussi à **capter des
+contacts** — le dépôt exige un prénom **et** un email **ou** un numéro, qui
+partent dans le carnet existant (`/api/lead`, `event: "upload_contributor"`).
+Un seul carnet, pas deux systèmes.
+
+**Le stockage est Cloudinary**, comme à Portet — et il fait tout à la fois :
+stockage, transcodage (transformations à la livraison), base de données
+(l'**état vit dans les tags**) et modération. Chaque salle a **son propre
+dossier** : ici `bc-minimes-community`.
+
+| Route | Rôle |
+| --- | --- |
+| `POST /api/community/sign` | Valide prénom / contact / titre (filtre d'injures), limite par IP, puis **signe** un dépôt direct vers Cloudinary. Les octets ne traversent jamais Vercel (limite de 4,5 Mo sur le corps). |
+| `GET /api/community/items` | Le mur public — **uniquement** les médias tagués `approved`. |
+| `GET /api/community/pending` | La file de modération (staff, `x-admin-token`). |
+| `POST /api/community/moderate` | Approuver (retag `approved`) ou refuser (destruction du fichier). |
+
+**Rien n'est publié directement.** Tout dépôt atterrit tagué `pending`,
+invisible du public, et n'apparaît sur le site qu'après approbation dans
+*Le coin bleu → La galerie du club*.
+
+Le fichier est vérifié **côté navigateur ET côté serveur** : octets d'en-tête
+(pas l'extension : un `.jpg` peut être n'importe quoi), **décodage réel** de
+l'image, **durée de la vidéo ≤ 15 s**, taille max, prénom et titre passés au
+filtre d'injures partagé (`cleanName`), limite de dépôts par IP.
+
+**Perf** : la feuille et le module du mur ne descendent que lorsque la section
+approche de l'écran, et une vidéo approuvée n'est jamais téléchargée au premier
+rendu — on ne sert que son affiche.
+
+| Variables | Rôle |
+| --- | --- |
+| `CLOUDINARY_URL` | **La seule requise.** Forme : `cloudinary://<api_key>:<api_secret>@<cloud_name>`. Sans elle, la section se ferme proprement — aucun dépôt, aucun cadre vide. |
+| `CLOUDINARY_FOLDER` | Le dossier de la salle. `bc-minimes-community` par défaut. |
+| `CLOUDINARY_MODERATION` | Modération automatique (add-on Cloudinary : `aws_rek` pour les images, `google_video_moderation` pour les vidéos). **Vide = tout part en file humaine** : le système marche sans, on ne promet pas une vérification qu'on n'a pas. |
+| `COMMUNITY_MAX_MB`, `COMMUNITY_MAX_SEC` | Les limites annoncées au visiteur et vérifiées avant l'envoi. `60` / `15` par défaut. |
+| `RATE_WINDOW_MIN`, `RATE_MAX` | La limite de dépôts par IP. `10` min / `3` dépôts par défaut. |
+
+> La CSP de `vercel.json` autorise `https://api.cloudinary.com` en `connect-src`
+> et `https://res.cloudinary.com` en `media-src`. Sans ces deux entrées, l'envoi
+> et la lecture des vidéos sont bloqués par le navigateur.
+
+## Le backoffice — « Le coin bleu » (`/admin/`)
 
 Protégé par `ADMIN_TOKEN`, vérifié **côté fonction** : aucun secret ne vit dans
 le front, le mot de passe saisi n'est qu'un en-tête `x-admin-token` que le

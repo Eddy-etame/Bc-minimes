@@ -1,5 +1,5 @@
 /* ============================================================
-   LE COIN ROUGE — l'atelier du site Boxing Center Minimes.
+   LE COIN BLEU — l'atelier du site Boxing Center Minimes.
    Tout le contenu modifiable vit dans src/content.json ; ce
    fichier génère les formulaires depuis SCHEMA, garde un
    brouillon local, ouvre un aperçu, et publie (commit GitHub +
@@ -44,6 +44,7 @@ const ICONS = {
   planning:  I('<rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17"/><path d="M8 3v4"/><path d="M16 3v4"/>'),
   faq:       I('<circle cx="12" cy="12" r="8.5"/><path d="M9.6 9.4a2.5 2.5 0 0 1 4.8.9c0 1.7-2.4 2-2.4 3.4"/><path d="M12 17.2h.01"/>'),
   leads:     I('<path d="M3.5 6.5h17v11h-17z"/><path d="m3.9 7.2 8.1 6 8.1-6"/>'),
+  community: I('<rect x="3.5" y="5" width="17" height="14" rx="2.5"/><circle cx="8.6" cy="9.8" r="1.6"/><path d="m4 16.5 4.4-4.2 3.3 3.1 3.2-3.4 5.1 4.9"/>'),
 };
 
 /* ---------- 2. schéma : chaque entrée pilote un formulaire ---------- */
@@ -123,6 +124,7 @@ const SCHEMA = {
     intro: "Les questions de la page Contact. Elles sont aussi lues par Google (bloc « questions fréquentes »). Réponds comme tu parles : tutoiement, phrases courtes.",
     item: [{ k: "q", label: "La question" }, { k: "a", label: "La réponse", ml: true }]},
 
+  community: { label: "La galerie du club", type: "community" },
   leads: { label: "Les contacts", type: "leads" },
 };
 
@@ -271,12 +273,12 @@ const WIZ = [
 ];
 function renderDashboard(pane) {
   pane.append(el("div", { class: "hero-admin" },
-    el("h3", {}, "Le coin rouge"),
+    el("h3", {}, "Le coin bleu"),
     el("p", {}, "D'ici tu changes le site de la salle : les horaires, les prix, les coachs, le planning, les questions — et tu lis les contacts laissés dans l'assistant. Rien n'est en ligne tant que tu n'as pas cliqué sur « Publier »."),
     el("div", { class: "lamp" + (DIRTY ? " dirty" : "") }, el("i", {}),
       DIRTY ? "Tu as des modifications non publiées" : "Le site est à jour")));
 
-  pane.append(el("h3", { style: "margin:22px 0 10px;font-size:.9rem;letter-spacing:.1em;color:#cfc9be" }, "Je veux…"));
+  pane.append(el("h3", { style: "margin:22px 0 10px;font-size:.9rem;letter-spacing:.1em;color:#aebccf" }, "Je veux…"));
   const grid = el("div", { class: "cards3" });
   WIZ.forEach((w) => grid.append(el("button", { class: "wiz", type: "button", onclick: () => startWizard(w.k) },
     el("em", {}, "Guide pas à pas"), el("b", {}, w.t), el("span", {}, w.d))));
@@ -326,6 +328,89 @@ async function renderLeads(pane) {
   box.append(el("p", { class: "hint", style: "margin-top:10px" }, `${leads.length} contact${leads.length > 1 ? "s" : ""} au carnet.`));
 }
 
+/* ---------- LA GALERIE DU CLUB : la file de modération ----------
+   Ce que les visiteurs déposent sur /galerie/ atterrit ici, et NULLE
+   PART ailleurs, tant que personne ne l'a approuvé. Approuver = ça monte
+   sur le site tout de suite (pas besoin de publier : le mur est lu en
+   direct depuis Cloudinary). Refuser = le fichier est détruit. */
+async function renderCommunity(pane) {
+  pane.append(el("p", { class: "sec-intro" },
+    "Les photos et les vidéos déposées par les gens de la salle. Rien n'est visible sur le site tant que tu n'as pas cliqué sur « Approuver ». Regarde, et tranche : on ne publie pas à l'aveugle."));
+  const box = el("div", {}, el("p", { class: "empty" }, "Chargement de la file…"));
+  pane.append(box);
+
+  let j;
+  try {
+    const r = await fetch("/api/community/pending", { headers: { "x-admin-token": TOKEN } });
+    if (r.status === 401) return logout();
+    j = await r.json();
+    if (!r.ok) throw new Error(j.error || r.status);
+  } catch (e) {
+    box.innerHTML = "";
+    box.append(el("div", { class: "notice" }, el("b", {}, "File illisible. "), String(e.message || e)));
+    return;
+  }
+
+  box.innerHTML = "";
+  if (j.ready === false) {
+    box.append(el("div", { class: "notice" }, el("b", {}, "Le mur n'est pas encore ouvert. "), j.why || ""));
+    return;
+  }
+  const items = j.items || [];
+  if (!items.length) {
+    box.append(el("p", { class: "empty" }, "Rien en attente. Tout ce qui a été déposé est déjà traité."));
+    return;
+  }
+
+  const grid = el("div", { class: "modgrid" });
+  items.forEach((it) => {
+    const media = it.kind === "video"
+      ? el("video", { src: it.src, poster: it.poster, controls: "", preload: "none", playsinline: "" })
+      : el("img", { src: it.poster, alt: it.title || "Dépôt en attente", loading: "lazy", decoding: "async" });
+
+    const act = el("div", { class: "modcard__act" },
+      el("button", { class: "btn sm", type: "button", onclick: (e) => decide(e.currentTarget, it, "approve") }, "Approuver"),
+      el("button", { class: "btn ghost sm", type: "button", onclick: (e) => decide(e.currentTarget, it, "reject") }, "Refuser"));
+
+    const card = el("div", { class: "modcard" },
+      el("div", { class: "modcard__m" }, media,
+        el("span", { class: "modcard__k" }, it.kind === "video" ? "Vidéo" : "Photo")),
+      el("div", { class: "modcard__b" },
+        el("b", {}, it.title || "Sans titre"),
+        el("span", {}, "Déposé par " + (it.author || "—")),
+        el("span", { class: "modcard__d" }, (() => {
+          try { return new Date(it.createdAt).toLocaleString("fr-FR", { dateStyle: "short", timeStyle: "short" }); }
+          catch { return it.createdAt || ""; }
+        })())),
+      act);
+    grid.append(card);
+  });
+  box.append(grid);
+  box.append(el("p", { class: "hint", style: "margin-top:12px" },
+    `${items.length} dépôt${items.length > 1 ? "s" : ""} en attente.`));
+
+  async function decide(btn, it, action) {
+    if (action === "reject" && !confirm("Refuser ce dépôt ? Le fichier est supprimé définitivement.")) return;
+    const card = btn.closest(".modcard");
+    card.querySelectorAll("button").forEach((b) => (b.disabled = true));
+    setStatus(action === "approve" ? "Approbation…" : "Suppression…");
+    try {
+      const r = await fetch("/api/community/moderate", {
+        method: "POST", headers: { "Content-Type": "application/json", "x-admin-token": TOKEN },
+        body: JSON.stringify({ id: it.id, kind: it.kind, action }),
+      });
+      const jj = await r.json().catch(() => ({}));
+      if (!r.ok) throw new Error(jj.error || r.status);
+      card.remove();
+      setStatus(action === "approve" ? "Approuvé — c'est en ligne sur la galerie." : "Refusé — le fichier est supprimé.", "ok");
+      if (!grid.children.length) renderSection("community");
+    } catch (e) {
+      card.querySelectorAll("button").forEach((b) => (b.disabled = false));
+      setStatus("Échec : " + (e.message || e), "bad");
+    }
+  }
+}
+
 /* ---------- 5. charger / publier / naviguer ---------- */
 function renderSection(key) {
   CURRENT = key;
@@ -334,6 +419,7 @@ function renderSection(key) {
   const sc = SCHEMA[key];
   document.getElementById("paneTitle").textContent = sc.label;
   if (sc.type === "dashboard") return renderDashboard(pane);
+  if (sc.type === "community") return void renderCommunity(pane);
   if (sc.type === "leads") return void renderLeads(pane);
   if (sc.intro) pane.append(el("p", { class: "sec-intro" }, sc.intro));
   if (sc.type === "object") { DATA[key] = DATA[key] || {}; renderFields(pane, sc.fields, DATA[key]); }
@@ -392,7 +478,7 @@ async function publish() {
 function buildNav() {
   const nav = document.getElementById("nav"); nav.innerHTML = "";
   Object.keys(SCHEMA).forEach((k) => {
-    if (k === "leads") nav.append(el("div", { style: "height:1px;background:var(--line);margin:10px 8px" }));
+    if (k === "community") nav.append(el("div", { style: "height:1px;background:var(--line);margin:10px 8px" }));
     nav.append(el("button", { class: "navbtn", type: "button", "data-k": k, onclick: () => renderSection(k),
       html: `<span class="nico">${ICONS[k] || ""}</span><span>${SCHEMA[k].label}</span>` }));
   });
