@@ -249,3 +249,9 @@ table.leads .when{font:400 .74rem/1.4 var(--mono);color:var(--steel);white-space
   .side .foot{flex-direction:row;flex-wrap:wrap}
   .row2{grid-template-columns:1fr}
 }
+
+/* Lisibilité mobile — plancher 12px sur les micro-labels du vestiaire (≤600px). */
+@media (max-width:600px){
+  .lg-kicker,.lg-foot,.kicker,.sm,.when,.modcard__v,.modcard__d,.dots,.lg-btn,
+  label,.field label,.form label{font-size:12px !important}
+}

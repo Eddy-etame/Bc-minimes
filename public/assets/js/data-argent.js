@@ -6,7 +6,7 @@
    Les embarquer partout coûtait leur poids sur chaque page pour rien.
    ===================================================================== */
 
-import { bcRegister } from "./data.js?v=b9";
+import { bcRegister } from "./data.js?v=b15";
 
 /* Avis Google réels (verbatim, curés le 2026-07-12) — jamais inventés.
    Source : fiche Google Boxing Center Minimes.

@@ -410,3 +410,25 @@ a:hover > .ext, a:focus-visible > .ext { opacity: 1; }
 .netcard__go { margin-top: .35rem; display: inline-flex; align-items: center; gap: .35rem; font: 700 .72rem/1 var(--f-ui); letter-spacing: .06em; text-transform: uppercase; color: var(--bone-dim); }
 .netcard:hover .netcard__go { color: var(--bone); }
 @media (prefers-reduced-motion: reduce) { .netcard { transition: border-color .3s; } .netcard:hover { transform: none; } }
+
+/* ─── LISIBILITÉ MOBILE UNIVERSELLE (base.css → toutes les pages, y compris
+   celles sans home.css : le-club, contact, admin) — plancher 12px sur les
+   micro-labels. @media ≤600px, desktop intact. Retour terrain client :
+   illisibles sur téléphone. ─── */
+@media (max-width: 600px) {
+  .bcm-chat__chips button, .bcm-chat__status,
+  .cm-field input[type="file"]::file-selector-button,
+  .menu__link .n, .netcard__go, .netcard__tag, .hud__label { font-size: .75rem !important; }
+  /* labels en unités em (ratés par un scan rem) : périodes de prix, rails,
+     « Round », curseur. Jamais un exposant (sup). */
+  .tarif__price small, .price small, small:not(sup),
+  .who__tick span, [class*="__tick"] span, [class*="__rail"] span,
+  .hero__round-k, .oleg__n, .octa__now-tag, .cursor__label,
+  .stat__l, .value__n { font-size: .78rem !important; }
+  /* grille planning : libellés du rail de semaine + méta des créneaux, en
+     .58–.68rem (9–11px) → plancher 12px. Le rail est flex-wrap : aucun
+     débordement, les cartes se réagencent simplement. */
+  .pl-week__n, .pl-week__c, .pl-week__f, .pl-slot__m, .pl-slot__m b,
+  .pl-day__h i, .pl-week__d, .pl-day__empty { font-size: .75rem !important; }
+  .nav__links a, .menu__link, .menu__foot a, .footer__col a, .crumbs a, .chip, .who__tick, .disc a, .faq summary, .netband a, a.tab { min-height: 44px; display: inline-flex; align-items: center; }
+}
