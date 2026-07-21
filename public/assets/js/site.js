@@ -3,7 +3,7 @@
    window.BC = { reveal, magnetic, refresh, media, split, scramble,
                  initKinetics, faq, lenis, velocity }
    ===================================================================== */
-import { NAV, LINKS, SALLE, MEDIA, CTA, NETWORK } from "./data.js?v=b15";
+import { NAV, LINKS, SALLE, MEDIA, CTA, NETWORK } from "./data.js?v=b16";
 /* L'assistant : il promeut la pastille `.chatbot` (qui reste un lien tel:
    dans le HTML) en vraie conversation. Voir armChatbot() plus bas — le
    module ne descend QU'À l'intention de parler, jamais au premier rendu. */
@@ -519,7 +519,7 @@ function armChatbot() {
   const load = () => {
     if (state !== "idle") return pending;
     state = "loading";
-    pending = import("./chatbot.js?v=b15")
+    pending = import("./chatbot.js?v=b16")
       .then(() => { state = "ready"; })
       .catch(() => { state = "failed"; });
     return pending;

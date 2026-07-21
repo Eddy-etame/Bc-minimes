@@ -16,7 +16,7 @@
    le fil, respect de prefers-reduced-motion (l'animation d'ouverture est
    coupée en CSS, la frappe simulée est raccourcie ici).
    ===================================================================== */
-import { SALLE, NETWORK } from "./data.js?v=b15";
+import { SALLE, NETWORK } from "./data.js?v=b16";
 
 const EMAIL_RE = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/i;
 /* numéro FR : +33 ou 0, puis 9 chiffres groupés librement */
@@ -102,7 +102,7 @@ export function initChatbot() {
     if (dejaLa) return resolu();
     const l = document.createElement("link");
     l.rel = "stylesheet";
-    l.href = "/assets/css/chatbot.css?v=b15";
+    l.href = "/assets/css/chatbot.css?v=b16";
     l.setAttribute("data-bcm-chat-css", "");
     /* résolu dans les deux cas : une feuille manquante ne doit jamais
        retenir le panneau prisonnier — mieux vaut brut que rien. */

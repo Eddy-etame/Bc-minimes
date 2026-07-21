@@ -99,19 +99,27 @@
   .forge__grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(2rem,5vw,4rem); align-items: center; }
   .forge__stage { height: 82vh; }
 }
-/* mobile: SAME scroll-jack, compacted (user requirement — no static fallback) */
+/* mobile (≤820px) : le scroll-jack casse sur iOS (pin 100svh + barre
+   d'adresse → les figures absolues se replient sur le titre, cf. capture
+   client). On DÉROULE : section de hauteur normale, chaque champion devient
+   une carte empilée (photo + nom + note). Le JS se désarme de lui-même
+   (garde `getComputedStyle(sticky).position !== "sticky"`). */
 @media (max-width: 820px){
-  .forge { height: 300vh; }
-  .forge__sticky { position: sticky; top: 0; height: 100svh; overflow: hidden; display: flex; }
-  .forge__grid { display: grid; grid-template-rows: auto 1fr; gap: .6rem; width: var(--wrap); margin-inline: auto; padding-block: clamp(4.2rem,9vh,5.5rem) 1rem; height: 100%; align-items: start; }
+  .forge { height: auto; }
+  .forge__sticky { position: static; height: auto; overflow: visible; display: block; }
+  .forge__grid { display: block; width: var(--wrap); margin-inline: auto; padding-block: clamp(3rem,9vw,4.5rem); height: auto; }
   .forge__title { font-size: clamp(1.9rem,8.5vw,2.6rem); margin: .7rem 0 0; }
-  .forge__intro { display: none; }
-  .forge__rail { margin-top: .9rem; }
-  .forge__stage { min-height: 0; }
-  .forge__bigname { font-size: clamp(3rem,17vw,5.5rem); }
-  .forge__name { font-size: clamp(1.6rem,7vw,2.4rem); }
-  .forge__note { font-size: .82rem; }
-  .forge__card { max-width: 24ch; }
+  .forge__intro { display: block; max-width: none; margin-top: .9rem; }
+  .forge__rail { display: none; }
+  .forge__stage { position: static; height: auto; min-height: 0; display: flex; flex-direction: column; gap: 1.1rem; margin-top: 1.8rem; }
+  /* chaque figure : plus d'absolu, plus de cross-fade — une carte à part
+     entière, toujours visible (le JS ne bascule plus `is-active` ici). */
+  .forge__fig { position: static; opacity: 1 !important; visibility: visible !important; display: block; border: 1px solid var(--line); background: var(--ink-2); overflow: hidden; }
+  .forge__bigname { display: none; }
+  .forge__cut { position: static; transform: none !important; width: 100%; height: clamp(230px,42vh,360px); object-fit: contain; object-position: bottom center; margin: 0 auto; display: block; filter: grayscale(1) contrast(1.08); }
+  .forge__card { position: static; max-width: none; padding: clamp(1.2rem,4.5vw,1.6rem); border-top: 1px solid var(--line); }
+  .forge__name { font-size: clamp(1.6rem,7vw,2.3rem); }
+  .forge__note { font-size: .9rem; }
 }
 
 /* ====================== DISCIPLINES REEL =========================
@@ -196,16 +204,21 @@
   .whofor__grid { display: grid; grid-template-columns: .82fr 1.18fr; gap: clamp(2rem,5vw,5rem); align-items: center; }
   .whofor__stage { height: 74vh; border: 1px solid var(--line); }
 }
-/* mobile: SAME scroll-jack, compacted (user requirement — no static fallback) */
+/* mobile (≤820px) : idem champions — on déroule le scroll-jack. Chaque
+   audience devient une tuile plein cadre empilée (image + texte en bas),
+   toujours visible. Le JS se désarme (garde `position !== "sticky"`). */
 @media (max-width: 820px){
-  .whofor { height: 380vh; }
-  .whofor__sticky { position: sticky; top: 0; height: 100svh; overflow: hidden; display: flex; }
-  .whofor__grid { display: grid; grid-template-rows: auto 1fr; gap: .8rem; width: var(--wrap); margin-inline: auto; padding-block: clamp(4.2rem,9vh,5.5rem) 1rem; height: 100%; align-items: start; }
+  .whofor { height: auto; }
+  .whofor__sticky { position: static; height: auto; overflow: visible; display: block; }
+  .whofor__grid { display: block; width: var(--wrap); margin-inline: auto; padding-block: clamp(3rem,9vw,4.5rem); height: auto; }
   .whofor__title { font-size: clamp(1.9rem,8.5vw,2.6rem); }
-  .whofor__intro { display: none; }
-  .whofor__rail { margin-top: 1rem; }
-  .who__tick { padding: .45rem 0; font-size: .68rem; }
-  .whofor__stage { min-height: 0; border: 1px solid var(--line); }
+  .whofor__intro { display: block; max-width: none; }
+  .whofor__rail { display: none; }
+  .whofor__stage { position: static; height: auto; min-height: 0; border: none; display: flex; flex-direction: column; gap: 1.1rem; margin-top: 1.8rem; }
+  /* chaque audience : carte relative (l'image en fond, le texte en bas),
+     toujours affichée — plus de cross-fade absolu piloté au scroll. */
+  .who { position: relative; inset: auto; opacity: 1 !important; visibility: visible !important; display: block; min-height: 60vh; border: 1px solid var(--line); overflow: hidden; }
+  .who__media img { transform: none !important; }
   .who__t { font-size: clamp(1.6rem,7vw,2.6rem); }
   .who__d { font-size: .85rem; max-width: 34ch; }
 }
