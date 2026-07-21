@@ -3,8 +3,8 @@
    Mosaïque N&B du pool photo réel (data.js GALLERY), filtres par zone,
    légendes mono, lazy, + lightbox plein écran. Énergie mur-de-champion.
    ===================================================================== */
-import { GALLERY } from "./data-galerie.js?v=b16";
-import { DISCIPLINES } from "./data-disciplines.js?v=b16";
+import { GALLERY } from "./data-galerie.js?v=b17";
+import { DISCIPLINES } from "./data-disciplines.js?v=b17";
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -24,10 +24,10 @@ function renderFilters() {
 }
 
 /* ------------------- CE QUE LE CADRE COUPE ------------------------
-   La page ne montrait qu'une mosaïque et s'arrêtait là — l'écran le plus
+   La page ne montrait qu’une mosaïque et s’arrêtait là — l’écran le plus
    maigre des huit. Elle ne peut pas prétendre montrer LA salle des
-   Minimes (le shooting n'a pas eu lieu) : elle assume donc l'inverse et
-   dit ce qu'aucune photo ne rend. Honnête, et propre à cette page. */
+   Minimes (le shooting n’a pas eu lieu) : elle assume donc l’inverse et
+   dit ce qu’aucune photo ne rend. Honnête, et propre à cette page. */
 function renderOffFrame() {
   const box = $("#ga-offframe");
   if (!box) return;
@@ -87,7 +87,7 @@ function initFilters() {
         c.classList.toggle("is-hidden", !show);
       });
       /* Les vignettes qui reviennent réclament leur photo tout de suite :
-         masquées, elles n'entraient dans aucun champ, donc l'observer ne
+         masquées, elles n’entraient dans aucun champ, donc l’observer ne
          les avait jamais servies. Jamais de cadre vide après un filtre. */
       window.BC.serveMedia(document);
       window.BC.refresh();
@@ -99,7 +99,7 @@ function initFilters() {
    ⚠ `role="dialog" aria-modal="true"` est un CONTRAT : il promet que le
    focus entre, reste, et revient. Avant, il ne faisait rien de tout ça —
    le focus restait sur <body> et cinq Tab sortaient du modal ouvert pour
-   aller dans la nav et le menu fermé derrière. L'attribut mentait à l'AT. */
+   aller dans la nav et le menu fermé derrière. L’attribut mentait à l’AT. */
 function initLightbox() {
   const lb = $("#ga-lightbox");
   if (!lb) return;
@@ -116,7 +116,7 @@ function initLightbox() {
     lb.classList.add("is-open");
     lb.setAttribute("aria-hidden", "false");
     document.documentElement.classList.add("is-locked");
-    lastFocused = cell;                 // d'où on vient
+    lastFocused = cell;                 // d’où on vient
     closeBtn?.focus();                  // le focus ENTRE
   };
   const close = () => {
@@ -148,9 +148,9 @@ function initLightbox() {
 
 /* ------------------------- LE MUR DU CLUB --------------------------
    Le module participatif et sa feuille ne descendent QUE lorsque la
-   section approche de l'écran. Un visiteur venu regarder les photos ne
-   paie donc rien pour un formulaire qu'il ne verra peut-être jamais —
-   même règle que l'assistant (§5.8). */
+   section approche de l’écran. Un visiteur venu regarder les photos ne
+   paie donc rien pour un formulaire qu’il ne verra peut-être jamais —
+   même règle que l’assistant (§5.8). */
 function armCommunity() {
   const sec = $("#community");
   if (!sec || !("IntersectionObserver" in window)) return;
@@ -158,12 +158,12 @@ function armCommunity() {
   const io = new IntersectionObserver((entries) => {
     if (!entries.some((e) => e.isIntersecting) || pending) return;
     io.disconnect();
-    /* la feuille d'abord : le formulaire ne doit jamais paraître nu */
+    /* la feuille d’abord : le formulaire ne doit jamais paraître nu */
     const l = document.createElement("link");
     l.rel = "stylesheet";
-    l.href = "/assets/css/community.css?v=b16";
+    l.href = "/assets/css/community.css?v=b17";
     document.head.appendChild(l);
-    pending = import("./community.js?v=b16")
+    pending = import("./community.js?v=b17")
       .then((m) => m.initCommunity())
       .catch(() => { /* le reste de la page ne bouge pas */ });
   }, { rootMargin: "400px" });

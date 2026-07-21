@@ -2,32 +2,32 @@
    MINIMES · plannings.js — "Le planning"
    STANDARDS §3 exige DEUX choses sur cette page : le poster officiel en
    couleur, cliquable — ET « une grille HTML utilisable (filtres jour /
-   discipline / coach depuis data.js) ». La grille n'existait pas : toute
+   discipline / coach depuis data.js) ». La grille n’existait pas : toute
    la semaine était enfermée dans un PNG de 2 Mo — illisible pour Google,
-   pour un lecteur d'écran et pour un téléphone bridé, et impossible à
+   pour un lecteur d’écran et pour un téléphone bridé, et impossible à
    filtrer. Ce module la rend.
 
    Source : PLANNING + PLANNING_FREE (data.js) ← transcription du poster
    SAISON 2026-2027, recollationnée cellule par cellule sur le PNG.
-   Aucun créneau, aucun nom de coach n'est tapé dans le HTML (§0.10) :
+   Aucun créneau, aucun nom de coach n’est tapé dans le HTML (§0.10) :
    si Chloé quitte la salle, elle disparaît de la page en une ligne de data.
 
    Trois choses que la grille ne faisait pas et qui manquaient :
-   1. L'ACCÈS LIBRE — la moitié du poster — n'apparaissait nulle part.
+   1. L’ACCÈS LIBRE — la moitié du poster — n’apparaissait nulle part.
    2. Les liens « voir les créneaux » des autres pages arrivaient ici sans
       filtre : on promettait « ses créneaux » et on livrait la semaine
       entière. La grille lit maintenant ?disc= / ?coach= / ?jour= et
-      écrit l'état dans l'URL (partageable, revenable au bouton Retour).
+      écrit l’état dans l’URL (partageable, revenable au bouton Retour).
    3. Rien ne disait où on en est MAINTENANT dans la semaine.
    ===================================================================== */
-import { SEASON_LABEL } from "./data.js?v=b16";
+import { SEASON_LABEL } from "./data.js?v=b17";
 import {
   PLANNING,
   PLANNING_FREE,
   PLANNING_DAYS,
   PLANNING_DISCIPLINES,
   PLANNING_KEYS,
-} from "./data-planning.js?v=b16";
+} from "./data-planning.js?v=b17";
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -43,13 +43,13 @@ const mins = (h) => {
 /* état des trois filtres — "all" = tout */
 const state = { d: "all", disc: "all", coach: "all" };
 
-/* les coachs viennent du planning lui-même — jamais d'une liste parallèle
+/* les coachs viennent du planning lui-même — jamais d’une liste parallèle
    qui se désynchronise */
 const COACHES_IN_PLANNING = [...new Set(PLANNING.map((s) => s.coach))];
 
 /* « Accès libre » est un filtre à part entière côté page, mais PAS une
-   discipline dans data.js : ce n'est pas un cours, il n'a pas de coach.
-   On l'ajoute ici, au bout, là où l'utilisateur le cherche. */
+   discipline dans data.js : ce n’est pas un cours, il n’a pas de coach.
+   On l’ajoute ici, au bout, là où l’utilisateur le cherche. */
 const FILTER_DISCIPLINES = [...PLANNING_DISCIPLINES, { key: "libre", label: "Accès libre" }];
 
 const labelOf = (key) => (FILTER_DISCIPLINES.find((d) => d.key === key) || {}).label || key;
@@ -57,7 +57,7 @@ const labelOf = (key) => (FILTER_DISCIPLINES.find((d) => d.key === key) || {}).l
 /* --------------------------- URL ↔ ÉTAT ----------------------------
    Les valeurs sont validées contre les données : un ?coach=Dupont
    inventé (ou périmé) ne doit pas vider la grille en silence, il doit
-   être ignoré comme s'il n'était pas là. */
+   être ignoré comme s’il n’était pas là. */
 function readURL() {
   const q = new URLSearchParams(location.search);
   const day = q.get("jour");
@@ -114,16 +114,16 @@ function renderFilters() {
 
 /* ------------------------------ GRILLE -----------------------------
    Six colonnes-jour au bureau, six sections empilées sur téléphone.
-   Structure sémantique (h3 + ul) plutôt qu'un <table> : une semaine de
-   boxe n'est pas un tableau de données croisées, et six colonnes à 375px
+   Structure sémantique (h3 + ul) plutôt qu’un <table> : une semaine de
+   boxe n’est pas un tableau de données croisées, et six colonnes à 375px
    sont illisibles. Chaque créneau porte ses data-* pour le filtre — et
    son texte reste indexable, contrairement au poster.
 
-   Les bandes d'ACCÈS LIBRE sont mêlées aux cours et triées avec eux : sur
-   le poster elles occupent la moitié de la grille, et c'est l'info qui
+   Les bandes d’ACCÈS LIBRE sont mêlées aux cours et triées avec eux : sur
+   le poster elles occupent la moitié de la grille, et c’est l’info qui
    fait venir la moitié des adhérents. Elles ne portent pas de coach, donc
-   le filtre coach les masque — c'est le comportement juste : « les
-   créneaux de Chloé » ne contient pas l'accès libre du jeudi. */
+   le filtre coach les masque — c’est le comportement juste : « les
+   créneaux de Chloé » ne contient pas l’accès libre du jeudi. */
 function slotHTML(s) {
   const free = s.free === true;
   const dur = `${s.h}<i>–${s.end}</i>`;
@@ -150,7 +150,7 @@ function renderGrid() {
     const slots = all.filter((s) => s.d === day).sort((a, b) => mins(a.h) - mins(b.h) || (a.free ? 1 : -1));
     /* ⚠ le compteur du bandeau est VIDE au rendu : il est écrit par
        apply(), depuis les créneaux réellement retenus par le filtre.
-       Le figer ici, une fois, sur la semaine entière, c'était afficher
+       Le figer ici, une fois, sur la semaine entière, c’était afficher
        « MERCREDI · 6 COURS » au-dessus de deux créneaux — et parfois
        au-dessus de « Rien ce jour-là ». */
     return `<section class="pl-day" data-day="${day}">
@@ -162,7 +162,7 @@ function renderGrid() {
 }
 
 /* --------------------- « EN CE MOMENT » / « APRÈS » -----------------
-   Calculé à l'exécution depuis l'horloge du visiteur — donc jamais une
+   Calculé à l’exécution depuis l’horloge du visiteur — donc jamais une
    date en dur dans le markup (§0.3 anti-péremption). Purement additif :
    si le JS ne tourne pas, la grille reste juste et complète, elle perd
    seulement ce repère. Marque le créneau en cours, sinon le suivant. */
@@ -183,9 +183,9 @@ function markNow() {
 
   const todaySlots = $$(`.pl-slot[data-day="${today}"]`);
   /* ⚠ lundi, mardi et jeudi de 18h30 à 19h30, DEUX cours tournent en
-     parallèle (les espaces 1 et 2 du poster). Un `find` n'en montrait
-     qu'un et faisait disparaître le Boxing Lady derrière les
-     compétiteurs — précisément le cours qu'une visiteuse cherche. */
+     parallèle (les espaces 1 et 2 du poster). Un `find` n’en montrait
+     qu’un et faisait disparaître le Boxing Lady derrière les
+     compétiteurs — précisément le cours qu’une visiteuse cherche. */
   const live = todaySlots.filter((el) => t >= +el.dataset.start && t < +el.dataset.end);
   const liveCours = live.filter((el) => !el.classList.contains("pl-slot--free"));
   const next = todaySlots.find((el) => +el.dataset.start > t);
@@ -195,20 +195,20 @@ function markNow() {
     const shownSet = liveCours.length ? liveCours : live;
     const names = [...new Set(shownSet.map((el) => el.querySelector(".pl-slot__n").textContent))];
     const end = shownSet[0].querySelector(".pl-slot__h i").textContent.replace("–", "");
-    badge.innerHTML = `<b>En ce moment</b> · ${names.join(" + ")} — jusqu'à ${end}`;
+    badge.innerHTML = `<b>En ce moment</b> · ${names.join(" + ")} — jusqu’à ${end}`;
   } else if (next) {
     next.classList.add("is-next");
     badge.innerHTML = `<b>Prochain créneau</b> · ${next.querySelector(".pl-slot__n").textContent} à ${next.querySelector(".pl-slot__h").firstChild.textContent}`;
   } else {
-    badge.innerHTML = `<b>C'est fini pour aujourd'hui</b> — la salle rouvre demain à 10h.`;
+    badge.innerHTML = `<b>C’est fini pour aujourd’hui</b> — la salle rouvre demain à 10h.`;
   }
 }
 
 /* ------------------------------ FILTRAGE ----------------------------
-   UN SEUL prédicat pour tout ce qui compte des créneaux : ce qu'on
+   UN SEUL prédicat pour tout ce qui compte des créneaux : ce qu’on
    affiche, ce que dit le bandeau du jour, ce que dit le rail de la
    semaine. Chaque compteur calculé à côté du filtre finit par mentir —
-   c'était le cas du bandeau, figé au rendu sur la semaine entière.
+   c’était le cas du bandeau, figé au rendu sur la semaine entière.
    `ignoreDay` sert au rail : il RESTE le sélecteur de jour, il doit donc
    montrer les six jours même quand un jour est sélectionné. */
 function matches(el, { ignoreDay = false } = {}) {
@@ -220,7 +220,7 @@ function matches(el, { ignoreDay = false } = {}) {
 }
 
 /* « 4 cours » quand ce sont des cours, « 3 accès libre » quand ce sont
-   des bandes, les deux quand il y a les deux, et RIEN quand il n'y a
+   des bandes, les deux quand il y a les deux, et RIEN quand il n’y a
    rien — un « 0 » au-dessus de « Rien ce jour-là » est du bruit. */
 function countLabel(cours, free) {
   const parts = [];
@@ -245,7 +245,7 @@ function apply() {
       }
     });
     /* le compteur est écrit ICI, après le filtre, depuis ce qui vient
-       d'être rendu visible — jamais depuis PLANNING complet */
+       d’être rendu visible — jamais depuis PLANNING complet */
     const tag = $("[data-count]", dayEl);
     if (tag) tag.textContent = countLabel(visibleInDay - freeInDay, freeInDay);
     dayEl.classList.toggle("is-empty", visibleInDay === 0);
@@ -255,10 +255,10 @@ function apply() {
   });
   syncWeek();
 
-  /* compteur en région live : au clavier et au lecteur d'écran, sans lui,
+  /* compteur en région live : au clavier et au lecteur d’écran, sans lui,
      rien ne dit que le filtre a changé quoi que ce soit */
-  /* « 43 créneaux » mélangeait 27 cours encadrés et 16 bandes d'accès
-     libre sous un seul mot — c'est exactement la confusion que la page
+  /* « 43 créneaux » mélangeait 27 cours encadrés et 16 bandes d’accès
+     libre sous un seul mot — c’est exactement la confusion que la page
      est censée lever. On compte les deux séparément. */
   const out = $("#pl-count");
   if (out) {
@@ -269,14 +269,14 @@ function apply() {
     const cours = shown - shownFree;
     const parts = [];
     if (cours) parts.push(`${cours} cours`);
-    if (shownFree) parts.push(`${shownFree} bande${shownFree > 1 ? "s" : ""} d'accès libre`);
+    if (shownFree) parts.push(`${shownFree} bande${shownFree > 1 ? "s" : ""} d’accès libre`);
     out.textContent =
       shown === 0
         ? "Aucun créneau avec ce filtre — enlève-en un."
         : `${parts.join(" · ")}${bits.length ? " · " + bits.join(" · ") : " sur la semaine"}`;
   }
 
-  /* le bouton « tout voir » n'existe que quand il sert à quelque chose */
+  /* le bouton « tout voir » n’existe que quand il sert à quelque chose */
   const reset = $("#pl-reset");
   if (reset) reset.hidden = state.d === "all" && state.disc === "all" && state.coach === "all";
 
@@ -313,13 +313,13 @@ function initFilters() {
 /* Le rail de la semaine — la structure PROPRE à cette page (les 5 autres
    sous-pages partagent .page-head, chacune avec son objet à elle : ici la
    semaine comme forme, une barre par créneau). Dérivé de PLANNING : il ne
-   peut pas mentir sur le nombre de cours. Cliquable : c'est le raccourci
+   peut pas mentir sur le nombre de cours. Cliquable : c’est le raccourci
    « montre-moi juste mercredi ». */
 function renderWeek() {
   const box = $("#pl-week");
   if (!box) return;
   /* barres et compte laissés VIDES : même règle que le bandeau de jour,
-     c'est syncWeek() qui les écrit depuis le filtre courant. */
+     c’est syncWeek() qui les écrit depuis le filtre courant. */
   box.innerHTML = PLANNING_DAYS.map(
     (day) => `<button class="pl-week__d" type="button" data-day="${day}" aria-label="Voir uniquement le ${day.toLowerCase()}">
       <span class="pl-week__n">${day.slice(0, 3)}</span>
@@ -343,8 +343,8 @@ function renderWeek() {
 }
 
 /* Le rail suit le filtre discipline/coach — pas le filtre jour, dont il
-   est le sélecteur. « Mer · 6 cours » au-dessus d'un mercredi filtré à 2
-   créneaux, c'est la même erreur que le bandeau, un cran plus haut :
+   est le sélecteur. « Mer · 6 cours » au-dessus d’un mercredi filtré à 2
+   créneaux, c’est la même erreur que le bandeau, un cran plus haut :
    corrigée à la même source, le prédicat matches(). */
 function syncWeek() {
   const box = $("#pl-week");
@@ -356,7 +356,7 @@ function syncWeek() {
     const bar = $(".pl-week__bar", btn);
     if (bar) bar.innerHTML = kept.map(() => "<i></i>").join("");
     /* le rail est étroit — six boutons sur 375px : le même compte, mais
-       empilé sur deux lignes plutôt qu'étalé, sinon la semaine passe de
+       empilé sur deux lignes plutôt qu’étalé, sinon la semaine passe de
        deux rangées à trois sur téléphone. Même chiffres, autre mise en
        forme : jamais un autre calcul. */
     const cours = kept.length - free;

@@ -4,8 +4,8 @@
    en avant (Mehdi B, photo prouvée), les autres en tuiles nom N&B.
    Loi §0.10 : nom ≡ photo, jamais de stock, jamais de croisement.
    ===================================================================== */
-import { COACHES, LINKS, CTA } from "./data.js?v=b16";
-import { PLANNING, PLANNING_DAYS } from "./data-planning.js?v=b16";
+import { COACHES, LINKS, CTA } from "./data.js?v=b17";
+import { PLANNING, PLANNING_DAYS } from "./data-planning.js?v=b17";
 
 const $ = (s, r = document) => r.querySelector(s);
 
@@ -63,13 +63,13 @@ function renderRoster() {
 
 /* ---------------------- QUI EST LÀ, QUEL JOUR ----------------------
    La page répondait « qui coache ici » mais pas « il est là quand ? ».
-   Tout est DÉRIVÉ de PLANNING : l'ordre des jours, les noms présents, le
+   Tout est DÉRIVÉ de PLANNING : l’ordre des jours, les noms présents, le
    nombre de créneaux. Aucun nom, aucun jour tapé dans le markup (§0.10) —
    si Hicham prend le vendredi dans data.js, il apparaît ici tout seul.
 
-   L'ordre à l'intérieur d'un jour n'est PAS alphabétique : c'est l'ordre
-   d'entrée sur le parquet (premier créneau du jour). Le premier nom de la
-   colonne est donc celui que tu croises si tu arrives à l'ouverture. */
+   L’ordre à l’intérieur d’un jour n’est PAS alphabétique : c’est l’ordre
+   d’entrée sur le parquet (premier créneau du jour). Le premier nom de la
+   colonne est donc celui que tu croises si tu arrives à l’ouverture. */
 function renderWeek() {
   const box = document.getElementById("cweek");
   if (!box) return;

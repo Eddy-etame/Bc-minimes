@@ -1,6 +1,6 @@
 /* =====================================================================
    MINIMES · rounds.js — the fight spine
-   A fixed judge's-SCORECARD HUD that tracks which "round" (section) you're
+   A fixed judge’s-SCORECARD HUD that tracks which "round" (section) you’re
    in as you scroll, + an opt-in boxing BELL on round change.
    (Portet uses a whoosh; a bell fits Minimes.) Injected, no markup needed.
    ===================================================================== */
@@ -12,9 +12,9 @@ export function initRounds() {
   const sections = document.querySelectorAll("[data-round]");
   if (!sections.length) return;
 
-  /* ⚠ PAS d'aria-hidden sur le conteneur : il enveloppe un bouton focusable
-     (le son), donc le clavier entrait dedans pendant qu'on affirmait à l'AT
-     que le sous-arbre n'existait pas — WCAG 4.1.2. Seul le DÉCOR est masqué ;
+  /* ⚠ PAS d’aria-hidden sur le conteneur : il enveloppe un bouton focusable
+     (le son), donc le clavier entrait dedans pendant qu’on affirmait à l’AT
+     que le sous-arbre n’existait pas — WCAG 4.1.2. Seul le DÉCOR est masqué ;
      le bouton reste exposé, avec son état (§5.6 : le son opt-in doit être
      trouvable). */
   const hud = document.createElement("aside");
@@ -23,7 +23,7 @@ export function initRounds() {
   hud.innerHTML =
     `<div class="hud__top" aria-hidden="true"><span class="hud__label">Round</span><span class="hud__num">01</span></div>` +
     `<span class="hud__name" aria-hidden="true">—</span>` +
-    /* le nombre de ticks SUIT les sections : hardcoder 7 marchait aujourd'hui
+    /* le nombre de ticks SUIT les sections : hardcoder 7 marchait aujourd’hui
        et se désynchronisait au prochain [data-round] ajouté */
     `<div class="hud__ticks" aria-hidden="true">${Array.from({ length: sections.length }, () => "<i></i>").join("")}</div>` +
     `<button class="hud__sound" type="button" aria-pressed="false" aria-label="Activer le son de cloche" title="Cloche">` +
@@ -96,9 +96,9 @@ export function initRounds() {
     let active = null;
     for (const s of list) if (s.el.getBoundingClientRect().top <= line) active = s;
     if (active) setRound(active.r, active.name);
-    /* remonté dans le héros : aucune section n'a franchi la ligne. Sans ce
+    /* remonté dans le héros : aucune section n’a franchi la ligne. Sans ce
        repli, le compteur restait figé sur le dernier round atteint alors que
-       le visiteur est revenu au premier — il faut qu'il redescende à 01. */
+       le visiteur est revenu au premier — il faut qu’il redescende à 01. */
     else if (list.length) setRound(list[0].r, list[0].name);
     if (heroEl) hud.classList.toggle("is-on", heroEl.getBoundingClientRect().bottom < window.innerHeight * 0.5);
   };

@@ -3,14 +3,14 @@
    Rendu depuis data.js : PROMOS (cartes essai/duo/saison/école), le
    bandeau bonus, et les AVIS Google réels (REVIEWS). Rien en dur.
 
-   La page affichait quatre prix et s'arrêtait là — le visiteur repartait
-   avec ses objections entières (« 29€ à deux ou chacun ? », « 259€ d'un
+   La page affichait quatre prix et s’arrêtait là — le visiteur repartait
+   avec ses objections entières (« 29€ à deux ou chacun ? », « 259€ d’un
    coup ? », « je dois acheter des gants ? »). MONEY_FAQ y répond, dans
-   l'accordéon partagé (window.BC.faq). ⚠ SANS FAQPage : la seule du site
-   est celle de /contact/ — deux FAQPage, c'est deux URL en concurrence.
+   l’accordéon partagé (window.BC.faq). ⚠ SANS FAQPage : la seule du site
+   est celle de /contact/ — deux FAQPage, c’est deux URL en concurrence.
    ===================================================================== */
-import { PROMOS, SEASON_LABEL } from "./data.js?v=b16";
-import { REVIEWS, MONEY_FAQ } from "./data-argent.js?v=b16";
+import { PROMOS, SEASON_LABEL } from "./data.js?v=b17";
+import { REVIEWS, MONEY_FAQ } from "./data-argent.js?v=b17";
 
 const $ = (s, r = document) => r.querySelector(s);
 
@@ -51,9 +51,9 @@ function renderReviews() {
   const rating = $("#rating");
   const note = String(REVIEWS.rating ?? "").trim();
   const nb = String(REVIEWS.count ?? "").trim();
-  /* Rien d'affirmé qui ne soit renseigné : pas de note → pas de bloc ;
-     pas de nombre d'avis → la source sans le compte. Un chiffre vidé
-     depuis le vestiaire disparaît de la page, il ne s'y fossilise pas. */
+  /* Rien d’affirmé qui ne soit renseigné : pas de note → pas de bloc ;
+     pas de nombre d’avis → la source sans le compte. Un chiffre vidé
+     depuis le vestiaire disparaît de la page, il ne s’y fossilise pas. */
   if (rating && note) {
     rating.innerHTML =
       `<span class="rev-rating__v">${note}<small>/${REVIEWS.scale}</small></span>` +

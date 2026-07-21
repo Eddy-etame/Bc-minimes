@@ -2,40 +2,40 @@
    BOXING CENTER — MINIMES · les disciplines
 
    Détaché de data.js pour une raison mesurée : le noyau part sur les 8
-   pages (site.js en dépend), ces données-là n'en concernent que trois pages (accueil, activités, galerie).
+   pages (site.js en dépend), ces données-là n’en concernent que trois pages (accueil, activités, galerie).
    Les embarquer partout coûtait leur poids sur chaque page pour rien.
    ===================================================================== */
 
 /* ⚠ DEUX textes par discipline, JAMAIS un seul (§5.9 « une bonne formule
    une seule fois par site ») :
-   · `teaser` — l'accueil, et l'accueil SEUL. Une ligne qui oriente : le
+   · `teaser` — l’accueil, et l’accueil SEUL. Une ligne qui oriente : le
      reel de la home est un aiguillage, pas un catalogue.
-   · `desc` (+ `for` + `points`) — /activites/, et elle seule. C'est la
+   · `desc` (+ `for` + `points`) — /activites/, et elle seule. C’est la
      page qui a le droit de développer.
-   Les deux URL sont indexées : la même phrase rendue sur les deux, c'est
+   Les deux URL sont indexées : la même phrase rendue sur les deux, c’est
    du duplicate content et une bonne formule brûlée deux fois. Le défaut
    avait déjà été corrigé pour la FAQ (/le-club/ vs /contact/) ; il vivait
    encore ici. Toute discipline ajoutée doit arriver avec SES deux textes.
 
    `for` + `points` sont ADDITIFS : seule la page /activites/ les lit.
 
-   `plan` = clé PLANNING correspondante, ou null. C'est le champ qui rend
+   `plan` = clé PLANNING correspondante, ou null. C’est le champ qui rend
    le catalogue HONNÊTE : cinq disciplines ont un créneau prouvé par le
-   poster, trois n'en ont pas (elles se travaillent en accès libre ou
-   dans le cours d'anglaise). La page affiche la différence au lieu de
+   poster, trois n’en ont pas (elles se travaillent en accès libre ou
+   dans le cours d’anglaise). La page affiche la différence au lieu de
    laisser croire que tout est au planning — et le badge « N créneaux »
    est DÉRIVÉ de PLANNING, donc il ne peut pas se désynchroniser.
 
    `noPhoto: true` = aucune photo du pool ne montre ce geste. Même loi
-   que le roster des coachs : on assume l'absence avec une tuile dessinée
-   plutôt que d'illustrer des pieds-poings avec une photo de poings. */
+   que le roster des coachs : on assume l’absence avec une tuile dessinée
+   plutôt que d’illustrer des pieds-poings avec une photo de poings. */
 export const DISCIPLINES = [
   {
     key: "anglaise",
     plan: "anglaise",
     name: "Boxe Anglaise",
     tag: "La spécialité maison",
-    teaser: "Le geste de base, repris jusqu'à ce qu'il tienne tout seul.",
+    teaser: "Le geste de base, repris jusqu’à ce qu’il tienne tout seul.",
     desc: "Le noble art, à la source. Jab, esquive, jeu de jambes — la discipline qui a fait le nom des Minimes.",
     img: "/assets/img/bc/anglaise-1.webp",
     for: "Du grand débutant au compétiteur licencié.",
@@ -43,7 +43,7 @@ export const DISCIPLINES = [
       "Le midi de 12h40 à 13h20 : mardi, mercredi, jeudi",
       "Le soir de 19h40 à 21h : lundi, mardi, jeudi, vendredi",
       "Sept créneaux loisirs par semaine, tous tenus par Mehdi B",
-      "Gants et protections prêtés le temps de l'essai",
+      "Gants et protections prêtés le temps de l’essai",
     ],
   },
   {
@@ -59,7 +59,7 @@ export const DISCIPLINES = [
       "De 18h à 19h30 : lundi, mardi, jeudi, vendredi",
       "Open sparring le samedi 18h30 — le test de la semaine",
       "Lundi, mardi et jeudi, le second espace tourne en parallèle",
-      "On ne s'inscrit pas : c'est Mehdi B qui te fait passer",
+      "On ne s’inscrit pas : c’est Mehdi B qui te fait passer",
     ],
   },
   {
@@ -68,14 +68,14 @@ export const DISCIPLINES = [
     name: "Boxe Éducative",
     tag: "Dès 3 ans",
     teaser: "Le mercredi et le samedi appartiennent aux enfants.",
-    desc: "De la Baby Boxe 3/6 aux jeunes compétiteurs : on apprend à se tenir droit avant d'apprendre à frapper. Ils arrivent en courant partout, ils repartent en marchant droit.",
+    desc: "De la Baby Boxe 3/6 aux jeunes compétiteurs : on apprend à se tenir droit avant d’apprendre à frapper. Ils arrivent en courant partout, ils repartent en marchant droit.",
     img: "/assets/img/bc/educative-1.webp",
     for: "Les enfants et les ados, du jeu au ring.",
     points: [
       "Baby Boxe 3/6 ans, le samedi à 14h15",
       "Enfants 7/11 ans à 15h, ados 12/16 ans à 16h",
       "Jeunes compétiteurs à 17h — pour ceux qui veulent le ring",
-      "Mercredi et samedi, la même montée d'âge, le même coach",
+      "Mercredi et samedi, la même montée d’âge, le même coach",
     ],
   },
   {
@@ -84,7 +84,7 @@ export const DISCIPLINES = [
     name: "Boxing Lady",
     tag: "100 % féminin",
     teaser: "Entre femmes, le lundi et le mercredi soir.",
-    desc: "Deux soirs, une bande, et le sac qui prend tout. Tu repars plus solide qu'en arrivant.",
+    desc: "Deux soirs, une bande, et le sac qui prend tout. Tu repars plus solide qu’en arrivant.",
     img: "/assets/img/bc/lady-2.webp",
     for: "Les femmes, débutantes comme habituées.",
     points: [
@@ -100,7 +100,7 @@ export const DISCIPLINES = [
     name: "Boxing Camp",
     tag: "Le circuit",
     teaser: "Cinq rendez-vous par semaine, juste pour le moteur.",
-    desc: "Le cours qui te construit la caisse d'un boxeur sans te demander de savoir boxer. Ça enchaîne, ça ne discute pas, et à la fin tu es cuit.",
+    desc: "Le cours qui te construit la caisse d’un boxeur sans te demander de savoir boxer. Ça enchaîne, ça ne discute pas, et à la fin tu es cuit.",
     img: "/assets/img/bc/levels-1.webp",
     for: "Les adultes, tous niveaux — aucune technique exigée.",
     points: [
@@ -114,50 +114,50 @@ export const DISCIPLINES = [
     key: "pieds-poings",
     plan: "pieds-poings",
     name: "Boxe Pieds-Poings",
-    tag: "L'autre garde",
+    tag: "L’autre garde",
     teaser: "Le mercredi soir, on boxe aussi avec les jambes.",
     noPhoto: true,
-    desc: "Une fois par semaine, la garde change et les jambes entrent dans l'histoire. Même exigence de geste que l'anglaise, deux armes de plus.",
+    desc: "Une fois par semaine, la garde change et les jambes entrent dans l’histoire. Même exigence de geste que l’anglaise, deux armes de plus.",
     img: null,
-    for: "Tous niveaux — y compris ceux qui n'ont jamais lancé un coup de pied.",
+    for: "Tous niveaux — y compris ceux qui n’ont jamais lancé un coup de pied.",
     points: [
       "Mercredi 19h40 à 21h, avec David",
       "Le seul créneau pieds-poings de la semaine",
-      "La garde et le placement d'abord, la puissance après",
-      "Aucune photo de ce cours ici — on ne t'en montrera pas une fausse",
+      "La garde et le placement d’abord, la puissance après",
+      "Aucune photo de ce cours ici — on ne t’en montrera pas une fausse",
     ],
   },
   {
     key: "paos",
     plan: null,
-    freeNote: "Dans le cours d'anglaise",
-    name: "PAOS & Pattes d'ours",
+    freeNote: "Dans le cours d’anglaise",
+    name: "PAOS & Pattes d’ours",
     tag: "Travail technique",
-    teaser: "Le travail aux pattes, à l'intérieur du cours d'anglaise.",
-    desc: "Face au coach, sur les pattes : précision, vitesse, lecture. Le vrai boulot de boxeur, celui qu'on ne triche pas.",
+    teaser: "Le travail aux pattes, à l’intérieur du cours d’anglaise.",
+    desc: "Face au coach, sur les pattes : précision, vitesse, lecture. Le vrai boulot de boxeur, celui qu’on ne triche pas.",
     img: "/assets/img/bc/training-2.webp",
     for: "Ceux qui veulent le geste juste, pas juste la sueur.",
     points: [
-      "Pas de créneau à part : ça vit dans le cours d'anglaise",
+      "Pas de créneau à part : ça vit dans le cours d’anglaise",
       "En tête-à-tête avec le coach, sur les pattes",
       "Le timing : partir avant que la patte arrive",
-      "Le geste que le juge voit, celui que le sac ne t'apprendra jamais",
+      "Le geste que le juge voit, celui que le sac ne t’apprendra jamais",
     ],
   },
   {
     key: "cross",
     plan: null,
-    freeNote: "En accès libre, à l'étage",
+    freeNote: "En accès libre, à l’étage",
     name: "Cross Training",
     tag: "La caisse",
-    teaser: "L'étage t'est ouvert dès que la salle l'est.",
-    desc: "Gainage, cardio, explosivité. La caisse qui te fait tenir le dernier round. À l'étage, quand tu veux.",
+    teaser: "L’étage t’est ouvert dès que la salle l’est.",
+    desc: "Gainage, cardio, explosivité. La caisse qui te fait tenir le dernier round. À l’étage, quand tu veux.",
     img: "/assets/img/bc/cross-1.webp",
-    for: "Ceux qui veulent la caisse d'un boxeur.",
+    for: "Ceux qui veulent la caisse d’un boxeur.",
     points: [
       "Pas de créneau : la zone prépa est à toi en accès libre",
       "10h–12h et 13h20–18h, du lundi au samedi",
-      "À l'étage, au-dessus des rings",
+      "À l’étage, au-dessus des rings",
       "Zéro contact, intensité réelle",
     ],
   },
@@ -168,14 +168,14 @@ export const DISCIPLINES = [
     name: "Cardio Boxing",
     tag: "Sans contact",
     teaser: "Tu frappes le sac, personne ne te frappe.",
-    desc: "Tout le geste, toute la sueur, aucun coup encaissé. La porte d'entrée quand on n'a jamais boxé.",
+    desc: "Tout le geste, toute la sueur, aucun coup encaissé. La porte d’entrée quand on n’a jamais boxé.",
     img: "/assets/img/bc/training-1.webp",
     for: "Les débutants et ceux qui veulent transpirer sans encaisser.",
     points: [
       "Pas de créneau : douze sacs lourds, en accès libre",
       "Tout le geste de boxe, aucun coup reçu",
-      "Si tu veux le cours encadré, c'est le Boxing camp",
-      "Le coach t'arrête avant que tu te fasses mal",
+      "Si tu veux le cours encadré, c’est le Boxing camp",
+      "Le coach t’arrête avant que tu te fasses mal",
     ],
   },
 ];

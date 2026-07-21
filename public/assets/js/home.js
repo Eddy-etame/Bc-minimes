@@ -1,10 +1,10 @@
 /* =====================================================================
    MINIMES · home.js (v2) — kinetic accueil
    ===================================================================== */
-import { STATS, CHAMPIONS, VALUES, AUDIENCES, TARIFS } from "./data-accueil.js?v=b16";
-import { DISCIPLINES } from "./data-disciplines.js?v=b16";
-import { initHero } from "./hero.js?v=b16";
-import { initRounds } from "./rounds.js?v=b16";
+import { STATS, CHAMPIONS, VALUES, AUDIENCES, TARIFS } from "./data-accueil.js?v=b17";
+import { DISCIPLINES } from "./data-disciplines.js?v=b17";
+import { initHero } from "./hero.js?v=b17";
+import { initRounds } from "./rounds.js?v=b17";
 
 const gsap = window.gsap;
 const ScrollTrigger = window.ScrollTrigger;
@@ -22,8 +22,8 @@ function renderStats() {
 }
 function renderMarquee() {
   /* ⚠ des faits, pas une liste de mots-clés : « Boxe Anglaise · Boxe
-     Éducative · Boxing Lady… » aurait pu être collé sur n'importe quelle
-     salle de France, dans l'élément le plus cinétique de la page.
+     Éducative · Boxing Lady… » aurait pu être collé sur n’importe quelle
+     salle de France, dans l’élément le plus cinétique de la page.
      « Le ring ne ment jamais » vit UNE fois sur le site, à index.html —
      ne pas le remonter ici (§5.9). */
   const items = ["Le noble art", "Depuis 2016", "Trois rings", "Dès 3 ans", "Barrière de Paris", "Douze sacs", "Ici on forge", "Le berceau"];
@@ -44,8 +44,8 @@ function renderChampions() {
       </div>
     </article>`).join("");
   if (rail) rail.innerHTML = CHAMPIONS.map((c, i) => `<li class="forge__tick ${i === 0 ? "is-active" : ""}" data-i="${i}"></li>`).join("");
-  /* Précharge les silhouettes pour qu'elles soient instantanées à
-     l'activation — mais JAMAIS pendant le premier paint, et jamais sur un
+  /* Précharge les silhouettes pour qu’elles soient instantanées à
+     l’activation — mais JAMAIS pendant le premier paint, et jamais sur un
      forfait compté. (Avant : 1 062 Ko de PNG en eager au boot, en
      concurrence avec le LCP. Les cut-outs sont maintenant en webp — ~125 Ko
      à trois — et la chauffe attend que le thread soit libre.) */
@@ -60,16 +60,16 @@ function renderChampions() {
 function renderDisciplines() {
   /* ⚠ `d.teaser`, PAS `d.desc` : le texte long est celui de /activites/.
      Les deux pages lisaient le même champ — dix-sept lignes de copie
-     travaillée servies mot pour mot sur deux URL indexées. L'accueil
+     travaillée servies mot pour mot sur deux URL indexées. L’accueil
      aiguille en une ligne, le catalogue développe. Pas de repli sur
      `desc` : une discipline sans teaser sort SANS ligne plutôt que de
      rouvrir le doublon en silence.
 
      ⚠ `data-img="${d.img}"` avec d.img = null écrivait la chaîne "null"
-     dans l'attribut : hydrateMedia ne la reconnaît pas comme chemin local
+     dans l’attribut : hydrateMedia ne la reconnaît pas comme chemin local
      et la préfixe du domaine Portet → une requête vers /null qui répond
-     403, en console, sur la page d'accueil. Une discipline sans photo
-     (loi §0.10 : on n'illustre pas un geste avec un autre) doit sortir
+     403, en console, sur la page d’accueil. Une discipline sans photo
+     (loi §0.10 : on n’illustre pas un geste avec un autre) doit sortir
      SANS bloc media, pas avec un bloc media cassé. */
   $("#disciplines").innerHTML = DISCIPLINES.map(
     (d, i) => `<div class="disc${d.img ? "" : " disc--nobg"}" data-key="${d.key}" tabindex="0">
@@ -166,7 +166,7 @@ function countUp() {
 
 /* Mur des champions — scroll-driven silhouette reveal. As you scroll the
    pinned section, one real boxer cut-out rises in as the previous exits
-   (Portet's forge idea, restyled). Live geometry; vh from the 100vh pin. */
+   (Portet’s forge idea, restyled). Live geometry; vh from the 100vh pin. */
 function forgeReveal() {
   const section = document.querySelector(".forge");
   const stage = $("#forge-stage");
@@ -210,7 +210,7 @@ function mediaReveal() {
 }
 
 /* Multi-depth parallax on decorative backgrounds — the "moving camera"
-   feel. Live geometry (Portet's technique); bg's are scaled so no gaps. */
+   feel. Live geometry (Portet’s technique); bg’s are scaled so no gaps. */
 function parallax() {
   if (reduce) return;
   const items = [];

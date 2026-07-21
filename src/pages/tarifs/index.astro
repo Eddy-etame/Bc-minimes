@@ -6,7 +6,7 @@ import SiteContent from "../../components/SiteContent.astro";
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tarifs & offres — Boxing Center Minimes, Toulouse (essai 10€, Duo, saison 259€)</title>
+  <title>Tarifs — essai 10€, saison 259€ | Boxing Center Minimes</title>
   <meta name="description" content="Essai 10€. Duo 29€ par personne. Saison 259€ les douze mois, payable en 4× sans frais. École dès 3 ans à 280€. Les prix sont écrits, pas négociés." />
 
   <!-- Préconnexion CDN (les libs sont différées) — polices auto-hébergées :
@@ -14,35 +14,35 @@ import SiteContent from "../../components/SiteContent.astro";
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-black-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-latin.woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/css/fonts.css?v=b16" />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=b17" />
 
   <!-- LCP : le hero est construit en JS → invisible au preload scanner (§5.8) -->
   <link rel="preload" as="image" href="/assets/img/bc/cross-1.webp" fetchpriority="high" />
 
-  <link rel="stylesheet" href="/assets/css/base.css?v=b16" />
-  <link rel="stylesheet" href="/assets/css/home.css?v=b16" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=b17" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=b17" />
 
-  <meta name="keywords" content="tarif salle de boxe Toulouse, prix boxe Minimes, séance d'essai boxe 10€, abonnement boxe Toulouse, offre duo boxe, saison boxe 259€, tarif boxe enfant Toulouse, boxing gym Toulouse, boxing club Toulouse, boxing lessons Toulouse, boxing classes Toulouse Minimes, English boxing Toulouse, kids boxing Toulouse, women boxing Toulouse, martial arts gym Toulouse, gym near Barrière de Paris" />
+  <meta name="keywords" content="tarif salle de boxe Toulouse, prix boxe Minimes, séance d’essai boxe 10€, abonnement boxe Toulouse, offre duo boxe, saison boxe 259€, tarif boxe enfant Toulouse, boxing gym Toulouse, boxing club Toulouse, boxing lessons Toulouse, boxing classes Toulouse Minimes, English boxing Toulouse, kids boxing Toulouse, women boxing Toulouse, martial arts gym Toulouse, gym near Barrière de Paris" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="geo.region" content="FR-31" />
   <meta name="geo.placename" content="Toulouse — Les Minimes" />
   <meta name="geo.position" content="43.6256;1.4309" />
   <meta name="ICBM" content="43.6256, 1.4309" />
-  <link rel="canonical" href="https://minimes.boxingcenter.fr/tarifs/" />
+  <link rel="canonical" href="https://bc-minimes.vercel.app/tarifs/" />
   <meta name="theme-color" content="#0a1020" />
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
-  <link rel="shortcut icon" href="/favicon.png" />
-  <link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+  <link rel="icon" href="/favicon.svg?i=2" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.png?i=2" type="image/png" sizes="32x32" />
+  <link rel="shortcut icon" href="/favicon.png?i=2" />
+  <link rel="icon" href="/favicon-192.png?i=2" type="image/png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?i=2" sizes="180x180" />
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="Boxing Center Minimes" />
   <meta property="og:title" content="Tarifs & offres — Boxing Center Minimes, Toulouse" />
   <meta property="og:description" content="Essai 10€, Duo 29€ par personne, saison 259€ les 12 mois en 4× sans frais, école dès 3 ans. Accès libre aux 5 clubs." />
-  <meta property="og:url" content="https://minimes.boxingcenter.fr/tarifs/" />
-  <meta property="og:image" content="https://minimes.boxingcenter.fr/assets/img/og.jpg" />
+  <meta property="og:url" content="https://bc-minimes.vercel.app/tarifs/" />
+  <meta property="og:image" content="https://bc-minimes.vercel.app/assets/img/og.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:type" content="image/jpeg" />
@@ -50,7 +50,7 @@ import SiteContent from "../../components/SiteContent.astro";
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Tarifs & offres — Boxing Center Minimes, Toulouse" />
   <meta name="twitter:description" content="Essai 10€, Duo 29€/personne, saison 259€ les 12 mois. Accès libre aux 5 clubs." />
-  <meta name="twitter:image" content="https://minimes.boxingcenter.fr/assets/img/og.jpg" />
+  <meta name="twitter:image" content="https://bc-minimes.vercel.app/assets/img/og.jpg" />
 
   <!-- Données structurées : graphe JSON-LD unifié de la page — nœuds reliés
        par @id (Organization · SportsActivityLocation/HealthClub · WebSite ·
@@ -70,7 +70,7 @@ import SiteContent from "../../components/SiteContent.astro";
         ],
         "subOrganization": [
           {
-            "@id": "https://minimes.boxingcenter.fr/#salle"
+            "@id": "https://bc-minimes.vercel.app/#salle"
           },
           {
             "@type": "SportsActivityLocation",
@@ -97,14 +97,14 @@ import SiteContent from "../../components/SiteContent.astro";
           "HealthClub",
           "LocalBusiness"
         ],
-        "@id": "https://minimes.boxingcenter.fr/#salle",
+        "@id": "https://bc-minimes.vercel.app/#salle",
         "knowsLanguage": ["fr-FR", "en"],
         "name": "Boxing Center Minimes",
-        "url": "https://minimes.boxingcenter.fr/",
+        "url": "https://bc-minimes.vercel.app/",
         "telephone": "+33562244682",
         "email": "boxingcenter31@gmail.com",
         "priceRange": "€€",
-        "image": "https://minimes.boxingcenter.fr/assets/img/og.jpg",
+        "image": "https://bc-minimes.vercel.app/assets/img/og.jpg",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "12 rue de Fenouillet",
@@ -165,24 +165,24 @@ import SiteContent from "../../components/SiteContent.astro";
           },
           {
             "@type": "LocationFeatureSpecification",
-            "name": "Zone pattes d'ours",
+            "name": "Zone pattes d’ours",
             "value": true
           },
           {
             "@type": "LocationFeatureSpecification",
-            "name": "Salle de prépa physique à l'étage",
+            "name": "Salle de prépa physique à l’étage",
             "value": true
           }
         ],
         "hasOfferCatalog": {
           "@type": "OfferCatalog",
-          "@id": "https://minimes.boxingcenter.fr/#offres",
+          "@id": "https://bc-minimes.vercel.app/#offres",
           "name": "Offres Boxing Center Minimes",
-          "url": "https://minimes.boxingcenter.fr/tarifs/",
+          "url": "https://bc-minimes.vercel.app/tarifs/",
           "itemListElement": [
             {
               "@type": "Offer",
-              "name": "Séance d'essai",
+              "name": "Séance d’essai",
               "price": "10",
               "priceCurrency": "EUR",
               "description": "Toutes disciplines, matériel prêté, sans engagement.",
@@ -216,7 +216,7 @@ import SiteContent from "../../components/SiteContent.astro";
         },
         "potentialAction": {
           "@type": "ReserveAction",
-          "name": "Réserver une séance d'essai",
+          "name": "Réserver une séance d’essai",
           "target": {
             "@type": "EntryPoint",
             "urlTemplate": "https://box-plus.vercel.app/seance-essai",
@@ -228,35 +228,35 @@ import SiteContent from "../../components/SiteContent.astro";
           },
           "result": {
             "@type": "Reservation",
-            "name": "Séance d'essai — 10 €, toutes disciplines, matériel prêté"
+            "name": "Séance d’essai — 10 €, toutes disciplines, matériel prêté"
           }
         },
         "parentOrganization": {
           "@id": "https://boxingcenter.fr/#organization"
         },
-        "description": "Salle de boxe anglaise historique du groupe Boxing Center, quartier des Minimes à Toulouse (31200). Berceau de boxeurs professionnels et amateurs, 3 rings, boxe éducative dès 3 ans (Baby Boxe 3/6), Boxing Lady. Séance d'essai 10€."
+        "description": "Salle de boxe anglaise historique du groupe Boxing Center, quartier des Minimes à Toulouse (31200). Berceau de boxeurs professionnels et amateurs, 3 rings, boxe éducative dès 3 ans (Baby Boxe 3/6), Boxing Lady. Séance d’essai 10€."
       },
       {
         "@type": "WebSite",
-        "@id": "https://minimes.boxingcenter.fr/#website",
-        "url": "https://minimes.boxingcenter.fr/",
+        "@id": "https://bc-minimes.vercel.app/#website",
+        "url": "https://bc-minimes.vercel.app/",
         "name": "Boxing Center Minimes",
         "inLanguage": "fr-FR",
         "publisher": {
-          "@id": "https://minimes.boxingcenter.fr/#salle"
+          "@id": "https://bc-minimes.vercel.app/#salle"
         }
       },
       {
         "@type": "WebPage",
-        "@id": "https://minimes.boxingcenter.fr/tarifs/#webpage",
-        "url": "https://minimes.boxingcenter.fr/tarifs/",
+        "@id": "https://bc-minimes.vercel.app/tarifs/#webpage",
+        "url": "https://bc-minimes.vercel.app/tarifs/",
         "name": "Tarifs & offres — Boxing Center Minimes, Toulouse (essai 10€, Duo, saison 259€)",
         "description": "Essai 10€. Duo 29€ par personne. Saison 259€ les douze mois, payable en 4× sans frais. École dès 3 ans à 280€. Les prix sont écrits, pas négociés.",
         "isPartOf": {
-          "@id": "https://minimes.boxingcenter.fr/#website"
+          "@id": "https://bc-minimes.vercel.app/#website"
         },
         "about": {
-          "@id": "https://minimes.boxingcenter.fr/#salle"
+          "@id": "https://bc-minimes.vercel.app/#salle"
         },
         "inLanguage": "fr-FR",
         "speakable": {
@@ -267,38 +267,38 @@ import SiteContent from "../../components/SiteContent.astro";
           ]
         },
         "primaryImageOfPage": {
-          "@id": "https://minimes.boxingcenter.fr/tarifs/#primaryimage"
+          "@id": "https://bc-minimes.vercel.app/tarifs/#primaryimage"
         },
         "datePublished": "2026-07-17",
         "dateModified": "@BUILT@",
         "breadcrumb": {
-          "@id": "https://minimes.boxingcenter.fr/tarifs/#breadcrumb"
+          "@id": "https://bc-minimes.vercel.app/tarifs/#breadcrumb"
         }
       },
       {
         "@type": "ImageObject",
-        "@id": "https://minimes.boxingcenter.fr/tarifs/#primaryimage",
-        "url": "https://minimes.boxingcenter.fr/assets/img/og.jpg",
-        "contentUrl": "https://minimes.boxingcenter.fr/assets/img/og.jpg",
+        "@id": "https://bc-minimes.vercel.app/tarifs/#primaryimage",
+        "url": "https://bc-minimes.vercel.app/assets/img/og.jpg",
+        "contentUrl": "https://bc-minimes.vercel.app/assets/img/og.jpg",
         "width": 1200,
         "height": 630,
         "caption": "Tarifs Boxing Center Minimes — essai 10€, offre Duo, saison complète."
       },
       {
         "@type": "BreadcrumbList",
-        "@id": "https://minimes.boxingcenter.fr/tarifs/#breadcrumb",
+        "@id": "https://bc-minimes.vercel.app/tarifs/#breadcrumb",
         "itemListElement": [
           {
             "@type": "ListItem",
             "position": 1,
             "name": "Accueil",
-            "item": "https://minimes.boxingcenter.fr/"
+            "item": "https://bc-minimes.vercel.app/"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "Tarifs",
-            "item": "https://minimes.boxingcenter.fr/tarifs/"
+            "item": "https://bc-minimes.vercel.app/tarifs/"
           }
         ]
       }
@@ -306,10 +306,10 @@ import SiteContent from "../../components/SiteContent.astro";
   }
   </script>
 
-  <!-- page-scoped : cartes d'offres, bandeau bonus, avis — squelette propre à /tarifs/ -->
+  <!-- page-scoped : cartes d’offres, bandeau bonus, avis — squelette propre à /tarifs/ -->
   <style is:inline>
-    /* l'en-tête partage .page-head (base.css) — la répétition est honnête.
-       Ce qui appartient à CETTE page : les 10€ comme OBJET PHYSIQUE. C'est
+    /* l’en-tête partage .page-head (base.css) — la répétition est honnête.
+       Ce qui appartient à CETTE page : les 10€ comme OBJET PHYSIQUE. C’est
        la page du prix : elle commence par le billet, pas par un paragraphe. */
     .page-head--tar { padding-bottom: clamp(2.5rem,6vw,4rem); }
     .page-head--tar .page-head__bg { opacity: .22; }
@@ -405,14 +405,14 @@ import SiteContent from "../../components/SiteContent.astro";
       <div class="wrap">
         <span class="eyebrow" data-reveal>Tarifs · <span id="season">Saison 2026 — 2027</span></span>
         <h1 class="display" style="margin:1rem 0 0"><span class="reveal-mask"><span>Le prix, </span></span><span class="reveal-mask"><span class="tint">sans détour.</span></span></h1>
-        <p class="lead page-head__lead" data-reveal>Tu commences à 10€. Tu vois si le ring te parle. Tu t'engages seulement si tu reviens. Trois lignes, tout est dessous — noir sur blanc.</p>
+        <p class="lead page-head__lead" data-reveal>Tu commences à 10€. Tu vois si le ring te parle. Tu t’engages seulement si tu reviens. Trois lignes, tout est dessous — noir sur blanc.</p>
         <div class="tar-note" aria-hidden="true" data-reveal>
           <div class="tar-note__v">10€</div>
-          <div class="tar-note__l">La séance d'essai</div>
+          <div class="tar-note__l">La séance d’essai</div>
           <div class="tar-note__s">Toutes disciplines · gants prêtés</div>
         </div>
         <div class="tar-head__meta" data-reveal>
-          <span><b>10€</b> l'essai</span>
+          <span><b>10€</b> l’essai</span>
           <span><b>4×</b> sans frais sur la saison</span>
           <span>Accès libre aux <b>5 clubs</b></span>
         </div>
@@ -427,7 +427,7 @@ import SiteContent from "../../components/SiteContent.astro";
             <span class="eyebrow">Les formules</span>
             <h2 class="display display--sm" style="margin-top:1rem">Choisis ton <span class="tint">entrée</span></h2>
           </div>
-          <p class="muted" data-reveal style="max-width:34ch">L'essai d'abord. Le Duo pour venir à deux. La saison pour t'installer. L'école pour les petits.</p>
+          <p class="muted" data-reveal style="max-width:34ch">L’essai d’abord. Le Duo pour venir à deux. La saison pour t’installer. L’école pour les petits.</p>
         </div>
         <div class="offers" id="offers" data-reveal-group></div>
         <div class="bonus" data-reveal id="bonus"></div>
@@ -448,15 +448,15 @@ import SiteContent from "../../components/SiteContent.astro";
       </div>
     </section>
 
-    <!-- ==================== LES QUESTIONS D'ARGENT ================
+    <!-- ==================== LES QUESTIONS D’ARGENT ================
          La page listait quatre prix et passait directement aux avis :
-         toutes les objections d'argent restaient sur la table (« 29€ à
-         deux ou chacun ? », « 259€ d'un coup ? », « il faut acheter des
-         gants ? »). Rendu depuis MONEY_FAQ (data.js) dans l'accordéon
+         toutes les objections d’argent restaient sur la table (« 29€ à
+         deux ou chacun ? », « 259€ d’un coup ? », « il faut acheter des
+         gants ? »). Rendu depuis MONEY_FAQ (data.js) dans l’accordéon
          partagé — aucune question tapée dans ce fichier.
          ⚠ AUCUN FAQPage ici : la seule FAQPage du site est celle de
          /contact/ (§4). Deux FAQPage = deux URL qui se cannibalisent. -->
-    <section class="section section--tight" aria-label="Les questions d'argent">
+    <section class="section section--tight" aria-label="Les questions d’argent">
       <div class="wrap">
         <!-- pas de .sec-head ici : cette classe vit dans club.css, que
              /tarifs/ ne charge pas. Même rythme, posé en clair. -->
@@ -464,7 +464,7 @@ import SiteContent from "../../components/SiteContent.astro";
           <span class="eyebrow">Avant de sortir la carte</span>
           <h2 class="display display--sm" style="margin-top:1rem">Les questions <span class="tint">qui piquent</span></h2>
         </div>
-        <p class="muted" data-reveal style="max-width:60ch;margin-bottom:clamp(1.2rem,3vw,1.8rem)">On préfère te les écrire ici que te les faire découvrir au comptoir. Si la réponse n'y est pas, appelle : quelqu'un décroche.</p>
+        <p class="muted" data-reveal style="max-width:60ch;margin-bottom:clamp(1.2rem,3vw,1.8rem)">On préfère te les écrire ici que te les faire découvrir au comptoir. Si la réponse n’y est pas, appelle : quelqu’un décroche.</p>
         <div class="faq" id="money-faq"></div>
       </div>
     </section>
@@ -473,7 +473,7 @@ import SiteContent from "../../components/SiteContent.astro";
     <section class="gong" aria-label="Réserver une séance">
       <div class="gong__bg" aria-hidden="true"><div class="media" data-img="/assets/img/bc/anglaise-4.webp" data-label=""></div></div>
       <div class="gong__inner">
-        <span class="eyebrow" data-reveal>L'addition</span>
+        <span class="eyebrow" data-reveal>L’addition</span>
         <h2 class="display" data-reveal style="font-size:var(--step-3)">Commence par<br><span class="tint">les 10€.</span></h2>
         <p class="lead" data-reveal>Un billet de 10 pour toutes les disciplines. Si tu reviens, on parlera abonnement — pas avant.</p>
         <div class="gong__cta" data-reveal>
@@ -497,7 +497,7 @@ import SiteContent from "../../components/SiteContent.astro";
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=b16"></script>
-  <script is:inline type="module" src="/assets/js/tarifs.js?v=b16"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=b17"></script>
+  <script is:inline type="module" src="/assets/js/tarifs.js?v=b17"></script>
 </body>
 </html>

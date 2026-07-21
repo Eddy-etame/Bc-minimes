@@ -6,21 +6,21 @@ import SiteContent from "../../components/SiteContent.astro";
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Galerie photos — Boxing Center Minimes, Toulouse (rings, sparring, Lady, école)</title>
-  <meta name="description" content="Le ring, le sparring, les gants des petits, le Boxing Lady, les pattes d'ours : la salle des Minimes en noir et blanc, filtrable zone par zone." />
+  <title>Galerie photos — Boxing Center Minimes, Toulouse</title>
+  <meta name="description" content="Le ring, le sparring, les gants des petits, le Boxing Lady, les pattes d’ours : la salle des Minimes en noir et blanc, filtrable zone par zone." />
 
   <!-- Préconnexion CDN (les libs sont différées) — polices auto-hébergées :
        plus aucune requête vers fonts.googleapis.com / fonts.gstatic.com -->
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-black-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-latin.woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/css/fonts.css?v=b16" />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=b17" />
 
   <!-- LCP : le hero est construit en JS → invisible au preload scanner (§5.8) -->
   <link rel="preload" as="image" href="/assets/img/bc/levels-1.webp" fetchpriority="high" />
 
-  <link rel="stylesheet" href="/assets/css/base.css?v=b16" />
-  <link rel="stylesheet" href="/assets/css/home.css?v=b16" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=b17" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=b17" />
 
   <meta name="keywords" content="photos salle de boxe Minimes Toulouse, galerie Boxing Center, rings boxe Toulouse, images club de boxe 31200, salle boxe Barrière de Paris, boxing gym Toulouse, boxing club Toulouse, boxing lessons Toulouse, boxing classes Toulouse Minimes, English boxing Toulouse, kids boxing Toulouse, women boxing Toulouse, martial arts gym Toulouse, gym near Barrière de Paris" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -28,29 +28,29 @@ import SiteContent from "../../components/SiteContent.astro";
   <meta name="geo.placename" content="Toulouse — Les Minimes" />
   <meta name="geo.position" content="43.6256;1.4309" />
   <meta name="ICBM" content="43.6256, 1.4309" />
-  <link rel="canonical" href="https://minimes.boxingcenter.fr/galerie/" />
+  <link rel="canonical" href="https://bc-minimes.vercel.app/galerie/" />
   <meta name="theme-color" content="#0a1020" />
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
-  <link rel="shortcut icon" href="/favicon.png" />
-  <link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+  <link rel="icon" href="/favicon.svg?i=2" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.png?i=2" type="image/png" sizes="32x32" />
+  <link rel="shortcut icon" href="/favicon.png?i=2" />
+  <link rel="icon" href="/favicon-192.png?i=2" type="image/png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?i=2" sizes="180x180" />
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="Boxing Center Minimes" />
   <meta property="og:title" content="Galerie photos — Boxing Center Minimes, Toulouse" />
   <meta property="og:description" content="Le ring, le sparring, la boxe éducative, le Boxing Lady : la boxe des Minimes en images, noir et blanc, filtrable." />
-  <meta property="og:url" content="https://minimes.boxingcenter.fr/galerie/" />
-  <meta property="og:image" content="https://minimes.boxingcenter.fr/assets/img/og.jpg" />
+  <meta property="og:url" content="https://bc-minimes.vercel.app/galerie/" />
+  <meta property="og:image" content="https://bc-minimes.vercel.app/assets/img/og.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:alt" content="La boxe chez Boxing Center en images — ring, sparring, école, Boxing Lady." />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Galerie photos — Boxing Center Minimes, Toulouse" />
-  <meta name="twitter:description" content="Le ring, le sparring, l'école, le Boxing Lady : la boxe des Minimes en images, noir et blanc." />
-  <meta name="twitter:image" content="https://minimes.boxingcenter.fr/assets/img/og.jpg" />
+  <meta name="twitter:description" content="Le ring, le sparring, l’école, le Boxing Lady : la boxe des Minimes en images, noir et blanc." />
+  <meta name="twitter:image" content="https://bc-minimes.vercel.app/assets/img/og.jpg" />
 
   <!-- Données structurées : graphe JSON-LD unifié de la page — nœuds reliés
        par @id (Organization · SportsActivityLocation/HealthClub · WebSite ·
@@ -70,7 +70,7 @@ import SiteContent from "../../components/SiteContent.astro";
         ],
         "subOrganization": [
           {
-            "@id": "https://minimes.boxingcenter.fr/#salle"
+            "@id": "https://bc-minimes.vercel.app/#salle"
           },
           {
             "@type": "SportsActivityLocation",
@@ -97,14 +97,14 @@ import SiteContent from "../../components/SiteContent.astro";
           "HealthClub",
           "LocalBusiness"
         ],
-        "@id": "https://minimes.boxingcenter.fr/#salle",
+        "@id": "https://bc-minimes.vercel.app/#salle",
         "knowsLanguage": ["fr-FR", "en"],
         "name": "Boxing Center Minimes",
-        "url": "https://minimes.boxingcenter.fr/",
+        "url": "https://bc-minimes.vercel.app/",
         "telephone": "+33562244682",
         "email": "boxingcenter31@gmail.com",
         "priceRange": "€€",
-        "image": "https://minimes.boxingcenter.fr/assets/img/og.jpg",
+        "image": "https://bc-minimes.vercel.app/assets/img/og.jpg",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "12 rue de Fenouillet",
@@ -165,24 +165,24 @@ import SiteContent from "../../components/SiteContent.astro";
           },
           {
             "@type": "LocationFeatureSpecification",
-            "name": "Zone pattes d'ours",
+            "name": "Zone pattes d’ours",
             "value": true
           },
           {
             "@type": "LocationFeatureSpecification",
-            "name": "Salle de prépa physique à l'étage",
+            "name": "Salle de prépa physique à l’étage",
             "value": true
           }
         ],
         "hasOfferCatalog": {
           "@type": "OfferCatalog",
-          "@id": "https://minimes.boxingcenter.fr/#offres",
+          "@id": "https://bc-minimes.vercel.app/#offres",
           "name": "Offres Boxing Center Minimes",
-          "url": "https://minimes.boxingcenter.fr/tarifs/",
+          "url": "https://bc-minimes.vercel.app/tarifs/",
           "itemListElement": [
             {
               "@type": "Offer",
-              "name": "Séance d'essai",
+              "name": "Séance d’essai",
               "price": "10",
               "priceCurrency": "EUR",
               "description": "Toutes disciplines, matériel prêté, sans engagement.",
@@ -216,7 +216,7 @@ import SiteContent from "../../components/SiteContent.astro";
         },
         "potentialAction": {
           "@type": "ReserveAction",
-          "name": "Réserver une séance d'essai",
+          "name": "Réserver une séance d’essai",
           "target": {
             "@type": "EntryPoint",
             "urlTemplate": "https://box-plus.vercel.app/seance-essai",
@@ -228,35 +228,35 @@ import SiteContent from "../../components/SiteContent.astro";
           },
           "result": {
             "@type": "Reservation",
-            "name": "Séance d'essai — 10 €, toutes disciplines, matériel prêté"
+            "name": "Séance d’essai — 10 €, toutes disciplines, matériel prêté"
           }
         },
         "parentOrganization": {
           "@id": "https://boxingcenter.fr/#organization"
         },
-        "description": "Salle de boxe anglaise historique du groupe Boxing Center, quartier des Minimes à Toulouse (31200). Berceau de boxeurs professionnels et amateurs, 3 rings, boxe éducative dès 3 ans (Baby Boxe 3/6), Boxing Lady. Séance d'essai 10€."
+        "description": "Salle de boxe anglaise historique du groupe Boxing Center, quartier des Minimes à Toulouse (31200). Berceau de boxeurs professionnels et amateurs, 3 rings, boxe éducative dès 3 ans (Baby Boxe 3/6), Boxing Lady. Séance d’essai 10€."
       },
       {
         "@type": "WebSite",
-        "@id": "https://minimes.boxingcenter.fr/#website",
-        "url": "https://minimes.boxingcenter.fr/",
+        "@id": "https://bc-minimes.vercel.app/#website",
+        "url": "https://bc-minimes.vercel.app/",
         "name": "Boxing Center Minimes",
         "inLanguage": "fr-FR",
         "publisher": {
-          "@id": "https://minimes.boxingcenter.fr/#salle"
+          "@id": "https://bc-minimes.vercel.app/#salle"
         }
       },
       {
         "@type": "WebPage",
-        "@id": "https://minimes.boxingcenter.fr/galerie/#webpage",
-        "url": "https://minimes.boxingcenter.fr/galerie/",
+        "@id": "https://bc-minimes.vercel.app/galerie/#webpage",
+        "url": "https://bc-minimes.vercel.app/galerie/",
         "name": "Galerie photos — Boxing Center Minimes, Toulouse (rings, sparring, Lady, école)",
-        "description": "Le ring, le sparring, les gants des petits, le Boxing Lady, les pattes d'ours : la salle des Minimes en noir et blanc, filtrable zone par zone.",
+        "description": "Le ring, le sparring, les gants des petits, le Boxing Lady, les pattes d’ours : la salle des Minimes en noir et blanc, filtrable zone par zone.",
         "isPartOf": {
-          "@id": "https://minimes.boxingcenter.fr/#website"
+          "@id": "https://bc-minimes.vercel.app/#website"
         },
         "about": {
-          "@id": "https://minimes.boxingcenter.fr/#salle"
+          "@id": "https://bc-minimes.vercel.app/#salle"
         },
         "inLanguage": "fr-FR",
         "speakable": {
@@ -267,38 +267,38 @@ import SiteContent from "../../components/SiteContent.astro";
           ]
         },
         "primaryImageOfPage": {
-          "@id": "https://minimes.boxingcenter.fr/galerie/#primaryimage"
+          "@id": "https://bc-minimes.vercel.app/galerie/#primaryimage"
         },
         "datePublished": "2026-07-17",
         "dateModified": "@BUILT@",
         "breadcrumb": {
-          "@id": "https://minimes.boxingcenter.fr/galerie/#breadcrumb"
+          "@id": "https://bc-minimes.vercel.app/galerie/#breadcrumb"
         }
       },
       {
         "@type": "ImageObject",
-        "@id": "https://minimes.boxingcenter.fr/galerie/#primaryimage",
-        "url": "https://minimes.boxingcenter.fr/assets/img/og.jpg",
-        "contentUrl": "https://minimes.boxingcenter.fr/assets/img/og.jpg",
+        "@id": "https://bc-minimes.vercel.app/galerie/#primaryimage",
+        "url": "https://bc-minimes.vercel.app/assets/img/og.jpg",
+        "contentUrl": "https://bc-minimes.vercel.app/assets/img/og.jpg",
         "width": 1200,
         "height": 630,
         "caption": "La boxe chez Boxing Center en images — ring, sparring, école, Boxing Lady."
       },
       {
         "@type": "BreadcrumbList",
-        "@id": "https://minimes.boxingcenter.fr/galerie/#breadcrumb",
+        "@id": "https://bc-minimes.vercel.app/galerie/#breadcrumb",
         "itemListElement": [
           {
             "@type": "ListItem",
             "position": 1,
             "name": "Accueil",
-            "item": "https://minimes.boxingcenter.fr/"
+            "item": "https://bc-minimes.vercel.app/"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "Galerie",
-            "item": "https://minimes.boxingcenter.fr/galerie/"
+            "item": "https://bc-minimes.vercel.app/galerie/"
           }
         ]
       }
@@ -308,10 +308,10 @@ import SiteContent from "../../components/SiteContent.astro";
 
   <!-- page-scoped : mosaïque N&B (mur de champion), filtres par zone, lightbox -->
   <style is:inline>
-    /* l'en-tête partage .page-head (base.css) — la répétition est honnête.
+    /* l’en-tête partage .page-head (base.css) — la répétition est honnête.
        Ce qui appartient à CETTE page : le bord de planche-contact, les
-       perforations d'un film. C'est la page des images : elle commence par
-       le bord d'une pellicule. */
+       perforations d’un film. C’est la page des images : elle commence par
+       le bord d’une pellicule. */
     .page-head--ga .page-head__bg { opacity: .22; }
     .ga-sprockets { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; display: flex; gap: 10px; padding: 7px 0; background: var(--black); border-top: 1px solid var(--line); overflow: hidden; pointer-events: none; }
     .ga-sprockets i { flex: 0 0 26px; height: 14px; border-radius: 2px; background: var(--ink-2); border: 1px solid var(--line); }
@@ -326,7 +326,7 @@ import SiteContent from "../../components/SiteContent.astro";
        annonce combien il en reste évite le clic dans le vide. */
     .ga-filter i { font-style: normal; margin-left: .8ch; padding-left: .8ch; border-left: 1px solid currentColor; opacity: .7; }
 
-    /* --- le pont galerie → disciplines : la page ne s'arrête plus à la
+    /* --- le pont galerie → disciplines : la page ne s’arrête plus à la
        mosaïque, chaque zone photo mène au cours correspondant --- */
     .ga-bridge { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); grid-template-columns: 1fr; }
     @media (min-width: 640px){ .ga-bridge { grid-template-columns: repeat(2,1fr); } }
@@ -352,7 +352,7 @@ import SiteContent from "../../components/SiteContent.astro";
     .ga-cell.media:hover::after, .ga-cell.media:focus-visible::after { opacity: 1; transform: none; }
     .ga-cell::before { content: "⤢"; position: absolute; top: .7rem; right: .8rem; z-index: 3; font-size: 1rem; color: var(--bone); opacity: 0; transform: scale(.8); transition: opacity .35s, transform .35s var(--ease-punch); }
     .ga-cell:hover::before, .ga-cell:focus-visible::before { opacity: .9; transform: scale(1); }
-    /* touch : sans hover, ni la légende ni le ⤢ n'apparaissaient jamais
+    /* touch : sans hover, ni la légende ni le ⤢ n’apparaissaient jamais
        (§3 « captions mono », §5.4 touch-life). Même loi que .disc. */
     @media (hover: none), (max-width: 820px){
       .ga-cell.media::after { opacity: 1; transform: none; }
@@ -361,9 +361,9 @@ import SiteContent from "../../components/SiteContent.astro";
 
     /* lightbox */
     /* ⚠ visibility se transitionne de façon DISCRÈTE : avec `visibility .4s`
-       la valeur ne bascule qu'à 50 % (200 ms) — un .focus() immédiat tombait
+       la valeur ne bascule qu’à 50 % (200 ms) — un .focus() immédiat tombait
        alors sur un élément encore hidden et ne faisait rien. Motif correct :
-       0s à l'ouverture, différé à la fermeture (masquer APRÈS le fondu). */
+       0s à l’ouverture, différé à la fermeture (masquer APRÈS le fondu). */
     .ga-lightbox { position: fixed; inset: 0; z-index: 9200; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; padding: clamp(1.2rem,4vw,3rem); background: rgba(0,0,0,.92); opacity: 0; visibility: hidden; transition: opacity .4s var(--ease), visibility 0s linear .4s; }
     .ga-lightbox.is-open { opacity: 1; visibility: visible; transition: opacity .4s var(--ease), visibility 0s linear 0s; }
     .ga-lb__img { max-width: min(94vw,1100px); max-height: 80vh; width: auto; height: auto; border: 1px solid var(--line); filter: grayscale(1) contrast(1.1) brightness(.95); }
@@ -403,7 +403,7 @@ import SiteContent from "../../components/SiteContent.astro";
       <div class="wrap">
         <span class="eyebrow" data-reveal>En images · Les Minimes</span>
         <h1 class="display" style="margin:1rem 0 0"><span class="reveal-mask"><span>Ce que tu verras </span></span><span class="reveal-mask"><span class="tint">en poussant la porte.</span></span></h1>
-        <p class="lead page-head__lead" data-reveal>Ce que tu vois, c'est ce qu'il y a. Le ring, le cuir, la sueur, les gamins de l'école et les femmes du Lady. Le noir et blanc, c'est pour l'honnêteté.</p>
+        <p class="lead page-head__lead" data-reveal>Ce que tu vois, c’est ce qu’il y a. Le ring, le cuir, la sueur, les gamins de l’école et les femmes du Lady. Le noir et blanc, c’est pour l’honnêteté.</p>
       </div>
       <div class="ga-sprockets" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
     </section>
@@ -421,16 +421,16 @@ import SiteContent from "../../components/SiteContent.astro";
          La galerie ne se regarde plus seulement : elle se remplit. Les
          gens de la salle déposent leurs photos et leurs vidéos, le staff
          valide dans Le coin bleu, et ça monte ici.
-         L'habillage ET le module ne descendent que lorsque la section
-         entre à l'écran (cf. galerie.js) — /galerie/ ne paie rien au
+         L’habillage ET le module ne descendent que lorsque la section
+         entre à l’écran (cf. galerie.js) — /galerie/ ne paie rien au
          premier rendu. Sans JavaScript, la section reste un texte
-         honnête et le mur n'affiche pas un cadre vide. -->
+         honnête et le mur n’affiche pas un cadre vide. -->
     <section class="section band" id="community" aria-label="Le mur du club">
       <div class="wrap">
         <div data-reveal style="margin-bottom:clamp(1.6rem,4vw,2.4rem)">
           <span class="eyebrow">Vos images</span>
           <h2 class="display display--sm" style="margin-top:1rem">Le mur <span class="tint">du club</span></h2>
-          <p class="lead" data-reveal style="margin-top:1.2rem;max-width:56ch">Les photos du haut, c'est nous qui les avons prises. Celles d'en bas, c'est vous. Un round au sac, les gants des petits, la tête d'après séance : accroche-la au mur.</p>
+          <p class="lead" data-reveal style="margin-top:1.2rem;max-width:56ch">Les photos du haut, c’est nous qui les avons prises. Celles d’en bas, c’est vous. Un round au sac, les gants des petits, la tête d’après séance : accroche-la au mur.</p>
         </div>
 
         <div class="cm">
@@ -440,7 +440,7 @@ import SiteContent from "../../components/SiteContent.astro";
 
           <form class="cm-form" id="community-form" novalidate>
             <h3>Accroche la tienne</h3>
-            <p>Photo ou vidéo, prise ici, aux Minimes. Un coach regarde avant que ça monte — on ne publie rien à l'aveugle.</p>
+            <p>Photo ou vidéo, prise ici, aux Minimes. Un coach regarde avant que ça monte — on ne publie rien à l’aveugle.</p>
 
             <div class="cm-field">
               <label for="cm-author">Ton prénom</label>
@@ -478,17 +478,17 @@ import SiteContent from "../../components/SiteContent.astro";
     </section>
 
     <!-- ==================== CE QUE LE CADRE COUPE ==================
-         La page s'arrêtait à la mosaïque : trois écrans, le plus maigre
-         des huit. Puisqu'elle ne peut PAS prétendre montrer cette salle-ci
-         tant que le shooting n'a pas eu lieu, elle prend le problème par
-         l'autre bout et dit ce qu'aucune photo ne rend. Rendu depuis
+         La page s’arrêtait à la mosaïque : trois écrans, le plus maigre
+         des huit. Puisqu’elle ne peut PAS prétendre montrer cette salle-ci
+         tant que le shooting n’a pas eu lieu, elle prend le problème par
+         l’autre bout et dit ce qu’aucune photo ne rend. Rendu depuis
          GALLERY.offFrame — rien en dur dans ce fichier. -->
-    <section class="section band" aria-label="Ce qu'une photo ne rend pas">
+    <section class="section band" aria-label="Ce qu’une photo ne rend pas">
       <div class="wrap">
         <div data-reveal style="margin-bottom:clamp(1.6rem,4vw,2.4rem)">
           <span class="eyebrow">Hors champ</span>
-          <h2 class="display display--sm" style="margin-top:1rem">Trois choses <span class="tint">que l'image rate</span></h2>
-          <p class="lead" data-reveal style="margin-top:1.2rem;max-width:56ch">Une salle de boxe, ça se regarde mal et ça s'entend bien. Voilà ce que tu ne trouveras sur aucune de ces photos.</p>
+          <h2 class="display display--sm" style="margin-top:1rem">Trois choses <span class="tint">que l’image rate</span></h2>
+          <p class="lead" data-reveal style="margin-top:1.2rem;max-width:56ch">Une salle de boxe, ça se regarde mal et ça s’entend bien. Voilà ce que tu ne trouveras sur aucune de ces photos.</p>
         </div>
         <div class="values" id="ga-offframe" data-reveal-group></div>
       </div>
@@ -501,7 +501,7 @@ import SiteContent from "../../components/SiteContent.astro";
     <section class="section section--flush" aria-label="Les disciplines derrière les photos">
       <div class="wrap">
         <div data-reveal style="margin-bottom:clamp(1.4rem,3vw,2rem)">
-          <span class="eyebrow">Derrière l'image</span>
+          <span class="eyebrow">Derrière l’image</span>
           <h2 class="display display--sm" style="margin-top:1rem">Ce que tu viens de <span class="tint">regarder</span></h2>
         </div>
         <div class="ga-bridge" id="ga-bridge" data-reveal-group></div>
@@ -513,8 +513,8 @@ import SiteContent from "../../components/SiteContent.astro";
       <div class="gong__bg" aria-hidden="true"><div class="media" data-img="/assets/img/bc/anglaise-1.webp" data-label=""></div></div>
       <div class="gong__inner">
         <span class="eyebrow" data-reveal>Hors cadre</span>
-        <h2 class="display" data-reveal style="font-size:var(--step-3)">Le mieux,<br><span class="tint">c'est d'y être.</span></h2>
-        <p class="lead" data-reveal>Une photo ne rend pas le bruit que ça fait. Viens l'entendre.</p>
+        <h2 class="display" data-reveal style="font-size:var(--step-3)">Le mieux,<br><span class="tint">c’est d’y être.</span></h2>
+        <p class="lead" data-reveal>Une photo ne rend pas le bruit que ça fait. Viens l’entendre.</p>
         <div class="gong__cta" data-reveal>
           <a class="btn btn--primary" data-magnetic href="https://box-plus.vercel.app/seance-essai"><span>Réserver mon essai · 10€</span></a>
           <a class="btn btn--ghost" data-magnetic href="/le-club/"><span>Le club</span></a>
@@ -543,7 +543,7 @@ import SiteContent from "../../components/SiteContent.astro";
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=b16"></script>
-  <script is:inline type="module" src="/assets/js/galerie.js?v=b16"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=b17"></script>
+  <script is:inline type="module" src="/assets/js/galerie.js?v=b17"></script>
 </body>
 </html>

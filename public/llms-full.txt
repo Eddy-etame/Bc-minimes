@@ -4,7 +4,7 @@
 > sans habillage marketing. Salle de boxe anglaise historique du réseau
 > Boxing Center, 12 rue de Fenouillet, 31200 Toulouse (Minimes / Barrière de Paris).
 
-## Accueil — https://minimes.boxingcenter.fr/
+## Accueil — https://bc-minimes.vercel.app/
 
 - Boxing Center Minimes est la salle historique (la première, ouverte en 2016) du réseau Boxing Center à Toulouse.
 - Quartier : Les Minimes / Barrière de Paris (31200), métro ligne B.
@@ -15,7 +15,7 @@
 - Séance d'essai : 10 €, toutes disciplines, sans engagement.
 - Téléphone : 05 62 24 46 82.
 
-## Activités & disciplines — https://minimes.boxingcenter.fr/activites/
+## Activités & disciplines — https://bc-minimes.vercel.app/activites/
 
 ### Boxe anglaise (la spécialité maison) — 7 créneaux/semaine
 - Pour : du grand débutant au compétiteur licencié.
@@ -58,7 +58,7 @@
 ### Cardio boxing — pas de créneau dédié
 - Tout le geste de boxe, aucun coup reçu, sur les douze sacs lourds en accès libre. La version encadrée de cet effort, c'est le Boxing camp.
 
-## Le club — https://minimes.boxingcenter.fr/le-club/
+## Le club — https://bc-minimes.vercel.app/le-club/
 
 - Histoire : Boxing Center ouvre sa première salle aux Minimes en 2016 (concept des salles américaines, accès six jours sur sept, trois rings). En 2018, la boxe éducative et le Boxing Lady décollent. Johnson Suffo et Salomon Kitoko passent professionnels. Une trentaine de combattants formés à la maison.
 - Équipement : 3 rings de boxe, 12 sacs lourds, zone pattes d'ours, prépa physique à l'étage, vestiaires hommes/femmes.
@@ -67,7 +67,7 @@
 - Le réseau Boxing Center : Portet-sur-Garonne (vaisseau amiral — 800 m², ring olympique, cage MMA — https://www.boxing-center-portet.fr/), États-Unis, Saint-Cyprien (1 200 m²), Ramonville (ring + octogone 7 m) — https://boxingcenter.fr/
 - Questions du lieu : la zone prépa physique est à l'étage et surplombe les rings ; on peut venir voir un cours aux heures d'ouverture sans rien demander ; vestiaires hommes et femmes séparés.
 
-## Les coachs — https://minimes.boxingcenter.fr/coachs/
+## Les coachs — https://bc-minimes.vercel.app/coachs/
 
 - Mehdi B. — coach principal. Disciplines : boxe anglaise, boxe éducative, compétiteurs, Baby Boxe, boxing camp, open sparring. 22 des 27 créneaux de la semaine, du lundi au samedi. Portrait vérifié en ligne.
 - Chloé — Boxing Lady, lundi 18h30–19h30 (1 créneau).
@@ -85,13 +85,13 @@
 - Samedi (6 cours) : Mehdi B (6).
 - Dimanche : salle fermée, aucun encadrement.
 
-## Galerie — https://minimes.boxingcenter.fr/galerie/
+## Galerie — https://bc-minimes.vercel.app/galerie/
 
 - Galerie noir et blanc filtrable par zone : la salle, boxe anglaise, Lady, l'école, technique.
 - Les photos proviennent du pool réel du réseau Boxing Center (site Portet) ; le shooting dédié des Minimes n'a pas encore eu lieu.
 - La page assume cette limite : une section « hors champ » dit ce qu'aucune photo ne rend (le bruit, l'odeur du cuir, la voix du coach), et chaque zone photo renvoie vers la discipline correspondante.
 
-## Planning — https://minimes.boxingcenter.fr/plannings/
+## Planning — https://bc-minimes.vercel.app/plannings/
 
 Transcription du poster officiel de la saison (grille filtrable jour / discipline / coach sur la page) :
 
@@ -157,7 +157,7 @@ Transcription du poster officiel de la saison (grille filtrable jour / disciplin
 - Ouvert 6 jours sur 7, 10h00–21h30. Fermé le dimanche.
 - La grille de la page est filtrable par jour, discipline et coach, et l'état du filtre est dans l'URL (?jour= / ?disc= / ?coach=).
 
-## Tarifs & offres — https://minimes.boxingcenter.fr/tarifs/
+## Tarifs & offres — https://bc-minimes.vercel.app/tarifs/
 
 - Séance d'essai : 10 € la séance — toutes les disciplines, gants et protections prêtés, sans engagement, sans dossier. → https://box-plus.vercel.app/seance-essai
 - Offre Duo : 29 € par personne (au lieu de 44 €) — 4 semaines de cours illimités à deux, toutes disciplines, sans engagement. → https://box-plus.vercel.app/abonnements#promotions
@@ -174,12 +174,12 @@ Transcription du poster officiel de la saison (grille filtrable jour / disciplin
 - Matériel : prêté pour la séance d'essai. Au-delà, l'adhérent prend ses propres gants (hygiène) ; la boutique du réseau les fournit.
 - Le t-shirt offert concerne les 100 premiers inscrits de la saison, sans contrepartie ni engagement supplémentaire.
 
-- Avis Google : la note et le nombre d'avis sont affichés à jour sur https://minimes.boxingcenter.fr/tarifs/ et ne sont pas recopiés ici (un compte d'avis bouge en permanence). Extraits verbatim affichés sur la page :
+- Avis Google : la note et le nombre d'avis sont affichés à jour sur https://bc-minimes.vercel.app/tarifs/ et ne sont pas recopiés ici (un compte d'avis bouge en permanence). Extraits verbatim affichés sur la page :
   - « Très belle salle de boxe. Matos au top, coach et staff accueillant. » — Hamed S.
   - « J'ai adoré mes trois ans passés à faire du sport à Boxing Center. Équipe au top. » — Salomé C.
   - « Superbe salle, très bonne ambiance. Je pratique les cours de boxe anglaise loisir. » — Pascal L.
 
-## Contact & accès — https://minimes.boxingcenter.fr/contact/
+## Contact & accès — https://bc-minimes.vercel.app/contact/
 
 - Adresse : 12 rue de Fenouillet, 31200 Toulouse.
 - Téléphone : 05 62 24 46 82 (+33 5 62 24 46 82).

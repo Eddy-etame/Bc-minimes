@@ -3,10 +3,10 @@
    window.BC = { reveal, magnetic, refresh, media, split, scramble,
                  initKinetics, faq, lenis, velocity }
    ===================================================================== */
-import { NAV, LINKS, SALLE, MEDIA, CTA, NETWORK } from "./data.js?v=b16";
-/* L'assistant : il promeut la pastille `.chatbot` (qui reste un lien tel:
+import { NAV, LINKS, SALLE, MEDIA, CTA, NETWORK } from "./data.js?v=b17";
+/* L’assistant : il promeut la pastille `.chatbot` (qui reste un lien tel:
    dans le HTML) en vraie conversation. Voir armChatbot() plus bas — le
-   module ne descend QU'À l'intention de parler, jamais au premier rendu. */
+   module ne descend QU’À l’intention de parler, jamais au premier rendu. */
 
 const gsap = window.gsap;
 const ScrollTrigger = window.ScrollTrigger;
@@ -24,7 +24,7 @@ function currentPath() {
   return p;
 }
 /* Icône de lien sortant — un seul tracé, partout où on quitte le domaine.
-   Le visiteur doit voir qu'il change de site AVANT de cliquer. */
+   Le visiteur doit voir qu’il change de site AVANT de cliquer. */
 const EXT = `<svg class="ext" width="10" height="10" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5 11L11 5M11 5H6M11 5V10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 /* Maillage de marque VOULU : les liens vers le réseau propriétaire ne
    sont PAS en nofollow (ce serait saborder notre propre maillage).
@@ -95,11 +95,11 @@ function mountNav() {
       if (open) gsap.fromTo(items, { yPercent: 120, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.7, ease: "power4.out", stagger: 0.06, delay: 0.18 });
     }
   };
-  /* La texture du menu descend à l'INTENTION d'ouvrir, jamais avant : la
+  /* La texture du menu descend à l’INTENTION d’ouvrir, jamais avant : la
      souris qui arrive sur le burger, le focus clavier, le doigt qui se
      pose. Ces trois signaux précèdent le clic, donc le poster est déjà là
-     quand le panneau s'ouvre (l'animation d'entrée dure 0,18 s + 0,7 s).
-     Si aucun ne passe — ouverture programmée — setOpen l'arme lui-même :
+     quand le panneau s’ouvre (l’animation d’entrée dure 0,18 s + 0,7 s).
+     Si aucun ne passe — ouverture programmée — setOpen l’arme lui-même :
      jamais de fond vide, jamais de trou noir. */
   let bgArmed = false;
   const armMenuBg = () => {
@@ -136,9 +136,9 @@ function mountFooter() {
     { h: "Pratique", links: [{ href: "/plannings/", label: "Planning" }, { href: "/tarifs/", label: "Tarifs" }, { href: "/contact/", label: "Contact" }, { href: LINKS.boutique, label: "Boutique", ext: true }] },
     { h: "Le réseau", links: [{ href: LINKS.groupe, label: "Boxing Center", ext: true }, { href: LINKS.boutique, label: "La boutique", ext: true }, { href: LINKS.instagram, label: "Instagram", ext: true }, { href: LINKS.facebook, label: "Facebook", ext: true }] },
   ];
-  /* Les salles sœurs — le bloc réseau existait en données et n'était
-     rendu nulle part. `go` dit la VÉRITÉ sur la destination : tant qu'une
-     salle n'a pas son domaine en ligne, on n'écrit pas « Découvrir » sur
+  /* Les salles sœurs — le bloc réseau existait en données et n’était
+     rendu nulle part. `go` dit la VÉRITÉ sur la destination : tant qu’une
+     salle n’a pas son domaine en ligne, on n’écrit pas « Découvrir » sur
      un lien qui atterrit sur la home du groupe. */
   const salles = NETWORK.map((s) => `
     <a class="netcard" href="${s.url}" target="_blank" rel="noopener">
@@ -282,36 +282,36 @@ function reveal(scope = document) {
 
 /* --------------------------- MEDIA HYDRATE ------------------------
    `local()` décide si un chemin est SERVI PAR NOUS ou par le pool photo
-   distant (MEDIA). ⚠ Le piège déjà payé : l'exemption ne couvrait que
+   distant (MEDIA). ⚠ Le piège déjà payé : l’exemption ne couvrait que
    /assets, donc /media/clip-mats.mp4 et /img/gym-21.jpg — des fichiers
    LOCAUX — se faisaient préfixer du domaine Portet, qui répond 403 depuis
-   l'anti-scraping → une erreur console sur les 8 pages. Une maquette
+   l’anti-scraping → une erreur console sur les 8 pages. Une maquette
    Minimes ne dépend JAMAIS du domaine de Portet pour son propre poster. */
 const local = (p) => /^(https?:|data:|\/assets|\/media|\/img)/.test(p);
 
-/* ------------------- LES PHOTOS ARRIVENT À L'APPROCHE --------------
-   Le défaut mesuré : `new Image()` recevait son `src` AVANT d'entrer
+/* ------------------- LES PHOTOS ARRIVENT À L’APPROCHE --------------
+   Le défaut mesuré : `new Image()` recevait son `src` AVANT d’entrer
    dans le document. Sur une image détachée, le navigateur part chercher
    le fichier tout de suite — le `loading="lazy"` posé juste après ne
-   gouverne plus rien. Résultat sur l'accueil : 20 photos marquées
+   gouverne plus rien. Résultat sur l’accueil : 20 photos marquées
    « lazy », 20 téléchargées au premier rendu, 571 ko dont la plus haute
    attendait à 3 000 px sous le pli. Un visiteur qui vient lire les
-   horaires payait la page entière avant d'avoir lu une ligne.
+   horaires payait la page entière avant d’avoir lu une ligne.
 
-   On ne se contente pas de remettre l'attribut dans le bon ordre : on
+   On ne se contente pas de remettre l’attribut dans le bon ordre : on
    tient la porte nous-mêmes, avec 1 200 px de marge devant. Une photo
    est donc déjà en route quand elle est encore un écran et demi plus
-   bas — elle est peinte bien avant d'entrer dans le champ, et le reveal
+   bas — elle est peinte bien avant d’entrer dans le champ, et le reveal
    GSAP qui la découvre dure encore 1 s après. Rien ne change à l'œil.
 
-   FILET DEAD-MAN — la règle de la maison : si l'IntersectionObserver
-   n'existe pas, ou existe mais ne parle jamais (contextes automatisés,
+   FILET DEAD-MAN — la règle de la maison : si l’IntersectionObserver
+   n’existe pas, ou existe mais ne parle jamais (contextes automatisés,
    impression, moteurs qui rendent la page sans la « regarder »), la
-   première salve de callbacks n'arrive pas. On le détecte — un
+   première salve de callbacks n’arrive pas. On le détecte — un
    observer sain rend TOUJOURS un premier verdict par cible — et on
    sert alors la totalité des photos, en priorité basse, une fois la
    page chargée. Le pire scénario redevient exactement le comportement
-   d'avant : tout arrive. Une photo ne peut jamais rester vide. */
+   d’avant : tout arrive. Une photo ne peut jamais rester vide. */
 let _io = null, _ioAlive = false, _netArmed = false;
 const _waiting = new Set();
 
@@ -321,8 +321,8 @@ function _serve(img) {
   delete img.dataset.src;
   _waiting.delete(img);
   if (_io) _io.unobserve(img);
-  /* on repasse en `eager` À L'INSTANT du service : c'est nous la porte,
-     le lazy natif n'a plus à ajouter son propre seuil par-dessus. */
+  /* on repasse en `eager` À L’INSTANT du service : c’est nous la porte,
+     le lazy natif n’a plus à ajouter son propre seuil par-dessus. */
   img.loading = "eager";
   img.src = url;
 }
@@ -332,13 +332,13 @@ function _serveAll() {
   _waiting.forEach((img) => { img.fetchPriority = "low"; _serve(img); });
 }
 
-/* Une photo qu'on vient de RÉAFFICHER n'attend pas le prochain tour de
-   l'observer : la galerie filtre en `display:none`, et une vignette qui
+/* Une photo qu’on vient de RÉAFFICHER n’attend pas le prochain tour de
+   l’observer : la galerie filtre en `display:none`, et une vignette qui
    revient doit avoir son image, pas un trou. */
 function serveMedia(scope = document) {
   scope.querySelectorAll("img[data-src]").forEach(_serve);
 }
-/* À l'impression, la page n'est pas « regardée » : on sert tout. */
+/* À l’impression, la page n’est pas « regardée » : on sert tout. */
 addEventListener("beforeprint", _serveAll);
 
 function _defer(img) {
@@ -346,14 +346,14 @@ function _defer(img) {
   if (!("IntersectionObserver" in window)) return _serve(img);
   if (!_io) {
     _io = new IntersectionObserver((entries) => {
-      _ioAlive = true;                 // l'observer répond : le filet peut dormir
+      _ioAlive = true;                 // l’observer répond : le filet peut dormir
       entries.forEach((e) => { if (e.isIntersecting) _serve(e.target); });
     }, { rootMargin: "1200px 0px" });
   }
   _io.observe(img);
   if (_netArmed) return; _netArmed = true;
-  /* Le filet s'arme une fois, après le chargement complet : s'il n'a
-     toujours pas eu signe de vie de l'observer, il sert tout. */
+  /* Le filet s’arme une fois, après le chargement complet : s’il n’a
+     toujours pas eu signe de vie de l’observer, il sert tout. */
   const arm = () => setTimeout(() => { if (!_ioAlive) _serveAll(); }, 2000);
   if (document.readyState === "complete") arm();
   else addEventListener("load", arm, { once: true });
@@ -369,17 +369,17 @@ function hydrateMedia(scope = document) {
     img.decoding = "async";
     img.loading = eager ? "eager" : "lazy";
     if (eager) img.fetchPriority = "high";
-    el.prepend(img);                   // DANS le document d'abord…
+    el.prepend(img);                   // DANS le document d’abord…
     if (eager) img.src = url;          // …le src ensuite, et seulement alors.
     else { img.dataset.src = url; _defer(img); }
   });
   scope.querySelectorAll("video[data-video]").forEach((v) => {
     /* [data-video-defer] : la vidéo existe dans le DOM mais ne part PAS au
-       premier rendu. Une seule porteuse aujourd'hui — le fond du menu, une
+       premier rendu. Une seule porteuse aujourd’hui — le fond du menu, une
        texture en opacité .16, grise, à 60 % de luminosité, que 1,8 Mo
-       payait sur les 8 pages y compris quand le menu n'était jamais
+       payait sur les 8 pages y compris quand le menu n’était jamais
        ouvert (mesuré : 2 279 904 octets servis sur /tarifs/). Elle part
-       maintenant à l'INTENTION d'ouvrir — voir armMenuBg(). */
+       maintenant à l’INTENTION d’ouvrir — voir armMenuBg(). */
     if (v.hasAttribute("data-video-defer")) return;
     if (v.dataset.mediaBound) return; v.dataset.mediaBound = "1";
     v.muted = true; v.defaultMuted = true; v.playsInline = true; v.loop = true;
@@ -428,23 +428,23 @@ const refresh = () => ScrollTrigger?.refresh();
 
 /* ------------------------- FAQ / ACCORDÉON ------------------------
    Deux pages posent des questions : /contact/ (la FAQ canonique, celle
-   qui porte le FAQPage) et /tarifs/ (les questions d'argent). Le rendu
+   qui porte le FAQPage) et /tarifs/ (les questions d’argent). Le rendu
    ET le comportement vivent ici, une fois — sinon on maintient deux
-   accordéons dont un seul reçoit la prochaine correction d'accessibilité.
+   accordéons dont un seul reçoit la prochaine correction d’accessibilité.
 
    `id` préfixe les identifiants : deux accordéons sur une même page
-   auraient des `aria-controls` en collision, et le lecteur d'écran
+   auraient des `aria-controls` en collision, et le lecteur d’écran
    ouvrirait la mauvaise réponse.
 
-   Sur ouverture, `max-height` est posé en PIXELS — c'est ce qui rend la
-   transition possible (`auto` ne s'anime pas). Mais figée à la valeur
+   Sur ouverture, `max-height` est posé en PIXELS — c’est ce qui rend la
+   transition possible (`auto` ne s’anime pas). Mais figée à la valeur
    mesurée, une réponse qui se re-wrappe (rotation du téléphone, zoom
    texte, police système plus grosse) se retrouve tronquée par sa propre
    animation : le dernier paragraphe disparaît sous le pli.
    On relâche donc à `none` AU REDIMENSIONNEMENT, pas sur `transitionend` —
    cet événement ne se déclenche pas de façon fiable (transition annulée,
    onglet en arrière-plan, moteur qui coalesce le changement de style), et
-   un filet qui ne tombe que parfois n'est pas un filet. */
+   un filet qui ne tombe que parfois n’est pas un filet. */
 let _faqResizeBound = false;
 function bindFaqResize() {
   if (_faqResizeBound) return;
@@ -483,13 +483,13 @@ function faq(box, items) {
         a.style.maxHeight = a.scrollHeight + "px";
       } else {
         /* `.is-closing` garde le texte VISIBLE le temps du repli — sinon
-           il disparaît d'un coup pendant que la boîte, elle, se ferme
-           tranquillement. Retiré sur horloge à la fin de l'animation :
-           le panneau sort alors vraiment de l'arbre d'accessibilité,
-           d'accord avec l'aria-expanded="false" du bouton. */
+           il disparaît d’un coup pendant que la boîte, elle, se ferme
+           tranquillement. Retiré sur horloge à la fin de l’animation :
+           le panneau sort alors vraiment de l’arbre d’accessibilité,
+           d’accord avec l’aria-expanded="false" du bouton. */
         a.classList.add("is-closing");
         /* on RE-FIXE la hauteur mesurée avant de retomber à 0 : une
-           transition qui part de `none` ne s'anime pas, elle claque. */
+           transition qui part de `none` ne s’anime pas, elle claque. */
         a.style.maxHeight = a.scrollHeight + "px";
         void a.offsetHeight;
         a.style.maxHeight = "0px";
@@ -500,9 +500,9 @@ function faq(box, items) {
   });
 }
 
-/* --------------------------- L'ASSISTANT --------------------------- */
-/* Le module de conversation pèse 14 ko : il n'a rien à faire dans le
-   premier rendu d'un visiteur qui vient lire les horaires. On l'arme
+/* --------------------------- L’ASSISTANT --------------------------- */
+/* Le module de conversation pèse 14 ko : il n’a rien à faire dans le
+   premier rendu d’un visiteur qui vient lire les horaires. On l’arme
    ici en trois lignes, et il ne descend QUE sur une intention de
    parler — survol, focus clavier, doigt posé, ou clic.
 
@@ -519,26 +519,26 @@ function armChatbot() {
   const load = () => {
     if (state !== "idle") return pending;
     state = "loading";
-    pending = import("./chatbot.js?v=b16")
+    pending = import("./chatbot.js?v=b17")
       .then(() => { state = "ready"; })
       .catch(() => { state = "failed"; });
     return pending;
   };
 
-  /* Pré-chargement à l'intention : au clic, c'est déjà là. */
+  /* Pré-chargement à l’intention : au clic, c’est déjà là. */
   ["pointerenter", "focus", "touchstart"].forEach((ev) =>
     launcher.addEventListener(ev, load, { once: true, passive: true }));
 
   launcher.addEventListener("click", (e) => {
-    /* Une fois le module en place, c'est LUI qui pilote la pastille :
-       on s'efface pour ne pas doubler l'ouverture. */
+    /* Une fois le module en place, c’est LUI qui pilote la pastille :
+       on s’efface pour ne pas doubler l’ouverture. */
     if (state === "ready") return;
     /* Module injoignable : on laisse le tel: partir, comme sans JS. */
     if (state === "failed") return;
     e.preventDefault();
     load().then(() => {
-      /* Le module s'est branché sur la pastille pendant l'import :
-         on rejoue le clic pour qu'il ouvre le panneau lui-même. */
+      /* Le module s’est branché sur la pastille pendant l’import :
+         on rejoue le clic pour qu’il ouvre le panneau lui-même. */
       if (state === "ready") launcher.click();
       else location.href = launcher.href;   // repli : on appelle la salle
     });

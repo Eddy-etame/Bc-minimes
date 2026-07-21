@@ -6,46 +6,46 @@ import SiteContent from "../components/SiteContent.astro";
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Boxing Center Minimes — Salle de boxe anglaise à Toulouse (Barrière de Paris, 31200)</title>
-  <meta name="description" content="La salle historique du réseau, aux Minimes. Trois rings, l'école dès 3 ans, le Boxing Lady, métro B à trois minutes. Ta séance d'essai est à 10€." />
+  <title>Salle de boxe anglaise à Toulouse — Boxing Center Minimes</title>
+  <meta name="description" content="La salle historique du réseau, aux Minimes. Trois rings, l’école dès 3 ans, le Boxing Lady, métro B à trois minutes. Ta séance d’essai est à 10€." />
 
   <!-- Préconnexion CDN (les libs sont différées) — polices auto-hébergées :
        plus aucune requête vers fonts.googleapis.com / fonts.gstatic.com -->
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-black-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-latin.woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/css/fonts.css?v=b16" />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=b17" />
 
   <!-- LCP : le poster du hero est peint avant la vidéo ; il est chargé par
        le JS, donc invisible au preload scanner. Le preload rattrape la
-       découverte perdue (§5.8 « preload de l'image LCP »). -->
+       découverte perdue (§5.8 « preload de l’image LCP »). -->
   <link rel="preload" as="image" href="/assets/img/bc/anglaise-1.webp" fetchpriority="high" />
 
-  <link rel="stylesheet" href="/assets/css/base.css?v=b16" />
-  <link rel="stylesheet" href="/assets/css/home.css?v=b16" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=b17" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=b17" />
 
-  <meta name="keywords" content="salle de boxe Minimes, boxe anglaise Toulouse, club de boxe 31200, boxe Barrière de Paris, boxe éducative enfant Toulouse, Boxing Lady, séance d'essai boxe Toulouse, Boxing Center Minimes, boxing gym Toulouse, boxing club Toulouse, boxing lessons Toulouse, boxing classes Toulouse Minimes, English boxing Toulouse, kids boxing Toulouse, women boxing Toulouse, martial arts gym Toulouse, gym near Barrière de Paris" />
+  <meta name="keywords" content="salle de boxe Minimes, boxe anglaise Toulouse, club de boxe 31200, boxe Barrière de Paris, boxe éducative enfant Toulouse, Boxing Lady, séance d’essai boxe Toulouse, Boxing Center Minimes, boxing gym Toulouse, boxing club Toulouse, boxing lessons Toulouse, boxing classes Toulouse Minimes, English boxing Toulouse, kids boxing Toulouse, women boxing Toulouse, martial arts gym Toulouse, gym near Barrière de Paris" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="author" content="Boxing Center Minimes" />
   <meta name="geo.region" content="FR-31" />
   <meta name="geo.placename" content="Toulouse — Les Minimes" />
   <meta name="geo.position" content="43.6256;1.4309" />
   <meta name="ICBM" content="43.6256, 1.4309" />
-  <link rel="canonical" href="https://minimes.boxingcenter.fr/" />
+  <link rel="canonical" href="https://bc-minimes.vercel.app/" />
   <meta name="theme-color" content="#0a1020" />
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
-  <link rel="shortcut icon" href="/favicon.png" />
-  <link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+  <link rel="icon" href="/favicon.svg?i=2" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.png?i=2" type="image/png" sizes="32x32" />
+  <link rel="shortcut icon" href="/favicon.png?i=2" />
+  <link rel="icon" href="/favicon-192.png?i=2" type="image/png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?i=2" sizes="180x180" />
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="Boxing Center Minimes" />
   <meta property="og:title" content="Boxing Center Minimes — Le berceau des champions, Toulouse" />
-  <meta property="og:description" content="Salle historique de boxe anglaise aux Minimes (Toulouse 31200). 3 rings, boxe éducative dès 3 ans, Boxing Lady. Séance d'essai 10€." />
-  <meta property="og:url" content="https://minimes.boxingcenter.fr/" />
-  <meta property="og:image" content="https://minimes.boxingcenter.fr/assets/img/og.jpg" />
+  <meta property="og:description" content="Salle historique de boxe anglaise aux Minimes (Toulouse 31200). 3 rings, boxe éducative dès 3 ans, Boxing Lady. Séance d’essai 10€." />
+  <meta property="og:url" content="https://bc-minimes.vercel.app/" />
+  <meta property="og:image" content="https://bc-minimes.vercel.app/assets/img/og.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:type" content="image/jpeg" />
@@ -53,7 +53,7 @@ import SiteContent from "../components/SiteContent.astro";
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Boxing Center Minimes — Le berceau des champions, Toulouse" />
   <meta name="twitter:description" content="Salle historique de boxe anglaise aux Minimes (31200). 3 rings, boxe éducative dès 3 ans, Boxing Lady. Essai 10€." />
-  <meta name="twitter:image" content="https://minimes.boxingcenter.fr/assets/img/og.jpg" />
+  <meta name="twitter:image" content="https://bc-minimes.vercel.app/assets/img/og.jpg" />
 
   <!-- Données structurées : graphe JSON-LD unifié de la page — nœuds reliés
        par @id (Organization · SportsActivityLocation/HealthClub · WebSite ·
@@ -73,7 +73,7 @@ import SiteContent from "../components/SiteContent.astro";
         ],
         "subOrganization": [
           {
-            "@id": "https://minimes.boxingcenter.fr/#salle"
+            "@id": "https://bc-minimes.vercel.app/#salle"
           },
           {
             "@type": "SportsActivityLocation",
@@ -100,14 +100,14 @@ import SiteContent from "../components/SiteContent.astro";
           "HealthClub",
           "LocalBusiness"
         ],
-        "@id": "https://minimes.boxingcenter.fr/#salle",
+        "@id": "https://bc-minimes.vercel.app/#salle",
         "knowsLanguage": ["fr-FR", "en"],
         "name": "Boxing Center Minimes",
-        "url": "https://minimes.boxingcenter.fr/",
+        "url": "https://bc-minimes.vercel.app/",
         "telephone": "+33562244682",
         "email": "boxingcenter31@gmail.com",
         "priceRange": "€€",
-        "image": "https://minimes.boxingcenter.fr/assets/img/og.jpg",
+        "image": "https://bc-minimes.vercel.app/assets/img/og.jpg",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "12 rue de Fenouillet",
@@ -168,24 +168,24 @@ import SiteContent from "../components/SiteContent.astro";
           },
           {
             "@type": "LocationFeatureSpecification",
-            "name": "Zone pattes d'ours",
+            "name": "Zone pattes d’ours",
             "value": true
           },
           {
             "@type": "LocationFeatureSpecification",
-            "name": "Salle de prépa physique à l'étage",
+            "name": "Salle de prépa physique à l’étage",
             "value": true
           }
         ],
         "hasOfferCatalog": {
           "@type": "OfferCatalog",
-          "@id": "https://minimes.boxingcenter.fr/#offres",
+          "@id": "https://bc-minimes.vercel.app/#offres",
           "name": "Offres Boxing Center Minimes",
-          "url": "https://minimes.boxingcenter.fr/tarifs/",
+          "url": "https://bc-minimes.vercel.app/tarifs/",
           "itemListElement": [
             {
               "@type": "Offer",
-              "name": "Séance d'essai",
+              "name": "Séance d’essai",
               "price": "10",
               "priceCurrency": "EUR",
               "description": "Toutes disciplines, matériel prêté, sans engagement.",
@@ -219,7 +219,7 @@ import SiteContent from "../components/SiteContent.astro";
         },
         "potentialAction": {
           "@type": "ReserveAction",
-          "name": "Réserver une séance d'essai",
+          "name": "Réserver une séance d’essai",
           "target": {
             "@type": "EntryPoint",
             "urlTemplate": "https://box-plus.vercel.app/seance-essai",
@@ -231,35 +231,35 @@ import SiteContent from "../components/SiteContent.astro";
           },
           "result": {
             "@type": "Reservation",
-            "name": "Séance d'essai — 10 €, toutes disciplines, matériel prêté"
+            "name": "Séance d’essai — 10 €, toutes disciplines, matériel prêté"
           }
         },
         "parentOrganization": {
           "@id": "https://boxingcenter.fr/#organization"
         },
-        "description": "Salle de boxe anglaise historique du groupe Boxing Center, quartier des Minimes à Toulouse (31200). Berceau de boxeurs professionnels et amateurs, 3 rings, boxe éducative dès 3 ans (Baby Boxe 3/6), Boxing Lady. Séance d'essai 10€."
+        "description": "Salle de boxe anglaise historique du groupe Boxing Center, quartier des Minimes à Toulouse (31200). Berceau de boxeurs professionnels et amateurs, 3 rings, boxe éducative dès 3 ans (Baby Boxe 3/6), Boxing Lady. Séance d’essai 10€."
       },
       {
         "@type": "WebSite",
-        "@id": "https://minimes.boxingcenter.fr/#website",
-        "url": "https://minimes.boxingcenter.fr/",
+        "@id": "https://bc-minimes.vercel.app/#website",
+        "url": "https://bc-minimes.vercel.app/",
         "name": "Boxing Center Minimes",
         "inLanguage": "fr-FR",
         "publisher": {
-          "@id": "https://minimes.boxingcenter.fr/#salle"
+          "@id": "https://bc-minimes.vercel.app/#salle"
         }
       },
       {
         "@type": "WebPage",
-        "@id": "https://minimes.boxingcenter.fr/#webpage",
-        "url": "https://minimes.boxingcenter.fr/",
+        "@id": "https://bc-minimes.vercel.app/#webpage",
+        "url": "https://bc-minimes.vercel.app/",
         "name": "Boxing Center Minimes — Salle de boxe anglaise à Toulouse (Barrière de Paris, 31200)",
-        "description": "La salle historique du réseau, aux Minimes. Trois rings, l'école dès 3 ans, le Boxing Lady, métro B à trois minutes. Ta séance d'essai est à 10€.",
+        "description": "La salle historique du réseau, aux Minimes. Trois rings, l’école dès 3 ans, le Boxing Lady, métro B à trois minutes. Ta séance d’essai est à 10€.",
         "isPartOf": {
-          "@id": "https://minimes.boxingcenter.fr/#website"
+          "@id": "https://bc-minimes.vercel.app/#website"
         },
         "about": {
-          "@id": "https://minimes.boxingcenter.fr/#salle"
+          "@id": "https://bc-minimes.vercel.app/#salle"
         },
         "inLanguage": "fr-FR",
         "speakable": {
@@ -270,16 +270,16 @@ import SiteContent from "../components/SiteContent.astro";
           ]
         },
         "primaryImageOfPage": {
-          "@id": "https://minimes.boxingcenter.fr/#primaryimage"
+          "@id": "https://bc-minimes.vercel.app/#primaryimage"
         },
         "datePublished": "2026-07-17",
         "dateModified": "@BUILT@"
       },
       {
         "@type": "ImageObject",
-        "@id": "https://minimes.boxingcenter.fr/#primaryimage",
-        "url": "https://minimes.boxingcenter.fr/assets/img/og.jpg",
-        "contentUrl": "https://minimes.boxingcenter.fr/assets/img/og.jpg",
+        "@id": "https://bc-minimes.vercel.app/#primaryimage",
+        "url": "https://bc-minimes.vercel.app/assets/img/og.jpg",
+        "contentUrl": "https://bc-minimes.vercel.app/assets/img/og.jpg",
         "width": 1200,
         "height": 630,
         "caption": "Boxing Center Minimes — la salle historique, trois rings, quartier Barrière de Paris à Toulouse."
@@ -363,26 +363,26 @@ import SiteContent from "../components/SiteContent.astro";
       <div class="marquee__track" id="marquee"></div>
     </div>
 
-    <!-- ====================== STORY / L'ÂME ======================= -->
-    <section class="section" aria-label="L'âme de la salle">
+    <!-- ====================== STORY / L’ÂME ======================= -->
+    <section class="section" aria-label="L’âme de la salle">
       <div class="wrap split" data-round="1" data-round-name="Notre maison">
         <div data-reveal>
           <span class="eyebrow">Round 01 — Notre maison</span>
-          <p class="story__quote" style="margin-top:1.4rem">L'odeur du cuir.<br>Le bruit du cuir.<br>Et le silence quand le coach parle.</p>
+          <p class="story__quote" style="margin-top:1.4rem">L’odeur du cuir.<br>Le bruit du cuir.<br>Et le silence quand le coach parle.</p>
         </div>
         <div class="story__body" data-reveal>
-          <p class="lead">Les Minimes, c'est la première salle que Boxing Center ait ouverte — et rien n'a été lissé depuis. On tient plus de la vieille salle de Philadelphie que du club de sport : ici, on ne décore pas, on travaille.</p>
-          <p class="muted">Trois boxeurs professionnels et une trentaine d'amateurs sont sortis de ces rings. Pas par hasard. Par le travail, la transmission, et une règle qu'on n'écrit nulle part mais que tout le monde respecte : <strong style="color:var(--bone)">le ring ne ment jamais.</strong></p>
+          <p class="lead">Les Minimes, c’est la première salle que Boxing Center ait ouverte — et rien n’a été lissé depuis. On tient plus de la vieille salle de Philadelphie que du club de sport : ici, on ne décore pas, on travaille.</p>
+          <p class="muted">Trois boxeurs professionnels et une trentaine d’amateurs sont sortis de ces rings. Pas par hasard. Par le travail, la transmission, et une règle qu’on n’écrit nulle part mais que tout le monde respecte : <strong style="color:var(--bone)">le ring ne ment jamais.</strong></p>
         </div>
       </div>
 
       <div class="wrap" style="margin-top:var(--sec)">
-        <div class="feature" data-round="2" data-round-name="L'héritage">
+        <div class="feature" data-round="2" data-round-name="L’héritage">
           <div>
-            <span class="eyebrow">Round 02 — L'héritage</span>
+            <span class="eyebrow">Round 02 — L’héritage</span>
             <h2 class="display" style="margin:1.2rem 0 1.4rem">Trois rings.<br>Une seule <span class="tint">école.</span></h2>
             <p class="lead">Trois rings. Douze sacs. Un étage pour la caisse. Du matériel de boxeur, usé par les bonnes raisons.</p>
-            <p class="muted" style="margin-top:1.2rem">Des coachs qui ont monté les marches, de l'éducative à la compétition.</p>
+            <p class="muted" style="margin-top:1.2rem">Des coachs qui ont monté les marches, de l’éducative à la compétition.</p>
             <a class="btn btn--ghost" data-magnetic href="/le-club/" style="margin-top:1.6rem"><span>Voir les trois rings</span></a>
           </div>
           <div class="feature__media media" data-img="/assets/img/bc/salle-1.webp" data-label="Le ring"></div>
@@ -397,7 +397,7 @@ import SiteContent from "../components/SiteContent.astro";
           <div class="forge__head">
             <span class="eyebrow">Round 03 — Le mur des champions</span>
             <h2 class="display forge__title">Ils sont nés <span class="tint">sur ce ring</span></h2>
-            <p class="muted forge__intro">Une salle se juge à ceux qu'elle forme. Trois professionnels sont sortis de ces cordes — et derrière eux, l'école ne s'arrête jamais.</p>
+            <p class="muted forge__intro">Une salle se juge à ceux qu’elle forme. Trois professionnels sont sortis de ces cordes — et derrière eux, l’école ne s’arrête jamais.</p>
             <ol class="forge__rail" id="forge-rail"></ol>
           </div>
           <div class="forge__stage" id="forge-stage"></div>
@@ -434,8 +434,8 @@ import SiteContent from "../components/SiteContent.astro";
         <div class="wrap whofor__grid">
           <div class="whofor__head">
             <span class="eyebrow">Round 06 — Pour qui</span>
-            <h2 class="display whofor__title">Le ring n'exclut <span class="tint">personne</span></h2>
-            <p class="muted whofor__intro">Du môme de 3 ans au compétiteur du samedi soir : on a un créneau pour chacun d'eux.</p>
+            <h2 class="display whofor__title">Le ring n’exclut <span class="tint">personne</span></h2>
+            <p class="muted whofor__intro">Du môme de 3 ans au compétiteur du samedi soir : on a un créneau pour chacun d’eux.</p>
             <ol class="whofor__rail" id="whofor-rail"></ol>
           </div>
           <div class="whofor__stage" id="whofor-stage"></div>
@@ -451,11 +451,11 @@ import SiteContent from "../components/SiteContent.astro";
             <span class="eyebrow">En images</span>
             <h2 class="display" style="margin-top:1rem">La salle, <span class="tint">en mouvement</span></h2>
           </div>
-          <p class="muted" data-reveal style="max-width:32ch">Le ring, le cuir, les gamins de l'école, les femmes du Lady. Douze images, aucune retouche.</p>
+          <p class="muted" data-reveal style="max-width:32ch">Le ring, le cuir, les gamins de l’école, les femmes du Lady. Douze images, aucune retouche.</p>
         </div>
         <div class="gallery__grid" data-reveal-group>
           <div class="gallery__cell media" data-reveal data-img="/assets/img/bc/anglaise-2.webp" data-label="Sur le ring"></div>
-          <div class="gallery__cell media" data-reveal data-img="/assets/img/bc/training-2.webp" data-label="Pattes d'ours"></div>
+          <div class="gallery__cell media" data-reveal data-img="/assets/img/bc/training-2.webp" data-label="Pattes d’ours"></div>
           <div class="gallery__cell media" data-reveal data-img="/assets/img/bc/lady-1.webp" data-label="Boxing Lady"></div>
           <div class="gallery__cell media" data-reveal data-img="/assets/img/bc/educative-1.webp" data-label="Boxe éducative"></div>
           <div class="gallery__cell media" data-reveal data-img="/assets/img/bc/anglaise-3.webp" data-label="Sparring"></div>
@@ -465,11 +465,11 @@ import SiteContent from "../components/SiteContent.astro";
     </section>
 
     <!-- ========================== TARIFS ========================= -->
-    <section class="section" data-round="7" data-round-name="L'offre" aria-label="L'offre">
+    <section class="section" data-round="7" data-round-name="L’offre" aria-label="L’offre">
       <div class="wrap">
         <div class="reel__head" style="margin-bottom:clamp(2rem,4vw,2.6rem)">
           <div data-reveal>
-            <span class="eyebrow">Round 07 — L'offre</span>
+            <span class="eyebrow">Round 07 — L’offre</span>
             <h2 class="display" style="margin-top:1rem">Sans <span class="tint">détour</span></h2>
           </div>
           <a class="btn btn--ghost" data-magnetic href="/tarifs/"><span>Toutes les formules</span></a>
@@ -482,8 +482,8 @@ import SiteContent from "../components/SiteContent.astro";
     <section class="section localseo" aria-labelledby="seo-title">
       <div class="wrap" style="max-width:74ch">
         <h2 id="seo-title" class="display" style="font-size:clamp(1.8rem,4.2vw,3rem);margin-bottom:1rem">Salle de boxe anglaise aux Minimes — Toulouse Barrière de Paris (31200)</h2>
-        <p class="lead">Tu es aux <strong>Minimes</strong>, à Toulouse, trois minutes à pied de la <strong>Barrière de Paris</strong> en <strong>métro ligne B</strong> — dans la <strong>salle historique</strong> du réseau Boxing Center. Ce qu'on y travaille d'abord, c'est la <strong>boxe anglaise</strong>, sur trois rings : que tu n'aies jamais enfilé de gants ou que tu prépares un combat, tu as ta place. Autour, il y a la <strong>boxe éducative dès 3 ans</strong> (Baby Boxe 3/6), le <strong>Boxing Lady</strong> et le cross training.</p>
-        <p class="lead" style="margin-top:1rem">Première visite ? Réserve ta <strong>séance d'essai à 10€</strong>, toutes disciplines, sans engagement. 12 rue de Fenouillet, 31200 Toulouse — ouvert du lundi au samedi, 10h–21h30.</p>
+        <p class="lead">Tu es aux <strong>Minimes</strong>, à Toulouse, trois minutes à pied de la <strong>Barrière de Paris</strong> en <strong>métro ligne B</strong> — dans la <strong>salle historique</strong> du réseau Boxing Center. Ce qu’on y travaille d’abord, c’est la <strong>boxe anglaise</strong>, sur trois rings : que tu n’aies jamais enfilé de gants ou que tu prépares un combat, tu as ta place. Autour, il y a la <strong>boxe éducative dès 3 ans</strong> (Baby Boxe 3/6), le <strong>Boxing Lady</strong> et le cross training.</p>
+        <p class="lead" style="margin-top:1rem">Première visite ? Réserve ta <strong>séance d’essai à 10€</strong>, toutes disciplines, sans engagement. 12 rue de Fenouillet, 31200 Toulouse — ouvert du lundi au samedi, 10h–21h30.</p>
       </div>
     </section>
 
@@ -492,7 +492,7 @@ import SiteContent from "../components/SiteContent.astro";
       <div class="gong__bg" aria-hidden="true"><div class="media" data-img="/assets/img/bc/anglaise-4.webp" data-label=""></div></div>
       <div class="gong__inner">
         <span class="eyebrow" data-reveal>Le gong</span>
-        <h2 class="display" data-reveal style="font-size:var(--step-3)">Ta place t'attend<br><span class="tint">sur le ring.</span></h2>
+        <h2 class="display" data-reveal style="font-size:var(--step-3)">Ta place t’attend<br><span class="tint">sur le ring.</span></h2>
         <p class="lead" data-reveal>Dix euros pour savoir si le ring est fait pour toi. 12 rue de Fenouillet, Toulouse Minimes.</p>
         <div class="gong__cta" data-reveal>
           <a class="btn btn--primary" data-magnetic href="https://box-plus.vercel.app/seance-essai"><span>Réserver mon essai · 10€</span></a>
@@ -515,7 +515,7 @@ import SiteContent from "../components/SiteContent.astro";
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=b16"></script>
-  <script is:inline type="module" src="/assets/js/home.js?v=b16"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=b17"></script>
+  <script is:inline type="module" src="/assets/js/home.js?v=b17"></script>
 </body>
 </html>

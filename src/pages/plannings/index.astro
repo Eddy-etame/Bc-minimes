@@ -9,10 +9,10 @@ import SiteContent from "../../components/SiteContent.astro";
   <!-- ⚠ ANTI-PÉREMPTION §0.3/§4 : aucun millésime dans un libellé que
        SEASON_LABEL ne peut pas atteindre. Le <title>, la description et les
        og: sont écrits une fois et ne sont jamais réécrits par le JS — y
-       coder « 2026-2027 » en dur, c'est programmer un snippet faux dans
+       coder « 2026-2027 » en dur, c’est programmer un snippet faux dans
        douze mois, que personne ne pensera à corriger. La saison vit dans
        #season (rendu depuis data.js), et là seulement. -->
-  <title>Planning des cours — Boxing Center Minimes, Toulouse (Barrière de Paris)</title>
+  <title>Planning des cours — Boxing Center Minimes, Toulouse</title>
   <meta name="description" content="La semaine entière, du lundi au samedi, 10h–21h30 : anglaise, compétiteurs, école, Lady, camp, open sparring et accès libre. Filtre ton créneau." />
 
   <!-- Préconnexion CDN (les libs sont différées) — polices auto-hébergées :
@@ -20,36 +20,36 @@ import SiteContent from "../../components/SiteContent.astro";
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-black-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-latin.woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/css/fonts.css?v=b16" />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=b17" />
 
-  <!-- LCP : l'image du hero est construite en JS, donc invisible au preload
+  <!-- LCP : l’image du hero est construite en JS, donc invisible au preload
        scanner (parse → module → import data.js → new Image()). Le preload
-       rattrape la découverte perdue (§5.8 « preload de l'image LCP »). -->
+       rattrape la découverte perdue (§5.8 « preload de l’image LCP »). -->
   <link rel="preload" as="image" href="/assets/img/bc/anglaise-3.webp" fetchpriority="high" />
 
-  <link rel="stylesheet" href="/assets/css/base.css?v=b16" />
-  <link rel="stylesheet" href="/assets/css/home.css?v=b16" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=b17" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=b17" />
 
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="geo.region" content="FR-31" />
   <meta name="geo.placename" content="Toulouse — Les Minimes" />
   <meta name="geo.position" content="43.6256;1.4309" />
   <meta name="ICBM" content="43.6256, 1.4309" />
-  <link rel="canonical" href="https://minimes.boxingcenter.fr/plannings/" />
+  <link rel="canonical" href="https://bc-minimes.vercel.app/plannings/" />
   <meta name="theme-color" content="#0a1020" />
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
-  <link rel="shortcut icon" href="/favicon.png" />
-  <link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+  <link rel="icon" href="/favicon.svg?i=2" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.png?i=2" type="image/png" sizes="32x32" />
+  <link rel="shortcut icon" href="/favicon.png?i=2" />
+  <link rel="icon" href="/favicon-192.png?i=2" type="image/png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?i=2" sizes="180x180" />
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="Boxing Center Minimes" />
   <meta property="og:title" content="Le planning des Minimes — la semaine complète" />
   <meta property="og:description" content="Boxe anglaise, éducative dès 3 ans, Boxing Lady, sparring : la semaine complète de la salle des Minimes, Toulouse." />
-  <meta property="og:url" content="https://minimes.boxingcenter.fr/plannings/" />
-  <meta property="og:image" content="https://minimes.boxingcenter.fr/assets/img/og.jpg" />
+  <meta property="og:url" content="https://bc-minimes.vercel.app/plannings/" />
+  <meta property="og:image" content="https://bc-minimes.vercel.app/assets/img/og.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:type" content="image/jpeg" />
@@ -57,7 +57,7 @@ import SiteContent from "../../components/SiteContent.astro";
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Le planning des Minimes — la semaine complète" />
   <meta name="twitter:description" content="La semaine complète de la salle des Minimes : anglaise, éducative dès 3 ans, Boxing Lady, sparring." />
-  <meta name="twitter:image" content="https://minimes.boxingcenter.fr/assets/img/og.jpg" />
+  <meta name="twitter:image" content="https://bc-minimes.vercel.app/assets/img/og.jpg" />
 
   <!-- Données structurées : graphe JSON-LD unifié de la page — nœuds reliés
        par @id (Organization · SportsActivityLocation/HealthClub · WebSite ·
@@ -77,7 +77,7 @@ import SiteContent from "../../components/SiteContent.astro";
         ],
         "subOrganization": [
           {
-            "@id": "https://minimes.boxingcenter.fr/#salle"
+            "@id": "https://bc-minimes.vercel.app/#salle"
           },
           {
             "@type": "SportsActivityLocation",
@@ -104,14 +104,14 @@ import SiteContent from "../../components/SiteContent.astro";
           "HealthClub",
           "LocalBusiness"
         ],
-        "@id": "https://minimes.boxingcenter.fr/#salle",
+        "@id": "https://bc-minimes.vercel.app/#salle",
         "knowsLanguage": ["fr-FR", "en"],
         "name": "Boxing Center Minimes",
-        "url": "https://minimes.boxingcenter.fr/",
+        "url": "https://bc-minimes.vercel.app/",
         "telephone": "+33562244682",
         "email": "boxingcenter31@gmail.com",
         "priceRange": "€€",
-        "image": "https://minimes.boxingcenter.fr/assets/img/og.jpg",
+        "image": "https://bc-minimes.vercel.app/assets/img/og.jpg",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "12 rue de Fenouillet",
@@ -172,24 +172,24 @@ import SiteContent from "../../components/SiteContent.astro";
           },
           {
             "@type": "LocationFeatureSpecification",
-            "name": "Zone pattes d'ours",
+            "name": "Zone pattes d’ours",
             "value": true
           },
           {
             "@type": "LocationFeatureSpecification",
-            "name": "Salle de prépa physique à l'étage",
+            "name": "Salle de prépa physique à l’étage",
             "value": true
           }
         ],
         "hasOfferCatalog": {
           "@type": "OfferCatalog",
-          "@id": "https://minimes.boxingcenter.fr/#offres",
+          "@id": "https://bc-minimes.vercel.app/#offres",
           "name": "Offres Boxing Center Minimes",
-          "url": "https://minimes.boxingcenter.fr/tarifs/",
+          "url": "https://bc-minimes.vercel.app/tarifs/",
           "itemListElement": [
             {
               "@type": "Offer",
-              "name": "Séance d'essai",
+              "name": "Séance d’essai",
               "price": "10",
               "priceCurrency": "EUR",
               "description": "Toutes disciplines, matériel prêté, sans engagement.",
@@ -223,7 +223,7 @@ import SiteContent from "../../components/SiteContent.astro";
         },
         "potentialAction": {
           "@type": "ReserveAction",
-          "name": "Réserver une séance d'essai",
+          "name": "Réserver une séance d’essai",
           "target": {
             "@type": "EntryPoint",
             "urlTemplate": "https://box-plus.vercel.app/seance-essai",
@@ -235,35 +235,35 @@ import SiteContent from "../../components/SiteContent.astro";
           },
           "result": {
             "@type": "Reservation",
-            "name": "Séance d'essai — 10 €, toutes disciplines, matériel prêté"
+            "name": "Séance d’essai — 10 €, toutes disciplines, matériel prêté"
           }
         },
         "parentOrganization": {
           "@id": "https://boxingcenter.fr/#organization"
         },
-        "description": "Salle de boxe anglaise historique du groupe Boxing Center, quartier des Minimes à Toulouse (31200). Berceau de boxeurs professionnels et amateurs, 3 rings, boxe éducative dès 3 ans (Baby Boxe 3/6), Boxing Lady. Séance d'essai 10€."
+        "description": "Salle de boxe anglaise historique du groupe Boxing Center, quartier des Minimes à Toulouse (31200). Berceau de boxeurs professionnels et amateurs, 3 rings, boxe éducative dès 3 ans (Baby Boxe 3/6), Boxing Lady. Séance d’essai 10€."
       },
       {
         "@type": "WebSite",
-        "@id": "https://minimes.boxingcenter.fr/#website",
-        "url": "https://minimes.boxingcenter.fr/",
+        "@id": "https://bc-minimes.vercel.app/#website",
+        "url": "https://bc-minimes.vercel.app/",
         "name": "Boxing Center Minimes",
         "inLanguage": "fr-FR",
         "publisher": {
-          "@id": "https://minimes.boxingcenter.fr/#salle"
+          "@id": "https://bc-minimes.vercel.app/#salle"
         }
       },
       {
         "@type": "WebPage",
-        "@id": "https://minimes.boxingcenter.fr/plannings/#webpage",
-        "url": "https://minimes.boxingcenter.fr/plannings/",
+        "@id": "https://bc-minimes.vercel.app/plannings/#webpage",
+        "url": "https://bc-minimes.vercel.app/plannings/",
         "name": "Planning des cours — Boxing Center Minimes, Toulouse (Barrière de Paris)",
         "description": "La semaine entière, du lundi au samedi, 10h–21h30 : anglaise, compétiteurs, école, Lady, camp, open sparring et accès libre. Filtre ton créneau.",
         "isPartOf": {
-          "@id": "https://minimes.boxingcenter.fr/#website"
+          "@id": "https://bc-minimes.vercel.app/#website"
         },
         "about": {
-          "@id": "https://minimes.boxingcenter.fr/#salle"
+          "@id": "https://bc-minimes.vercel.app/#salle"
         },
         "inLanguage": "fr-FR",
         "speakable": {
@@ -274,28 +274,28 @@ import SiteContent from "../../components/SiteContent.astro";
           ]
         },
         "primaryImageOfPage": {
-          "@id": "https://minimes.boxingcenter.fr/plannings/#primaryimage"
+          "@id": "https://bc-minimes.vercel.app/plannings/#primaryimage"
         },
         "datePublished": "2026-07-17",
         "dateModified": "@BUILT@",
         "breadcrumb": {
-          "@id": "https://minimes.boxingcenter.fr/plannings/#breadcrumb"
+          "@id": "https://bc-minimes.vercel.app/plannings/#breadcrumb"
         }
       },
       {
         "@type": "ImageObject",
-        "@id": "https://minimes.boxingcenter.fr/plannings/#primaryimage",
-        "url": "https://minimes.boxingcenter.fr/assets/img/og.jpg",
-        "contentUrl": "https://minimes.boxingcenter.fr/assets/img/og.jpg",
+        "@id": "https://bc-minimes.vercel.app/plannings/#primaryimage",
+        "url": "https://bc-minimes.vercel.app/assets/img/og.jpg",
+        "contentUrl": "https://bc-minimes.vercel.app/assets/img/og.jpg",
         "width": 1200,
         "height": 630,
         "caption": "Le planning des cours de la salle Boxing Center Minimes, Toulouse."
       },
       {
         "@type": "ItemList",
-        "@id": "https://minimes.boxingcenter.fr/plannings/#semaine",
+        "@id": "https://bc-minimes.vercel.app/plannings/#semaine",
         "name": "Les cours de la semaine — Boxing Center Minimes",
-        "url": "https://minimes.boxingcenter.fr/plannings/",
+        "url": "https://bc-minimes.vercel.app/plannings/",
         "description": "Transcription du poster officiel de la saison. Horaires réels, coach par créneau.",
         "itemListElement": [
           {
@@ -471,19 +471,19 @@ import SiteContent from "../../components/SiteContent.astro";
       },
       {
         "@type": "BreadcrumbList",
-        "@id": "https://minimes.boxingcenter.fr/plannings/#breadcrumb",
+        "@id": "https://bc-minimes.vercel.app/plannings/#breadcrumb",
         "itemListElement": [
           {
             "@type": "ListItem",
             "position": 1,
             "name": "Accueil",
-            "item": "https://minimes.boxingcenter.fr/"
+            "item": "https://bc-minimes.vercel.app/"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "Planning",
-            "item": "https://minimes.boxingcenter.fr/plannings/"
+            "item": "https://bc-minimes.vercel.app/plannings/"
           }
         ]
       }
@@ -491,13 +491,13 @@ import SiteContent from "../../components/SiteContent.astro";
   }
   </script>
 
-  <!-- page-scoped : la semaine comme OBJET — le rail des jours dans l'en-tête,
+  <!-- page-scoped : la semaine comme OBJET — le rail des jours dans l’en-tête,
        le poster en couleur, puis la grille filtrable. Le poster reste
-       l'artefact ; la grille est ce qui rend la page utilisable. -->
+       l’artefact ; la grille est ce qui rend la page utilisable. -->
   <style is:inline>
     /* --- en-tête : le rail de la semaine (structure propre à cette page) ---
-       Devenu CLIQUABLE : c'était déjà la forme de la semaine, il lui
-       manquait d'être le raccourci qu'on croit qu'il est. ≥44px de haut. */
+       Devenu CLIQUABLE : c’était déjà la forme de la semaine, il lui
+       manquait d’être le raccourci qu’on croit qu’il est. ≥44px de haut. */
     .pl-week { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: clamp(1.4rem,3vw,2rem); }
     .pl-week__d { display: inline-flex; flex-direction: column; gap: .45rem; min-width: 3.4rem; min-height: 44px; padding: .6rem .7rem; border: 1px solid var(--line); background: rgba(10,9,8,.5); text-align: left; transition: border-color .3s, background .3s; }
     .pl-week__d:hover, .pl-week__d:active { border-color: var(--mark); background: rgba(38,64,115,.45); }
@@ -505,14 +505,14 @@ import SiteContent from "../../components/SiteContent.astro";
     .pl-week__bar { display: flex; flex-wrap: wrap; gap: 2px; min-height: 10px; }
     .pl-week__bar i { width: 4px; height: 10px; background: var(--mark); }
     /* barres et compte sont écrits par le filtre : un jour que le filtre
-       vide s'éteint au lieu de mentir sur une semaine qu'on ne voit plus */
+       vide s’éteint au lieu de mentir sur une semaine qu’on ne voit plus */
     .pl-week__d.is-empty { opacity: .45; }
     .pl-week__d[aria-pressed="true"] { border-color: var(--mark); background: rgba(38,64,115,.55); }
     .pl-week__c { display: flex; flex-direction: column; gap: .22rem; font: 700 .58rem/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--bone-dim); }
     .pl-week__f { opacity: .68; }
 
-    /* --- le repère « en ce moment » — calculé à l'exécution, jamais écrit
-       dans le markup (une heure en dur, c'est une page fausse à 21h). --- */
+    /* --- le repère « en ce moment » — calculé à l’exécution, jamais écrit
+       dans le markup (une heure en dur, c’est une page fausse à 21h). --- */
     .pl-now { display: inline-flex; align-items: center; gap: .8ch; margin-top: 1.2rem; padding: .7em 1em; border: 1px solid var(--line); border-left: 3px solid var(--mark); background: rgba(10,16,32,.6); font: 500 var(--step--1)/1.4 var(--f-mono); letter-spacing: .04em; color: var(--read); }
     .pl-now b { color: var(--bone); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
     .pl-now:empty { display: none; }
@@ -540,7 +540,7 @@ import SiteContent from "../../components/SiteContent.astro";
 
     .pl-countrow { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem 1.2rem; margin-bottom: clamp(1.2rem,3vw,1.6rem); }
     .pl-count { font: 700 var(--step--1)/1.4 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--bone); border-left: 2px solid var(--mark); padding-left: .8rem; }
-    /* n'apparaît que quand un filtre est posé (JS gère `hidden`) */
+    /* n’apparaît que quand un filtre est posé (JS gère `hidden`) */
     .pl-reset { display: inline-flex; align-items: center; gap: .7ch; min-height: 44px; padding: .4em .9em; border: 1px solid var(--line); font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--bone-dim); transition: color .3s, border-color .3s; }
     .pl-reset:hover, .pl-reset:active { color: var(--bone); border-color: var(--bone-dim); }
     .pl-reset[hidden] { display: none; }
@@ -564,15 +564,15 @@ import SiteContent from "../../components/SiteContent.astro";
     .pl-slot__m b { color: var(--bone); font-weight: 700; }
 
     /* ACCÈS LIBRE — la moitié du poster. Visuellement en RETRAIT (pas de
-       coach, pas d'aplat) sans être illisible : le texte reste à --read
-       (~14:1), seul le fond et le filet changent. Un créneau libre n'est
-       pas un créneau mort, c'est juste un créneau sans encadrement. */
+       coach, pas d’aplat) sans être illisible : le texte reste à --read
+       (~14:1), seul le fond et le filet changent. Un créneau libre n’est
+       pas un créneau mort, c’est juste un créneau sans encadrement. */
     .pl-slot--free { background: transparent; border-left: 2px dashed var(--line); }
     .pl-slot--free .pl-slot__n { color: var(--bone-dim); }
     .pl-slot--free:hover, .pl-slot--free:active { background: var(--ink-2); border-left-color: var(--bone-dim); }
 
     /* « en ce moment » / « juste après » — repères vivants, calculés au
-       chargement. L'aplat navy porte le blanc (14.6:1), jamais l'inverse. */
+       chargement. L’aplat navy porte le blanc (14.6:1), jamais l’inverse. */
     .pl-slot.is-now { background: var(--navy); border-left-color: var(--silver); }
     .pl-slot.is-now .pl-slot__h, .pl-slot.is-now .pl-slot__n,
     .pl-slot.is-now .pl-slot__m, .pl-slot.is-now .pl-slot__m b,
@@ -586,7 +586,7 @@ import SiteContent from "../../components/SiteContent.astro";
   <!-- fx + DEAD-MAN NET (§5.1) : `fx` force [data-reveal] à opacity:0.
        Si un module casse avant window.BC.reveal() — import raté, erreur
        runtime — le texte reste invisible POUR TOUJOURS. Le filet le retire
-       de force ; le moteur de reveal re-masquera seulement ce qu'il a
+       de force ; le moteur de reveal re-masquera seulement ce qu’il a
        réellement bindé. Une animation ne doit jamais pouvoir bloquer du texte. -->
   <script is:inline>
     document.documentElement.classList.add('fx');
@@ -614,7 +614,7 @@ import SiteContent from "../../components/SiteContent.astro";
 
     <!-- ========================= EN-TÊTE ==========================
          .page-head partagé (base.css) + le rail de la semaine, qui
-         n'existe que sur cette page. -->
+         n’existe que sur cette page. -->
     <section class="page-head" aria-label="Le planning">
       <div class="page-head__bg" aria-hidden="true"><div class="media" data-img="/assets/img/bc/anglaise-3.webp" data-eager data-label=""></div></div>
       <div class="wrap">
@@ -624,21 +624,21 @@ import SiteContent from "../../components/SiteContent.astro";
              posé deux lignes plus bas ET de SALLE.hoursData (Dimanche :
              Fermé). Un visiteur se présentait le dimanche devant une porte
              fermée. -->
-        <p class="lead page-head__lead" data-reveal style="max-width:52ch">Du gant posé à 10h au dernier round de 21h30, six jours sur sept : l'accès libre en journée, l'école le mercredi et le samedi, la boxe sérieuse tous les soirs. Trouve ton créneau — il t'attend.</p>
+        <p class="lead page-head__lead" data-reveal style="max-width:52ch">Du gant posé à 10h au dernier round de 21h30, six jours sur sept : l’accès libre en journée, l’école le mercredi et le samedi, la boxe sérieuse tous les soirs. Trouve ton créneau — il t’attend.</p>
         <div class="pl-week" id="pl-week" data-reveal role="group" aria-label="Raccourci : filtrer la grille par jour"></div>
-        <!-- repère vivant, rempli par le JS depuis l'horloge du visiteur.
+        <!-- repère vivant, rempli par le JS depuis l’horloge du visiteur.
              Vide dans le HTML : une heure écrite en dur ici serait fausse
              une minute plus tard (§0.3). `.pl-now:empty` le masque tant
-             que le JS n'a pas parlé — pas de boîte vide au chargement. -->
+             que le JS n’a pas parlé — pas de boîte vide au chargement. -->
         <p class="pl-now" id="pl-now" role="status" aria-live="polite" data-reveal></p>
         <div class="pl-meta" data-reveal>
           <span><b>6j/7</b> · lun–sam</span>
           <span><b>10h–21h30</b></span>
           <!-- « Tu pointes sur place, à la borne » supprimé : aucune borne
-               n'existe dans SPECS, dans l'amenityFeature LD-JSON, dans
+               n’existe dans SPECS, dans l’amenityFeature LD-JSON, dans
                roster.json ni dans llms.txt. On ne publie pas une promesse
-               opérationnelle que personne n'a vérifiée. -->
-          <span>Pas de réservation pour l'accès libre</span>
+               opérationnelle que personne n’a vérifiée. -->
+          <span>Pas de réservation pour l’accès libre</span>
         </div>
       </div>
     </section>
@@ -656,11 +656,11 @@ import SiteContent from "../../components/SiteContent.astro";
           <button class="pl-reset" id="pl-reset" type="button" hidden>Tout revoir <span aria-hidden="true">✕</span></button>
         </div>
         <div class="pl-grid" id="pl-grid" data-reveal></div>
-        <!-- L'accès libre occupe la moitié du poster officiel. Il est dans
+        <!-- L’accès libre occupe la moitié du poster officiel. Il est dans
              la grille au même titre que les cours (bandes en pointillé) :
-             c'est ce qui fait venir la moitié des adhérents, le cacher
+             c’est ce qui fait venir la moitié des adhérents, le cacher
              faisait mentir la page par omission. -->
-        <p class="muted" data-reveal style="margin-top:clamp(1.4rem,3vw,2rem);font:500 var(--step--1)/1.6 var(--f-mono);letter-spacing:.04em;max-width:64ch;border-left:2px solid var(--mark);padding-left:1rem">Les bandes en pointillé, c'est l'accès libre : la salle est ouverte, les rings et les sacs sont à toi, personne ne t'encadre et personne ne te demande de réserver. Le reste, c'est du cours avec un coach dedans.</p>
+        <p class="muted" data-reveal style="margin-top:clamp(1.4rem,3vw,2rem);font:500 var(--step--1)/1.6 var(--f-mono);letter-spacing:.04em;max-width:64ch;border-left:2px solid var(--mark);padding-left:1rem">Les bandes en pointillé, c’est l’accès libre : la salle est ouverte, les rings et les sacs sont à toi, personne ne t’encadre et personne ne te demande de réserver. Le reste, c’est du cours avec un coach dedans.</p>
       </div>
     </section>
 
@@ -668,24 +668,24 @@ import SiteContent from "../../components/SiteContent.astro";
          §5.5 : EN COULEUR, cliquable plein format, width/height posées.
          ⚠ Le PNG de 2 033 Ko était servi en fetchpriority="high" — le
          plus gros téléchargement de la page, poussé en tête de file, sur
-         la page qu'un parent ouvre en premier — alors que le webp (97 Ko,
+         la page qu’un parent ouvre en premier — alors que le webp (97 Ko,
          21× plus léger) dormait dans le même dossier. -->
     <section class="section section--flush" aria-label="Le poster officiel">
       <div class="wrap">
         <div data-reveal style="margin-bottom:clamp(1.2rem,3vw,1.6rem)">
           <span class="eyebrow">Le poster officiel</span>
         </div>
-        <!-- Le poster à l'écran reste le 1500 px (98 ko) ; le « grand format »
+        <!-- Le poster à l’écran reste le 1500 px (98 ko) ; le « grand format »
              pointe la pleine résolution 2400 px, désormais en WebP q92 —
              245 ko au lieu des 2 Mo du PNG, pour un poster mesuré plus fidèle
-             à l'original (47,5 dB) que la vignette qu'on affiche déjà. -->
+             à l’original (47,5 dB) que la vignette qu’on affiche déjà. -->
         <a class="pl-poster" data-reveal href="/assets/img/bc/planning-2026-full.webp" target="_blank" rel="noopener" aria-label="Ouvrir le planning complet en grand format">
-          <img src="/assets/img/bc/planning-2026.webp" width="1500" height="1325" alt="Planning des cours de la salle Minimes — Barrière de Paris : boxe anglaise loisirs et compétiteurs, boxe éducative de 3 à 16 ans, Boxing Lady, boxing camp, open sparring et créneaux d'accès libre, du lundi au samedi." loading="lazy" decoding="async" />
+          <img src="/assets/img/bc/planning-2026.webp" width="1500" height="1325" alt="Planning des cours de la salle Minimes — Barrière de Paris : boxe anglaise loisirs et compétiteurs, boxe éducative de 3 à 16 ans, Boxing Lady, boxing camp, open sparring et créneaux d’accès libre, du lundi au samedi." loading="lazy" decoding="async" />
         </a>
       </div>
     </section>
 
-    <!-- ================== CE QU'IL FAUT RETENIR ===================
+    <!-- ================== CE QU’IL FAUT RETENIR ===================
          Rendu depuis PLANNING_KEYS (data.js) : plus aucun nom de coach ni
          horaire tapé dans ce fichier (§0.10). -->
     <section class="section section--flush" aria-label="Les repères de la semaine">
@@ -702,8 +702,8 @@ import SiteContent from "../../components/SiteContent.astro";
     <section class="gong" aria-label="Réserver une séance">
       <div class="gong__inner">
         <span class="eyebrow" data-reveal>Ton premier round</span>
-        <h2 class="display display--sm" data-reveal>Choisis ton créneau.<br><span class="tint">On te tient jusqu'au dernier round.</span></h2>
-        <p class="lead" data-reveal>Viens avec ta bouteille d'eau — les gants, c'est nous.</p>
+        <h2 class="display display--sm" data-reveal>Choisis ton créneau.<br><span class="tint">On te tient jusqu’au dernier round.</span></h2>
+        <p class="lead" data-reveal>Viens avec ta bouteille d’eau — les gants, c’est nous.</p>
         <div class="gong__cta" data-reveal>
           <a class="btn btn--primary" data-magnetic href="https://box-plus.vercel.app/seance-essai"><span>Réserver mon essai · 10€</span></a>
           <a class="btn btn--ghost" data-magnetic href="tel:+33562244682"><span>05 62 24 46 82</span></a>
@@ -725,7 +725,7 @@ import SiteContent from "../../components/SiteContent.astro";
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=b16"></script>
-  <script is:inline type="module" src="/assets/js/plannings.js?v=b16"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=b17"></script>
+  <script is:inline type="module" src="/assets/js/plannings.js?v=b17"></script>
 </body>
 </html>

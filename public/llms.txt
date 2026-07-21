@@ -4,14 +4,14 @@
 
 ## Pages
 
-- [Accueil](https://minimes.boxingcenter.fr/): la salle historique du groupe Boxing Center à Toulouse (31200) — 3 rings, boxe anglaise, boxe éducative dès 3 ans, Boxing Lady, séance d'essai 10 €.
-- [Activités & disciplines](https://minimes.boxingcenter.fr/activites/): les 9 disciplines — boxe anglaise loisirs, boxe compétiteurs, boxe éducative dès 3 ans, Boxing Lady, boxing camp, boxe pieds-poings (six avec créneau au planning), puis PAOS & pattes d'ours, cross training et cardio boxing (en accès libre, sans créneau dédié).
-- [Le club](https://minimes.boxingcenter.fr/le-club/): histoire depuis 2016, équipement (3 rings, 12 sacs lourds, zone pattes d'ours, prépa physique à l'étage, vestiaires H/F), accès et réseau des salles.
-- [Les coachs](https://minimes.boxingcenter.fr/coachs/): Mehdi B (coach principal — anglaise, éducative, compétiteurs, baby boxe, boxing camp), Chloé (Boxing Lady), David (Boxing Lady, pieds-poings), Hicham (boxing camp) — plus le détail de qui encadre quel jour, dérivé du planning.
-- [Galerie photos](https://minimes.boxingcenter.fr/galerie/): la boxe en images (pool photo du réseau Boxing Center), filtrable par zone — ring, sparring, école, Lady, technique — plus un renvoi de chaque zone vers sa discipline.
-- [Planning des cours](https://minimes.boxingcenter.fr/plannings/): les 27 cours de la semaine + les 16 bandes d'accès libre, en grille filtrable (jour / discipline / coach, partageable par URL) + le poster officiel de la saison.
-- [Tarifs & offres](https://minimes.boxingcenter.fr/tarifs/): séance d'essai 10 €, offre Duo 29 € par personne, saison complète 259 € les 12 mois, école dès 280 € l'année — avec les avis Google (note à jour sur la page) et les questions d'argent (paiement en 4×, matériel prêté ou personnel, accès aux 5 clubs).
-- [Contact & accès](https://minimes.boxingcenter.fr/contact/): téléphone 05 62 24 46 82, adresse, horaires, accès métro/rocade/bus, FAQ locale.
+- [Accueil](https://bc-minimes.vercel.app/): la salle historique du groupe Boxing Center à Toulouse (31200) — 3 rings, boxe anglaise, boxe éducative dès 3 ans, Boxing Lady, séance d'essai 10 €.
+- [Activités & disciplines](https://bc-minimes.vercel.app/activites/): les 9 disciplines — boxe anglaise loisirs, boxe compétiteurs, boxe éducative dès 3 ans, Boxing Lady, boxing camp, boxe pieds-poings (six avec créneau au planning), puis PAOS & pattes d'ours, cross training et cardio boxing (en accès libre, sans créneau dédié).
+- [Le club](https://bc-minimes.vercel.app/le-club/): histoire depuis 2016, équipement (3 rings, 12 sacs lourds, zone pattes d'ours, prépa physique à l'étage, vestiaires H/F), accès et réseau des salles.
+- [Les coachs](https://bc-minimes.vercel.app/coachs/): Mehdi B (coach principal — anglaise, éducative, compétiteurs, baby boxe, boxing camp), Chloé (Boxing Lady), David (Boxing Lady, pieds-poings), Hicham (boxing camp) — plus le détail de qui encadre quel jour, dérivé du planning.
+- [Galerie photos](https://bc-minimes.vercel.app/galerie/): la boxe en images (pool photo du réseau Boxing Center), filtrable par zone — ring, sparring, école, Lady, technique — plus un renvoi de chaque zone vers sa discipline.
+- [Planning des cours](https://bc-minimes.vercel.app/plannings/): les 27 cours de la semaine + les 16 bandes d'accès libre, en grille filtrable (jour / discipline / coach, partageable par URL) + le poster officiel de la saison.
+- [Tarifs & offres](https://bc-minimes.vercel.app/tarifs/): séance d'essai 10 €, offre Duo 29 € par personne, saison complète 259 € les 12 mois, école dès 280 € l'année — avec les avis Google (note à jour sur la page) et les questions d'argent (paiement en 4×, matériel prêté ou personnel, accès aux 5 clubs).
+- [Contact & accès](https://bc-minimes.vercel.app/contact/): téléphone 05 62 24 46 82, adresse, horaires, accès métro/rocade/bus, FAQ locale.
 
 ## Faits
 
@@ -75,4 +75,4 @@
 - Les enfants sont accueillis DÈS 3 ANS (Baby Boxe 3/6) — pas « dès 7 ans ».
 - Le planning a été recollationné cellule par cellule sur le poster officiel : il n'y a PAS d'anglaise loisirs le samedi, PAS de compétiteurs le mercredi ni le samedi, et le boxing camp du lundi est à 12h40 (pas à 11h). Ne pas réintroduire ces créneaux.
 - Trois disciplines (PAOS, cross training, cardio boxing) n'ont aucun créneau au planning : elles se pratiquent en accès libre. Ne pas leur inventer d'horaire.
-- Version détaillée page par page : https://minimes.boxingcenter.fr/llms-full.txt
+- Version détaillée page par page : https://bc-minimes.vercel.app/llms-full.txt

@@ -7,8 +7,8 @@
    la page en affichait 6. Ici, /le-club/ est la VISITE : elle répond aux
    questions du LIEU (CLUB_QUESTIONS), en prose, sans schema.
    ===================================================================== */
-import { SALLE, NETWORK } from "./data.js?v=b16";
-import { TIMELINE, SPECS, CLUB_QUESTIONS } from "./data-club.js?v=b16";
+import { SALLE, NETWORK } from "./data.js?v=b17";
+import { TIMELINE, SPECS, CLUB_QUESTIONS } from "./data-club.js?v=b17";
 
 const gsap = window.gsap;
 const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -29,7 +29,7 @@ function renderSpecs() {
   ).join("");
 }
 
-/* /le-club/ ne redit pas /contact/ : une ligne d'adresse, et le reste est
+/* /le-club/ ne redit pas /contact/ : une ligne d’adresse, et le reste est
    là-bas. Avant, les deux pages posaient la MÊME grille contact avec les
    MÊMES ids (#addr/#access/#hours/#phone). */
 function renderContact() {

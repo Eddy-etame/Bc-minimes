@@ -3,7 +3,7 @@
    Rendu depuis data.js : coordonnées (SALLE) + carte + FAQ locale (FAQ).
    La FAQ visible est le miroir exact du FAQPage LD-JSON de la page.
    ===================================================================== */
-import { SALLE, FAQ } from "./data.js?v=b16";
+import { SALLE, FAQ } from "./data.js?v=b17";
 
 const $ = (s, r = document) => r.querySelector(s);
 
@@ -25,10 +25,10 @@ function renderContact() {
 function boot() {
   renderContact();
   /* La FAQ CANONIQUE — /contact/ uniquement, miroir exact du FAQPage
-     LD-JSON de cette page. Le rendu et le comportement de l'accordéon
+     LD-JSON de cette page. Le rendu et le comportement de l’accordéon
      vivent dans site.js (window.BC.faq) depuis que /tarifs/ pose lui
      aussi des questions : un seul composant, une seule correction
-     d'accessibilité à faire le jour où il en faut une. */
+     d’accessibilité à faire le jour où il en faut une. */
   window.BC.faq($("#faq"), FAQ);
 
   window.BC.media(document);

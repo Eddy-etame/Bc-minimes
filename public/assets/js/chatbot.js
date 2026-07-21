@@ -1,11 +1,11 @@
 /* =====================================================================
-   L'ASSISTANT DU BERCEAU — widget conversationnel + capture de contacts.
+   L’ASSISTANT DU BERCEAU — widget conversationnel + capture de contacts.
    Boxing Center Minimes.
 
    Philosophie (≠ formulaire) : le bot se présente, demande le prénom,
    puis RÉPOND. Il comprend le langage naturel via /api/chat (ancré sur
    les vraies données de la salle) et capte AU VOL les coordonnées quand
-   le visiteur les donne — sans jamais l'interroger de force.
+   le visiteur les donne — sans jamais l’interroger de force.
 
    Progressive enhancement : la pastille `.chatbot` reste un lien tel:
    dans le HTML. Ce fichier la PROMEUT en lanceur de conversation. Si le
@@ -13,20 +13,20 @@
    bouton mort.
 
    Accessibilité : dialog modal, focus piégé, Échap ferme, aria-live sur
-   le fil, respect de prefers-reduced-motion (l'animation d'ouverture est
+   le fil, respect de prefers-reduced-motion (l’animation d’ouverture est
    coupée en CSS, la frappe simulée est raccourcie ici).
    ===================================================================== */
-import { SALLE, NETWORK } from "./data.js?v=b16";
+import { SALLE, NETWORK } from "./data.js?v=b17";
 
 const EMAIL_RE = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/i;
 /* numéro FR : +33 ou 0, puis 9 chiffres groupés librement */
 const PHONE_RE = /(?:\+33|0)\s?[1-9](?:[\s.\-]?\d{2}){4}/;
-/* « je m'appelle X », « moi c'est X », « mon prénom est X »… Déclencheurs
-   SPÉCIFIQUES : pas de « c'est » nu, qui capterait « c'est ouvert ». */
+/* « je m’appelle X », « moi c’est X », « mon prénom est X »… Déclencheurs
+   SPÉCIFIQUES : pas de « c’est » nu, qui capterait « c’est ouvert ». */
 const NAME_RE = /(?:je m['’ ]?appelle|moi c['’ ]?est|mon nom est|mon pr[ée]nom (?:est|c['’ ]?est)|je me nomme|c['’ ]est\s+moi)\s+([a-zà-öø-ÿ][a-zà-öø-ÿ'’-]+)/i;
 const STOP_NAMES = /^(bonjour|salut|coucou|hello|merci|oui|non|ok|d['’]accord|bien|super|cool|pas|ouvert|ferm[ée]?|combien|quoi|quel|quelle|quels|quelles|qui|quand|o[uù]|comment|pourquoi|est|c['’]est|je|tu|vous|moi|toi|rien|aucun|anonyme|voir|bof|jsp|ouais|nan|hey|yo|allo|bjr|slt|svp|stp|test|info|infos|tarif|tarifs|prix|horaire|horaires|essai|boxe|cours|planning|adresse|t[ée]l[ée]phone|mail|email)$/i;
-/* Forme d'un prénom : des lettres, éventuellement un trait d'union ou
-   une apostrophe. Deux à vingt caractères. Rien d'autre. */
+/* Forme d’un prénom : des lettres, éventuellement un trait d’union ou
+   une apostrophe. Deux à vingt caractères. Rien d’autre. */
 const NAME_SHAPE = /^[a-zà-öø-ÿ][a-zà-öø-ÿ'’-]{1,19}$/i;
 
 const REDUCE = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -34,7 +34,7 @@ const LOGO = "/assets/img/logo.png";
 const SALLES = [SALLE.short, ...NETWORK.map((n) => n.name)];
 
 const QUICKS = [
-  { label: "Essai 10€", q: "Comment se passe la séance d'essai ?" },
+  { label: "Essai 10€", q: "Comment se passe la séance d’essai ?" },
   { label: "Tarifs", q: "Quels sont les tarifs ?" },
   { label: "Horaires", q: "Quels sont les horaires ?" },
   { label: "Les cours", q: "Quelles disciplines proposez-vous ?" },
@@ -74,7 +74,7 @@ function submitLead(payload) {
    salle répond quand même. Volontairement court — la vraie base de
    connaissance vit côté serveur, dans api/chat.js. */
 function offlineAnswer() {
-  return `Je n'arrive pas à joindre le club à l'instant. Appelle la salle au ${SALLE.phone}, ou passe au ${SALLE.address.full} — du lundi au samedi, ${SALLE.hours.replace(/^Lun – Sam · /, "")}.`;
+  return `Je n’arrive pas à joindre le club à l’instant. Appelle la salle au ${SALLE.phone}, ou passe au ${SALLE.address.full} — du lundi au samedi, ${SALLE.hours.replace(/^Lun – Sam · /, "")}.`;
 }
 
 export function initChatbot() {
@@ -85,24 +85,24 @@ export function initChatbot() {
   const profile = { prenom: "", nom: "", email: "", phone: "", salle: SALLE.short };
   const history = [];
   let opened = false, typing = false, exchanges = 0;
-  let nudged = false;      // l'invitation douce a-t-elle déjà été faite ?
+  let nudged = false;      // l’invitation douce a-t-elle déjà été faite ?
   let expectName = false;  // le bot vient de demander le prénom
   let leadSig = "";        // signature du dernier lead envoyé (anti-doublon)
   let callbackAsked = false;
   let lastFocus = null;
 
-  /* ---------- l'habillage ----------
+  /* ---------- l’habillage ----------
      La feuille du panneau ne vit plus dans base.css : elle ne servait
-     qu'ici, et base.css bloque le rendu des 8 pages. On la pose dès que
-     le module s'exécute — c'est-à-dire à l'INTENTION de parler, avant
-     tout affichage. `open()` attend qu'elle soit appliquée : le panneau
+     qu’ici, et base.css bloque le rendu des 8 pages. On la pose dès que
+     le module s’exécute — c’est-à-dire à l’INTENTION de parler, avant
+     tout affichage. `open()` attend qu’elle soit appliquée : le panneau
      ne peut donc pas apparaître nu une seule image. */
   const feuille = new Promise((resolu) => {
     const dejaLa = document.querySelector('link[data-bcm-chat-css]');
     if (dejaLa) return resolu();
     const l = document.createElement("link");
     l.rel = "stylesheet";
-    l.href = "/assets/css/chatbot.css?v=b16";
+    l.href = "/assets/css/chatbot.css?v=b17";
     l.setAttribute("data-bcm-chat-css", "");
     /* résolu dans les deux cas : une feuille manquante ne doit jamais
        retenir le panneau prisonnier — mieux vaut brut que rien. */
@@ -111,7 +111,7 @@ export function initChatbot() {
     document.head.appendChild(l);
   });
 
-  /* ---------- l'échafaudage ---------- */
+  /* ---------- l’échafaudage ---------- */
   const root = document.createElement("div");
   root.className = "bcm-chat";
   root.id = "bcm-chat";
@@ -122,9 +122,9 @@ export function initChatbot() {
         <img src="${LOGO}" alt="" width="342" height="160" decoding="async" />
         <div class="bcm-chat__head-text">
           <strong id="bcm-chat-title">Boxing Center Minimes</strong>
-          <span class="bcm-chat__status">L'assistant du club</span>
+          <span class="bcm-chat__status">L’assistant du club</span>
         </div>
-        <button type="button" class="bcm-chat__close" aria-label="Fermer l'assistant">
+        <button type="button" class="bcm-chat__close" aria-label="Fermer l’assistant">
           <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 2l10 10M12 2L2 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
         </button>
       </header>
@@ -157,7 +157,7 @@ export function initChatbot() {
       </div>`).join("") + (typing ? `
       <div class="bcm-chat__msg bcm-chat__msg--bot">
         <img src="${LOGO}" alt="" width="342" height="160" decoding="async" />
-        <div class="bcm-chat__bubble"><span class="bcm-chat__dots" aria-label="L'assistant écrit"><i></i><i></i><i></i></span></div>
+        <div class="bcm-chat__bubble"><span class="bcm-chat__dots" aria-label="L’assistant écrit"><i></i><i></i><i></i></span></div>
       </div>` : "");
     logEl.scrollTop = logEl.scrollHeight;
   }
@@ -176,7 +176,7 @@ export function initChatbot() {
   }
   const hideChips = () => { chipsEl.hidden = true; chipsEl.innerHTML = ""; };
 
-  /* ---------- capture au fil de l'eau ---------- */
+  /* ---------- capture au fil de l’eau ---------- */
   function contextString() {
     const b = [];
     if (profile.prenom) b.push(`Prénom : ${profile.prenom}`);
@@ -188,7 +188,7 @@ export function initChatbot() {
   function maybeSubmitLead(event) {
     if (!profile.email && !profile.phone) return false; // rien pour recontacter
     const sig = JSON.stringify(profile);
-    if (sig === leadSig) return false;                  // déjà parti à l'identique
+    if (sig === leadSig) return false;                  // déjà parti à l’identique
     leadSig = sig;
     submitLead({
       event, sessionId: sid,
@@ -198,28 +198,28 @@ export function initChatbot() {
     }).catch(() => { /* silencieux : ne bloque jamais la conversation */ });
     return true;
   }
-  /** Le prénom donné en un mot, après la question « tu t'appelles
-   *  comment ? ». On retire d'abord l'email, le numéro et les chiffres
+  /** Le prénom donné en un mot, après la question « tu t’appelles
+   *  comment ? ». On retire d’abord l’email, le numéro et les chiffres
    *  — « Marc 06 12 34 56 78 » est une réponse parfaitement normale —
-   *  puis on n'accepte QUE s'il ne reste qu'un seul mot, de la forme
-   *  d'un prénom, hors liste noire.
+   *  puis on n’accepte QUE s’il ne reste qu’un seul mot, de la forme
+   *  d’un prénom, hors liste noire.
    *
    *  La règle est volontairement stricte : le fallback précédent prenait
-   *  le premier mot de n'importe quel message, si bien qu'une question
-   *  posée à la place d'une réponse (« Quels sont les horaires ? ») se
+   *  le premier mot de n’importe quel message, si bien qu’une question
+   *  posée à la place d’une réponse (« Quels sont les horaires ? ») se
    *  transformait en prénom « Quels » — écrit tel quel dans le carnet du
    *  club. Un carnet sans prénom se lit ; un carnet avec un faux prénom
    *  ment au coach qui rappelle. Dans le doute : on ne capte rien. */
   function loneName(text) {
     const reste = text.replace(EMAIL_RE, " ").replace(PHONE_RE, " ").replace(/\d+/g, " ");
-    if (/[?¿]/.test(reste)) return "";                       // une question n'est pas une réponse
+    if (/[?¿]/.test(reste)) return "";                       // une question n’est pas une réponse
     const mots = reste.trim().replace(/[!.,;:]+$/, "").split(/\s+/).filter(Boolean);
     if (mots.length !== 1) return "";                        // un prénom seul, ou rien
     const w = mots[0].replace(/[!.,;:]+$/, "");
     return NAME_SHAPE.test(w) && !STOP_NAMES.test(w) ? w : "";
   }
   /** Extrait prénom / email / téléphone / salle. true si du neuf est capté.
-   *  `saisie` distingue une frappe au clavier d'une puce cliquée : une
+   *  `saisie` distingue une frappe au clavier d’une puce cliquée : une
    *  puce est une question toute faite, jamais une réponse au bot. */
   function extract(text, saisie) {
     let found = false;
@@ -230,7 +230,7 @@ export function initChatbot() {
     const salle = SALLES.find((s) => new RegExp(`\\b${s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "i").test(text));
     if (salle && salle !== profile.salle) { profile.salle = salle; found = true; }
     if (!profile.prenom) {
-      const name = text.match(NAME_RE)?.[1]?.trim()           // « moi c'est Marc » : explicite
+      const name = text.match(NAME_RE)?.[1]?.trim()           // « moi c’est Marc » : explicite
         || (expectName && saisie ? loneName(text) : "");      // ou un prénom seul, après la question
       if (name && !STOP_NAMES.test(name)) { profile.prenom = titleCase(name.split(/\s+/)[0]); found = true; }
     }
@@ -256,10 +256,10 @@ export function initChatbot() {
 
     if (sent && callbackAsked) {
       callbackAsked = false;
-      await botSay(`C'est noté${profile.prenom ? `, ${profile.prenom}` : ""} — je transmets à Mehdi, un coach te rappelle.`, 450);
+      await botSay(`C’est noté${profile.prenom ? `, ${profile.prenom}` : ""} — je transmets à Mehdi, un coach te rappelle.`, 450);
     } else if (!nudged && exchanges >= 2 && !profile.email && !profile.phone) {
       nudged = true;
-      await botSay("Au fait — si tu veux qu'un coach te rappelle ou t'envoie le planning, laisse-moi ton prénom et un numéro ou un email. Quand tu veux, pas d'obligation.", 450);
+      await botSay("Au fait — si tu veux qu’un coach te rappelle ou t’envoie le planning, laisse-moi ton prénom et un numéro ou un email. Quand tu veux, pas d’obligation.", 450);
     }
     showChips();
   }
@@ -303,9 +303,9 @@ export function initChatbot() {
     input.focus();
     if (!opened) {
       opened = true;
-      await botSay(`Salut ! Ici l'assistant du Boxing Center Minimes — la salle historique, ${SALLE.address.street}. Je réponds sur les horaires, les cours, les tarifs, l'école dès 3 ans…`, 500);
+      await botSay(`Salut ! Ici l’assistant du Boxing Center Minimes — la salle historique, ${SALLE.address.street}. Je réponds sur les horaires, les cours, les tarifs, l’école dès 3 ans…`, 500);
       expectName = true;
-      await botSay("Avant qu'on commence : tu t'appelles comment ?", 400);
+      await botSay("Avant qu’on commence : tu t’appelles comment ?", 400);
       showChips();
     }
   }
@@ -320,7 +320,7 @@ export function initChatbot() {
   launcher.setAttribute("role", "button");
   launcher.setAttribute("aria-expanded", "false");
   launcher.setAttribute("aria-controls", "bcm-chat");
-  launcher.setAttribute("aria-label", "Ouvrir l'assistant du Boxing Center Minimes");
+  launcher.setAttribute("aria-label", "Ouvrir l’assistant du Boxing Center Minimes");
   const label = launcher.querySelector(".chatbot__label");
   if (label) label.textContent = "Parler au club";
   launcher.addEventListener("click", (e) => {

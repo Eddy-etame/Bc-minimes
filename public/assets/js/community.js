@@ -2,10 +2,10 @@
    LE MUR DU CLUB — la galerie que les gens remplissent eux-mêmes.
    Boxing Center Minimes.
 
-   Ce que ça fait, dans l'ordre :
+   Ce que ça fait, dans l’ordre :
      1. le visiteur choisit une photo ou une vidéo de la salle ;
-     2. on VÉRIFIE vraiment le fichier (octets d'en-tête + décodage réel,
-        pas l'extension : un .jpg peut être n'importe quoi) ;
+     2. on VÉRIFIE vraiment le fichier (octets d’en-tête + décodage réel,
+        pas l’extension : un .jpg peut être n’importe quoi) ;
      3. le serveur valide le prénom, le contact et la limite par IP, puis
         SIGNE un dépôt direct vers Cloudinary — les octets ne passent
         jamais par la fonction Vercel ;
@@ -16,8 +16,8 @@
         (/api/lead, event "upload_contributor") — un seul carnet, pas deux.
 
    PERF : ce module et sa feuille ne descendent QUE lorsque la section
-   entre à l'écran (cf. galerie.js). Les médias approuvés sont chargés
-   paresseusement, et une vidéo n'est jamais téléchargée au premier rendu
+   entre à l’écran (cf. galerie.js). Les médias approuvés sont chargés
+   paresseusement, et une vidéo n’est jamais téléchargée au premier rendu
    — on ne sert que son affiche.
    ===================================================================== */
 
@@ -40,10 +40,10 @@ function inappropriate(s) {
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
 /* ---------------------------------------------------------------------
-   LE FICHIER EST-IL CE QU'IL PRÉTEND ÊTRE ?
-   On lit les premiers octets. L'extension et le type déclaré par le
+   LE FICHIER EST-IL CE QU’IL PRÉTEND ÊTRE ?
+   On lit les premiers octets. L’extension et le type déclaré par le
    navigateur se falsifient en trois secondes ; la signature du format,
-   non. Ce qui n'est pas reconnu est refusé — on ne devine pas.
+   non. Ce qui n’est pas reconnu est refusé — on ne devine pas.
    --------------------------------------------------------------------- */
 async function sniff(file) {
   const head = new Uint8Array(await file.slice(0, 16).arrayBuffer());
@@ -64,17 +64,17 @@ async function sniff(file) {
   return null;
 }
 
-/** Décodage RÉEL de l'image : si le navigateur n'arrive pas à la décoder,
- *  ce n'est pas une image, quoi qu'en dise l'en-tête. */
+/** Décodage RÉEL de l’image : si le navigateur n’arrive pas à la décoder,
+ *  ce n’est pas une image, quoi qu’en dise l’en-tête. */
 function decodeImage(file) {
   if (!("createImageBitmap" in window)) return Promise.resolve(true);   // navigateur ancien : Cloudinary tranchera
   return createImageBitmap(file).then((b) => { b.close?.(); return true; }, () => false);
 }
 
 /** Une VIGNETTE de la photo, pour l'œil de la machine.
- *  On n'envoie jamais le fichier d'origine à notre fonction : 640 px en
+ *  On n’envoie jamais le fichier d’origine à notre fonction : 640 px en
  *  JPEG suffisent largement pour reconnaître un ring, ça pèse quelques
- *  dizaines de Ko, et le visiteur a sa réponse avant même d'avoir
+ *  dizaines de Ko, et le visiteur a sa réponse avant même d’avoir
  *  téléversé quoi que ce soit. */
 async function thumbnail(file, max = 640) {
   const bmp = await createImageBitmap(file);
@@ -127,7 +127,7 @@ async function loadItems(grid, form) {
     if (hint) hint.textContent = `Photo ou vidéo · ${LIMITS.maxMb} Mo max · ${LIMITS.maxSec} s max pour une vidéo · validée par le staff avant publication`;
 
     if (!items?.length) {
-      grid.innerHTML = `<p class="cm-empty">Le mur est vide. Sois le premier à l'accrocher — une photo du ring, un round au sac, ce que tu veux.</p>`;
+      grid.innerHTML = `<p class="cm-empty">Le mur est vide. Sois le premier à l’accrocher — une photo du ring, un round au sac, ce que tu veux.</p>`;
       return;
     }
     grid.innerHTML = items.map(cell).join("");
@@ -137,9 +137,9 @@ async function loadItems(grid, form) {
   }
 }
 
-/* Une vidéo n'est JAMAIS téléchargée au premier rendu : on ne pose que son
-   affiche (une image), et `preload="none"`. Les octets ne partent qu'au
-   moment où la vignette entre à l'écran — et la lecture, au survol. */
+/* Une vidéo n’est JAMAIS téléchargée au premier rendu : on ne pose que son
+   affiche (une image), et `preload="none"`. Les octets ne partent qu’au
+   moment où la vignette entre à l’écran — et la lecture, au survol. */
 function cell(it) {
   const legend = `${esc(it.title || "Le club")}${it.author ? ` · ${esc(it.author)}` : ""}`;
   if (it.kind === "video") {
@@ -185,7 +185,7 @@ function bindForm(form, status) {
 
     const author = val("author"), email = val("email"), phone = val("phone"), title = val("title");
 
-    if (author.length < 2) return say(status, "Ton prénom d'abord — on veut savoir qui a filmé.", "err");
+    if (author.length < 2) return say(status, "Ton prénom d’abord — on veut savoir qui a filmé.", "err");
     if (inappropriate(author)) return say(status, "Ce prénom ne passe pas. Mets le vrai.", "err");
     if (title && inappropriate(title)) return say(status, "Ce titre ne passe pas. Trouve autre chose.", "err");
 
@@ -201,14 +201,14 @@ function bindForm(form, status) {
 
     say(status, "On regarde le fichier…", "info");
     const sig = await sniff(file);
-    if (!sig) return say(status, "Ce fichier n'est ni une photo ni une vidéo. Reprends-en un vrai.", "err");
+    if (!sig) return say(status, "Ce fichier n’est ni une photo ni une vidéo. Reprends-en un vrai.", "err");
     /* le type ANNONCÉ doit coller au type RÉEL */
     if (file.type && !file.type.startsWith(sig.kind + "/"))
-      return say(status, "Ce fichier n'est pas ce qu'il prétend être. Refusé.", "err");
+      return say(status, "Ce fichier n’est pas ce qu’il prétend être. Refusé.", "err");
 
     if (sig.kind === "image") {
       if (!(await decodeImage(file)))
-        return say(status, "Cette image est illisible — elle est abîmée, ou ce n'en est pas une.", "err");
+        return say(status, "Cette image est illisible — elle est abîmée, ou ce n’en est pas une.", "err");
     } else {
       const m = await videoMeta(file);
       if (!m.ok) return say(status, "Cette vidéo est illisible. Réessaie avec un autre fichier.", "err");
@@ -231,11 +231,11 @@ function bindForm(form, status) {
          seulement si une clé Gemini existe côté serveur (`sign.vision`).
          Ça se passe AVANT le téléversement : un hors-sujet ne consomme
          ni la bande passante du visiteur ni le stockage du club.
-         Une vidéo ne passe pas par là — on n'analyse pas des images
+         Une vidéo ne passe pas par là — on n’analyse pas des images
          animées avec un outil qui regarde des images fixes ; elle va
-         droit en file de modération humaine, et c'est dit. */
+         droit en file de modération humaine, et c’est dit. */
       if (sig.kind === "image" && sign.vision) {
-        say(status, "On regarde ce qu'il y a sur la photo…", "info");
+        say(status, "On regarde ce qu’il y a sur la photo…", "info");
         try {
           const vr = await fetch(`${API}/api/community/verify`, {
             method: "POST", headers: { "Content-Type": "application/json" },
@@ -274,7 +274,7 @@ function bindForm(form, status) {
         submit.disabled = false;
         if (bar) bar.style.width = "0%";
         if (xhr.status >= 200 && xhr.status < 300) {
-          /* 3) LE CARNET — le même que celui de l'assistant, pas un second */
+          /* 3) LE CARNET — le même que celui de l’assistant, pas un second */
           fetch(`${API}/api/lead`, {
             method: "POST", headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -283,10 +283,10 @@ function bindForm(form, status) {
               salle: "Minimes", page: location.pathname,
             }),
           }).catch(() => { /* le dépôt est fait : le carnet ne doit jamais le casser */ });
-          say(status, `Reçu, ${author}. Un coach regarde, et si c'est bon ça monte sur le mur — on te prévient.`, "ok");
+          say(status, `Reçu, ${author}. Un coach regarde, et si c’est bon ça monte sur le mur — on te prévient.`, "ok");
           form.reset();
         } else {
-          say(status, "L'envoi a échoué. Réessaie dans un instant.", "err");
+          say(status, "L’envoi a échoué. Réessaie dans un instant.", "err");
         }
       };
       xhr.onerror = () => {

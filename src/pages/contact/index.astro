@@ -6,7 +6,7 @@ import SiteContent from "../../components/SiteContent.astro";
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact & accès — Boxing Center Minimes, 12 rue de Fenouillet, Toulouse 31200</title>
+  <title>Contact & accès — Boxing Center Minimes, Toulouse 31200</title>
   <meta name="description" content="12 rue de Fenouillet, 31200 Toulouse — métro B Barrière de Paris, trois minutes à pied. 05 62 24 46 82, du lundi au samedi de 10h à 21h30." />
 
   <!-- Préconnexion CDN (les libs sont différées) — polices auto-hébergées :
@@ -14,13 +14,13 @@ import SiteContent from "../../components/SiteContent.astro";
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-black-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-latin.woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/css/fonts.css?v=b16" />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=b17" />
 
   <!-- LCP : le hero est construit en JS → invisible au preload scanner (§5.8) -->
   <link rel="preload" as="image" href="/assets/img/bc/training-1.webp" fetchpriority="high" />
 
-  <link rel="stylesheet" href="/assets/css/base.css?v=b16" />
-  <link rel="stylesheet" href="/assets/css/club.css?v=b16" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=b17" />
+  <link rel="stylesheet" href="/assets/css/club.css?v=b17" />
 
   <meta name="keywords" content="contact salle de boxe Minimes, adresse Boxing Center Toulouse, téléphone club boxe Toulouse, accès métro Barrière de Paris, horaires salle boxe 31200, boxing gym Toulouse, boxing club Toulouse, boxing lessons Toulouse, boxing classes Toulouse Minimes, English boxing Toulouse, kids boxing Toulouse, women boxing Toulouse, martial arts gym Toulouse, gym near Barrière de Paris" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -28,21 +28,21 @@ import SiteContent from "../../components/SiteContent.astro";
   <meta name="geo.placename" content="Toulouse — Les Minimes" />
   <meta name="geo.position" content="43.6256;1.4309" />
   <meta name="ICBM" content="43.6256, 1.4309" />
-  <link rel="canonical" href="https://minimes.boxingcenter.fr/contact/" />
+  <link rel="canonical" href="https://bc-minimes.vercel.app/contact/" />
   <meta name="theme-color" content="#0a1020" />
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
-  <link rel="shortcut icon" href="/favicon.png" />
-  <link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+  <link rel="icon" href="/favicon.svg?i=2" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.png?i=2" type="image/png" sizes="32x32" />
+  <link rel="shortcut icon" href="/favicon.png?i=2" />
+  <link rel="icon" href="/favicon-192.png?i=2" type="image/png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?i=2" sizes="180x180" />
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="Boxing Center Minimes" />
   <meta property="og:title" content="Contact & accès — Boxing Center Minimes, Toulouse" />
   <meta property="og:description" content="12 rue de Fenouillet, 31200 Toulouse · 05 62 24 46 82 · lun–sam 10h–21h30 · métro ligne B Barrière de Paris. Réserve ton essai 10€." />
-  <meta property="og:url" content="https://minimes.boxingcenter.fr/contact/" />
-  <meta property="og:image" content="https://minimes.boxingcenter.fr/assets/img/og.jpg" />
+  <meta property="og:url" content="https://bc-minimes.vercel.app/contact/" />
+  <meta property="og:image" content="https://bc-minimes.vercel.app/assets/img/og.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:type" content="image/jpeg" />
@@ -50,7 +50,7 @@ import SiteContent from "../../components/SiteContent.astro";
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Contact & accès — Boxing Center Minimes, Toulouse" />
   <meta name="twitter:description" content="12 rue de Fenouillet, 31200 Toulouse · 05 62 24 46 82 · lun–sam 10h–21h30 · métro ligne B." />
-  <meta name="twitter:image" content="https://minimes.boxingcenter.fr/assets/img/og.jpg" />
+  <meta name="twitter:image" content="https://bc-minimes.vercel.app/assets/img/og.jpg" />
 
   <!-- FAQPage (la FAQ canonique du site vit sur /contact/ — STANDARDS §4) -->
   <!-- Données structurées : graphe JSON-LD unifié de la page — nœuds reliés
@@ -71,7 +71,7 @@ import SiteContent from "../../components/SiteContent.astro";
         ],
         "subOrganization": [
           {
-            "@id": "https://minimes.boxingcenter.fr/#salle"
+            "@id": "https://bc-minimes.vercel.app/#salle"
           },
           {
             "@type": "SportsActivityLocation",
@@ -98,14 +98,14 @@ import SiteContent from "../../components/SiteContent.astro";
           "HealthClub",
           "LocalBusiness"
         ],
-        "@id": "https://minimes.boxingcenter.fr/#salle",
+        "@id": "https://bc-minimes.vercel.app/#salle",
         "knowsLanguage": ["fr-FR", "en"],
         "name": "Boxing Center Minimes",
-        "url": "https://minimes.boxingcenter.fr/",
+        "url": "https://bc-minimes.vercel.app/",
         "telephone": "+33562244682",
         "email": "boxingcenter31@gmail.com",
         "priceRange": "€€",
-        "image": "https://minimes.boxingcenter.fr/assets/img/og.jpg",
+        "image": "https://bc-minimes.vercel.app/assets/img/og.jpg",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "12 rue de Fenouillet",
@@ -166,24 +166,24 @@ import SiteContent from "../../components/SiteContent.astro";
           },
           {
             "@type": "LocationFeatureSpecification",
-            "name": "Zone pattes d'ours",
+            "name": "Zone pattes d’ours",
             "value": true
           },
           {
             "@type": "LocationFeatureSpecification",
-            "name": "Salle de prépa physique à l'étage",
+            "name": "Salle de prépa physique à l’étage",
             "value": true
           }
         ],
         "hasOfferCatalog": {
           "@type": "OfferCatalog",
-          "@id": "https://minimes.boxingcenter.fr/#offres",
+          "@id": "https://bc-minimes.vercel.app/#offres",
           "name": "Offres Boxing Center Minimes",
-          "url": "https://minimes.boxingcenter.fr/tarifs/",
+          "url": "https://bc-minimes.vercel.app/tarifs/",
           "itemListElement": [
             {
               "@type": "Offer",
-              "name": "Séance d'essai",
+              "name": "Séance d’essai",
               "price": "10",
               "priceCurrency": "EUR",
               "description": "Toutes disciplines, matériel prêté, sans engagement.",
@@ -217,7 +217,7 @@ import SiteContent from "../../components/SiteContent.astro";
         },
         "potentialAction": {
           "@type": "ReserveAction",
-          "name": "Réserver une séance d'essai",
+          "name": "Réserver une séance d’essai",
           "target": {
             "@type": "EntryPoint",
             "urlTemplate": "https://box-plus.vercel.app/seance-essai",
@@ -229,35 +229,35 @@ import SiteContent from "../../components/SiteContent.astro";
           },
           "result": {
             "@type": "Reservation",
-            "name": "Séance d'essai — 10 €, toutes disciplines, matériel prêté"
+            "name": "Séance d’essai — 10 €, toutes disciplines, matériel prêté"
           }
         },
         "parentOrganization": {
           "@id": "https://boxingcenter.fr/#organization"
         },
-        "description": "Salle de boxe anglaise historique du groupe Boxing Center, quartier des Minimes à Toulouse (31200). Berceau de boxeurs professionnels et amateurs, 3 rings, boxe éducative dès 3 ans (Baby Boxe 3/6), Boxing Lady. Séance d'essai 10€."
+        "description": "Salle de boxe anglaise historique du groupe Boxing Center, quartier des Minimes à Toulouse (31200). Berceau de boxeurs professionnels et amateurs, 3 rings, boxe éducative dès 3 ans (Baby Boxe 3/6), Boxing Lady. Séance d’essai 10€."
       },
       {
         "@type": "WebSite",
-        "@id": "https://minimes.boxingcenter.fr/#website",
-        "url": "https://minimes.boxingcenter.fr/",
+        "@id": "https://bc-minimes.vercel.app/#website",
+        "url": "https://bc-minimes.vercel.app/",
         "name": "Boxing Center Minimes",
         "inLanguage": "fr-FR",
         "publisher": {
-          "@id": "https://minimes.boxingcenter.fr/#salle"
+          "@id": "https://bc-minimes.vercel.app/#salle"
         }
       },
       {
         "@type": "ContactPage",
-        "@id": "https://minimes.boxingcenter.fr/contact/#webpage",
-        "url": "https://minimes.boxingcenter.fr/contact/",
+        "@id": "https://bc-minimes.vercel.app/contact/#webpage",
+        "url": "https://bc-minimes.vercel.app/contact/",
         "name": "Contact & accès — Boxing Center Minimes, 12 rue de Fenouillet, Toulouse 31200",
         "description": "12 rue de Fenouillet, 31200 Toulouse — métro B Barrière de Paris, trois minutes à pied. 05 62 24 46 82, du lundi au samedi de 10h à 21h30.",
         "isPartOf": {
-          "@id": "https://minimes.boxingcenter.fr/#website"
+          "@id": "https://bc-minimes.vercel.app/#website"
         },
         "about": {
-          "@id": "https://minimes.boxingcenter.fr/#salle"
+          "@id": "https://bc-minimes.vercel.app/#salle"
         },
         "inLanguage": "fr-FR",
         "speakable": {
@@ -268,46 +268,46 @@ import SiteContent from "../../components/SiteContent.astro";
           ]
         },
         "primaryImageOfPage": {
-          "@id": "https://minimes.boxingcenter.fr/contact/#primaryimage"
+          "@id": "https://bc-minimes.vercel.app/contact/#primaryimage"
         },
         "datePublished": "2026-07-17",
         "dateModified": "@BUILT@",
         "breadcrumb": {
-          "@id": "https://minimes.boxingcenter.fr/contact/#breadcrumb"
+          "@id": "https://bc-minimes.vercel.app/contact/#breadcrumb"
         }
       },
       {
         "@type": "ImageObject",
-        "@id": "https://minimes.boxingcenter.fr/contact/#primaryimage",
-        "url": "https://minimes.boxingcenter.fr/assets/img/og.jpg",
-        "contentUrl": "https://minimes.boxingcenter.fr/assets/img/og.jpg",
+        "@id": "https://bc-minimes.vercel.app/contact/#primaryimage",
+        "url": "https://bc-minimes.vercel.app/assets/img/og.jpg",
+        "contentUrl": "https://bc-minimes.vercel.app/assets/img/og.jpg",
         "width": 1200,
         "height": 630,
         "caption": "Boxing Center Minimes — 12 rue de Fenouillet, Toulouse, quartier Barrière de Paris."
       },
       {
         "@type": "BreadcrumbList",
-        "@id": "https://minimes.boxingcenter.fr/contact/#breadcrumb",
+        "@id": "https://bc-minimes.vercel.app/contact/#breadcrumb",
         "itemListElement": [
           {
             "@type": "ListItem",
             "position": 1,
             "name": "Accueil",
-            "item": "https://minimes.boxingcenter.fr/"
+            "item": "https://bc-minimes.vercel.app/"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "Contact",
-            "item": "https://minimes.boxingcenter.fr/contact/"
+            "item": "https://bc-minimes.vercel.app/contact/"
           }
         ]
       },
       {
         "@type": "FAQPage",
-        "@id": "https://minimes.boxingcenter.fr/contact/#faq",
+        "@id": "https://bc-minimes.vercel.app/contact/#faq",
         "isPartOf": {
-          "@id": "https://minimes.boxingcenter.fr/contact/#webpage"
+          "@id": "https://bc-minimes.vercel.app/contact/#webpage"
         },
         "mainEntity": [
           {
@@ -320,7 +320,7 @@ import SiteContent from "../../components/SiteContent.astro";
           },
           {
             "@type": "Question",
-            "name": "Je n'ai jamais boxé. Je peux venir ?",
+            "name": "Je n’ai jamais boxé. Je peux venir ?",
             "acceptedAnswer": {
               "@type": "Answer",
               "text": "Oui. Tu ne seras ni le premier ni le seul — on a des créneaux débutants et du cardio boxing où tu ne prends aucun coup. Tu apprends le geste avant de le recevoir."
@@ -331,7 +331,7 @@ import SiteContent from "../../components/SiteContent.astro";
             "name": "Quelle est la spécialité de la salle des Minimes ?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "La boxe anglaise. C'est la salle historique du groupe, le berceau de plusieurs boxeurs professionnels et amateurs — avec trois rings dédiés."
+              "text": "La boxe anglaise. C’est la salle historique du groupe, le berceau de plusieurs boxeurs professionnels et amateurs — avec trois rings dédiés."
             }
           },
           {
@@ -339,7 +339,7 @@ import SiteContent from "../../components/SiteContent.astro";
             "name": "Y a-t-il des cours pour les enfants ?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Oui, dès 3 ans. Baby Boxe pour les 3/6 ans, boxe éducative pour les 7/11, ados 12/16, puis compétiteurs — du jeu au ring, un créneau par âge. À partir de 280 € l'année."
+              "text": "Oui, dès 3 ans. Baby Boxe pour les 3/6 ans, boxe éducative pour les 7/11, ados 12/16, puis compétiteurs — du jeu au ring, un créneau par âge. À partir de 280 € l’année."
             }
           },
           {
@@ -366,9 +366,9 @@ import SiteContent from "../../components/SiteContent.astro";
 
   <!-- page-scoped : en-tête contact + numéro héroïsé -->
   <style is:inline>
-    /* l'en-tête partage .page-head (base.css) — la répétition est honnête.
-       Ce qui appartient à CETTE page : le numéro à l'échelle du display.
-       C'est la page du contact : elle commence par le téléphone. */
+    /* l’en-tête partage .page-head (base.css) — la répétition est honnête.
+       Ce qui appartient à CETTE page : le numéro à l’échelle du display.
+       C’est la page du contact : elle commence par le téléphone. */
     .page-head--con { border-bottom: 0; }
     .page-head--con .page-head__bg { opacity: .2; }
     .tel-hero { display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem 1.4rem; margin-top: clamp(1.4rem,4vw,2.2rem); border-top: 1px solid var(--line); padding-top: clamp(1.4rem,3vw,2rem); }
@@ -415,7 +415,7 @@ import SiteContent from "../../components/SiteContent.astro";
       <div class="wrap">
         <span class="eyebrow" data-reveal>Contact · Les Minimes</span>
         <h1 class="display" style="margin:1rem 0 0"><span class="reveal-mask"><span>On répond, </span></span><span class="reveal-mask"><span class="tint">pour de vrai.</span></span></h1>
-        <p class="lead page-head__lead" data-reveal>Une question sur un créneau, un niveau, un enfant à inscrire ? Le plus simple, c'est le téléphone. Un coach décroche — pas un formulaire, pas un robot.</p>
+        <p class="lead page-head__lead" data-reveal>Une question sur un créneau, un niveau, un enfant à inscrire ? Le plus simple, c’est le téléphone. Un coach décroche — pas un formulaire, pas un robot.</p>
         <div class="tel-hero" data-reveal>
           <a href="tel:+33562244682">05 62 24 46 82</a>
           <span class="tel-hero__note">Lun–Sam · <b>10h – 21h30</b><br>12 rue de Fenouillet, 31200 Toulouse</span>
@@ -428,7 +428,7 @@ import SiteContent from "../../components/SiteContent.astro";
       <div class="wrap">
         <div class="sec-head" data-reveal>
           <span class="eyebrow">Où nous trouver</span>
-          <h2 class="display display--sm" style="margin-top:1rem">L'adresse, <span class="tint">l'accès</span></h2>
+          <h2 class="display display--sm" style="margin-top:1rem">L’adresse, <span class="tint">l’accès</span></h2>
         </div>
         <div class="contact-grid">
           <div data-reveal-group>
@@ -451,7 +451,7 @@ import SiteContent from "../../components/SiteContent.astro";
       <div class="wrap">
         <div class="sec-head" data-reveal>
           <span class="eyebrow">FAQ locale</span>
-          <h2 class="display display--sm" style="margin-top:1rem">Les questions <span class="tint">qu'on nous pose</span></h2>
+          <h2 class="display display--sm" style="margin-top:1rem">Les questions <span class="tint">qu’on nous pose</span></h2>
         </div>
         <div class="faq" id="faq"></div>
       </div>
@@ -462,8 +462,8 @@ import SiteContent from "../../components/SiteContent.astro";
       <div class="gong__bg" aria-hidden="true"><div class="media" data-img="/assets/img/bc/anglaise-3.webp" data-label=""></div></div>
       <div class="gong__inner">
         <span class="eyebrow" data-reveal>Décroche</span>
-        <h2 class="display" data-reveal style="font-size:var(--step-3)">Pas envie<br><span class="tint">d'appeler ?</span></h2>
-        <p class="lead" data-reveal>Réserve en ligne, on t'attend au 12 rue de Fenouillet.</p>
+        <h2 class="display" data-reveal style="font-size:var(--step-3)">Pas envie<br><span class="tint">d’appeler ?</span></h2>
+        <p class="lead" data-reveal>Réserve en ligne, on t’attend au 12 rue de Fenouillet.</p>
         <div class="gong__cta" data-reveal>
           <a class="btn btn--primary" data-magnetic href="https://box-plus.vercel.app/seance-essai"><span>Réserver mon essai · 10€</span></a>
           <a class="btn btn--ghost" data-magnetic href="/plannings/"><span>Voir le planning</span></a>
@@ -485,7 +485,7 @@ import SiteContent from "../../components/SiteContent.astro";
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=b16"></script>
-  <script is:inline type="module" src="/assets/js/contact.js?v=b16"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=b17"></script>
+  <script is:inline type="module" src="/assets/js/contact.js?v=b17"></script>
 </body>
 </html>

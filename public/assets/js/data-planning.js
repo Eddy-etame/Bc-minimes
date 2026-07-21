@@ -2,17 +2,17 @@
    BOXING CENTER — MINIMES · le planning
 
    Détaché de data.js pour une raison mesurée : le noyau part sur les 8
-   pages (site.js en dépend), ces données-là n'en concernent que trois pages (planning, activités, coachs).
+   pages (site.js en dépend), ces données-là n’en concernent que trois pages (planning, activités, coachs).
    Les embarquer partout coûtait leur poids sur chaque page pour rien.
    ===================================================================== */
-import { bcRegister } from "./data.js?v=b16";
+import { bcRegister } from "./data.js?v=b17";
 
 /* =====================================================================
    LE PLANNING — transcription du poster officiel SAISON 2026-2027
    (« PLANNING DES COURS », Barrière de Paris / Minimes ; roster.json fait
-   foi). C'est la SOURCE de la grille HTML filtrable de /plannings/
-   (STANDARDS §3) ET des repères de la page. ⚠ Aucun créneau n'est inventé :
-   si le poster ne le prouve pas, il n'est pas ici.
+   foi). C’est la SOURCE de la grille HTML filtrable de /plannings/
+   (STANDARDS §3) ET des repères de la page. ⚠ Aucun créneau n’est inventé :
+   si le poster ne le prouve pas, il n’est pas ici.
    `d` = jour · `h` = début · `end` = fin (quand le poster la donne)
    `disc` = clé de discipline (filtre) · `coach` = prénom du poster (filtre)
    ===================================================================== */
@@ -20,7 +20,7 @@ export const PLANNING_DAYS = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi",
 export const PLANNING_DISCIPLINES = [
   { key: "anglaise", label: "Anglaise loisirs" },
   { key: "competiteurs", label: "Compétiteurs" },
-  { key: "educative", label: "L'école" },
+  { key: "educative", label: "L’école" },
   { key: "lady", label: "Boxing Lady" },
   { key: "camp", label: "Boxing camp" },
   { key: "sparring", label: "Open sparring" },
@@ -29,7 +29,7 @@ export const PLANNING_DISCIPLINES = [
 /* `h`/`end` = début/fin EXACTES du poster (chaque cours en a une : la
    colonne HORAIRE les donne toutes). `space` = la sous-colonne « 1 » ou
    « 2 » du poster — lundi, mardi et jeudi font tourner DEUX espaces en
-   parallèle le soir. C'est une info du poster qu'on perdait entièrement. */
+   parallèle le soir. C’est une info du poster qu’on perdait entièrement. */
 export const PLANNING = [
   /* ---- Lundi ---- */
   { d: "Lundi", h: "12h40", end: "13h20", disc: "camp", name: "Boxing camp", coach: "Mehdi B", age: "Adultes" },
@@ -70,7 +70,7 @@ export const PLANNING = [
   { d: "Samedi", h: "17h00", end: "18h30", disc: "educative", name: "Boxe éducative compétiteurs", coach: "Mehdi B", age: "Jeunes licenciés" },
   { d: "Samedi", h: "18h30", end: "19h30", disc: "sparring", name: "Open sparring", coach: "Mehdi B", age: "Licenciés" },
 ];
-/* L'ACCÈS LIBRE — les blocs gris du poster, qui en occupent la moitié et
+/* L’ACCÈS LIBRE — les blocs gris du poster, qui en occupent la moitié et
    que la grille ignorait complètement. Chaque bande correspond à un
    libellé de la colonne HORAIRE : les treize libellés du poster sont tous
    utilisés une fois et une seule (cours ou accès libre), ce qui est le
@@ -97,13 +97,13 @@ export const PLANNING_FREE = [
 /* Les repères de /plannings/ — dérivés du PLANNING ci-dessus, jamais tapés
    dans le markup (§0.10 : aucun nom de coach en dur dans un HTML). */
 export const PLANNING_KEYS = [
-  { n: "01", t: "L'accès libre", d: "Tous les jours de 10h à 12h, et tout l'après-midi de 13h20 à 18h : rings et sacs en autonomie, sans réservation. Le mercredi ça s'arrête à 15h, l'école prend la salle." },
-  { n: "02", t: "L'école, dès 3 ans", d: "Baby Boxe 3/6 ans le samedi à 14h15. Puis les 7/11 à 15h, les 12/16 à 16h, les jeunes compétiteurs à 17h — le mercredi et le samedi, la même montée d'âge." },
+  { n: "01", t: "L’accès libre", d: "Tous les jours de 10h à 12h, et tout l’après-midi de 13h20 à 18h : rings et sacs en autonomie, sans réservation. Le mercredi ça s’arrête à 15h, l’école prend la salle." },
+  { n: "02", t: "L’école, dès 3 ans", d: "Baby Boxe 3/6 ans le samedi à 14h15. Puis les 7/11 à 15h, les 12/16 à 16h, les jeunes compétiteurs à 17h — le mercredi et le samedi, la même montée d’âge." },
   { n: "03", t: "Boxing Lady", d: "Lundi 18h30 avec Chloé, mercredi 18h30 avec David. Une heure, deux soirs, et le second espace de la salle rien que pour elles le lundi." },
-  { n: "04", t: "La boxe sérieuse", d: "Compétiteurs de 18h à 19h30 le lundi, le mardi, le jeudi et le vendredi. Open sparring le samedi 18h30. Et l'anglaise loisirs à 19h40, les quatre mêmes soirs." },
+  { n: "04", t: "La boxe sérieuse", d: "Compétiteurs de 18h à 19h30 le lundi, le mardi, le jeudi et le vendredi. Open sparring le samedi 18h30. Et l’anglaise loisirs à 19h40, les quatre mêmes soirs." },
 ];
 
-/* Le planning est ÉDITABLE depuis le backoffice : il s'inscrit auprès du
+/* Le planning est ÉDITABLE depuis le backoffice : il s’inscrit auprès du
    noyau, qui lui applique le contenu publié (ou le brouillon en aperçu).
-   Le module a bougé, la chaîne d'édition n'a pas bougé d'un pouce. */
+   Le module a bougé, la chaîne d’édition n’a pas bougé d’un pouce. */
 bcRegister("planning", PLANNING);

@@ -430,5 +430,6 @@ a:hover > .ext, a:focus-visible > .ext { opacity: 1; }
      débordement, les cartes se réagencent simplement. */
   .pl-week__n, .pl-week__c, .pl-week__f, .pl-slot__m, .pl-slot__m b,
   .pl-day__h i, .pl-week__d, .pl-day__empty { font-size: .75rem !important; }
-  .nav__links a, .menu__link, .menu__foot a, .footer__col a, .crumbs a, .chip, .who__tick, .disc a, .faq summary, .netband a, a.tab { min-height: 44px; display: inline-flex; align-items: center; }
+  /* .who__tick exclu : <li> indicateur non interactif, pas une cible tactile */
+  .nav__links a, .menu__link, .menu__foot a, .footer__col a, .crumbs a, .chip, .disc a, .faq summary, .netband a, a.tab { min-height: 44px; display: inline-flex; align-items: center; }
 }

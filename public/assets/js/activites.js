@@ -5,18 +5,18 @@
    des champs `for` + `points`). Rien en dur dans le markup répété.
 
    Deux dettes réglées ici :
-   1. Le catalogue s'arrêtait à six disciplines alors que le poster
+   1. Le catalogue s’arrêtait à six disciplines alors que le poster
       officiel en prouve DEUX de plus (Boxing camp — cinq créneaux par
       semaine — et Boxe pieds-poings). Elles y sont.
    2. Le bouton « Voir les créneaux » envoyait sur la semaine entière,
       non filtrée : il promettait un créneau et livrait un planning. Il
       pointe maintenant sur /plannings/?disc=… — et pour les trois
-      disciplines qui n'ONT pas de créneau (paos, cross, cardio), il ne
-      ment plus : il le dit et renvoie vers l'accès libre.
+      disciplines qui n’ONT pas de créneau (paos, cross, cardio), il ne
+      ment plus : il le dit et renvoie vers l’accès libre.
    ===================================================================== */
-import { LINKS, CTA } from "./data.js?v=b16";
-import { DISCIPLINES } from "./data-disciplines.js?v=b16";
-import { PLANNING } from "./data-planning.js?v=b16";
+import { LINKS, CTA } from "./data.js?v=b17";
+import { DISCIPLINES } from "./data-disciplines.js?v=b17";
+import { PLANNING } from "./data-planning.js?v=b17";
 
 const $ = (s, r = document) => r.querySelector(s);
 
@@ -33,7 +33,7 @@ function badgeOf(d) {
 
 function mediaOf(d, i) {
   /* Loi §0.10 étendue au geste : aucune photo du pool ne montre des
-     pieds-poings. Plutôt qu'illustrer avec une photo de poings, on
+     pieds-poings. Plutôt qu’illustrer avec une photo de poings, on
      assume — même tuile dessinée que le roster des coachs sans portrait. */
   if (d.noPhoto) {
     return `<div class="act__media act__media--none" aria-hidden="true">
@@ -46,7 +46,7 @@ function mediaOf(d, i) {
 
 function ctaOf(d) {
   const href = d.plan ? `/plannings/?disc=${encodeURIComponent(d.plan)}` : "/plannings/?disc=libre";
-  const label = d.plan ? "Voir ses créneaux" : "Voir l'accès libre";
+  const label = d.plan ? "Voir ses créneaux" : "Voir l’accès libre";
   return `<a class="btn btn--ghost" data-magnetic href="${href}"><span>${label}</span></a>`;
 }
 

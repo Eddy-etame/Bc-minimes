@@ -6,10 +6,10 @@
                   → os), ondulation au pointeur + décalage RVB.
    Le bleu est la braise, pas le décor.
 
-   Pourquoi WebGL brut et plus three.js : le mode B n'est qu'un quad
+   Pourquoi WebGL brut et plus three.js : le mode B n’est qu’un quad
    plein écran avec UN fragment shader. On importait 608 ko de moteur 3D
-   (152 ko gzip) pour six classes — sur la page d'accueil, c'est-à-dire
-   sur le LCP, et pour une vue qui n'est même pas celle par défaut.
+   (152 ko gzip) pour six classes — sur la page d’accueil, c’est-à-dire
+   sur le LCP, et pour une vue qui n’est même pas celle par défaut.
    Le shader ci-dessous est repris CARACTÈRE POUR CARACTÈRE : le rendu
    est le même pixel pour pixel, il ne reste que le moteur en moins.
    ===================================================================== */
@@ -33,9 +33,9 @@ function setupToggle(hero) {
     /* the static "Vue : " text node already prefixes the span — only the
        mode word belongs in the span (else it reads "Vue : Vue : Pochoir") */
     if (label) label.textContent = mode === "a" ? "Pochoir" : "Shader";
-    /* c'est un contrôle à deux états : l'état DOIT être exposé. Avant, un
-       aria-label écrasait le texte visible et le lecteur d'écran n'entendait
-       jamais le seul mot que l'utilisateur voyant lit (Pochoir / Shader). */
+    /* c’est un contrôle à deux états : l’état DOIT être exposé. Avant, un
+       aria-label écrasait le texte visible et le lecteur d’écran n’entendait
+       jamais le seul mot que l’utilisateur voyant lit (Pochoir / Shader). */
     btn.setAttribute("aria-pressed", String(mode === "b"));
     try { localStorage.setItem("bc-hero", mode); } catch (e) {}
   };
@@ -129,14 +129,14 @@ function initWebGL(hero) {
   gl.vertexAttribPointer(aUv, 2, gl.FLOAT, false, STRIDE, 3 * 4);
 
   /* Texture vidéo : LINEAR sans mipmap + CLAMP — obligatoire en NPOT,
-     et c'est exactement ce que faisait THREE.VideoTexture ici. */
+     et c’est exactement ce que faisait THREE.VideoTexture ici. */
   const tex = gl.createTexture();
   gl.bindTexture(gl.TEXTURE_2D, tex);
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-  /* three.js posait flipY : sans lui la vidéo sort à l'envers. */
+  /* three.js posait flipY : sans lui la vidéo sort à l’envers. */
   gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
 
   const loc = (n) => gl.getUniformLocation(prog, n);
@@ -157,7 +157,7 @@ function initWebGL(hero) {
     const w = Math.max(1, Math.round(r.width * pr)), h = Math.max(1, Math.round(r.height * pr));
     if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
     gl.viewport(0, 0, w, h);
-    /* uRes ne sert qu'au RATIO : on garde les unités CSS, comme avant. */
+    /* uRes ne sert qu’au RATIO : on garde les unités CSS, comme avant. */
     u.res[0] = r.width; u.res[1] = r.height;
   };
   resize(); addEventListener("resize", resize);
@@ -175,7 +175,7 @@ function initWebGL(hero) {
 
   let lost = false;
   canvas.addEventListener("webglcontextlost", (e) => { e.preventDefault(); lost = true; });
-  canvas.addEventListener("webglcontextrestored", () => { lost = true; /* on n'y revient pas : la vidéo nue reprend */ });
+  canvas.addEventListener("webglcontextrestored", () => { lost = true; /* on n’y revient pas : la vidéo nue reprend */ });
 
   hero.classList.add("is-webgl");
   gsap.ticker.add(() => {

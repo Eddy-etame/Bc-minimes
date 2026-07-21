@@ -6,7 +6,7 @@ import SiteContent from "../../components/SiteContent.astro";
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Les coachs — Boxing Center Minimes, Toulouse (Mehdi B, Boxing Lady, boxing camp)</title>
+  <title>Les coachs — Mehdi B & l’équipe | Boxing Center Minimes</title>
   <meta name="description" content="Mehdi B tient la maison, du premier gant de Baby Boxe au sparring. Chloé et David sur le Boxing Lady, Hicham sur le camp. Voilà qui te coache." />
 
   <!-- Préconnexion CDN (les libs sont différées) — polices auto-hébergées :
@@ -14,14 +14,14 @@ import SiteContent from "../../components/SiteContent.astro";
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-black-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-latin.woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/css/fonts.css?v=b16" />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=b17" />
 
   <!-- LCP : le portrait de Mehdi est le sujet de la page, et il est construit
        en JS → invisible au preload scanner (§5.8) -->
   <link rel="preload" as="image" href="/assets/img/bc/cutouts/coach-mehdi.webp" fetchpriority="high" />
 
-  <link rel="stylesheet" href="/assets/css/base.css?v=b16" />
-  <link rel="stylesheet" href="/assets/css/home.css?v=b16" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=b17" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=b17" />
 
   <meta name="keywords" content="coach boxe Minimes Toulouse, entraîneur boxe anglaise Toulouse, Mehdi Boxing Center, coach Boxing Lady, coach boxe éducative enfant, encadrement boxe 31200, boxing gym Toulouse, boxing club Toulouse, boxing lessons Toulouse, boxing classes Toulouse Minimes, English boxing Toulouse, kids boxing Toulouse, women boxing Toulouse, martial arts gym Toulouse, gym near Barrière de Paris" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -29,29 +29,29 @@ import SiteContent from "../../components/SiteContent.astro";
   <meta name="geo.placename" content="Toulouse — Les Minimes" />
   <meta name="geo.position" content="43.6256;1.4309" />
   <meta name="ICBM" content="43.6256, 1.4309" />
-  <link rel="canonical" href="https://minimes.boxingcenter.fr/coachs/" />
+  <link rel="canonical" href="https://bc-minimes.vercel.app/coachs/" />
   <meta name="theme-color" content="#0a1020" />
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
-  <link rel="shortcut icon" href="/favicon.png" />
-  <link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+  <link rel="icon" href="/favicon.svg?i=2" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.png?i=2" type="image/png" sizes="32x32" />
+  <link rel="shortcut icon" href="/favicon.png?i=2" />
+  <link rel="icon" href="/favicon-192.png?i=2" type="image/png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?i=2" sizes="180x180" />
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="Boxing Center Minimes" />
   <meta property="og:title" content="Les coachs — Boxing Center Minimes, Toulouse" />
   <meta property="og:description" content="Mehdi B, coach principal : anglaise, éducative dès 3 ans, compétiteurs. Boxing Lady avec Chloé et David, boxing camp avec Hicham." />
-  <meta property="og:url" content="https://minimes.boxingcenter.fr/coachs/" />
-  <meta property="og:image" content="https://minimes.boxingcenter.fr/assets/img/og.jpg" />
+  <meta property="og:url" content="https://bc-minimes.vercel.app/coachs/" />
+  <meta property="og:image" content="https://bc-minimes.vercel.app/assets/img/og.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:type" content="image/jpeg" />
-  <meta property="og:image:alt" content="L'encadrement de Boxing Center Minimes — Mehdi B et l'équipe de coachs." />
+  <meta property="og:image:alt" content="L’encadrement de Boxing Center Minimes — Mehdi B et l’équipe de coachs." />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Les coachs — Boxing Center Minimes, Toulouse" />
   <meta name="twitter:description" content="Mehdi B, coach principal : anglaise, éducative dès 3 ans, compétiteurs. Boxing Lady, boxing camp." />
-  <meta name="twitter:image" content="https://minimes.boxingcenter.fr/assets/img/og.jpg" />
+  <meta name="twitter:image" content="https://bc-minimes.vercel.app/assets/img/og.jpg" />
 
   <!-- Données structurées : graphe JSON-LD unifié de la page — nœuds reliés
        par @id (Organization · SportsActivityLocation/HealthClub · WebSite ·
@@ -71,7 +71,7 @@ import SiteContent from "../../components/SiteContent.astro";
         ],
         "subOrganization": [
           {
-            "@id": "https://minimes.boxingcenter.fr/#salle"
+            "@id": "https://bc-minimes.vercel.app/#salle"
           },
           {
             "@type": "SportsActivityLocation",
@@ -98,14 +98,14 @@ import SiteContent from "../../components/SiteContent.astro";
           "HealthClub",
           "LocalBusiness"
         ],
-        "@id": "https://minimes.boxingcenter.fr/#salle",
+        "@id": "https://bc-minimes.vercel.app/#salle",
         "knowsLanguage": ["fr-FR", "en"],
         "name": "Boxing Center Minimes",
-        "url": "https://minimes.boxingcenter.fr/",
+        "url": "https://bc-minimes.vercel.app/",
         "telephone": "+33562244682",
         "email": "boxingcenter31@gmail.com",
         "priceRange": "€€",
-        "image": "https://minimes.boxingcenter.fr/assets/img/og.jpg",
+        "image": "https://bc-minimes.vercel.app/assets/img/og.jpg",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "12 rue de Fenouillet",
@@ -166,24 +166,24 @@ import SiteContent from "../../components/SiteContent.astro";
           },
           {
             "@type": "LocationFeatureSpecification",
-            "name": "Zone pattes d'ours",
+            "name": "Zone pattes d’ours",
             "value": true
           },
           {
             "@type": "LocationFeatureSpecification",
-            "name": "Salle de prépa physique à l'étage",
+            "name": "Salle de prépa physique à l’étage",
             "value": true
           }
         ],
         "hasOfferCatalog": {
           "@type": "OfferCatalog",
-          "@id": "https://minimes.boxingcenter.fr/#offres",
+          "@id": "https://bc-minimes.vercel.app/#offres",
           "name": "Offres Boxing Center Minimes",
-          "url": "https://minimes.boxingcenter.fr/tarifs/",
+          "url": "https://bc-minimes.vercel.app/tarifs/",
           "itemListElement": [
             {
               "@type": "Offer",
-              "name": "Séance d'essai",
+              "name": "Séance d’essai",
               "price": "10",
               "priceCurrency": "EUR",
               "description": "Toutes disciplines, matériel prêté, sans engagement.",
@@ -217,7 +217,7 @@ import SiteContent from "../../components/SiteContent.astro";
         },
         "potentialAction": {
           "@type": "ReserveAction",
-          "name": "Réserver une séance d'essai",
+          "name": "Réserver une séance d’essai",
           "target": {
             "@type": "EntryPoint",
             "urlTemplate": "https://box-plus.vercel.app/seance-essai",
@@ -229,35 +229,35 @@ import SiteContent from "../../components/SiteContent.astro";
           },
           "result": {
             "@type": "Reservation",
-            "name": "Séance d'essai — 10 €, toutes disciplines, matériel prêté"
+            "name": "Séance d’essai — 10 €, toutes disciplines, matériel prêté"
           }
         },
         "parentOrganization": {
           "@id": "https://boxingcenter.fr/#organization"
         },
-        "description": "Salle de boxe anglaise historique du groupe Boxing Center, quartier des Minimes à Toulouse (31200). Berceau de boxeurs professionnels et amateurs, 3 rings, boxe éducative dès 3 ans (Baby Boxe 3/6), Boxing Lady. Séance d'essai 10€."
+        "description": "Salle de boxe anglaise historique du groupe Boxing Center, quartier des Minimes à Toulouse (31200). Berceau de boxeurs professionnels et amateurs, 3 rings, boxe éducative dès 3 ans (Baby Boxe 3/6), Boxing Lady. Séance d’essai 10€."
       },
       {
         "@type": "WebSite",
-        "@id": "https://minimes.boxingcenter.fr/#website",
-        "url": "https://minimes.boxingcenter.fr/",
+        "@id": "https://bc-minimes.vercel.app/#website",
+        "url": "https://bc-minimes.vercel.app/",
         "name": "Boxing Center Minimes",
         "inLanguage": "fr-FR",
         "publisher": {
-          "@id": "https://minimes.boxingcenter.fr/#salle"
+          "@id": "https://bc-minimes.vercel.app/#salle"
         }
       },
       {
         "@type": "WebPage",
-        "@id": "https://minimes.boxingcenter.fr/coachs/#webpage",
-        "url": "https://minimes.boxingcenter.fr/coachs/",
+        "@id": "https://bc-minimes.vercel.app/coachs/#webpage",
+        "url": "https://bc-minimes.vercel.app/coachs/",
         "name": "Les coachs — Boxing Center Minimes, Toulouse (Mehdi B, Boxing Lady, boxing camp)",
         "description": "Mehdi B tient la maison, du premier gant de Baby Boxe au sparring. Chloé et David sur le Boxing Lady, Hicham sur le camp. Voilà qui te coache.",
         "isPartOf": {
-          "@id": "https://minimes.boxingcenter.fr/#website"
+          "@id": "https://bc-minimes.vercel.app/#website"
         },
         "about": {
-          "@id": "https://minimes.boxingcenter.fr/#salle"
+          "@id": "https://bc-minimes.vercel.app/#salle"
         },
         "inLanguage": "fr-FR",
         "speakable": {
@@ -268,49 +268,49 @@ import SiteContent from "../../components/SiteContent.astro";
           ]
         },
         "primaryImageOfPage": {
-          "@id": "https://minimes.boxingcenter.fr/coachs/#primaryimage"
+          "@id": "https://bc-minimes.vercel.app/coachs/#primaryimage"
         },
         "datePublished": "2026-07-17",
         "dateModified": "@BUILT@",
         "breadcrumb": {
-          "@id": "https://minimes.boxingcenter.fr/coachs/#breadcrumb"
+          "@id": "https://bc-minimes.vercel.app/coachs/#breadcrumb"
         }
       },
       {
         "@type": "ImageObject",
-        "@id": "https://minimes.boxingcenter.fr/coachs/#primaryimage",
-        "url": "https://minimes.boxingcenter.fr/assets/img/og.jpg",
-        "contentUrl": "https://minimes.boxingcenter.fr/assets/img/og.jpg",
+        "@id": "https://bc-minimes.vercel.app/coachs/#primaryimage",
+        "url": "https://bc-minimes.vercel.app/assets/img/og.jpg",
+        "contentUrl": "https://bc-minimes.vercel.app/assets/img/og.jpg",
         "width": 1200,
         "height": 630,
-        "caption": "L'encadrement de Boxing Center Minimes — Mehdi B et l'équipe de coachs."
+        "caption": "L’encadrement de Boxing Center Minimes — Mehdi B et l’équipe de coachs."
       },
       {
         "@type": "BreadcrumbList",
-        "@id": "https://minimes.boxingcenter.fr/coachs/#breadcrumb",
+        "@id": "https://bc-minimes.vercel.app/coachs/#breadcrumb",
         "itemListElement": [
           {
             "@type": "ListItem",
             "position": 1,
             "name": "Accueil",
-            "item": "https://minimes.boxingcenter.fr/"
+            "item": "https://bc-minimes.vercel.app/"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "Coachs",
-            "item": "https://minimes.boxingcenter.fr/coachs/"
+            "item": "https://bc-minimes.vercel.app/coachs/"
           }
         ]
       },
       {
         "@type": "Person",
-        "@id": "https://minimes.boxingcenter.fr/coachs/#mehdi-b",
+        "@id": "https://bc-minimes.vercel.app/coachs/#mehdi-b",
         "name": "Mehdi B.",
         "jobTitle": "Coach principal",
-        "image": "https://minimes.boxingcenter.fr/assets/img/bc/cutouts/coach-mehdi.webp",
+        "image": "https://bc-minimes.vercel.app/assets/img/bc/cutouts/coach-mehdi.webp",
         "worksFor": {
-          "@id": "https://minimes.boxingcenter.fr/#salle"
+          "@id": "https://bc-minimes.vercel.app/#salle"
         },
         "knowsAbout": [
           "Boxe anglaise",
@@ -322,19 +322,19 @@ import SiteContent from "../../components/SiteContent.astro";
       },
       {
         "@type": "Person",
-        "@id": "https://minimes.boxingcenter.fr/coachs/#chloe",
+        "@id": "https://bc-minimes.vercel.app/coachs/#chloe",
         "name": "Chloé",
         "jobTitle": "Coach",
         "knowsAbout": [
           "Boxing Lady"
         ],
         "worksFor": {
-          "@id": "https://minimes.boxingcenter.fr/#salle"
+          "@id": "https://bc-minimes.vercel.app/#salle"
         }
       },
       {
         "@type": "Person",
-        "@id": "https://minimes.boxingcenter.fr/coachs/#david",
+        "@id": "https://bc-minimes.vercel.app/coachs/#david",
         "name": "David",
         "jobTitle": "Coach",
         "knowsAbout": [
@@ -342,19 +342,19 @@ import SiteContent from "../../components/SiteContent.astro";
           "Boxe pieds-poings"
         ],
         "worksFor": {
-          "@id": "https://minimes.boxingcenter.fr/#salle"
+          "@id": "https://bc-minimes.vercel.app/#salle"
         }
       },
       {
         "@type": "Person",
-        "@id": "https://minimes.boxingcenter.fr/coachs/#hicham",
+        "@id": "https://bc-minimes.vercel.app/coachs/#hicham",
         "name": "Hicham",
         "jobTitle": "Coach",
         "knowsAbout": [
           "Boxing camp"
         ],
         "worksFor": {
-          "@id": "https://minimes.boxingcenter.fr/#salle"
+          "@id": "https://bc-minimes.vercel.app/#salle"
         }
       }
     ]
@@ -362,14 +362,14 @@ import SiteContent from "../../components/SiteContent.astro";
   </script>
   <!-- Person : les 4 coachs VISIBLES sur la page sont dans le graphe ; seul
        Mehdi B (portrait prouvé, roster.json) porte une image. Chloé / David /
-       Hicham = nœud Person SANS image tant que leur visage n'est pas vérifié. -->
+       Hicham = nœud Person SANS image tant que leur visage n’est pas vérifié. -->
 
   <!-- page-scoped : pilier (photo prouvée sur fond sombre, énergie mur de
        champion) + tuiles nom N&B pour les coachs sans portrait vérifié -->
   <style is:inline>
-    /* l'en-tête partage .page-head (base.css) — la répétition est honnête.
-       Ce qui appartient à CETTE page : la silhouette du patron, à l'échelle,
-       fondue dans le bord droit. C'est la page des visages : elle commence
+    /* l’en-tête partage .page-head (base.css) — la répétition est honnête.
+       Ce qui appartient à CETTE page : la silhouette du patron, à l’échelle,
+       fondue dans le bord droit. C’est la page des visages : elle commence
        par un visage. */
     .page-head--co .page-head__bg { opacity: .18; }
     .co-head__cut { position: absolute; right: 0; bottom: 0; z-index: 1; height: 88%; width: auto; object-fit: contain; object-position: bottom right; filter: grayscale(1) contrast(1.1) brightness(.55); -webkit-mask-image: linear-gradient(90deg, transparent, #000 45%); mask-image: linear-gradient(90deg, transparent, #000 45%); pointer-events: none; }
@@ -392,7 +392,7 @@ import SiteContent from "../../components/SiteContent.astro";
     .pillar__bio { font-size: var(--step-1); line-height: 1.4; color: var(--bone); font-weight: 500; max-width: 48ch; }
     .pillar__note { margin-top: 1rem; color: var(--muted); font: 500 var(--step--1)/1.5 var(--f-mono); letter-spacing: .04em; }
     /* la charge de travail, DÉRIVÉE du planning (coachs.js) — un chiffre
-       qui se recompte tout seul vaut mieux qu'un adjectif */
+       qui se recompte tout seul vaut mieux qu’un adjectif */
     .pillar__week { margin-top: .9rem; display: inline-flex; align-items: center; gap: .7ch; padding: .5em .9em; border-left: 3px solid var(--mark); background: var(--ink-2); font: 500 var(--step--1)/1 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--read); }
     .pillar__week b { color: var(--bone); font-weight: 700; }
     .pillar__cta { margin-top: auto; padding-top: 1.6rem; display: flex; flex-wrap: wrap; gap: 1rem; }
@@ -409,7 +409,7 @@ import SiteContent from "../../components/SiteContent.astro";
     .coach__role::before { content: ""; width: 14px; height: 2px; background: var(--mark); flex: 0 0 14px; }
     .coach__name { font-family: var(--f-display); text-transform: uppercase; font-size: clamp(1.8rem,3.6vw,2.6rem); line-height: 1; margin: .45rem 0 .7rem; color: var(--bone); }
     .coach__note { position: relative; z-index: 1; color: var(--muted); font-size: var(--step--1); line-height: 1.5; max-width: 32ch; }
-    /* la tuile sans portrait n'était qu'un texte : elle ne menait nulle
+    /* la tuile sans portrait n’était qu’un texte : elle ne menait nulle
        part. Elle mène maintenant aux créneaux de la personne — filtrés. */
     .coach__link { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: .7ch; min-height: 44px; margin-top: .6rem; font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--bone); border-bottom: 2px solid var(--mark); align-self: flex-start; transition: color .3s, gap .3s; }
     .coach__link:hover, .coach__link:active { color: var(--white); gap: 1.4ch; }
@@ -419,7 +419,7 @@ import SiteContent from "../../components/SiteContent.astro";
     /* ---- QUI EST LÀ, QUEL JOUR (dérivé de PLANNING) ----
        Six colonnes-jour au bureau, empilées au téléphone. Volontairement
        PAS le même objet que la grille de /plannings/ : là-bas on cherche
-       un créneau, ici on cherche quelqu'un. Chaque ligne est un lien de
+       un créneau, ici on cherche quelqu’un. Chaque ligne est un lien de
        44px de haut vers la grille pré-filtrée (coach + jour). */
     .cweek { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); grid-template-columns: 1fr; }
     @media (min-width: 640px){ .cweek { grid-template-columns: repeat(2,1fr); } }
@@ -464,7 +464,7 @@ import SiteContent from "../../components/SiteContent.astro";
       <div class="page-head__bg" aria-hidden="true"><div class="media" data-img="/assets/img/bc/anglaise-2.webp" data-eager data-label=""></div></div>
       <img class="co-head__cut" src="/assets/img/bc/cutouts/coach-mehdi.webp" width="236" height="452" alt="" aria-hidden="true" decoding="async" />
       <div class="wrap">
-        <span class="eyebrow" data-reveal>L'encadrement · Les Minimes</span>
+        <span class="eyebrow" data-reveal>L’encadrement · Les Minimes</span>
         <h1 class="display" style="margin:1rem 0 0"><span class="reveal-mask"><span>Ceux qui </span></span><span class="reveal-mask"><span class="tint">tiennent les pattes.</span></span></h1>
         <p class="lead page-head__lead" data-reveal>Une salle vaut ses coachs. Aux Minimes, on ne fait pas de la garderie sportive : on te reprend le geste, on te pousse au round de trop, on te connaît par ton prénom. Voilà les gens à qui tu vas serrer la main.</p>
       </div>
@@ -485,10 +485,10 @@ import SiteContent from "../../components/SiteContent.astro";
     </section>
 
     <!-- ========================= LE STAFF ========================= -->
-    <section class="section band section--tight" aria-label="L'équipe de coachs">
+    <section class="section band section--tight" aria-label="L’équipe de coachs">
       <div class="wrap">
         <div data-reveal style="margin-bottom:clamp(1.8rem,4vw,2.6rem)">
-          <span class="eyebrow">L'équipe</span>
+          <span class="eyebrow">L’équipe</span>
           <h2 class="display display--sm" style="margin-top:1rem">Et derrière <span class="tint">le patron</span></h2>
         </div>
         <div class="roster" id="roster" data-reveal-group></div>
@@ -498,8 +498,8 @@ import SiteContent from "../../components/SiteContent.astro";
 
     <!-- ================== QUI EST LÀ, QUEL JOUR ===================
          La page présentait quatre personnes et laissait la question
-         suivante sans réponse : « d'accord, mais il est là QUAND ? ».
-         On répondait « va voir le planning » — et le planning s'ouvrait
+         suivante sans réponse : « d’accord, mais il est là QUAND ? ».
+         On répondait « va voir le planning » — et le planning s’ouvrait
          sur la semaine entière.
 
          Cette grille est DÉRIVÉE de PLANNING (data.js) : les jours, les
@@ -513,10 +513,10 @@ import SiteContent from "../../components/SiteContent.astro";
             <span class="eyebrow">La semaine</span>
             <h2 class="display display--sm" style="margin-top:1rem">Qui est là, <span class="tint">quel jour</span></h2>
           </div>
-          <p class="muted" data-reveal style="max-width:34ch">Tu cherches quelqu'un en particulier ? Clique sur son nom : la grille s'ouvre déjà filtrée sur lui, ce jour-là.</p>
+          <p class="muted" data-reveal style="max-width:34ch">Tu cherches quelqu’un en particulier ? Clique sur son nom : la grille s’ouvre déjà filtrée sur lui, ce jour-là.</p>
         </div>
         <div class="cweek" id="cweek" data-reveal-group></div>
-        <p class="muted" data-reveal style="margin-top:clamp(1.4rem,3vw,2rem);font:500 var(--step--1)/1.6 var(--f-mono);letter-spacing:.04em;max-width:64ch;border-left:2px solid var(--mark);padding-left:1rem">Le dimanche n'est pas dans cette liste : la salle est fermée. Le reste du temps, en dehors des cours, les rings et les sacs sont en accès libre — personne ne t'encadre, mais il y a toujours quelqu'un dans la salle.</p>
+        <p class="muted" data-reveal style="margin-top:clamp(1.4rem,3vw,2rem);font:500 var(--step--1)/1.6 var(--f-mono);letter-spacing:.04em;max-width:64ch;border-left:2px solid var(--mark);padding-left:1rem">Le dimanche n’est pas dans cette liste : la salle est fermée. Le reste du temps, en dehors des cours, les rings et les sacs sont en accès libre — personne ne t’encadre, mais il y a toujours quelqu’un dans la salle.</p>
       </div>
     </section>
 
@@ -526,7 +526,7 @@ import SiteContent from "../../components/SiteContent.astro";
       <div class="gong__inner">
         <span class="eyebrow" data-reveal>La poignée de main</span>
         <h2 class="display" data-reveal style="font-size:var(--step-3)">Viens te faire<br><span class="tint">corriger le jab.</span></h2>
-        <p class="lead" data-reveal>Le coach te prend en main dès la première minute. Tu ressors avec un jab que tu n'avais pas.</p>
+        <p class="lead" data-reveal>Le coach te prend en main dès la première minute. Tu ressors avec un jab que tu n’avais pas.</p>
         <div class="gong__cta" data-reveal>
           <a class="btn btn--primary" data-magnetic href="https://box-plus.vercel.app/seance-essai"><span>Réserver mon essai · 10€</span></a>
           <a class="btn btn--ghost" data-magnetic href="/plannings/"><span>Voir le planning</span></a>
@@ -548,7 +548,7 @@ import SiteContent from "../../components/SiteContent.astro";
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=b16"></script>
-  <script is:inline type="module" src="/assets/js/coachs.js?v=b16"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=b17"></script>
+  <script is:inline type="module" src="/assets/js/coachs.js?v=b17"></script>
 </body>
 </html>
