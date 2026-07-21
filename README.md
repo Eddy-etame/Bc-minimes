@@ -108,6 +108,7 @@ dossier** : ici `bc-minimes-community`.
 | Route | Rôle |
 | --- | --- |
 | `POST /api/community/sign` | Valide prénom / contact / titre (filtre d'injures), limite par IP, puis **signe** un dépôt direct vers Cloudinary. Les octets ne traversent jamais Vercel (limite de 4,5 Mo sur le corps). |
+| `POST /api/community/verify` | **L'œil de la machine** sur les photos : une vignette part chez Gemini, qui écarte l'évident. Voir plus bas. |
 | `GET /api/community/items` | Le mur public — **uniquement** les médias tagués `approved`. |
 | `GET /api/community/pending` | La file de modération (staff, `x-admin-token`). |
 | `POST /api/community/moderate` | Approuver (retag `approved`) ou refuser (destruction du fichier). |
@@ -121,6 +122,37 @@ Le fichier est vérifié **côté navigateur ET côté serveur** : octets d'en-t
 l'image, **durée de la vidéo ≤ 15 s**, taille max, prénom et titre passés au
 filtre d'injures partagé (`cleanName`), limite de dépôts par IP.
 
+### L'œil de la machine (photos uniquement)
+
+Tout ça dit que le fichier **est** une image. Ça ne dit rien de **ce qu'il y a
+dessus**. Avant qu'une photo ne parte chez Cloudinary, le navigateur en fabrique
+une vignette (640 px, JPEG, quelques dizaines de Ko) et l'envoie à
+`POST /api/community/verify`, qui la montre à Gemini — **les mêmes clés
+`GEMINI_API_KEY*` que l'assistant**, lues en pool, rien de plus à configurer.
+
+Le modèle ne rend qu'un mot. Il écarte l'évident — nudité, violence, haine,
+capture d'écran, mème, document, hors sujet complet — et **dans le doute il
+laisse passer**. Ce n'est pas un juge, c'est un tamis : il fait gagner du temps
+au staff, il ne décide rien.
+
+- **Sans clé, avec une clé morte, sur panne ou sur lenteur : le dépôt passe.**
+  Il part en file de modération humaine, exactement comme avant. Une
+  vérification qu'on n'a pas ne doit jamais devenir une porte fermée.
+- **Les vidéos ne passent pas par là.** On n'analyse pas des images animées avec
+  un outil qui regarde des images fixes — elles vont droit à la file humaine, et
+  le vestiaire le dit.
+- Le vestiaire affiche pour chaque dépôt s'il a été filtré (« Photo passée par
+  l'œil machine ») ou non (« Non filtré — à toi de regarder »). C'est une
+  **indication**, pas une garantie : un client bricolé peut sauter l'étape.
+  C'est précisément pour ça qu'un humain tranche derrière, toujours.
+
+### Le contact du déposant
+
+Il part dans le carnet (`/api/lead`, `event: "upload_contributor"`) **et** il est
+attaché au média, pour que le staff qui modère sache qui a envoyé quoi sans
+croiser deux écrans. Il ne ressort **que** par `/api/community/pending`, derrière
+`isAdmin()` — `publicItem()` ne le rend jamais sur le mur public.
+
 **Perf** : la feuille et le module du mur ne descendent que lorsque la section
 approche de l'écran, et une vidéo approuvée n'est jamais téléchargée au premier
 rendu — on ne sert que son affiche.
@@ -128,7 +160,8 @@ rendu — on ne sert que son affiche.
 | Variables | Rôle |
 | --- | --- |
 | `CLOUDINARY_URL` | **La seule requise.** Forme : `cloudinary://<api_key>:<api_secret>@<cloud_name>`. Sans elle, la section se ferme proprement — aucun dépôt, aucun cadre vide. |
-| `CLOUDINARY_FOLDER` | Le dossier de la salle. `bc-minimes-community` par défaut. |
+| `COMMUNITY_FOLDER` | Le dossier de la salle. `bc-minimes-community` par défaut. `CLOUDINARY_FOLDER` est accepté comme second nom. |
+| `GEMINI_API_KEY*` | Les clés de l'assistant, réutilisées pour l'œil de la machine. **Aucune = tout part en file humaine**, rien ne casse. |
 | `CLOUDINARY_MODERATION` | Modération automatique (add-on Cloudinary : `aws_rek` pour les images, `google_video_moderation` pour les vidéos). **Vide = tout part en file humaine** : le système marche sans, on ne promet pas une vérification qu'on n'a pas. |
 | `COMMUNITY_MAX_MB`, `COMMUNITY_MAX_SEC` | Les limites annoncées au visiteur et vérifiées avant l'envoi. `60` / `15` par défaut. |
 | `RATE_WINDOW_MIN`, `RATE_MAX` | La limite de dépôts par IP. `10` min / `3` dépôts par défaut. |

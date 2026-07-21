@@ -1,0 +1,20 @@
+import { chromium } from "playwright";
+const BASE="http://localhost:7812", M="C:/tmp/bcm-media";
+const b=await chromium.launch({channel:"msedge"});
+const p=await (await b.newContext({viewport:{width:1380,height:950}})).newPage();
+p.on("console",m=>console.log("CONSOLE",m.type(),m.text().slice(0,200)));
+p.on("pageerror",e=>console.log("PAGEERROR",e.message));
+p.on("request",r=>{if(r.url().includes("/api/"))console.log("REQ",r.method(),r.url().split("/api/")[1],"body=",(r.postData()||"").length);});
+p.on("response",async r=>{if(r.url().includes("/api/"))console.log("RES",r.status(),r.url().split("/api/")[1],(await r.text().catch(()=>"")).slice(0,160));});
+p.on("requestfailed",r=>console.log("REQFAILED",r.url().slice(0,80),r.failure()?.errorText));
+await p.goto(BASE+"/galerie/",{waitUntil:"networkidle"});
+await p.locator("#community").scrollIntoViewIfNeeded();
+await p.waitForTimeout(2000);
+await p.locator('#community-form [name="author"]').fill("Karim");
+await p.locator('#community-form [name="email"]').fill("karim.test@example.com");
+await p.locator('#community-form [name="title"]').fill("Capture test");
+await p.locator('#community-form input[type="file"]').setInputFiles(M+"/capture.png");
+const t=Date.now();
+await p.locator('#community-form button[type="submit"]').click();
+for(let i=0;i<25;i++){await p.waitForTimeout(2000);const s=(await p.locator("#community-status").textContent()).trim();console.log(((Date.now()-t)/1000).toFixed(1)+"s :",JSON.stringify(s));}
+await b.close();

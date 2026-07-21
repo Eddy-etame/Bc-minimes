@@ -8,6 +8,7 @@
    ne l'a pas approuvé depuis Le coin bleu. */
 import { allowCors, body, ipOf, cleanName } from "../_lib/util.js";
 import { cloudinary, cloudReady, FOLDER, MODERATION, withTimeout, CLOUD_TIMEOUT_MS } from "../_lib/community.js";
+import { visionReady } from "../_lib/vision.js";
 
 export default async function handler(req, res) {
   allowCors(res);
@@ -57,9 +58,23 @@ export default async function handler(req, res) {
                Le dépôt part quand même en file de modération — aucun risque. */ }
 
   const timestamp = Math.round(Date.now() / 1000);
-  /* le contact NE VA PAS dans le contexte Cloudinary : il vit dans le
-     carnet du club (/api/lead), pas sur un média public. */
-  const context = `title=${t.value}|author=${a.value}|ip=${ip}|kind=${kind}`;
+
+  /* LE CONTACT SUIT LE MÉDIA. Il part dans le carnet du club (/api/lead,
+     event "upload_contributor") — c'est là qu'il vit — mais il est AUSSI
+     attaché ici, pour que le staff qui modère sache qui a envoyé quoi
+     sans avoir à croiser deux écrans.
+     Il ne ressort QUE par /api/community/pending, derrière isAdmin() :
+     publicItem() ne le rend jamais sur le mur public (cf. le drapeau
+     `admin` dans _lib/community.js). Les caractères | et = casseraient
+     le format de contexte de Cloudinary : on les retire. */
+  const contact = (email && emailOk ? email : phone).replace(/[|=]/g, "").slice(0, 120);
+
+  /* Ce que la machine a pu regarder. C'est une INDICATION pour le staff,
+     pas une garantie : un client bricolé peut sauter l'étape. C'est
+     précisément pour ça qu'un humain tranche derrière, toujours. */
+  const vision = kind === "image" && visionReady() ? "gemini" : "humain";
+
+  const context = `title=${t.value}|author=${a.value}|contact=${contact}|ip=${ip}|kind=${kind}|vision=${vision}`;
   const paramsToSign = { context, folder: FOLDER, tags: "pending", timestamp };
   if (MODERATION) paramsToSign.moderation = MODERATION;
   const signature = cloudinary.utils.api_sign_request(paramsToSign, cloudinary.config().api_secret);
@@ -69,5 +84,8 @@ export default async function handler(req, res) {
     apiKey: cloudinary.config().api_key,
     timestamp, folder: FOLDER, tags: "pending", context, signature, kind,
     moderation: MODERATION || undefined,
+    /* le client saura s'il doit passer par /api/community/verify : sans
+       clé, on ne lui fait pas perdre un aller-retour pour rien */
+    vision: vision === "gemini",
   });
 }

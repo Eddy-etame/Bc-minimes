@@ -377,7 +377,7 @@ import SiteContent from "../../components/SiteContent.astro";
     /* ---- LE PILIER (Mehdi B) ---- */
     .pillar { display: grid; grid-template-columns: 1fr; gap: clamp(1.6rem,4vw,3.5rem); align-items: stretch; border: 1px solid var(--line); background: var(--ink); }
     @media (min-width: 900px){ .pillar { grid-template-columns: .85fr 1.15fr; } }
-    .pillar__stage { position: relative; overflow: hidden; min-height: 26rem; background: radial-gradient(120% 90% at 50% 100%, rgba(110,10,8,.4), var(--black) 70%); display: flex; align-items: flex-end; justify-content: center; }
+    .pillar__stage { position: relative; overflow: hidden; min-height: 26rem; background: radial-gradient(120% 90% at 50% 100%, rgba(38,64,115,.4), var(--black) 70%); display: flex; align-items: flex-end; justify-content: center; }
     .pillar__bigname { position: absolute; inset: 0; display: grid; place-items: center; z-index: 0; font-family: var(--f-display); text-transform: uppercase; font-size: clamp(4rem,13vw,8rem); line-height: .8; color: transparent; -webkit-text-stroke: 1.5px var(--line); letter-spacing: -.02em; white-space: nowrap; }
     .pillar__cut { position: relative; z-index: 1; height: 100%; max-height: 34rem; width: auto; object-fit: contain; object-position: bottom center; filter: grayscale(1) contrast(1.08) brightness(.98) drop-shadow(0 24px 34px rgba(0,0,0,.55)); transition: filter .6s var(--ease), transform 1s var(--ease-out); transform: translateY(6px) scale(1.02); }
     .pillar:hover .pillar__cut, .pillar:active .pillar__cut { filter: contrast(1.06) saturate(1.05) brightness(1); transform: translateY(0) scale(1); }

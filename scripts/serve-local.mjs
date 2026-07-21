@@ -42,6 +42,7 @@ const HANDLERS = {
   "/api/admin/content": "../api/admin/content.js",
   "/api/admin/leads": "../api/admin/leads.js",
   "/api/community/sign": "../api/community/sign.js",
+  "/api/community/verify": "../api/community/verify.js",
   "/api/community/items": "../api/community/items.js",
   "/api/community/pending": "../api/community/pending.js",
   "/api/community/moderate": "../api/community/moderate.js",

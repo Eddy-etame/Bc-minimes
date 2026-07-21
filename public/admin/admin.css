@@ -87,6 +87,11 @@ svg{display:block}
 .navbtn.active{color:var(--ink);background:rgba(38,64,115,.55);border-left-color:var(--mark)}
 .navbtn .nico{width:18px;height:18px;flex:0 0 18px;opacity:.85}
 .navbtn .nico svg{width:18px;height:18px}
+/* Le compteur de dépôts en attente. Il n'apparaît QUE s'il y a quelque
+   chose à traiter : un « 0 » permanent devient du bruit, et on cesse de
+   le regarder. Navy sur navy clair — la charte, rien d'autre. */
+.navbtn .nbadge{margin-left:auto;flex:0 0 auto;font:700 .68rem/1 var(--mono);padding:3px 7px;
+  border-radius:999px;background:var(--navy-2);color:var(--ink);border:1px solid var(--line-strong)}
 .side .foot{display:flex;flex-direction:column;gap:2px;padding-top:12px;border-top:1px solid var(--line);margin-top:12px}
 .side .foot a{padding:8px 10px;font-size:.85rem;color:var(--muted);text-decoration:none}
 .side .foot a:hover{color:var(--ink)}
@@ -208,6 +213,12 @@ table.leads .when{font:400 .74rem/1.4 var(--mono);color:var(--steel);white-space
 .modcard__b{display:flex;flex-direction:column;gap:2px;padding:11px 13px}
 .modcard__b b{font-size:.9rem;color:var(--ink)}
 .modcard__b span{font-size:.8rem;color:var(--muted)}
+/* Le contact du déposant : c'est ce que le staff va RECOPIER pour
+   rappeler quelqu'un. Il est donc à l'encre du corps (13,6:1), en mono
+   — un email mal lu est un lead perdu — et il peut aller à la ligne :
+   tronquer une adresse la rendrait inutilisable. */
+.modcard__c{font:400 .78rem/1.45 var(--mono);color:var(--fg);word-break:break-all}
+.modcard__v{font:700 .64rem/1.5 var(--ui);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
 .modcard__d{font:400 .72rem/1.4 var(--mono);color:var(--steel)}
 .modcard__act{display:flex;gap:8px;padding:0 13px 13px;margin-top:auto}
 .modcard__act .btn{flex:1 1 auto;justify-content:center}

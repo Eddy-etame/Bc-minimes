@@ -71,6 +71,23 @@ function decodeImage(file) {
   return createImageBitmap(file).then((b) => { b.close?.(); return true; }, () => false);
 }
 
+/** Une VIGNETTE de la photo, pour l'œil de la machine.
+ *  On n'envoie jamais le fichier d'origine à notre fonction : 640 px en
+ *  JPEG suffisent largement pour reconnaître un ring, ça pèse quelques
+ *  dizaines de Ko, et le visiteur a sa réponse avant même d'avoir
+ *  téléversé quoi que ce soit. */
+async function thumbnail(file, max = 640) {
+  const bmp = await createImageBitmap(file);
+  const scale = Math.min(1, max / Math.max(bmp.width, bmp.height));
+  const w = Math.max(1, Math.round(bmp.width * scale));
+  const h = Math.max(1, Math.round(bmp.height * scale));
+  const canvas = document.createElement("canvas");
+  canvas.width = w; canvas.height = h;
+  canvas.getContext("2d").drawImage(bmp, 0, 0, w, h);
+  bmp.close?.();
+  return canvas.toDataURL("image/jpeg", 0.8);
+}
+
 /** Métadonnées vidéo : durée réelle + une piste image qui existe. */
 function videoMeta(file) {
   return new Promise((resolve) => {
@@ -209,6 +226,32 @@ function bindForm(form, status) {
       });
       const sign = await signRes.json().catch(() => ({}));
       if (!signRes.ok) { submit.disabled = false; return say(status, sign.error || "Envoi refusé.", "err"); }
+
+      /* 1 bis) L'ŒIL DE LA MACHINE, sur les photos uniquement, et
+         seulement si une clé Gemini existe côté serveur (`sign.vision`).
+         Ça se passe AVANT le téléversement : un hors-sujet ne consomme
+         ni la bande passante du visiteur ni le stockage du club.
+         Une vidéo ne passe pas par là — on n'analyse pas des images
+         animées avec un outil qui regarde des images fixes ; elle va
+         droit en file de modération humaine, et c'est dit. */
+      if (sig.kind === "image" && sign.vision) {
+        say(status, "On regarde ce qu'il y a sur la photo…", "info");
+        try {
+          const vr = await fetch(`${API}/api/community/verify`, {
+            method: "POST", headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ image: await thumbnail(file) }),
+          });
+          const v = await vr.json().catch(() => ({}));
+          if (vr.ok && v.ok === false) {
+            submit.disabled = false;
+            return say(status, v.error || "Cette photo ne passe pas.", "err");
+          }
+        } catch {
+          /* L'œil est en panne ou injoignable : on CONTINUE. Le dépôt
+             part en file de modération humaine, comme tous les autres.
+             Une vérification absente ne devient jamais un mur. */
+        }
+      }
 
       /* 2) le fichier part DIRECTEMENT chez Cloudinary */
       const fd = new FormData();

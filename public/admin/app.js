@@ -378,6 +378,22 @@ async function renderCommunity(pane) {
       el("div", { class: "modcard__b" },
         el("b", {}, it.title || "Sans titre"),
         el("span", {}, "Déposé par " + (it.author || "—")),
+        /* Le contact du déposant : c'est avec ça que tu le préviens quand
+           ça monte sur le mur. Il est AUSSI dans « Les contacts »
+           (event « upload_contributor ») — un seul carnet, deux entrées. */
+        el("span", { class: "modcard__c" }, it.contact || "Contact non renseigné"),
+        /* Dit honnêtement ce que la machine a fait, ou n'a pas fait. */
+        el("span", { class: "modcard__v" },
+          it.vision === "gemini" ? "Photo passée par l'œil machine" : "Non filtré — à toi de regarder"),
+        /* La durée réelle d'une vidéo, mesurée par Cloudinary. Trop longue,
+           l'approbation la refusera côté serveur : on le dit ici pour que
+           le clic « Approuver » ne parte pas dans le vide. */
+        it.kind === "video"
+          ? el("span", { class: "modcard__v" },
+              it.tooLong
+                ? `Vidéo de ${it.duration}s — trop longue pour le mur, à refuser`
+                : `Vidéo de ${it.duration}s`)
+          : null,
         el("span", { class: "modcard__d" }, (() => {
           try { return new Date(it.createdAt).toLocaleString("fr-FR", { dateStyle: "short", timeStyle: "short" }); }
           catch { return it.createdAt || ""; }
@@ -403,6 +419,9 @@ async function renderCommunity(pane) {
       if (!r.ok) throw new Error(jj.error || r.status);
       card.remove();
       setStatus(action === "approve" ? "Approuvé — c'est en ligne sur la galerie." : "Refusé — le fichier est supprimé.", "ok");
+      /* le compteur du menu doit suivre la décision qu'on vient de
+         prendre — sinon il annonce une file qui n'existe plus */
+      refreshCommunityBadge();
       if (!grid.children.length) renderSection("community");
     } catch (e) {
       card.querySelectorAll("button").forEach((b) => (b.disabled = false));
@@ -482,6 +501,27 @@ function buildNav() {
     nav.append(el("button", { class: "navbtn", type: "button", "data-k": k, onclick: () => renderSection(k),
       html: `<span class="nico">${ICONS[k] || ""}</span><span>${SCHEMA[k].label}</span>` }));
   });
+  refreshCommunityBadge();
+}
+
+/* Le compteur de la file : le staff doit voir qu'il y a du monde qui
+   attend SANS avoir à ouvrir la section. Silencieux s'il n'y a rien —
+   et silencieux aussi si Cloudinary n'est pas branché ou ne répond pas :
+   un badge d'erreur dans un menu, ça n'aide personne. */
+async function refreshCommunityBadge() {
+  const btn = document.querySelector('.navbtn[data-k="community"]');
+  if (!btn) return;
+  btn.querySelector(".nbadge")?.remove();
+  try {
+    const r = await fetch("/api/community/pending", { headers: { "x-admin-token": TOKEN } });
+    if (!r.ok) return;
+    const j = await r.json();
+    const n = (j.items || []).length;
+    if (!n) return;
+    const b = el("span", { class: "nbadge" }, String(n));
+    b.setAttribute("aria-label", `${n} dépôt${n > 1 ? "s" : ""} en attente`);
+    btn.append(b);
+  } catch { /* muet : le menu ne doit jamais crier une panne réseau */ }
 }
 function showApp() {
   document.getElementById("login").classList.add("hidden");

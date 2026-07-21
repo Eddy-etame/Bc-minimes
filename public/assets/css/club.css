@@ -51,7 +51,7 @@
 .ambiance { position: relative; min-height: 86svh; display: grid; place-items: center; overflow: hidden; }
 .ambiance__media { position: absolute; inset: -12% 0; z-index: 0; }
 .ambiance__media .media { position: absolute; inset: 0; }
-.ambiance::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(120deg, rgba(110,10,8,.4), rgba(0,0,0,.4)); }
+.ambiance::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(120deg, rgba(38,64,115,.4), rgba(0,0,0,.4)); }
 .ambiance__quote { position: relative; z-index: 2; text-align: center; }
 .ambiance__quote .serif { font-family: var(--f-display); text-transform: uppercase; font-size: clamp(1.9rem,5.2vw,4.2rem); line-height: .98; max-width: 18ch; margin-inline: auto; color: var(--bone); }
 .ambiance__quote .serif .tint { color: var(--mark); }
