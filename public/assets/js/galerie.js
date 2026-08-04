@@ -3,8 +3,8 @@
    Mosaïque N&B du pool photo réel (data.js GALLERY), filtres par zone,
    légendes mono, lazy, + lightbox plein écran. Énergie mur-de-champion.
    ===================================================================== */
-import { GALLERY } from "./data-galerie.js?v=b17";
-import { DISCIPLINES } from "./data-disciplines.js?v=b17";
+import { GALLERY } from "./data-galerie.js?v=b18";
+import { DISCIPLINES } from "./data-disciplines.js?v=b18";
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -161,9 +161,9 @@ function armCommunity() {
     /* la feuille d’abord : le formulaire ne doit jamais paraître nu */
     const l = document.createElement("link");
     l.rel = "stylesheet";
-    l.href = "/assets/css/community.css?v=b17";
+    l.href = "/assets/css/community.css?v=b18";
     document.head.appendChild(l);
-    pending = import("./community.js?v=b17")
+    pending = import("./community.js?v=b18")
       .then((m) => m.initCommunity())
       .catch(() => { /* le reste de la page ne bouge pas */ });
   }, { rootMargin: "400px" });

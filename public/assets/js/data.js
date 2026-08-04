@@ -157,8 +157,8 @@ export const NAV = [
 export const NETWORK = [
   { id: "portet", name: "Portet-sur-Garonne", flagship: true, tag: "Le vaisseau amiral", feat: "800 m² · ring olympique · cage MMA", url: "https://www.boxing-center-portet.fr/", go: "Découvrir" },
   { id: "etats-unis", name: "États-Unis", tag: "Le colosse", feat: "La plus grande salle de France dédiée aux sports de combat", url: "https://boxingcenter.fr/", go: "Voir sur boxingcenter.fr" },
-  { id: "saint-cyprien", name: "Saint-Cyprien", tag: "Rive gauche", feat: "1 200 m² · toutes disciplines", url: "https://boxingcenter.fr/", go: "Voir sur boxingcenter.fr" },
-  { id: "ramonville", name: "Ramonville", tag: "L’octogone", feat: "Ring + octogone 7 m · extérieur", url: "https://boxingcenter.fr/", go: "Voir sur boxingcenter.fr" },
+  { id: "saint-cyprien", name: "Saint-Cyprien", tag: "Rive gauche", feat: "1 200 m² · toutes disciplines", url: "https://bc-st-cyprien.vercel.app/", go: "Découvrir" },
+  { id: "ramonville", name: "Ramonville", tag: "L’octogone", feat: "Ring + octogone 7 m · extérieur", url: "https://bc-ramonville.vercel.app/", go: "Découvrir" },
 ];
 
 /* La FAQ CANONIQUE du site — rendue sur /contact/ UNIQUEMENT, et miroir
