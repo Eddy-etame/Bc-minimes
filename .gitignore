@@ -6,6 +6,9 @@ dist/
 _dist_before/
 .claude/
 
+# notes de recherche copywriting (travail interne, non versionné)
+.research/
+
 # secrets — JAMAIS versionnés
 .env
 .env.*

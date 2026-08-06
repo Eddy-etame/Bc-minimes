@@ -26,7 +26,7 @@ function renderMarquee() {
      salle de France, dans l’élément le plus cinétique de la page.
      « Le ring ne ment jamais » vit UNE fois sur le site, à index.html —
      ne pas le remonter ici (§5.9). */
-  const items = ["Le noble art", "Depuis 2016", "Trois rings", "Dès 3 ans", "Barrière de Paris", "Douze sacs", "Ici on forge", "Le berceau"];
+  const items = ["Le noble art", "Depuis 2016", "Trois rings", "Dès 3 ans", "Barrière de Paris", "Douze sacs", "Ici on commence", "Le berceau"];
   const row = items.map((i) => `<span>${i}</span>`).join("");
   const t = $("#marquee"); t.innerHTML = row + row; t.dataset.speed = "1.3";
 }

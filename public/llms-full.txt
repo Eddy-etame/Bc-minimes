@@ -160,9 +160,9 @@ Transcription du poster officiel de la saison (grille filtrable jour / disciplin
 ## Tarifs & offres — https://bc-minimes.vercel.app/tarifs/
 
 - Séance d'essai : 10 € la séance — toutes les disciplines, gants et protections prêtés, sans engagement, sans dossier. → https://box-plus.vercel.app/seance-essai
-- Offre Duo : 29 € par personne (au lieu de 44 €) — 4 semaines de cours illimités à deux, toutes disciplines, sans engagement. → https://box-plus.vercel.app/abonnements#promotions
-- Saison complète : 259 € les 12 mois (au lieu de 400 €) — payable en 4× sans frais ; anglaise, MMA, pieds-poings, Lady, fitness ; accès libre aux 5 clubs du réseau. → https://box-plus.vercel.app/abonnements#promotions
-- École de boxe : dès 280 € l'année — Baby Boxe dès 3 ans (3/6), éducative 7/11, ados 12/16, compétiteurs encadrés par Mehdi B. → https://box-plus.vercel.app/abonnements#enfants
+- Offre Duo : 29 € par personne (au lieu de 44 €) — 4 semaines de cours illimités à deux, toutes disciplines, sans engagement. → https://box-plus.vercel.app/abonnements#promo
+- Saison complète : 259 € les 12 mois (au lieu de 400 €) — payable en 4× sans frais ; anglaise, MMA, pieds-poings, Lady, fitness ; accès libre aux 5 clubs du réseau. → https://box-plus.vercel.app/abonnements#promo
+- École de boxe : 295 € l'année t-shirt inclus, baby 250 € — Baby Boxe dès 3 ans (3/6), éducative 7/11, ados 12/16, compétiteurs encadrés par Mehdi B. → https://box-plus.vercel.app/abonnements#enfants
 - Bonus : t-shirt Boxing Center offert aux 100 premiers inscrits.
 ### Les questions d'argent (rendues sur /tarifs/, hors FAQPage)
 

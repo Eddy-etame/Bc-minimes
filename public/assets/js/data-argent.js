@@ -40,12 +40,8 @@ bcRegister("avis", REVIEWS);   /* ce que le staff écrit dans le vestiaire gagne
    celle de /contact/ (§4). Deux FAQPage = deux URL en concurrence. */
 export const MONEY_FAQ = [
   {
-    q: "Je paye combien pour la première fois ?",
-    a: "Dix euros. Une séance d’essai, la discipline que tu veux, gants et protections prêtés. Pas de dossier, pas de certificat à courir chercher avant d’avoir essayé, rien derrière. Tu viens, tu boxes, tu décides après.",
-  },
-  {
-    q: "Le Duo à 29€, c’est pour deux ou chacun ?",
-    a: "Chacun. 29€ par personne au lieu de 44€, pour quatre semaines de cours illimités à deux. On ne le vend pas moins cher pour faire joli : le binôme, c’est ce qui te fait pousser la porte la troisième semaine, quand la motivation du début est retombée.",
+    q: "L’offre Rentrée à 29€, c’est pour deux ou chacun ?",
+    a: "Chacun. 29€ par personne au lieu de 44,99€, pour quatre semaines de cours illimités. Viens avec ton binôme : c’est ce qui te fait pousser la porte la troisième semaine, quand la motivation du début est retombée.",
   },
   {
     q: "259€ d’un coup, c’est raide.",
@@ -57,7 +53,11 @@ export const MONEY_FAQ = [
   },
   {
     q: "Et pour inscrire un enfant ?",
-    a: "À partir de 280€ l’année, dès 3 ans. Baby Boxe pour les 3/6, éducative pour les 7/11, ados 12/16, puis les jeunes compétiteurs. Un créneau par âge, le mercredi et le samedi.",
+    a: "295€ l’année, t-shirt du club inclus — 250€ pour la Baby Boxe des 3/6 ans. Éducative pour les 7/11, ados 12/16, puis les jeunes compétiteurs. Un créneau par âge, le mercredi et le samedi.",
+  },
+  {
+    q: "Je paye combien pour la première fois ?",
+    a: "Dix euros. Une séance d’essai, la discipline que tu veux, gants et protections prêtés. Pas de dossier, pas de certificat à courir chercher avant d’avoir essayé, rien derrière. Tu viens, tu boxes, tu décides après.",
   },
   {
     q: "Il faut acheter du matériel avant de venir ?",

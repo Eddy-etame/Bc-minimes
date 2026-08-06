@@ -433,3 +433,15 @@ a:hover > .ext, a:focus-visible > .ext { opacity: 1; }
   /* .who__tick exclu : <li> indicateur non interactif, pas une cible tactile */
   .nav__links a, .menu__link, .menu__foot a, .footer__col a, .crumbs a, .chip, .disc a, .faq summary, .netband a, a.tab { min-height: 44px; display: inline-flex; align-items: center; }
 }
+
+/* Planning : couleur par DISCIPLINE (demande du coach — le sport se voit, pas le nom du coach) */
+.pl-slot { border-left: 3px solid var(--fam, transparent); }
+.pl-slot__n { color: var(--fam-t, inherit); }
+.pl-slot[data-disc="anglaise"]   { --fam: #2b6fd4; --fam-t: #7db1f5; }
+.pl-slot[data-disc="competiteurs"]{ --fam: #d43b3b; --fam-t: #f08a8a; }
+.pl-slot[data-disc="camp"]       { --fam: #3dae5b; --fam-t: #7fd89c; }
+.pl-slot[data-disc="lady"]       { --fam: #7d4fd4; --fam-t: #b79af0; }
+.pl-slot[data-disc="educative"]  { --fam: #9aa4b2; --fam-t: #c4ccd8; }
+.pl-slot[data-disc="pieds-poings"]{ --fam: #c46a1e; --fam-t: #eda45f; }
+.pl-slot[data-disc="sparring"]   { --fam: #ef932f; --fam-t: #f5c079; }
+.pl-slot[data-disc="libre"]      { --fam: #55607480; }

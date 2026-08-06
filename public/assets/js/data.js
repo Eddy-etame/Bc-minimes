@@ -51,18 +51,18 @@ export const SEASON_LABEL = "Saison 2026 — 2027";
    `chrome` = nav / footer / menu · `primary` = tout CTA principal en page.
    ⚠ Ne PAS inventer une 3e formulation. */
 export const CTA = {
-  chrome: "Essai · 10€",
-  primary: "Réserver mon essai · 10€",
+  chrome: "Ma place · 29€",
+  primary: "Je prends ma place de rentrée — 29€",
 };
 
 /* Colonne vertébrale conversion — tout pointe vers la boutique box-plus.
    Liens VÉRIFIÉS le 2026-07-12 (STANDARDS §1). Ne PAS inventer de tunnel :
    /offre-duo-rentree, /offre-saison-259, /seance-essai-gratuite = 404. */
 export const LINKS = {
-  essai: "https://box-plus.vercel.app/seance-essai",   // essai 10€ — CTA principal de CHAQUE page
+  essai: "https://box-plus.vercel.app/seance-essai",   // essai 10€ — dernier recours (gong, FAQ), jamais en tête
   abonnements: "https://box-plus.vercel.app/abonnements",
   enfants: "https://box-plus.vercel.app/abonnements#enfants",
-  promos: "https://box-plus.vercel.app/abonnements#promotions",
+  promos: "https://box-plus.vercel.app/abonnements#promo",
   coachings: "https://box-plus.vercel.app/coachings",
   materiel: "https://box-plus.vercel.app/materiel",
   // maillage de marque : « Boutique » mène à la BOUTIQUE, pas à un rayon.
@@ -81,29 +81,19 @@ export const LINKS = {
 export const PROMOS = {
   saison: SEASON,
   label: SEASON_LABEL,
-  bonus: "T-shirt Boxing Center offert aux 100 premiers inscrits.",
+  bonus: "Inscription enfant : le t-shirt Boxing Center est inclus — pour tous, pas pour les 100 premiers.",
   cards: [
     {
-      key: "essai",
-      name: "La séance d’essai",
-      price: "10€",
-      period: "la séance",
-      feature: "Toutes disciplines, matériel prêté, sans engagement",
-      items: ["Toutes les disciplines de la salle", "Gants et protections prêtés", "Sans engagement, sans dossier"],
-      cta: CTA.primary,
-      href: "https://box-plus.vercel.app/seance-essai",
-    },
-    {
-      key: "duo",
-      name: "L’offre Duo",
+      key: "rentree",
+      name: "L’offre Rentrée",
       price: "29€",
       unit: "par personne",
-      was: "44€",
+      was: "44,99€",
       period: "· 4 semaines",
-      feature: "Cours illimités à deux, sans engagement",
-      items: ["29€ par personne (au lieu de 44€)", "4 semaines de cours illimités", "Toutes les disciplines", "Sans engagement"],
-      cta: "Je viens avec mon binôme",
-      href: "https://box-plus.vercel.app/abonnements#promotions",
+      feature: "Cours illimités, toutes disciplines, sans engagement",
+      items: ["29€ par personne (au lieu de 44,99€)", "4 semaines de cours illimités", "Toutes les disciplines", "Encore mieux à deux — 29€ chacun"],
+      cta: "Je prends ma place — 29€",
+      href: "https://box-plus.vercel.app/abonnements#promo",
       tag: "La priorité",
       highlight: true,
     },
@@ -113,21 +103,31 @@ export const PROMOS = {
       price: "259€",
       was: "400€",
       period: "les 12 mois",
-      feature: "Payable en 4× sans frais · accès libre aux 5 clubs",
-      items: ["259€ les 12 mois (au lieu de 400€)", "Payable en 4× sans frais", "Anglaise, MMA, pieds-poings, Lady, Fitness", "Accès libre aux 5 clubs du réseau"],
-      cta: "Je prends ma saison",
-      href: "https://box-plus.vercel.app/abonnements#promotions",
+      feature: "4× sans frais · accès libre aux 5 clubs — moins de 5€ par semaine",
+      items: ["259€ les 12 mois (au lieu de 400€)", "Payable en 4× 64,75€ sans frais", "Anglaise, MMA, pieds-poings, Lady, Fitness", "Accès libre aux 5 clubs du réseau"],
+      cta: "Je réserve ma saison — 4× 64,75€",
+      href: "https://box-plus.vercel.app/abonnements#promo",
       tag: "L’abonnement",
     },
     {
       key: "ecole",
       name: "L’école, dès 3 ans",
-      price: "dès 280€",
-      period: "l’année",
-      feature: "Baby Boxe 3/6 · éducative 7/11 · ados 12/16",
-      items: ["Baby Boxe dès 3 ans (3/6 ans)", "Boxe éducative 7/11 ans", "Ados 12/16 ans", "Compétiteurs encadrés par Mehdi B"],
-      cta: "Inscrire mon enfant",
+      price: "295€",
+      period: "l’année · t-shirt inclus",
+      feature: "Baby Boxe 3/6 à 250€ · éducative 7/11 · ados 12/16",
+      items: ["Boxe éducative et ados : 295€/an, t-shirt du club inclus", "Baby Boxe 3/6 ans : 250€/an", "Un créneau par âge, mercredi et samedi", "Compétiteurs encadrés par Mehdi B"],
+      cta: "J’inscris mon enfant",
       href: "https://box-plus.vercel.app/abonnements#enfants",
+    },
+    {
+      key: "essai",
+      name: "La séance d’essai",
+      price: "10€",
+      period: "la séance",
+      feature: "Toujours là ? Alors viens essayer — gants prêtés",
+      items: ["Toutes les disciplines de la salle", "Gants et protections prêtés", "Sans engagement, sans dossier — tu viens, tu testes, tu décides"],
+      cta: "Je viens essayer · 10€",
+      href: "https://box-plus.vercel.app/seance-essai",
     },
   ],
 };
@@ -155,7 +155,7 @@ export const NAV = [
    (`go`) — un bouton « Découvrir » qui atterrit sur la home du groupe ment.
    §0.6 : Balma-Gramont est VENDUE — ne jamais la citer. */
 export const NETWORK = [
-  { id: "portet", name: "Portet-sur-Garonne", flagship: true, tag: "Le vaisseau amiral", feat: "800 m² · ring olympique · cage MMA", url: "https://www.boxing-center-portet.fr/", go: "Découvrir" },
+  { id: "portet", name: "Portet-sur-Garonne", flagship: true, tag: "Le vaisseau amiral", feat: "600 m² · ring de boxe anglaise · cage MMA · 24 sacs", url: "https://www.boxing-center-portet.fr/", go: "Découvrir" },
   { id: "etats-unis", name: "États-Unis", tag: "Le colosse", feat: "La plus grande salle de France dédiée aux sports de combat", url: "https://boxingcenter.fr/", go: "Voir sur boxingcenter.fr" },
   { id: "saint-cyprien", name: "Saint-Cyprien", tag: "Rive gauche", feat: "1 200 m² · toutes disciplines", url: "https://bc-st-cyprien.vercel.app/", go: "Découvrir" },
   { id: "ramonville", name: "Ramonville", tag: "L’octogone", feat: "Ring + octogone 7 m · extérieur", url: "https://bc-ramonville.vercel.app/", go: "Découvrir" },

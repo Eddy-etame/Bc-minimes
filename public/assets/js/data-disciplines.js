@@ -33,10 +33,10 @@ export const DISCIPLINES = [
   {
     key: "anglaise",
     plan: "anglaise",
-    name: "Boxe Anglaise",
+    name: "Boxe Anglaise Loisir",
     tag: "La spécialité maison",
     teaser: "Le geste de base, repris jusqu’à ce qu’il tienne tout seul.",
-    desc: "Le noble art, à la source. Jab, esquive, jeu de jambes — la discipline qui a fait le nom des Minimes.",
+    desc: "Le noble art, à la source. Jab, esquive, jeu de jambes — sept créneaux par semaine, midi et soir. Le loisir, ici, c’est la vraie boxe, à ton rythme — et aucun coup à recevoir tant que tu ne le demandes pas.",
     img: "/assets/img/bc/anglaise-1.webp",
     for: "Du grand débutant au compétiteur licencié.",
     points: [
@@ -44,6 +44,7 @@ export const DISCIPLINES = [
       "Le soir de 19h40 à 21h : lundi, mardi, jeudi, vendredi",
       "Sept créneaux loisirs par semaine, tous tenus par Mehdi B",
       "Gants et protections prêtés le temps de l’essai",
+      "Le sparring ne s’impose jamais — il se demande",
     ],
   },
   {
@@ -52,9 +53,9 @@ export const DISCIPLINES = [
     name: "Boxe Compétiteurs",
     tag: "Le ring, pour de vrai",
     teaser: "Le cours qui mène au ring, et nulle part ailleurs.",
-    desc: "18h à 19h30, quatre soirs par semaine. Ceux qui se frottent au sparring du samedi ont fait leurs heures ici. Licence exigée, excuses interdites.",
+    desc: "18h à 19h30, quatre soirs par semaine. Ceux qui montent à l’open sparring du samedi ont fait leurs heures ici. On n’y entre pas en s’inscrivant : c’est Mehdi B qui te fait passer, quand tu es prêt — et seulement si tu en as envie.",
     img: "/assets/img/bc/anglaise-2.webp",
-    for: "Les licenciés, et ceux que le coach juge prêts à le devenir.",
+    for: "Les licenciés — et ceux qui le deviendront, à leur rythme.",
     points: [
       "De 18h à 19h30 : lundi, mardi, jeudi, vendredi",
       "Open sparring le samedi 18h30 — le test de la semaine",
@@ -68,7 +69,7 @@ export const DISCIPLINES = [
     name: "Boxe Éducative",
     tag: "Dès 3 ans",
     teaser: "Le mercredi et le samedi appartiennent aux enfants.",
-    desc: "De la Baby Boxe 3/6 aux jeunes compétiteurs : on apprend à se tenir droit avant d’apprendre à frapper. Ils arrivent en courant partout, ils repartent en marchant droit.",
+    desc: "De la Baby Boxe 3/6 aux jeunes compétiteurs, la règle est fédérale et non négociable : on touche, on ne frappe pas. Ils arrivent en courant partout, ils repartent en marchant droit.",
     img: "/assets/img/bc/educative-1.webp",
     for: "Les enfants et les ados, du jeu au ring.",
     points: [
@@ -76,6 +77,7 @@ export const DISCIPLINES = [
       "Enfants 7/11 ans à 15h, ados 12/16 ans à 16h",
       "Jeunes compétiteurs à 17h — pour ceux qui veulent le ring",
       "Mercredi et samedi, la même montée d’âge, le même coach",
+      "Parents : restez au bord du ring, posez toutes vos questions au coach",
     ],
   },
   {
@@ -84,7 +86,7 @@ export const DISCIPLINES = [
     name: "Boxing Lady",
     tag: "100 % féminin",
     teaser: "Entre femmes, le lundi et le mercredi soir.",
-    desc: "Deux soirs, une bande, et le sac qui prend tout. Tu repars plus solide qu’en arrivant.",
+    desc: "Deux soirs, une bande, et le sac qui prend tout. Chloé le lundi, David le mercredi — entre femmes, avec une vraie exigence et zéro galerie. Beaucoup y débutent ; certaines passent ensuite en mixte. Les deux sont très bien.",
     img: "/assets/img/bc/lady-2.webp",
     for: "Les femmes, débutantes comme habituées.",
     points: [
@@ -117,7 +119,7 @@ export const DISCIPLINES = [
     tag: "L’autre garde",
     teaser: "Le mercredi soir, on boxe aussi avec les jambes.",
     noPhoto: true,
-    desc: "Une fois par semaine, la garde change et les jambes entrent dans l’histoire. Même exigence de geste que l’anglaise, deux armes de plus.",
+    desc: "Une fois par semaine, la garde change et les jambes entrent dans l’histoire. Même exigence de geste que l’anglaise, deux fois plus de gestes à apprendre.",
     img: null,
     for: "Tous niveaux — y compris ceux qui n’ont jamais lancé un coup de pied.",
     points: [

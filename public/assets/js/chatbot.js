@@ -34,8 +34,8 @@ const LOGO = "/assets/img/logo.png";
 const SALLES = [SALLE.short, ...NETWORK.map((n) => n.name)];
 
 const QUICKS = [
+  { label: "L’offre 29€", q: "Quels sont les tarifs ?" },
   { label: "Essai 10€", q: "Comment se passe la séance d’essai ?" },
-  { label: "Tarifs", q: "Quels sont les tarifs ?" },
   { label: "Horaires", q: "Quels sont les horaires ?" },
   { label: "Les cours", q: "Quelles disciplines proposez-vous ?" },
   { label: "Dès 3 ans", q: "Vous avez des cours pour les enfants ?" },

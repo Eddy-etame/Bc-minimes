@@ -10,7 +10,7 @@
 - [Les coachs](https://bc-minimes.vercel.app/coachs/): Mehdi B (coach principal — anglaise, éducative, compétiteurs, baby boxe, boxing camp), Chloé (Boxing Lady), David (Boxing Lady, pieds-poings), Hicham (boxing camp) — plus le détail de qui encadre quel jour, dérivé du planning.
 - [Galerie photos](https://bc-minimes.vercel.app/galerie/): la boxe en images (pool photo du réseau Boxing Center), filtrable par zone — ring, sparring, école, Lady, technique — plus un renvoi de chaque zone vers sa discipline.
 - [Planning des cours](https://bc-minimes.vercel.app/plannings/): les 27 cours de la semaine + les 16 bandes d'accès libre, en grille filtrable (jour / discipline / coach, partageable par URL) + le poster officiel de la saison.
-- [Tarifs & offres](https://bc-minimes.vercel.app/tarifs/): séance d'essai 10 €, offre Duo 29 € par personne, saison complète 259 € les 12 mois, école dès 280 € l'année — avec les avis Google (note à jour sur la page) et les questions d'argent (paiement en 4×, matériel prêté ou personnel, accès aux 5 clubs).
+- [Tarifs & offres](https://bc-minimes.vercel.app/tarifs/): offre Rentrée 29 € par personne, saison complète 259 € les 12 mois, école 295 € l'année t-shirt inclus (baby 250 €), séance d'essai 10 € — avec les avis Google (note à jour sur la page) et les questions d'argent (paiement en 4×, matériel prêté ou personnel, accès aux 5 clubs).
 - [Contact & accès](https://bc-minimes.vercel.app/contact/): téléphone 05 62 24 46 82, adresse, horaires, accès métro/rocade/bus, FAQ locale.
 
 ## Faits
@@ -45,12 +45,12 @@
 - Accès libre (rings et sacs en autonomie, sans réservation) : tous les jours 10h00–12h00 et 13h20–18h00 ; le mercredi 13h20–15h00 seulement ; le samedi 12h40–14h00 et 19h40–21h00. Le lundi, le mardi et le jeudi, un second espace reste libre de 18h00 à 19h30.
 
 ### Offres (saison en cours — voir /tarifs/)
-- Séance d'essai : 10 € — toutes disciplines, matériel prêté, sans engagement. → https://box-plus.vercel.app/seance-essai
-- Offre Duo : 29 € par personne — 4 semaines de cours illimités, sans engagement (au lieu de 44 €). → https://box-plus.vercel.app/abonnements#promotions
-- Saison complète : 259 € les 12 mois — payable en 4× sans frais, accès libre aux 5 clubs du réseau (au lieu de 400 €). → https://box-plus.vercel.app/abonnements#promotions
-- École enfants : dès 280 € l'année (dès 3 ans). → https://box-plus.vercel.app/abonnements#enfants
+- Offre Rentrée : 29 € par personne — 4 semaines de cours illimités, sans engagement (au lieu de 44,99 €). → https://box-plus.vercel.app/abonnements#promo
+- Séance d'essai : 10 € — toutes disciplines, matériel prêté, sans engagement, à proposer après les offres. → https://box-plus.vercel.app/seance-essai
+- Saison complète : 259 € les 12 mois — payable en 4× sans frais, accès libre aux 5 clubs du réseau (au lieu de 400 €). → https://box-plus.vercel.app/abonnements#promo
+- École enfants : 295 € l'année t-shirt inclus, baby 250 € (dès 3 ans). → https://box-plus.vercel.app/abonnements#enfants
 - Bonus : t-shirt Boxing Center offert aux 100 premiers inscrits.
-- L'offre Duo se compte PAR PERSONNE (29 € chacun), jamais 29 € pour deux — ne pas reformuler autrement.
+- L'offre Rentrée se compte PAR PERSONNE (29 € chacun), jamais 29 € pour deux — ne pas reformuler autrement.
 - Matériel : prêté pour la séance d'essai ; au-delà, l'adhérent apporte ses propres gants.
 
 ### Réassurance
