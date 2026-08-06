@@ -77,6 +77,56 @@ function offlineAnswer() {
   return `Je n’arrive pas à joindre le club à l’instant. Appelle la salle au ${SALLE.phone}, ou passe au ${SALLE.address.full} — du lundi au samedi, ${SALLE.hours.replace(/^Lun – Sam · /, "")}.`;
 }
 
+
+/* Destinations que le bot propose en BOUTONS — la pensée Portet émulée :
+   clés fermées (un lien halluciné est impossible), boutique box-plus +
+   pages internes de CE site, « rappel » reste une action du chat. */
+const ACTIONS = {
+  offre:       { label: "Je prends ma place — 29€", href: "https://box-plus.vercel.app/abonnements#promo" },
+  saison:      { label: "Je réserve ma saison · 259€", href: "https://box-plus.vercel.app/abonnements#promo" },
+  essai:       { label: "Je viens essayer · 10€", href: "https://box-plus.vercel.app/seance-essai" },
+  enfants:     { label: "J’inscris mon enfant", href: "https://box-plus.vercel.app/abonnements#enfants" },
+  abonnements: { label: "Voir les abonnements", href: "https://box-plus.vercel.app/abonnements" },
+  boutique:    { label: "La boutique du club", href: "https://box-plus.vercel.app/" },
+  tarifs:      { label: "Les tarifs en détail", href: "/tarifs/" },
+  planning:    { label: "Voir le planning", href: "/plannings/" },
+  disciplines: { label: "Découvrir les cours", href: "/activites/" },
+  club:        { label: "Visiter la salle", href: "/le-club/" },
+  coachs:      { label: "Rencontrer les coachs", href: "/coachs/" },
+  galerie:     { label: "Voir la galerie", href: "/galerie/" },
+  contact:     { label: "Adresse & contact", href: "/contact/" },
+  appeler:     { label: "Appeler la salle", href: "tel:+33562244682" },
+  rappel:      { label: "Être rappelé par un coach", act: "rappel" },
+};
+function resolveActions(keys) {
+  const out = [];
+  for (const k of keys) {
+    const [key, ...rest] = String(k).split(":");
+    const def = ACTIONS[key.trim()];
+    if (!def) continue;
+    const label = rest.join(":").trim();
+    if (!out.some((a) => (a.href || a.act) === (def.href || def.act))) out.push(label ? { ...def, label } : def);
+    if (out.length >= 3) break;
+  }
+  return out;
+}
+function parseReply(rawText) {
+  let text = String(rawText);
+  const keys = [];
+  text = text.replace(/\[\s*(?:boutons|buttons)\s*:\s*([^\]]+)\]/gi, (_, list) => {
+    keys.push(...list.split(",").map((s) => s.trim()).filter(Boolean));
+    return "";
+  });
+  text = text.replace(/(?:https?:\/\/)?box-plus\.vercel\.app[\w\/#-]*/gi, (u) => {
+    const href = (u.startsWith("http") ? u : "https://" + u).replace(/\/$/, "");
+    const hit = Object.entries(ACTIONS).find(([, d]) => (d.href || "").replace(/\/$/, "") === href);
+    if (hit && !keys.some((k) => k.split(":")[0] === hit[0])) keys.push(hit[0]);
+    return hit ? "la boutique en ligne" : u;
+  });
+  text = text.replace(/\s{2,}/g, " ").replace(/\s+([.,!?])/g, "$1").trim();
+  return { text, actions: resolveActions(keys) };
+}
+
 export function initChatbot() {
   const launcher = document.querySelector("a.chatbot, button.chatbot");
   if (!launcher || document.getElementById("bcm-chat")) return;
@@ -102,7 +152,7 @@ export function initChatbot() {
     if (dejaLa) return resolu();
     const l = document.createElement("link");
     l.rel = "stylesheet";
-    l.href = "/assets/css/chatbot.css?v=b18";
+    l.href = "/assets/css/chatbot.css?v=b19";
     l.setAttribute("data-bcm-chat-css", "");
     /* résolu dans les deux cas : une feuille manquante ne doit jamais
        retenir le panneau prisonnier — mieux vaut brut que rien. */
@@ -150,22 +200,29 @@ export function initChatbot() {
   /* ---------- rendu ---------- */
   const msgs = [];
   function render() {
-    logEl.innerHTML = msgs.map((m) => `
+    logEl.innerHTML = msgs.map((m) => {
+      const actions = m.actions && m.actions.length ? `<div class="bcm-chat__actions">${m.actions.map((a) => {
+        if (a.act) return `<button type="button" class="bcm-chat__action bcm-chat__action--ext" data-act="${a.act}">${esc(a.label)}</button>`;
+        const ext = /^https?:/i.test(a.href);
+        return `<a class="bcm-chat__action${ext ? " bcm-chat__action--ext" : ""}" href="${a.href.replace(/"/g, "&quot;")}"${ext ? ` target="_blank" rel="noopener"` : ""}>${esc(a.label)}${ext ? ` <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 9 9 3M4.5 3H9v4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>` : ""}</a>`;
+      }).join("")}</div>` : "";
+      return `
       <div class="bcm-chat__msg bcm-chat__msg--${m.role}">
         ${m.role === "bot" ? `<img src="${LOGO}" alt="" width="342" height="160" decoding="async" />` : ""}
-        <div class="bcm-chat__bubble">${esc(m.text)}</div>
-      </div>`).join("") + (typing ? `
+        <div class="bcm-chat__stack"><div class="bcm-chat__bubble">${esc(m.text)}</div>${actions}</div>
+      </div>`;
+    }).join("") + (typing ? `
       <div class="bcm-chat__msg bcm-chat__msg--bot">
         <img src="${LOGO}" alt="" width="342" height="160" decoding="async" />
         <div class="bcm-chat__bubble"><span class="bcm-chat__dots" aria-label="L’assistant écrit"><i></i><i></i><i></i></span></div>
       </div>` : "");
     logEl.scrollTop = logEl.scrollHeight;
   }
-  async function botSay(text, pause = 550) {
+  async function botSay(text, pause = 550, actions) {
     typing = true; sendBtn.disabled = true; render();
     await delay(pause);
     typing = false; sendBtn.disabled = false;
-    msgs.push({ role: "bot", text }); render();
+    msgs.push({ role: "bot", text, actions }); render();
   }
   function userSay(text) { msgs.push({ role: "user", text }); render(); }
 
@@ -175,6 +232,10 @@ export function initChatbot() {
     chipsEl.hidden = false;
   }
   const hideChips = () => { chipsEl.hidden = true; chipsEl.innerHTML = ""; };
+  logEl.addEventListener("click", (e) => {
+    const act = e.target.closest("button[data-act]");
+    if (act && act.dataset.act === "rappel") startCallback();
+  });
 
   /* ---------- capture au fil de l’eau ---------- */
   function contextString() {
@@ -247,11 +308,13 @@ export function initChatbot() {
     const sent = gotNew ? maybeSubmitLead(callbackAsked ? "callback_request" : "lead_collected") : false;
 
     hideChips();
-    let reply;
-    try { reply = await askAi(text, history.slice(-6), contextString()); }
-    catch { reply = offlineAnswer(); }
+    let reply, actions = [];
+    try {
+      const parsed = parseReply(await askAi(text, history.slice(-6), contextString()));
+      reply = parsed.text; actions = parsed.actions;
+    } catch { reply = offlineAnswer(); actions = resolveActions(["appeler", "contact"]); }
     history.push({ role: "user", content: text }, { role: "assistant", content: reply });
-    await botSay(reply);
+    await botSay(reply, 550, actions);
     exchanges++;
 
     if (sent && callbackAsked) {
@@ -303,7 +366,7 @@ export function initChatbot() {
     input.focus();
     if (!opened) {
       opened = true;
-      await botSay(`Salut ! Ici l’assistant du Boxing Center Minimes — la salle historique, ${SALLE.address.street}. Je réponds sur les horaires, les cours, les tarifs, l’école dès 3 ans…`, 500);
+      await botSay(`Salut ! Ici l’assistant du Boxing Center Minimes — la salle historique, ${SALLE.address.street}. L’offre de la rentrée est à 29€ par personne — et je réponds sur les horaires, les cours, l’école dès 3 ans…`, 500, resolveActions(["offre", "essai"]));
       expectName = true;
       await botSay("Avant qu’on commence : tu t’appelles comment ?", 400);
       showChips();

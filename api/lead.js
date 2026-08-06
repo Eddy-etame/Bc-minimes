@@ -50,6 +50,20 @@ function normalise(b, req) {
   };
 }
 
+/* Copie vers la base COMMUNE du réseau (gestion-manager) — la règle du boss :
+   tout formulaire, tout chatbot, UNE seule base de contacts. Côté serveur :
+   pas de CORS, et jamais bloquant pour le visiteur. */
+async function forwardToNetwork(lead) {
+  try {
+    await fetch("https://gestion-manager.vercel.app/api/chatbot/lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...lead, source: "bc-minimes" }),
+    });
+    return true;
+  } catch { return false; }
+}
+
 async function notifyEmail(lead) {
   if (!process.env.RESEND_API_KEY) return false;
   const to = process.env.LEAD_EMAIL_TO || "boxingcenter31@gmail.com";
@@ -97,6 +111,7 @@ export default async function handler(req, res) {
       done.stored = true;
     } catch (e) { console.error("[lead] KV :", e.message); }
   }
+  try { done.network = await forwardToNetwork(lead); } catch (e) { console.error("[lead] réseau :", e.message); }
   try { done.mailed = await notifyEmail(lead); } catch (e) { console.error("[lead] email :", e.message); }
   try { done.hooked = await notifyWebhook(lead); } catch (e) { console.error("[lead] webhook :", e.message); }
 

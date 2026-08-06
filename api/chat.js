@@ -24,7 +24,7 @@ const STATIC_TAIL = `- Accès : métro ligne B station Barrière de Paris, 3 min
 const STATIC_INFO = `- Boxing Center Minimes : salle historique du groupe Boxing Center (depuis 2016), quartier des Minimes / Barrière de Paris. Spécialité maison : la boxe anglaise. « Le berceau des champions. »
 - Adresse : 12 rue de Fenouillet, 31200 Toulouse. Téléphone : 05 62 24 46 82. Email : boxingcenter31@gmail.com.
 - Horaires : du lundi au samedi, 10h00 – 21h30. Fermé le dimanche.
-- Tarifs : séance d'essai 10€ ; offre Duo 29€ PAR PERSONNE pour 4 semaines illimitées à deux (au lieu de 44€) ; saison complète 259€ les 12 mois payable en 4× sans frais (au lieu de 400€) ; école dès 280€ l'année.
+- Tarifs (dans l'ordre où on les propose) : offre RENTRÉE 29€ PAR PERSONNE pour 4 semaines illimitées (au lieu de 44,99€) ; saison complète 259€ les 12 mois payable en 4× sans frais (au lieu de 400€) ; école 295€ l'année t-shirt du club inclus, Baby Boxe 250€ ; séance d'essai 10€ EN DERNIER.
 - Disciplines : boxe anglaise (loisirs et compétiteurs), boxe éducative dès 3 ans (Baby Boxe 3/6, enfants 7/11, ados 12/16), Boxing Lady 100 % féminin, Boxing camp, boxe pieds-poings, PAOS et pattes d'ours, cross training et cardio boxing en accès libre.
 - Coachs : Mehdi B (coach principal, anglaise, école, compétiteurs, camp, sparring), Chloé (Boxing Lady du lundi), David (Boxing Lady du mercredi et pieds-poings), Hicham (Boxing camp mardi et jeudi).
 - Planning : anglaise loisirs le midi 12h40 (mardi, mercredi, jeudi) et le soir 19h40 (lundi, mardi, jeudi, vendredi) ; compétiteurs 18h (lundi, mardi, jeudi, vendredi) ; Boxing Lady lundi et mercredi 18h30 ; Boxing camp lundi et vendredi 12h40, mardi et jeudi 18h30, samedi 11h ; pieds-poings mercredi 19h40 ; l'école mercredi et samedi après-midi ; open sparring samedi 18h30.`;
@@ -71,7 +71,17 @@ Ton rôle : renseigner le visiteur, avec la voix d'un coach de la maison, et lui
 RÈGLES :
 - Réponds en FRANÇAIS, au TUTOIEMENT, en 2 à 4 phrases. Direct, chaleureux, jamais commercial ni corporate.
 - Réponds UNIQUEMENT à partir des infos ci-dessous. Si une info précise manque, dis-le et invite à appeler le 05 62 24 46 82 ou à passer à la salle. N'invente JAMAIS un prix, un horaire, un nom de coach, un palmarès ou une date.
-- L'offre Duo à 29€ s'écrit TOUJOURS « 29€ par personne » — jamais « 29€ » tout court.
+- L'offre Rentrée à 29€ s'écrit TOUJOURS « 29€ par personne » — jamais « 29€ » tout court, jamais « pour deux ».
+VENDRE (ton objectif n°1, dans CET ordre) :
+1. L'OFFRE RENTRÉE 29€ par personne — propose-la en PREMIER dès qu'on parle de commencer, de prix ou d'hésitation.
+2. La SAISON 259€ en 4× sans frais pour les motivés à l'année.
+3. L'école pour les enfants (295€ t-shirt inclus, baby 250€).
+4. La SÉANCE D'ESSAI À 10€ — uniquement en DERNIER recours, quand la personne hésite encore après avoir vu les offres.
+BOUTONS D'ACTION (l'interface les affiche sous ton message) :
+- N'écris JAMAIS d'URL en clair. Termine ta réponse par « [boutons: clé1, clé2] » (1 à 3 clés max).
+- Clés disponibles (UNIQUEMENT celles-ci) : offre (l'offre Rentrée 29€ sur la boutique) · saison (saison 259€) · essai (la séance d'essai 10€) · enfants (inscrire un enfant) · abonnements · boutique · tarifs (page tarifs du site) · planning · disciplines · club · coachs · galerie · contact · rappel (un coach rappelle — le chat s'en charge).
+- « offre » dès qu'on parle prix ou début ; « essai » seulement en dernier recours ; « enfants » pour les inscriptions enfants.
+- Si tu réponds dans une autre langue, traduis le libellé : « clé:Label » (ex. [boutons: offre:Get the 29€ offer]).
 - Comprends le langage naturel : fautes, phrases courtes, argot. Déduis l'intention.
 - Si le visiteur donne son prénom, sers-t'en. S'il est chaud (essai, inscription, cours qui l'intéresse), propose-lui GENTIMENT de te laisser son prénom et un numéro ou un email pour qu'un coach le rappelle — une fois, sans insister, sans bloquer la conversation.
 - Ne promets jamais un rappel à une heure précise, ni une place réservée : tu transmets, c'est tout.`;
@@ -121,9 +131,9 @@ export const KB = [
   { re: /planning|cr[ée]neau|horaire des cours|quand.*(?:cours|entra[îi])/i,
     a: "Le planning tourne du lundi au samedi : anglaise loisirs le midi à 12h40 et le soir à 19h40, compétiteurs à 18h, Boxing Lady lundi et mercredi 18h30, Boxing camp midi et soir, l'école le mercredi et le samedi après-midi, open sparring le samedi 18h30. Le détail complet est sur la page Planning." },
   { re: /essai|d[ée]couvr|tester|premi[èe]re fois|premiere fois|gratuit|venir voir/i,
-    a: "La séance d'essai est à 10€ : la discipline que tu veux, gants et protections prêtés, aucun dossier à monter. Tu viens, tu boxes, tu décides après. Réservation sur box-plus.vercel.app/seance-essai ou directement à la salle." },
+    a: "La séance d'essai est à 10€ : la discipline que tu veux, gants et protections prêtés, aucun dossier à monter. Tu viens, tu boxes, tu décides après. Mais si tu comptes venir plus d'une fois, la rentrée à 29€ par personne est vite rentabilisée. [boutons: offre, essai]" },
   { re: /tarif|prix|co[ûu]te|combien|abonn|mensuel|saison|duo|259|29|280/i,
-    a: "Essai 10€. Duo : 29€ PAR PERSONNE pour 4 semaines illimitées à deux (au lieu de 44€). Saison complète : 259€ les 12 mois au lieu de 400€, payable en 4× sans frais, avec l'accès libre aux 5 clubs du réseau. L'école, dès 280€ l'année. Tout est détaillé sur la page Tarifs." },
+    a: "L'offre Rentrée : 29€ PAR PERSONNE pour 4 semaines illimitées (au lieu de 44,99€). La saison complète : 259€ les 12 mois au lieu de 400€, en 4× sans frais, accès libre aux 5 clubs. L'école : 295€ l'année t-shirt inclus, baby 250€. Et l'essai à 10€ pour tester. [boutons: offre, tarifs]" },
   { re: /horaire|ouvert|ferm|heure|dimanche|acc[èe]s libre/i,
     a: "La salle est ouverte du lundi au samedi, de 10h00 à 21h30. Fermé le dimanche. En dehors des cours, les rings et les sacs sont à toi en accès libre : 10h–12h et 13h20–18h (le mercredi ça s'arrête à 15h, l'école prend la salle)." },
   /* « où » accentué est sans ambiguïté ; « ou » nu ne compte que collé à
@@ -145,7 +155,7 @@ export const KB = [
   { re: /contact|t[ée]l[ée]phone|email|mail|num[ée]ro|appeler|joindre/i,
     a: "Téléphone : 05 62 24 46 82. Email : boxingcenter31@gmail.com. Ou passe simplement à la salle, 12 rue de Fenouillet, du lundi au samedi entre 10h et 21h30." },
   { re: /inscri|adh[ée]r|certificat|m[ée]dical|dossier|papier/i,
-    a: "Pour l'essai à 10€, tu n'as rien à apporter — ni dossier, ni certificat. C'est au moment de t'inscrire pour de bon qu'on te demande le certificat médical et de quoi régler. Le coach te déroule tout ça sur place." },
+    a: "Pour l'essai à 10€, tu n'as rien à apporter — ni dossier, ni certificat. [boutons: essai] C'est au moment de t'inscrire pour de bon qu'on te demande le certificat médical et de quoi régler. Le coach te déroule tout ça sur place." },
   { re: /r[ée]seau|autre salle|portet|cyprien|ramonville|[ée]tats.?unis|groupe/i,
     a: "Boxing Center, c'est cinq clubs à Toulouse et autour : Minimes (ici, la salle historique), Portet-sur-Garonne, États-Unis, Saint-Cyprien et Ramonville. La saison ouvre l'accès libre à tous. Le site du réseau : boxingcenter.fr." },
 ];
