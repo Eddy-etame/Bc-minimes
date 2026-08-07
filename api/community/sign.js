@@ -6,19 +6,30 @@
 
    Le dépôt atterrit tagué "pending" : invisible du public tant que le staff
    ne l'a pas approuvé depuis Le coin bleu. */
-import { allowCors, body, ipOf, cleanName } from "../_lib/util.js";
+import { allowCors, body, ipOf, cleanName, issuePow, verifyPow } from "../_lib/util.js";
 import { cloudinary, cloudReady, FOLDER, MODERATION, withTimeout, CLOUD_TIMEOUT_MS } from "../_lib/community.js";
 import { visionReady } from "../_lib/vision.js";
 
 export default async function handler(req, res) {
   allowCors(res);
   if (req.method === "OPTIONS") return res.status(204).end();
+  if (req.method === "GET") return res.status(200).json(issuePow()); // le defi anti-bot
   if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
 
   if (!cloudReady())
     return res.status(503).json({ error: "Le mur du club n'est pas encore ouvert. Reviens très vite." });
 
   const b = body(req);
+
+  /* Pot de miel : un humain ne voit pas ce champ. Un bot qui le remplit recoit
+     une signature FACTICE — son upload echouera chez Cloudinary, en silence. */
+  if (String(b.website || "").length > 0) {
+    return res.status(200).json({ cloudName: "denied", apiKey: "0", timestamp: 0, folder: "x", tags: "pending", context: "", signature: "0" });
+  }
+  /* Preuve de travail obligatoire */
+  if (!verifyPow(b.pow || {})) {
+    return res.status(400).json({ error: "Vérification expirée — réessaie, ça prend une seconde." });
+  }
 
   /* --- le prénom : obligatoire (c'est une signature, pas un anonymat) --- */
   const a = cleanName(b.author, 40);

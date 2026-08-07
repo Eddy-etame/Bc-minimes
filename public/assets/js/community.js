@@ -219,10 +219,23 @@ function bindForm(form, status) {
     submit.disabled = true;
     say(status, "Préparation…", "info");
     try {
+      /* 0) le defi anti-bot : emis par le serveur, resolu ici en un clin d'oeil */
+      const powRes = await fetch(`${API}/api/community/sign`).then((r) => r.json()).catch(() => null);
+      let powNonce = "";
+      if (powRes && powRes.challenge) {
+        const shaHex = async (s) => [...new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s)))].map((x) => x.toString(16).padStart(2, "0")).join("");
+        const prefix = "0".repeat(powRes.difficulty || 4);
+        for (let n = 0; ; n++) {
+          if ((await shaHex(`${powRes.challenge}:${n}`)).startsWith(prefix)) { powNonce = String(n); break; }
+          if (n % 2000 === 1999) await new Promise((r) => setTimeout(r));
+        }
+      }
+      const website = (form.querySelector('input[name="website"]') || {}).value || "";
       /* 1) notre fonction valide, limite, et signe */
       const signRes = await fetch(`${API}/api/community/sign`, {
         method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ author, email, phone, title, kind: sig.kind }),
+        body: JSON.stringify({ author, email, phone, title, kind: sig.kind, website,
+          pow: powRes ? { challenge: powRes.challenge, ts: powRes.ts, sig: powRes.sig, nonce: powNonce } : {} }),
       });
       const sign = await signRes.json().catch(() => ({}));
       if (!signRes.ok) { submit.disabled = false; return say(status, sign.error || "Envoi refusé.", "err"); }
