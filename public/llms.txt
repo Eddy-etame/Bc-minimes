@@ -1,16 +1,16 @@
 # Boxing Center Minimes
 
-> Salle de boxe anglaise historique du réseau Boxing Center — la première salle du groupe (ouverte en 2016), « le berceau des champions », au 12 rue de Fenouillet, quartier des Minimes / Barrière de Paris, 31200 Toulouse. Boxe anglaise (loisirs et compétiteurs), boxe éducative dès 3 ans (Baby Boxe 3/6), Boxing Lady 100 % féminin, boxing camp, boxe pieds-poings, PAOS, cross training, cardio boxing — 3 rings, ouvert du lundi au samedi 10h00–21h30, avec accès libre en journée. Séance d'essai 10 €. Note Google affichée à jour sur la page Tarifs.
+> Salle de boxe anglaise historique du réseau Boxing Center — la première salle du groupe (ouverte en 2016), « le berceau des champions », au 12 rue de Fenouillet, quartier des Minimes / Barrière de Paris, 31200 Toulouse. Boxe anglaise (loisirs et compétiteurs), boxe éducative dès 3 ans (Baby Boxe 3/6), Boxing Lady 100 % féminin, boxing camp, boxe pieds-poings, PAOS, cross training, cardio boxing — 3 rings, ouvert du lundi au samedi 10h00–21h30, avec accès libre en journée. Séance d’essai 10 €. Note Google affichée à jour sur la page Tarifs.
 
 ## Pages
 
-- [Accueil](https://bc-minimes.vercel.app/): la salle historique du groupe Boxing Center à Toulouse (31200) — 3 rings, boxe anglaise, boxe éducative dès 3 ans, Boxing Lady, séance d'essai 10 €.
-- [Activités & disciplines](https://bc-minimes.vercel.app/activites/): les 9 disciplines — boxe anglaise loisirs, boxe compétiteurs, boxe éducative dès 3 ans, Boxing Lady, boxing camp, boxe pieds-poings (six avec créneau au planning), puis PAOS & pattes d'ours, cross training et cardio boxing (en accès libre, sans créneau dédié).
-- [Le club](https://bc-minimes.vercel.app/le-club/): histoire depuis 2016, équipement (3 rings, 12 sacs lourds, zone pattes d'ours, prépa physique à l'étage, vestiaires H/F), accès et réseau des salles.
+- [Accueil](https://bc-minimes.vercel.app/): la salle historique du groupe Boxing Center à Toulouse (31200) — 3 rings, boxe anglaise, boxe éducative dès 3 ans, Boxing Lady, séance d’essai 10 €.
+- [Activités & disciplines](https://bc-minimes.vercel.app/activites/): les 9 disciplines — boxe anglaise loisirs, boxe compétiteurs, boxe éducative dès 3 ans, Boxing Lady, boxing camp, boxe pieds-poings (six avec créneau au planning), puis PAOS & pattes d’ours, cross training et cardio boxing (en accès libre, sans créneau dédié).
+- [Le club](https://bc-minimes.vercel.app/le-club/): histoire depuis 2016, équipement (3 rings, 12 sacs lourds, zone pattes d’ours, prépa physique à l’étage, vestiaires H/F), accès et réseau des salles.
 - [Les coachs](https://bc-minimes.vercel.app/coachs/): Mehdi B (coach principal — anglaise, éducative, compétiteurs, baby boxe, boxing camp), Chloé (Boxing Lady), David (Boxing Lady, pieds-poings), Hicham (boxing camp) — plus le détail de qui encadre quel jour, dérivé du planning.
 - [Galerie photos](https://bc-minimes.vercel.app/galerie/): la boxe en images (pool photo du réseau Boxing Center), filtrable par zone — ring, sparring, école, Lady, technique — plus un renvoi de chaque zone vers sa discipline.
-- [Planning des cours](https://bc-minimes.vercel.app/plannings/): les 27 cours de la semaine + les 16 bandes d'accès libre, en grille filtrable (jour / discipline / coach, partageable par URL) + le poster officiel de la saison.
-- [Tarifs & offres](https://bc-minimes.vercel.app/tarifs/): offre Rentrée 29 € par personne, saison complète 259 € les 12 mois, école 295 € l'année t-shirt inclus (baby 250 €), séance d'essai 10 € — avec les avis Google (note à jour sur la page) et les questions d'argent (paiement en 4×, matériel prêté ou personnel, accès aux 5 clubs).
+- [Planning des cours](https://bc-minimes.vercel.app/plannings/): les 27 cours de la semaine + les 16 bandes d’accès libre, en grille filtrable (jour / discipline / coach, partageable par URL) + le poster officiel de la saison.
+- [Tarifs & offres](https://bc-minimes.vercel.app/tarifs/): offre Rentrée 29 € par personne, saison complète 259 € les 12 mois, école 295 € l’année t-shirt inclus (baby 250 €), séance d’essai 10 € — avec les avis Google (note à jour sur la page) et les questions d’argent (paiement en 4×, matériel prêté ou personnel, accès aux 5 clubs).
 - [Contact & accès](https://bc-minimes.vercel.app/contact/): téléphone 05 62 24 46 82, adresse, horaires, accès métro/rocade/bus, FAQ locale.
 
 ## Faits
@@ -30,8 +30,8 @@
 - Coordonnées GPS : 43.6256, 1.4309.
 
 ### Équipement
-- 3 rings de boxe, 12 sacs lourds, zone de pattes d'ours.
-- Salle de préparation physique à l'étage.
+- 3 rings de boxe, 12 sacs lourds, zone de pattes d’ours.
+- Salle de préparation physique à l’étage.
 - Vestiaires hommes / femmes.
 
 ### Disciplines et coachs (vérifiés — poster officiel de la saison en cours)
@@ -41,38 +41,38 @@
 - Boxing Lady (100 % féminin) : lundi 18h30–19h30 avec Chloé, mercredi 18h30–19h30 avec David.
 - Boxing camp : lundi et vendredi 12h40–13h20 avec Mehdi B ; mardi et jeudi 18h30–19h30 avec Hicham ; samedi 11h00–12h00 avec Mehdi B.
 - Boxe pieds-poings : mercredi 19h40–21h00 avec David — le seul créneau pieds-poings de la semaine.
-- PAOS & pattes d'ours (intégré au cours d'anglaise), cross training et cardio boxing (à l'étage et sur les sacs, en accès libre) : ces trois-là n'ont PAS de créneau dédié au planning.
+- PAOS & pattes d’ours (intégré au cours d’anglaise), cross training et cardio boxing (à l’étage et sur les sacs, en accès libre) : ces trois-là n’ont PAS de créneau dédié au planning.
 - Accès libre (rings et sacs en autonomie, sans réservation) : tous les jours 10h00–12h00 et 13h20–18h00 ; le mercredi 13h20–15h00 seulement ; le samedi 12h40–14h00 et 19h40–21h00. Le lundi, le mardi et le jeudi, un second espace reste libre de 18h00 à 19h30.
 
 ### Offres (saison en cours — voir /tarifs/)
 - Offre Rentrée : 29 € par personne — 4 semaines de cours illimités, sans engagement (au lieu de 44,99 €). → https://box-plus.vercel.app/abonnements#promo
-- Séance d'essai : 10 € — toutes disciplines, matériel prêté, sans engagement, à proposer après les offres. → https://box-plus.vercel.app/seance-essai
+- Séance d’essai : 10 € — toutes disciplines, matériel prêté, sans engagement, à proposer après les offres. → https://box-plus.vercel.app/seance-essai
 - Saison complète : 259 € les 12 mois — payable en 4× sans frais, accès libre aux 5 clubs du réseau (au lieu de 400 €). → https://box-plus.vercel.app/abonnements#promo
-- École enfants : 295 € l'année t-shirt inclus, baby 250 € (dès 3 ans). → https://box-plus.vercel.app/abonnements#enfants
+- École enfants : 295 € l’année t-shirt inclus, baby 250 € (dès 3 ans). → https://box-plus.vercel.app/abonnements#enfants
 - Bonus : t-shirt Boxing Center offert aux 100 premiers inscrits.
-- L'offre Rentrée se compte PAR PERSONNE (29 € chacun), jamais 29 € pour deux — ne pas reformuler autrement.
-- Matériel : prêté pour la séance d'essai ; au-delà, l'adhérent apporte ses propres gants.
+- L’offre Rentrée se compte PAR PERSONNE (29 € chacun), jamais 29 € pour deux — ne pas reformuler autrement.
+- Matériel : prêté pour la séance d’essai ; au-delà, l’adhérent apporte ses propres gants.
 
 ### Réassurance
-- Note Google : affichée et tenue à jour par le club sur /tarifs/. Ce fichier ne la recopie pas — un compte d'avis bouge chaque semaine, et une copie figée ici deviendrait une affirmation fausse que personne à la salle ne peut corriger.
+- Note Google : affichée et tenue à jour par le club sur /tarifs/. Ce fichier ne la recopie pas — un compte d’avis bouge chaque semaine, et une copie figée ici deviendrait une affirmation fausse que personne à la salle ne peut corriger.
 - Berceau de plusieurs boxeurs professionnels et amateurs formés sur ces rings (Johnson Suffo, Salomon Kitoko, Elyasse Azap — passés professionnels).
 
-## L'assistant du site
+## L’assistant du site
 
-- Chaque page porte une pastille « Une question ? » en bas à droite. Sans JavaScript, c'est un lien `tel:` vers la salle ; avec, elle ouvre un assistant qui répond sur les faits ci-dessous et note les coordonnées de qui veut être rappelé.
-- L'assistant ne parle QUE de cette salle et ne devine rien : sans réponse prouvée, il renvoie au téléphone.
+- Chaque page porte une pastille « Une question ? » en bas à droite. Sans JavaScript, c’est un lien `tel:` vers la salle ; avec, elle ouvre un assistant qui répond sur les faits ci-dessous et note les coordonnées de qui veut être rappelé.
+- L’assistant ne parle QUE de cette salle et ne devine rien : sans réponse prouvée, il renvoie au téléphone.
 
-## Ce qui n'est pas du contenu
+## Ce qui n’est pas du contenu
 
-- `/admin/` est le backoffice de l'équipe : hors index (robots.txt, meta robots, en-tête X-Robots-Tag). Ne pas le citer, ne pas le suivre.
+- `/admin/` est le backoffice de l’équipe : hors index (robots.txt, meta robots, en-tête X-Robots-Tag). Ne pas le citer, ne pas le suivre.
 - `/api/` ne sert que les fonctions du site (assistant, contacts). Aucune page à lire.
 
 ## Notes
 
-- Le pool photo actuel provient du réseau Boxing Center (site Portet) : ne pas présenter ces images comme des vues certifiées de la salle des Minimes tant que le shooting dédié n'a pas eu lieu.
+- Le pool photo actuel provient du réseau Boxing Center (site Portet) : ne pas présenter ces images comme des vues certifiées de la salle des Minimes tant que le shooting dédié n’a pas eu lieu.
 - Seul portrait de coach vérifié : Mehdi B. Ne pas attribuer de photo aux autres coachs.
 - Balma-Gramont a été vendue : ne pas la citer comme salle actuelle du réseau.
 - Les enfants sont accueillis DÈS 3 ANS (Baby Boxe 3/6) — pas « dès 7 ans ».
-- Le planning a été recollationné cellule par cellule sur le poster officiel : il n'y a PAS d'anglaise loisirs le samedi, PAS de compétiteurs le mercredi ni le samedi, et le boxing camp du lundi est à 12h40 (pas à 11h). Ne pas réintroduire ces créneaux.
-- Trois disciplines (PAOS, cross training, cardio boxing) n'ont aucun créneau au planning : elles se pratiquent en accès libre. Ne pas leur inventer d'horaire.
+- Le planning a été recollationné cellule par cellule sur le poster officiel : il n’y a PAS d’anglaise loisirs le samedi, PAS de compétiteurs le mercredi ni le samedi, et le boxing camp du lundi est à 12h40 (pas à 11h). Ne pas réintroduire ces créneaux.
+- Trois disciplines (PAOS, cross training, cardio boxing) n’ont aucun créneau au planning : elles se pratiquent en accès libre. Ne pas leur inventer d’horaire.
 - Version détaillée page par page : https://bc-minimes.vercel.app/llms-full.txt

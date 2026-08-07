@@ -1,9 +1,9 @@
 /* =====================================================================
    POST /api/lead — le carnet de contacts de la salle.
-   Le widget appelle cette fonction dès qu'il a de quoi recontacter le
+   Le widget appelle cette fonction dès qu’il a de quoi recontacter le
    visiteur (prénom + email OU téléphone).
 
-   Trois voies, cumulables, toutes configurées par variables d'environnement :
+   Trois voies, cumulables, toutes configurées par variables d’environnement :
      1. KV (Vercel KV / Upstash Redis REST) → le lead est STOCKÉ et
         relisible dans le backoffice (« Les contacts »).
      2. RESEND_API_KEY → un email part vers LEAD_EMAIL_TO
@@ -11,16 +11,16 @@
      3. LEAD_WEBHOOK_URL → un POST JSON (Zapier, Make, Google Sheets…).
 
    SANS AUCUNE configuration : la fonction répond 200 et journalise le
-   lead dans les logs Vercel. Le parcours du visiteur n'est jamais cassé
-   par un secret manquant — c'est la règle.
+   lead dans les logs Vercel. Le parcours du visiteur n’est jamais cassé
+   par un secret manquant — c’est la règle.
    ===================================================================== */
 import { allowCors, body, ipOf, kv, kvReady, KV_KEY } from "./_lib/util.js";
 
 const MAX_LEADS = 500; // le carnet garde les 500 derniers contacts
 
-/* On retire ce qui casse du HTML ou une ligne d'email (< > | =) et les
-   caractères de contrôle. SURTOUT PAS les chiffres, l'arobase, le point
-   ni le plus : c'est précisément l'email et le numéro qu'on vient
+/* On retire ce qui casse du HTML ou une ligne d’email (< > | =) et les
+   caractères de contrôle. SURTOUT PAS les chiffres, l’arobase, le point
+   ni le plus : c’est précisément l’email et le numéro qu’on vient
    chercher. (Une classe [ESPACE-<] les aurait tous mangés.) */
 const clean = (v, n = 120) =>
   String(v == null ? "" : v)
@@ -117,7 +117,7 @@ export default async function handler(req, res) {
 
   // Rien de configuré (ou tout en panne) : on journalise proprement. Le
   // lead reste retrouvable dans les logs Vercel, et le visiteur ne voit
-  // jamais d'erreur.
+  // jamais d’erreur.
   if (!done.stored && !done.mailed && !done.hooked)
     console.log("[lead] non persisté (aucun stockage configuré) :", JSON.stringify(lead));
 

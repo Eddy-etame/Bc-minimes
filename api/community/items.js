@@ -1,6 +1,6 @@
-/* GET /api/community/items — le mur public : les médias APPROUVÉS, rien d'autre.
-   Si Cloudinary n'est pas branché, on renvoie une liste vide : la page
-   affiche son état d'attente et ne casse jamais. */
+/* GET /api/community/items — le mur public : les médias APPROUVÉS, rien d’autre.
+   Si Cloudinary n’est pas branché, on renvoie une liste vide : la page
+   affiche son état d’attente et ne casse jamais. */
 import { allowCors } from "../_lib/util.js";
 import { cloudReady, searchByTag, MAX_MB, MAX_SEC } from "../_lib/community.js";
 

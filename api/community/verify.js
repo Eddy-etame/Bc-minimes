@@ -2,12 +2,12 @@
    L'œil de la machine, avant que le fichier ne parte chez Cloudinary.
 
    Le navigateur envoie ici une VIGNETTE de la photo (redimensionnée à
-   ~640 px, en JPEG) — pas le fichier d'origine. Trois raisons, dans
-   l'ordre d'importance :
+   ~640 px, en JPEG) — pas le fichier d’origine. Trois raisons, dans
+   l’ordre d’importance :
      1. une fonction Vercel plafonne à 4,5 Mo de corps de requête ;
-     2. le modèle n'a pas besoin de 12 mégapixels pour voir un ring ;
-     3. le visiteur n'attend pas le téléversement de son fichier complet
-        pour apprendre qu'il est refusé.
+     2. le modèle n’a pas besoin de 12 mégapixels pour voir un ring ;
+     3. le visiteur n’attend pas le téléversement de son fichier complet
+        pour apprendre qu’il est refusé.
 
    Seules les PHOTOS passent par ici. Une vidéo va directement en file de
    modération humaine : on ne prétend pas analyser des images animées
@@ -19,7 +19,7 @@ import { allowCors, body } from "../_lib/util.js";
 import { checkImage } from "../_lib/vision.js";
 
 /* La vignette fait quelques dizaines de Ko. Au-delà de 3 Mo de base64,
-   ce n'est plus une vignette : c'est quelqu'un qui pousse. */
+   ce n’est plus une vignette : c’est quelqu’un qui pousse. */
 const MAX_B64 = 3 * 1024 * 1024;
 
 export default async function handler(req, res) {
@@ -50,8 +50,8 @@ export default async function handler(req, res) {
       ok: false,
       via: out.via,
       /* voix de coach, jamais un code : on dit ce qui ne va pas et ce
-         qu'on attend à la place. */
-      error: "Cette photo n'a rien à faire sur le mur du club. Envoie-nous la salle, le ring, les gants, les gens qui bossent.",
+         qu’on attend à la place. */
+      error: "Cette photo n’a rien à faire sur le mur du club. Envoie-nous la salle, le ring, les gants, les gens qui bossent.",
     });
 
   return res.status(200).json({ ok: true, via: out.via });

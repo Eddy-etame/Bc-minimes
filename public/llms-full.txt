@@ -8,11 +8,11 @@
 
 - Boxing Center Minimes est la salle historique (la première, ouverte en 2016) du réseau Boxing Center à Toulouse.
 - Quartier : Les Minimes / Barrière de Paris (31200), métro ligne B.
-- Spécialité : boxe anglaise. 3 rings, 12 sacs lourds, zone pattes d'ours, prépa physique à l'étage.
-- Palmarès de l'école : 3 boxeurs professionnels et plus de 30 amateurs formés sur ces rings.
-- Disciplines avec créneau : boxe anglaise loisirs, boxe compétiteurs, boxe éducative dès 3 ans (Baby Boxe 3/6), Boxing Lady, boxing camp, boxe pieds-poings. En accès libre, sans créneau : PAOS & pattes d'ours, cross training, cardio boxing.
+- Spécialité : boxe anglaise. 3 rings, 12 sacs lourds, zone pattes d’ours, prépa physique à l’étage.
+- Palmarès de l’école : 3 boxeurs professionnels et plus de 30 amateurs formés sur ces rings.
+- Disciplines avec créneau : boxe anglaise loisirs, boxe compétiteurs, boxe éducative dès 3 ans (Baby Boxe 3/6), Boxing Lady, boxing camp, boxe pieds-poings. En accès libre, sans créneau : PAOS & pattes d’ours, cross training, cardio boxing.
 - Publics : débutants, femmes (Boxing Lady 100 % féminin), enfants dès 3 ans, compétiteurs.
-- Séance d'essai : 10 €, toutes disciplines, sans engagement.
+- Séance d’essai : 10 €, toutes disciplines, sans engagement.
 - Téléphone : 05 62 24 46 82.
 
 ## Activités & disciplines — https://bc-minimes.vercel.app/activites/
@@ -21,7 +21,7 @@
 - Pour : du grand débutant au compétiteur licencié.
 - Midi 12h40–13h20 : mardi, mercredi, jeudi.
 - Soir 19h40–21h00 : lundi, mardi, jeudi, vendredi.
-- Coach Mehdi B. Gants et protections prêtés le temps de l'essai.
+- Coach Mehdi B. Gants et protections prêtés le temps de l’essai.
 
 ### Boxe compétiteurs — 4 créneaux/semaine
 - Pour : les licenciés, et ceux que le coach juge prêts à le devenir.
@@ -47,25 +47,25 @@
 
 ### Boxe pieds-poings — 1 créneau/semaine
 - Mercredi 19h40–21h00 avec David. Tous niveaux.
-- Aucune photo de ce cours n'est publiée : le pool photo n'en contient pas, et le site n'illustre pas des pieds-poings avec une image de boxe anglaise.
+- Aucune photo de ce cours n’est publiée : le pool photo n’en contient pas, et le site n’illustre pas des pieds-poings avec une image de boxe anglaise.
 
-### PAOS & pattes d'ours — pas de créneau dédié
-- Travail technique en tête-à-tête avec le coach : ça vit DANS le cours d'anglaise, ce n'est pas un cours à part.
+### PAOS & pattes d’ours — pas de créneau dédié
+- Travail technique en tête-à-tête avec le coach : ça vit DANS le cours d’anglaise, ce n’est pas un cours à part.
 
 ### Cross training — pas de créneau dédié
-- Gainage, cardio, explosivité sur la zone de prépa physique à l'étage, en accès libre (10h–12h et 13h20–18h). Zéro contact.
+- Gainage, cardio, explosivité sur la zone de prépa physique à l’étage, en accès libre (10h–12h et 13h20–18h). Zéro contact.
 
 ### Cardio boxing — pas de créneau dédié
-- Tout le geste de boxe, aucun coup reçu, sur les douze sacs lourds en accès libre. La version encadrée de cet effort, c'est le Boxing camp.
+- Tout le geste de boxe, aucun coup reçu, sur les douze sacs lourds en accès libre. La version encadrée de cet effort, c’est le Boxing camp.
 
 ## Le club — https://bc-minimes.vercel.app/le-club/
 
 - Histoire : Boxing Center ouvre sa première salle aux Minimes en 2016 (concept des salles américaines, accès six jours sur sept, trois rings). En 2018, la boxe éducative et le Boxing Lady décollent. Johnson Suffo et Salomon Kitoko passent professionnels. Une trentaine de combattants formés à la maison.
-- Équipement : 3 rings de boxe, 12 sacs lourds, zone pattes d'ours, prépa physique à l'étage, vestiaires hommes/femmes.
+- Équipement : 3 rings de boxe, 12 sacs lourds, zone pattes d’ours, prépa physique à l’étage, vestiaires hommes/femmes.
 - Affiliations : FFBoxe, FFKMDA, FMMAF.
 - Adresse : 12 rue de Fenouillet, 31200 Toulouse.
 - Le réseau Boxing Center : Portet-sur-Garonne (vaisseau amiral — 800 m², ring olympique, cage MMA — https://www.boxing-center-portet.fr/), États-Unis, Saint-Cyprien (1 200 m²), Ramonville (ring + octogone 7 m) — https://boxingcenter.fr/
-- Questions du lieu : la zone prépa physique est à l'étage et surplombe les rings ; on peut venir voir un cours aux heures d'ouverture sans rien demander ; vestiaires hommes et femmes séparés.
+- Questions du lieu : la zone prépa physique est à l’étage et surplombe les rings ; on peut venir voir un cours aux heures d’ouverture sans rien demander ; vestiaires hommes et femmes séparés.
 
 ## Les coachs — https://bc-minimes.vercel.app/coachs/
 
@@ -73,7 +73,7 @@
 - Chloé — Boxing Lady, lundi 18h30–19h30 (1 créneau).
 - David — Boxing Lady mercredi 18h30–19h30 et boxe pieds-poings mercredi 19h40–21h00 (2 créneaux).
 - Hicham — boxing camp, mardi et jeudi 18h30–19h30 (2 créneaux).
-- Note : seul Mehdi B a un portrait vérifié ; aucune photo n'est attribuée aux autres coachs.
+- Note : seul Mehdi B a un portrait vérifié ; aucune photo n’est attribuée aux autres coachs.
 
 ### Qui encadre, jour par jour (dérivé du planning)
 
@@ -87,9 +87,9 @@
 
 ## Galerie — https://bc-minimes.vercel.app/galerie/
 
-- Galerie noir et blanc filtrable par zone : la salle, boxe anglaise, Lady, l'école, technique.
-- Les photos proviennent du pool réel du réseau Boxing Center (site Portet) ; le shooting dédié des Minimes n'a pas encore eu lieu.
-- La page assume cette limite : une section « hors champ » dit ce qu'aucune photo ne rend (le bruit, l'odeur du cuir, la voix du coach), et chaque zone photo renvoie vers la discipline correspondante.
+- Galerie noir et blanc filtrable par zone : la salle, boxe anglaise, Lady, l’école, technique.
+- Les photos proviennent du pool réel du réseau Boxing Center (site Portet) ; le shooting dédié des Minimes n’a pas encore eu lieu.
+- La page assume cette limite : une section « hors champ » dit ce qu’aucune photo ne rend (le bruit, l’odeur du cuir, la voix du coach), et chaque zone photo renvoie vers la discipline correspondante.
 
 ## Planning — https://bc-minimes.vercel.app/plannings/
 
@@ -151,32 +151,32 @@ Transcription du poster officiel de la saison (grille filtrable jour / disciplin
 - 19h40–21h00 · Accès libre
 
 ### Repères
-- 27 cours encadrés par semaine, plus 16 bandes d'accès libre.
-- Il n'y a PAS de boxe anglaise loisirs le samedi, PAS de boxe compétiteurs le mercredi ni le samedi.
+- 27 cours encadrés par semaine, plus 16 bandes d’accès libre.
+- Il n’y a PAS de boxe anglaise loisirs le samedi, PAS de boxe compétiteurs le mercredi ni le samedi.
 - Accès libre : rings et sacs en autonomie, sans réservation, du lundi au samedi.
 - Ouvert 6 jours sur 7, 10h00–21h30. Fermé le dimanche.
-- La grille de la page est filtrable par jour, discipline et coach, et l'état du filtre est dans l'URL (?jour= / ?disc= / ?coach=).
+- La grille de la page est filtrable par jour, discipline et coach, et l’état du filtre est dans l’URL (?jour= / ?disc= / ?coach=).
 
 ## Tarifs & offres — https://bc-minimes.vercel.app/tarifs/
 
-- Séance d'essai : 10 € la séance — toutes les disciplines, gants et protections prêtés, sans engagement, sans dossier. → https://box-plus.vercel.app/seance-essai
+- Séance d’essai : 10 € la séance — toutes les disciplines, gants et protections prêtés, sans engagement, sans dossier. → https://box-plus.vercel.app/seance-essai
 - Offre Duo : 29 € par personne (au lieu de 44 €) — 4 semaines de cours illimités à deux, toutes disciplines, sans engagement. → https://box-plus.vercel.app/abonnements#promo
 - Saison complète : 259 € les 12 mois (au lieu de 400 €) — payable en 4× sans frais ; anglaise, MMA, pieds-poings, Lady, fitness ; accès libre aux 5 clubs du réseau. → https://box-plus.vercel.app/abonnements#promo
-- École de boxe : 295 € l'année t-shirt inclus, baby 250 € — Baby Boxe dès 3 ans (3/6), éducative 7/11, ados 12/16, compétiteurs encadrés par Mehdi B. → https://box-plus.vercel.app/abonnements#enfants
+- École de boxe : 295 € l’année t-shirt inclus, baby 250 € — Baby Boxe dès 3 ans (3/6), éducative 7/11, ados 12/16, compétiteurs encadrés par Mehdi B. → https://box-plus.vercel.app/abonnements#enfants
 - Bonus : t-shirt Boxing Center offert aux 100 premiers inscrits.
-### Les questions d'argent (rendues sur /tarifs/, hors FAQPage)
+### Les questions d’argent (rendues sur /tarifs/, hors FAQPage)
 
 - Première fois : 10 €, une séance, la discipline au choix, gants et protections prêtés, sans dossier ni engagement.
-- L'offre Duo se compte PAR PERSONNE : 29 € chacun (au lieu de 44 €), pas 29 € pour deux.
+- L’offre Duo se compte PAR PERSONNE : 29 € chacun (au lieu de 44 €), pas 29 € pour deux.
 - La saison est payable en 4× sans frais : 259 € les 12 mois, soit moins de 65 € par échéance et environ 22 € par mois.
-- L'abonnement saison ouvre l'accès libre aux 5 clubs du réseau, pas seulement aux Minimes.
-- Enfants : à partir de 280 € l'année, dès 3 ans (Baby Boxe 3/6, éducative 7/11, ados 12/16).
-- Matériel : prêté pour la séance d'essai. Au-delà, l'adhérent prend ses propres gants (hygiène) ; la boutique du réseau les fournit.
+- L’abonnement saison ouvre l’accès libre aux 5 clubs du réseau, pas seulement aux Minimes.
+- Enfants : à partir de 280 € l’année, dès 3 ans (Baby Boxe 3/6, éducative 7/11, ados 12/16).
+- Matériel : prêté pour la séance d’essai. Au-delà, l’adhérent prend ses propres gants (hygiène) ; la boutique du réseau les fournit.
 - Le t-shirt offert concerne les 100 premiers inscrits de la saison, sans contrepartie ni engagement supplémentaire.
 
-- Avis Google : la note et le nombre d'avis sont affichés à jour sur https://bc-minimes.vercel.app/tarifs/ et ne sont pas recopiés ici (un compte d'avis bouge en permanence). Extraits verbatim affichés sur la page :
+- Avis Google : la note et le nombre d’avis sont affichés à jour sur https://bc-minimes.vercel.app/tarifs/ et ne sont pas recopiés ici (un compte d’avis bouge en permanence). Extraits verbatim affichés sur la page :
   - « Très belle salle de boxe. Matos au top, coach et staff accueillant. » — Hamed S.
-  - « J'ai adoré mes trois ans passés à faire du sport à Boxing Center. Équipe au top. » — Salomé C.
+  - « J’ai adoré mes trois ans passés à faire du sport à Boxing Center. Équipe au top. » — Salomé C.
   - « Superbe salle, très bonne ambiance. Je pratique les cours de boxe anglaise loisir. » — Pascal L.
 
 ## Contact & accès — https://bc-minimes.vercel.app/contact/
@@ -186,12 +186,12 @@ Transcription du poster officiel de la saison (grille filtrable jour / disciplin
 - E-mail : boxingcenter31@gmail.com
 - Horaires : lundi–vendredi 10h00–21h30 ; samedi 10h00–21h30 ; dimanche fermé.
 - Accès : métro ligne B station Barrière de Paris (3 min à pied) ; rocade sortie 31 direction Les Minimes ; bus 70 / 27 arrêt Minimes-Roquelaine.
-- Réservation de la séance d'essai (10 €) : https://box-plus.vercel.app/seance-essai
+- Réservation de la séance d’essai (10 €) : https://box-plus.vercel.app/seance-essai
 
 ### FAQ
 - Où se trouve Boxing Center Minimes ? — Au 12 rue de Fenouillet, 31200 Toulouse, dans le quartier des Minimes — Barrière de Paris, à 3 minutes du métro ligne B.
-- Je n'ai jamais boxé. Je peux venir ? — Oui. Il y a des créneaux débutants et du cardio boxing sans aucun coup reçu.
-- Quelle est la spécialité de la salle des Minimes ? — La boxe anglaise. C'est la salle historique du groupe, le berceau de plusieurs boxeurs professionnels et amateurs — avec trois rings dédiés.
-- Y a-t-il des cours pour les enfants ? — Oui, dès 3 ans : Baby Boxe 3/6, éducative 7/11, ados 12/16, puis compétiteurs. À partir de 280 € l'année.
+- Je n’ai jamais boxé. Je peux venir ? — Oui. Il y a des créneaux débutants et du cardio boxing sans aucun coup reçu.
+- Quelle est la spécialité de la salle des Minimes ? — La boxe anglaise. C’est la salle historique du groupe, le berceau de plusieurs boxeurs professionnels et amateurs — avec trois rings dédiés.
+- Y a-t-il des cours pour les enfants ? — Oui, dès 3 ans : Baby Boxe 3/6, éducative 7/11, ados 12/16, puis compétiteurs. À partir de 280 € l’année.
 - Il y a des cours pour les femmes ? — Le Boxing Lady est 100 % féminin : lundi 18h30 avec Chloé, mercredi 18h30 avec David. Tous les autres cours sont ouverts.
 - Quels sont les horaires ? — Du lundi au samedi, de 10h00 à 21h30. Fermé le dimanche.

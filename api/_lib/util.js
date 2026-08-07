@@ -16,7 +16,7 @@ export function allowCors(res) {
 }
 
 /** Auth backoffice. Comparaison en temps constant, et refus net si le
- *  secret n'est pas configuré (jamais de porte ouverte par défaut). */
+ *  secret n’est pas configuré (jamais de porte ouverte par défaut). */
 export function isAdmin(req) {
   if (!process.env.ADMIN_TOKEN) return false;
   const given = createHash("sha256").update(String(req.headers["x-admin-token"] || "")).digest();
@@ -34,10 +34,10 @@ export function ipOf(req) {
   return (req.headers["x-forwarded-for"] || "").split(",")[0].trim() || req.socket?.remoteAddress || "0.0.0.0";
 }
 
-/* ---------- le filtre d'injures (prénoms et titres du public) ----------
+/* ---------- le filtre d’injures (prénoms et titres du public) ----------
    Première ligne de défense côté SERVEUR : le client a le même filtre,
    mais un client se contourne. Ce qui passe ici part quand même en file
-   de modération — rien n'est publié sans un humain. */
+   de modération — rien n’est publié sans un humain. */
 const BADWORDS = [
   "merde", "putain", "connard", "connasse", "salope", "encule", "pute", "bite", "couille", "nique",
   "ntm", "pd", "pede", "tapette", "bougnoule", "negro", "negre", "youpin", "salaud",
@@ -68,7 +68,7 @@ const KV_TOKEN = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST
 export const KV_KEY = "bc:minimes:leads";
 export const kvReady = () => Boolean(KV_URL && KV_TOKEN);
 
-/** Appelle l'API REST du KV. `cmd` = tableau de commandes Redis. */
+/** Appelle l’API REST du KV. `cmd` = tableau de commandes Redis. */
 export async function kv(cmd) {
   if (!kvReady()) throw new Error("kv-not-configured");
   const r = await fetch(KV_URL.replace(/\/$/, ""), {
@@ -97,12 +97,12 @@ export function gh(path, init = {}) {
   });
 }
 
-/* ---------- Preuve de travail (anti-bot, cout ~un clignement d'oeil) ----------
+/* ---------- Preuve de travail (anti-bot, cout ~un clignement d’oeil) ----------
    Meme mecanique que Portet : defi signe HMAC (aucun etat serveur), le client
    trouve un nonce tel que sha256("challenge:nonce") commence par N zeros. */
 const POW_DIFFICULTY = +(process.env.POW_DIFFICULTY || 4);
 const POW_TTL_MS = 10 * 60 * 1000;
-const powSecret = () => (process.env.CLOUDINARY_URL || process.env.ADMIN_TOKEN || "bcm"); // l'URL contient le secret : bonne matiere HMAC
+const powSecret = () => (process.env.CLOUDINARY_URL || process.env.ADMIN_TOKEN || "bcm"); // l’URL contient le secret : bonne matiere HMAC
 
 export function issuePow() {
   const ts = Date.now();

@@ -219,7 +219,7 @@ function bindForm(form, status) {
     submit.disabled = true;
     say(status, "Préparation…", "info");
     try {
-      /* 0) le defi anti-bot : emis par le serveur, resolu ici en un clin d'oeil */
+      /* 0) le defi anti-bot : emis par le serveur, resolu ici en un clin d’oeil */
       const powRes = await fetch(`${API}/api/community/sign`).then((r) => r.json()).catch(() => null);
       let powNonce = "";
       if (powRes && powRes.challenge) {

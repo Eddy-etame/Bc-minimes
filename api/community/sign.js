@@ -2,10 +2,10 @@
    Valide (prénom, contact, titre, injures), limite par IP, puis renvoie des
    paramètres SIGNÉS pour que le navigateur téléverse le fichier DIRECTEMENT
    sur Cloudinary — les octets ne traversent jamais la fonction Vercel
-   (limite de 4,5 Mo sur le corps d'une requête).
+   (limite de 4,5 Mo sur le corps d’une requête).
 
    Le dépôt atterrit tagué "pending" : invisible du public tant que le staff
-   ne l'a pas approuvé depuis Le coin bleu. */
+   ne l’a pas approuvé depuis Le coin bleu. */
 import { allowCors, body, ipOf, cleanName, issuePow, verifyPow } from "../_lib/util.js";
 import { cloudinary, cloudReady, FOLDER, MODERATION, withTimeout, CLOUD_TIMEOUT_MS } from "../_lib/community.js";
 import { visionReady } from "../_lib/vision.js";
@@ -17,7 +17,7 @@ export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
 
   if (!cloudReady())
-    return res.status(503).json({ error: "Le mur du club n'est pas encore ouvert. Reviens très vite." });
+    return res.status(503).json({ error: "Le mur du club n’est pas encore ouvert. Reviens très vite." });
 
   const b = body(req);
 
@@ -31,7 +31,7 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: "Vérification expirée — réessaie, ça prend une seconde." });
   }
 
-  /* --- le prénom : obligatoire (c'est une signature, pas un anonymat) --- */
+  /* --- le prénom : obligatoire (c’est une signature, pas un anonymat) --- */
   const a = cleanName(b.author, 40);
   if (a.value.length < 2) return res.status(400).json({ error: "Donne ton prénom — on veut savoir qui a filmé." });
   if (a.bad) return res.status(400).json({ error: "Ce prénom ne passe pas. Mets le vrai." });
@@ -44,7 +44,7 @@ export default async function handler(req, res) {
   if (!emailOk && !phoneOk)
     return res.status(400).json({ error: "Laisse un email ou un numéro — sinon on ne peut pas te prévenir quand ça passe en ligne." });
 
-  /* --- le titre : facultatif, mais filtré s'il est là --- */
+  /* --- le titre : facultatif, mais filtré s’il est là --- */
   const t = cleanName(b.title, 60);
   if (t.bad) return res.status(400).json({ error: "Ce titre ne passe pas. Trouve autre chose." });
 
@@ -64,14 +64,14 @@ export default async function handler(req, res) {
         .execute(),
       CLOUD_TIMEOUT_MS, "rate-limit");
     if ((r.total_count ?? (r.resources || []).length) >= max)
-      return res.status(429).json({ error: `Doucement — ${max} envois d'affilée, ça suffit. Reviens dans ${windowMin} minutes.` });
+      return res.status(429).json({ error: `Doucement — ${max} envois d’affilée, ça suffit. Reviens dans ${windowMin} minutes.` });
   } catch { /* panne ou lenteur : on laisse passer POUR DE VRAI (cf. withTimeout).
                Le dépôt part quand même en file de modération — aucun risque. */ }
 
   const timestamp = Math.round(Date.now() / 1000);
 
   /* LE CONTACT SUIT LE MÉDIA. Il part dans le carnet du club (/api/lead,
-     event "upload_contributor") — c'est là qu'il vit — mais il est AUSSI
+     event "upload_contributor") — c’est là qu’il vit — mais il est AUSSI
      attaché ici, pour que le staff qui modère sache qui a envoyé quoi
      sans avoir à croiser deux écrans.
      Il ne ressort QUE par /api/community/pending, derrière isAdmin() :
@@ -80,9 +80,9 @@ export default async function handler(req, res) {
      le format de contexte de Cloudinary : on les retire. */
   const contact = (email && emailOk ? email : phone).replace(/[|=]/g, "").slice(0, 120);
 
-  /* Ce que la machine a pu regarder. C'est une INDICATION pour le staff,
-     pas une garantie : un client bricolé peut sauter l'étape. C'est
-     précisément pour ça qu'un humain tranche derrière, toujours. */
+  /* Ce que la machine a pu regarder. C’est une INDICATION pour le staff,
+     pas une garantie : un client bricolé peut sauter l’étape. C’est
+     précisément pour ça qu’un humain tranche derrière, toujours. */
   const vision = kind === "image" && visionReady() ? "gemini" : "humain";
 
   const context = `title=${t.value}|author=${a.value}|contact=${contact}|ip=${ip}|kind=${kind}|vision=${vision}`;
@@ -95,7 +95,7 @@ export default async function handler(req, res) {
     apiKey: cloudinary.config().api_key,
     timestamp, folder: FOLDER, tags: "pending", context, signature, kind,
     moderation: MODERATION || undefined,
-    /* le client saura s'il doit passer par /api/community/verify : sans
+    /* le client saura s’il doit passer par /api/community/verify : sans
        clé, on ne lui fait pas perdre un aller-retour pour rien */
     vision: vision === "gemini",
   });

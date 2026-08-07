@@ -1,9 +1,9 @@
 /* =====================================================================
    GET /api/admin/leads — le carnet de contacts, pour le backoffice.
-   Lit la liste écrite par /api/lead dans le KV. Si aucun KV n'est
+   Lit la liste écrite par /api/lead dans le KV. Si aucun KV n’est
    configuré, on répond 200 avec une liste vide ET la raison : le
    vestiaire affiche alors un encart qui explique quoi brancher, au
-   lieu d'un tableau vide qui laisse croire que personne n'a écrit.
+   lieu d’un tableau vide qui laisse croire que personne n’a écrit.
    ===================================================================== */
 import { allowCors, isAdmin, kv, kvReady, KV_KEY } from "../_lib/util.js";
 
