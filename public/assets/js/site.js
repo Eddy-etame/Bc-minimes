@@ -4,6 +4,7 @@
                  initKinetics, faq, lenis, velocity }
    ===================================================================== */
 import { NAV, LINKS, SALLE, MEDIA, CTA, NETWORK } from "./data.js?v=b18";
+import { initPlaces } from "./places.js?v=b18";
 /* L’assistant : il promeut la pastille `.chatbot` (qui reste un lien tel:
    dans le HTML) en vraie conversation. Voir armChatbot() plus bas — le
    module ne descend QU’À l’intention de parler, jamais au premier rendu. */
@@ -550,6 +551,90 @@ function armChatbot() {
   });
 }
 
+/* ================================================================
+   L'ASSISTANT SE PRESENTE TOUT SEUL — une fois, au bon moment.
+
+   Une pastille muette dans un coin ne se remarque pas : personne ne
+   clique sur ce qu'il n'a pas compris. Le bot se presente donc de
+   lui-meme, mais seulement quand le visiteur a montre qu'il lisait
+   (il a fait defiler). Jamais a l'arrivee : s'ouvrir sur le nez de
+   quelqu'un qui vient d'atterrir, c'est le geste qui fait fermer
+   l'onglet.
+
+   POURQUOI UN CLIC SIMULE plutot qu'un appel de fonction : le module
+   du bot ne descend qu'a l'intention de parler, et chaque salle a sa
+   propre mecanique de chargement. Cliquer la pastille, c'est le chemin
+   qu'emprunte un vrai visiteur — il marche partout, sans rien savoir
+   de ce qu'il y a derriere.
+
+   Trois garde-fous : une seule fois par session ; jamais si le panneau
+   est deja la ; jamais sur /seance-offerte/, page de conversion ou le
+   formulaire ne doit rien avoir devant lui.
+
+   Sur telephone, le panneau couvre l'ecran : on y pose une BULLE avec
+   la premiere phrase et un bouton. Le message est vu, la page reste au
+   visiteur.
+   ================================================================ */
+function presentationAssistant() {
+  const CLE = "bcm-chat-auto", SEUIL_PX = 900, SEUIL_PART = 0.28;
+  const pastille = document.querySelector("a.chatbot, .chatbot");
+  if (!pastille) return;
+  try { if (sessionStorage.getItem(CLE)) return; } catch (e) { /* stockage indispo */ }
+  if (location.pathname.indexOf("/seance-offerte") === 0) return;
+
+  let fait = false, bulle = null;
+  const dejaLa = () => !!document.querySelector('[class*="chat__panel"], [class*="chat-panel"], #bcr-panel, #scchat-panel');
+  const congedier = () => { if (bulle) { bulle.remove(); bulle = null; } };
+  const ouvrir = () => pastille.click();
+
+  function poserBulle(texte) {
+    if (bulle) return;
+    bulle = document.createElement("div");
+    bulle.className = "bc-amorce";
+    bulle.setAttribute("role", "status");
+    bulle.innerHTML =
+      '<button type="button" class="bc-amorce__fermer" aria-label="Masquer le message de l’assistant">×</button>' +
+      '<p class="bc-amorce__texte">' + texte + "</p>" +
+      '<span class="bc-amorce__cta">Discuter →</span>';
+    bulle.addEventListener("click", (e) => {
+      const ferme = e.target.closest(".bc-amorce__fermer");
+      congedier();
+      if (!ferme) ouvrir();
+    });
+    document.body.appendChild(bulle);
+  }
+
+  function regarder() {
+    if (fait || dejaLa()) return;
+    const h = document.documentElement;
+    const y = window.scrollY || h.scrollTop || 0;
+    const total = Math.max(1, h.scrollHeight - h.clientHeight);
+    if (y < SEUIL_PX && y / total < SEUIL_PART) return;
+    fait = true;
+    try { sessionStorage.setItem(CLE, "1"); } catch (e) { /* stockage indispo */ }
+    setTimeout(() => {
+      if (dejaLa()) return;
+      if (window.matchMedia("(max-width: 480px)").matches) poserBulle("Une question sur les offres, les horaires ou l’école enfants ? Je réponds tout de suite.");
+      else ouvrir();
+    }, 650);
+  }
+
+  /* On LIT la position, on n'attend pas qu'on nous la signale : aucun
+     evenement `scroll` n'est emis sur ce site (Lenis les absorbe — mesure
+     faite au navigateur). Un intervalle plutot que requestAnimationFrame,
+     parce que rAF est gele des que la page ne compose plus d'images
+     (onglet d'arriere-plan) : la presentation ne partirait jamais pour
+     quelqu'un qui ouvre le site dans un onglet et y revient. 300 ms coute
+     cent fois moins qu'une image. On s'arrete pour de bon au premier
+     declenchement, et on abandonne au bout de deux minutes. */
+  const minuteur = setInterval(() => {
+    regarder();
+    if (fait) clearInterval(minuteur);
+  }, 300);
+  setTimeout(() => clearInterval(minuteur), 120000);
+  regarder();   // page deja defilee (retour arriere, ancre) : on tranche tout de suite
+}
+
 /* ------------------------------ BOOT ------------------------------ */
 window.BC = { reveal, magnetic, refresh, media: hydrateMedia, serveMedia, split, scramble, initKinetics, faq, get lenis() { return lenis; }, get velocity() { return velocity; } };
 mountNav();
@@ -559,5 +644,10 @@ initCursor();
 hydrateMedia(document);   // hydrate menu/footer bg video etc.
 magnetic(document);
 armChatbot();
+
+/* « Plus que N places » : le nombre vient des ventes reelles de la
+   boutique. Sans reponse, aucun compteur ne s'affiche — voir places.js. */
+void initPlaces();
+presentationAssistant();
 
 export const BC = window.BC;

@@ -196,7 +196,7 @@ export function initChatbot() {
   root.id = "bcm-chat";
   root.hidden = true;
   root.innerHTML = `
-    <section class="bcm-chat__panel" role="dialog" aria-modal="true" aria-labelledby="bcm-chat-title">
+    <section class="bcm-chat__panel" data-lenis-prevent role="dialog" aria-modal="true" aria-labelledby="bcm-chat-title">
       <header class="bcm-chat__head">
         <img src="${LOGO}" alt="" width="342" height="160" decoding="async" />
         <div class="bcm-chat__head-text">
@@ -441,6 +441,8 @@ export function initChatbot() {
     if (b) { const t = b.dataset.q; userSay(t); await answer(t, false); }  // puce = question, pas réponse
   });
   closeBtn.addEventListener("click", close);
+
+
 }
 
 initChatbot();
