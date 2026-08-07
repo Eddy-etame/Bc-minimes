@@ -56,7 +56,20 @@
 @keyframes bcm-dot { 0%,60%,100% { opacity: .28; } 30% { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .bcm-chat__dots i { animation: none; opacity: .6; } }
 
-.bcm-chat__chips { display: flex; flex-wrap: wrap; gap: .35rem; padding: 0 1rem .6rem; }
+
+/* Le ruban de suggestions tient sur UNE ligne qui glisse. Il etait en
+   `flex-wrap: wrap` : les pastilles s'empilaient sur deux ou trois rangees
+   juste au-dessus du champ de saisie et mangeaient le tiers du panneau —
+   l'assistant paraissait plein avant d'avoir dit un mot. Barre de defilement
+   masquee (sur un ruban horizontal, elle se lit comme un defaut) et bords en
+   degrade : l'oeil comprend « ca continue » sans qu'on l'ecrive. */
+.bcm-chat__chips { display: flex; flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden;
+  scroll-snap-type: none; -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; -ms-overflow-style: none;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 12px, #000 calc(100% - 20px), transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 12px, #000 calc(100% - 20px), transparent 100%); gap: .35rem; padding: 0 1rem .6rem; }
+.bcm-chat__chips::-webkit-scrollbar { display: none; }
+.bcm-chat__chips button { flex: 0 0 auto; white-space: nowrap; }
 .bcm-chat__chips[hidden] { display: none; }
 .bcm-chat__chips button { font: 700 .7rem/1 var(--f-ui); letter-spacing: .04em; text-transform: uppercase; color: var(--read); background: none; border: 1px solid var(--line); border-radius: 100px; padding: .45rem .7rem; transition: border-color .25s, color .25s; }
 .bcm-chat__chips button:hover, .bcm-chat__chips button:focus-visible { border-color: var(--mark); color: var(--bone); }

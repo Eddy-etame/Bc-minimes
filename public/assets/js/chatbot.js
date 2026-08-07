@@ -400,7 +400,10 @@ export function initChatbot() {
     input.focus();
     if (!opened) {
       opened = true;
-      await botSay(`Salut ! Ici l’assistant du Boxing Center Minimes — la salle historique, ${SALLE.address.street}. L’offre de la rentrée est à 29€ par personne — et je réponds sur les horaires, les cours, l’école dès 3 ans…`, 500, resolveActions(["offre", "essai"]));
+      /* Bonjour d'abord, argumentaire ensuite : le message ouvrait sur les
+         metres carres et le prix, ce qui presse au lieu d'accueillir. */
+      await botSay("Bonjour 👋 Ici l’assistant du Boxing Center Minimes.", 450);
+      await botSay(`Horaires, cours, école dès 3 ans, tarifs — posez votre question, je vous réponds. On est ${SALLE.address.street}.`, 600, resolveActions(["offre", "essai"]));
       expectName = true;
       await botSay("Avant qu’on commence : tu t’appelles comment ?", 400);
       showChips();
