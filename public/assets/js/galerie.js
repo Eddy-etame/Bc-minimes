@@ -63,9 +63,16 @@ function renderBridge() {
 function renderGrid() {
   const box = $("#ga-grid");
   if (!box) return;
+  /* La vignette porte MAINTENANT une vraie balise <img>.
+     Avant, la cellule était une coquille vide (`.media[data-img]`) et la
+     photo n'arrivait que par hydrateMedia(), en JavaScript : douze clichés
+     que Google Images ne pouvait pas indexer, faute d'exister dans le HTML.
+     L'image est écrite ici, avec son alt et ses dimensions réelles ; le
+     chargement paresseux natif (`loading="lazy"`) remplace l'observer, et
+     hydrateMedia() passe son tour dès qu'une <img> est déjà en place. */
   box.innerHTML = GALLERY.shots
     .map(
-      (s, i) => `<figure class="ga-cell media ${s.big ? "ga-cell--big" : ""}" data-zone="${s.zone}" data-img="${s.img}" data-label="${s.label}" role="button" tabindex="0" aria-label="Agrandir : ${s.label}" style="--i:${i}"></figure>`
+      (s, i) => `<figure class="ga-cell media ${s.big ? "ga-cell--big" : ""}" data-zone="${s.zone}" data-img="${s.img}" data-label="${s.label}" role="button" tabindex="0" aria-label="Agrandir : ${s.label}" style="--i:${i}"><img src="${s.img}" alt="${s.alt}" width="${s.w}" height="${s.h}" loading="lazy" decoding="async" /></figure>`
     )
     .join("");
 }
@@ -111,7 +118,10 @@ function initLightbox() {
   const open = (cell) => {
     const src = cell.querySelector("img")?.src || cell.dataset.img;
     imgEl.src = src;
-    imgEl.alt = cell.dataset.label || "";
+    /* L'alt de la vignette DÉCRIT la photo ; la pastille (`data-label`) est
+       une accroche de trois mots. Agrandie, la photo mérite la description,
+       pas l'accroche : « Le noble art » ne dit rien à qui ne voit pas. */
+    imgEl.alt = cell.querySelector("img")?.alt || cell.dataset.label || "";
     capEl.textContent = cell.dataset.label || "";
     lb.classList.add("is-open");
     lb.setAttribute("aria-hidden", "false");

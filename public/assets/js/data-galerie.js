@@ -45,18 +45,33 @@ export const GALLERY = {
       d: "« Remonte ta droite. » Dix fois. Cent fois. C’est le seul son qui compte et c’est celui qu’aucune image ne t’apportera. Viens le prendre.",
     },
   ],
+  /* `label` = la pastille mono posée sur la vignette. `alt` = ce que voit
+     quelqu'un qui ne voit pas l'image — et ce que lit Google Images, qui
+     n'indexe rien sans lui. Les deux ne disent pas la même chose et ne
+     doivent jamais être confondus : la pastille est une accroche, l'alt
+     est une description.
+
+     ⚠ RÈGLE TENUE ICI : ces alt décrivent l'ACTIVITÉ, jamais la pièce.
+     Le pool est encore celui de Portet (voir l'avertissement plus haut) —
+     écrire « la salle des Minimes » sous ces fichiers serait faux, et un
+     alt faux vaut moins que pas d'alt du tout. Au shooting, ils pourront
+     nommer la salle ; pas avant.
+
+     `w`/`h` : les dimensions réelles du fichier. Le navigateur réserve la
+     place avant que la photo arrive (plus de saut de mise en page), et
+     Google classe mal une image dont il ignore la taille. */
   shots: [
-    { img: "/assets/img/bc/salle-1.webp", label: "Entre les cordes", zone: "salle", big: true },
-    { img: "/assets/img/bc/anglaise-1.webp", label: "Sur le ring", zone: "anglaise" },
-    { img: "/assets/img/bc/anglaise-2.webp", label: "Le noble art", zone: "anglaise" },
-    { img: "/assets/img/bc/educative-1.webp", label: "Le premier gant", zone: "educative", big: true },
-    { img: "/assets/img/bc/anglaise-3.webp", label: "Le sparring", zone: "anglaise" },
-    { img: "/assets/img/bc/lady-1.webp", label: "Boxing Lady", zone: "lady" },
-    { img: "/assets/img/bc/training-2.webp", label: "Pattes d’ours", zone: "technique" },
-    { img: "/assets/img/bc/anglaise-4.webp", label: "Garde haute", zone: "anglaise" },
-    { img: "/assets/img/bc/lady-2.webp", label: "Le sac", zone: "lady" },
-    { img: "/assets/img/bc/cross-1.webp", label: "Cross training", zone: "technique" },
-    { img: "/assets/img/bc/training-1.webp", label: "Cardio boxing", zone: "technique" },
-    { img: "/assets/img/bc/levels-1.webp", label: "Tous les niveaux", zone: "salle" },
+    { img: "/assets/img/bc/salle-1.webp", w: 768, h: 512, label: "Entre les cordes", alt: "Le ring vu depuis le coin, cordes tendues et sacs de frappe en arrière-plan — Boxing Center, Toulouse.", zone: "salle", big: true },
+    { img: "/assets/img/bc/anglaise-1.webp", w: 768, h: 512, label: "Sur le ring", alt: "Cours de boxe anglaise sur le ring : deux boxeurs gantés, garde haute, en round d'assaut — Boxing Center, Toulouse.", zone: "anglaise" },
+    { img: "/assets/img/bc/anglaise-2.webp", w: 768, h: 512, label: "Le noble art", alt: "Travail de déplacements et de garde en boxe anglaise, gants et casque de protection — Boxing Center, Toulouse.", zone: "anglaise" },
+    { img: "/assets/img/bc/educative-1.webp", w: 768, h: 512, label: "Le premier gant", alt: "Cours de boxe éducative pour enfants : les gants sont plus gros que les mains, le coach corrige la position — Boxing Center, Toulouse.", zone: "educative", big: true },
+    { img: "/assets/img/bc/anglaise-3.webp", w: 768, h: 512, label: "Le sparring", alt: "Sparring encadré sur le ring, casque et protège-dents, le coach au bord des cordes — Boxing Center, Toulouse.", zone: "anglaise" },
+    { img: "/assets/img/bc/lady-1.webp", w: 1433, h: 1080, label: "Boxing Lady", alt: "Le cours Lady Boxing, réservé aux femmes : rang de pratiquantes gantées face aux sacs — Boxing Center, Toulouse.", zone: "lady" },
+    { img: "/assets/img/bc/training-2.webp", w: 768, h: 512, label: "Pattes d’ours", alt: "Travail technique aux pattes d'ours : le coach tient les cibles, le boxeur enchaîne direct et crochet — Boxing Center, Toulouse.", zone: "technique" },
+    { img: "/assets/img/bc/anglaise-4.webp", w: 768, h: 512, label: "Garde haute", alt: "Frappe au sac lourd, garde haute et coudes serrés, mains bandées — Boxing Center, Toulouse.", zone: "anglaise" },
+    { img: "/assets/img/bc/lady-2.webp", w: 768, h: 512, label: "Le sac", alt: "Séance Lady Boxing au sac : appui avant marqué, épaule qui protège le menton — Boxing Center, Toulouse.", zone: "lady" },
+    { img: "/assets/img/bc/cross-1.webp", w: 768, h: 512, label: "Cross training", alt: "Circuit de cross training : gainage, charges libres et corde, entre deux rounds de boxe — Boxing Center, Toulouse.", zone: "technique" },
+    { img: "/assets/img/bc/training-1.webp", w: 768, h: 512, label: "Cardio boxing", alt: "Cours de cardio boxing sans opposition : le groupe enchaîne les combinaisons au rythme du minuteur — Boxing Center, Toulouse.", zone: "technique" },
+    { img: "/assets/img/bc/levels-1.webp", w: 769, h: 512, label: "Tous les niveaux", alt: "Débutants et compétiteurs s'entraînent côte à côte sur le même plateau — Boxing Center, Toulouse.", zone: "salle" },
   ],
 };

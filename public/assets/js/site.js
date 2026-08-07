@@ -364,6 +364,9 @@ function _defer(img) {
 function hydrateMedia(scope = document) {
   scope.querySelectorAll(".media[data-img]").forEach((el) => {
     if (el.dataset.mediaBound) return; el.dataset.mediaBound = "1";
+    /* Une <img> déjà posée dans le HTML (galerie cuite au build, pour que
+       Google Images ait quelque chose à indexer) : on ne la double pas. */
+    if (el.querySelector("img")) return;
     const eager = el.hasAttribute("data-eager");
     const url = (local(el.dataset.img) ? "" : MEDIA) + el.dataset.img;
     const img = document.createElement("img");

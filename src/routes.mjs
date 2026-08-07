@@ -13,48 +13,90 @@
 
 export const SITE = "https://bc-minimes.vercel.app";
 
+/* ---------------------------------------------------------------------
+   L'INVENTAIRE DES PHOTOS.
+
+   Les visuels du site sont posés en fonds CSS et en grilles peintes par le
+   JavaScript. Google Images n'indexe QUE ce qu'il voit dans le HTML : une
+   photo en `background-image` ne rapporte rien. Le sitemap d'images est la
+   seule déclaration officielle qui les rattrape — et il n'en portait qu'UNE
+   par page, la même répétée à deux endroits.
+
+   ⚠ CE QUE CES LÉGENDES N'ONT PAS LE DROIT DE DIRE. Les photos de cours
+   sont, à ce jour, le pool Boxing Center servi en placeholder depuis
+   Portet — data-galerie.js le déclare noir sur blanc et attend le shooting
+   des Minimes. Une légende qui écrirait « la salle des Minimes » ou
+   « Barrière de Paris » sur ces fichiers serait FAUSSE, et une légende
+   fausse dans un sitemap est pire qu'une absence : c'est un club qui ment
+   à Google sur ses propres murs. Les légendes décrivent donc l'ACTIVITÉ et
+   le club (Boxing Center, Toulouse), jamais la pièce. Le jour du shooting,
+   elles pourront nommer la salle — pas avant.
+
+   Seuls les découpages de Mehdi et des boxeurs sont bien d'ici : eux
+   peuvent porter le nom de la salle.
+
+   Une seule taille par visuel : déclarer `planning-2026` ET
+   `planning-2026-full`, c'est mettre la même affiche en concurrence
+   avec elle-même.
+   --------------------------------------------------------------------- */
+const CLUB = "Boxing Center Minimes";
+const RESEAU = "Boxing Center, Toulouse";
+const I = {
+  anglaise1: ["/assets/img/bc/anglaise-1.webp", "Boxe anglaise sur le ring — Boxing Center", `Cours de boxe anglaise sur le ring — ${RESEAU}. La boxe anglaise est au programme du ${CLUB}.`],
+  anglaise2: ["/assets/img/bc/anglaise-2.webp", "Garde et déplacements en boxe anglaise — Boxing Center", `Travail de garde et de déplacements en boxe anglaise — ${RESEAU}.`],
+  anglaise3: ["/assets/img/bc/anglaise-3.webp", "Un round d'assaut entre les cordes — Boxing Center", `Assaut encadré sur le ring — ${RESEAU}. Le sparring est facultatif et ne s'impose jamais.`],
+  anglaise4: ["/assets/img/bc/anglaise-4.webp", "Frappe au sac lourd — Boxing Center", `Séance de frappe au sac lourd — ${RESEAU}.`],
+  salle:     ["/assets/img/bc/salle-1.webp", "Entre les cordes — Boxing Center", `Le ring, les sacs et le plateau d'une salle du réseau ${RESEAU}.`],
+  training1: ["/assets/img/bc/training-1.webp", "Cardio boxing — Boxing Center", `Cours de cardio boxing, sans opposition, tous niveaux — ${RESEAU}. Au programme du ${CLUB}.`],
+  training2: ["/assets/img/bc/training-2.webp", "Travail aux pattes d'ours — Boxing Center", `Le coach corrige la technique aux pattes d'ours — ${RESEAU}.`],
+  cross:     ["/assets/img/bc/cross-1.webp", "Cross training — Boxing Center", `Cours de cross training — ${RESEAU}. Compris dans l'abonnement du ${CLUB}.`],
+  lady1:     ["/assets/img/bc/lady-1.webp", "Lady Boxing, le cours 100 % femmes — Boxing Center", `Le cours Lady Boxing, réservé aux femmes — ${RESEAU}. Au programme du ${CLUB}.`],
+  lady2:     ["/assets/img/bc/lady-2.webp", "Frappe au sac en Lady Boxing — Boxing Center", `Séance Lady Boxing au sac — ${RESEAU}.`],
+  educative: ["/assets/img/bc/educative-1.webp", "Boxe éducative pour les enfants — Boxing Center", `L'école de boxe : apprendre à boxer sans prendre de coups — ${RESEAU}. Au programme du ${CLUB}.`],
+  niveaux:   ["/assets/img/bc/levels-1.webp", "Tous les niveaux sur le même plateau — Boxing Center", `Débutants et compétiteurs s'entraînent côte à côte — ${RESEAU}.`],
+  mehdi:     ["/assets/img/bc/cutouts/coach-mehdi.webp", `Mehdi B., coach principal du ${CLUB}`, "Mehdi B. dirige la salle des Minimes, Barrière de Paris à Toulouse."],
+  elyasse:   ["/assets/img/bc/cutouts/elyasse-azap.webp", `Elyasse Azap, boxeur du ${CLUB}`, "Elyasse Azap, boxeur du Boxing Center Minimes."],
+  johnson:   ["/assets/img/bc/cutouts/johnson-suffo.webp", `Johnson Suffo, boxeur du ${CLUB}`, "Johnson Suffo, boxeur du Boxing Center Minimes."],
+  salomon:   ["/assets/img/bc/cutouts/salomon-kitoko.webp", `Salomon Kitoko, boxeur du ${CLUB}`, "Salomon Kitoko, boxeur du Boxing Center Minimes."],
+  planning:  ["/assets/img/bc/planning-2026-full.webp", `Planning officiel des cours — ${CLUB}`, "Le planning 2026 des cours de la salle des Minimes, Barrière de Paris."],
+};
+
 export const ROUTES = [
   {
     path: "/",
     priority: "1.0",
     changefreq: "weekly",
-    image: "/assets/img/bc/anglaise-1.webp",
-    caption: "Boxe anglaise — sur le ring, Boxing Center Minimes",
+    images: [I.anglaise1, I.salle, I.training2, I.niveaux],
   },
   {
     path: "/activites/",
     priority: "0.8",
     changefreq: "monthly",
-    image: "/assets/img/bc/training-2.webp",
-    caption: "Travail technique aux pattes d’ours — Boxing Center",
+    images: [I.anglaise1, I.training1, I.cross, I.lady1, I.educative, I.training2],
   },
   {
     path: "/le-club/",
     priority: "0.8",
     changefreq: "monthly",
-    image: "/assets/img/bc/salle-1.webp",
-    caption: "La salle historique — entre les cordes, Boxing Center",
+    images: [I.salle, I.anglaise3, I.niveaux],
   },
   {
     path: "/coachs/",
     priority: "0.8",
     changefreq: "monthly",
-    image: "/assets/img/bc/cutouts/coach-mehdi.webp",
-    caption: "Mehdi B., coach principal de Boxing Center Minimes",
+    images: [I.mehdi, I.elyasse, I.johnson, I.salomon],
   },
   {
     path: "/galerie/",
     priority: "0.8",
     changefreq: "monthly",
-    image: "/assets/img/bc/levels-1.webp",
-    caption: "Tous les niveaux — la galerie Boxing Center",
+    images: [I.niveaux, I.anglaise2, I.anglaise3, I.anglaise4, I.lady2, I.educative, I.cross, I.training1, I.salle],
   },
   {
     path: "/plannings/",
     priority: "0.8",
     changefreq: "weekly",
-    image: "/assets/img/bc/planning-2026.webp",
-    caption: "Planning des cours — salle des Minimes, Barrière de Paris",
+    images: [I.planning],
   },
   {
     /* La page qu’on lit AVANT d’oser appeler : priorité haute, elle est le
@@ -62,22 +104,19 @@ export const ROUTES = [
     path: "/premiere-seance/",
     priority: "0.9",
     changefreq: "monthly",
-    image: "/assets/img/bc/training-2.webp",
-    caption: "Première séance — le coach aux pattes d’ours, Boxing Center Minimes",
+    images: [I.training2, I.salle, I.mehdi],
   },
   {
     path: "/tarifs/",
     priority: "0.8",
     changefreq: "monthly",
-    image: "/assets/img/bc/cross-1.webp",
-    caption: "Cross training — Boxing Center",
+    images: [I.cross, I.salle],
   },
   {
     path: "/contact/",
     priority: "0.8",
     changefreq: "monthly",
-    image: "/assets/img/bc/training-1.webp",
-    caption: "Cardio boxing — Boxing Center",
+    images: [I.training1],
   },
 ];
 
