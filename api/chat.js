@@ -97,16 +97,33 @@ function systemFor(context) {
 }
 
 /* ---------- fournisseurs ---------- */
+
+/* Une reponse coupee en plein mot est pire que pas de reponse : si le modele
+   s'arrete pour cause de longueur, on retaille a la derniere phrase complete. */
+function tidy(text, truncated) {
+  let t = String(text || "").trim();
+  if (!t) return t;
+  if (truncated) {
+    const m = t.match(/^[\s\S]*[.!?…»)]/);
+    if (m && m[0].length >= 40) t = m[0].trim();
+  }
+  return t;
+}
+
 async function gemini(key, model, messages, system) {
   const contents = messages.map((m) => ({ role: m.role === "assistant" ? "model" : "user", parts: [{ text: m.content }] }));
   const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ system_instruction: { parts: [{ text: system }] }, contents, generationConfig: { maxOutputTokens: 400, temperature: 0.4 } }),
+    body: JSON.stringify({ system_instruction: { parts: [{ text: system }] }, contents, // 1024 et thinkingBudget 0 : sur Gemini 2.5, les tokens de « reflexion »
+// comptaient dans maxOutputTokens -> reponses coupees en plein mot.
+generationConfig: { maxOutputTokens: 1024, temperature: 0.4, thinkingConfig: { thinkingBudget: 0 } } }),
   });
   if (!r.ok) throw new Error("gemini " + r.status);
   const j = await r.json();
   const text = j?.candidates?.[0]?.content?.parts?.map((p) => p.text).join("").trim();
+  const coupe = j?.candidates?.[0]?.finishReason === "MAX_TOKENS";
+  if (text) return tidy(text, coupe);
   if (!text) throw new Error("gemini empty");
   return text;
 }
@@ -114,7 +131,7 @@ async function openaiLike(url, key, model, messages, system) {
   const r = await fetch(url, {
     method: "POST",
     headers: { "Content-Type": "application/json", Authorization: `Bearer ${key}` },
-    body: JSON.stringify({ model, max_tokens: 400, temperature: 0.4, messages: [{ role: "system", content: system }, ...messages] }),
+    body: JSON.stringify({ model, max_tokens: 700, temperature: 0.4, messages: [{ role: "system", content: system }, ...messages] }),
   });
   if (!r.ok) throw new Error("oai " + r.status);
   const j = await r.json();
