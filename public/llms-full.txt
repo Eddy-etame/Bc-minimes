@@ -64,7 +64,7 @@
 - Équipement : 3 rings de boxe, 12 sacs lourds, zone pattes d’ours, prépa physique à l’étage, vestiaires hommes/femmes.
 - Affiliations : FFBoxe, FFKMDA, FMMAF.
 - Adresse : 12 rue de Fenouillet, 31200 Toulouse.
-- Le réseau Boxing Center : Portet-sur-Garonne (vaisseau amiral — 800 m², ring olympique, cage MMA — https://www.boxing-center-portet.fr/), États-Unis, Saint-Cyprien (1 200 m²), Ramonville (ring + octogone 7 m) — https://boxingcenter.fr/
+- Le réseau Boxing Center : Portet-sur-Garonne (vaisseau amiral — 600 m², ring de boxe anglaise, cage MMA, 24 sacs — https://www.boxing-center-portet.fr/), États-Unis, Saint-Cyprien (1 200 m²), Ramonville (ring + octogone 7 m) — https://boxingcenter.fr/
 - Questions du lieu : la zone prépa physique est à l’étage et surplombe les rings ; on peut venir voir un cours aux heures d’ouverture sans rien demander ; vestiaires hommes et femmes séparés.
 
 ## Les coachs — https://bc-minimes.vercel.app/coachs/
@@ -160,14 +160,14 @@ Transcription du poster officiel de la saison (grille filtrable jour / disciplin
 ## Tarifs & offres — https://bc-minimes.vercel.app/tarifs/
 
 - Séance d’essai : 10 € la séance — toutes les disciplines, gants et protections prêtés, sans engagement, sans dossier. → https://box-plus.vercel.app/seance-essai
-- Offre Duo : 29 € par personne (au lieu de 44 €) — 4 semaines de cours illimités à deux, toutes disciplines, sans engagement. → https://box-plus.vercel.app/abonnements#promo
+- Offre Rentrée : 29 € par personne (au lieu de 44,99 €) — 4 semaines de cours illimités, toutes disciplines, sans engagement. Encore mieux à deux : chacun 29 €. → https://box-plus.vercel.app/abonnements#promo
 - Saison complète : 259 € les 12 mois (au lieu de 400 €) — payable en 4× sans frais ; anglaise, MMA, pieds-poings, Lady, fitness ; accès libre aux 5 clubs du réseau. → https://box-plus.vercel.app/abonnements#promo
 - École de boxe : 295 € l’année t-shirt inclus, baby 250 € — Baby Boxe dès 3 ans (3/6), éducative 7/11, ados 12/16, compétiteurs encadrés par Mehdi B. → https://box-plus.vercel.app/abonnements#enfants
 - Bonus : t-shirt Boxing Center offert aux 100 premiers inscrits.
 ### Les questions d’argent (rendues sur /tarifs/, hors FAQPage)
 
 - Première fois : 10 €, une séance, la discipline au choix, gants et protections prêtés, sans dossier ni engagement.
-- L’offre Duo se compte PAR PERSONNE : 29 € chacun (au lieu de 44 €), pas 29 € pour deux.
+- L’offre Rentrée se compte PAR PERSONNE : 29 € chacun (au lieu de 44 €), pas 29 € pour deux.
 - La saison est payable en 4× sans frais : 259 € les 12 mois, soit moins de 65 € par échéance et environ 22 € par mois.
 - L’abonnement saison ouvre l’accès libre aux 5 clubs du réseau, pas seulement aux Minimes.
 - Enfants : à partir de 280 € l’année, dès 3 ans (Baby Boxe 3/6, éducative 7/11, ados 12/16).

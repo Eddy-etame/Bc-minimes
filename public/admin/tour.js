@@ -148,7 +148,7 @@ const FLOWS = {
     { sel: "#pane .card", t: "Une offre = une carte", do: () => renderSection("promos"),
       b: "Chaque carte est une offre de la page Tarifs. Change un prix, un nom, une phrase, directement dans les cases." },
     { sel: "#pane .card", t: "Attention au Duo",
-      b: "Si tu touches à l'offre Duo : le prix s'écrit toujours avec « par personne » dans la case Unité. Sans ça, on promet 29€ pour deux — et on ne peut pas tenir.",
+      b: "Si tu touches à l'offre Rentrée : le prix s'écrit toujours avec « par personne » dans la case Unité. Sans ça, on promet 29€ pour deux — et on ne peut pas tenir.",
       hint: "Modifie une case", advanceOn: { ev: "input", sel: "#pane input, #pane textarea" } },
     { sel: "#publish", t: "Mets-le en ligne",
       b: "« Aperçu » pour vérifier la page Tarifs, puis « Publier ». Le site est à jour en une minute." },
