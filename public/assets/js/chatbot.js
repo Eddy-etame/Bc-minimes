@@ -134,6 +134,11 @@ export function initChatbot() {
 
   const sid = sessionId();
   const profile = { prenom: "", nom: "", email: "", phone: "", salle: SALLE.short };
+  /* Le profil survit à la navigation (même session) : le bot ne redemande
+     jamais, et les formulaires du site se préremplissent avec. */
+  const PROFIL_KEY = "bcm-chat-profil";
+  try { Object.assign(profile, JSON.parse(sessionStorage.getItem(PROFIL_KEY) || "{}")); } catch { /* profil vierge */ }
+  const memoriserProfil = () => { try { sessionStorage.setItem(PROFIL_KEY, JSON.stringify(profile)); } catch { /* stockage indispo */ } };
   const history = [];
   let opened = false, typing = false, exchanges = 0;
   let nudged = false;      // l’invitation douce a-t-elle déjà été faite ?
@@ -300,6 +305,7 @@ export function initChatbot() {
        tapée : si le visiteur clique une puce à la place, elle reste
        posée — et un « Marc » tapé plus tard sera encore entendu. */
     if (saisie) expectName = false;
+    if (found) memoriserProfil();
     return found;
   }
 
