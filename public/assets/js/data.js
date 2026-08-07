@@ -138,12 +138,14 @@ export const PROMOS = {
    exact — tant que le shooting Minimes n’a pas eu lieu. */
 export const MEDIA = "https://www.boxing-center-portet.fr";
 
+/* `top: false` = la page reste dans le MENU et le pied de page, mais quitte
+   la barre du haut : neuf entrées se chevauchaient sur écran moyen. */
 export const NAV = [
   { href: "/", label: "Accueil" },
   { href: "/activites/", label: "Activités" },
-  { href: "/le-club/", label: "Le club" },
+  { href: "/le-club/", label: "Le club", top: false },
   { href: "/coachs/", label: "Coachs" },
-  { href: "/galerie/", label: "Galerie" },
+  { href: "/galerie/", label: "Galerie", top: false },
   { href: "/plannings/", label: "Planning" },
   /* Le levier de conversion : la page se glisse AVANT les tarifs — on
      rassure d’abord, on chiffre ensuite. Le libellé reprend le mot du

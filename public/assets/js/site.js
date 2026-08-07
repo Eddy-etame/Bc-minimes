@@ -34,7 +34,7 @@ const extLink = (href, label, cls = "") =>
 
 function mountNav() {
   const path = currentPath();
-  const links = NAV.map(
+  const links = NAV.filter((n) => n.top !== false).map(
     (n) => `<a href="${n.href}"${n.href === path ? ' aria-current="page"' : ""}>${n.label}</a>`
   ).join("");
   document.getElementById("nav").innerHTML = `
