@@ -133,7 +133,9 @@ function mountNav() {
 function mountFooter() {
   const cols = [
     { h: "Le club", links: NAV.slice(1, 5) },
-    { h: "Pratique", links: [{ href: "/plannings/", label: "Planning" }, { href: "/tarifs/", label: "Tarifs" }, { href: "/contact/", label: "Contact" }, { href: LINKS.boutique, label: "Boutique", ext: true }] },
+    /* « Première fois » ouvre la colonne Pratique : c’est la question que
+       se pose le visiteur avant l’horaire et avant le prix. */
+    { h: "Pratique", links: [{ href: "/premiere-seance/", label: "Ta première séance" }, { href: "/plannings/", label: "Planning" }, { href: "/tarifs/", label: "Tarifs" }, { href: "/contact/", label: "Contact" }, { href: LINKS.boutique, label: "Boutique", ext: true }] },
     { h: "Le réseau", links: [{ href: LINKS.groupe, label: "Boxing Center", ext: true }, { href: LINKS.boutique, label: "La boutique", ext: true }, { href: LINKS.instagram, label: "Instagram", ext: true }, { href: LINKS.facebook, label: "Facebook", ext: true }] },
   ];
   /* Les salles sœurs — le bloc réseau existait en données et n’était

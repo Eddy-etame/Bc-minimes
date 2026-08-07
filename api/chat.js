@@ -80,8 +80,9 @@ VENDRE (ton objectif n°1, dans CET ordre) :
 L’ARME SECRÈTE plus bas complète cet ordre.
 BOUTONS D’ACTION (l’interface les affiche sous ton message) :
 - N’écris JAMAIS d’URL en clair. Termine ta réponse par « [boutons: clé1, clé2] » (1 à 3 clés max).
-- Clés disponibles (UNIQUEMENT celles-ci) : offre (l’offre Rentrée 29€ sur la boutique) · saison (saison 259€) · essai (la séance d’essai 10€) · enfants (inscrire un enfant) · abonnements · boutique · tarifs (page tarifs du site) · planning · disciplines · club · coachs · galerie · contact · offert (le formulaire caché de la séance OFFERTE — UNIQUEMENT l’arme secrète du point ci-dessous) · rappel (un coach rappelle — le chat s’en charge).
+- Clés disponibles (UNIQUEMENT celles-ci) : offre (l’offre Rentrée 29€ sur la boutique) · saison (saison 259€) · essai (la séance d’essai 10€) · enfants (inscrire un enfant) · abonnements · boutique · premiere (la page « Ta première séance » : le déroulé, ce qu’on ne fait pas, le sac) · tarifs (page tarifs du site) · planning · disciplines · club · coachs · galerie · contact · offert (le formulaire caché de la séance OFFERTE — UNIQUEMENT l’arme secrète du point ci-dessous) · rappel (un coach rappelle — le chat s’en charge).
 - « offre » dès qu’on parle prix ou début ; « essai » seulement en dernier recours ; « enfants » pour les inscriptions enfants.
+- « premiere » dès que la personne dit qu’elle n’a jamais boxé, qu’elle a peur du ring, qu’elle demande comment ça se passe, ce qu’il faut apporter ou s’il faut un certificat. C’est la page qui lève la peur — elle vient AVANT le prix, pas à la place.
 - Si tu réponds dans une autre langue, traduis le libellé : « clé:Label » (ex. [boutons: offre:Get the 29€ offer]).
 L’ARME SECRÈTE (à ne dégainer QUE quand la vente est morte) :
 - Si la personne a vu les offres, hésite encore, et que même l’essai à 10€ ne la décide pas — ou qu’elle s’apprête à partir — tu peux OFFRIR la première séance en geste du club : envoie [boutons: offert]. Jamais dans ta première réponse, jamais si la vente respire encore, jamais la clé « offert » hors de ce geste. Collecte prénom + contact avant si la conversation est fluide.
@@ -152,7 +153,7 @@ export const KB = [
     a: "Le planning tourne du lundi au samedi : anglaise loisirs le midi à 12h40 et le soir à 19h40, compétiteurs à 18h, Boxing Lady lundi et mercredi 18h30, Boxing camp midi et soir, l’école le mercredi et le samedi après-midi, open sparring le samedi 18h30. Le détail complet est sur la page Planning." },
   { re: /essai|d[ée]couvr|tester|premi[èe]re fois|premiere fois|gratuit|venir voir/i,
     a: "La séance d’essai est à 10€ : la discipline que tu veux, gants et protections prêtés, aucun dossier à monter. Tu viens, tu boxes, tu décides après. Mais si tu comptes venir plus d’une fois, la rentrée à 29€ par personne est vite rentabilisée. [boutons: offre, essai]" },
-  { re: /tarif|prix|co[ûu]te|combien|abonn|mensuel|saison|duo|259|29|280/i,
+  { re: /tarif|prix|co[ûu]te|combien|abonn|mensuel|saison|duo|259|29|295/i,
     a: "L’offre Rentrée : 29€ PAR PERSONNE pour 4 semaines illimitées (au lieu de 44,99€). La saison complète : 259€ les 12 mois au lieu de 400€, en 4× sans frais, accès libre aux 5 clubs. L’école : 295€ l’année t-shirt inclus, baby 250€. Et l’essai à 10€ pour tester. [boutons: offre, tarifs]" },
   { re: /horaire|ouvert|ferm|heure|dimanche|acc[èe]s libre/i,
     a: "La salle est ouverte du lundi au samedi, de 10h00 à 21h30. Fermé le dimanche. En dehors des cours, les rings et les sacs sont à toi en accès libre : 10h–12h et 13h20–18h (le mercredi ça s’arrête à 15h, l’école prend la salle)." },
@@ -161,7 +162,7 @@ export const KB = [
   { re: /adresse|\boù\b|(?:c['’]est|vous [êe]tes|se trouve|situ[ée]e?)\s*o[ùu]|o[ùu]\s*(?:est|se|vous|[êe]tes)|situ[ée]e?\b|acc[èe]s|m[ée]tro|parking|comment venir|\bplan\b|\brue\b|barri[èe]re/i,
     a: "12 rue de Fenouillet, 31200 Toulouse — quartier des Minimes, Barrière de Paris. Métro ligne B, station Barrière de Paris, 3 minutes à pied. Rocade sortie 31, ou bus 70 / 27 arrêt Minimes-Roquelaine." },
   { re: /enfant|gamin|fils|fille|baby|[ée]ducative|ado|3 ans|7 ans|\b(?:mon|ma) (?:gosse|petit)/i,
-    a: "L’école commence dès 3 ans : Baby Boxe 3/6 ans le samedi à 14h15, enfants 7/11 à 15h, ados 12/16 à 16h, jeunes compétiteurs à 17h — le mercredi et le samedi. C’est Mehdi B qui les tient, du premier gant jusqu’au ring. À partir de 280€ l’année." },
+    a: "L’école commence dès 3 ans : Baby Boxe 3/6 ans le samedi à 14h15, enfants 7/11 à 15h, ados 12/16 à 16h, jeunes compétiteurs à 17h — le mercredi et le samedi. C’est Mehdi B qui les tient, du premier gant jusqu’au ring. 250€ l’année pour la Baby Boxe, 295€ au-delà, t-shirt du club inclus." },
   { re: /femme|lady|f[ée]minin|entre filles/i,
     a: "Le Boxing Lady est 100 % féminin : lundi 18h30 avec Chloé, mercredi 18h30 avec David, une heure pleine. Le lundi, le second espace de la salle est rien que pour elles. Et tous les autres cours te sont ouverts." },
   { re: /discipline|cours|anglaise|pieds.?poings|camp|sparring|cardio|cross|paos|comp[ée]tit|mma|kick/i,
@@ -169,13 +170,13 @@ export const KB = [
   { re: /coach|entra[îi]neur|prof|encadr|[ée]quipe|mehdi|chlo|david|hicham/i,
     a: "Mehdi B tient la maison : anglaise, école, compétiteurs, boxing camp, sparring — presque tous les créneaux de la semaine. Chloé mène le Boxing Lady du lundi, David celui du mercredi puis les pieds-poings, et Hicham le boxing camp du mardi et du jeudi." },
   { re: /d[ée]butant|jamais box|niveau|peur|forme|condition/i,
-    a: "Tu ne seras ni le premier ni le seul à arriver sans avoir jamais mis un gant. Le coach te met en garde, te corrige, recommence — dix fois s’il le faut. Et si tu ne veux rien encaisser au début, le cardio boxing te donne tout le geste sans le moindre coup reçu." },
+    a: "Tu ne seras ni le premier ni le seul à arriver sans avoir jamais mis un gant. Le coach te met en garde, te corrige, recommence — dix fois s’il le faut. Personne ne monte sur le ring sans en avoir envie : ça se demande, ça ne s’impose pas. Le déroulé complet d’une première séance est écrit noir sur blanc. [boutons: premiere, offre]" },
   { re: /salle|ring|sac|mat[ée]riel|[ée]quipement|vestiaire|[ée]tage|histoire|champion|pro\b/i,
     a: "Trois rings, douze sacs lourds, une zone pattes d’ours et la prépa physique à l’étage, au-dessus des rings. Vestiaires hommes et femmes séparés. C’est la première salle du groupe, ouverte en 2016 — trois pros en sont sortis : Johnson Suffo, Salomon Kitoko, Elyasse Azap." },
   { re: /contact|t[ée]l[ée]phone|email|mail|num[ée]ro|appeler|joindre/i,
     a: "Téléphone : 05 62 24 46 82. Email : boxingcenter31@gmail.com. Ou passe simplement à la salle, 12 rue de Fenouillet, du lundi au samedi entre 10h et 21h30." },
   { re: /inscri|adh[ée]r|certificat|m[ée]dical|dossier|papier/i,
-    a: "Pour l’essai à 10€, tu n’as rien à apporter — ni dossier, ni certificat. [boutons: essai] C’est au moment de t’inscrire pour de bon qu’on te demande le certificat médical et de quoi régler. Le coach te déroule tout ça sur place." },
+    a: "Pour l’essai à 10€, tu n’as rien à apporter — ni dossier, ni certificat. Un t-shirt, un short, des baskets propres, une bouteille d’eau : les gants et les protections sont prêtés. C’est au moment de t’inscrire pour de bon qu’on te demande le certificat médical et de quoi régler. [boutons: premiere, essai]" },
   { re: /r[ée]seau|autre salle|portet|cyprien|ramonville|[ée]tats.?unis|groupe/i,
     a: "Boxing Center, c’est cinq clubs à Toulouse et autour : Minimes (ici, la salle historique), Portet-sur-Garonne, États-Unis, Saint-Cyprien et Ramonville. La saison ouvre l’accès libre à tous. Le site du réseau : boxingcenter.fr." },
 ];

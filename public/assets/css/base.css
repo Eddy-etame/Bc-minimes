@@ -254,7 +254,15 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
    fermé (aria-hidden=true) gardait ses 13 liens focusables → le Tab
    tombait dans un trou noir de 13 arrêts invisibles (WCAG 4.1.2).
    clip-path + pointer-events ne retirent RIEN du parcours clavier. */
-.menu { position: fixed; inset: 0; z-index: 7990; background: var(--black); color: var(--bone); display: grid; grid-template-rows: auto 1fr auto; padding: clamp(1.2rem,3vw,2rem) var(--gut) clamp(1.5rem,3vw,2.4rem); clip-path: inset(0 0 100% 0); pointer-events: none; visibility: hidden; transition: clip-path .7s var(--ease-out), visibility 0s linear .7s; }
+/* grid-template-columns: minmax(0,1fr) — la colonne implicite d'une grille
+   se dimensionne sur le max-content de son plus gros enfant, et ne connaît
+   PAS la largeur du panneau. Un libellé de menu un peu long (« Première
+   fois » en Archivo Black à 41 px) poussait donc la colonne à 397 px dans
+   un écran de 320 : le bouton « Fermer » partait à 332 px, hors de l'écran.
+   Le menu s'ouvrait et ne pouvait plus se fermer au doigt — mesuré à 320 px.
+   Le plancher à 0 interdit ce débordement quel que soit le libellé qu'on
+   ajoutera demain : c'est la cause, pas le symptôme. */
+.menu { position: fixed; inset: 0; z-index: 7990; background: var(--black); color: var(--bone); display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 1fr auto; padding: clamp(1.2rem,3vw,2rem) var(--gut) clamp(1.5rem,3vw,2.4rem); clip-path: inset(0 0 100% 0); pointer-events: none; visibility: hidden; transition: clip-path .7s var(--ease-out), visibility 0s linear .7s; }
 .menu.is-open { clip-path: inset(0 0 0 0); pointer-events: auto; visibility: visible; transition: clip-path .7s var(--ease-out), visibility 0s linear 0s; }
 .menu__bg { position: absolute; inset: 0; z-index: 0; opacity: .16; }
 .menu__bg video { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.2) brightness(.6); }
@@ -266,7 +274,14 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
 .menu__nav { position: relative; z-index: 2; align-self: center; display: flex; flex-direction: column; gap: clamp(.35rem,1vw,.4rem); }
 /* padding-block : la taille du mot est l'identité, la boîte autour ne l'est
    pas — 39.5px → ~49px sans toucher à l'échelle typo (QA thumb ≥44px) */
-.menu__link { font-family: var(--f-display); font-size: clamp(2.6rem,11vw,7rem); line-height: .95; padding-block: .12em; text-transform: uppercase; color: var(--bone); display: inline-flex; align-items: baseline; gap: 1.2rem; width: max-content; max-width: 100%; transition: color .3s, transform .5s var(--ease-out); }
+/* Le mot du menu se mesure sur la LARGEUR, pas seulement sur la hauteur de
+   l'écran : à 320 px, 11vw = 35 px et le plancher de 2,6rem reprenait la
+   main à 41,6 px — un libellé de treize lettres ne rentrait plus dans les
+   281 px utiles. Le plancher descend à 2,05rem (33 px) : neuf entrées
+   tiennent toujours d'un coup d'œil, et le mot le plus long tient sur sa
+   ligne. `min-width: 0` autorise le rétrécissement si un jour il le faut —
+   un mot coupé reste lisible, un bouton hors écran ne l'est pas. */
+.menu__link { font-family: var(--f-display); font-size: clamp(2.05rem,10.5vw,7rem); line-height: .95; padding-block: .12em; text-transform: uppercase; color: var(--bone); display: inline-flex; align-items: baseline; gap: 1.2rem; width: max-content; max-width: 100%; min-width: 0; transition: color .3s, transform .5s var(--ease-out); }
 .menu__link .n { font: 700 clamp(.7rem,1.4vw,1rem)/1 var(--f-mono); color: var(--bone-dim); }
 .menu__link:hover, .menu__link:active { color: var(--silver); transform: translateX(18px); }
 .menu__link:hover .n, .menu__link:active .n { color: var(--bone); }

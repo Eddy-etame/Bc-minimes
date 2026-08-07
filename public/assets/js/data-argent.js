@@ -22,7 +22,7 @@ import { bcRegister } from "./data.js?v=b18";
 export const REVIEWS = {
   rating: "4,3",
   scale: "5",
-  count: "157",
+  count: "155",
   source: "Avis Google",
   quotes: [
     { text: "Très belle salle de boxe. Matos au top, coach et staff accueillant.", author: "Hamed S.", stars: 5 },
@@ -64,7 +64,7 @@ export const MONEY_FAQ = [
     a: "Pas pour l’essai : les gants et les protections sont prêtés. Le jour où tu t’installes, tu prends tes gants à toi — c’est une question d’hygiène avant d’être une question de style. La boutique du réseau est là pour ça, et le coach te dira quoi prendre plutôt que de te vendre le plus cher.",
   },
   {
-    q: "Le t-shirt offert, c’est un piège ?",
-    a: "Non, c’est un t-shirt. Offert aux cent premiers inscrits de la saison. Quand il n’y en a plus, il n’y en a plus — on ne rallonge pas la liste pour te faire signer.",
+    q: "Le t-shirt du club, il faut le payer ?",
+    a: "Non. Il est inclus dans l’inscription enfant, pour tous — pas pour les cent premiers, pas sous condition. Ton gamin repart avec le t-shirt Boxing Center le jour où il s’inscrit.",
   },
 ];

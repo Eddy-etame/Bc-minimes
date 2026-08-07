@@ -194,7 +194,7 @@ import SiteContent from "../../components/SiteContent.astro";
               "name": "Offre Rentrée — 29€ par personne",
               "price": "29",
               "priceCurrency": "EUR",
-              "description": "4 semaines de cours illimités à deux, sans engagement (au lieu de 44€).",
+              "description": "4 semaines de cours illimités, toutes disciplines, sans engagement — 29€ par personne (au lieu de 44,99€).",
               "url": "https://box-plus.vercel.app/abonnements#promo"
             },
             {
@@ -208,9 +208,9 @@ import SiteContent from "../../components/SiteContent.astro";
             {
               "@type": "Offer",
               "name": "École de boxe — dès 3 ans",
-              "price": "280",
+              "price": "295",
               "priceCurrency": "EUR",
-              "description": "Baby Boxe 3/6, éducative 7/11, ados 12/16.",
+              "description": "L’année, t-shirt du club inclus — éducative 7/11, ados 12/16. Baby Boxe 3/6 ans : 250€.",
               "url": "https://box-plus.vercel.app/abonnements#enfants"
             }
           ]
@@ -339,7 +339,7 @@ import SiteContent from "../../components/SiteContent.astro";
             "name": "Y a-t-il des cours pour les enfants ?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Oui, dès 3 ans. Baby Boxe pour les 3/6 ans, boxe éducative pour les 7/11, ados 12/16, puis compétiteurs — du jeu au ring, un créneau par âge. À partir de 280 € l’année."
+              "text": "Oui, dès 3 ans. Baby Boxe pour les 3/6 ans (250€ l’année), boxe éducative 7/11, ados 12/16 puis compétiteurs (295€ l’année, t-shirt du club inclus) — du jeu au ring, un créneau par âge."
             }
           },
           {
@@ -437,6 +437,10 @@ import SiteContent from "../../components/SiteContent.astro";
             <div class="contact-line"><span>Horaires</span><p id="hours"></p></div>
             <div class="contact-line"><span>Téléphone</span><a id="phone" href="#"></a></div>
             <div class="contact-line"><span>E-mail</span><a id="email" href="#"></a></div>
+            <!-- La question qu’on nous pose au téléphone avant toutes les
+                 autres : « ça se passe comment, la première fois ? ». Elle a
+                 sa page — on l’envoie là plutôt que de la résumer ici. -->
+            <div class="contact-line"><span>Jamais venu</span><p>Le déroulé d’une première séance, ce qu’on ne te demandera pas et ce qu’il faut dans le sac : <a href="/premiere-seance/">c’est écrit noir sur blanc</a>.</p></div>
             <div class="contact-line"><a class="btn btn--primary" data-magnetic href="https://box-plus.vercel.app/seance-essai"><span>Réserver mon essai · 10€</span></a></div>
           </div>
           <div class="map-frame" data-reveal>
@@ -466,6 +470,7 @@ import SiteContent from "../../components/SiteContent.astro";
         <p class="lead" data-reveal>Réserve en ligne, on t’attend au 12 rue de Fenouillet.</p>
         <div class="gong__cta" data-reveal>
           <a class="btn btn--primary" data-magnetic href="https://box-plus.vercel.app/seance-essai"><span>Réserver mon essai · 10€</span></a>
+          <a class="btn btn--ghost" data-magnetic href="/premiere-seance/"><span>Comment se passe une première séance</span></a>
           <a class="btn btn--ghost" data-magnetic href="/plannings/"><span>Voir le planning</span></a>
         </div>
       </div>

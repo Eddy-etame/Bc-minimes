@@ -44,7 +44,12 @@ function renderOffers() {
 function renderBonus() {
   const el = $("#bonus");
   if (!el) return;
-  el.innerHTML = `<span class="bonus__badge">Bonus</span><p class="bonus__txt">${PROMOS.bonus.replace("100 premiers inscrits", "<b>100 premiers inscrits</b>")}</p>`;
+  /* Le mot en gras suivait « 100 premiers inscrits » — une formule que le
+     bonus ne contient plus depuis que le t-shirt est inclus POUR TOUS. Le
+     remplacement ne trouvait donc plus rien et l’emphase tombait dans le
+     vide, sans que rien ne casse. C’est « pour tous » qui porte la promesse
+     maintenant : c’est lui qu’on met en gras. */
+  el.innerHTML = `<span class="bonus__badge">Bonus</span><p class="bonus__txt">${PROMOS.bonus.replace("pour tous", "<b>pour tous</b>")}</p>`;
 }
 
 function renderReviews() {

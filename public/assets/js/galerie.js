@@ -153,21 +153,41 @@ function initLightbox() {
    même règle que l’assistant (§5.8). */
 function armCommunity() {
   const sec = $("#community");
-  if (!sec || !("IntersectionObserver" in window)) return;
+  if (!sec) return;
   let pending = null;
-  const io = new IntersectionObserver((entries) => {
-    if (!entries.some((e) => e.isIntersecting) || pending) return;
-    io.disconnect();
-    /* la feuille d’abord : le formulaire ne doit jamais paraître nu */
-    const l = document.createElement("link");
-    l.rel = "stylesheet";
-    l.href = "/assets/css/community.css?v=b18";
-    document.head.appendChild(l);
+  /* La feuille de style du mur voyage désormais avec la page (le balisage
+     du formulaire est statique) : il ne reste ici que le module de 15 ko. */
+  const charger = () => {
+    if (pending) return pending;
     pending = import("./community.js?v=b18")
       .then((m) => m.initCommunity())
       .catch(() => { /* le reste de la page ne bouge pas */ });
+    return pending;
+  };
+
+  /* Pas d’IntersectionObserver du tout : on charge, point. Un mur qui ne
+     s’affiche jamais est pire qu’un mur payé 15 ko trop tôt. */
+  if (!("IntersectionObserver" in window)) { charger(); return; }
+
+  let vivant = false;
+  const io = new IntersectionObserver((entries) => {
+    vivant = true;                       // l’observer répond : le filet peut dormir
+    if (!entries.some((e) => e.isIntersecting)) return;
+    io.disconnect();
+    charger();
   }, { rootMargin: "400px" });
   io.observe(sec);
+
+  /* FILET DEAD-MAN — la règle de la maison (voir hydrateMedia dans site.js) :
+     un observer sain rend TOUJOURS un premier verdict par cible. Quand il
+     n’en rend aucun — contextes automatisés, impression, moteurs qui
+     rendent la page sans la « regarder » — le mur du club restait muet et
+     le formulaire inerte, sans qu’aucune erreur ne le signale. Mesuré à
+     320 px : le callback ne s’est jamais déclenché. On charge alors le
+     module quand même, une fois la page chargée. */
+  const armer = () => setTimeout(() => { if (!vivant) { io.disconnect(); charger(); } }, 2000);
+  if (document.readyState === "complete") armer();
+  else addEventListener("load", armer, { once: true });
 }
 
 function boot() {

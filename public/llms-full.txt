@@ -60,7 +60,7 @@
 
 ## Le club — https://bc-minimes.vercel.app/le-club/
 
-- Histoire : Boxing Center ouvre sa première salle aux Minimes en 2016 (concept des salles américaines, accès six jours sur sept, trois rings). En 2018, la boxe éducative et le Boxing Lady décollent. Johnson Suffo et Salomon Kitoko passent professionnels. Une trentaine de combattants formés à la maison.
+- Histoire : Boxing Center ouvre sa première salle aux Minimes en 2016 (concept des salles américaines, accès six jours sur sept, trois rings). En 2018, la boxe éducative et le Boxing Lady décollent. Johnson Suffo et Salomon Kitoko passent professionnels. Une trentaine de boxeurs amateurs formés à la maison.
 - Équipement : 3 rings de boxe, 12 sacs lourds, zone pattes d’ours, prépa physique à l’étage, vestiaires hommes/femmes.
 - Affiliations : FFBoxe, FFKMDA, FMMAF.
 - Adresse : 12 rue de Fenouillet, 31200 Toulouse.
@@ -157,22 +157,40 @@ Transcription du poster officiel de la saison (grille filtrable jour / disciplin
 - Ouvert 6 jours sur 7, 10h00–21h30. Fermé le dimanche.
 - La grille de la page est filtrable par jour, discipline et coach, et l’état du filtre est dans l’URL (?jour= / ?disc= / ?coach=).
 
+## Ta première séance — https://bc-minimes.vercel.app/premiere-seance/
+
+Le déroulé réel d’une première venue, dans l’ordre :
+1. Arrivée : 12 rue de Fenouillet, métro ligne B station Barrière de Paris (3 min à pied). Venir un quart d’heure avant le créneau. Salle ouverte du lundi au samedi 10h–21h30. Téléphone si hésitation : 05 62 24 46 82.
+2. Annonce : il suffit de dire que c’est une première fois. Aucun formulaire, aucun dossier, aucun certificat médical avant l’essai.
+3. Accueil : un coach du créneau (Mehdi B, Chloé, David ou Hicham) prête les gants et les protections et fait le tour de la salle (3 rings, 12 sacs, prépa physique à l’étage, vestiaires hommes/femmes).
+4. Le cours : échauffement, puis un geste technique repris (garde, jab, déplacement), puis le sac. Le coach corrige et arrête avant la blessure.
+5. Sortie : rien à signer. Le retour se décide sur place ou pas du tout.
+
+Ce que le club NE fait PAS lors d’une première séance :
+- Pas de sparring imposé — personne ne monte sur le ring sans en avoir envie, ça se demande et ça ne s’impose pas. Le seul sparring hebdomadaire est l’open sparring du samedi 18h30, entre licenciés du cours compétiteurs.
+- Pas de test de niveau, pas de chrono, aucune performance à prouver.
+- Pas d’engagement, pas de dossier, pas de prélèvement à résilier.
+
+À apporter : t-shirt, short ou legging, baskets propres, bouteille d’eau, de quoi se changer. Gants, bandes et protections prêtés.
+Prix : séance d’essai 10 €. L’offre Rentrée à 29 € par personne (4 semaines illimitées) est rentabilisée dès la deuxième séance.
+Créneaux conseillés pour une première : anglaise loisirs 19h40 (lundi, mardi, jeudi, vendredi) ou 12h40 (mardi, mercredi, jeudi) ; Boxing Lady lundi et mercredi 18h30 ; Boxing camp mardi et jeudi 18h30 ou samedi 11h ; école le mercredi et le samedi après-midi pour les enfants.
+
 ## Tarifs & offres — https://bc-minimes.vercel.app/tarifs/
 
 - Séance d’essai : 10 € la séance — toutes les disciplines, gants et protections prêtés, sans engagement, sans dossier. → https://box-plus.vercel.app/seance-essai
 - Offre Rentrée : 29 € par personne (au lieu de 44,99 €) — 4 semaines de cours illimités, toutes disciplines, sans engagement. Encore mieux à deux : chacun 29 €. → https://box-plus.vercel.app/abonnements#promo
 - Saison complète : 259 € les 12 mois (au lieu de 400 €) — payable en 4× sans frais ; anglaise, MMA, pieds-poings, Lady, fitness ; accès libre aux 5 clubs du réseau. → https://box-plus.vercel.app/abonnements#promo
 - École de boxe : 295 € l’année t-shirt inclus, baby 250 € — Baby Boxe dès 3 ans (3/6), éducative 7/11, ados 12/16, compétiteurs encadrés par Mehdi B. → https://box-plus.vercel.app/abonnements#enfants
-- Bonus : t-shirt Boxing Center offert aux 100 premiers inscrits.
+- Bonus : le t-shirt Boxing Center est inclus dans toute inscription enfant — pour tous, sans condition et sans quota.
 ### Les questions d’argent (rendues sur /tarifs/, hors FAQPage)
 
 - Première fois : 10 €, une séance, la discipline au choix, gants et protections prêtés, sans dossier ni engagement.
 - L’offre Rentrée se compte PAR PERSONNE : 29 € chacun (au lieu de 44 €), pas 29 € pour deux.
 - La saison est payable en 4× sans frais : 259 € les 12 mois, soit moins de 65 € par échéance et environ 22 € par mois.
 - L’abonnement saison ouvre l’accès libre aux 5 clubs du réseau, pas seulement aux Minimes.
-- Enfants : à partir de 280 € l’année, dès 3 ans (Baby Boxe 3/6, éducative 7/11, ados 12/16).
+- Enfants : 250 € l’année pour la Baby Boxe (3/6 ans), 295 € au-delà (éducative 7/11, ados 12/16), t-shirt du club inclus.
 - Matériel : prêté pour la séance d’essai. Au-delà, l’adhérent prend ses propres gants (hygiène) ; la boutique du réseau les fournit.
-- Le t-shirt offert concerne les 100 premiers inscrits de la saison, sans contrepartie ni engagement supplémentaire.
+- Le t-shirt du club est inclus dans l’inscription enfant, pour tous — pas de quota « 100 premiers », pas de contrepartie.
 
 - Avis Google : la note et le nombre d’avis sont affichés à jour sur https://bc-minimes.vercel.app/tarifs/ et ne sont pas recopiés ici (un compte d’avis bouge en permanence). Extraits verbatim affichés sur la page :
   - « Très belle salle de boxe. Matos au top, coach et staff accueillant. » — Hamed S.
@@ -192,6 +210,6 @@ Transcription du poster officiel de la saison (grille filtrable jour / disciplin
 - Où se trouve Boxing Center Minimes ? — Au 12 rue de Fenouillet, 31200 Toulouse, dans le quartier des Minimes — Barrière de Paris, à 3 minutes du métro ligne B.
 - Je n’ai jamais boxé. Je peux venir ? — Oui. Il y a des créneaux débutants et du cardio boxing sans aucun coup reçu.
 - Quelle est la spécialité de la salle des Minimes ? — La boxe anglaise. C’est la salle historique du groupe, le berceau de plusieurs boxeurs professionnels et amateurs — avec trois rings dédiés.
-- Y a-t-il des cours pour les enfants ? — Oui, dès 3 ans : Baby Boxe 3/6, éducative 7/11, ados 12/16, puis compétiteurs. À partir de 280 € l’année.
+- Y a-t-il des cours pour les enfants ? — Oui, dès 3 ans : Baby Boxe 3/6, éducative 7/11, ados 12/16, puis compétiteurs. 250 € l’année pour la Baby Boxe, 295 € au-delà, t-shirt du club inclus.
 - Il y a des cours pour les femmes ? — Le Boxing Lady est 100 % féminin : lundi 18h30 avec Chloé, mercredi 18h30 avec David. Tous les autres cours sont ouverts.
 - Quels sont les horaires ? — Du lundi au samedi, de 10h00 à 21h30. Fermé le dimanche.

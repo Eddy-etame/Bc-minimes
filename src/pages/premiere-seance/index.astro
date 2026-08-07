@@ -1,0 +1,474 @@
+---
+import SiteContent from "../../components/SiteContent.astro";
+---
+<!doctype html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ta première séance de boxe — Boxing Center Minimes, Toulouse</title>
+  <meta name="description" content="Comment se passe une première séance au 12 rue de Fenouillet : un coach t’accueille, les gants sont prêtés, aucun sparring imposé. L’essai est à 10 €, sans engagement." />
+
+  <!-- Préconnexion CDN (les libs sont différées) — polices auto-hébergées :
+       plus aucune requête vers fonts.googleapis.com / fonts.gstatic.com -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-black-latin.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-latin.woff2" crossorigin />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=b18" />
+
+  <!-- LCP : l’en-tête est construite en JS → invisible au preload scanner (§5.8) -->
+  <link rel="preload" as="image" href="/assets/img/bc/training-2.webp" fetchpriority="high" />
+
+  <link rel="stylesheet" href="/assets/css/base.css?v=b18" />
+  <link rel="stylesheet" href="/assets/css/club.css?v=b18" />
+
+  <meta name="keywords" content="première séance de boxe Toulouse, débuter la boxe Toulouse, cours de boxe débutant Minimes, essai boxe 10 euros Toulouse, je n’ai jamais boxé, salle de boxe Barrière de Paris, boxe anglaise débutant 31200, first boxing class Toulouse, beginner boxing Toulouse, try boxing Toulouse Minimes" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="geo.region" content="FR-31" />
+  <meta name="geo.placename" content="Toulouse — Les Minimes" />
+  <meta name="geo.position" content="43.6256;1.4309" />
+  <meta name="ICBM" content="43.6256, 1.4309" />
+  <link rel="canonical" href="https://bc-minimes.vercel.app/premiere-seance/" />
+  <meta name="theme-color" content="#0a1020" />
+  <link rel="icon" href="/favicon.svg?i=2" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.png?i=2" type="image/png" sizes="32x32" />
+  <link rel="shortcut icon" href="/favicon.png?i=2" />
+  <link rel="icon" href="/favicon-192.png?i=2" type="image/png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?i=2" sizes="180x180" />
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="Boxing Center Minimes" />
+  <meta property="og:title" content="Ta première séance — Boxing Center Minimes, Toulouse" />
+  <meta property="og:description" content="Ce qui se passe vraiment quand tu pousses la porte du 12 rue de Fenouillet. Gants prêtés, pas de sparring imposé, pas d’engagement. Essai 10 €." />
+  <meta property="og:url" content="https://bc-minimes.vercel.app/premiere-seance/" />
+  <meta property="og:image" content="https://bc-minimes.vercel.app/assets/img/og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:alt" content="Boxing Center Minimes — travail aux pattes d’ours avec le coach, 12 rue de Fenouillet, Toulouse." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ta première séance — Boxing Center Minimes, Toulouse" />
+  <meta name="twitter:description" content="Le déroulé réel : un coach t’accueille, les gants sont prêtés, aucun sparring imposé. Essai 10 €, sans engagement." />
+  <meta name="twitter:image" content="https://bc-minimes.vercel.app/assets/img/og.jpg" />
+
+  <!-- Données structurées : même graphe que les autres pages (nœuds reliés
+       par @id), avec la page comme WebPage. AUCUNE FAQPage ici — la seule
+       du site vit sur /contact/ (§4). Faits réels uniquement : les prix
+       viennent de la boutique box-plus, pas d’une promesse de page. -->
+  <script is:inline type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://boxingcenter.fr/#organization",
+        "name": "Boxing Center",
+        "url": "https://boxingcenter.fr/",
+        "sameAs": [
+          "https://www.instagram.com/boxingcentertoulouse/",
+          "https://www.facebook.com/BoxingCenterToulouse/"
+        ]
+      },
+      {
+        "@type": [
+          "SportsActivityLocation",
+          "HealthClub",
+          "LocalBusiness"
+        ],
+        "@id": "https://bc-minimes.vercel.app/#salle",
+        "knowsLanguage": ["fr-FR", "en"],
+        "name": "Boxing Center Minimes",
+        "url": "https://bc-minimes.vercel.app/",
+        "telephone": "+33562244682",
+        "email": "boxingcenter31@gmail.com",
+        "priceRange": "€€",
+        "image": "https://bc-minimes.vercel.app/assets/img/og.jpg",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "12 rue de Fenouillet",
+          "postalCode": "31200",
+          "addressLocality": "Toulouse",
+          "addressRegion": "Occitanie",
+          "addressCountry": "FR"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 43.6256,
+          "longitude": 1.4309
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday"
+            ],
+            "opens": "10:00",
+            "closes": "21:30"
+          }
+        ],
+        "sport": [
+          "Boxing",
+          "Educational Boxing",
+          "Cross Training"
+        ],
+        "sameAs": [
+          "https://www.instagram.com/boxingcentertoulouse/",
+          "https://www.facebook.com/BoxingCenterToulouse/",
+          "https://boxingcenter.fr/"
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "@id": "https://bc-minimes.vercel.app/#offres",
+          "name": "Offres Boxing Center Minimes",
+          "url": "https://bc-minimes.vercel.app/tarifs/",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "name": "Offre Rentrée — 29€ par personne",
+              "price": "29",
+              "priceCurrency": "EUR",
+              "description": "4 semaines de cours illimités, toutes disciplines, sans engagement — 29€ par personne (au lieu de 44,99€).",
+              "url": "https://box-plus.vercel.app/abonnements#promo"
+            },
+            {
+              "@type": "Offer",
+              "name": "Saison complète — 259€ les 12 mois",
+              "price": "259",
+              "priceCurrency": "EUR",
+              "description": "Payable en 4× sans frais, accès libre aux 5 clubs du réseau (au lieu de 400€).",
+              "url": "https://box-plus.vercel.app/abonnements#promo"
+            },
+            {
+              "@type": "Offer",
+              "name": "École de boxe — dès 3 ans",
+              "price": "295",
+              "priceCurrency": "EUR",
+              "description": "L’année, t-shirt du club inclus — éducative 7/11, ados 12/16. Baby Boxe 3/6 ans : 250€.",
+              "url": "https://box-plus.vercel.app/abonnements#enfants"
+            },
+            {
+              "@type": "Offer",
+              "name": "Séance d’essai",
+              "price": "10",
+              "priceCurrency": "EUR",
+              "description": "Toutes disciplines, gants et protections prêtés, sans engagement et sans dossier.",
+              "url": "https://box-plus.vercel.app/seance-essai"
+            }
+          ]
+        },
+        "parentOrganization": {
+          "@id": "https://boxingcenter.fr/#organization"
+        },
+        "description": "Salle de boxe anglaise historique du groupe Boxing Center, quartier des Minimes à Toulouse (31200). 3 rings, 12 sacs, boxe éducative dès 3 ans, Boxing Lady. Séance d’essai 10€."
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://bc-minimes.vercel.app/#website",
+        "url": "https://bc-minimes.vercel.app/",
+        "name": "Boxing Center Minimes",
+        "inLanguage": "fr-FR",
+        "publisher": {
+          "@id": "https://bc-minimes.vercel.app/#salle"
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://bc-minimes.vercel.app/premiere-seance/#webpage",
+        "url": "https://bc-minimes.vercel.app/premiere-seance/",
+        "name": "Ta première séance de boxe — comment ça se passe aux Minimes",
+        "description": "Comment se passe une première séance au 12 rue de Fenouillet : un coach t’accueille, les gants sont prêtés, aucun sparring imposé. L’essai est à 10 €, sans engagement.",
+        "isPartOf": {
+          "@id": "https://bc-minimes.vercel.app/#website"
+        },
+        "about": {
+          "@id": "https://bc-minimes.vercel.app/#salle"
+        },
+        "inLanguage": "fr-FR",
+        "speakable": {
+          "@type": "SpeakableSpecification",
+          "cssSelector": [
+            "h1",
+            ".lead"
+          ]
+        },
+        "primaryImageOfPage": {
+          "@id": "https://bc-minimes.vercel.app/premiere-seance/#primaryimage"
+        },
+        "datePublished": "2026-08-07",
+        "dateModified": "@BUILT@",
+        "breadcrumb": {
+          "@id": "https://bc-minimes.vercel.app/premiere-seance/#breadcrumb"
+        }
+      },
+      {
+        "@type": "ImageObject",
+        "@id": "https://bc-minimes.vercel.app/premiere-seance/#primaryimage",
+        "url": "https://bc-minimes.vercel.app/assets/img/og.jpg",
+        "contentUrl": "https://bc-minimes.vercel.app/assets/img/og.jpg",
+        "width": 1200,
+        "height": 630,
+        "caption": "Boxing Center Minimes — le travail aux pattes d’ours, 12 rue de Fenouillet, Toulouse."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://bc-minimes.vercel.app/premiere-seance/#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Accueil",
+            "item": "https://bc-minimes.vercel.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Ta première séance",
+            "item": "https://bc-minimes.vercel.app/premiere-seance/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- page-scoped : le déroulé numéroté, la liste du sac, la note de prix.
+       Tout le reste (en-tête, sections, cartes « ask », gong) est repris
+       tel quel de base.css et club.css — une page de plus ne justifie pas
+       une deuxième façon de dessiner un titre. -->
+  <style is:inline>
+    /* Le déroulé : un numéro qui tient la colonne, le texte à côté. Sur
+       mobile le numéro passe AU-DESSUS — à 320px, une colonne de chiffres
+       plus une colonne de texte, c’est deux mots par ligne. */
+    .pas { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+    .pas__step { background: var(--ink); padding: clamp(1.5rem,3.4vw,2.4rem); display: grid; gap: .5rem 1.6rem; grid-template-columns: 1fr; border-left: 2px solid transparent; transition: background .35s, border-color .35s; }
+    .pas__step:hover { background: var(--ink-2); border-left-color: var(--mark); }
+    .pas__n { font-family: var(--f-mono); font-weight: 700; font-size: var(--step--1); letter-spacing: .18em; color: var(--mark); }
+    .pas__t { font-family: var(--f-display); text-transform: uppercase; font-size: clamp(1.25rem,3vw,1.9rem); line-height: 1.02; color: var(--bone); margin-bottom: .5rem; }
+    .pas__d { color: var(--read); line-height: 1.6; max-width: 62ch; }
+    .pas__d b { color: var(--bone); font-weight: 600; }
+    @media (min-width: 760px) {
+      .pas__step { grid-template-columns: 4.5rem 1fr; }
+      .pas__n { font-size: clamp(1.6rem,2.4vw,2.2rem); font-family: var(--f-display); letter-spacing: 0; line-height: 1; }
+    }
+    /* Le sac : une case à cocher dessinée, pas une puce de traitement de texte */
+    .sac { display: grid; gap: 0; margin-top: clamp(1.4rem,3vw,2rem); }
+    .sac li { display: grid; grid-template-columns: auto 1fr; gap: 1rem; align-items: start; padding-block: clamp(.9rem,2vw,1.15rem); border-bottom: 1px solid var(--line); color: var(--read); line-height: 1.55; }
+    .sac li:first-child { border-top: 1px solid var(--line); }
+    .sac li::before { content: ""; width: 14px; height: 14px; margin-top: .42em; border: 2px solid var(--mark); flex: 0 0 14px; }
+    .sac b { color: var(--bone); font-weight: 600; }
+    /* La note de prix : le chiffre à l’échelle du display, la suite en clair */
+    .prix-note { border: 1px solid var(--line); padding: clamp(1.6rem,4vw,2.6rem); display: grid; gap: 1.2rem; }
+    .prix-note__v { font-family: var(--f-display); text-transform: uppercase; font-size: clamp(2.8rem,9vw,5.4rem); line-height: .85; color: var(--bone); }
+    .prix-note__cta { display: flex; flex-wrap: wrap; gap: .9rem; margin-top: .4rem; }
+    @media (min-width: 900px) { .prix-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(2rem,4vw,3.4rem); align-items: start; } }
+  </style>
+
+  <script is:inline>
+    document.documentElement.classList.add('fx');
+    (function () {
+      var off = function () { document.documentElement.classList.remove('fx'); };
+      setTimeout(off, 2500);
+      addEventListener('error', off);
+      addEventListener('unhandledrejection', off);
+    })();
+  </script>
+  <SiteContent />
+</head>
+
+<body data-page="premiere-seance">
+  <div class="grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="cursor" aria-hidden="true"><div class="cursor__ring"><span class="cursor__label">voir</span></div></div>
+  <div class="cursor__dot" aria-hidden="true"></div>
+
+  <a class="sr-only" href="#main">Aller au contenu</a>
+  <div id="nav"></div>
+  <div id="drawer"></div>
+
+  <main id="main">
+
+    <!-- ========================= EN-TÊTE ========================== -->
+    <section class="page-head" aria-label="Ta première séance">
+      <div class="page-head__bg" aria-hidden="true"><div class="media" data-img="/assets/img/bc/training-2.webp" data-eager data-label=""></div></div>
+      <div class="wrap">
+        <span class="eyebrow" data-reveal>Ta première fois · Les Minimes</span>
+        <h1 class="display" style="margin:1rem 0 0"><span class="reveal-mask"><span>Tu pousses la porte. </span></span><span class="reveal-mask"><span class="tint">On s’occupe du reste.</span></span></h1>
+        <p class="lead page-head__lead" data-reveal>Ce qui bloque, la première fois, ce n’est pas l’effort : c’est de ne pas savoir ce qui va se passer. Alors on l’écrit. Voilà ce qui t’attend au 12 rue de Fenouillet, dans l’ordre où ça arrive — et surtout ce qu’on ne te fera pas.</p>
+      </div>
+    </section>
+
+    <!-- ======================== LE DÉROULÉ ======================== -->
+    <section class="section" aria-label="Le déroulé d’une première séance">
+      <div class="wrap">
+        <div class="sec-head" data-reveal>
+          <span class="eyebrow">Dans l’ordre</span>
+          <h2 class="display display--sm" style="margin-top:1rem">De la porte <span class="tint">au vestiaire</span></h2>
+        </div>
+
+        <ol class="pas" data-reveal-group>
+          <li class="pas__step">
+            <span class="pas__n">01</span>
+            <div>
+              <h3 class="pas__t">Tu arrives</h3>
+              <p class="pas__d">12 rue de Fenouillet. Métro ligne B, station <b>Barrière de Paris</b> : trois minutes à pied. Viens un quart d’heure avant ton créneau — le temps de te changer sans courir. La salle est ouverte <b>du lundi au samedi, de 10h à 21h30</b> : il y a toujours quelqu’un dedans. Et si tu restes planté devant sans oser pousser, appelle le 05 62 24 46 82 de là où tu es. Ça compte déjà comme être entré.</p>
+            </div>
+          </li>
+          <li class="pas__step">
+            <span class="pas__n">02</span>
+            <div>
+              <h3 class="pas__t">Tu dis que c’est ta première fois</h3>
+              <p class="pas__d">C’est tout. Il n’y a pas de formulaire à remplir debout, pas de dossier, <b>pas de certificat médical à courir chercher avant d’avoir essayé</b>. Le certificat, on t’en parlera le jour où tu t’inscris pour de bon — pas le jour où tu viens voir.</p>
+            </div>
+          </li>
+          <li class="pas__step">
+            <span class="pas__n">03</span>
+            <div>
+              <h3 class="pas__t">Un coach t’accueille et te prête les gants</h3>
+              <p class="pas__d">Selon le créneau, ce sera <b>Mehdi, Chloé, David ou Hicham</b>. Les gants et les protections sont prêtés : tu n’achètes rien pour venir voir. Il te fait le tour — les trois rings, les douze sacs, la zone de prépa physique à l’étage au-dessus des rings, les vestiaires hommes et femmes. Deux minutes, et tu sais où est tout.</p>
+            </div>
+          </li>
+          <li class="pas__step">
+            <span class="pas__n">04</span>
+            <div>
+              <h3 class="pas__t">Échauffement, technique, sac</h3>
+              <p class="pas__d">On bouge d’abord. Puis le coach reprend un geste et un seul — la garde, le jab, le déplacement — et te le fait recommencer. Ensuite, le sac. <b>Tu ne suivras pas tout</b>, et personne ne suit tout la première fois : c’est précisément le moment où le coach traverse la salle pour venir te replacer le poignet. Il t’arrête avant que tu te fasses mal ; c’est son métier, pas une faveur.</p>
+            </div>
+          </li>
+          <li class="pas__step">
+            <span class="pas__n">05</span>
+            <div>
+              <h3 class="pas__t">Tu repars</h3>
+              <p class="pas__d">À la fin du cours tu es cuit, tu as les avant-bras qui tirent et tu as tenu ta garde plus longtemps que tu ne le croyais. <b>Personne ne te fait signer quoi que ce soit à la sortie.</b> Si tu veux revenir, tu le dis au coach en rendant les gants. Sinon : tu es venu, tu as boxé, on s’est vus.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ==================== CE QU’ON NE FAIT PAS ==================
+         Les trois peurs qui font renoncer avant d’appeler. Nommées, puis
+         démenties par un fait vérifiable de CETTE salle — jamais par un
+         « ne t’inquiète pas ». -->
+    <section class="section band" aria-label="Ce qu’on ne fait pas">
+      <div class="wrap">
+        <div class="sec-head" data-reveal>
+          <span class="eyebrow">Mettons-le par écrit</span>
+          <h2 class="display display--sm" style="margin-top:1rem">Ce qu’on <span class="tint">ne fait pas</span></h2>
+        </div>
+        <div class="asks" data-reveal-group>
+          <div class="ask">
+            <p class="ask__q">On ne te met pas sur le ring</p>
+            <p class="ask__a">Personne ne monte sur le ring sans en avoir envie — ça se demande, ça ne s’impose pas. Le sparring, ici, c’est l’open sparring du samedi 18h30, entre licenciés qui ont fait leurs heures au cours compétiteurs. Ta première séance ne s’en approche même pas. Et si tu ne veux rien encaisser du tout, le cardio boxing te donne tout le geste sur les sacs, sans un seul coup reçu.</p>
+          </div>
+          <div class="ask">
+            <p class="ask__q">On ne te fait pas passer de test</p>
+            <p class="ask__a">Pas de niveau à prouver, pas de chrono, rien à compter devant les autres. La seule chose qu’on regarde, c’est si le geste est propre — et il ne l’est chez personne la première fois. Tu ne seras ni le premier ni le seul à arriver sans avoir jamais mis un gant : c’est même le cas le plus fréquent au cours du soir.</p>
+          </div>
+          <div class="ask">
+            <p class="ask__q">On ne te fait rien signer</p>
+            <p class="ask__a">Pas d’engagement, pas de dossier, pas de prélèvement à résilier trois mois plus tard. Tu paies ta séance, tu boxes, tu décides après. Si tu ne reviens pas, on ne t’appellera pas pour te demander pourquoi.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= DANS TON SAC ======================= -->
+    <section class="section" aria-label="Ce qu’il faut apporter">
+      <div class="wrap split">
+        <div data-reveal>
+          <span class="eyebrow">Dans ton sac</span>
+          <h2 class="display" style="margin:1rem 0 1.4rem">Rien que tu<br>n’aies <span class="tint">déjà.</span></h2>
+          <p class="lead">La tenue de boxe, la première fois, c’est une tenue de sport. Tu n’as rien à acheter pour pousser la porte.</p>
+          <p class="muted" style="margin-top:1.2rem">Les gants, les bandes et les protections sont prêtés le temps de l’essai. Tu prendras ta paire à toi le jour où tu t’installes — c’est une question d’hygiène — et le coach te dira laquelle prendre plutôt que la plus chère.</p>
+        </div>
+        <ul class="sac" data-reveal>
+          <li><span><b>Un t-shirt</b> — celui dans lequel tu acceptes de transpirer, pas le beau.</span></li>
+          <li><span><b>Un short ou un legging</b> — de quoi bouger les jambes sans y penser.</span></li>
+          <li><span><b>Des baskets propres</b> — propres pour de vrai : elles ne traversent pas la rue avant de monter sur le tapis.</span></li>
+          <li><span><b>Une bouteille d’eau</b> — tu vas la finir.</span></li>
+          <li><span><b>De quoi te changer</b> — vestiaires hommes et femmes séparés.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ========================= LE PRIX ========================== -->
+    <section class="section band" aria-label="Ce que coûte une première séance">
+      <div class="wrap prix-grid">
+        <div data-reveal>
+          <span class="eyebrow">Ce que ça coûte</span>
+          <h2 class="display display--sm" style="margin:1rem 0 1.2rem">Dix euros, <span class="tint">et on se voit.</span></h2>
+          <p class="lead">La séance d’essai est à <b>10 €</b> : la discipline que tu veux, gants et protections prêtés, sans dossier et sans engagement.</p>
+          <p class="muted" style="margin-top:1.2rem">Et si tu sais déjà que tu vas revenir, ne paie pas deux fois. L’offre de rentrée est à <b style="color:var(--bone)">29 € par personne</b> — quatre semaines de cours illimités, toutes les disciplines, au lieu de 44,99 €. Elle est rentabilisée dès ta deuxième séance. Le détail des formules, la saison à 259 € en 4× sans frais et l’école dès 3 ans sont sur <a href="/tarifs/" style="color:var(--bone);text-decoration:underline">la page tarifs</a>.</p>
+        </div>
+        <div class="prix-note" data-reveal>
+          <div class="prix-note__v">29€<br><span style="font-size:.34em;letter-spacing:.12em;color:var(--muted)">par personne · 4 semaines</span></div>
+          <p class="muted">Cours illimités, toutes disciplines, sans engagement — au lieu de 44,99 €.</p>
+          <div class="prix-note__cta">
+            <a class="btn btn--primary" data-magnetic href="https://box-plus.vercel.app/abonnements#promo"><span>Je prends ma place de rentrée — 29€</span></a>
+            <a class="btn btn--ghost" data-magnetic href="https://box-plus.vercel.app/seance-essai"><span>Je viens essayer · 10€</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== OÙ, QUAND, AVEC QUI =================== -->
+    <section class="section" aria-label="Choisir ton créneau">
+      <div class="wrap">
+        <div class="sec-head" data-reveal>
+          <span class="eyebrow">Choisir ton heure</span>
+          <h2 class="display display--sm" style="margin-top:1rem">Quel créneau <span class="tint">pour une première ?</span></h2>
+        </div>
+        <div class="contact-grid">
+          <div data-reveal-group>
+            <div class="contact-line"><span>Le soir</span><p>La boxe anglaise loisirs, 19h40 – 21h, lundi, mardi, jeudi et vendredi avec Mehdi B. C’est le créneau où arrivent le plus de débutants.</p></div>
+            <div class="contact-line"><span>Le midi</span><p>Anglaise loisirs de 12h40 à 13h20, mardi, mercredi et jeudi. Quarante minutes qui tiennent dans une pause déjeuner.</p></div>
+            <div class="contact-line"><span>Entre femmes</span><p>Le Boxing Lady, 100 % féminin : lundi 18h30 avec Chloé, mercredi 18h30 avec David.</p></div>
+            <div class="contact-line"><span>Sans technique</span><p>Le Boxing camp : mardi et jeudi 18h30 avec Hicham, samedi 11h avec Mehdi B. Le seul cours où tu peux venir sans rien savoir faire.</p></div>
+            <div class="contact-line"><span>Pour un enfant</span><p>Le mercredi et le samedi après-midi : Baby Boxe 3/6 ans le samedi à 14h15, 7/11 ans à 15h, 12/16 ans à 16h. Les parents restent au bord du ring.</p></div>
+            <div class="contact-line"><a class="btn btn--ghost" data-magnetic href="/plannings/"><span>Voir le planning complet</span></a></div>
+          </div>
+          <div class="map-frame" data-reveal>
+            <iframe id="map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Carte Boxing Center Minimes — 12 rue de Fenouillet, Toulouse"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= FINAL GONG ====================== -->
+    <section class="gong" aria-label="Appeler la salle">
+      <div class="gong__bg" aria-hidden="true"><div class="media" data-img="/assets/img/bc/anglaise-2.webp" data-label=""></div></div>
+      <div class="gong__inner">
+        <span class="eyebrow" data-reveal>Il reste une question</span>
+        <h2 class="display" data-reveal style="font-size:var(--step-3)">Une question ?<br><span class="tint">Appelle-nous.</span></h2>
+        <p class="lead" data-reveal>Du lundi au samedi, entre 10h et 21h30, c’est quelqu’un de la salle qui décroche. Pas un standard, pas un robot — quelqu’un qui sait quel coach est sur le ring à cette heure-là.</p>
+        <div class="gong__cta" data-reveal>
+          <a class="btn btn--primary" data-magnetic href="tel:+33562244682"><span>05 62 24 46 82</span></a>
+          <a class="btn btn--ghost" data-magnetic href="/contact/"><span>L’adresse et l’accès</span></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer"></div>
+
+  <!-- pastille "Une question ?" → appel direct de la salle (STANDARDS §1) -->
+  <a class="chatbot" href="tel:+33562244682" aria-label="Une question ? Appelle la salle Boxing Center Minimes — 05 62 24 46 82">
+    <span class="chatbot__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6.4 14V8.2A5.2 5.2 0 0 1 11.6 3h1.5a5.2 5.2 0 0 1 5.2 5.2V14"/><path d="M6.4 8.9H5.1a2.3 2.3 0 0 0-2.3 2.3v.6a2.3 2.3 0 0 0 2.3 2.3h1.3"/><path d="M6.4 14h11.9v3.1a1.6 1.6 0 0 1-1.6 1.6H8a1.6 1.6 0 0 1-1.6-1.6z"/><path d="M8.7 18.7V20a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-1.3"/></svg></span>
+    <span class="chatbot__label">Appelle la salle</span>
+  </a>
+
+  <!-- Libs (CDN — la team remplace par des imports npm en Astro/Next) -->
+  <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script is:inline defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=b18"></script>
+  <script is:inline type="module" src="/assets/js/premiere.js?v=b18"></script>
+</body>
+</html>

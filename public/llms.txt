@@ -10,6 +10,7 @@
 - [Les coachs](https://bc-minimes.vercel.app/coachs/): Mehdi B (coach principal — anglaise, éducative, compétiteurs, baby boxe, boxing camp), Chloé (Boxing Lady), David (Boxing Lady, pieds-poings), Hicham (boxing camp) — plus le détail de qui encadre quel jour, dérivé du planning.
 - [Galerie photos](https://bc-minimes.vercel.app/galerie/): la boxe en images (pool photo du réseau Boxing Center), filtrable par zone — ring, sparring, école, Lady, technique — plus un renvoi de chaque zone vers sa discipline.
 - [Planning des cours](https://bc-minimes.vercel.app/plannings/): les 27 cours de la semaine + les 16 bandes d’accès libre, en grille filtrable (jour / discipline / coach, partageable par URL) + le poster officiel de la saison.
+- [Ta première séance](https://bc-minimes.vercel.app/premiere-seance/): le déroulé réel d’une première venue (arrivée, accueil, gants prêtés, échauffement/technique/sac, sortie), ce que le club NE fait PAS (aucun sparring imposé, aucun test de niveau, aucun engagement signé), la tenue à apporter, le prix de l’essai (10 €) et le créneau conseillé selon le profil.
 - [Tarifs & offres](https://bc-minimes.vercel.app/tarifs/): offre Rentrée 29 € par personne, saison complète 259 € les 12 mois, école 295 € l’année t-shirt inclus (baby 250 €), séance d’essai 10 € — avec les avis Google (note à jour sur la page) et les questions d’argent (paiement en 4×, matériel prêté ou personnel, accès aux 5 clubs).
 - [Contact & accès](https://bc-minimes.vercel.app/contact/): téléphone 05 62 24 46 82, adresse, horaires, accès métro/rocade/bus, FAQ locale.
 
@@ -49,9 +50,15 @@
 - Séance d’essai : 10 € — toutes disciplines, matériel prêté, sans engagement, à proposer après les offres. → https://box-plus.vercel.app/seance-essai
 - Saison complète : 259 € les 12 mois — payable en 4× sans frais, accès libre aux 5 clubs du réseau (au lieu de 400 €). → https://box-plus.vercel.app/abonnements#promo
 - École enfants : 295 € l’année t-shirt inclus, baby 250 € (dès 3 ans). → https://box-plus.vercel.app/abonnements#enfants
-- Bonus : t-shirt Boxing Center offert aux 100 premiers inscrits.
+- Bonus : le t-shirt Boxing Center est inclus dans toute inscription enfant — pour tous, sans condition et sans quota.
 - L’offre Rentrée se compte PAR PERSONNE (29 € chacun), jamais 29 € pour deux — ne pas reformuler autrement.
 - Matériel : prêté pour la séance d’essai ; au-delà, l’adhérent apporte ses propres gants.
+
+### La première séance (voir /premiere-seance/)
+- Aucun sparring imposé : personne ne monte sur le ring sans l’avoir demandé. Le seul sparring de la semaine est l’open sparring du samedi 18h30, réservé aux licenciés du cours compétiteurs.
+- Aucun test de niveau, aucun dossier et aucun certificat médical exigés pour l’essai. Le certificat est demandé à l’inscription définitive, pas avant.
+- À apporter : un t-shirt, un short ou un legging, des baskets propres, une bouteille d’eau. Gants, bandes et protections sont prêtés le temps de l’essai.
+- Créneaux conseillés pour une première : anglaise loisirs 19h40 (lundi, mardi, jeudi, vendredi) ou 12h40 (mardi, mercredi, jeudi) ; Boxing Lady pour les femmes (lundi et mercredi 18h30) ; Boxing camp si on ne sait rien faire (mardi et jeudi 18h30, samedi 11h).
 
 ### Réassurance
 - Note Google : affichée et tenue à jour par le club sur /tarifs/. Ce fichier ne la recopie pas — un compte d’avis bouge chaque semaine, et une copie figée ici deviendrait une affirmation fausse que personne à la salle ne peut corriger.

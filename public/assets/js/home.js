@@ -31,19 +31,19 @@ function renderMarquee() {
   const t = $("#marquee"); t.innerHTML = row + row; t.dataset.speed = "1.3";
 }
 function renderChampions() {
-  const stage = $("#forge-stage"), rail = $("#forge-rail");
+  const stage = $("#berceau-stage"), rail = $("#berceau-rail");
   if (!stage) return;
   stage.innerHTML = CHAMPIONS.map((c, i) => `
-    <article class="forge__fig ${i === 0 ? "is-active" : ""}" data-i="${i}">
-      <span class="forge__bigname" aria-hidden="true">${c.last}</span>
-      <img class="forge__cut" src="${c.img}" alt="${c.name}, boxeur formé à Boxing Center Minimes" decoding="async" />
-      <div class="forge__card">
-        <span class="forge__idx">N°${String(i + 1).padStart(2, "0")} <i>· ${c.years}</i></span>
-        <h3 class="forge__name">${c.name}</h3>
-        <p class="forge__note">${c.note}</p>
+    <article class="berceau__fig ${i === 0 ? "is-active" : ""}" data-i="${i}">
+      <span class="berceau__bigname" aria-hidden="true">${c.last}</span>
+      <img class="berceau__cut" src="${c.img}" alt="${c.name}, boxeur formé à Boxing Center Minimes" decoding="async" />
+      <div class="berceau__card">
+        <span class="berceau__idx">N°${String(i + 1).padStart(2, "0")} <i>· ${c.years}</i></span>
+        <h3 class="berceau__name">${c.name}</h3>
+        <p class="berceau__note">${c.note}</p>
       </div>
     </article>`).join("");
-  if (rail) rail.innerHTML = CHAMPIONS.map((c, i) => `<li class="forge__tick ${i === 0 ? "is-active" : ""}" data-i="${i}"></li>`).join("");
+  if (rail) rail.innerHTML = CHAMPIONS.map((c, i) => `<li class="berceau__tick ${i === 0 ? "is-active" : ""}" data-i="${i}"></li>`).join("");
   /* Précharge les silhouettes pour qu’elles soient instantanées à
      l’activation — mais JAMAIS pendant le premier paint, et jamais sur un
      forfait compté. (Avant : 1 062 Ko de PNG en eager au boot, en
@@ -166,14 +166,14 @@ function countUp() {
 
 /* Mur des champions — scroll-driven silhouette reveal. As you scroll the
    pinned section, one real boxer cut-out rises in as the previous exits
-   (Portet’s forge idea, restyled). Live geometry; vh from the 100vh pin. */
-function forgeReveal() {
-  const section = document.querySelector(".forge");
-  const stage = $("#forge-stage");
-  const sticky = document.querySelector(".forge__sticky");
+   (Portet’s berceau idea, restyled). Live geometry; vh from the 100vh pin. */
+function berceauReveal() {
+  const section = document.querySelector(".berceau");
+  const stage = $("#berceau-stage");
+  const sticky = document.querySelector(".berceau__sticky");
   if (!section || !stage || !sticky) return;
-  const figs = [...stage.querySelectorAll(".forge__fig")];
-  const ticks = [...document.querySelectorAll("#forge-rail .forge__tick")];
+  const figs = [...stage.querySelectorAll(".berceau__fig")];
+  const ticks = [...document.querySelectorAll("#berceau-rail .berceau__tick")];
   const n = figs.length;
   let curr = -1;
   const update = () => {
@@ -247,7 +247,7 @@ function boot() {
   window.BC.magnetic(document);
 
   countUp();
-  forgeReveal();
+  berceauReveal();
   initRounds();
   mediaReveal();
   parallax();

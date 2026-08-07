@@ -21,6 +21,17 @@ import SiteContent from "../../components/SiteContent.astro";
 
   <link rel="stylesheet" href="/assets/css/base.css?v=b18" />
   <link rel="stylesheet" href="/assets/css/home.css?v=b18" />
+  <!-- Le mur du club (5 ko) : son formulaire est écrit EN CLAIR plus bas
+       dans cette page, pas injecté. Sa feuille était pourtant différée
+       jusqu'à l'approche de la section — mesuré à 320 px : les champs
+       restaient des <input> nus de 19 px de haut en 13,3 px de police,
+       fond blanc, tant que la feuille n'était pas arrivée… et elle
+       n'arrivait jamais dans un contexte où l'IntersectionObserver ne
+       parle pas (la salle a déjà payé cette leçon sur les photos, cf.
+       le filet dead-man de site.js). Le style d'un balisage TOUJOURS
+       présent voyage avec la page ; c'est le module de 15 ko, lui, qui
+       reste différé. -->
+  <link rel="stylesheet" href="/assets/css/community.css?v=b18" />
 
   <meta name="keywords" content="photos salle de boxe Minimes Toulouse, galerie Boxing Center, rings boxe Toulouse, images club de boxe 31200, salle boxe Barrière de Paris, boxing gym Toulouse, boxing club Toulouse, boxing lessons Toulouse, boxing classes Toulouse Minimes, English boxing Toulouse, kids boxing Toulouse, women boxing Toulouse, martial arts gym Toulouse, gym near Barrière de Paris" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -193,7 +204,7 @@ import SiteContent from "../../components/SiteContent.astro";
               "name": "Offre Rentrée — 29€ par personne",
               "price": "29",
               "priceCurrency": "EUR",
-              "description": "4 semaines de cours illimités à deux, sans engagement (au lieu de 44€).",
+              "description": "4 semaines de cours illimités, toutes disciplines, sans engagement — 29€ par personne (au lieu de 44,99€).",
               "url": "https://box-plus.vercel.app/abonnements#promo"
             },
             {
@@ -207,9 +218,9 @@ import SiteContent from "../../components/SiteContent.astro";
             {
               "@type": "Offer",
               "name": "École de boxe — dès 3 ans",
-              "price": "280",
+              "price": "295",
               "priceCurrency": "EUR",
-              "description": "Baby Boxe 3/6, éducative 7/11, ados 12/16.",
+              "description": "L’année, t-shirt du club inclus — éducative 7/11, ados 12/16. Baby Boxe 3/6 ans : 250€.",
               "url": "https://box-plus.vercel.app/abonnements#enfants"
             }
           ]

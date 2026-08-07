@@ -38,8 +38,13 @@
 .cm-field label { display: block; font: 700 var(--step--1)/1.4 var(--f-mono); letter-spacing: .12em; text-transform: uppercase;
   color: var(--bone); margin-bottom: .35rem; }
 .cm-field label i { font-style: normal; color: var(--steel); letter-spacing: .04em; }
+/* 16px, pas .92rem : sous 16 px, Safari iOS ZOOME la page à la prise de
+   focus et ne la dézoome jamais — le membre qui tape son prénom se
+   retrouve dans un formulaire trois fois trop grand, décalé, à faire
+   défiler à la main. La page de la séance offerte tenait déjà ce
+   plancher ; le mur du club l'avait manqué. */
 .cm-field input { width: 100%; min-height: 44px; background: var(--ink); color: var(--bone); border: 1px solid var(--line);
-  border-radius: 2px; padding: .6rem .7rem; font: 400 .92rem/1.4 var(--f-ui); transition: border-color .25s; }
+  border-radius: 2px; padding: .6rem .7rem; font: 400 16px/1.4 var(--f-ui); transition: border-color .25s; }
 .cm-field input::placeholder { color: var(--steel); }
 .cm-field input:focus-visible { outline: none; border-color: var(--silver); }
 .cm-field input[type="file"] { padding: .5rem; font: 500 .82rem/1.4 var(--f-mono); cursor: pointer; }

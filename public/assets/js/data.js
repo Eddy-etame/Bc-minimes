@@ -145,6 +145,10 @@ export const NAV = [
   { href: "/coachs/", label: "Coachs" },
   { href: "/galerie/", label: "Galerie" },
   { href: "/plannings/", label: "Planning" },
+  /* Le levier de conversion : la page se glisse AVANT les tarifs — on
+     rassure d’abord, on chiffre ensuite. Le libellé reprend le mot du
+     visiteur (« c’est ma première fois »), pas le nom de l’URL. */
+  { href: "/premiere-seance/", label: "Première fois" },
   { href: "/tarifs/", label: "Tarifs" },
   { href: "/contact/", label: "Contact" },
 ];
@@ -156,7 +160,7 @@ export const NAV = [
    §0.6 : Balma-Gramont est VENDUE — ne jamais la citer. */
 export const NETWORK = [
   { id: "portet", name: "Portet-sur-Garonne", flagship: true, tag: "Le vaisseau amiral", feat: "600 m² · ring de boxe anglaise · cage MMA · 24 sacs", url: "https://www.boxing-center-portet.fr/", go: "Découvrir" },
-  { id: "etats-unis", name: "États-Unis", tag: "Le colosse", feat: "La plus grande salle de France dédiée aux sports de combat", url: "https://boxingcenter.fr/", go: "Voir sur boxingcenter.fr" },
+  { id: "etats-unis", name: "États-Unis", tag: "Le colosse", feat: "Toutes les disciplines du réseau — la salle est présentée sur le site du groupe", url: "https://boxingcenter.fr/", go: "Voir sur boxingcenter.fr" },
   { id: "saint-cyprien", name: "Saint-Cyprien", tag: "Rive gauche", feat: "1 200 m² · toutes disciplines", url: "https://bc-st-cyprien.vercel.app/", go: "Découvrir" },
   { id: "ramonville", name: "Ramonville", tag: "L’octogone", feat: "Ring + octogone 7 m · extérieur", url: "https://bc-ramonville.vercel.app/", go: "Découvrir" },
 ];
@@ -170,7 +174,7 @@ export const FAQ = [
   { q: "Où se trouve Boxing Center Minimes ?", a: "Au 12 rue de Fenouillet, 31200 Toulouse, dans le quartier des Minimes — Barrière de Paris, à 3 minutes du métro ligne B." },
   { q: "Je n’ai jamais boxé. Je peux venir ?", a: "Oui. Tu ne seras ni le premier ni le seul — on a des créneaux débutants et du cardio boxing où tu ne prends aucun coup. Tu apprends le geste avant de le recevoir." },
   { q: "Quelle est la spécialité de la salle des Minimes ?", a: "La boxe anglaise. C’est la salle historique du groupe, le berceau de plusieurs boxeurs professionnels et amateurs — avec trois rings dédiés." },
-  { q: "Y a-t-il des cours pour les enfants ?", a: "Oui, dès 3 ans. Baby Boxe pour les 3/6 ans, boxe éducative pour les 7/11, ados 12/16, puis compétiteurs — du jeu au ring, un créneau par âge. À partir de 280 € l’année." },
+  { q: "Y a-t-il des cours pour les enfants ?", a: "Oui, dès 3 ans. Baby Boxe pour les 3/6 ans (250€ l’année), boxe éducative 7/11, ados 12/16 puis compétiteurs (295€ l’année, t-shirt du club inclus) — du jeu au ring, un créneau par âge." },
   { q: "Il y a des cours pour les femmes ?", a: "Le Boxing Lady est 100 % féminin : lundi 18h30 avec Chloé, mercredi 18h30 avec David. Et tous les autres cours te sont ouverts." },
   { q: "Quels sont les horaires ?", a: "Du lundi au samedi, de 10h00 à 21h30. Fermé le dimanche." },
 ];

@@ -57,6 +57,15 @@ export const ROUTES = [
     caption: "Planning des cours — salle des Minimes, Barrière de Paris",
   },
   {
+    /* La page qu’on lit AVANT d’oser appeler : priorité haute, elle est le
+       premier pas du tunnel, pas une page de plus. */
+    path: "/premiere-seance/",
+    priority: "0.9",
+    changefreq: "monthly",
+    image: "/assets/img/bc/training-2.webp",
+    caption: "Première séance — le coach aux pattes d’ours, Boxing Center Minimes",
+  },
+  {
     path: "/tarifs/",
     priority: "0.8",
     changefreq: "monthly",

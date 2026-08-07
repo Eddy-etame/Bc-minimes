@@ -78,16 +78,34 @@ function offlineAnswer() {
 }
 
 
+/* ---------- la mesure : d’où vient la vente ? ----------
+   Jusqu’ici, un visiteur envoyé sur la boutique par l’assistant arrivait
+   anonyme : impossible de prouver que le bot vend quoi que ce soit. Les
+   liens sortants portent désormais leur origine.
+
+   ⚠ Les paramètres se posent AVANT l’ancre. Une URL qui finirait par
+   « #promo?utm_source=… » enverrait l’ancre au diable : la boutique
+   ouvrirait le haut de la page des abonnements au lieu de la promo, et
+   personne ne verrait le défaut avant de compter les ventes perdues. */
+const UTM = "utm_source=chatbot&utm_medium=bouton&utm_campaign=bc-minimes";
+function marque(url) {
+  const i = url.indexOf("#");
+  const base = i === -1 ? url : url.slice(0, i);
+  const ancre = i === -1 ? "" : url.slice(i);
+  return base + (base.includes("?") ? "&" : "?") + UTM + ancre;
+}
+
 /* Destinations que le bot propose en BOUTONS — la pensée Portet émulée :
    clés fermées (un lien halluciné est impossible), boutique box-plus +
    pages internes de CE site, « rappel » reste une action du chat. */
 const ACTIONS = {
-  offre:       { label: "Je prends ma place — 29€", href: "https://box-plus.vercel.app/abonnements#promo" },
-  saison:      { label: "Je réserve ma saison · 259€", href: "https://box-plus.vercel.app/abonnements#promo" },
-  essai:       { label: "Je viens essayer · 10€", href: "https://box-plus.vercel.app/seance-essai" },
-  enfants:     { label: "J’inscris mon enfant", href: "https://box-plus.vercel.app/abonnements#enfants" },
-  abonnements: { label: "Voir les abonnements", href: "https://box-plus.vercel.app/abonnements" },
-  boutique:    { label: "La boutique du club", href: "https://box-plus.vercel.app/" },
+  offre:       { label: "Je prends ma place — 29€", href: marque("https://box-plus.vercel.app/abonnements#promo") },
+  saison:      { label: "Je réserve ma saison · 259€", href: marque("https://box-plus.vercel.app/abonnements#promo") },
+  essai:       { label: "Je viens essayer · 10€", href: marque("https://box-plus.vercel.app/seance-essai") },
+  enfants:     { label: "J’inscris mon enfant", href: marque("https://box-plus.vercel.app/abonnements#enfants") },
+  abonnements: { label: "Voir les abonnements", href: marque("https://box-plus.vercel.app/abonnements") },
+  boutique:    { label: "La boutique du club", href: marque("https://box-plus.vercel.app/") },
+  premiere:    { label: "Ta première séance, pas à pas", href: "/premiere-seance/" },
   tarifs:      { label: "Les tarifs en détail", href: "/tarifs/" },
   planning:    { label: "Voir le planning", href: "/plannings/" },
   disciplines: { label: "Découvrir les cours", href: "/activites/" },
@@ -120,7 +138,12 @@ function parseReply(rawText) {
   });
   text = text.replace(/(?:https?:\/\/)?box-plus\.vercel\.app[\w\/#-]*/gi, (u) => {
     const href = (u.startsWith("http") ? u : "https://" + u).replace(/\/$/, "");
-    const hit = Object.entries(ACTIONS).find(([, d]) => (d.href || "").replace(/\/$/, "") === href);
+    /* Le modèle écrit l’URL NUE ; nos boutons la portent balisée d’UTM. On
+       compare donc sans les paramètres — mais AVEC l’ancre, seule à
+       distinguer #promo de #enfants. Sans ce nettoyage, une URL citée en
+       clair ne retrouvait plus son bouton et restait affichée telle quelle. */
+    const cle = (v) => { const s = String(v || ""); const i = s.indexOf("#"); const b = (i === -1 ? s : s.slice(0, i)).split("?")[0].replace(/\/$/, ""); return b + (i === -1 ? "" : s.slice(i)); };
+    const hit = Object.entries(ACTIONS).find(([, d]) => cle(d.href) === cle(href));
     if (hit && !keys.some((k) => k.split(":")[0] === hit[0])) keys.push(hit[0]);
     return hit ? "la boutique en ligne" : u;
   });
