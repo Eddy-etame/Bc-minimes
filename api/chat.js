@@ -24,7 +24,7 @@ const STATIC_TAIL = `- Accès : métro ligne B station Barrière de Paris, 3 min
 const STATIC_INFO = `- Boxing Center Minimes : salle historique du groupe Boxing Center (depuis 2016), quartier des Minimes / Barrière de Paris. Spécialité maison : la boxe anglaise. « Le berceau des champions. »
 - Adresse : 12 rue de Fenouillet, 31200 Toulouse. Téléphone : 05 62 24 46 82. Email : boxingcenter31@gmail.com.
 - Horaires : du lundi au samedi, 10h00 – 21h30. Fermé le dimanche.
-- Tarifs (dans l’ordre où on les propose) : offre RENTRÉE 29€ PAR PERSONNE pour 4 semaines illimitées (au lieu de 44,99€) ; saison complète 259€ les 12 mois payable en 4× sans frais (au lieu de 400€) ; école 295€ l’année t-shirt du club inclus, Baby Boxe 250€ ; séance d’essai 10€ EN DERNIER.
+- Tarifs (dans l’ordre où on les propose) : offre RENTRÉE 29€ PAR PERSONNE pour 4 semaines illimitées (au lieu de 44€) ; saison complète 259€ les 12 mois payable en 4× sans frais (au lieu de 400€) ; école 295€ l’année t-shirt du club inclus, Baby Boxe 250€ ; séance d’essai 10€ EN DERNIER.
 - Disciplines : boxe anglaise (loisirs et compétiteurs), boxe éducative dès 3 ans (Baby Boxe 3/6, enfants 7/11, ados 12/16), Boxing Lady 100 % féminin, Boxing camp, boxe pieds-poings, PAOS et pattes d’ours, cross training et cardio boxing en accès libre.
 - Coachs : Mehdi B (coach principal, anglaise, école, compétiteurs, camp, sparring), Chloé (Boxing Lady du lundi), David (Boxing Lady du mercredi et pieds-poings), Hicham (Boxing camp mardi et jeudi).
 - Planning : anglaise loisirs le midi 12h40 (mardi, mercredi, jeudi) et le soir 19h40 (lundi, mardi, jeudi, vendredi) ; compétiteurs 18h (lundi, mardi, jeudi, vendredi) ; Boxing Lady lundi et mercredi 18h30 ; Boxing camp lundi et vendredi 12h40, mardi et jeudi 18h30, samedi 11h ; pieds-poings mercredi 19h40 ; l’école mercredi et samedi après-midi ; open sparring samedi 18h30.`;
@@ -154,7 +154,7 @@ export const KB = [
   { re: /essai|d[ée]couvr|tester|premi[èe]re fois|premiere fois|gratuit|venir voir/i,
     a: "La séance d’essai est à 10€ : la discipline que tu veux, gants et protections prêtés, aucun dossier à monter. Tu viens, tu boxes, tu décides après. Mais si tu comptes venir plus d’une fois, la rentrée à 29€ par personne est vite rentabilisée. [boutons: offre, essai]" },
   { re: /tarif|prix|co[ûu]te|combien|abonn|mensuel|saison|duo|259|29|295/i,
-    a: "L’offre Rentrée : 29€ PAR PERSONNE pour 4 semaines illimitées (au lieu de 44,99€). La saison complète : 259€ les 12 mois au lieu de 400€, en 4× sans frais, accès libre aux 5 clubs. L’école : 295€ l’année t-shirt inclus, baby 250€. Et l’essai à 10€ pour tester. [boutons: offre, tarifs]" },
+    a: "L’offre Rentrée : 29€ PAR PERSONNE pour 4 semaines illimitées (au lieu de 44€). La saison complète : 259€ les 12 mois au lieu de 400€, en 4× sans frais, accès libre aux 5 clubs. L’école : 295€ l’année t-shirt inclus, baby 250€. Et l’essai à 10€ pour tester. [boutons: offre, tarifs]" },
   { re: /horaire|ouvert|ferm|heure|dimanche|acc[èe]s libre/i,
     a: "La salle est ouverte du lundi au samedi, de 10h00 à 21h30. Fermé le dimanche. En dehors des cours, les rings et les sacs sont à toi en accès libre : 10h–12h et 13h20–18h (le mercredi ça s’arrête à 15h, l’école prend la salle)." },
   /* « où » accentué est sans ambiguïté ; « ou » nu ne compte que collé à

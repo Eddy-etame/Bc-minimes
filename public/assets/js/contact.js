@@ -3,7 +3,7 @@
    Rendu depuis data.js : coordonnées (SALLE) + carte + FAQ locale (FAQ).
    La FAQ visible est le miroir exact du FAQPage LD-JSON de la page.
    ===================================================================== */
-import { SALLE, FAQ } from "./data.js?v=b18";
+import { SALLE, FAQ } from "./data.js?v=b19";
 
 const $ = (s, r = document) => r.querySelector(s);
 

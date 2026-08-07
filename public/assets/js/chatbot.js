@@ -16,7 +16,7 @@
    le fil, respect de prefers-reduced-motion (l’animation d’ouverture est
    coupée en CSS, la frappe simulée est raccourcie ici).
    ===================================================================== */
-import { SALLE, NETWORK } from "./data.js?v=b18";
+import { SALLE, NETWORK } from "./data.js?v=b19";
 
 const EMAIL_RE = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/i;
 /* numéro FR : +33 ou 0, puis 9 chiffres groupés librement */

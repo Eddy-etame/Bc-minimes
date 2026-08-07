@@ -88,10 +88,10 @@ export const PROMOS = {
       name: "L’offre Rentrée",
       price: "29€",
       unit: "par personne",
-      was: "44,99€",
+      was: "44€",
       period: "· 4 semaines",
       feature: "Cours illimités, toutes disciplines, sans engagement",
-      items: ["29€ par personne (au lieu de 44,99€)", "4 semaines de cours illimités", "Toutes les disciplines", "Encore mieux à deux — 29€ chacun"],
+      items: ["29€ par personne (au lieu de 44€)", "4 semaines de cours illimités", "Toutes les disciplines", "Encore mieux à deux — 29€ chacun"],
       cta: "Je prends ma place — 29€",
       href: "https://box-plus.vercel.app/abonnements#promo",
       tag: "La priorité",
@@ -108,6 +108,21 @@ export const PROMOS = {
       cta: "Je réserve ma saison — 4× 64,75€",
       href: "https://box-plus.vercel.app/abonnements#promo",
       tag: "L’abonnement",
+    },
+    /* L'abonnement de tous les jours. Il manquait : la page sautait de
+       l'offre de rentree a l'ecole des enfants, et quelqu'un qui voulait
+       simplement s'abonner au mois ne trouvait aucun prix. Ecrit SANS prix
+       barre — ce n'est pas une promotion, c'est le tarif. */
+    {
+      key: "classiques",
+      name: "L’abonnement au mois",
+      price: "44€",
+      period: "/ 4 semaines · adulte",
+      feature: "Étudiant 36€ sur justificatif — le tarif de tous les jours",
+      items: ["Adulte 44€ / 4 semaines", "Étudiant 36€ / 4 semaines", "Accès aux 5 salles, toutes les disciplines", "Sans engagement"],
+      cta: "Voir les formules au mois",
+      href: "https://box-plus.vercel.app/abonnements",
+      tag: "Le classique",
     },
     {
       key: "ecole",

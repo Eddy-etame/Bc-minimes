@@ -6,7 +6,7 @@
    Les embarquer partout coûtait leur poids sur chaque page pour rien.
    ===================================================================== */
 
-import { bcRegister } from "./data.js?v=b18";
+import { bcRegister } from "./data.js?v=b19";
 
 /* Avis Google réels (verbatim, curés le 2026-07-12) — jamais inventés.
    Source : fiche Google Boxing Center Minimes.
@@ -41,7 +41,7 @@ bcRegister("avis", REVIEWS);   /* ce que le staff écrit dans le vestiaire gagne
 export const MONEY_FAQ = [
   {
     q: "L’offre Rentrée à 29€, c’est pour deux ou chacun ?",
-    a: "Chacun. 29€ par personne au lieu de 44,99€, pour quatre semaines de cours illimités. Viens avec ton binôme : c’est ce qui te fait pousser la porte la troisième semaine, quand la motivation du début est retombée.",
+    a: "Chacun. 29€ par personne au lieu de 44€, pour quatre semaines de cours illimités. Viens avec ton binôme : c’est ce qui te fait pousser la porte la troisième semaine, quand la motivation du début est retombée.",
   },
   {
     q: "259€ d’un coup, c’est raide.",
