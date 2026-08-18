@@ -50,7 +50,7 @@
           "Encore mieux à deux — 29€ chacun"
         ],
         "cta": "Je prends ma place — 29€",
-        "href": "https://box-plus.vercel.app/abonnements#promo",
+        "href": "https://boutique.boxingcenter.fr/abonnements#promo",
         "tag": "La priorité",
         "highlight": true
       },
@@ -68,7 +68,7 @@
           "Accès libre aux 5 clubs du réseau"
         ],
         "cta": "Je réserve ma saison — 4× 64,75€",
-        "href": "https://box-plus.vercel.app/abonnements#promo",
+        "href": "https://boutique.boxingcenter.fr/abonnements#promo",
         "tag": "L’abonnement"
       },
       {
@@ -84,7 +84,7 @@
           "Sans engagement"
         ],
         "cta": "Voir les formules au mois",
-        "href": "https://box-plus.vercel.app/abonnements",
+        "href": "https://boutique.boxingcenter.fr/abonnements",
         "tag": "Le classique"
       },
       {
@@ -100,7 +100,7 @@
           "Compétiteurs encadrés par Mehdi B"
         ],
         "cta": "J’inscris mon enfant",
-        "href": "https://box-plus.vercel.app/abonnements#enfants"
+        "href": "https://boutique.boxingcenter.fr/abonnements#enfants"
       },
       {
         "key": "essai",
@@ -114,7 +114,7 @@
           "Sans engagement, sans dossier — tu viens, tu testes, tu décides"
         ],
         "cta": "Je viens essayer · 10€",
-        "href": "https://box-plus.vercel.app/seance-essai"
+        "href": "https://boutique.boxingcenter.fr/seance-essai"
       }
     ]
   },

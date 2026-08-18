@@ -99,12 +99,12 @@ function marque(url) {
    clés fermées (un lien halluciné est impossible), boutique box-plus +
    pages internes de CE site, « rappel » reste une action du chat. */
 const ACTIONS = {
-  offre:       { label: "Je prends ma place — 29€", href: marque("https://box-plus.vercel.app/abonnements#promo") },
-  saison:      { label: "Je réserve ma saison · 259€", href: marque("https://box-plus.vercel.app/abonnements#promo") },
-  essai:       { label: "Je viens essayer · 10€", href: marque("https://box-plus.vercel.app/seance-essai") },
-  enfants:     { label: "J’inscris mon enfant", href: marque("https://box-plus.vercel.app/abonnements#enfants") },
-  abonnements: { label: "Voir les abonnements", href: marque("https://box-plus.vercel.app/abonnements") },
-  boutique:    { label: "La boutique du club", href: marque("https://box-plus.vercel.app/") },
+  offre:       { label: "Je prends ma place — 29€", href: marque("https://boutique.boxingcenter.fr/abonnements#promo") },
+  saison:      { label: "Je réserve ma saison · 259€", href: marque("https://boutique.boxingcenter.fr/abonnements#promo") },
+  essai:       { label: "Je viens essayer · 10€", href: marque("https://boutique.boxingcenter.fr/seance-essai") },
+  enfants:     { label: "J’inscris mon enfant", href: marque("https://boutique.boxingcenter.fr/abonnements#enfants") },
+  abonnements: { label: "Voir les abonnements", href: marque("https://boutique.boxingcenter.fr/abonnements") },
+  boutique:    { label: "La boutique du club", href: marque("https://boutique.boxingcenter.fr/") },
   premiere:    { label: "Ta première séance, pas à pas", href: "/premiere-seance/" },
   tarifs:      { label: "Les tarifs en détail", href: "/tarifs/" },
   planning:    { label: "Voir le planning", href: "/plannings/" },

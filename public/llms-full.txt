@@ -177,10 +177,10 @@ Créneaux conseillés pour une première : anglaise loisirs 19h40 (lundi, mardi,
 
 ## Tarifs & offres — https://bc-minimes.vercel.app/tarifs/
 
-- Séance d’essai : 10 € la séance — toutes les disciplines, gants et protections prêtés, sans engagement, sans dossier. → https://box-plus.vercel.app/seance-essai
-- Offre Rentrée : 29 € par personne (au lieu de 44,99 €) — 4 semaines de cours illimités, toutes disciplines, sans engagement. Encore mieux à deux : chacun 29 €. → https://box-plus.vercel.app/abonnements#promo
-- Saison complète : 259 € les 12 mois (au lieu de 400 €) — payable en 4× sans frais ; anglaise, MMA, pieds-poings, Lady, fitness ; accès libre aux 5 clubs du réseau. → https://box-plus.vercel.app/abonnements#promo
-- École de boxe : 295 € l’année t-shirt inclus, baby 250 € — Baby Boxe dès 3 ans (3/6), éducative 7/11, ados 12/16, compétiteurs encadrés par Mehdi B. → https://box-plus.vercel.app/abonnements#enfants
+- Séance d’essai : 10 € la séance — toutes les disciplines, gants et protections prêtés, sans engagement, sans dossier. → https://boutique.boxingcenter.fr/seance-essai
+- Offre Rentrée : 29 € par personne (au lieu de 44,99 €) — 4 semaines de cours illimités, toutes disciplines, sans engagement. Encore mieux à deux : chacun 29 €. → https://boutique.boxingcenter.fr/abonnements#promo
+- Saison complète : 259 € les 12 mois (au lieu de 400 €) — payable en 4× sans frais ; anglaise, MMA, pieds-poings, Lady, fitness ; accès libre aux 5 clubs du réseau. → https://boutique.boxingcenter.fr/abonnements#promo
+- École de boxe : 295 € l’année t-shirt inclus, baby 250 € — Baby Boxe dès 3 ans (3/6), éducative 7/11, ados 12/16, compétiteurs encadrés par Mehdi B. → https://boutique.boxingcenter.fr/abonnements#enfants
 - Bonus : le t-shirt Boxing Center est inclus dans toute inscription enfant — pour tous, sans condition et sans quota.
 ### Les questions d’argent (rendues sur /tarifs/, hors FAQPage)
 
@@ -204,7 +204,7 @@ Créneaux conseillés pour une première : anglaise loisirs 19h40 (lundi, mardi,
 - E-mail : boxingcenter31@gmail.com
 - Horaires : lundi–vendredi 10h00–21h30 ; samedi 10h00–21h30 ; dimanche fermé.
 - Accès : métro ligne B station Barrière de Paris (3 min à pied) ; rocade sortie 31 direction Les Minimes ; bus 70 / 27 arrêt Minimes-Roquelaine.
-- Réservation de la séance d’essai (10 €) : https://box-plus.vercel.app/seance-essai
+- Réservation de la séance d’essai (10 €) : https://boutique.boxingcenter.fr/seance-essai
 
 ### FAQ
 - Où se trouve Boxing Center Minimes ? — Au 12 rue de Fenouillet, 31200 Toulouse, dans le quartier des Minimes — Barrière de Paris, à 3 minutes du métro ligne B.

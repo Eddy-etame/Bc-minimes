@@ -16,7 +16,7 @@ import { allowCors, body, siteContent } from "./_lib/util.js";
 const STATIC_TAIL = `- Accès : métro ligne B station Barrière de Paris, 3 minutes à pied. Rocade sortie 31 direction Les Minimes. Bus 70 / 27 arrêt Minimes-Roquelaine.
 - La salle : 3 rings, 12 sacs lourds, zone pattes d’ours, zone prépa physique à l’étage, vestiaires hommes et femmes séparés. Affiliations FFBoxe, FFKMDA, FMMAF.
 - L’histoire : ouverte en 2016, c’est la PREMIÈRE salle du groupe Boxing Center — la salle historique. Trois boxeurs professionnels en sont sortis : Johnson Suffo, Salomon Kitoko, Elyasse Azap.
-- Séance d’essai : 10€, toutes disciplines, gants et protections prêtés, sans engagement et sans dossier. Réservation sur box-plus.vercel.app/seance-essai ou sur place.
+- Séance d’essai : 10€, toutes disciplines, gants et protections prêtés, sans engagement et sans dossier. Réservation sur boutique.boxingcenter.fr/seance-essai ou sur place.
 - Accès libre : rings et sacs en autonomie tous les jours de 10h à 12h et de 13h20 à 18h (le mercredi jusqu’à 15h seulement, l’école prend la salle).
 - Réseau Boxing Center : Portet-sur-Garonne (vaisseau amiral), États-Unis, Saint-Cyprien, Ramonville. L’abonnement saison ouvre l’accès libre aux 5 clubs. Groupe : boxingcenter.fr.`;
 

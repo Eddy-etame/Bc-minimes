@@ -59,16 +59,16 @@ export const CTA = {
    Liens VÉRIFIÉS le 2026-07-12 (STANDARDS §1). Ne PAS inventer de tunnel :
    /offre-duo-rentree, /offre-saison-259, /seance-essai-gratuite = 404. */
 export const LINKS = {
-  essai: "https://box-plus.vercel.app/seance-essai",   // essai 10€ — dernier recours (gong, FAQ), jamais en tête
-  abonnements: "https://box-plus.vercel.app/abonnements",
-  enfants: "https://box-plus.vercel.app/abonnements#enfants",
-  promos: "https://box-plus.vercel.app/abonnements#promo",
-  coachings: "https://box-plus.vercel.app/coachings",
-  materiel: "https://box-plus.vercel.app/materiel",
+  essai: "https://boutique.boxingcenter.fr/seance-essai",   // essai 10€ — dernier recours (gong, FAQ), jamais en tête
+  abonnements: "https://boutique.boxingcenter.fr/abonnements",
+  enfants: "https://boutique.boxingcenter.fr/abonnements#enfants",
+  promos: "https://boutique.boxingcenter.fr/abonnements#promo",
+  coachings: "https://boutique.boxingcenter.fr/coachings",
+  materiel: "https://boutique.boxingcenter.fr/materiel",
   // maillage de marque : « Boutique » mène à la BOUTIQUE, pas à un rayon.
   // Elle pointait sur /materiel sous le libellé « Boutique » — le lien
   // mentait au clic, et Saint-Cyprien pointait déjà sur la racine. Parité.
-  boutique: "https://box-plus.vercel.app/",
+  boutique: "https://boutique.boxingcenter.fr/",
   offreRentree: "/tarifs/",   // la carte "Offre Rentrée" de l’accueil reste interne → /tarifs/
   groupe: "https://boxingcenter.fr/",
   facebook: "https://www.facebook.com/BoxingCenterToulouse/",
@@ -93,7 +93,7 @@ export const PROMOS = {
       feature: "Cours illimités, toutes disciplines, sans engagement",
       items: ["29€ par personne (au lieu de 44€)", "4 semaines de cours illimités", "Toutes les disciplines", "Encore mieux à deux — 29€ chacun"],
       cta: "Je prends ma place — 29€",
-      href: "https://box-plus.vercel.app/abonnements#promo",
+      href: "https://boutique.boxingcenter.fr/abonnements#promo",
       tag: "La priorité",
       highlight: true,
     },
@@ -106,7 +106,7 @@ export const PROMOS = {
       feature: "4× sans frais · accès libre aux 5 clubs — moins de 5€ par semaine",
       items: ["259€ les 12 mois (au lieu de 400€)", "Payable en 4× 64,75€ sans frais", "Anglaise, MMA, pieds-poings, Lady, Fitness", "Accès libre aux 5 clubs du réseau"],
       cta: "Je réserve ma saison — 4× 64,75€",
-      href: "https://box-plus.vercel.app/abonnements#promo",
+      href: "https://boutique.boxingcenter.fr/abonnements#promo",
       tag: "L’abonnement",
     },
     /* L'abonnement de tous les jours. Il manquait : la page sautait de
@@ -121,7 +121,7 @@ export const PROMOS = {
       feature: "Étudiant 36€ sur justificatif — le tarif de tous les jours",
       items: ["Adulte 44€ / 4 semaines", "Étudiant 36€ / 4 semaines", "Accès aux 5 salles, toutes les disciplines", "Sans engagement"],
       cta: "Voir les formules au mois",
-      href: "https://box-plus.vercel.app/abonnements",
+      href: "https://boutique.boxingcenter.fr/abonnements",
       tag: "Le classique",
     },
     {
@@ -132,7 +132,7 @@ export const PROMOS = {
       feature: "Baby Boxe 3/6 à 250€ · éducative 7/11 · ados 12/16",
       items: ["Boxe éducative et ados : 295€/an, t-shirt du club inclus", "Baby Boxe 3/6 ans : 250€/an", "Un créneau par âge, mercredi et samedi", "Compétiteurs encadrés par Mehdi B"],
       cta: "J’inscris mon enfant",
-      href: "https://box-plus.vercel.app/abonnements#enfants",
+      href: "https://boutique.boxingcenter.fr/abonnements#enfants",
     },
     {
       key: "essai",
@@ -142,7 +142,7 @@ export const PROMOS = {
       feature: "Toujours là ? Alors viens essayer — gants prêtés",
       items: ["Toutes les disciplines de la salle", "Gants et protections prêtés", "Sans engagement, sans dossier — tu viens, tu testes, tu décides"],
       cta: "Je viens essayer · 10€",
-      href: "https://box-plus.vercel.app/seance-essai",
+      href: "https://boutique.boxingcenter.fr/seance-essai",
     },
   ],
 };
