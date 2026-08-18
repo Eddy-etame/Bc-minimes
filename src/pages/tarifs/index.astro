@@ -2,7 +2,7 @@
 import SiteContent from "../../components/SiteContent.astro";
 ---
 <!doctype html>
-<html lang="fr" data-theme="dark">
+<html lang="fr" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,10 +17,11 @@ import SiteContent from "../../components/SiteContent.astro";
   <link rel="stylesheet" href="/assets/css/fonts.css?v=b19" />
 
   <!-- LCP : le hero est construit en JS → invisible au preload scanner (§5.8) -->
-  <link rel="preload" as="image" href="/assets/img/bc/cross-1.webp" fetchpriority="high" />
+  <link rel="preload" as="image" href="/assets/img/photos/cross-rack-1200.webp" fetchpriority="high" />
 
   <link rel="stylesheet" href="/assets/css/base.css?v=b19" />
   <link rel="stylesheet" href="/assets/css/home.css?v=b19" />
+  <link rel="stylesheet" href="/assets/css/refonte.css?v=b19" />
 
   <meta name="keywords" content="tarif salle de boxe Toulouse, prix boxe Minimes, offre rentrée boxe 29€, abonnement boxe Toulouse, séance d’essai boxe, saison boxe 259€, tarif boxe enfant Toulouse, boxing gym Toulouse, boxing club Toulouse, boxing lessons Toulouse, boxing classes Toulouse Minimes, English boxing Toulouse, kids boxing Toulouse, women boxing Toulouse, martial arts gym Toulouse, gym near Barrière de Paris" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -328,34 +329,43 @@ import SiteContent from "../../components/SiteContent.astro";
     .offers { display: grid; gap: .7rem; grid-template-columns: 1fr; margin-top: 0; }
     @media (min-width: 680px){ .offers { grid-template-columns: repeat(2,1fr); } }
     @media (min-width: 1120px){ .offers { grid-template-columns: repeat(4,1fr); } }
-    .offer { position: relative; display: flex; flex-direction: column; gap: 1.1rem; padding: clamp(1.6rem,3vw,2.3rem); background: var(--ink); border: 1px solid var(--line); overflow: hidden; transition: transform .5s var(--ease-punch), border-color .4s, background .4s; }
+    /* ⚠ INVERSION v4 : la carte etait un aplat SOMBRE et la carte mise en
+       avant un aplat CLAIR. Les deux tokens ayant change de camp, la regle
+       d origine posait du navy sur du navy (1.02:1) — les quatre cartes de
+       tarifs etaient litteralement illisibles. Carte blanche par defaut,
+       aplat navy pour la mise en avant. */
+    .offer { position: relative; display: flex; flex-direction: column; gap: 1.1rem; padding: clamp(1.6rem,3vw,2.3rem); background: var(--paper); color: var(--on-light); border: 1px solid var(--hair); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); overflow: hidden; transition: transform .45s var(--ease-out), box-shadow .45s var(--ease-out); }
     .offer::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--mark); transform: scaleY(0); transform-origin: bottom; transition: transform .5s var(--ease-out); }
-    .offer:hover, .offer:active { transform: translateY(-8px); border-color: rgba(238,241,246,.28); }
+    .offer:hover, .offer:active { transform: translateY(-5px); box-shadow: var(--shadow-md); }
     .offer:hover::before, .offer:active::before { transform: scaleY(1); }
-    .offer--hot { background: var(--bone); color: var(--ink); border-color: var(--bone); }
-    .offer--hot::before { background: var(--ink); }
-    .offer__tag { align-self: flex-start; font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--bone); background: rgba(38,64,115,.5); padding: .45em .8em; border: 1px solid var(--mark); }
-    .offer--hot .offer__tag { color: var(--on-accent); background: var(--navy); border-color: var(--silver); }
+    .offer--hot { background: var(--navy-600); color: #fff; border-color: var(--navy-600); box-shadow: var(--shadow-lg);
+      --bone:#fff; --read:#DCDDEE; --bone-dim:var(--navy-200); --mark:#fff; --steel:var(--navy-200); }
+    .offer--hot::before { background: #fff; }
+    .offer__tag { align-self: flex-start; font: 700 var(--step--2)/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: #fff; background: var(--rust-400); padding: .5em .9em; border: 0; border-radius: 100px; }
+    .offer--hot .offer__tag { color: var(--navy-600); background: #fff; }
     .offer__name { font-family: var(--f-display); text-transform: uppercase; font-size: clamp(1.35rem,2.6vw,1.9rem); line-height: .95; color: inherit; }
     .offer__price { display: flex; align-items: baseline; flex-wrap: wrap; gap: .5ch; }
     .offer__was { font: 700 1rem/1 var(--f-mono); color: var(--bone-dim); text-decoration: line-through; text-decoration-color: var(--mark); }
-    .offer--hot .offer__was { color: var(--on-bone-dim); }
-    .offer__now { font-family: var(--f-display); font-size: clamp(2.8rem,6.5vw,4rem); line-height: .8; color: inherit; }
+    .offer--hot .offer__was { color: var(--navy-200); }
+    .offer__now { font-family: var(--f-display); font-size: clamp(2.8rem,6.5vw,4rem); line-height: .8; color: var(--bone); letter-spacing: -.02em; }
     .offer__unit { font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .04em; text-transform: uppercase; color: var(--bone); }
-    .offer--hot .offer__unit { color: var(--ink); }
+    .offer--hot .offer__unit { color: #fff; }
     .offer__period { font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--bone-dim); width: 100%; }
-    .offer--hot .offer__period { color: var(--on-bone-dim); }
+    .offer--hot .offer__period { color: var(--navy-200); }
     .offer__feature { font-size: var(--step--1); font-weight: 600; color: var(--bone); }
-    .offer--hot .offer__feature { color: var(--ink); }
+    .offer--hot .offer__feature { color: #fff; }
     .offer__items { display: grid; gap: .55rem; margin-top: auto; }
     .offer__items li { display: flex; gap: .8ch; align-items: flex-start; font-size: var(--step--1); color: var(--read); }
-    .offer--hot .offer__items li { color: var(--ink); }
+    .offer--hot .offer__items li { color: #DCDDEE; }
     .offer__items li::before { content: ""; flex: 0 0 7px; height: 7px; margin-top: .5em; background: var(--mark); }
     .offer .btn { margin-top: .4rem; }
 
     /* bonus */
-    .bonus { position: relative; margin-top: clamp(1.6rem,4vw,2.4rem); display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.6rem; padding: clamp(1.4rem,3vw,2rem) clamp(1.4rem,3vw,2.2rem); border: 1px solid var(--mark); background: linear-gradient(100deg, rgba(38,64,115,.35), rgba(14,23,48,.4) 70%); }
-    .bonus__badge { font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--white); background: var(--navy); border: 1px solid var(--silver); padding: .6em .9em; }
+    /* Bandeau d appui : c est un APLAT navy assume, pas un degrade fantome
+       qui virait au gris sale sur fond blanc. */
+    .bonus { position: relative; margin-top: clamp(1.6rem,4vw,2.4rem); display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.6rem; padding: clamp(1.5rem,3vw,2.1rem) clamp(1.5rem,3vw,2.3rem); border: 0; border-radius: var(--radius-lg); background: var(--navy-600); color: #fff;
+      --bone:#fff; --mark:#fff; }
+    .bonus__badge { font: 700 var(--step--2)/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--navy-600); background: #fff; border: 0; border-radius: 100px; padding: .6em 1em; }
     .bonus__txt { font-family: var(--f-display); text-transform: uppercase; font-size: clamp(1.1rem,2.6vw,1.7rem); line-height: 1.05; color: var(--bone); }
     .bonus__txt b { color: var(--white); }
 
@@ -367,9 +377,13 @@ import SiteContent from "../../components/SiteContent.astro";
     .rev-rating__src { font: 700 var(--step--1)/1.3 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--bone); }
     .reviews { display: grid; gap: .7rem; grid-template-columns: 1fr; }
     @media (min-width: 760px){ .reviews { grid-template-columns: repeat(3,1fr); } }
-    .review { display: flex; flex-direction: column; gap: 1rem; padding: clamp(1.4rem,3vw,2rem); background: var(--ink-2); border: 1px solid var(--line); transition: border-color .4s, transform .5s var(--ease); }
-    .review:hover, .review:active { border-color: rgba(238,241,246,.24); transform: translateY(-4px); }
-    .review__stars { color: var(--bone); letter-spacing: .25em; font-size: .9rem; }
+    .review { display: flex; flex-direction: column; gap: 1rem; padding: clamp(1.5rem,3vw,2.1rem); background: var(--paper); border: 1px solid var(--hair); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); transition: box-shadow .4s, transform .45s var(--ease-out); }
+    .review:hover, .review:active { box-shadow: var(--shadow-md); transform: translateY(-4px); }
+    /* L'or des étoiles doit rester lisible SUR BLANC : le #F5A623 des
+       interfaces d'avis mesure 2.03:1 sur papier — acceptable pour un
+       pictogramme, insuffisant dès qu'il porte l'information. Le degré
+       retenu tient 4:1 et se lit toujours comme de l'or. */
+    .review__stars { color: #A66500; letter-spacing: .25em; font-size: .95rem; }
     .review__text { color: var(--bone); font-size: var(--step-0); line-height: 1.5; }
     .review__author { margin-top: auto; font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--bone-dim); }
     .review__author::before { content: "— "; color: var(--mark); }
@@ -401,7 +415,7 @@ import SiteContent from "../../components/SiteContent.astro";
 
     <!-- ========================= EN-TÊTE ========================== -->
     <section class="page-head page-head--tar" aria-label="Tarifs et offres">
-      <div class="page-head__bg" aria-hidden="true"><div class="media" data-img="/assets/img/bc/cross-1.webp" data-eager data-label=""></div></div>
+      <div class="page-head__bg" aria-hidden="true"><div class="media" data-img="/assets/img/photos/cross-rack-1200.webp" data-eager data-label=""></div></div>
       <div class="wrap">
         <span class="eyebrow" data-reveal>Tarifs · <span id="season">Saison 2026 — 2027</span></span>
         <h1 class="display" style="margin:1rem 0 0"><span class="reveal-mask"><span>Le prix, </span></span><span class="reveal-mask"><span class="tint">sans détour.</span></span></h1>
@@ -472,7 +486,7 @@ import SiteContent from "../../components/SiteContent.astro";
 
     <!-- ========================= FINAL GONG ====================== -->
     <section class="gong" aria-label="Réserver une séance">
-      <div class="gong__bg" aria-hidden="true"><div class="media" data-img="/assets/img/bc/anglaise-4.webp" data-label=""></div></div>
+      <div class="gong__bg" aria-hidden="true"><div class="media" data-img="/assets/img/photos/allee-sacs-1200.webp" data-label=""></div></div>
       <div class="gong__inner">
         <span class="eyebrow" data-reveal>L’addition</span>
         <h2 class="display" data-reveal style="font-size:var(--step-3)">Toujours pas décidé ?<br><span class="tint">Les 10€.</span></h2>

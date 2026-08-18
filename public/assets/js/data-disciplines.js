@@ -37,7 +37,7 @@ export const DISCIPLINES = [
     tag: "La spécialité maison",
     teaser: "Le geste de base, repris jusqu’à ce qu’il tienne tout seul.",
     desc: "Le noble art, à la source. Jab, esquive, jeu de jambes — sept créneaux par semaine, midi et soir. Le loisir, ici, c’est la vraie boxe, à ton rythme — et aucun coup à recevoir tant que tu ne le demandes pas.",
-    img: "/assets/img/bc/anglaise-1.webp",
+    img: "/assets/img/photos/cours-sacs-1200.webp",
     for: "Du grand débutant au compétiteur licencié.",
     points: [
       "Le midi de 12h40 à 13h20 : mardi, mercredi, jeudi",
@@ -54,7 +54,7 @@ export const DISCIPLINES = [
     tag: "Le ring, pour de vrai",
     teaser: "Le cours qui mène au ring, et nulle part ailleurs.",
     desc: "18h à 19h30, quatre soirs par semaine. Ceux qui montent à l’open sparring du samedi ont fait leurs heures ici. On n’y entre pas en s’inscrivant : c’est Mehdi B qui te fait passer, quand tu es prêt — et seulement si tu en as envie.",
-    img: "/assets/img/bc/anglaise-2.webp",
+    img: "/assets/img/photos/sparring-graff-1200.webp",
     for: "Les licenciés — et ceux qui le deviendront, à leur rythme.",
     points: [
       "De 18h à 19h30 : lundi, mardi, jeudi, vendredi",
@@ -70,7 +70,7 @@ export const DISCIPLINES = [
     tag: "Dès 3 ans",
     teaser: "Le mercredi et le samedi appartiennent aux enfants.",
     desc: "De la Baby Boxe 3/6 aux jeunes compétiteurs, la règle est fédérale et non négociable : on touche, on ne frappe pas. Ils arrivent en courant partout, ils repartent en marchant droit.",
-    img: "/assets/img/bc/educative-1.webp",
+    img: "/assets/img/photos/ecole-enfant-1200.webp",
     for: "Les enfants et les ados, du jeu au ring.",
     points: [
       "Baby Boxe 3/6 ans, le samedi à 14h15",
@@ -87,7 +87,7 @@ export const DISCIPLINES = [
     tag: "100 % féminin",
     teaser: "Entre femmes, le lundi et le mercredi soir.",
     desc: "Deux soirs, une bande, et le sac qui prend tout. Chloé le lundi, David le mercredi — entre femmes, avec une vraie exigence et zéro galerie. Beaucoup y débutent ; certaines passent ensuite en mixte. Les deux sont très bien.",
-    img: "/assets/img/bc/lady-2.webp",
+    img: "/assets/img/photos/lady-sac-1200.webp",
     for: "Les femmes, débutantes comme habituées.",
     points: [
       "Lundi 18h30 avec Chloé, mercredi 18h30 avec David",
@@ -103,7 +103,7 @@ export const DISCIPLINES = [
     tag: "Le circuit",
     teaser: "Cinq rendez-vous par semaine, juste pour le moteur.",
     desc: "Le cours qui te construit la caisse d’un boxeur sans te demander de savoir boxer. Ça enchaîne, ça ne discute pas, et à la fin tu es cuit.",
-    img: "/assets/img/bc/levels-1.webp",
+    img: "/assets/img/photos/jumps-groupe-1200.webp",
     for: "Les adultes, tous niveaux — aucune technique exigée.",
     points: [
       "Lundi et vendredi à 12h40, sur la pause déjeuner",
@@ -120,7 +120,7 @@ export const DISCIPLINES = [
     teaser: "Le mercredi soir, on boxe aussi avec les jambes.",
     noPhoto: true,
     desc: "Une fois par semaine, la garde change et les jambes entrent dans l’histoire. Même exigence de geste que l’anglaise, deux fois plus de gestes à apprendre.",
-    img: null,
+    img: "/assets/img/photos/shadow-graff-1200.webp",
     for: "Tous niveaux — y compris ceux qui n’ont jamais lancé un coup de pied.",
     points: [
       "Mercredi 19h40 à 21h, avec David",
@@ -137,7 +137,7 @@ export const DISCIPLINES = [
     tag: "Travail technique",
     teaser: "Le travail aux pattes, à l’intérieur du cours d’anglaise.",
     desc: "Face au coach, sur les pattes : précision, vitesse, lecture. Le vrai boulot de boxeur, celui qu’on ne triche pas.",
-    img: "/assets/img/bc/training-2.webp",
+    img: "/assets/img/photos/coach-garde-1200.webp",
     for: "Ceux qui veulent le geste juste, pas juste la sueur.",
     points: [
       "Pas de créneau à part : ça vit dans le cours d’anglaise",
@@ -154,7 +154,7 @@ export const DISCIPLINES = [
     tag: "La caisse",
     teaser: "L’étage t’est ouvert dès que la salle l’est.",
     desc: "Gainage, cardio, explosivité. La caisse qui te fait tenir le dernier round. À l’étage, quand tu veux.",
-    img: "/assets/img/bc/cross-1.webp",
+    img: "/assets/img/photos/cross-rack-1200.webp",
     for: "Ceux qui veulent la caisse d’un boxeur.",
     points: [
       "Pas de créneau : la zone prépa est à toi en accès libre",
@@ -171,7 +171,7 @@ export const DISCIPLINES = [
     tag: "Sans contact",
     teaser: "Tu frappes le sac, personne ne te frappe.",
     desc: "Tout le geste, toute la sueur, aucun coup encaissé. La porte d’entrée quand on n’a jamais boxé.",
-    img: "/assets/img/bc/training-1.webp",
+    img: "/assets/img/photos/ballon-vitesse-1200.webp",
     for: "Les débutants et ceux qui veulent transpirer sans encaisser.",
     points: [
       "Pas de créneau : douze sacs lourds, en accès libre",

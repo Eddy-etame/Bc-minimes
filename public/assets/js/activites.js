@@ -14,7 +14,7 @@
       disciplines qui n’ONT pas de créneau (paos, cross, cardio), il ne
       ment plus : il le dit et renvoie vers l’accès libre.
    ===================================================================== */
-import { LINKS, CTA } from "./data.js?v=b19";
+import { LINKS, CTA, CTA_HREF } from "./data.js?v=b19";
 import { DISCIPLINES } from "./data-disciplines.js?v=b19";
 import { PLANNING } from "./data-planning.js?v=b19";
 
@@ -75,7 +75,7 @@ function renderRows() {
         <p class="act__for"><span>Pour qui</span>${d.for}</p>
         <ul class="act__points">${d.points.map((p) => `<li>${p}</li>`).join("")}</ul>
         <div class="act__cta">
-          <a class="btn btn--primary" data-magnetic href="${LINKS.essai}"><span>${CTA.primary}</span></a>
+          <a class="btn btn--primary" data-magnetic href="${CTA_HREF.primary}"><span>${CTA.primary}</span></a>
           ${ctaOf(d)}
         </div>
       </div>

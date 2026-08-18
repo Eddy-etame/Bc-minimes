@@ -21,7 +21,7 @@ export function initHero() {
   if (!hero) return;
   setupToggle(hero);
   intro(hero);
-  if (!reduce) { try { initWebGL(hero); } catch (e) { /* B falls back to plain video */ } }
+  if (!reduce && gsap) { try { initWebGL(hero); } catch (e) { /* B falls back to plain video */ } }
 }
 
 function setupToggle(hero) {
@@ -49,7 +49,7 @@ function intro(hero) {
   fades.forEach((el) => (el.dataset.revBound = "1"));
   const chars = [];
   hero.querySelectorAll(".hero__word [data-split]").forEach((w) => window.BC.split(w).forEach((c) => chars.push(c)));
-  if (reduce) return;
+  if (reduce || !gsap) return;
   gsap.set(chars, { yPercent: 118, opacity: 0 });
   gsap.set(fades, { opacity: 0, y: 26 });
   gsap.set(".hero__src", { scale: 1.18 });

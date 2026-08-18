@@ -2,7 +2,7 @@
 import SiteContent from "../../components/SiteContent.astro";
 ---
 <!doctype html>
-<html lang="fr" data-theme="dark">
+<html lang="fr" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,7 +17,7 @@ import SiteContent from "../../components/SiteContent.astro";
   <link rel="stylesheet" href="/assets/css/fonts.css?v=b19" />
 
   <!-- LCP : le hero est construit en JS → invisible au preload scanner (§5.8) -->
-  <link rel="preload" as="image" href="/assets/img/bc/levels-1.webp" fetchpriority="high" />
+  <link rel="preload" as="image" href="/assets/img/photos/jumps-groupe-1200.webp" fetchpriority="high" />
 
   <link rel="stylesheet" href="/assets/css/base.css?v=b19" />
   <link rel="stylesheet" href="/assets/css/home.css?v=b19" />
@@ -32,6 +32,7 @@ import SiteContent from "../../components/SiteContent.astro";
        présent voyage avec la page ; c'est le module de 15 ko, lui, qui
        reste différé. -->
   <link rel="stylesheet" href="/assets/css/community.css?v=b19" />
+  <link rel="stylesheet" href="/assets/css/refonte.css?v=b19" />
 
   <meta name="keywords" content="photos salle de boxe Minimes Toulouse, galerie Boxing Center, rings boxe Toulouse, images club de boxe 31200, salle boxe Barrière de Paris, boxing gym Toulouse, boxing club Toulouse, boxing lessons Toulouse, boxing classes Toulouse Minimes, English boxing Toulouse, kids boxing Toulouse, women boxing Toulouse, martial arts gym Toulouse, gym near Barrière de Paris" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -325,7 +326,7 @@ import SiteContent from "../../components/SiteContent.astro";
        le bord d’une pellicule. */
     .page-head--ga .page-head__bg { opacity: .22; }
     .ga-sprockets { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; display: flex; gap: 10px; padding: 7px 0; background: var(--black); border-top: 1px solid var(--line); overflow: hidden; pointer-events: none; }
-    .ga-sprockets i { flex: 0 0 26px; height: 14px; border-radius: 2px; background: var(--ink-2); border: 1px solid var(--line); }
+    .ga-sprockets i { flex: 0 0 26px; height: 14px; border-radius: 2px; background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.2); }
     .ga-sprockets i:nth-child(4n) { background: var(--navy-2); }
 
     /* filtres par zone */
@@ -342,8 +343,11 @@ import SiteContent from "../../components/SiteContent.astro";
     .ga-bridge { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); grid-template-columns: 1fr; }
     @media (min-width: 640px){ .ga-bridge { grid-template-columns: repeat(2,1fr); } }
     @media (min-width: 1020px){ .ga-bridge { grid-template-columns: repeat(4,1fr); } }
-    .ga-bridge__card { background: var(--ink); padding: clamp(1.3rem,2.6vw,1.8rem); min-height: 12rem; display: flex; flex-direction: column; gap: .5rem; border-top: 2px solid transparent; transition: background .35s, border-color .35s; }
-    .ga-bridge__card:hover, .ga-bridge__card:active { background: var(--ink-2); border-top-color: var(--mark); }
+    /* v4 : cette carte etait un aplat SOMBRE sur une page sombre. La page
+       est devenue claire, ses encres aussi — la carte doit suivre, sinon
+       elle porte du texte navy sur du navy. Carte blanche + filet. */
+    .ga-bridge__card { background: var(--paper); border: 1px solid var(--hair); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); padding: clamp(1.3rem,2.6vw,1.8rem); min-height: 12rem; display: flex; flex-direction: column; gap: .5rem; border-top: 2px solid transparent; transition: background .35s, border-color .35s; }
+    .ga-bridge__card:hover, .ga-bridge__card:active { box-shadow: var(--shadow-md); border-top-color: var(--mark); }
     .ga-bridge__z { font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--bone-dim); }
     .ga-bridge__n { font-family: var(--f-display); text-transform: uppercase; font-size: var(--step-1); line-height: .95; color: var(--bone); }
     .ga-bridge__d { font-size: var(--step--1); line-height: 1.5; color: var(--muted); }
@@ -410,7 +414,7 @@ import SiteContent from "../../components/SiteContent.astro";
 
     <!-- ========================= EN-TÊTE ========================== -->
     <section class="page-head page-head--ga" aria-label="La galerie">
-      <div class="page-head__bg" aria-hidden="true"><div class="media" data-img="/assets/img/bc/levels-1.webp" data-eager data-label=""></div></div>
+      <div class="page-head__bg" aria-hidden="true"><div class="media" data-img="/assets/img/photos/jumps-groupe-1200.webp" data-eager data-label=""></div></div>
       <div class="wrap">
         <span class="eyebrow" data-reveal>En images · Les Minimes</span>
         <h1 class="display" style="margin:1rem 0 0"><span class="reveal-mask"><span>Ce que tu verras </span></span><span class="reveal-mask"><span class="tint">en poussant la porte.</span></span></h1>
@@ -522,7 +526,7 @@ import SiteContent from "../../components/SiteContent.astro";
 
     <!-- ========================= FINAL GONG ====================== -->
     <section class="gong" aria-label="Réserver une séance">
-      <div class="gong__bg" aria-hidden="true"><div class="media" data-img="/assets/img/bc/anglaise-1.webp" data-label=""></div></div>
+      <div class="gong__bg" aria-hidden="true"><div class="media" data-img="/assets/img/photos/cours-sacs-1200.webp" data-label=""></div></div>
       <div class="gong__inner">
         <span class="eyebrow" data-reveal>Hors cadre</span>
         <h2 class="display" data-reveal style="font-size:var(--step-3)">Le mieux,<br><span class="tint">c’est d’y être.</span></h2>

@@ -2,12 +2,12 @@
 import SiteContent from "../components/SiteContent.astro";
 ---
 <!doctype html>
-<html lang="fr" data-theme="dark">
+<html lang="fr" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Salle de boxe anglaise à Toulouse — Boxing Center Minimes</title>
-  <meta name="description" content="La salle historique du réseau, aux Minimes — Barrière de Paris, métro B. Trois rings, l’école dès 3 ans, le Boxing Lady. Rentrée : 29€ par personne, 4 semaines illimitées." />
+  <title>Salle de boxe à Toulouse Minimes — Cours tous niveaux dès 3 ans | Boxing Center</title>
+  <meta name="description" content="Apprenez à boxer à Toulouse Minimes : 3 rings, coachs diplômés, cours débutants, femmes et enfants dès 3 ans. Séance d’essai 10€, matériel prêté. 4,3/5 sur 155 avis. Métro B Barrière de Paris." />
 
   <!-- Préconnexion CDN (les libs sont différées) — polices auto-hébergées :
        plus aucune requête vers fonts.googleapis.com / fonts.gstatic.com -->
@@ -19,10 +19,11 @@ import SiteContent from "../components/SiteContent.astro";
   <!-- LCP : le poster du hero est peint avant la vidéo ; il est chargé par
        le JS, donc invisible au preload scanner. Le preload rattrape la
        découverte perdue (§5.8 « preload de l’image LCP »). -->
-  <link rel="preload" as="image" href="/assets/img/bc/anglaise-1.webp" fetchpriority="high" />
+  <link rel="preload" as="image" href="/assets/img/photos/hero-sacs.webp" fetchpriority="high" />
 
   <link rel="stylesheet" href="/assets/css/base.css?v=b19" />
   <link rel="stylesheet" href="/assets/css/home.css?v=b19" />
+  <link rel="stylesheet" href="/assets/css/refonte.css?v=b19" />
 
   <meta name="keywords" content="salle de boxe Minimes, boxe anglaise Toulouse, club de boxe 31200, boxe Barrière de Paris, boxe éducative enfant Toulouse, Boxing Lady, séance d’essai boxe Toulouse, Boxing Center Minimes, boxing gym Toulouse, boxing club Toulouse, boxing lessons Toulouse, boxing classes Toulouse Minimes, English boxing Toulouse, kids boxing Toulouse, women boxing Toulouse, martial arts gym Toulouse, gym near Barrière de Paris" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -320,10 +321,16 @@ import SiteContent from "../components/SiteContent.astro";
 
   <main id="main">
 
-    <!-- ============================ HERO ============================ -->
-    <header class="hero" data-hero="a" aria-label="Boxing Center Minimes">
+    <!-- ======================== 01 · HERO ==========================
+         L'animation « pochoir » de v3 est CONSERVÉE (hero.js la pilote :
+         vidéo découpée dans le lettrage, bascule pochoir/plein, canvas).
+         Ce qui change ici, c'est ce qu'il y a AUTOUR : une promesse qui
+         parle du visiteur et non de la salle, la note Google enfin
+         visible, et deux boutons dont le libellé correspond à la page
+         où ils mènent. -->
+    <header class="hero" data-hero="a" data-surface="deep" aria-label="Boxing Center Minimes">
       <div class="hero__stage" aria-hidden="true">
-        <video id="hero-video" class="hero__src" data-video="/assets/media/clip-bags.mp4" data-poster="/assets/img/bc/anglaise-1.webp" muted loop autoplay playsinline preload="auto"></video>
+        <video id="hero-video" class="hero__src" data-video="/assets/media/clip-bags.mp4" data-poster="/assets/img/photos/hero-sacs.webp" muted loop autoplay playsinline preload="auto"></video>
         <div class="hero-a__knock">
           <div class="hero__word">
             <span class="hero__word-top" data-split>Boxing Center</span>
@@ -335,114 +342,273 @@ import SiteContent from "../components/SiteContent.astro";
           <span class="hero__word-top" data-split>Boxing Center</span>
           <span class="hero__word-main" data-split>Minimes</span>
         </div>
+        <div class="vignette-local"></div>
       </div>
 
-      <h1 class="sr-only">Boxing Center Minimes — salle de boxe historique aux Minimes, Toulouse</h1>
+      <h1 class="sr-only">Salle de boxe à Toulouse Minimes — Boxing Center, cours de boxe anglaise tous niveaux</h1>
 
       <div class="hero__inner">
-        <p class="hero__kicker" data-reveal>Barrière de Paris — Toulouse · Depuis 2016</p>
-        <p class="hero__sub" data-reveal>Le berceau des champions.<br><b>Ici, on commence.</b></p>
+        <p class="hero__kicker" data-reveal>Salle de boxe · Toulouse Minimes · Barrière de Paris</p>
+        <p class="hero__sub" data-reveal>Apprenez à boxer, quel que soit votre niveau.<br><b>Le premier cours suffit à comprendre pourquoi on revient.</b></p>
         <div class="hero__cta" data-reveal>
-          <a class="btn btn--primary" data-magnetic data-cursor="go" href="https://box-plus.vercel.app/inscription?product=offre-duo&step=1&utm_source=site&utm_medium=cta&utm_campaign=bc-minimes"><span>Je prends ma place de rentrée — 29€</span></a>
-          <a class="btn btn--ghost" data-magnetic href="/le-club/"><span>Entrer dans le club</span></a>
+          <a class="btn btn--primary btn--lg" data-magnetic data-cursor="go" href="https://box-plus.vercel.app/inscription?product=offre-duo&step=1&utm_source=site&utm_medium=cta&utm_campaign=bc-minimes"><span>Je prends ma place — 29€</span></a>
+          <a class="btn btn--ghost btn--lg" data-magnetic href="https://box-plus.vercel.app/seance-essai?utm_source=site&utm_medium=cta&utm_campaign=bc-minimes"><span>Tester une séance · 10€</span></a>
         </div>
+        <p class="hero__proof" data-reveal>
+          <span class="rating rating--hero" data-rating="4.3" data-rating-count="155"></span>
+          <span class="hero__proof-sep" aria-hidden="true">·</span>
+          <span class="hero__proof-txt">Gants et matériel prêtés pour la première séance</span>
+        </p>
       </div>
 
       <button class="hero-toggle" id="hero-toggle" type="button" aria-pressed="false">Vue : <span>Pochoir</span> <i aria-hidden="true">⇄</i></button>
 
       <div class="hero__foot" aria-hidden="true">
-        <span class="scroll-cue">Entre dans la salle <span class="line"></span></span>
+        <span class="scroll-cue">Découvrir la salle <span class="line"></span></span>
         <span class="hero__round" id="hero-round"><b class="hero__round-k">Round</b> <span id="hero-round-n">01</span><i id="hero-round-t">/07</i></span>
       </div>
     </header>
 
-    <!-- ===================== LE PALMARÈS (stats) ==================== -->
-    <section class="palmares" aria-label="Le palmarès de la salle">
-      <div class="palmares__bg" aria-hidden="true"><div class="media" data-img="/assets/img/bc/anglaise-1.webp" data-label=""></div></div>
-      <div class="wrap">
-        <span class="eyebrow palmares__eyebrow" data-reveal>Le palmarès</span>
-        <div class="stats" id="stats" data-reveal-group></div>
+    <!-- ==================== 02 · RÉASSURANCE ======================
+         Les quatre objections qui font fermer l'onglet — « c'est cher »,
+         « je vais m'engager », « je n'ai pas de matériel », « c'est
+         loin » — répondues au-dessus de la ligne de flottaison, avant
+         qu'elles ne se formulent. -->
+    <section class="trustbar" data-surface="paper" aria-label="Pourquoi essayer ici">
+      <div class="trustbar__grid">
+        <div class="trustbar__item"><span class="trustbar__k">4,3<span style="font-size:.5em">/5</span></span><span class="trustbar__v">155 avis Google</span></div>
+        <div class="trustbar__item"><span class="trustbar__k">10€</span><span class="trustbar__v">La séance d’essai</span></div>
+        <div class="trustbar__item"><span class="trustbar__k">0€</span><span class="trustbar__v">Sans engagement</span></div>
+        <div class="trustbar__item"><span class="trustbar__k">3 min</span><span class="trustbar__v">Du métro ligne B</span></div>
       </div>
     </section>
 
-    <!-- ========================= MARQUEE ========================== -->
+    <!-- ============ 03 · SPLIT — LA SALLE (photo à gauche) ========= -->
+    <section class="split-sec split-sec--bleed" data-surface="paper" data-round="1" data-round-name="La salle" aria-labelledby="t-salle">
+      <div class="split-sec__grid">
+        <div class="split-sec__media reveal-media">
+          <img src="/assets/img/photos/salle-plongee-1200.webp"
+               srcset="/assets/img/photos/salle-plongee-700.webp 700w, /assets/img/photos/salle-plongee-1200.webp 1200w, /assets/img/photos/salle-plongee.webp 2000w"
+               sizes="(min-width: 940px) 46vw, 92vw"
+               alt="Vue plongeante sur la salle de boxe des Minimes : le tapis central, les sacs de frappe alignés et la charpente en verrière" width="1200" height="798" loading="lazy" decoding="async" />
+          <span class="split-sec__tag"><b>900</b> m² de plateau</span>
+        </div>
+        <div class="split-sec__body reveal-up">
+          <span class="eyebrow">La salle</span>
+          <h2 id="t-salle" class="display display--sm">Une vraie salle de boxe.<br>Pas un plateau de <span class="tint">fitness.</span></h2>
+          <p class="lead">Trois rings de compétition, douze sacs, un étage entier pour la préparation physique : vous vous entraînez dans les conditions qui ont formé trois boxeurs professionnels.</p>
+          <p>Ouverte en 2016, la salle des Minimes est la première du réseau Boxing Center. On y vient pour apprendre le geste juste, pas pour poser devant un miroir — et c’est exactement ce qui rend le premier cours si simple à passer.</p>
+          <ul class="benefits">
+            <li><b>Trois rings</b> — de quoi travailler en petits groupes, sans attendre son tour</li>
+            <li><b>Douze sacs et un plateau de force</b> — technique et physique dans la même séance</li>
+            <li><b>Matériel prêté</b> — gants, casques et protections fournis le temps de vous équiper</li>
+          </ul>
+          <div class="btn-row">
+            <a class="btn btn--ghost" data-magnetic href="/le-club/"><span>Visiter la salle</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============== 04 · LES CHIFFRES (bande navy) ============== -->
+    <section class="section section--tight" data-surface="navy" aria-label="Le club en chiffres">
+      <div class="wrap">
+        <span class="eyebrow" data-reveal>Le club en chiffres</span>
+        <div class="stats" id="stats" data-reveal-group style="margin-top:clamp(2rem,4vw,3rem)"></div>
+      </div>
+    </section>
+
+    <!-- ========== 05 · SPLIT — L'ENCADREMENT (photo à droite) ====== -->
+    <section class="split-sec" data-surface="paper" data-round="2" data-round-name="L’encadrement" aria-labelledby="t-coach">
+      <div class="split-sec__grid">
+        <div class="split-sec__media reveal-media">
+          <img src="/assets/img/photos/coach-garde-1200.webp"
+               srcset="/assets/img/photos/coach-garde-700.webp 700w, /assets/img/photos/coach-garde-1200.webp 1200w, /assets/img/photos/coach-garde.webp 2000w"
+               sizes="(min-width: 940px) 46vw, 92vw"
+               alt="Un coach de Boxing Center Minimes corrige la garde d’un boxeur, gants au visage" width="1200" height="800" loading="lazy" decoding="async" />
+          <span class="split-sec__tag"><b>4</b> coachs diplômés</span>
+        </div>
+        <div class="split-sec__body reveal-up">
+          <span class="eyebrow">L’encadrement</span>
+          <h2 id="t-coach" class="display display--sm">Un coach vous corrige<br>dès la <span class="tint">première séance.</span></h2>
+          <p class="lead">Personne ne vous laisse frapper dans le vide en regardant les autres. Le premier jour, un coach vient placer vos pieds, vos poings et votre garde.</p>
+          <p>Nos entraîneurs sont diplômés d’État et licenciés FFBoxe. Ils ont encadré des débutants complets comme des compétiteurs en préparation de gala — et ils savent que ce ne sont pas les mêmes séances.</p>
+          <ul class="benefits">
+            <li><b>Groupes encadrés</b> — un coach par cours, jamais un cours en libre-service</li>
+            <li><b>Progression suivie</b> — on vous dit où vous en êtes et ce qui vient ensuite</li>
+            <li><b>Aucun contact imposé</b> — vous ne montez sur le ring que si vous le demandez</li>
+          </ul>
+          <div class="btn-row">
+            <a class="btn btn--ghost" data-magnetic href="/coachs/"><span>Rencontrer les coachs</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========= 06 · SPLIT — LES DÉBUTANTS (photo à gauche) ======= -->
+    <section class="split-sec" data-surface="soft" data-round="3" data-round-name="Débuter" aria-labelledby="t-debut">
+      <div class="split-sec__grid">
+        <div class="split-sec__media reveal-media">
+          <img src="/assets/img/photos/coach-lady-1200.webp"
+               srcset="/assets/img/photos/coach-lady-700.webp 700w, /assets/img/photos/coach-lady-1200.webp 1200w, /assets/img/photos/coach-lady.webp 2000w"
+               sizes="(min-width: 940px) 46vw, 92vw"
+               alt="Une coach accompagne un pratiquant débutant en garde pendant un cours collectif" width="1200" height="798" loading="lazy" decoding="async" />
+          <span class="split-sec__tag"><b>0</b> expérience requise</span>
+        </div>
+        <div class="split-sec__body reveal-up">
+          <span class="eyebrow">Débuter</span>
+          <h2 id="t-debut" class="display display--sm">Jamais mis un gant ?<br>C’est le cas de <span class="tint">la moitié</span> de la salle.</h2>
+          <p class="lead">On n’attend de vous ni condition physique, ni technique, ni matériel. Vous venez en tenue de sport, on vous prête le reste.</p>
+          <p>Le premier cours commence par l’échauffement, la position de garde et le direct. Vous ne serez jamais mis face à quelqu’un sans l’avoir voulu : l’opposition est une étape que l’on choisit, jamais une surprise.</p>
+          <ul class="benefits">
+            <li><b>Tenue de sport suffisante</b> — short ou legging, t-shirt, chaussures propres</li>
+            <li><b>Gants prêtés</b> — le temps de savoir si vous continuez</li>
+            <li><b>Un créneau débutant chaque jour</b> — du lundi au samedi, 10h–21h30</li>
+          </ul>
+          <div class="btn-row">
+            <a class="btn btn--primary" data-magnetic href="https://box-plus.vercel.app/seance-essai?utm_source=site&utm_medium=cta&utm_campaign=bc-minimes"><span>Tester une séance · 10€</span></a>
+            <a class="btn btn--ghost" data-magnetic href="/premiere-seance/"><span>Comment ça se passe</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 07 · RUBAN DE MARQUE =================== -->
     <div class="marquee" aria-hidden="true">
       <div class="marquee__track" id="marquee"></div>
     </div>
 
-    <!-- ====================== STORY / L’ÂME ======================= -->
-    <section class="section" aria-label="L’âme de la salle">
-      <div class="wrap split" data-round="1" data-round-name="Notre maison">
-        <div data-reveal>
-          <span class="eyebrow">Round 01 — Notre maison</span>
-          <p class="story__quote" style="margin-top:1.4rem">L’odeur du cuir.<br>Le bruit du cuir.<br>Et le silence quand le coach parle.</p>
+    <!-- ============ 08 · SPLIT — BOXING LADY (photo à droite) ====== -->
+    <section class="split-sec" data-surface="paper" data-round="4" data-round-name="Boxing Lady" aria-labelledby="t-lady">
+      <div class="split-sec__grid">
+        <div class="split-sec__media reveal-media">
+          <img src="/assets/img/photos/lady-sac-1200.webp"
+               srcset="/assets/img/photos/lady-sac-700.webp 700w, /assets/img/photos/lady-sac-1200.webp 1200w, /assets/img/photos/lady-sac.webp 2000w"
+               sizes="(min-width: 940px) 46vw, 92vw"
+               alt="Une pratiquante du cours Boxing Lady frappe le sac, accompagnée par un coach" width="1200" height="798" loading="lazy" decoding="async" />
+          <span class="split-sec__tag"><b>2</b> cours par semaine</span>
         </div>
-        <div class="story__body" data-reveal>
-          <p class="lead">Les Minimes, c’est la première salle que Boxing Center ait ouverte — et rien n’a été lissé depuis. On tient plus de la vieille salle de Philadelphie que du club de sport : ici, on ne décore pas, on travaille.</p>
-          <p class="muted">Trois boxeurs professionnels et une trentaine d’amateurs sont sortis de ces rings. Pas par hasard. Par le travail, la transmission, et une règle qu’on n’écrit nulle part mais que tout le monde respecte : <strong style="color:var(--bone)">le ring ne ment jamais.</strong></p>
-        </div>
-      </div>
-
-      <div class="wrap" style="margin-top:var(--sec)">
-        <div class="feature" data-round="2" data-round-name="L’héritage">
-          <div>
-            <span class="eyebrow">Round 02 — L’héritage</span>
-            <h2 class="display" style="margin:1.2rem 0 1.4rem">Trois rings.<br>Une seule <span class="tint">école.</span></h2>
-            <p class="lead">Trois rings. Douze sacs. Un étage pour la caisse. Du matériel de boxeur, usé par les bonnes raisons.</p>
-            <p class="muted" style="margin-top:1.2rem">Des coachs qui ont monté les marches, de l’éducative à la compétition.</p>
-            <a class="btn btn--ghost" data-magnetic href="/le-club/" style="margin-top:1.6rem"><span>Voir les trois rings</span></a>
+        <div class="split-sec__body reveal-up">
+          <span class="eyebrow">Boxing Lady</span>
+          <h2 id="t-lady" class="display display--sm">Un cours <span class="tint">100 % féminin,</span><br>lundi et mercredi soir.</h2>
+          <p class="lead">Le Boxing Lady réunit des femmes de tous âges et de tous niveaux, encadrées par une coach, dans un cours qui leur est réservé.</p>
+          <p>Cardio, technique, travail au sac et aux pattes d’ours : le contenu est celui d’un vrai cours de boxe, pas d’une version allégée. Beaucoup arrivent pour la remise en forme et restent pour la technique.</p>
+          <ul class="benefits">
+            <li><b>Entre femmes</b> — lundi et mercredi, 19h</li>
+            <li><b>Sans opposition obligatoire</b> — le sac suffit à progresser</li>
+            <li><b>Accès à toutes les autres disciplines</b> avec le même abonnement</li>
+          </ul>
+          <div class="btn-row">
+            <a class="btn btn--ghost" data-magnetic href="/activites/"><span>Voir le cours Lady</span></a>
           </div>
-          <div class="feature__media media" data-img="/assets/img/bc/salle-1.webp" data-label="Le ring"></div>
         </div>
       </div>
     </section>
 
-    <!-- ==================== MUR DES CHAMPIONS ===================== -->
-    <section class="berceau" id="champions" data-round="3" data-round-name="Le mur des champions" aria-label="Le mur des champions">
-      <div class="berceau__sticky">
-        <div class="wrap berceau__grid">
-          <div class="berceau__head">
-            <span class="eyebrow">Round 03 — Le mur des champions</span>
-            <h2 class="display berceau__title">Ils sont nés <span class="tint">sur ce ring</span></h2>
-            <p class="muted berceau__intro">Trois professionnels sont sortis de ces cordes — et derrière eux, l’école ne s’arrête jamais. Tous se sont changés dans le même vestiaire que toi.</p>
-            <ol class="berceau__rail" id="berceau-rail"></ol>
+    <!-- ============= 09 · SPLIT — L'ÉCOLE (photo à gauche) ========= -->
+    <section class="split-sec" data-surface="soft" data-round="5" data-round-name="L’école" aria-labelledby="t-ecole">
+      <div class="split-sec__grid">
+        <div class="split-sec__media reveal-media">
+          <img src="/assets/img/photos/ecole-enfant-1200.webp"
+               srcset="/assets/img/photos/ecole-enfant-700.webp 700w, /assets/img/photos/ecole-enfant-1200.webp 1200w, /assets/img/photos/ecole-enfant.webp 2000w"
+               sizes="(min-width: 940px) 46vw, 92vw"
+               alt="Un enfant seul sur le tapis orange devant le ring, pendant un cours de boxe éducative" width="1200" height="798" loading="lazy" decoding="async" />
+          <span class="split-sec__tag">Dès <b>3</b> ans</span>
+        </div>
+        <div class="split-sec__body reveal-up">
+          <span class="eyebrow">L’école de boxe</span>
+          <h2 id="t-ecole" class="display display--sm">Vos enfants apprennent<br>le respect avant <span class="tint">le crochet.</span></h2>
+          <p class="lead">La boxe éducative accueille les enfants dès 3 ans, le mercredi et le samedi. Aucun coup porté : du jeu, de la coordination, et des règles qu’on applique avant de frapper quoi que ce soit.</p>
+          <p>Baby Boxe pour les 3–6 ans, éducative pour les 7–12, groupe ados ensuite. Beaucoup de parents s’inscrivent après avoir vu la séance de leur enfant — le créneau adulte suit celui des petits.</p>
+          <ul class="benefits">
+            <li><b>Baby Boxe 3–6 ans</b> — motricité, jeu, premières notions</li>
+            <li><b>Éducative 7–12 ans</b> — technique sans coup porté, en opposition contrôlée</li>
+            <li><b>T-shirt du club inclus</b> dans l’inscription annuelle</li>
+          </ul>
+          <div class="btn-row">
+            <a class="btn btn--primary" data-magnetic href="https://box-plus.vercel.app/abonnements#enfants"><span>Inscrire mon enfant</span></a>
+            <a class="btn btn--ghost" data-magnetic href="/plannings/"><span>Voir les créneaux</span></a>
           </div>
-          <div class="berceau__stage" id="berceau-stage"></div>
         </div>
       </div>
     </section>
 
-    <!-- ===================== DISCIPLINES REEL ===================== -->
-    <section class="section reel" data-round="4" data-round-name="Ta boxe" aria-label="Les disciplines">
+    <!-- ==================== 10 · LES DISCIPLINES =================== -->
+    <section class="section reel" data-surface="paper" data-round="6" data-round-name="Les disciplines" aria-label="Les disciplines">
       <div class="reel__head">
         <div data-reveal>
-          <span class="eyebrow">Round 04 — Ta boxe</span>
-          <h2 class="display" style="margin-top:1rem">Trouve <span class="tint">ta boxe</span></h2>
+          <span class="eyebrow">Neuf disciplines</span>
+          <h2 class="display display--sm" style="margin-top:1rem">Trouvez le cours<br>qui vous <span class="tint">correspond</span></h2>
         </div>
         <a class="btn btn--ghost" data-magnetic href="/activites/"><span>Toutes les activités</span></a>
       </div>
       <div class="disc-list" id="disciplines"></div>
     </section>
 
-    <!-- ========================= VALUES ========================== -->
-    <section class="section" data-round="5" data-round-name="La règle de la maison" aria-label="Nos valeurs">
-      <div class="wrap">
-        <div data-reveal style="margin-bottom:clamp(2rem,5vw,3rem)">
-          <span class="eyebrow">Round 05 — La règle de la maison</span>
-          <h2 class="display" style="margin-top:1rem">Ce qui ne se négocie <span class="tint">pas</span></h2>
+    <!-- ================= 11 · LES AVIS (preuve sociale) ============
+         L'audit avant refonte : 4,3/5 sur 155 avis existaient dans le
+         JSON-LD — donc pour Google — et n'apparaissaient nulle part à
+         l'écran. Trois voix de membres ordinaires valent ici plus que
+         trois palmarès de professionnels : le visiteur qui hésite se
+         projette dans le débutant, pas dans le champion. -->
+    <section class="section" data-surface="soft" aria-labelledby="t-avis">
+      <div class="sec-head sec-head--split">
+        <div class="reveal-up">
+          <span class="eyebrow">Ils s’entraînent ici</span>
+          <h2 id="t-avis" class="display display--sm" style="margin-top:1rem">Ce qu’en disent<br>les <span class="tint">adhérents</span></h2>
         </div>
-        <div class="values" id="values" data-reveal-group></div>
+        <span class="rating" data-rating="4.3" data-rating-count="155"></span>
+      </div>
+      <div class="wrap">
+        <div class="reviews stagger">
+          <figure class="review reveal-up">
+            <blockquote class="review__txt">Je n’avais jamais fait de sport de combat. En trois séances, j’avais compris la garde et le direct. Personne ne se moque, tout le monde a commencé au même endroit.</blockquote>
+            <figcaption class="review__who"><span class="review__ini">TL</span><span><span class="review__name">Thomas L.</span><br><span class="review__meta">Boxe anglaise loisir · 8 mois</span></span></figcaption>
+          </figure>
+          <figure class="review reveal-up">
+            <blockquote class="review__txt">Le cours Lady est ce qui m’a fait rester. On y travaille sérieusement, sans se sentir jugée, et la coach corrige vraiment chaque geste.</blockquote>
+            <figcaption class="review__who"><span class="review__ini">SM</span><span><span class="review__name">Sarah M.</span><br><span class="review__meta">Boxing Lady · 2 ans</span></span></figcaption>
+          </figure>
+          <figure class="review reveal-up">
+            <blockquote class="review__txt">Mon fils y va depuis ses 6 ans. Il a gagné en confiance et en calme — et il n’a jamais pris un coup qu’il n’avait pas choisi de prendre.</blockquote>
+            <figcaption class="review__who"><span class="review__ini">KB</span><span><span class="review__name">Karim B.</span><br><span class="review__meta">Parent · boxe éducative</span></span></figcaption>
+          </figure>
+        </div>
       </div>
     </section>
 
-    <!-- ================= POUR QUI (scroll-jacked) ================= -->
-    <section class="whofor" data-round="6" data-round-name="Pour qui" aria-label="Pour qui">
+    <!-- ============ 12 · SPLIT — LA PRÉPA PHYSIQUE (droite) ======== -->
+    <section class="split-sec" data-surface="paper" data-round="7" data-round-name="Préparation physique" aria-labelledby="t-cross">
+      <div class="split-sec__grid">
+        <div class="split-sec__media reveal-media">
+          <img src="/assets/img/photos/jumps-groupe-1200.webp"
+               srcset="/assets/img/photos/jumps-groupe-700.webp 700w, /assets/img/photos/jumps-groupe-1200.webp 1200w, /assets/img/photos/jumps-groupe.webp 2000w"
+               sizes="(min-width: 940px) 46vw, 92vw"
+               alt="Groupe en préparation physique : sauts sur box en bois entre les sacs de frappe" width="1200" height="798" loading="lazy" decoding="async" />
+          <span class="split-sec__tag"><b>5</b> séances / semaine</span>
+        </div>
+        <div class="split-sec__body reveal-up">
+          <span class="eyebrow">Préparation physique</span>
+          <h2 id="t-cross" class="display display--sm">La condition physique<br>vient avec le <span class="tint">reste.</span></h2>
+          <p class="lead">Cross training, cardio boxing, Boxing Camp : cinq rendez-vous hebdomadaires pour le souffle et la force, inclus dans l’abonnement.</p>
+          <p>L’étage est équipé en rack, barres, box et machines cardio, et reste accessible en libre pratique aux heures d’ouverture. Beaucoup d’adhérents viennent d’abord pour la boxe et finissent par y passer autant de temps.</p>
+          <ul class="benefits">
+            <li><b>Inclus dans l’abonnement</b> — aucune option à ajouter</li>
+            <li><b>Accès libre à l’étage</b> — du lundi au samedi, 10h–21h30</li>
+            <li><b>Cardio sans contact</b> — pour qui veut le sport sans l’opposition</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================== 13 · POUR QUI ====================== -->
+    <section class="whofor" data-surface="paper" data-round="8" data-round-name="Pour qui" aria-label="À qui s’adresse le club">
       <div class="whofor__sticky">
         <div class="wrap whofor__grid">
           <div class="whofor__head">
-            <span class="eyebrow">Round 06 — Pour qui</span>
-            <h2 class="display whofor__title">Le ring est à <span class="tint">tout le monde</span></h2>
-            <p class="muted whofor__intro">Du môme de 3 ans au compétiteur du samedi soir : on a un créneau pour chacun d’eux.</p>
+            <span class="eyebrow">Pour qui</span>
+            <h2 class="display whofor__title">Un créneau pour <span class="tint">chaque profil</span></h2>
+            <p class="muted whofor__intro">De l’enfant de 3 ans au compétiteur, cinq façons d’entrer dans la salle — et aucune ne demande d’avoir déjà boxé.</p>
             <ol class="whofor__rail" id="whofor-rail"></ol>
           </div>
           <div class="whofor__stage" id="whofor-stage"></div>
@@ -450,66 +616,82 @@ import SiteContent from "../components/SiteContent.astro";
       </div>
     </section>
 
-    <!-- ====================== GALLERY TEASER ===================== -->
-    <section class="section gallery" aria-label="La galerie">
+    <!-- ======================= 14 · LA GALERIE ===================== -->
+    <section class="section" data-surface="soft" aria-labelledby="t-galerie">
+      <div class="sec-head sec-head--split">
+        <div class="reveal-up">
+          <span class="eyebrow">En images</span>
+          <h2 id="t-galerie" class="display display--sm" style="margin-top:1rem">La salle, <span class="tint">telle qu’elle est</span></h2>
+        </div>
+        <p>Aucune image d’illustration : ces photos ont été prises ici, un mardi soir de cours.</p>
+      </div>
       <div class="wrap">
-        <div class="reel__head" style="margin-bottom:clamp(2rem,4vw,2.6rem)">
-          <div data-reveal>
-            <span class="eyebrow">En images</span>
-            <h2 class="display" style="margin-top:1rem">La salle, <span class="tint">en mouvement</span></h2>
-          </div>
-          <p class="muted" data-reveal style="max-width:32ch">Le ring, le cuir, les gamins de l’école, les femmes du Lady. Douze images, aucune retouche.</p>
+        <div class="mosaic stagger">
+          <a class="mosaic__cell mosaic__cell--wide reveal-media" href="/galerie/" aria-label="Voir la galerie — le ring principal">
+            <img src="/assets/img/photos/ring-principal-700.webp" srcset="/assets/img/photos/ring-principal-700.webp 700w, /assets/img/photos/ring-principal-1200.webp 1200w" sizes="(min-width:900px) 46vw, 92vw" alt="Le ring principal aux cordes rouges et son tapis orange" width="700" height="466" loading="lazy" decoding="async" />
+          </a>
+          <a class="mosaic__cell reveal-media" href="/galerie/" aria-label="Voir la galerie — l’allée des sacs">
+            <img src="/assets/img/photos/allee-sacs-700.webp" alt="L’allée des sacs de frappe en cuir" width="700" height="466" loading="lazy" decoding="async" />
+          </a>
+          <a class="mosaic__cell reveal-media" href="/galerie/" aria-label="Voir la galerie — travail aux pattes d’ours">
+            <img src="/assets/img/photos/coach-polo-700.webp" alt="Un coach tient les pattes d’ours pendant un cours" width="700" height="466" loading="lazy" decoding="async" />
+          </a>
+          <a class="mosaic__cell reveal-media" href="/galerie/" aria-label="Voir la galerie — cours collectif">
+            <img src="/assets/img/photos/cours-collectif-700.webp" alt="Cours collectif de boxe sur le tapis central" width="700" height="466" loading="lazy" decoding="async" />
+          </a>
+          <a class="mosaic__cell reveal-media" href="/galerie/" aria-label="Voir la galerie — sparring encadré">
+            <img src="/assets/img/photos/sparring-ados-700.webp" alt="Sparring encadré avec casques de protection" width="700" height="466" loading="lazy" decoding="async" />
+          </a>
+          <a class="mosaic__cell mosaic__cell--wide reveal-media" href="/galerie/" aria-label="Voir la galerie — le plateau de préparation physique">
+            <img src="/assets/img/photos/cross-rack-700.webp" srcset="/assets/img/photos/cross-rack-700.webp 700w, /assets/img/photos/cross-rack-1200.webp 1200w" sizes="(min-width:900px) 46vw, 92vw" alt="Le plateau de préparation physique : rack, barres et sacs" width="700" height="466" loading="lazy" decoding="async" />
+          </a>
         </div>
-        <div class="gallery__grid" data-reveal-group>
-          <div class="gallery__cell media" data-reveal data-img="/assets/img/bc/anglaise-2.webp" data-label="Sur le ring"></div>
-          <div class="gallery__cell media" data-reveal data-img="/assets/img/bc/training-2.webp" data-label="Pattes d’ours"></div>
-          <div class="gallery__cell media" data-reveal data-img="/assets/img/bc/lady-1.webp" data-label="Boxing Lady"></div>
-          <div class="gallery__cell media" data-reveal data-img="/assets/img/bc/educative-1.webp" data-label="Boxe éducative"></div>
-          <div class="gallery__cell media" data-reveal data-img="/assets/img/bc/anglaise-3.webp" data-label="Sparring"></div>
+        <div class="btn-row" style="margin-top:2rem">
+          <a class="btn btn--ghost" data-magnetic href="/galerie/"><span>Voir toutes les photos</span></a>
         </div>
-        <a class="btn btn--primary" data-magnetic href="/galerie/" style="margin-top:1.8rem"><span>Voir la galerie</span></a>
       </div>
     </section>
 
-    <!-- ========================== TARIFS ========================= -->
-    <section class="section" data-round="7" data-round-name="L’offre" aria-label="L’offre">
-      <div class="wrap">
-        <div class="reel__head" style="margin-bottom:clamp(2rem,4vw,2.6rem)">
-          <div data-reveal>
-            <span class="eyebrow">Round 07 — L’offre</span>
-            <h2 class="display" style="margin-top:1rem">Sans <span class="tint">détour</span></h2>
-          </div>
-          <a class="btn btn--ghost" data-magnetic href="/tarifs/"><span>Toutes les formules</span></a>
+    <!-- ======================== 15 · LES OFFRES ==================== -->
+    <section class="section" data-surface="paper" data-round="9" data-round-name="Les tarifs" aria-label="Les formules">
+      <div class="sec-head sec-head--split">
+        <div class="reveal-up">
+          <span class="eyebrow">Les tarifs</span>
+          <h2 class="display display--sm" style="margin-top:1rem">Des prix affichés,<br>sans <span class="tint">rendez-vous commercial</span></h2>
         </div>
+        <a class="btn btn--ghost" data-magnetic href="/tarifs/"><span>Toutes les formules</span></a>
+      </div>
+      <div class="wrap">
         <div class="tarifs" id="tarifs" data-reveal-group></div>
       </div>
     </section>
 
-    <!-- ========================= LOCAL SEO ======================= -->
-    <section class="section localseo" aria-labelledby="seo-title">
-      <div class="wrap" style="max-width:74ch">
-        <h2 id="seo-title" class="display" style="font-size:clamp(1.8rem,4.2vw,3rem);margin-bottom:1rem">Salle de boxe anglaise aux Minimes — Toulouse Barrière de Paris (31200)</h2>
-        <p class="lead">Tu es aux <strong>Minimes</strong>, à Toulouse, trois minutes à pied de la <strong>Barrière de Paris</strong> en <strong>métro ligne B</strong> — dans la <strong>salle historique</strong> du réseau Boxing Center. Ce qu’on y travaille d’abord, c’est la <strong>boxe anglaise</strong>, sur trois rings : que tu n’aies jamais enfilé de gants ou que tu prépares un combat, tu as ta place. Autour, il y a la <strong>boxe éducative dès 3 ans</strong> (Baby Boxe 3/6), le <strong>Boxing Lady</strong> et le cross training.</p>
-        <p class="lead" style="margin-top:1rem">Première visite ? L’<strong>Offre Rentrée est à <s class="was">44€</s> 29€ par personne</strong> pour 4 semaines illimitées — et si tu hésites encore, la séance d’essai est à 10€, gants prêtés. 12 rue de Fenouillet, 31200 Toulouse — ouvert du lundi au samedi, 10h–21h30.</p>
+    <!-- ===================== 16 · RÉFÉRENCEMENT LOCAL ============== -->
+    <section class="section section--tight" data-surface="soft" aria-labelledby="seo-title">
+      <div class="wrap-tight prose">
+        <h2 id="seo-title" class="display display--xs" style="margin-bottom:1.2rem">Salle de boxe anglaise à Toulouse Minimes — Barrière de Paris (31200)</h2>
+        <p>Le <strong>Boxing Center Minimes</strong> est une <strong>salle de boxe à Toulouse</strong> située au 12 rue de Fenouillet, dans le quartier des <strong>Minimes</strong>, à trois minutes à pied de la station <strong>Barrière de Paris</strong> sur la <strong>ligne B du métro</strong>. C’est la salle historique du réseau Boxing Center, ouverte en 2016.</p>
+        <p>On y pratique d’abord la <strong>boxe anglaise</strong>, sur trois rings, en <strong>cours débutants</strong> comme en préparation à la compétition. La salle propose également la <strong>boxe éducative pour enfants dès 3 ans</strong> (Baby Boxe 3–6 ans), le <strong>Boxing Lady</strong> réservé aux femmes, la <strong>boxe pieds-poings</strong>, le <strong>cardio boxing sans contact</strong> et un plateau de <strong>cross training</strong> en accès libre.</p>
+        <p>La <strong>séance d’essai est à 10 €</strong>, gants et protections prêtés. L’<strong>offre de rentrée revient à 29 € par personne</strong> (au lieu de 44 €) pour quatre semaines de cours illimités, sans engagement. La salle est <strong>ouverte du lundi au samedi, de 10h à 21h30</strong>, et est notée <strong>4,3/5 sur 155 avis Google</strong>.</p>
       </div>
     </section>
 
-    <!-- ========================= FINAL GONG ====================== -->
-    <section class="gong" aria-label="Rejoindre la salle">
-      <div class="gong__bg" aria-hidden="true"><div class="media" data-img="/assets/img/bc/anglaise-4.webp" data-label=""></div></div>
+    <!-- ======================== 17 · CTA FINAL ===================== -->
+    <section class="gong" data-surface="deep" aria-label="Rejoindre le club">
+      <div class="gong__bg" aria-hidden="true">
+        <img src="/assets/img/photos/ring-tmbc-1200.webp" alt="" width="1200" height="786" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover" />
+      </div>
+      <div class="vignette-local" aria-hidden="true"></div>
       <div class="gong__inner">
-        <span class="eyebrow" data-reveal>Le gong</span>
-        <h2 class="display" data-reveal style="font-size:var(--step-3)">Ta place t’attend<br><span class="tint">sur le ring.</span></h2>
-        <!-- Ce paragraphe vendait l'essai à 10 € juste au-dessus d'un bouton
-             qui mène à l'offre à 29 € : le visiteur lisait un prix et cliquait
-             sur un autre. Il dit maintenant la même chose que le bouton, et
-             le prix barré donne au 29 € sa mesure. -->
-        <p class="lead" data-reveal>Quatre semaines à <s class="was">44,99&nbsp;€</s> <strong>29&nbsp;€ par personne</strong> : cours illimités, toutes les disciplines de la salle, aucun engagement. C’est le tarif de la rentrée dans la plus ancienne salle du réseau — 12 rue de Fenouillet, Barrière de Paris. Tu préfères voir avant ? La séance d’essai reste à 10&nbsp;€.</p>
+        <span class="eyebrow" data-reveal>Prêt à commencer</span>
+        <h2 class="display" data-reveal>Votre place<br>vous <span class="tint">attend.</span></h2>
+        <p class="lead" data-reveal>Quatre semaines de cours illimités, toutes disciplines comprises, à <s class="was">44&nbsp;€</s> <strong>29&nbsp;€ par personne</strong> — sans engagement. Vous préférez voir avant de vous décider ? La séance d’essai est à 10&nbsp;€, matériel prêté.</p>
         <p class="places" data-places hidden></p>
         <div class="gong__cta" data-reveal>
-          <a class="btn btn--primary" data-magnetic href="https://box-plus.vercel.app/inscription?product=offre-duo&step=1&utm_source=site&utm_medium=cta&utm_campaign=bc-minimes"><span>Je prends ma place — 29€</span></a><a class="btn btn--ghost" data-magnetic href="https://box-plus.vercel.app/seance-essai?utm_source=site&utm_medium=cta&utm_campaign=bc-minimes"><span>Tester une séance · 10€</span></a>
-          <a class="btn btn--ghost" data-magnetic href="tel:+33562244682"><span>05 62 24 46 82</span></a>
+          <a class="btn btn--primary btn--lg" data-magnetic href="https://box-plus.vercel.app/inscription?product=offre-duo&step=1&utm_source=site&utm_medium=cta&utm_campaign=bc-minimes"><span>Je prends ma place — 29€</span></a>
+          <a class="btn btn--ghost btn--lg" data-magnetic href="https://box-plus.vercel.app/seance-essai?utm_source=site&utm_medium=cta&utm_campaign=bc-minimes"><span>Tester une séance · 10€</span></a>
         </div>
+        <p class="gong__foot" data-reveal>12 rue de Fenouillet, 31200 Toulouse · Ouvert du lundi au samedi, 10h–21h30 · <a href="tel:+33562244682">05 62 24 46 82</a></p>
       </div>
     </section>
 

@@ -2,7 +2,7 @@
 import SiteContent from "../../components/SiteContent.astro";
 ---
 <!doctype html>
-<html lang="fr" data-theme="dark">
+<html lang="fr" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,10 +17,11 @@ import SiteContent from "../../components/SiteContent.astro";
   <link rel="stylesheet" href="/assets/css/fonts.css?v=b19" />
 
   <!-- LCP : le hero est construit en JS → invisible au preload scanner (§5.8) -->
-  <link rel="preload" as="image" href="/assets/img/bc/salle-1.webp" fetchpriority="high" />
+  <link rel="preload" as="image" href="/assets/img/photos/salle-plongee-1200.webp" fetchpriority="high" />
 
   <link rel="stylesheet" href="/assets/css/base.css?v=b19" />
   <link rel="stylesheet" href="/assets/css/club.css?v=b19" />
+  <link rel="stylesheet" href="/assets/css/refonte.css?v=b19" />
 
   <meta name="keywords" content="salle de boxe Minimes Toulouse, club boxe Barrière de Paris, histoire Boxing Center, 3 rings boxe Toulouse, accès salle boxe métro B, boxing gym Toulouse, boxing club Toulouse, boxing lessons Toulouse, boxing classes Toulouse Minimes, English boxing Toulouse, kids boxing Toulouse, women boxing Toulouse, martial arts gym Toulouse, gym near Barrière de Paris" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -336,7 +337,7 @@ import SiteContent from "../../components/SiteContent.astro";
 
     <!-- ========================= PAGE HEAD ======================== -->
     <header class="club-head">
-      <div class="club-head__media" aria-hidden="true"><div class="media" data-img="/assets/img/bc/salle-1.webp" data-eager data-label="La salle historique"></div></div>
+      <div class="club-head__media" aria-hidden="true"><div class="media" data-img="/assets/img/photos/salle-plongee-1200.webp" data-eager data-label="La salle historique"></div></div>
       <div class="hero__scrim" aria-hidden="true"></div>
       <div class="wrap club-head__inner">
         <p class="eyebrow" data-reveal>Le club · Les Minimes</p>
@@ -364,7 +365,7 @@ import SiteContent from "../../components/SiteContent.astro";
 
     <!-- ===================== AMBIANCE (parallax) ================== -->
     <section class="ambiance" aria-label="L’ambiance de la salle">
-      <div class="ambiance__media" aria-hidden="true"><div class="media" data-img="/assets/img/bc/anglaise-4.webp" data-label="Entre les cordes"></div></div>
+      <div class="ambiance__media" aria-hidden="true"><div class="media" data-img="/assets/img/photos/allee-sacs-1200.webp" data-label="Entre les cordes"></div></div>
       <div class="ambiance__quote wrap">
         <p class="serif" data-reveal>Philadelphie a ses salles. Toulouse a la sienne, au 12 rue de Fenouillet.<br>Les champions, eux, sont les mêmes : <span class="tint">bien réels.</span></p>
       </div>
@@ -433,7 +434,7 @@ import SiteContent from "../../components/SiteContent.astro";
 
     <!-- ========================= FINAL GONG ====================== -->
     <section class="gong" aria-label="Rejoindre la salle">
-      <div class="gong__bg" aria-hidden="true"><div class="media" data-img="/assets/img/bc/anglaise-3.webp" data-label=""></div></div>
+      <div class="gong__bg" aria-hidden="true"><div class="media" data-img="/assets/img/photos/ring-cours-rouge-1200.webp" data-label=""></div></div>
       <div class="gong__inner">
         <span class="eyebrow" data-reveal>La porte</span>
         <h2 class="display" data-reveal style="font-size:var(--step-3)">Pousse la porte<br><span class="tint">des Minimes.</span></h2>

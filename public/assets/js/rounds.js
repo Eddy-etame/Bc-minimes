@@ -80,7 +80,7 @@ export function initRounds() {
     if (heroNum) heroNum.textContent = String(n).padStart(2, "0");
     nameEl.textContent = name || "";
     ticks.forEach((t, i) => t.classList.toggle("on", i < n));
-    if (!reduce) gsap.fromTo(hud, { scale: 0.94 }, { scale: 1, duration: 0.45, ease: "back.out(2.2)" });
+    if (!reduce && gsap) gsap.fromTo(hud, { scale: 0.94 }, { scale: 1, duration: 0.45, ease: "back.out(2.2)" });
     if (advancing) bell();
   };
 

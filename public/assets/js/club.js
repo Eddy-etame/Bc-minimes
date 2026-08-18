@@ -68,7 +68,7 @@ function renderNetwork() {
 
 function headIntro() {
   document.querySelectorAll(".club-head [data-reveal], .club-head .reveal-mask").forEach((el) => (el.dataset.revBound = "1"));
-  if (reduce) return;
+  if (reduce || !gsap) return;
   const masks = document.querySelectorAll(".club-head .reveal-mask > span");
   const fades = document.querySelectorAll(".club-head [data-reveal]");
   gsap.set(masks, { yPercent: 110, opacity: 0 });
@@ -82,7 +82,7 @@ function headIntro() {
 }
 
 function ambianceParallax() {
-  if (reduce) return;
+  if (reduce || !gsap) return;
   gsap.to(".ambiance__media", { yPercent: 16, ease: "none", scrollTrigger: { trigger: ".ambiance", start: "top bottom", end: "bottom top", scrub: true } });
 }
 

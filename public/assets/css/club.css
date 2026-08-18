@@ -39,7 +39,7 @@
 .timeline { position: relative; margin-top: 1rem; padding-left: 0; }
 .timeline::before { content: ""; position: absolute; left: clamp(64px, 9vw, 120px); top: 0; bottom: 0; width: 1px; background: var(--line); }
 .tl { display: grid; grid-template-columns: clamp(64px,9vw,120px) 1fr; gap: clamp(1.2rem,3vw,2.6rem); padding-block: clamp(1.6rem,3.5vw,2.6rem); position: relative; }
-.tl::before { content: ""; position: absolute; left: clamp(64px,9vw,120px); top: clamp(2rem,4vw,3rem); width: 11px; height: 11px; background: var(--mark); border-radius: 50%; transform: translateX(-5px); box-shadow: 0 0 0 4px var(--ink); }
+.tl::before { content: ""; position: absolute; left: clamp(64px,9vw,120px); top: clamp(2rem,4vw,3rem); width: 11px; height: 11px; background: var(--mark); border-radius: 50%; transform: translateX(-5px); box-shadow: 0 0 0 4px var(--bg); }
 /* le millésime est du display (≥18px) → l'argent y est légal et il porte
    l'identité. Sous 1.15rem au plus petit clamp on reste au-dessus du seuil
    3:1 grand-texte gras. */
@@ -93,8 +93,11 @@
    répond en marchant, elle ne fait pas déplier. */
 .asks { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); grid-template-columns: 1fr; }
 @media (min-width: 900px){ .asks { grid-template-columns: repeat(3,1fr); } }
-.ask { background: var(--ink); padding: clamp(1.6rem,3vw,2.2rem); display: flex; flex-direction: column; gap: .8rem; border-top: 2px solid transparent; transition: background .35s, border-color .35s; }
-.ask:hover, .ask:active { background: var(--ink-2); border-top-color: var(--mark); }
+/* v4 : carte de FAQ. Aplat sombre en v3 -> carte claire, sinon le texte
+   navy se posait sur du navy (1.02:1). Meme correctif que .coach, .pl-day,
+   .pas__step et .ga-bridge__card : tous heritaient du meme reflexe v3. */
+.ask { background: var(--paper); border: 1px solid var(--hair); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); padding: clamp(1.6rem,3vw,2.2rem); display: flex; flex-direction: column; gap: .8rem; border-top: 2px solid transparent; transition: box-shadow .35s, border-color .35s; }
+.ask:hover, .ask:active { box-shadow: var(--shadow-md); border-top-color: var(--mark); }
 .ask__q { font-family: var(--f-display); text-transform: uppercase; font-size: clamp(1.15rem,2.4vw,1.6rem); line-height: 1.05; color: var(--bone); }
 .ask__a { color: var(--muted); font-size: var(--step--1); line-height: 1.55; }
 
@@ -102,7 +105,7 @@
 .network { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); grid-template-columns: 1fr; }
 @media (min-width: 680px){ .network { grid-template-columns: repeat(2,1fr); } }
 @media (min-width: 1040px){ .network { grid-template-columns: repeat(3,1fr); } }
-.net { background: var(--ink); padding: clamp(1.6rem,3vw,2.2rem); min-height: 13rem; display: flex; flex-direction: column; justify-content: space-between; gap: 1.5rem; position: relative; overflow: hidden; transition: background .4s; }
+.net { background: var(--paper); border: 1px solid var(--hair); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); padding: clamp(1.6rem,3vw,2.2rem); min-height: 13rem; display: flex; flex-direction: column; justify-content: space-between; gap: 1.5rem; position: relative; overflow: hidden; transition: box-shadow .4s; }
 .net:hover, .net:active { background: var(--ink-2); }
 /* tag : os + filet argent (loi du navy) */
 .net__tag { display: inline-flex; align-items: center; gap: .7ch; font: 500 var(--step--1)/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--bone); }

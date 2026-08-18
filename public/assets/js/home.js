@@ -13,6 +13,10 @@ const $ = (s, r = document) => r.querySelector(s);
 
 /* --------------------------- RENDER ------------------------------- */
 function renderStats() {
+  /* Garde de montage : la refonte reconfigure les sections de l'accueil.
+     Un rendu qui suppose que sa cible existe fait tomber TOUT le module
+     (donc les animations suivantes) a la premiere section retiree. */
+  if (!$("#stats")) return;
   $("#stats").innerHTML = STATS.map(
     (s) => `<div class="stat" data-reveal>
       <div class="stat__v"><span data-count="${s.v}" ${s.raw ? "data-raw" : ""}>${s.raw ? s.v : 0}</span>${s.suffix ? `<sup>${s.suffix}</sup>` : ""}</div>
@@ -28,7 +32,7 @@ function renderMarquee() {
      ne pas le remonter ici (§5.9). */
   const items = ["Le noble art", "Depuis 2016", "Trois rings", "Dès 3 ans", "Barrière de Paris", "Douze sacs", "Ici on commence", "Le berceau"];
   const row = items.map((i) => `<span>${i}</span>`).join("");
-  const t = $("#marquee"); t.innerHTML = row + row; t.dataset.speed = "1.3";
+  const t = $("#marquee"); if (!t) return; t.innerHTML = row + row; t.dataset.speed = "1.3";
 }
 function renderChampions() {
   const stage = $("#berceau-stage"), rail = $("#berceau-rail");
@@ -71,6 +75,7 @@ function renderDisciplines() {
      403, en console, sur la page d’accueil. Une discipline sans photo
      (loi §0.10 : on n’illustre pas un geste avec un autre) doit sortir
      SANS bloc media, pas avec un bloc media cassé. */
+  if (!$("#disciplines")) return;
   $("#disciplines").innerHTML = DISCIPLINES.map(
     (d, i) => `<div class="disc${d.img ? "" : " disc--nobg"}" data-key="${d.key}" tabindex="0">
       ${d.img ? `<div class="disc__bg media" data-img="${d.img}" aria-hidden="true"></div>` : ""}
@@ -84,6 +89,7 @@ function renderDisciplines() {
   ).join("");
 }
 function renderValues() {
+  if (!$("#values")) return;
   $("#values").innerHTML = VALUES.map(
     (v) => `<div class="value"><span class="value__n">${v.n}</span><div><h3 class="value__t">${v.t}</h3><p class="value__d">${v.d}</p></div></div>`
   ).join("");
@@ -135,6 +141,7 @@ function whoForScroll() {
   update();
 }
 function renderTarifs() {
+  if (!$("#tarifs")) return;
   $("#tarifs").innerHTML = TARIFS.map(
     (t) => `<article class="tarif ${t.highlight ? "tarif--hot" : ""}">
       ${t.highlight ? '<span class="tarif__badge">Populaire</span>' : ""}
@@ -152,6 +159,10 @@ function countUp() {
   document.querySelectorAll("[data-count]").forEach((el) => {
     if (el.hasAttribute("data-raw")) return;
     const end = +el.dataset.count;
+    if (!window.ScrollTrigger || !window.gsap) {
+      el.textContent = Math.round(end);
+      return;
+    }
     ScrollTrigger.create({
       trigger: el, start: "top 92%", once: true,
       onEnter: () => {

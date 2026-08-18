@@ -76,7 +76,7 @@
 .bcm-chat__chips button[data-callback] { border-color: var(--mark); }
 
 .bcm-chat__form { display: flex; gap: .5rem; padding: .75rem 1rem 1rem; border-top: 1px solid var(--line-soft); }
-.bcm-chat__form input { flex: 1 1 auto; min-width: 0; background: var(--ink); color: var(--bone); border: 1px solid var(--line); border-radius: 3px; padding: .6rem .7rem; font: 400 .9rem/1.4 var(--f-ui); }
+.bcm-chat__form input { flex: 1 1 auto; min-width: 0; background: var(--paper); color: var(--on-light); border: 1px solid var(--hair); border-radius: var(--radius); padding: .6rem .7rem; font: 400 .9rem/1.4 var(--f-ui); }
 .bcm-chat__form input::placeholder { color: var(--steel); }
 .bcm-chat__form input:focus-visible { outline: none; border-color: var(--mark); }
 .bcm-chat__send { flex: 0 0 auto; width: 42px; display: grid; place-items: center; background: var(--navy); color: var(--on-accent); border: 1px solid var(--silver); border-radius: 3px; transition: transform .25s var(--ease-punch); }

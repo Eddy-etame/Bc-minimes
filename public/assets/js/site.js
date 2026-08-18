@@ -3,7 +3,7 @@
    window.BC = { reveal, magnetic, refresh, media, split, scramble,
                  initKinetics, faq, lenis, velocity }
    ===================================================================== */
-import { NAV, LINKS, SALLE, MEDIA, CTA, NETWORK } from "./data.js?v=b19";
+import { NAV, LINKS, SALLE, MEDIA, CTA, CTA_HREF, NETWORK, PROMOS } from "./data.js?v=b19";
 import { initPlaces } from "./places.js?v=b19";
 /* L’assistant : il promeut la pastille `.chatbot` (qui reste un lien tel:
    dans le HTML) en vraie conversation. Voir armChatbot() plus bas — le
@@ -50,7 +50,7 @@ function mountNav() {
           ${extLink(LINKS.groupe, "Le groupe")}
           ${extLink(LINKS.boutique, "Boutique")}
         </div>
-        <a class="btn btn--primary nav__cta" data-magnetic href="${LINKS.essai}"><span>${CTA.chrome}</span></a>
+        <a class="btn btn--primary nav__cta" data-magnetic href="${CTA_HREF.primary}"><span>${CTA.chrome}</span></a>
         <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </nav>`;
@@ -60,7 +60,7 @@ function mountNav() {
   ).join("");
   document.getElementById("drawer").innerHTML = `
     <div class="menu" id="menu" aria-hidden="true">
-      <div class="menu__bg" aria-hidden="true"><video data-video-defer data-video="/assets/media/clip-mats.mp4" data-poster="/assets/img/bc/salle-1.webp" muted loop playsinline></video></div>
+      <div class="menu__bg" aria-hidden="true"><video data-video-defer data-video="/assets/media/clip-mats.mp4" data-poster="/assets/img/photos/salle-plongee-1200.webp" muted loop playsinline></video></div>
       <div class="menu__top">
         <a class="nav__brand" href="/" aria-label="Boxing Center Minimes — accueil">
           <img class="nav__logo" src="/assets/img/logo.png" alt="" width="342" height="160" />
@@ -70,7 +70,8 @@ function mountNav() {
       </div>
       <nav class="menu__nav">${menuLinks}</nav>
       <div class="menu__foot">
-        <a class="btn btn--primary" data-magnetic href="${LINKS.essai}"><span>${CTA.primary}</span></a>
+        <a class="btn btn--primary" data-magnetic href="${CTA_HREF.primary}"><span>${CTA.primary}</span></a>
+        <a class="btn btn--ghost" data-magnetic href="${CTA_HREF.second}"><span>${CTA.second}</span></a>
         <div style="display:flex;gap:1.4rem;flex-wrap:wrap">
           ${extLink(LINKS.groupe, "Le groupe")}
           ${extLink(LINKS.boutique, "Boutique")}
@@ -160,7 +161,7 @@ function mountFooter() {
             <p>${SALLE.address.full}</p>
             <p><a href="tel:${SALLE.phoneHref}">${SALLE.phone}</a></p>
             <p>${SALLE.hours}</p>
-            <a class="btn btn--primary" data-magnetic href="${LINKS.essai}" style="margin-top:1rem"><span>${CTA.primary}</span></a>
+            <a class="btn btn--primary" data-magnetic href="${CTA_HREF.primary}" style="margin-top:1rem"><span>${CTA.primary}</span></a>
           </div>
           ${cols.map((c) => `<div class="footer__col"><h4>${c.h}</h4>${c.links.map((l) => l.ext ? extLink(l.href, l.label) : `<a href="${l.href}">${l.label}</a>`).join("")}</div>`).join("")}
         </div>
@@ -178,7 +179,7 @@ function mountFooter() {
 
 /* ------------------------------ LENIS ----------------------------- */
 function initSmooth() {
-  if (reduce || !window.Lenis) return;
+  if (reduce || !window.Lenis || !gsap) return;
   lenis = new window.Lenis({ duration: 1.1, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true });
   lenis.on("scroll", (e) => { velocity = e.velocity; ScrollTrigger?.update(); });
   gsap.ticker.add((t) => lenis.raf(t * 1000));
@@ -265,6 +266,7 @@ function scramble(el, opts = {}) {
 /* ----------------------------- REVEAL ----------------------------- */
 function reveal(scope = document) {
   if (reduce) { document.documentElement.classList.remove("fx"); return; }
+  if (!gsap) return;
   scope.querySelectorAll(".reveal-mask").forEach((m) => {
     const kids = [...m.children];
     if (m.dataset.revBound || !kids.length) return; m.dataset.revBound = "1";
@@ -408,7 +410,7 @@ const _pendingVideos = [];
 /* --------------------- VELOCITY: skew + marquees ------------------ */
 let kineticsOn = false;
 function initKinetics() {
-  if (reduce || kineticsOn) return; kineticsOn = true;
+  if (reduce || kineticsOn || !gsap) return; kineticsOn = true;
   const skews = [...document.querySelectorAll("[data-skew]")];
   const tracks = [...document.querySelectorAll(".marquee__track")].map((t) => {
     const dir = t.dataset.dir === "rtl" ? 1 : -1;
@@ -635,10 +637,201 @@ function presentationAssistant() {
   regarder();   // page deja defilee (retour arriere, ancre) : on tranche tout de suite
 }
 
+/* ------------------- REVEAL v4 (sans dépendance GSAP) --------------
+   Les révélations de v3 passent toutes par GSAP + ScrollTrigger, chargés
+   depuis un CDN. C'est bien tant que le CDN répond ; le jour où il ne
+   répond pas, `.fx` tombe et tout s'affiche d'un bloc — acceptable, mais
+   la page perd son rythme.
+   Les sections alternées de la refonte utilisent donc un IntersectionObserver
+   natif : aucune dépendance, ~20 lignes, et il survit à tout. Les deux
+   systèmes cohabitent — [data-reveal] reste piloté par GSAP. */
+function revealNative(scope = document) {
+  const els = [...scope.querySelectorAll(".reveal-up, .reveal-fade, .reveal-media")];
+  if (!els.length) return;
+  if (reduce || !("IntersectionObserver" in window)) {
+    els.forEach((el) => el.classList.add("is-in"));
+    return;
+  }
+  /* C'est CE drapeau, et lui seul, qui autorise le CSS à masquer l'état
+     de départ (cf. refonte.css §10). Il n'est posé qu'ici — donc jamais
+     si le script ne s'exécute pas, et jamais retiré ensuite. */
+  document.documentElement.classList.add("has-reveal");
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      e.target.classList.add("is-in");
+      io.unobserve(e.target);          /* une révélation, pas un yo-yo */
+    });
+  }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+  els.forEach((el) => { if (!el.dataset.ioBound) { el.dataset.ioBound = "1"; io.observe(el); } });
+
+  /* ⚠ FILET DE SÉCURITÉ — indispensable, pas décoratif.
+     Mesuré sur cette page de 22 000 px : après un défilement rapide,
+     7 sections sur 24 n'avaient JAMAIS reçu `is-in` et restaient à
+     opacité 0 — définitivement invisibles. Un IntersectionObserver
+     n'échantillonne qu'aux images d'animation : ce qui traverse le
+     viewport entre deux échantillons n'est jamais signalé, et comme on
+     retire l'observation au premier passage, l'élément est perdu.
+     Ce balayage rattrape tout ce qui a dépassé le bas de l'écran, quelle
+     qu'ait été la vitesse. Il s'arrête de lui-même une fois la page
+     entièrement révélée : aucun coût résiduel. */
+  let pending = els.length, ticking = false;
+  const sweep = () => {
+    ticking = false;
+    const limit = innerHeight;
+    els.forEach((el) => {
+      if (el.classList.contains("is-in")) return;
+      if (el.getBoundingClientRect().top < limit) { el.classList.add("is-in"); io.unobserve(el); }
+    });
+    pending = els.filter((el) => !el.classList.contains("is-in")).length;
+    if (!pending) removeEventListener("scroll", onScroll);
+  };
+  const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(sweep); } };
+  addEventListener("scroll", onScroll, { passive: true });
+  requestAnimationFrame(sweep);       /* et au premier rendu, pour le haut de page */
+
+  /* la cascade dans une grille : chaque enfant hérite de son rang */
+  scope.querySelectorAll(".stagger").forEach((g) => {
+    [...g.children].forEach((c, i) => c.style.setProperty("--i", i));
+  });
+}
+
+/* ---------------------- L'ALTERNANCE IMAGE/TEXTE ------------------
+   Le brief demande le rythme « image à gauche, puis à droite, puis à
+   gauche… ». En CSS pur, :nth-of-type compte les <section> et non les
+   .split-sec : dès qu'une grille de tarifs s'intercale, la parité saute
+   et deux photos se retrouvent du même côté (voir refonte.css §1).
+   On numérote donc les sections alternées ENTRE ELLES, ici, une fois. */
+function alternate(scope = document) {
+  scope.querySelectorAll(".split-sec").forEach((s, i) => {
+    if (s.classList.contains("split-sec--flip") || s.classList.contains("split-sec--noflip")) return;
+    s.classList.add(i % 2 ? "split-sec--flip" : "split-sec--noflip");
+  });
+}
+
+/* ------------------- BARRE D'ACTION MOBILE ------------------------
+   Mesuré avant refonte : 13 000 px de page d'accueil sans un seul bouton
+   d'inscription entre le hero et la grille de tarifs, et deux pastilles
+   flottantes qui se chevauchaient de 65×25 px en bas de l'écran mobile.
+   Une seule barre remplace tout ça : elle apparaît une fois le hero passé
+   (avant, elle masquerait le CTA du hero pour rien) et disparaît quand le
+   pied de page arrive (là, les liens sont déjà à l'écran). */
+function mountActionBar() {
+  if (document.querySelector(".actionbar")) return;
+  const bar = document.createElement("div");
+  bar.className = "actionbar";
+  bar.innerHTML = `
+    <a class="btn btn--primary" href="${CTA_HREF.primary}"><span>${CTA.chrome}</span></a>
+    <a class="actionbar__call" href="tel:${SALLE.phoneHref}" aria-label="Appeler la salle au ${SALLE.phone}">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+    </a>`;
+  document.body.appendChild(bar);
+
+  const hero = document.querySelector(".hero, .page-head");
+  const foot = document.querySelector(".footer, #footer");
+  let pastHero = !hero, atFoot = false;
+  const sync = () => bar.classList.toggle("is-in", pastHero && !atFoot);
+
+  if ("IntersectionObserver" in window) {
+    if (hero) new IntersectionObserver(([e]) => { pastHero = !e.isIntersecting; sync(); },
+      { threshold: 0, rootMargin: "-70% 0px 0px 0px" }).observe(hero);
+    if (foot) new IntersectionObserver(([e]) => { atFoot = e.isIntersecting; sync(); },
+      { threshold: 0 }).observe(foot);
+  } else {
+    pastHero = true; sync();
+  }
+}
+
+/* ---------------------- ROUE PROMO GLOBALE ------------------------
+   La promo ne doit pas attendre que le visiteur trouve /tarifs/. On pose
+   donc une roulette visible sur toutes les pages : assez forte pour
+   accrocher l'oeil, mais hors du flux pour ne pas casser la lecture. */
+function mountPromoWheel() {
+  if (document.querySelector(".promo-wheel")) return;
+  const rentree = PROMOS.cards?.find((c) => c.key === "rentree") || PROMOS.cards?.[0];
+  const saison = PROMOS.cards?.find((c) => c.key === "saison");
+  const href = CTA_HREF.primary;
+  const strip = [
+    { t: "29€", d: "Rentrée" },
+    { t: "-34%", d: "au lieu de 44€" },
+    { t: "4 sem.", d: "illimitées" },
+    { t: "259€", d: saison ? "saison" : "12 mois" },
+  ];
+  const wheel = document.createElement("aside");
+  wheel.className = "promo-wheel";
+  wheel.setAttribute("aria-label", "Offre promotionnelle Boxing Center Minimes");
+  wheel.innerHTML = `
+    <a class="promo-wheel__link" href="${href}">
+      <span class="promo-wheel__flag">Offre à saisir</span>
+      <span class="promo-wheel__stage" aria-hidden="true">
+        <span class="promo-wheel__pointer"></span>
+        <span class="promo-wheel__disc">
+          <span class="promo-wheel__slice promo-wheel__slice--top">29€</span>
+          <span class="promo-wheel__slice promo-wheel__slice--right">4 sem.</span>
+          <span class="promo-wheel__slice promo-wheel__slice--bottom">-34%</span>
+          <span class="promo-wheel__slice promo-wheel__slice--left">Boxe</span>
+        </span>
+        <span class="promo-wheel__core">${rentree?.price || "29€"}</span>
+      </span>
+      <span class="promo-wheel__copy">
+        <b>${rentree?.name || "L’offre Rentrée"}</b>
+        <span>${rentree?.price || "29€"} ${rentree?.unit || "par personne"} · ${rentree?.period?.replace(/^·\s*/, "") || "4 semaines"} illimitées</span>
+      </span>
+      <span class="promo-wheel__ticker" aria-hidden="true">
+        ${strip.map((s) => `<span><b>${s.t}</b>${s.d}</span>`).join("")}
+      </span>
+    </a>`;
+  document.body.appendChild(wheel);
+
+  const hero = document.querySelector(".hero, .page-head");
+  const foot = document.querySelector(".footer, #footer");
+  let pastHero = !hero, atFoot = false;
+  const sync = () => wheel.classList.toggle("is-in", pastHero && !atFoot);
+  if ("IntersectionObserver" in window) {
+    if (hero) new IntersectionObserver(([e]) => { pastHero = !e.isIntersecting; sync(); },
+      { threshold: 0, rootMargin: "-48% 0px 0px 0px" }).observe(hero);
+    if (foot) new IntersectionObserver(([e]) => { atFoot = e.isIntersecting; sync(); },
+      { threshold: 0, rootMargin: "0px 0px -12% 0px" }).observe(foot);
+  } else {
+    pastHero = true; sync();
+  }
+}
+
+/* ------------------------- LES ÉTOILES D'AVIS ---------------------
+   La note Google (4,3 sur 155 avis) ne vivait que dans le JSON-LD : elle
+   servait au moteur de recherche et à personne d'autre. Ce composant la
+   rend visible partout où l'on écrit `<span data-rating>`. */
+function mountRatings(scope = document) {
+  const nodes = scope.querySelectorAll("[data-rating]:not([data-rated])");
+  nodes.forEach((el) => {
+    el.dataset.rated = "1";
+    const val = parseFloat(el.dataset.rating) || 4.3;
+    const count = el.dataset.ratingCount || "";
+    let stars = "";
+    for (let i = 1; i <= 5; i++) {
+      const fill = Math.max(0, Math.min(1, val - i + 1));
+      const id = `g${i}${Math.random().toString(36).slice(2, 7)}`;
+      stars += fill >= .98
+        ? `<svg viewBox="0 0 20 20" aria-hidden="true"><path class="s-full" d="M10 1.6l2.5 5.1 5.6.8-4 3.9 1 5.6L10 14.3 5 17l1-5.6-4-3.9 5.6-.8z"/></svg>`
+        : `<svg viewBox="0 0 20 20" aria-hidden="true"><defs><linearGradient id="${id}"><stop offset="${fill * 100}%" stop-color="#F5A623"/><stop offset="${fill * 100}%" stop-color="currentColor" stop-opacity=".28"/></linearGradient></defs><path fill="url(#${id})" d="M10 1.6l2.5 5.1 5.6.8-4 3.9 1 5.6L10 14.3 5 17l1-5.6-4-3.9 5.6-.8z"/></svg>`;
+    }
+    el.classList.add("rating");
+    el.innerHTML = `<span class="rating__stars" aria-hidden="true">${stars}</span>` +
+      `<span class="rating__val">${String(val).replace(".", ",")}</span>` +
+      (count ? `<span class="rating__cnt">sur ${count} avis Google</span>` : "");
+    el.setAttribute("aria-label", `Note de ${String(val).replace(".", ",")} sur 5${count ? `, sur ${count} avis Google` : ""}`);
+  });
+}
+
 /* ------------------------------ BOOT ------------------------------ */
-window.BC = { reveal, magnetic, refresh, media: hydrateMedia, serveMedia, split, scramble, initKinetics, faq, get lenis() { return lenis; }, get velocity() { return velocity; } };
+window.BC = { reveal, revealNative, alternate, mountRatings, magnetic, refresh, media: hydrateMedia, serveMedia, split, scramble, initKinetics, faq, get lenis() { return lenis; }, get velocity() { return velocity; } };
 mountNav();
 mountFooter();
+alternate();
+revealNative();
+mountRatings();
+mountActionBar();
+mountPromoWheel();
 initSmooth();
 initCursor();
 hydrateMedia(document);   // hydrate menu/footer bg video etc.

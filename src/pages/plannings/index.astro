@@ -2,7 +2,7 @@
 import SiteContent from "../../components/SiteContent.astro";
 ---
 <!doctype html>
-<html lang="fr" data-theme="dark">
+<html lang="fr" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -25,10 +25,11 @@ import SiteContent from "../../components/SiteContent.astro";
   <!-- LCP : l’image du hero est construite en JS, donc invisible au preload
        scanner (parse → module → import data.js → new Image()). Le preload
        rattrape la découverte perdue (§5.8 « preload de l’image LCP »). -->
-  <link rel="preload" as="image" href="/assets/img/bc/anglaise-3.webp" fetchpriority="high" />
+  <link rel="preload" as="image" href="/assets/img/photos/ring-cours-rouge-1200.webp" fetchpriority="high" />
 
   <link rel="stylesheet" href="/assets/css/base.css?v=b19" />
   <link rel="stylesheet" href="/assets/css/home.css?v=b19" />
+  <link rel="stylesheet" href="/assets/css/refonte.css?v=b19" />
 
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="geo.region" content="FR-31" />
@@ -499,7 +500,8 @@ import SiteContent from "../../components/SiteContent.astro";
        Devenu CLIQUABLE : c’était déjà la forme de la semaine, il lui
        manquait d’être le raccourci qu’on croit qu’il est. ≥44px de haut. */
     .pl-week { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: clamp(1.4rem,3vw,2rem); }
-    .pl-week__d { display: inline-flex; flex-direction: column; gap: .45rem; min-width: 3.4rem; min-height: 44px; padding: .6rem .7rem; border: 1px solid var(--line); background: rgba(10,9,8,.5); text-align: left; transition: border-color .3s, background .3s; }
+    /* fond noir ecrit en dur (v3) : illisible sur la page claire. */
+    .pl-week__d { display: inline-flex; flex-direction: column; gap: .45rem; min-width: 3.4rem; min-height: 44px; padding: .6rem .7rem; border: 1px solid var(--hair); border-radius: var(--radius); background: var(--paper-2); text-align: left; transition: border-color .3s, background .3s; }
     .pl-week__d:hover, .pl-week__d:active { border-color: var(--mark); background: rgba(38,64,115,.45); }
     .pl-week__n { font: 700 .62rem/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--bone); }
     .pl-week__bar { display: flex; flex-wrap: wrap; gap: 2px; min-height: 10px; }
@@ -524,7 +526,7 @@ import SiteContent from "../../components/SiteContent.astro";
     /* --- le poster : EN COULEUR (§5.5), cliquable, dimensions posées --- */
     .pl-poster { display: block; position: relative; border: 1px solid var(--line); }
     .pl-poster img { width: 100%; height: auto; display: block; }
-    .pl-poster::after { content: "Ouvrir en grand ↗"; position: absolute; right: .9rem; bottom: .9rem; font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--bone); background: rgba(10,9,8,.78); padding: .55em .85em; border: 1px solid var(--line); }
+    .pl-poster::after { content: "Ouvrir en grand ↗"; position: absolute; right: .9rem; bottom: .9rem; font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: #fff; background: var(--navy-600); padding: .6em .9em; border: 0; border-radius: 100px; }
     .pl-poster:hover::after, .pl-poster:active::after { color: var(--on-accent); background: var(--navy); border-color: var(--silver); }
 
     /* --- filtres jour / discipline / coach (§3) --- */
@@ -549,12 +551,15 @@ import SiteContent from "../../components/SiteContent.astro";
     .pl-grid { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); grid-template-columns: 1fr; }
     @media (min-width: 700px){ .pl-grid { grid-template-columns: repeat(2,1fr); } }
     @media (min-width: 1100px){ .pl-grid { grid-template-columns: repeat(6,1fr); } }
-    .pl-day { background: var(--ink); padding: clamp(1rem,2vw,1.2rem); display: flex; flex-direction: column; gap: .7rem; }
+    /* v4 : cette carte etait un aplat SOMBRE sur une page sombre. La page
+       est devenue claire, ses encres aussi — la carte doit suivre, sinon
+       elle porte du texte navy sur du navy. Carte blanche + filet. */
+    .pl-day { background: var(--paper); border: 1px solid var(--hair); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); padding: clamp(1rem,2vw,1.2rem); display: flex; flex-direction: column; gap: .7rem; }
     .pl-day.is-hidden { display: none; }
     .pl-day__h { display: flex; align-items: baseline; justify-content: space-between; gap: .6ch; font-family: var(--f-display); text-transform: uppercase; font-size: clamp(1.05rem,2vw,1.3rem); line-height: 1; color: var(--bone); border-bottom: 2px solid var(--mark); padding-bottom: .55rem; }
     .pl-day__h i { font: 700 .62rem/1 var(--f-mono); font-style: normal; color: var(--bone-dim); }
     .pl-day__list { display: grid; gap: .5rem; }
-    .pl-slot { display: grid; gap: .18rem; padding: .6rem .65rem; background: var(--ink-2); border-left: 2px solid var(--line); transition: border-color .3s, background .3s; }
+    .pl-slot { display: grid; gap: .18rem; padding: .6rem .65rem; background: var(--paper-2); border-left: 2px solid var(--hair); transition: border-color .3s, background .3s; }
     .pl-slot:hover, .pl-slot:active { border-left-color: var(--mark); background: var(--char); }
     .pl-slot.is-hidden { display: none; }
     .pl-slot__h { font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .06em; color: var(--bone); }
@@ -569,7 +574,7 @@ import SiteContent from "../../components/SiteContent.astro";
        pas un créneau mort, c’est juste un créneau sans encadrement. */
     .pl-slot--free { background: transparent; border-left: 2px dashed var(--line); }
     .pl-slot--free .pl-slot__n { color: var(--bone-dim); }
-    .pl-slot--free:hover, .pl-slot--free:active { background: var(--ink-2); border-left-color: var(--bone-dim); }
+    .pl-slot--free:hover, .pl-slot--free:active { background: var(--paper-3); border-left-color: var(--mark); }
 
     /* « en ce moment » / « juste après » — repères vivants, calculés au
        chargement. L’aplat navy porte le blanc (14.6:1), jamais l’inverse. */
@@ -616,7 +621,7 @@ import SiteContent from "../../components/SiteContent.astro";
          .page-head partagé (base.css) + le rail de la semaine, qui
          n’existe que sur cette page. -->
     <section class="page-head" aria-label="Le planning">
-      <div class="page-head__bg" aria-hidden="true"><div class="media" data-img="/assets/img/bc/anglaise-3.webp" data-eager data-label=""></div></div>
+      <div class="page-head__bg" aria-hidden="true"><div class="media" data-img="/assets/img/photos/ring-cours-rouge-1200.webp" data-eager data-label=""></div></div>
       <div class="wrap">
         <span class="eyebrow" data-reveal><span id="season">Saison 2026 — 2027</span> · Barrière de Paris</span>
         <h1 class="display" style="margin:1rem 0 1.2rem"><span class="reveal-mask"><span>La semaine </span></span><span class="reveal-mask"><span class="tint">des Minimes.</span></span></h1>

@@ -4,7 +4,7 @@
    en avant (Mehdi B, photo prouvée), les autres en tuiles nom N&B.
    Loi §0.10 : nom ≡ photo, jamais de stock, jamais de croisement.
    ===================================================================== */
-import { COACHES, LINKS, CTA } from "./data.js?v=b19";
+import { COACHES, LINKS, CTA, CTA_HREF } from "./data.js?v=b19";
 import { PLANNING, PLANNING_DAYS } from "./data-planning.js?v=b19";
 
 const $ = (s, r = document) => r.querySelector(s);
@@ -34,7 +34,7 @@ function renderPillar() {
       <p class="pillar__note">${c.note}</p>
       <p class="pillar__week"><b>${weekOf(c.planName)}</b> créneaux par semaine, sur ${daysOf(c.planName).length} jours</p>
       <div class="pillar__cta">
-        <a class="btn btn--primary" data-magnetic href="${LINKS.essai}"><span>${CTA.primary}</span></a>
+        <a class="btn btn--primary" data-magnetic href="${CTA_HREF.primary}"><span>${CTA.primary}</span></a>
         <a class="btn btn--ghost" data-magnetic href="${linkOf(c.planName)}"><span>Ses créneaux</span></a>
       </div>
     </div>`;

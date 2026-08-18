@@ -43,7 +43,7 @@
    retrouve dans un formulaire trois fois trop grand, décalé, à faire
    défiler à la main. La page de la séance offerte tenait déjà ce
    plancher ; le mur du club l'avait manqué. */
-.cm-field input { width: 100%; min-height: 44px; background: var(--ink); color: var(--bone); border: 1px solid var(--line);
+.cm-field input { width: 100%; min-height: 44px; background: var(--paper); color: var(--on-light); border: 1px solid var(--hair); border-radius: var(--radius);
   border-radius: 2px; padding: .6rem .7rem; font: 400 16px/1.4 var(--f-ui); transition: border-color .25s; }
 .cm-field input::placeholder { color: var(--steel); }
 .cm-field input:focus-visible { outline: none; border-color: var(--silver); }

@@ -52,7 +52,29 @@ export const SEASON_LABEL = "Saison 2026 — 2027";
    ⚠ Ne PAS inventer une 3e formulation. */
 export const CTA = {
   chrome: "Ma place · 29€",
-  primary: "Je prends ma place de rentrée — 29€",
+  primary: "Je prends ma place — 29€",
+  /* Le CTA de repli, celui qu'on propose à qui hésite encore. Il porte
+     SON prix, pour qu'aucun bouton du site n'annonce un tarif différent
+     de la page où il mène. */
+  second: "Tester une séance · 10€",
+};
+
+/* ⚠ LA DESTINATION DES CTA — corrigé à la refonte, après mesure.
+   Le bouton de la barre de navigation — présent sur les 10 pages, donc le
+   plus cliqué du site — affichait « Ma place · 29€ » et pointait vers
+   LINKS.essai, c'est-à-dire la page de la séance d'essai à 10 €. Le
+   commentaire de LINKS.essai disait pourtant déjà « jamais en tête ».
+   Le visiteur lisait un prix, cliquait, en trouvait un autre : c'est la
+   fuite de conversion la plus chère qu'un site puisse s'offrir.
+   Trois libellés identiques menaient par ailleurs à trois URL distinctes
+   (/inscription?product=offre-duo, /abonnements#promo, /seance-essai).
+   RÈGLE : un libellé = une destination. Elles vivent ici, et nulle part
+   ailleurs. Toute page qui écrit une URL box-plus en dur la viole. */
+export const CTA_HREF = {
+  /* l'offre de rentrée à 29 € — la destination de TOUT bouton « ma place » */
+  primary: "https://box-plus.vercel.app/inscription?product=offre-duo&step=1&utm_source=site&utm_medium=cta&utm_campaign=bc-minimes",
+  /* la séance d'essai à 10 € — la destination de TOUT bouton « essai » */
+  second: "https://box-plus.vercel.app/seance-essai?utm_source=site&utm_medium=cta&utm_campaign=bc-minimes",
 };
 
 /* Colonne vertébrale conversion — tout pointe vers la boutique box-plus.

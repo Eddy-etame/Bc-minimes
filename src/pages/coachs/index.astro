@@ -2,7 +2,7 @@
 import SiteContent from "../../components/SiteContent.astro";
 ---
 <!doctype html>
-<html lang="fr" data-theme="dark">
+<html lang="fr" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -22,6 +22,7 @@ import SiteContent from "../../components/SiteContent.astro";
 
   <link rel="stylesheet" href="/assets/css/base.css?v=b19" />
   <link rel="stylesheet" href="/assets/css/home.css?v=b19" />
+  <link rel="stylesheet" href="/assets/css/refonte.css?v=b19" />
 
   <meta name="keywords" content="coach boxe Minimes Toulouse, entraîneur boxe anglaise Toulouse, Mehdi Boxing Center, coach Boxing Lady, coach boxe éducative enfant, encadrement boxe 31200, boxing gym Toulouse, boxing club Toulouse, boxing lessons Toulouse, boxing classes Toulouse Minimes, English boxing Toulouse, kids boxing Toulouse, women boxing Toulouse, martial arts gym Toulouse, gym near Barrière de Paris" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -376,7 +377,10 @@ import SiteContent from "../../components/SiteContent.astro";
     @media (max-width: 900px){ .co-head__cut { display: none; } }
 
     /* ---- LE PILIER (Mehdi B) ---- */
-    .pillar { display: grid; grid-template-columns: 1fr; gap: clamp(1.6rem,4vw,3.5rem); align-items: stretch; border: 1px solid var(--line); background: var(--ink); }
+    /* v4 : cette carte etait un aplat SOMBRE sur une page sombre. La page
+       est devenue claire, ses encres aussi — la carte doit suivre, sinon
+       elle porte du texte navy sur du navy. Carte blanche + filet. */
+    .pillar { display: grid; grid-template-columns: 1fr; gap: clamp(1.6rem,4vw,3.5rem); align-items: stretch; border: 1px solid var(--hair); border-radius: var(--radius-lg); overflow: hidden; background: var(--paper); box-shadow: var(--shadow-sm); }
     @media (min-width: 900px){ .pillar { grid-template-columns: .85fr 1.15fr; } }
     .pillar__stage { position: relative; overflow: hidden; min-height: 26rem; background: radial-gradient(120% 90% at 50% 100%, rgba(38,64,115,.4), var(--black) 70%); display: flex; align-items: flex-end; justify-content: center; }
     .pillar__bigname { position: absolute; inset: 0; display: grid; place-items: center; z-index: 0; font-family: var(--f-display); text-transform: uppercase; font-size: clamp(4rem,13vw,8rem); line-height: .8; color: transparent; -webkit-text-stroke: 1.5px var(--line); letter-spacing: -.02em; white-space: nowrap; }
@@ -393,15 +397,18 @@ import SiteContent from "../../components/SiteContent.astro";
     .pillar__note { margin-top: 1rem; color: var(--muted); font: 500 var(--step--1)/1.5 var(--f-mono); letter-spacing: .04em; }
     /* la charge de travail, DÉRIVÉE du planning (coachs.js) — un chiffre
        qui se recompte tout seul vaut mieux qu’un adjectif */
-    .pillar__week { margin-top: .9rem; display: inline-flex; align-items: center; gap: .7ch; padding: .5em .9em; border-left: 3px solid var(--mark); background: var(--ink-2); font: 500 var(--step--1)/1 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--read); }
+    .pillar__week { margin-top: .9rem; display: inline-flex; align-items: center; gap: .7ch; padding: .5em .9em; border-left: 3px solid var(--mark); background: var(--paper-2); font: 500 var(--step--1)/1 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--read); }
     .pillar__week b { color: var(--bone); font-weight: 700; }
     .pillar__cta { margin-top: auto; padding-top: 1.6rem; display: flex; flex-wrap: wrap; gap: 1rem; }
 
     /* ---- LE RESTE DU STAFF (tuiles nom, pas de photo empruntée) ---- */
     .roster { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); grid-template-columns: 1fr; }
     @media (min-width: 680px){ .roster { grid-template-columns: repeat(3,1fr); } }
-    .coach { position: relative; background: var(--ink); padding: clamp(1.8rem,3.2vw,2.4rem); min-height: 17rem; display: flex; flex-direction: column; gap: 1rem; overflow: hidden; border-top: 2px solid transparent; transition: background .35s, border-color .35s; }
-    .coach:hover, .coach:active { background: var(--ink-2); border-top-color: var(--mark); }
+    /* v4 : cette carte etait un aplat SOMBRE sur une page sombre. La page
+       est devenue claire, ses encres aussi — la carte doit suivre, sinon
+       elle porte du texte navy sur du navy. Carte blanche + filet. */
+    .coach { position: relative; background: var(--paper); border: 1px solid var(--hair); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); padding: clamp(1.8rem,3.2vw,2.4rem); min-height: 17rem; display: flex; flex-direction: column; gap: 1rem; overflow: hidden; border-top: 2px solid transparent; transition: background .35s, border-color .35s; }
+    .coach:hover, .coach:active { box-shadow: var(--shadow-md); border-top-color: var(--mark); }
     .coach__mono { position: absolute; top: -1.5rem; right: -.5rem; font-family: var(--f-display); font-size: clamp(6rem,14vw,10rem); line-height: .7; color: transparent; -webkit-text-stroke: 1.5px var(--line-soft); pointer-events: none; z-index: 0; transition: -webkit-text-stroke-color .4s; }
     .coach:hover .coach__mono, .coach:active .coach__mono { -webkit-text-stroke-color: rgba(174,188,207,.45); }
     .coach__body { position: relative; z-index: 1; margin-top: 1.4rem; }
@@ -424,12 +431,12 @@ import SiteContent from "../../components/SiteContent.astro";
     .cweek { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); grid-template-columns: 1fr; }
     @media (min-width: 640px){ .cweek { grid-template-columns: repeat(2,1fr); } }
     @media (min-width: 1080px){ .cweek { grid-template-columns: repeat(6,1fr); } }
-    .cwd { background: var(--ink); padding: clamp(1rem,2vw,1.3rem); display: flex; flex-direction: column; gap: .8rem; }
+    .cwd { background: var(--paper); border: 1px solid var(--hair); border-radius: var(--radius-lg); padding: clamp(1rem,2vw,1.3rem); display: flex; flex-direction: column; gap: .8rem; }
     .cwd__h { display: flex; align-items: baseline; justify-content: space-between; gap: .6ch; font-family: var(--f-display); text-transform: uppercase; font-size: clamp(1.05rem,2vw,1.3rem); line-height: 1; color: var(--bone); border-bottom: 2px solid var(--mark); padding-bottom: .55rem; }
     .cwd__h i { font: 700 .75rem/1 var(--f-mono); font-style: normal; color: var(--bone-dim); }
     .cwd__list { display: grid; gap: .4rem; }
     /* le nom est le lien : toute la ligne clique, pas seulement le mot */
-    .cwd__a { display: flex; align-items: center; justify-content: space-between; gap: .8ch; min-height: 44px; padding: .5rem .6rem; background: var(--ink-2); border-left: 2px solid var(--line); transition: border-color .3s, background .3s; }
+    .cwd__a { display: flex; align-items: center; justify-content: space-between; gap: .8ch; min-height: 44px; padding: .5rem .6rem; background: var(--paper-2); border-left: 2px solid var(--hair); transition: border-color .3s, background .3s; }
     .cwd__a:hover, .cwd__a:focus-visible, .cwd__a:active { border-left-color: var(--mark); background: var(--char); }
     .cwd__n { font: 700 var(--step--1)/1.2 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--bone); }
     .cwd__c { font: 500 .75rem/1 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--bone-dim); white-space: nowrap; }
@@ -461,7 +468,7 @@ import SiteContent from "../../components/SiteContent.astro";
 
     <!-- ========================= EN-TÊTE ========================== -->
     <section class="page-head page-head--co" aria-label="Les coachs">
-      <div class="page-head__bg" aria-hidden="true"><div class="media" data-img="/assets/img/bc/anglaise-2.webp" data-eager data-label=""></div></div>
+      <div class="page-head__bg" aria-hidden="true"><div class="media" data-img="/assets/img/photos/sparring-graff-1200.webp" data-eager data-label=""></div></div>
       <img class="co-head__cut" src="/assets/img/bc/cutouts/coach-mehdi.webp" width="236" height="452" alt="" aria-hidden="true" decoding="async" />
       <div class="wrap">
         <span class="eyebrow" data-reveal>L’encadrement · Les Minimes</span>
@@ -522,7 +529,7 @@ import SiteContent from "../../components/SiteContent.astro";
 
     <!-- ========================= FINAL GONG ====================== -->
     <section class="gong" aria-label="Réserver une séance">
-      <div class="gong__bg" aria-hidden="true"><div class="media" data-img="/assets/img/bc/anglaise-4.webp" data-label=""></div></div>
+      <div class="gong__bg" aria-hidden="true"><div class="media" data-img="/assets/img/photos/allee-sacs-1200.webp" data-label=""></div></div>
       <div class="gong__inner">
         <span class="eyebrow" data-reveal>La poignée de main</span>
         <h2 class="display" data-reveal style="font-size:var(--step-3)">Viens te faire<br><span class="tint">corriger le jab.</span></h2>

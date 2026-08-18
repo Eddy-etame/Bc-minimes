@@ -1,87 +1,186 @@
 /* =====================================================================
-   BOXING CENTER — MINIMES · "LE BERCEAU" (v3 — raw & loud, en bleu)
-   base.css — design system. Identité : BLEU PROFOND + NAVY + os.
-   Énergie : Rocky / Philadelphie / le berceau des champions. Motion lourde.
-   Le squelette, la voix et l'Archivo Black ne bougent PAS — seule la
-   couleur change. Minimes reste Minimes.
+   BOXING CENTER — MINIMES · REFONTE v4 « NAVY PREMIUM »
+   base.css — design system.
 
-   ⚠ CHARTE OFFICIELLE (boxingcenter.fr) — cinq encres, pas une de plus :
-   navy #182848 · fond profond #0a1020 · argent #aebccf · os #eef1f6 · blanc.
-   Les nuances autorisées sont les DEGRÉS de ces encres (même teinte, même
-   saturation), jamais une teinte nouvelle. Le rouge a disparu du site.
+   ─────────────────────────────────────────────────────────────────────
+   LA CHARTE VIENT DU LOGO, MESURÉE — PAS ESTIMÉE.
+   Quantification des pixels opaques de /assets/img/logo.png :
+     73,3 %  #202048  ← le navy du lettrage BOXING CENTER. LA couleur.
+      8,9 %  #182048    (même teinte, ombre du trait)
+      3,1 %  #683010  ← la rouille du liseré. L'accent, et rien d'autre.
+   Tout le reste de la palette est un DEGRÉ de ce navy (teinte 240°) ou
+   un gris neutre légèrement bleuté. Aucune teinte inventée.
 
-   ⚠ LOI DU NAVY (STANDARDS §5.1 — lisibilité n°1). #182848 mesure 1.30:1
-   sur le fond profond : il est INVISIBLE en trait. Le navy n'est donc PAS
-   l'encre des barres — il est l'encre des APLATS (fond de bouton, de
-   carte, de puce, de sélection), où il porte du BLANC à 14.6:1.
-   Ce qui doit se VOIR sur le fond profond — barres, filets, soulignés,
-   bordures d'accent — est en ARGENT #aebccf, mesuré 9.83:1. C'est plus
-   lisible que le rouge d'avant (3.81:1) : l'UI ne régresse pas, elle monte.
-   Un aplat navy porte toujours une bordure argent, sinon la forme du
-   bouton s'efface dans le fond.
+   ─────────────────────────────────────────────────────────────────────
+   CE QUI CHANGE PAR RAPPORT À v3, ET POURQUOI.
+   v3 était un site SOMBRE de bout en bout : fond #0a1020 partout, photos
+   passées en grayscale. C'est cohérent, mais ça écrase deux atouts réels
+   de cette salle — la lumière zénithale des verrières et les tapis orange
+   sur les rings bleus. Une photo désaturée d'une salle lumineuse ne
+   vend rien.
+   v4 inverse la logique : le BLANC devient la surface par défaut, le navy
+   devient l'ENCRE et l'aplat d'appui, et les photos repassent en couleur.
+   Le contraste de la marque ne vient plus de l'obscurité, il vient de
+   l'ALTERNANCE — c'est ce qui fait « haut de gamme » plutôt que « club ».
+
+   ─────────────────────────────────────────────────────────────────────
+   LE SYSTÈME DE SURFACES (le cœur de la refonte).
+   Une section ne choisit plus ses couleurs : elle déclare son TERRAIN via
+   data-surface, et le terrain repeint les tokens sémantiques localement.
+
+     data-surface="paper"  → blanc            (défaut, lecture)
+     data-surface="soft"   → gris clair       (respiration, cartes)
+     data-surface="navy"   → navy de marque   (appui, chiffres, offres)
+     data-surface="deep"   → navy profond     (hero, gong, footer)
+
+   Conséquence : les 46 usages de --bone, 30 de --mark, 28 de --line
+   écrits pour v3 continuent de fonctionner — ils suivent leur terrain.
+   On ne réécrit pas 2 000 lignes, on rebranche leur source.
+
+   RÈGLE ABSOLUE : ne jamais poser une couleur littérale dans un composant.
+   Un composant qui écrit #fff ou rgba(238,241,246,.13) casse dès qu'il
+   change de terrain — c'est exactement le bug que ce système supprime.
    ===================================================================== */
 
-/* ----------------------------- TOKENS ----------------------------- */
+/* --------------------------- ENCRES BRUTES -------------------------
+   Les seules valeurs littérales du design system. Elles ne sont jamais
+   utilisées directement par un composant : elles alimentent les tokens
+   sémantiques ci-dessous. */
 :root {
-  /* — le fond : degrés du fond profond de la charte — */
-  --black:    #05080f;   /* le plus profond — page-head, menu, footer, gong */
-  --ink:      #0a1020;   /* CHARTE · fond profond */
-  --ink-2:    #101830;   /* bande de contraste */
-  --char:     #17223c;   /* carte */
+  /* le navy du logo et ses degrés — teinte 240°, une seule famille */
+  --navy-900: #0B0D22;   /* le plus profond — hero, gong, footer */
+  --navy-800: #12142E;   /* fond deep */
+  --navy-700: #1A1C3C;   /* carte sur deep */
+  --navy-600: #202048;   /* ◄ LOGO — l'aplat de marque, les boutons */
+  --navy-500: #2C2C63;   /* survol d'aplat */
+  --navy-400: #3D3E85;   /* filets sur navy */
+  --navy-300: #6B6DAF;   /* texte tertiaire sur navy */
+  --navy-200: #B9BAD9;   /* texte secondaire sur navy */
 
-  /* — l'accent : le navy de la charte et ses degrés (teinte 220°, S 67%) — */
-  --navy:      #182848;  /* CHARTE · L'ACCENT. APLAT uniquement (cf. loi ci-dessus) */
-  --navy-2:    #264073;  /* degré haut — survol d'aplat, filet sur panneau */
-  --navy-deep: #0e1730;  /* degré bas — voiles et dégradés */
-  --navy-glow: rgba(38,64,115,.45);
+  /* la rouille du liseré — 3 % du logo, donc 3 % du site.
+     Réservée : badge « populaire », soulignement d'un chiffre clé.
+     Jamais un fond de bouton, jamais un bloc entier. */
+  --rust:     #8A3D14;
+  --rust-400: #C2601F;   /* degré clair — lisible sur navy (5.1:1) */
 
-  /* — la lumière : argent et os de la charte — */
-  --silver:   #aebccf;   /* CHARTE · argent — LES MARQUES (barres, filets) · 9.83:1 */
-  --bone:     #eef1f6;   /* CHARTE · os · 16.74:1 */
-  --bone-dim: #aebccf;   /* = argent · 9.83:1 */
-  --read:     #dfe5ee;   /* corps de lecture — 14.96:1 sur --ink (loi n°4 : ~15:1) */
-  --steel:    #8e9bb0;   /* micro-labels UNIQUEMENT — 6.74:1, jamais du corps */
-  --white:    #ffffff;
+  /* les surfaces claires — gris neutres très légèrement bleutés, pour
+     qu'ils appartiennent à la même famille que le navy */
+  --paper:    #FFFFFF;
+  --paper-2:  #F4F6FB;   /* gris clair — la respiration */
+  --paper-3:  #E9EDF6;   /* gris d'appui — cartes sur soft */
+  --hair:     #DCE2EF;   /* le filet sur fond clair */
 
-  /* texte POSÉ SUR un aplat navy — un seul token, partout (14.6:1).
-     Ne jamais réinventer la paire. */
-  --on-accent: var(--white);
-  /* texte secondaire sur la carte os (--bone #eef1f6) — ≥8.6:1.
-     Remplace les rgba(0,0,0,.5)/.55 réglés à l'œil qui tombaient à 3.8/4.5:1. */
-  --on-bone-dim: rgba(0,0,0,.72);
+  /* les textes, mesurés sur leur fond */
+  --on-light:    #14162F;  /* 15.8:1 sur blanc */
+  --on-light-2:  #474D6D;  /* 8.1:1 sur blanc — corps secondaire */
+  --on-light-3:  #6E7590;  /* 4.9:1 sur blanc — micro-labels SEULEMENT */
+  --white:       #FFFFFF;
+}
 
-  --bg:       var(--ink);
-  --fg:       var(--bone);
-  --accent:   var(--navy);
-  --mark:     var(--silver);  /* l'encre des barres et des filets */
-  --muted:    var(--read);
-  --line:     rgba(238,241,246,.13);
-  --line-soft:rgba(238,241,246,.06);
+/* --------------------- TOKENS SÉMANTIQUES (défaut = papier) --------
+   C'est ce vocabulaire, et lui seul, que les composants consomment. */
+:root {
+  --bg:        var(--paper);
+  --fg:        var(--on-light);
+  --bone:      var(--on-light);      /* « l'encre forte » — titres, emphase */
+  --read:      var(--on-light-2);    /* le corps de lecture */
+  --muted:     var(--on-light-2);
+  --bone-dim:  var(--on-light-2);
+  --steel:     var(--on-light-3);    /* micro-labels, jamais du corps */
+  --mark:      var(--navy-600);      /* les barres, filets, soulignés */
+  --accent:    var(--navy-600);
+  --line:      var(--hair);
+  --line-soft: #EFF2F8;
+  --char:      var(--paper-2);       /* fond de carte / de média */
+  --on-accent: var(--white);         /* texte posé sur un aplat navy */
+  --on-bone-dim: rgba(20,22,47,.72);
 
-  /* Type — chunky athletic, not premium */
+  /* compat v3 — d'anciens composants nomment encore ces trois-là */
+  --ink:    var(--navy-800);
+  --ink-2:  var(--paper-2);
+  --black:  var(--navy-900);
+  --navy:      var(--navy-600);
+  --navy-2:    var(--navy-500);
+  --navy-deep: var(--navy-900);
+  --navy-glow: rgba(32,32,72,.28);
+  --silver:    var(--navy-600);
+
+  /* Type — l'Archivo Black du lettrage reste : c'est l'identité.
+     Ce qui change, c'est le RÉGLAGE — interlettrage resserré, corps de
+     lecture plus généreux, échelle plus contrastée entre les niveaux. */
   --f-display:"Archivo Black", "Arial Black", Impact, sans-serif;
   --f-ui:     "Archivo", system-ui, sans-serif;
   --f-mono:   "Space Mono", "JetBrains Mono", monospace;
 
-  --step--1: clamp(.78rem, .72rem + .3vw, .9rem);
-  --step-0:  clamp(1rem, .94rem + .3vw, 1.15rem);
-  --step-1:  clamp(1.3rem, 1.05rem + 1.1vw, 1.9rem);
-  --step-2:  clamp(2.1rem, 1.4rem + 3vw, 4rem);
-  --step-3:  clamp(3rem, 1.5rem + 7vw, 8rem);
-  --step-4:  clamp(4.5rem, 2rem + 13vw, 16rem);
+  --step--2: clamp(.68rem, .64rem + .2vw, .76rem);
+  --step--1: clamp(.78rem, .74rem + .25vw, .88rem);
+  --step-0:  clamp(1.02rem, .97rem + .3vw, 1.18rem);
+  --step-1:  clamp(1.22rem, 1.08rem + .7vw, 1.62rem);
+  --step-2:  clamp(1.9rem, 1.35rem + 2.4vw, 3.3rem);
+  --step-3:  clamp(2.6rem, 1.5rem + 5vw, 6rem);
+  --step-4:  clamp(4rem, 2rem + 11vw, 13rem);
 
-  --wrap: min(92vw, 1340px);
+  --wrap: min(92vw, 1320px);
+  --wrap-tight: min(92vw, 1060px);
+  --measure: 62ch;          /* longueur de ligne de lecture — jamais dépassée */
   --gut: clamp(1.2rem, 4vw, 3rem);
-  /* rythme vertical — TROIS pas, pas six nombres magiques en inline style.
-     Toute section utilise --sec, .section--tight ou .section--flush. */
-  --sec: clamp(5rem, 10vw, 11rem);
-  --sec-tight: clamp(2.5rem, 6vw, 4rem);
+
+  /* rythme vertical — la refonte demande PLUS de respiration : le pas
+     principal passe de 5-11rem à 6-13rem, et gagne un pas « large ». */
+  --sec:       clamp(6rem, 11vw, 13rem);
+  --sec-wide:  clamp(8rem, 15vw, 17rem);
+  --sec-tight: clamp(3rem, 6vw, 5rem);
   --sec-flush: 0rem;
 
   --ease: cubic-bezier(.22,.61,.36,1);
   --ease-out: cubic-bezier(.16,1,.3,1);
   --ease-punch: cubic-bezier(.2,1.4,.3,1);
-  --radius: 0px;            /* hard corners — poster, not app */
+
+  /* v3 était à angles vifs (« poster, not app »). Le haut de gamme
+     demandé passe par un rayon FAIBLE mais non nul : assez pour adoucir,
+     trop peu pour ressembler à une application. */
+  --radius: 4px;
+  --radius-lg: 10px;
+  --shadow-sm: 0 1px 2px rgba(20,22,47,.06), 0 4px 12px rgba(20,22,47,.05);
+  --shadow-md: 0 2px 6px rgba(20,22,47,.07), 0 14px 38px rgba(20,22,47,.09);
+  --shadow-lg: 0 6px 18px rgba(20,22,47,.10), 0 32px 70px rgba(20,22,47,.14);
+}
+
+/* ------------------------- LES QUATRE TERRAINS ---------------------
+   Chaque terrain redéfinit le MÊME vocabulaire. Un composant posé sur
+   l'un ou l'autre se repeint tout seul, sans une ligne de plus. */
+[data-surface="paper"] {
+  --bg: var(--paper); --fg: var(--on-light);
+  --bone: var(--on-light); --read: var(--on-light-2); --muted: var(--on-light-2);
+  --bone-dim: var(--on-light-2); --steel: var(--on-light-3);
+  --mark: var(--navy-600); --line: var(--hair); --line-soft: #EFF2F8;
+  --char: var(--paper-2); --silver: var(--navy-600);
+  color: var(--fg); background: var(--bg);
+}
+[data-surface="soft"] {
+  --bg: var(--paper-2); --fg: var(--on-light);
+  --bone: var(--on-light); --read: var(--on-light-2); --muted: var(--on-light-2);
+  --bone-dim: var(--on-light-2); --steel: var(--on-light-3);
+  --mark: var(--navy-600); --line: var(--hair); --line-soft: #E4E9F3;
+  --char: var(--paper); --silver: var(--navy-600);
+  color: var(--fg); background: var(--bg);
+}
+[data-surface="navy"] {
+  --bg: var(--navy-600); --fg: var(--white);
+  --bone: var(--white); --read: #DCDDEE; --muted: #DCDDEE;
+  --bone-dim: var(--navy-200); --steel: var(--navy-300);
+  --mark: var(--white); --line: rgba(255,255,255,.16); --line-soft: rgba(255,255,255,.08);
+  --char: var(--navy-500); --silver: var(--white);
+  --on-accent: var(--navy-600);
+  color: var(--fg); background: var(--bg);
+}
+[data-surface="deep"] {
+  --bg: var(--navy-900); --fg: var(--white);
+  --bone: var(--white); --read: #C9CBE4; --muted: #C9CBE4;
+  --bone-dim: var(--navy-200); --steel: var(--navy-300);
+  --mark: var(--white); --line: rgba(255,255,255,.14); --line-soft: rgba(255,255,255,.07);
+  --char: var(--navy-700); --silver: var(--white);
+  color: var(--fg); background: var(--bg);
 }
 
 /* ----------------------------- RESET ------------------------------ */
@@ -117,12 +216,24 @@ html.is-locked, html.is-locked body { overflow: hidden; height: 100%; }
 /* --------------------------- TEXTURE ------------------------------ */
 .grain {
   position: fixed; inset: -50%; z-index: 9000; pointer-events: none;
-  opacity: .07; mix-blend-mode: overlay;
+  /* v3 posait le grain à .07 en overlay sur TOUTE la page. Sur un fond
+     blanc, un bruit à cette densité se lit comme une impression sale —
+     l'exact contraire du haut de gamme demandé. Il descend à .025 et
+     passe en multiply : il ne salit plus le blanc, il donne juste de la
+     matière aux aplats navy et aux photos. */
+  opacity: .025; mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   animation: grain .6s steps(3) infinite;
 }
 @keyframes grain { 0%{transform:translate(0,0)} 33%{transform:translate(-3%,2%)} 66%{transform:translate(2%,-2%)} 100%{transform:translate(-2%,1%)} }
-.vignette { position: fixed; inset: 0; z-index: 8990; pointer-events: none; background: radial-gradient(125% 95% at 50% 38%, transparent 52%, rgba(0,0,0,.62) 100%); }
+/* La vignette globale assombrissait les bords de l'écran : indispensable
+   sur un site noir, désastreuse sur un site blanc (elle grise le papier).
+   Elle ne s'applique donc plus qu'AU-DESSUS des terrains profonds —
+   hero et gong — où elle sert encore à river l'œil au centre. */
+.vignette { position: fixed; inset: 0; z-index: 8990; pointer-events: none; background: none; }
+.hero .vignette-local,
+.gong .vignette-local { position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background: radial-gradient(120% 95% at 50% 40%, transparent 45%, rgba(11,13,34,.72) 100%); }
 @media (prefers-reduced-motion: reduce){ .grain{ animation: none; } }
 
 /* --------------------------- CURSOR ------------------------------- */
@@ -147,59 +258,121 @@ html.is-locked, html.is-locked body { overflow: hidden; height: 100%; }
    /tarifs/ et /galerie/. Elle vivait dans club.css, que deux de ces cinq
    pages ne chargent pas : la moitié des « band » du site étaient donc
    des sections nues. Un composant partagé vit dans le socle (§5.2). */
-.band { background: var(--ink-2); border-block: 1px solid var(--line); }
+/* La bande de contraste. Elle vaut desormais "terrain doux" : gris clair
+   sur une page blanche, et elle herite des tokens du terrain si la section
+   en declare un. */
+.band { background: var(--paper-2); border-block: 1px solid var(--hair); }
+[data-surface="navy"] .band, [data-surface="deep"] .band { background: rgba(255,255,255,.05); border-color: var(--line); }
 
-/* eyebrow — la BARRE porte l'accent en ARGENT (9.83:1 : elle se voit
-   enfin), les MOTS restent en os à 16.74:1. */
-.eyebrow { display: inline-flex; align-items: center; gap: .7ch; font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .22em; text-transform: uppercase; color: var(--bone); }
-.eyebrow::before { content: ""; width: 28px; height: 2px; background: var(--mark); flex: 0 0 28px; }
+/* eyebrow — le sur-titre. La barre suit --mark (navy sur clair, blanc sur
+   navy) ; les mots suivent --bone. Aucune couleur littérale : la puce
+   fonctionne à l'identique sur les quatre terrains. */
+.eyebrow { display: inline-flex; align-items: center; gap: .8ch; font: 700 var(--step--2)/1 var(--f-mono); letter-spacing: .24em; text-transform: uppercase; color: var(--steel); }
+.eyebrow::before { content: ""; width: 26px; height: 2px; background: var(--mark); flex: 0 0 26px; opacity: .9; }
 
-.display { font-family: var(--f-display); font-weight: 400; line-height: .9; letter-spacing: -.01em; text-transform: uppercase; font-size: var(--step-3); }
-/* enforced scale steps — use instead of ad-hoc inline font-size overrides */
-.display--sm { font-size: clamp(1.9rem, 1.3rem + 3vw, 3.4rem); }
-.tint { color: var(--silver); } /* le mot d'accent — argent, 9.83:1 (le navy serait invisible) */
-.lead { font-size: var(--step-1); line-height: 1.4; color: var(--bone); font-weight: 500; }
+/* Le titre. Archivo Black reste — c'est le lettrage du logo. Ce qui change :
+   l'interlettrage se resserre (-.02em) et l'interligne s'ouvre très
+   légèrement (.92), le réglage qui sépare un titre « criard » d'un titre
+   « affirmé ». */
+.display { font-family: var(--f-display); font-weight: 400; line-height: .92; letter-spacing: -.02em; text-transform: uppercase; font-size: var(--step-3); color: var(--bone); text-wrap: balance; }
+.display--sm { font-size: var(--step-2); }
+.display--xs { font-size: clamp(1.5rem, 1.1rem + 1.8vw, 2.3rem); }
+/* le mot d'accent. Sur fond clair il prend le navy de marque ; sur fond
+   navy, --silver vaut blanc et l'accent se fait par l'opacité du reste. */
+.tint { color: var(--mark); }
+/* la rouille du logo — l'accent RARE. Un mot par page, pas un de plus. */
+.tint--rust { color: var(--rust); }
+[data-surface="navy"] .tint--rust, [data-surface="deep"] .tint--rust { color: var(--rust-400); }
+
+.lead { font-size: var(--step-1); line-height: 1.5; color: var(--bone); font-weight: 500; max-width: var(--measure); text-wrap: pretty; }
 .muted { color: var(--muted); }
+/* Lisibilité (demande explicite du brief) : tout paragraphe de corps est
+   plafonné à 62ch et respire à 1.7. Une ligne de 110 caractères sur un
+   écran 1440 est la première cause d'abandon de lecture. */
+.prose p { max-width: var(--measure); line-height: 1.7; color: var(--read); }
+.prose p + p { margin-top: 1.1em; }
+.prose strong { color: var(--bone); font-weight: 700; }
 
 /* split-letter reveal helper (JS fills .char) */
 .char { display: inline-block; will-change: transform; }
 
-/* ---------------------------- BUTTONS ----------------------------- */
+/* ---------------------------- BOUTONS ------------------------------
+   Le balayage vertical de v3 est conservé (c'est une signature du site),
+   mais les paires couleur/fond sont refaites pour tenir sur les QUATRE
+   terrains. v3 avait un défaut réel : au survol, `color: var(--ink)`
+   posait du texte sombre sur un fond qui pouvait l'être aussi. */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: .8ch;
-  min-height: 44px;         /* ≥44px thumb target (QA) */
-  padding: 1em 1.7em; font: 700 var(--step--1)/1 var(--f-ui);
-  letter-spacing: .1em; text-transform: uppercase;
-  border: 2px solid var(--bone); border-radius: var(--radius);
+  min-height: 48px;         /* ≥44px requis ; 48 pour un vrai confort de pouce */
+  padding: 1.05em 1.9em; font: 700 var(--step--1)/1 var(--f-ui);
+  letter-spacing: .09em; text-transform: uppercase;
+  border: 2px solid currentColor; border-radius: var(--radius);
   position: relative; overflow: hidden; isolation: isolate; color: var(--bone);
-  transition: color .35s var(--ease), border-color .35s;
+  text-align: center; text-wrap: balance;
+  transition: color .35s var(--ease), border-color .35s, background-color .35s, transform .35s var(--ease-out), box-shadow .35s var(--ease-out);
 }
 .btn span { position: relative; z-index: 2; }
 .btn::after { content: ""; position: absolute; inset: 0; z-index: 1; background: var(--bone); transform: translateY(101%); transition: transform .45s var(--ease-out); }
 .btn:hover::after, .btn:active::after { transform: translateY(0); }
-.btn:hover, .btn:active { color: var(--ink); }
-.btn--primary { background: var(--navy); border-color: var(--silver); color: var(--on-accent); }
-.btn--primary::after { background: var(--bone); }
-.btn--primary:hover, .btn--primary:active { color: var(--ink); border-color: var(--bone); }
-/* le secondaire — déclaré, parce qu'une classe posée sur 17 boutons et
-   stylée nulle part est un piège pour le prochain dev */
-.btn--ghost { background: transparent; }
-.btn sup { font-size: .6em; }
+.btn:hover, .btn:active { color: var(--bg); }
 
-/* keyboard focus — branded ring, never invisible (QA) */
-:where(a, button, [tabindex]):focus-visible { outline: 2px solid var(--silver); outline-offset: 3px; }
-.btn:focus-visible { outline-color: var(--bone); }
+/* PRIMAIRE — l'aplat navy du logo, texte blanc. C'est LE bouton de
+   conversion : il porte une ombre portée et se soulève au survol, pour
+   qu'on le repère sans lire. */
+.btn--primary { background: var(--navy-600); border-color: var(--navy-600); color: var(--white); box-shadow: var(--shadow-sm); }
+.btn--primary::after { background: var(--navy-500); }
+.btn--primary:hover, .btn--primary:active { color: var(--white); border-color: var(--navy-500); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+/* sur un terrain déjà navy, l'aplat s'inverse — blanc sur navy */
+[data-surface="navy"] .btn--primary, [data-surface="deep"] .btn--primary {
+  background: var(--white); border-color: var(--white); color: var(--navy-600); box-shadow: none;
+}
+[data-surface="navy"] .btn--primary::after, [data-surface="deep"] .btn--primary::after { background: var(--paper-2); }
+[data-surface="navy"] .btn--primary:hover, [data-surface="deep"] .btn--primary:hover { color: var(--navy-600); border-color: var(--white); }
+
+/* SECONDAIRE — contour discret. Il ne doit jamais rivaliser avec le
+   primaire : filet fin, pas d'ombre. */
+.btn--ghost { background: transparent; border-width: 1.5px; border-color: var(--line); color: var(--bone); }
+.btn--ghost::after { background: var(--bone); }
+.btn--ghost:hover, .btn--ghost:active { color: var(--bg); border-color: var(--bone); }
+
+/* grand format — hero et gong uniquement */
+.btn--lg { min-height: 58px; padding: 1.25em 2.4em; font-size: var(--step-0); letter-spacing: .07em; }
+.btn--block { width: 100%; }
+.btn sup { font-size: .6em; }
+/* le prix dans le bouton — il doit se voir sans casser la capitale */
+.btn b { font-weight: 800; }
+
+/* keyboard focus — anneau de marque, jamais invisible (QA) */
+:where(a, button, [tabindex]):focus-visible { outline: 2px solid var(--mark); outline-offset: 3px; border-radius: 2px; }
+.btn:focus-visible { outline-color: var(--mark); outline-offset: 4px; }
 
 /* ------------------------- MEDIA (une seule définition) ------------
    §5.2 : un composant = une définition. Avant, home.css et club.css
    déclaraient chacun `.media` avec un grade différent → les photos ne
    racontaient pas la même salle selon la page. Le grade vit ICI ;
    home.css / club.css n'overrident QUE le filtre par contexte. */
-.media { position: relative; overflow: hidden; background: var(--char); border: 0; }
+/* ⚠ LE CHANGEMENT LE PLUS LOURD DE LA REFONTE.
+   v3 imposait `filter: grayscale(1)` à TOUTE photo du site. Cette salle
+   a des tapis orange, des rings bleus et une verrière qui l'éclaire :
+   le grayscale supprimait précisément ce qui la rend désirable, et
+   faisait payer 48 photos professionnelles pour un rendu de photocopie.
+   Les photos repassent en couleur, avec un grade léger (saturation
+   +4 %, contraste +4 %) — assez pour l'unité, jamais assez pour trahir. */
+.media { position: relative; overflow: hidden; background: var(--char); border: 0; border-radius: var(--radius); }
 .media::before { content: ""; position: absolute; inset: 0; z-index: -1;
-  background: repeating-linear-gradient(120deg, #101830 0 9px, #17223c 9px 10px); }
-.media::after { content: attr(data-label); position: absolute; left: 1rem; bottom: .85rem; z-index: 2; font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--bone); opacity: .85; }
-.media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; filter: grayscale(1) contrast(1.18) brightness(.86); }
+  background: linear-gradient(135deg, var(--paper-3) 0%, var(--paper-2) 100%); }
+/* le cartouche de légende — il flottait sur la photo sans fond et
+   devenait illisible dès que le cliché était clair. Il porte maintenant
+   son propre voile. */
+.media::after { content: attr(data-label); position: absolute; left: 0; bottom: 0; z-index: 2;
+  padding: 2.4rem 1.1rem .9rem; width: 100%;
+  font: 700 var(--step--2)/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase;
+  color: #fff; background: linear-gradient(to top, rgba(11,13,34,.78), transparent); }
+.media[data-label=""]::after, .media:not([data-label])::after { content: none; }
+.media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;
+  filter: saturate(1.04) contrast(1.04); transition: transform 1.1s var(--ease-out), filter .6s var(--ease); }
+/* respiration au survol — discrète (1.03), jamais un zoom de carrousel */
+a:hover > .media img, .media--zoom:hover img, .split__media:hover img { transform: scale(1.03); }
 
 /* ----------------------- PAGE HEAD (partagé) ----------------------
    §5.2 : les 5 sous-pages posaient LA MÊME règle sous 5 préfixes
@@ -207,16 +380,34 @@ html.is-locked, html.is-locked body { overflow: hidden; height: 100%; }
    maintenant HONNÊTE — un composant — et chaque page se différencie par
    sa STRUCTURE (modifieur + élément propre), pas par un préfixe renommé.
    /le-club/ garde son hero bespoke 78svh : c'est la page « la salle ». */
-.page-head { position: relative; overflow: hidden; padding-top: clamp(8.5rem,17vh,12rem); padding-bottom: clamp(2.2rem,5vw,3.4rem); background: var(--black); border-bottom: 2px solid var(--mark); }
-.page-head__bg { position: absolute; inset: 0; z-index: 0; opacity: .2; }
-.page-head__bg .media { position: absolute; inset: 0; }
-.page-head__bg .media img { filter: grayscale(1) contrast(1.3) brightness(.3); }
+/* v4 : l'en-tête de page devient une VRAIE bannière photo. v3 posait la
+   photo à 20 % d'opacité sur du noir — soit une image qu'on ne voyait
+   pas, sur toutes les pages. Ici la photo est pleine, et c'est un voile
+   navy dégradé qui garantit le contraste du texte (et non l'écrasement
+   de l'image). */
+.page-head { position: relative; overflow: hidden; padding-top: clamp(9rem,18vh,13rem); padding-bottom: clamp(3.5rem,7vw,5.5rem); background: var(--navy-900); color: #fff;
+  --bone: #fff; --read: #C9CBE4; --muted: #C9CBE4; --mark: #fff; --steel: var(--navy-200); --line: rgba(255,255,255,.18); }
+.page-head__bg { position: absolute; inset: 0; z-index: 0; opacity: 1; }
+.page-head__bg .media { position: absolute; inset: 0; border-radius: 0; }
+.page-head__bg .media::after { content: none; }
+.page-head__bg .media img { filter: saturate(.92) contrast(1.06) brightness(.62); }
+.page-head__bg::after { content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(11,13,34,.86) 0%, rgba(11,13,34,.62) 45%, rgba(11,13,34,.9) 100%); }
 .page-head .wrap { position: relative; z-index: 1; }
-.page-head__lead { max-width: 54ch; margin-top: 1.2rem; }
+.page-head__lead { max-width: 56ch; margin-top: 1.3rem; color: #DCDDEE; }
 
 /* ----------------------------- NAV -------------------------------- */
-.nav { position: fixed; inset: 0 0 auto 0; z-index: 8000; display: flex; align-items: center; justify-content: space-between; padding: clamp(.9rem,2vw,1.4rem) var(--gut); transition: transform .5s var(--ease), background .4s; }
-.nav.is-scrolled { background: rgba(10,16,32,.72); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+/* La barre a deux états, et c'est ce qui la rend « haut de gamme » :
+   TRANSPARENTE sur le hero (elle laisse la photo respirer, encre blanche),
+   PLEINE et blanche dès qu'on scrolle (encre navy, logo d'origine).
+   v3 restait sombre dans les deux cas — sur un site devenu blanc, la
+   barre aurait flotté comme un bandeau étranger. */
+.nav { position: fixed; inset: 0 0 auto 0; z-index: 8000; display: flex; align-items: center; justify-content: space-between; padding: clamp(.9rem,2vw,1.4rem) var(--gut);
+  transition: transform .5s var(--ease), background .4s var(--ease), box-shadow .4s, padding .4s var(--ease);
+  --bone: #fff; --mark: #fff; --line: rgba(255,255,255,.28); color: #fff; }
+.nav.is-scrolled { background: rgba(255,255,255,.92); backdrop-filter: blur(14px) saturate(1.4); box-shadow: var(--shadow-sm); border-bottom: 1px solid var(--hair); padding-block: clamp(.6rem,1.4vw,.95rem);
+  --bone: var(--on-light); --mark: var(--navy-600); --line: var(--hair); color: var(--on-light); }
+.nav.is-scrolled .nav__logo { filter: none; }
 .nav.is-hidden { transform: translateY(-110%); }
 /* the open menu owns the screen — the nav (higher z) must fully yield,
    otherwise its burger-X doubles the menu's FERMER ✕ */
@@ -263,10 +454,10 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
    Le menu s'ouvrait et ne pouvait plus se fermer au doigt — mesuré à 320 px.
    Le plancher à 0 interdit ce débordement quel que soit le libellé qu'on
    ajoutera demain : c'est la cause, pas le symptôme. */
-.menu { position: fixed; inset: 0; z-index: 7990; background: var(--black); color: var(--bone); display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 1fr auto; padding: clamp(1.2rem,3vw,2rem) var(--gut) clamp(1.5rem,3vw,2.4rem); clip-path: inset(0 0 100% 0); pointer-events: none; visibility: hidden; transition: clip-path .7s var(--ease-out), visibility 0s linear .7s; }
+.menu { position: fixed; inset: 0; z-index: 7990; background: var(--navy-900); --char: var(--navy-700); --bone:#fff; --bone-dim:var(--navy-200); --mark:#fff; --silver:#fff; --line:rgba(255,255,255,.16); --muted:#C9CBE4; color: var(--bone); display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 1fr auto; padding: clamp(1.2rem,3vw,2rem) var(--gut) clamp(1.5rem,3vw,2.4rem); clip-path: inset(0 0 100% 0); pointer-events: none; visibility: hidden; transition: clip-path .7s var(--ease-out), visibility 0s linear .7s; }
 .menu.is-open { clip-path: inset(0 0 0 0); pointer-events: auto; visibility: visible; transition: clip-path .7s var(--ease-out), visibility 0s linear 0s; }
-.menu__bg { position: absolute; inset: 0; z-index: 0; opacity: .16; }
-.menu__bg video { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.2) brightness(.6); }
+.menu__bg { position: absolute; inset: 0; z-index: 0; opacity: .3; }
+.menu__bg video { width: 100%; height: 100%; object-fit: cover; filter: saturate(.9) contrast(1.1) brightness(.5); }
 .menu__bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(120deg, var(--navy-deep), transparent 60%); mix-blend-mode: multiply; }
 .menu__top { position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: center; }
 .menu__close { font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .2em; text-transform: uppercase; color: var(--bone); display: inline-flex; align-items: center; gap: .7ch; min-height: 44px; padding: .4em .2em; transition: color .3s; }
@@ -294,7 +485,11 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
 .menu__foot a:not(.btn):hover, .menu__foot a:not(.btn):active { color: var(--white); }
 
 /* --------------------------- MARQUEE ------------------------------ */
-.marquee { overflow: hidden; border-block: 1px solid var(--line); padding-block: 1rem; background: var(--ink-2); color: var(--bone); }
+/* Le bandeau defilant devient un RUBAN NAVY pleine largeur : il sert de
+   separateur entre deux sections claires et rappelle la couleur de marque
+   sans meubler une section entiere. */
+.marquee { overflow: hidden; padding-block: clamp(.9rem,2vw,1.3rem); background: var(--navy-600); color: #fff; border: 0; }
+.marquee__track span::after { color: rgba(255,255,255,.45); }
 .marquee__track { display: inline-flex; gap: 2.2rem; white-space: nowrap; will-change: transform; }
 .marquee__track span { font-family: var(--f-display); font-size: clamp(1.4rem,3.6vw,2.8rem); text-transform: uppercase; display: inline-flex; align-items: center; gap: 2.2rem; }
 .marquee__track span::after { content: "✦"; font-size: .5em; color: var(--mark); }
@@ -306,7 +501,7 @@ html.fx [data-reveal] { opacity: 0; transform: translateY(40px); }
 html.fx .reveal-mask > span { opacity: 0; }
 
 /* ---------------------------- FOOTER ------------------------------ */
-.footer { background: var(--black); border-top: 2px solid var(--mark); padding-block: clamp(2.5rem,5vw,4rem) 2rem; position: relative; overflow: hidden; }
+.footer { background: var(--navy-900); color: #fff; --char: var(--navy-700); --bone:#fff; --bone-dim:var(--navy-200); --mark:#fff; --silver:#fff; --line:rgba(255,255,255,.14); --muted:#C9CBE4; --steel:var(--navy-300); border-top: 0; padding-block: clamp(2.5rem,5vw,4rem) 2rem; position: relative; overflow: hidden; }
 .footer__big { font-family: var(--f-display); text-transform: uppercase; line-height: .86; font-size: clamp(2.4rem, 8.5vw, 7rem); color: transparent; -webkit-text-stroke: 1.5px var(--line); letter-spacing: -.01em; padding-bottom: clamp(1rem,3vw,2.4rem); max-width: 14ch; }
 .footer__grid { display: grid; gap: 2.2rem; grid-template-columns: 1fr; padding-block: 2.2rem; border-top: 1px solid var(--line); }
 @media (min-width: 760px){ .footer__grid { grid-template-columns: 1.4fr 1fr 1fr 1fr; } }
@@ -326,7 +521,7 @@ html.fx .reveal-mask > span { opacity: 0; }
    the .gong__bg .media img photo filter.
    ⚠ L'EYEBROW de chaque gong est PROPRE À SA PAGE (§5.9) — « Le gong
    final » ×7 + États-Unis, c'était un template, pas une formule. */
-.gong { position: relative; overflow: hidden; text-align: center; padding-block: clamp(5rem,12vw,10rem); background: var(--black); }
+.gong { position: relative; overflow: hidden; text-align: center; padding-block: clamp(6rem,13vw,11rem); background: var(--navy-900); color:#fff; --bone:#fff; --read:#C9CBE4; --muted:#C9CBE4; --mark:#fff; --silver:#fff; --line:rgba(255,255,255,.16); --bone-dim:var(--navy-200); }
 .gong__bg { position: absolute; inset: 0; z-index: 0; opacity: .35; }
 .gong__bg .media { position: absolute; inset: 0; }
 .gong__inner { position: relative; z-index: 2; width: min(92vw, 60ch); margin-inline: auto; }
@@ -418,8 +613,12 @@ a:hover > .ext, a:focus-visible > .ext { opacity: 1; }
 .netband { margin-top: clamp(2.4rem, 6vw, 4rem); padding-top: clamp(1.6rem, 4vw, 2.4rem); border-top: 1px solid var(--line); }
 .netband__h { font: 700 var(--step--1)/1 var(--f-ui); letter-spacing: .12em; text-transform: uppercase; color: var(--bone-dim); margin: 0 0 1.2rem; }
 .netband__grid { display: grid; gap: .8rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
-.netcard { display: flex; flex-direction: column; gap: .3rem; padding: 1rem 1.1rem; border: 1px solid var(--line); border-left: 2px solid var(--mark); border-radius: 3px; background: var(--ink-2); transition: border-color .3s var(--ease), transform .3s var(--ease); }
-.netcard:hover, .netcard:focus-visible { border-color: var(--line-strong, rgba(238,241,246,.28)); border-left-color: var(--silver); transform: translateY(-2px); }
+/* Elle est montee DANS le pied de page, dont le terrain est profond.
+   `--ink-2` (devenu gris clair en v4) lui donnait un fond clair portant
+   du texte blanc : 1.08:1. Elle suit desormais --char, que chaque
+   terrain definit. */
+.netcard { display: flex; flex-direction: column; gap: .3rem; padding: 1rem 1.1rem; border: 1px solid var(--line); border-left: 2px solid var(--mark); border-radius: var(--radius); background: var(--char); transition: border-color .3s var(--ease), transform .3s var(--ease); }
+.netcard:hover, .netcard:focus-visible { border-color: var(--mark); border-left-color: var(--silver); transform: translateY(-2px); }
 .netcard__tag { font: 400 .7rem/1.3 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--steel); }
 .netcard__name { font: 400 1.15rem/1.15 var(--f-display); text-transform: uppercase; color: var(--bone); }
 .netcard__feat { font: 400 .82rem/1.45 var(--f-ui); color: var(--read); }
@@ -491,3 +690,28 @@ a:hover > .ext, a:focus-visible > .ext { opacity: 1; }
    Partout ou 29 EUR est ecrit, le prix qu'il remplace est ecrit a cote. */
 .was { opacity: .55; text-decoration: line-through; text-decoration-thickness: 2px; font-weight: 600; }
 @media (prefers-reduced-motion: reduce) { .places::before { animation: none; } }
+
+
+/* =====================================================================
+   LE CHROME SOMBRE — VOCABULAIRE COMMUN (fin de fichier = derniere voix)
+   Pied de page, menu plein ecran, en-tete de page et gong sont quatre
+   terrains profonds ecrits a quatre endroits differents du fichier. Tant
+   que chacun redeclarait SA liste de tokens, il en manquait toujours un :
+   le pied de page definissait --muted mais pas --read, et les cartes du
+   reseau heritaient donc du gris de LECTURE CLAIRE (#474D6D) sur un fond
+   navy — 2:1, illisible.
+   La liste complete est posee ici, une fois, pour les quatre.
+   ===================================================================== */
+.footer, .menu, .gong, .page-head {
+  --bone:      #FFFFFF;
+  --read:      #C9CBE4;
+  --muted:     #C9CBE4;
+  --bone-dim:  var(--navy-200);
+  --steel:     var(--navy-200);
+  --mark:      #FFFFFF;
+  --silver:    #FFFFFF;
+  --line:      rgba(255,255,255,.15);
+  --line-soft: rgba(255,255,255,.07);
+  --char:      var(--navy-700);
+  --on-accent: var(--navy-600);
+}

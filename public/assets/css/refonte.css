@@ -1,0 +1,729 @@
+/* =====================================================================
+   BOXING CENTER — MINIMES · REFONTE v4
+   refonte.css — le système de composition.
+
+   base.css tient la CHARTE (encres, terrains, boutons, typo).
+   Ce fichier tient la COMPOSITION : le rythme alterné image/texte demandé
+   au brief, les blocs de preuve, les cartes d'offre, la barre d'action
+   mobile. Il est chargé sur toutes les pages, après base.css.
+
+   ─────────────────────────────────────────────────────────────────────
+   LE PRINCIPE : L'ALTERNANCE EST AUTOMATIQUE, PAS MANUELLE.
+   Le brief demande image à gauche, puis à droite, puis à gauche… Écrire
+   cette alternance à la main dans le HTML, c'est garantir qu'elle sautera
+   à la première section insérée au milieu.
+
+   ⚠ Le réflexe — `.split-sec:nth-of-type(even)` — NE MARCHE PAS ici, et
+   c'est un piège classique : :nth-of-type compte les éléments par BALISE
+   (section), pas par classe. Dès qu'une grille de tarifs ou un bandeau
+   s'intercale entre deux sections alternées — ce qui est exactement la
+   structure de l'accueil — la parité se décale et deux photos consécutives
+   se retrouvent du même côté.
+   L'alternance est donc posée par site.js (fonction `alternate()`), qui
+   numérote les .split-sec entre elles, quoi qu'il y ait entre elles, et
+   applique --noflip / --flip. Le CSS ci-dessous ne fait qu'exécuter.
+   ===================================================================== */
+
+/* ------------------------------------------------------------------ *
+   1. LA SECTION ALTERNÉE
+ * ------------------------------------------------------------------ */
+.split-sec {
+  padding-block: var(--sec);
+  position: relative;
+}
+.split-sec__grid {
+  width: var(--wrap);
+  margin-inline: auto;
+  display: grid;
+  gap: clamp(2.2rem, 5vw, 4.5rem);
+  grid-template-columns: 1fr;
+  align-items: center;
+}
+
+/* Mobile d'abord : une colonne, la photo TOUJOURS au-dessus du texte.
+   (Sur petit écran, l'alternance n'a aucun sens visuel — elle produit
+   juste des sections où l'image tombe parfois sous le texte, ce qui casse
+   la lecture. Le rythme alterné est une règle DESKTOP.) */
+.split-sec__media { order: -1; }
+
+@media (min-width: 940px) {
+  .split-sec__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(3rem, 6vw, 6.5rem);
+    /* ÉTIREMENT, et non centrage. Mesuré sur la première maquette : avec
+       `align-items:center`, une colonne de texte de 899 px se retrouvait
+       à côté d'une photo de 413 px — la photo passait pour une vignette
+       et la section n'avait plus de tenue. La colonne image occupe donc
+       toute la hauteur de la rangée, et c'est le TEXTE qui se centre. */
+    align-items: stretch;
+  }
+  .split-sec__body { align-self: center; }
+  /* ⚠ `grid-row: 1` EST OBLIGATOIRE SUR LES DEUX COLONNES.
+     Sans lui, l'algorithme d'auto-placement — qui ne revient jamais en
+     arrière dans la grille — plaçait correctement la photo en colonne 2
+     des sections inversées, puis, ne pouvant plus reculer en colonne 1,
+     descendait le texte à la RANGÉE 2. Résultat mesuré : une section sur
+     deux affichait la photo en haut à droite et le texte dessous à
+     gauche, chacun dans sa propre rangée — l'alternance était fausse
+     exactement une fois sur deux, et la photo retombait à son
+     min-height au lieu de suivre la hauteur du texte. */
+  .split-sec__media, .split-sec__body { grid-row: 1; }
+
+  /* défaut (et repli si le JS ne passe pas) : photo à gauche */
+  .split-sec__media { order: 0; grid-column: 1; }
+  .split-sec__body  { grid-column: 2; }
+
+  /* L'ALTERNANCE, appliquée par site.js › alternate() */
+  .split-sec--flip .split-sec__media { grid-column: 2; }
+  .split-sec--flip .split-sec__body  { grid-column: 1; }
+  .split-sec--noflip .split-sec__media { grid-column: 1; }
+  .split-sec--noflip .split-sec__body  { grid-column: 2; }
+
+  /* Proportion « éditoriale » : la photo prend un peu plus que le texte.
+     Une colonne de texte trop large tue la lisibilité (cf. --measure). */
+  .split-sec--wide-media .split-sec__grid { grid-template-columns: 1.25fr 1fr; }
+  .split-sec--wide-text  .split-sec__grid { grid-template-columns: 1fr 1.15fr; }
+}
+
+/* ------------------------------------------------------------------ *
+   2. LA PHOTO — GRAND FORMAT IMMERSIF
+   Le brief demande de « mettre en valeur les images avec de grands
+   formats immersifs ». Concrètement : un ratio franc, jamais de vignette
+   timide, et une profondeur donnée par l'ombre plutôt que par un cadre.
+ * ------------------------------------------------------------------ */
+.split-sec__media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  background: var(--char);
+}
+.split-sec__media .media,
+.split-sec__media > img { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: inherit; }
+.split-sec__media > img { object-fit: cover; filter: saturate(1.04) contrast(1.04); transition: transform 1.2s var(--ease-out); }
+.split-sec__media:hover > img { transform: scale(1.03); }
+
+.split-sec--portrait .split-sec__media { aspect-ratio: 4 / 5; }
+.split-sec--square   .split-sec__media { aspect-ratio: 1 / 1; }
+.split-sec--tall     .split-sec__media { aspect-ratio: 3 / 4; }
+
+/* ⚠ CETTE RÈGLE DOIT RESTER APRÈS LA DÉCLARATION DU RATIO CI-DESSUS.
+   Placée avant (dans le bloc de grille, §1), elle était écrasée par
+   `aspect-ratio: 4/3` à spécificité égale : la photo gardait son ratio,
+   prenait la hauteur de la rangée (899 px) et en déduisait sa largeur —
+   1 199 px, soit les deux colonnes, recouvrant le texte.
+   Sur desktop, c'est la RANGÉE qui commande la hauteur, et la largeur
+   vient de la colonne : le ratio doit donc être neutralisé. */
+@media (min-width: 940px) {
+  /* `align-self: stretch` et non `height: 100%` : sur une rangée de
+     hauteur automatique, un height:100% se résout en `auto` (la rangée
+     n'a pas encore de taille définie quand l'item est mesuré) et la photo
+     retombait à son min-height une section sur deux. L'étirement, lui,
+     est appliqué APRÈS le calcul de la rangée — la photo suit toujours
+     la hauteur du texte. */
+  .split-sec__media { aspect-ratio: auto; align-self: stretch; min-height: min(64vh, 560px); }
+}
+
+/* Le « débord » : sur grand écran, la photo mord sur la marge du côté
+   où elle se trouve. C'est ce détail qui fait la différence entre une
+   page de gabarit et une page composée. */
+@media (min-width: 1500px) {
+  .split-sec--bleed.split-sec--noflip .split-sec__media { margin-left: calc((100vw - var(--wrap)) / -2 + 2rem); }
+  .split-sec--bleed.split-sec--flip   .split-sec__media { margin-right: calc((100vw - var(--wrap)) / -2 + 2rem); }
+}
+
+/* La pastille de légende posée sur l'angle de la photo — elle donne
+   l'échelle et ancre la photo dans le réel (« 3 rings », « dès 3 ans »). */
+.split-sec__tag {
+  position: absolute; z-index: 3; left: 0; bottom: 0;
+  display: inline-flex; align-items: baseline; gap: .6ch;
+  padding: .95rem 1.3rem;
+  background: var(--navy-600); color: #fff;
+  font: 700 var(--step--2)/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase;
+  border-radius: 0 var(--radius-lg) 0 var(--radius-lg);
+}
+.split-sec__tag b { font-family: var(--f-display); font-size: 1.5em; letter-spacing: -.01em; }
+
+/* ------------------------------------------------------------------ *
+   3. LE TEXTE — HIÉRARCHIE
+ * ------------------------------------------------------------------ */
+.split-sec__body > * + * { margin-top: 1.15rem; }
+.split-sec__body .eyebrow + .display,
+.split-sec__body .eyebrow + h2 { margin-top: 1.4rem; }
+.split-sec__body .display { margin-bottom: .2rem; }
+.split-sec__body p { max-width: var(--measure); line-height: 1.7; color: var(--read); }
+.split-sec__body .lead { color: var(--bone); }
+.split-sec__body .btn-row { margin-top: 2rem; }
+
+/* La liste de bénéfices — le brief demande de « mettre davantage en avant
+   les bénéfices ». Une puce cochée se lit trois fois plus vite qu'un
+   paragraphe qui dit la même chose. */
+/* ⚠ La puce est posée en ABSOLU sur un <li> en flux, et surtout PAS via
+   `display:grid` sur le <li>. Le piège, mesuré ici : un conteneur grid
+   « blockifie » chacun de ses enfants — un simple <b> en début de phrase
+   devient un item de grille à part entière, la phrase se scinde en deux
+   items, et la liste passe de 150 px à 1 022 px de haut. Un composant de
+   texte ne doit jamais imposer une mise en page à son propre contenu. */
+.benefits { display: flex; flex-direction: column; gap: .85rem; margin-top: 1.6rem; }
+.benefits li {
+  position: relative; padding-left: 32px;
+  line-height: 1.6; color: var(--read);
+}
+.benefits li::before {
+  content: ""; position: absolute; left: 0; top: .18em;
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--mark);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M9.6 16.2 5.4 12l-1.4 1.4 5.6 5.6L20.4 8.2 19 6.8z'/%3E%3C/svg%3E") center/16px no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M9.6 16.2 5.4 12l-1.4 1.4 5.6 5.6L20.4 8.2 19 6.8z'/%3E%3C/svg%3E") center/16px no-repeat;
+}
+.benefits li b { color: var(--bone); font-weight: 700; }
+
+.btn-row { display: flex; flex-wrap: wrap; gap: .9rem; align-items: center; }
+
+/* ------------------------------------------------------------------ *
+   4. LA PREUVE SOCIALE
+   L'audit a montré que la note 4,3/5 sur 155 avis existait dans les
+   données structurées (donc pour Google) et NULLE PART à l'écran (donc
+   pas pour le visiteur). C'est l'actif de confiance le plus fort du club :
+   il lui fallait un composant.
+ * ------------------------------------------------------------------ */
+.rating {
+  display: inline-flex; align-items: center; gap: .75ch;
+  font: 600 var(--step--1)/1 var(--f-ui); color: var(--read);
+}
+.rating__stars { display: inline-flex; gap: 2px; }
+.rating__stars svg { width: 17px; height: 17px; display: block; }
+.rating__stars .s-full { fill: #F5A623; }
+.rating__stars .s-half stop:first-child { stop-color: #F5A623; }
+.rating__val { font-weight: 800; color: var(--bone); }
+.rating--hero { color: rgba(255,255,255,.92); }
+.rating--hero .rating__val { color: #fff; }
+.rating__cnt { color: inherit; opacity: .85; }
+
+/* La ligne de preuve du hero — note Google + matériel prêté.
+   ⚠ Elle réserve la largeur du bouton « Vue : Pochoir », qui est en
+   position absolue dans le même coin. Sans cette réserve, mesuré à
+   768 px : le bouton (552→722) recouvrait la fin de la phrase
+   (23→730). Un élément en flux ne « voit » pas un élément absolu — la
+   place se réserve à la main, elle ne se négocie pas. */
+.hero__proof {
+  margin-top: clamp(1rem, 2.5vw, 1.5rem);
+  display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .9ch;
+  font-size: var(--step--1); line-height: 1.5; color: rgba(255,255,255,.88);
+  max-width: 62ch;
+}
+.hero__proof-sep { opacity: .5; }
+.hero__proof-txt { color: rgba(255,255,255,.88); }
+@media (min-width: 600px) { .hero__proof { padding-right: 200px; } }
+/* Sous 600 px, réserver de la largeur ne suffit plus : la phrase passe
+   sur deux lignes et redescend sur le bouton (mesuré à 375 px — bas de
+   la phrase 706, haut du bouton 679). Le bouton remonte donc sous la
+   barre de navigation, dans le vide laissé par le hero en haut d'écran,
+   où il ne croise plus rien. */
+@media (max-width: 599px) {
+  .hero__proof { padding-right: 0; }
+  .hero-toggle { top: calc(75px + .7rem); bottom: auto; }
+}
+
+/* Le bandeau de réassurance sous le hero — quatre garanties, une ligne. */
+.trustbar { border-block: 1px solid var(--line); background: var(--bg); }
+.trustbar__grid {
+  width: var(--wrap); margin-inline: auto;
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 0;
+}
+@media (min-width: 860px) { .trustbar__grid { grid-template-columns: repeat(4, 1fr); } }
+.trustbar__item {
+  display: flex; flex-direction: column; gap: .45rem;
+  padding: clamp(1.4rem, 3vw, 2.2rem) clamp(.8rem, 2vw, 1.6rem);
+  border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
+}
+.trustbar__grid .trustbar__item:nth-child(2n) { border-right: 0; }
+@media (min-width: 860px) {
+  .trustbar__grid .trustbar__item:nth-child(2n) { border-right: 1px solid var(--line); }
+  .trustbar__grid .trustbar__item:last-child { border-right: 0; }
+  .trustbar__item { border-bottom: 0; }
+}
+.trustbar__k { font: 800 clamp(1.4rem,3vw,2rem)/1 var(--f-display); color: var(--bone); letter-spacing: -.01em; }
+.trustbar__v { font: 600 var(--step--2)/1.4 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--steel); }
+
+/* Les témoignages — des membres ordinaires, pas des champions. */
+.reviews { display: grid; gap: clamp(1.2rem, 2.5vw, 1.8rem); grid-template-columns: 1fr; }
+@media (min-width: 760px)  { .reviews { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1080px) { .reviews { grid-template-columns: repeat(3, 1fr); } }
+.review {
+  background: var(--char); border: 1px solid var(--line); border-radius: var(--radius-lg);
+  padding: clamp(1.5rem, 3vw, 2.1rem);
+  display: flex; flex-direction: column; gap: 1rem;
+}
+[data-surface="soft"] .review { background: var(--paper); box-shadow: var(--shadow-sm); border-color: transparent; }
+.review__txt { color: var(--read); line-height: 1.65; flex: 1; }
+.review__txt::before { content: "«\00a0"; color: var(--mark); font-weight: 700; }
+.review__txt::after  { content: "\00a0»"; color: var(--mark); font-weight: 700; }
+.review__who { display: flex; align-items: center; gap: .9ch; border-top: 1px solid var(--line); padding-top: .95rem; }
+.review__ini {
+  width: 40px; height: 40px; flex: 0 0 40px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--navy-600); color: #fff;
+  font: 800 .85rem/1 var(--f-ui); letter-spacing: .04em;
+}
+[data-surface="navy"] .review__ini, [data-surface="deep"] .review__ini { background: #fff; color: var(--navy-600); }
+.review__name { font-weight: 700; color: var(--bone); line-height: 1.2; }
+.review__meta { font: 600 var(--step--2)/1.3 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--steel); }
+
+/* ------------------------------------------------------------------ *
+   5. LES CHIFFRES
+ * ------------------------------------------------------------------ */
+.figures {
+  width: var(--wrap); margin-inline: auto;
+  display: grid; gap: clamp(1.6rem, 4vw, 3rem);
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (min-width: 880px) { .figures { grid-template-columns: repeat(4, 1fr); } }
+.figure__k {
+  font-family: var(--f-display); font-size: clamp(2.6rem, 6vw, 4.6rem); line-height: .9;
+  letter-spacing: -.02em; color: var(--bone);
+}
+.figure__k sup { font-size: .42em; vertical-align: super; }
+.figure__v { margin-top: .7rem; font: 600 var(--step--2)/1.5 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--steel); }
+.figure__d { margin-top: .5rem; color: var(--read); font-size: var(--step--1); line-height: 1.6; }
+.figure { padding-top: 1.2rem; border-top: 2px solid var(--mark); }
+
+/* ------------------------------------------------------------------ *
+   6. LES CARTES D'OFFRE
+ * ------------------------------------------------------------------ */
+.offers { display: grid; gap: clamp(1.2rem, 2.5vw, 1.9rem); grid-template-columns: 1fr; align-items: stretch; }
+@media (min-width: 820px)  { .offers { grid-template-columns: repeat(3, 1fr); } }
+.offer {
+  position: relative; display: flex; flex-direction: column;
+  padding: clamp(1.8rem, 3.5vw, 2.6rem);
+  background: var(--paper); color: var(--on-light);
+  border: 1px solid var(--hair); border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: transform .4s var(--ease-out), box-shadow .4s var(--ease-out);
+}
+.offer:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+/* La carte mise en avant : aplat navy, pas un simple liseré. Le regard
+   doit tomber dessus avant de lire quoi que ce soit. */
+.offer--feature {
+  background: var(--navy-600); color: #fff; border-color: var(--navy-600);
+  box-shadow: var(--shadow-lg);
+  --bone: #fff; --read: #DCDDEE; --muted: #DCDDEE; --mark: #fff; --line: rgba(255,255,255,.18); --steel: var(--navy-200);
+}
+@media (min-width: 820px) { .offer--feature { transform: scale(1.035); } .offer--feature:hover { transform: scale(1.035) translateY(-4px); } }
+.offer__badge {
+  position: absolute; top: 0; right: clamp(1.2rem, 3vw, 2rem); transform: translateY(-50%);
+  padding: .5em 1em; border-radius: 100px;
+  background: var(--rust-400); color: #fff;
+  font: 800 var(--step--2)/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase;
+  box-shadow: var(--shadow-sm);
+}
+.offer__name { font: 700 var(--step--1)/1.2 var(--f-mono); letter-spacing: .18em; text-transform: uppercase; color: var(--steel); }
+.offer__price { margin-top: .9rem; display: flex; align-items: baseline; gap: .5ch; flex-wrap: wrap; }
+.offer__amount { font-family: var(--f-display); font-size: clamp(2.4rem, 5vw, 3.4rem); line-height: 1; letter-spacing: -.02em; color: var(--bone); }
+.offer__unit { font: 600 var(--step--1)/1 var(--f-ui); color: var(--steel); }
+.was { text-decoration: line-through; text-decoration-thickness: 2px; opacity: .65; font-weight: 600; }
+.offer__desc { margin-top: .9rem; color: var(--read); line-height: 1.6; }
+.offer__list { margin-top: 1.3rem; display: flex; flex-direction: column; gap: .7rem; padding-top: 1.3rem; border-top: 1px solid var(--line); }
+/* même règle que .benefits : puce en absolu, jamais de grid sur le <li> */
+.offer__list li { position: relative; padding-left: 28px; color: var(--read); line-height: 1.55; font-size: var(--step--1); }
+.offer__list li::before {
+  content: ""; position: absolute; left: 0; top: .12em; width: 20px; height: 20px; background: var(--mark);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M9.6 16.2 5.4 12l-1.4 1.4 5.6 5.6L20.4 8.2 19 6.8z'/%3E%3C/svg%3E") center/15px no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M9.6 16.2 5.4 12l-1.4 1.4 5.6 5.6L20.4 8.2 19 6.8z'/%3E%3C/svg%3E") center/15px no-repeat;
+}
+.offer .btn { margin-top: auto; }
+.offer__cta { margin-top: 1.8rem; }
+.offer__fine { margin-top: .9rem; font-size: var(--step--2); color: var(--steel); line-height: 1.5; }
+
+/* ------------------------------------------------------------------ *
+   7. LA GRILLE DE DISCIPLINES
+ * ------------------------------------------------------------------ */
+.cards { display: grid; gap: clamp(1rem, 2vw, 1.5rem); grid-template-columns: 1fr; }
+@media (min-width: 700px)  { .cards { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1060px) { .cards { grid-template-columns: repeat(3, 1fr); } }
+.card {
+  position: relative; display: block; overflow: hidden;
+  border-radius: var(--radius-lg); aspect-ratio: 4 / 3;
+  background: var(--char); box-shadow: var(--shadow-sm);
+  transition: transform .45s var(--ease-out), box-shadow .45s var(--ease-out);
+}
+.card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.card > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.1s var(--ease-out); }
+.card:hover > img { transform: scale(1.05); }
+.card__veil { position: absolute; inset: 0; background: linear-gradient(to top, rgba(11,13,34,.92) 0%, rgba(11,13,34,.55) 42%, rgba(11,13,34,.12) 100%); }
+.card__body { position: absolute; inset: auto 0 0 0; padding: clamp(1.2rem, 2.5vw, 1.7rem); color: #fff; }
+.card__n { font: 700 var(--step--2)/1 var(--f-mono); letter-spacing: .2em; color: rgba(255,255,255,.7); }
+.card__t { margin-top: .55rem; font-family: var(--f-display); font-size: clamp(1.15rem, 2.2vw, 1.5rem); line-height: 1.05; text-transform: uppercase; letter-spacing: -.01em; }
+.card__d { margin-top: .5rem; font-size: var(--step--1); line-height: 1.5; color: rgba(255,255,255,.85); max-width: 34ch; }
+.card__go { margin-top: .9rem; display: inline-flex; align-items: center; gap: .6ch; font: 700 var(--step--2)/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: #fff; }
+.card__go::after { content: "→"; transition: transform .35s var(--ease-out); }
+.card:hover .card__go::after { transform: translateX(5px); }
+
+/* ------------------------------------------------------------------ *
+   8. LA MOSAÏQUE GALERIE
+ * ------------------------------------------------------------------ */
+.mosaic { display: grid; gap: clamp(.6rem, 1.2vw, 1rem); grid-template-columns: repeat(2, 1fr); grid-auto-rows: minmax(120px, auto); }
+@media (min-width: 900px) { .mosaic { grid-template-columns: repeat(4, 1fr); } }
+.mosaic__cell { position: relative; overflow: hidden; border-radius: var(--radius); aspect-ratio: 1/1; background: var(--char); }
+.mosaic__cell > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1s var(--ease-out); }
+.mosaic__cell:hover > img { transform: scale(1.06); }
+@media (min-width: 900px) {
+  .mosaic__cell--wide { grid-column: span 2; aspect-ratio: 2/1; }
+  .mosaic__cell--tall { grid-row: span 2; aspect-ratio: 1/2; }
+}
+
+/* ------------------------------------------------------------------ *
+   9. LA BARRE D'ACTION MOBILE
+   L'audit a relevé 13 000 px de page sans bouton d'inscription sur
+   mobile, et deux pastilles flottantes qui se chevauchaient en bas
+   d'écran. Cette barre remplace les deux : une seule zone d'action,
+   toujours atteignable au pouce, jamais superposée à autre chose.
+ * ------------------------------------------------------------------ */
+.actionbar {
+  position: fixed; z-index: 8100; inset: auto 0 0 0;
+  display: grid; grid-template-columns: 1fr auto;
+  gap: .6rem; padding: .6rem .7rem calc(.6rem + env(safe-area-inset-bottom));
+  background: rgba(255,255,255,.94); backdrop-filter: blur(14px) saturate(1.4);
+  border-top: 1px solid var(--hair);
+  box-shadow: 0 -6px 24px rgba(20,22,47,.10);
+  transform: translateY(110%); transition: transform .45s var(--ease-out);
+}
+.actionbar.is-in { transform: translateY(0); }
+.actionbar .btn { min-height: 52px; padding-inline: 1.1em; font-size: var(--step--2); }
+.actionbar__call {
+  display: inline-grid; place-items: center; width: 52px; height: 52px;
+  border: 1.5px solid var(--hair); border-radius: var(--radius); color: var(--navy-600);
+  background: var(--paper);
+}
+.actionbar__call svg { width: 21px; height: 21px; }
+@media (min-width: 1240px) { .actionbar { display: none; } }
+/* la page réserve la hauteur de la barre pour que le pied de page ne
+   finisse pas sous elle */
+@media (max-width: 1239px) { body { padding-bottom: 68px; } }
+
+/* La pastille flottante « Appelle la salle » et le HUD « ROUND » se
+   chevauchaient de 65×25 px en bas d'un écran 375 px — deux éléments
+   fixes qui se disputaient le même coin. La barre d'action porte
+   désormais l'appel : la pastille se retire sous 1240 px, le HUD remonte
+   au-dessus de la barre. */
+@media (max-width: 1239px) {
+  .chatbot { display: none !important; }
+  /* 88 px et non 74 : la barre mesure 72 px, et le HUD porte encore son
+     décalage d'entrée de 14 px tant qu'il n'est pas activé — à 74 px les
+     deux se touchaient de 12 px pendant l'animation. */
+  .hud { bottom: calc(88px + env(safe-area-inset-bottom)) !important; }
+
+  /* TROISIÈME OCCUPANT DU BAS D'ÉCRAN : la roulette promo. Mesurée à
+     375 px, elle s'étend de y 630 à 734 et recouvre le compteur de rounds
+     (699→738). Un écran de 375 px ne peut pas loger trois éléments fixes.
+     Arbitrage : la roulette porte une OFFRE, le compteur est un ornement.
+     L'ornement s'efface — et seulement tant que l'offre est à l'écran. */
+  body:has(.promo-wheel.is-in) .hud { opacity: 0 !important; pointer-events: none !important; }
+  /* la roulette se cale au-dessus de la barre d'action, jamais dessus */
+  .promo-wheel { bottom: calc(84px + env(safe-area-inset-bottom)); }
+}
+
+/* ------------------------------------------------------------------ *
+   9B. LA ROULETTE PROMO GLOBALE
+   Une animation visible sur toutes les pages, sans modal bloquante :
+   l'offre reste dans le champ, mais le contenu continue de respirer.
+ * ------------------------------------------------------------------ */
+.promo-wheel {
+  position: fixed;
+  z-index: 8050;
+  right: clamp(.8rem, 2vw, 1.4rem);
+  bottom: clamp(1rem, 2vw, 1.4rem);
+  width: min(360px, calc(100vw - 1.6rem));
+  transform: translateX(calc(100% + 2rem));
+  opacity: 0;
+  transition: transform .6s var(--ease-out), opacity .35s var(--ease-out);
+  filter: drop-shadow(0 22px 44px rgba(15,16,42,.24));
+}
+.promo-wheel.is-in { transform: translate3d(0,0,0) !important; opacity: 1; }
+.promo-wheel__link {
+  position: relative;
+  display: grid;
+  grid-template-columns: 116px minmax(0, 1fr);
+  gap: 1rem;
+  align-items: center;
+  min-height: 148px;
+  padding: 1rem 1rem 1.05rem;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.22);
+  border-radius: var(--radius-lg);
+  color: #fff;
+  background:
+    radial-gradient(circle at 15% 15%, rgba(255,255,255,.2), transparent 34%),
+    linear-gradient(135deg, var(--navy-600), var(--navy-800));
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.08);
+}
+.promo-wheel__link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 0 32%, rgba(255,255,255,.16) 45%, transparent 58% 100%);
+  transform: translateX(-130%);
+  animation: promoSheen 4.8s ease-in-out infinite;
+}
+.promo-wheel__flag {
+  position: absolute;
+  top: .75rem;
+  right: .85rem;
+  z-index: 4;
+  padding: .5em .72em;
+  border-radius: 999px;
+  color: #fff;
+  background: var(--rust-400);
+  font: 800 .65rem/1 var(--f-mono);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.promo-wheel__stage {
+  position: relative;
+  z-index: 2;
+  width: 116px;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+}
+.promo-wheel__disc {
+  position: absolute;
+  inset: 0;
+  border: 7px solid rgba(255,255,255,.94);
+  border-radius: 50%;
+  background:
+    conic-gradient(from -18deg,
+      var(--rust-400) 0 25%,
+      #f7f7fb 0 50%,
+      var(--navy-400) 0 75%,
+      #dfe3ec 0 100%);
+  box-shadow:
+    inset 0 0 0 4px rgba(32,32,72,.25),
+    0 10px 24px rgba(5,7,22,.32);
+  animation: promoWheelSpin 7.2s cubic-bezier(.22,.86,.22,1) infinite;
+}
+.promo-wheel__disc::after {
+  content: "";
+  position: absolute;
+  inset: 11px;
+  border: 1px dashed rgba(32,32,72,.35);
+  border-radius: 50%;
+}
+.promo-wheel__slice {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  color: var(--navy-800);
+  font: 900 .68rem/1 var(--f-mono);
+  letter-spacing: .02em;
+  text-transform: uppercase;
+}
+.promo-wheel__slice--top { transform: translate(-50%, -46px); color: #fff; }
+.promo-wheel__slice--right { transform: translate(10px, -50%) rotate(90deg); }
+.promo-wheel__slice--bottom { transform: translate(-50%, 37px) rotate(180deg); color: #fff; }
+.promo-wheel__slice--left { transform: translate(-56px, -50%) rotate(-90deg); }
+.promo-wheel__core {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  color: #fff;
+  background: var(--navy-800);
+  border: 3px solid #fff;
+  font-family: var(--f-display);
+  font-size: 1.35rem;
+  line-height: 1;
+  box-shadow: 0 7px 18px rgba(5,7,22,.28);
+}
+.promo-wheel__pointer {
+  position: absolute;
+  z-index: 5;
+  top: -2px;
+  left: 50%;
+  width: 0;
+  height: 0;
+  transform: translateX(-50%);
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 22px solid var(--rust-400);
+  filter: drop-shadow(0 5px 6px rgba(5,7,22,.26));
+}
+.promo-wheel__copy {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: .45rem;
+  padding-top: 1.45rem;
+  min-width: 0;
+}
+.promo-wheel__copy b {
+  font-family: var(--f-display);
+  font-size: clamp(1.1rem, 2.1vw, 1.35rem);
+  line-height: .98;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+.promo-wheel__copy span {
+  max-width: 25ch;
+  color: rgba(255,255,255,.84);
+  font: 650 .86rem/1.35 var(--f-ui);
+}
+.promo-wheel__ticker {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  gap: 1.4rem;
+  width: max-content;
+  min-width: 100%;
+  padding: .45rem .8rem;
+  background: rgba(255,255,255,.94);
+  color: var(--navy-700);
+  font: 750 .63rem/1 var(--f-mono);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  animation: promoTicker 13s linear infinite;
+}
+.promo-wheel__ticker span { display: inline-flex; gap: .55ch; white-space: nowrap; }
+.promo-wheel__ticker b { color: var(--rust-500); }
+.promo-wheel:hover .promo-wheel__disc { animation-duration: 2.4s; }
+
+@media (min-width: 1240px) {
+  .promo-wheel { bottom: clamp(1rem, 2vw, 1.4rem); }
+}
+@media (max-width: 1239px) {
+  .promo-wheel {
+    right: .7rem;
+    left: .7rem;
+    bottom: calc(78px + env(safe-area-inset-bottom));
+    width: auto;
+    filter: drop-shadow(0 12px 24px rgba(15,16,42,.18));
+  }
+  .promo-wheel__link {
+    grid-template-columns: 76px minmax(0, 1fr);
+    min-height: 102px;
+    padding: .72rem .78rem .95rem;
+    border-radius: var(--radius);
+  }
+  .promo-wheel__stage { width: 76px; }
+  .promo-wheel__disc { border-width: 5px; }
+  .promo-wheel__core {
+    width: 39px;
+    height: 39px;
+    font-size: 1rem;
+    border-width: 2px;
+  }
+  .promo-wheel__flag {
+    top: .52rem;
+    right: .6rem;
+    font-size: .56rem;
+  }
+  .promo-wheel__copy {
+    padding-top: 1.15rem;
+    padding-right: 3rem;
+  }
+  .promo-wheel__copy b { font-size: 1rem; }
+  .promo-wheel__copy span { font-size: .78rem; max-width: none; }
+  .promo-wheel__slice { display: none; }
+  .promo-wheel__pointer {
+    border-left-width: 9px;
+    border-right-width: 9px;
+    border-top-width: 16px;
+  }
+}
+@media (max-width: 420px) {
+  .promo-wheel__copy span { display: none; }
+  .promo-wheel__link { min-height: 88px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .promo-wheel__disc,
+  .promo-wheel__ticker,
+  .promo-wheel__link::before { animation: none; }
+}
+@media print {
+  .promo-wheel { display: none !important; }
+}
+
+@keyframes promoWheelSpin {
+  0%, 18% { transform: rotate(0deg); }
+  35%, 52% { transform: rotate(108deg); }
+  70%, 86% { transform: rotate(252deg); }
+  100% { transform: rotate(360deg); }
+}
+@keyframes promoSheen {
+  0%, 55% { transform: translateX(-130%); }
+  80%, 100% { transform: translateX(130%); }
+}
+@keyframes promoTicker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-45%); }
+}
+
+/* ------------------------------------------------------------------ *
+   10. LES ANIMATIONS AU SCROLL
+   Le brief demande de CONSERVER les animations existantes (GSAP les
+   pilote via [data-reveal]) et d'en ajouter de discrètes. Ces règles ne
+   font que l'état de départ : si GSAP ne charge pas, `.fx` tombe et
+   tout redevient visible — le contenu n'est jamais otage du JS.
+ * ------------------------------------------------------------------ */
+/* ⚠ L'ÉTAT INITIAL DÉPEND DE `html.has-reveal`, PAS DE `html.fx`.
+   `.fx` est un drapeau anti-flash que la page se retire elle-même au bout
+   de 2,5 s. Accrocher l'état masqué à `.fx` avait un effet mesuré et
+   contre-intuitif : passé deux secondes et demie — donc pour la quasi-
+   totalité d'une page de 22 000 px — plus aucune section n'était masquée
+   au départ, et les révélations ne jouaient plus du tout. Le contenu
+   restait visible (c'est l'essentiel), mais l'animation était morte.
+   `has-reveal` est posé par site.js AU MOMENT où l'observateur est
+   installé : si le JS ne tourne pas, la classe n'existe pas et rien n'est
+   jamais masqué — la garantie recherchée, sans la date de péremption. */
+html.has-reveal .reveal-up { opacity: 0; transform: translateY(26px); }
+html.has-reveal .reveal-fade { opacity: 0; }
+html.has-reveal .reveal-media { opacity: 0; transform: translateY(30px) scale(.985); }
+.reveal-up, .reveal-fade, .reveal-media { transition: opacity .85s var(--ease-out), transform .95s var(--ease-out); }
+/* ⚠ LA RÈGLE RÉVÉLANTE DOIT ÊTRE PRÉFIXÉE `html.has-reveal`, ELLE AUSSI.
+   Sans le préfixe, `.is-in.reveal-up` pèse (0,2,0) face à
+   `html.has-reveal .reveal-up` qui pèse (0,2,1) : la règle masquante
+   gagnait, et l'élément restait à opacité 0 alors même que la classe
+   `is-in` lui avait bien été posée. Défaut invisible en v3 parce que le
+   retrait de `.fx` au bout de 2,5 s finissait par tout rendre visible —
+   l'animation ne jouait donc jamais, et personne ne pouvait le voir. */
+html.has-reveal .is-in.reveal-up,
+html.has-reveal .is-in.reveal-fade,
+html.has-reveal .is-in.reveal-media { opacity: 1; transform: none; }
+
+/* le décalage en cascade dans une grille — l'œil suit, il ne subit pas */
+.stagger > * { transition-delay: calc(var(--i, 0) * 90ms); }
+
+@media (prefers-reduced-motion: reduce) {
+  html.has-reveal .reveal-up, html.has-reveal .reveal-fade, html.has-reveal .reveal-media { opacity: 1; transform: none; }
+  .split-sec__media:hover > img, .card:hover > img, .mosaic__cell:hover > img { transform: none; }
+  .offer:hover, .card:hover, .btn--primary:hover { transform: none; }
+}
+
+/* ------------------------------------------------------------------ *
+   11. UTILITAIRES DE COMPOSITION
+ * ------------------------------------------------------------------ */
+.wrap-tight { width: var(--wrap-tight); margin-inline: auto; }
+.sec-head { width: var(--wrap); margin-inline: auto; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
+.sec-head--split { display: grid; gap: 1.5rem; align-items: end; }
+@media (min-width: 900px) { .sec-head--split { grid-template-columns: 1fr auto; } }
+.sec-head p { max-width: var(--measure); margin-top: 1.1rem; color: var(--read); line-height: 1.7; }
+.center { text-align: center; }
+.center .lead, .center p { margin-inline: auto; }
+.center .btn-row { justify-content: center; }
+.center .eyebrow::before { display: none; }
+
+/* le filet de séparation entre deux sections de même terrain */
+.rule { width: var(--wrap); margin-inline: auto; height: 1px; background: var(--line); border: 0; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}

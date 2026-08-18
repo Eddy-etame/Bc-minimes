@@ -2,7 +2,7 @@
 import SiteContent from "../../components/SiteContent.astro";
 ---
 <!doctype html>
-<html lang="fr" data-theme="dark">
+<html lang="fr" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,10 +17,11 @@ import SiteContent from "../../components/SiteContent.astro";
   <link rel="stylesheet" href="/assets/css/fonts.css?v=b19" />
 
   <!-- LCP : l’en-tête est construite en JS → invisible au preload scanner (§5.8) -->
-  <link rel="preload" as="image" href="/assets/img/bc/training-2.webp" fetchpriority="high" />
+  <link rel="preload" as="image" href="/assets/img/photos/coach-garde-1200.webp" fetchpriority="high" />
 
   <link rel="stylesheet" href="/assets/css/base.css?v=b19" />
   <link rel="stylesheet" href="/assets/css/club.css?v=b19" />
+  <link rel="stylesheet" href="/assets/css/refonte.css?v=b19" />
 
   <meta name="keywords" content="première séance de boxe Toulouse, débuter la boxe Toulouse, cours de boxe débutant Minimes, essai boxe 10 euros Toulouse, je n’ai jamais boxé, salle de boxe Barrière de Paris, boxe anglaise débutant 31200, first boxing class Toulouse, beginner boxing Toulouse, try boxing Toulouse Minimes" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -246,8 +247,11 @@ import SiteContent from "../../components/SiteContent.astro";
        mobile le numéro passe AU-DESSUS — à 320px, une colonne de chiffres
        plus une colonne de texte, c’est deux mots par ligne. */
     .pas { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); }
-    .pas__step { background: var(--ink); padding: clamp(1.5rem,3.4vw,2.4rem); display: grid; gap: .5rem 1.6rem; grid-template-columns: 1fr; border-left: 2px solid transparent; transition: background .35s, border-color .35s; }
-    .pas__step:hover { background: var(--ink-2); border-left-color: var(--mark); }
+    /* v4 : cette carte etait un aplat SOMBRE sur une page sombre. La page
+       est devenue claire, ses encres aussi — la carte doit suivre, sinon
+       elle porte du texte navy sur du navy. Carte blanche + filet. */
+    .pas__step { background: var(--paper); border: 1px solid var(--hair); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); padding: clamp(1.5rem,3.4vw,2.4rem); display: grid; gap: .5rem 1.6rem; grid-template-columns: 1fr; border-left: 2px solid transparent; transition: background .35s, border-color .35s; }
+    .pas__step:hover { box-shadow: var(--shadow-md); border-left-color: var(--mark); }
     .pas__n { font-family: var(--f-mono); font-weight: 700; font-size: var(--step--1); letter-spacing: .18em; color: var(--mark); }
     .pas__t { font-family: var(--f-display); text-transform: uppercase; font-size: clamp(1.25rem,3vw,1.9rem); line-height: 1.02; color: var(--bone); margin-bottom: .5rem; }
     .pas__d { color: var(--read); line-height: 1.6; max-width: 62ch; }
@@ -295,7 +299,7 @@ import SiteContent from "../../components/SiteContent.astro";
 
     <!-- ========================= EN-TÊTE ========================== -->
     <section class="page-head" aria-label="Ta première séance">
-      <div class="page-head__bg" aria-hidden="true"><div class="media" data-img="/assets/img/bc/training-2.webp" data-eager data-label=""></div></div>
+      <div class="page-head__bg" aria-hidden="true"><div class="media" data-img="/assets/img/photos/coach-garde-1200.webp" data-eager data-label=""></div></div>
       <div class="wrap">
         <span class="eyebrow" data-reveal>Ta première fois · Les Minimes</span>
         <h1 class="display" style="margin:1rem 0 0"><span class="reveal-mask"><span>Tu pousses la porte. </span></span><span class="reveal-mask"><span class="tint">On s’occupe du reste.</span></span></h1>
@@ -410,7 +414,7 @@ import SiteContent from "../../components/SiteContent.astro";
           <div class="prix-note__v">29€<br><span style="font-size:.34em;letter-spacing:.12em;color:var(--muted)">par personne · 4 semaines</span></div>
           <p class="muted">Cours illimités, toutes disciplines, sans engagement — au lieu de 44 €.</p>
           <div class="prix-note__cta">
-            <a class="btn btn--primary" data-magnetic href="https://box-plus.vercel.app/inscription?product=offre-duo&step=1&utm_source=site&utm_medium=cta&utm_campaign=bc-minimes"><span>Je prends ma place de rentrée — 29€</span></a>
+            <a class="btn btn--primary" data-magnetic href="https://box-plus.vercel.app/inscription?product=offre-duo&step=1&utm_source=site&utm_medium=cta&utm_campaign=bc-minimes"><span>Je prends ma place — 29€</span></a>
             <a class="btn btn--ghost" data-magnetic href="https://box-plus.vercel.app/seance-essai"><span>Je viens essayer · 10€</span></a>
           </div>
         </div>
@@ -442,7 +446,7 @@ import SiteContent from "../../components/SiteContent.astro";
 
     <!-- ========================= FINAL GONG ====================== -->
     <section class="gong" aria-label="Appeler la salle">
-      <div class="gong__bg" aria-hidden="true"><div class="media" data-img="/assets/img/bc/anglaise-2.webp" data-label=""></div></div>
+      <div class="gong__bg" aria-hidden="true"><div class="media" data-img="/assets/img/photos/sparring-graff-1200.webp" data-label=""></div></div>
       <div class="gong__inner">
         <span class="eyebrow" data-reveal>Il reste une question</span>
         <h2 class="display" data-reveal style="font-size:var(--step-3)">Une question ?<br><span class="tint">Appelle-nous.</span></h2>
