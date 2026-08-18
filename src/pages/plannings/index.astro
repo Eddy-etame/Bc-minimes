@@ -20,16 +20,16 @@ import SiteContent from "../../components/SiteContent.astro";
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-black-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-latin.woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/css/fonts.css?v=b20" />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=b21" />
 
   <!-- LCP : l’image du hero est construite en JS, donc invisible au preload
        scanner (parse → module → import data.js → new Image()). Le preload
        rattrape la découverte perdue (§5.8 « preload de l’image LCP »). -->
   <link rel="preload" as="image" href="/assets/img/photos/ring-cours-rouge-1200.webp" fetchpriority="high" />
 
-  <link rel="stylesheet" href="/assets/css/base.css?v=b20" />
-  <link rel="stylesheet" href="/assets/css/home.css?v=b20" />
-  <link rel="stylesheet" href="/assets/css/refonte.css?v=b20" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=b21" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=b21" />
+  <link rel="stylesheet" href="/assets/css/refonte.css?v=b21" />
 
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="geo.region" content="FR-31" />
@@ -669,6 +669,12 @@ import SiteContent from "../../components/SiteContent.astro";
       </div>
     </section>
 
+    <!-- ROULETTE PROMO — apres la grille : il a repere son creneau.
+         Les deux offres phares y tournent en alternance ; le lien suit la
+         case affichee. Montee par site.js > mountPromoWheels(). -->
+    <div class="wrap" data-promo></div>
+
+
     <!-- ========================= LE POSTER ========================
          §5.5 : EN COULEUR, cliquable plein format, width/height posées.
          ⚠ Le PNG de 2 033 Ko était servi en fetchpriority="high" — le
@@ -730,7 +736,7 @@ import SiteContent from "../../components/SiteContent.astro";
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=b20"></script>
-  <script is:inline type="module" src="/assets/js/plannings.js?v=b20"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=b21"></script>
+  <script is:inline type="module" src="/assets/js/plannings.js?v=b21"></script>
 </body>
 </html>

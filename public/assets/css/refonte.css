@@ -592,8 +592,75 @@
   animation: promoTicker 13s linear infinite;
 }
 .promo-wheel__ticker span { display: inline-flex; gap: .55ch; white-space: nowrap; }
-.promo-wheel__ticker b { color: var(--rust-500); }
+.promo-wheel__ticker b { color: var(--rust); }
 .promo-wheel:hover .promo-wheel__disc { animation-duration: 2.4s; }
+
+/* ---- l'appel à l'action, dans la pastille ---- */
+.promo-wheel__go {
+  display: inline-flex; align-items: center; gap: .5ch;
+  margin-top: .15rem;
+  font: 800 .7rem/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase;
+  color: #fff;
+}
+.promo-wheel__go i { font-style: normal; transition: transform .35s var(--ease-out); }
+.promo-wheel__link:hover .promo-wheel__go i { transform: translateX(4px); }
+
+/* ---- LE TOUR DE ROUE ----
+   Le disque tourne en continu (promoWheelSpin). Pendant le tour, il
+   s'emballe : c'est ce moment-là, et lui seul, qui rend le changement de
+   case crédible — le prix change quand le disque va trop vite pour être
+   lu. Le centre et le texte se relaient en fondu court. */
+.promo-wheel.is-spinning .promo-wheel__disc { animation-duration: .55s; animation-timing-function: linear; }
+.promo-wheel__core-v,
+.promo-wheel__name,
+.promo-wheel__detail { transition: opacity .22s var(--ease), transform .22s var(--ease); }
+.promo-wheel.is-spinning .promo-wheel__core-v { opacity: 0; transform: scale(.82); }
+.promo-wheel.is-spinning .promo-wheel__name,
+.promo-wheel.is-spinning .promo-wheel__detail { opacity: .25; }
+/* la case gagnante colore le liseré du centre — rouille pour la rentrée,
+   blanc pour la saison : deux offres, deux signaux */
+.promo-wheel[data-offer="1"] .promo-wheel__core { border-color: var(--rust-400); }
+
+/* ------------------------------------------------------------------ *
+   LA ROULETTE INTÉGRÉE
+   Même composant, posé DANS le flux de la page à un point choisi. Elle
+   n'est plus une pastille qu'on peut ignorer : elle occupe la largeur de
+   lecture, juste après le passage qui vient de donner envie.
+ * ------------------------------------------------------------------ */
+.promo-wheel--inline {
+  position: static;
+  width: min(100%, 720px);
+  margin: clamp(2.5rem, 6vw, 4rem) auto 0;
+  transform: none;
+  opacity: 1;
+  filter: none;
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--radius-lg);
+}
+.promo-wheel--inline .promo-wheel__link {
+  grid-template-columns: 132px minmax(0, 1fr);
+  gap: 1.4rem;
+  min-height: 172px;
+  padding: 1.2rem 1.3rem 1.35rem;
+}
+.promo-wheel--inline .promo-wheel__stage { width: 132px; }
+.promo-wheel--inline .promo-wheel__core { width: 62px; height: 62px; font-size: 1.5rem; }
+.promo-wheel--inline .promo-wheel__copy b { font-size: clamp(1.25rem, 2.6vw, 1.7rem); }
+.promo-wheel--inline .promo-wheel__copy span { max-width: 40ch; font-size: .95rem; }
+@media (max-width: 540px) {
+  .promo-wheel--inline .promo-wheel__link { grid-template-columns: 104px minmax(0, 1fr); gap: 1rem; }
+  .promo-wheel--inline .promo-wheel__stage { width: 104px; }
+  .promo-wheel--inline .promo-wheel__core { width: 52px; height: 52px; font-size: 1.25rem; }
+}
+/* posée sur un terrain clair, elle garde son aplat navy : c'est le seul
+   bloc de la page qui doit arrêter l'œil */
+.promo-wheel--inline .promo-wheel__ticker { border-radius: 0 0 var(--radius-lg) var(--radius-lg); }
+
+@media (prefers-reduced-motion: reduce) {
+  .promo-wheel__disc { animation: none !important; }
+  .promo-wheel__ticker { animation: none !important; }
+  .promo-wheel__link::before { animation: none !important; }
+}
 
 @media (min-width: 1240px) {
   .promo-wheel { bottom: clamp(1rem, 2vw, 1.4rem); }

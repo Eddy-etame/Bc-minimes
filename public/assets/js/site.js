@@ -3,8 +3,8 @@
    window.BC = { reveal, magnetic, refresh, media, split, scramble,
                  initKinetics, faq, lenis, velocity }
    ===================================================================== */
-import { NAV, LINKS, SALLE, MEDIA, CTA, CTA_HREF, NETWORK, PROMOS } from "./data.js?v=b20";
-import { initPlaces } from "./places.js?v=b20";
+import { NAV, LINKS, SALLE, MEDIA, CTA, CTA_HREF, NETWORK, PROMOS } from "./data.js?v=b21";
+import { initPlaces } from "./places.js?v=b21";
 /* L’assistant : il promeut la pastille `.chatbot` (qui reste un lien tel:
    dans le HTML) en vraie conversation. Voir armChatbot() plus bas — le
    module ne descend QU’À l’intention de parler, jamais au premier rendu. */
@@ -527,7 +527,7 @@ function armChatbot() {
   const load = () => {
     if (state !== "idle") return pending;
     state = "loading";
-    pending = import("./chatbot.js?v=b20")
+    pending = import("./chatbot.js?v=b21")
       .then(() => { state = "ready"; })
       .catch(() => { state = "failed"; });
     return pending;
@@ -742,56 +742,169 @@ function mountActionBar() {
   }
 }
 
-/* ---------------------- ROUE PROMO GLOBALE ------------------------
-   La promo ne doit pas attendre que le visiteur trouve /tarifs/. On pose
-   donc une roulette visible sur toutes les pages : assez forte pour
-   accrocher l'oeil, mais hors du flux pour ne pas casser la lecture. */
-function mountPromoWheel() {
-  if (document.querySelector(".promo-wheel")) return;
-  const rentree = PROMOS.cards?.find((c) => c.key === "rentree") || PROMOS.cards?.[0];
-  const saison = PROMOS.cards?.find((c) => c.key === "saison");
-  const href = CTA_HREF.primary;
-  const strip = [
-    { t: "29€", d: "Rentrée" },
-    { t: "-34%", d: "au lieu de 44€" },
-    { t: "4 sem.", d: "illimitées" },
-    { t: "259€", d: saison ? "saison" : "12 mois" },
-  ];
-  const wheel = document.createElement("aside");
-  wheel.className = "promo-wheel";
-  wheel.setAttribute("aria-label", "Offre promotionnelle Boxing Center Minimes");
-  wheel.innerHTML = `
-    <a class="promo-wheel__link" href="${href}">
+/* ======================= LA ROULETTE PROMO ========================
+   DEUX offres, pas une. La roulette ne montrait que la rentrée à 29 € —
+   or le club en vend deux, et ce sont deux publics différents : celui qui
+   teste quatre semaines, et celui qui prend l'année. Une roulette qui
+   n'a qu'une seule case n'est pas une roulette, c'est une affiche.
+   Elle tourne donc entre les deux offres, et TOUT suit la case gagnante :
+   le prix au centre, le titre, le détail, et surtout la DESTINATION du
+   lien — un visiteur qui clique pendant que « la saison » est affichée
+   doit arriver sur la saison, jamais sur la rentrée.
+
+   Deux formes, un seul code :
+   · flottante  — pastille fixe, présente sur toute la page
+   · intégrée   — posée dans le flux à un endroit choisi (`[data-promo]`),
+                  là où le visiteur vient de comprendre la valeur et où
+                  la question du prix se pose d'elle-même.
+   ================================================================== */
+
+/* Les deux offres mises en avant, lues depuis PROMOS — jamais réécrites
+   ici. Si le staff change un prix dans les données, la roulette suit. */
+function promoOffers() {
+  const carte = (k) => PROMOS.cards?.find((c) => c.key === k);
+  const rentree = carte("rentree") || PROMOS.cards?.[0];
+  const saison = carte("saison");
+  const out = [];
+  if (rentree) out.push({
+    price: rentree.price || "29€",
+    name: rentree.name || "L’offre Rentrée",
+    detail: `${rentree.unit || "par personne"} · ${(rentree.period || "4 semaines").replace(/^·\s*/, "")} illimitées`,
+    was: rentree.was || "44€",
+    cut: "-34%",
+    href: CTA_HREF.primary,
+    cta: "Je prends ma place",
+  });
+  if (saison) out.push({
+    price: saison.price || "259€",
+    name: saison.name || "La saison complète",
+    detail: `${(saison.period || "les 12 mois").replace(/^·\s*/, "")} · 4× sans frais`,
+    was: saison.was || "400€",
+    cut: "-35%",
+    href: saison.href || CTA_HREF.primary,
+    cta: "Je réserve ma saison",
+  });
+  return out;
+}
+
+function buildWheel(offers, inline) {
+  const el = document.createElement(inline ? "div" : "aside");
+  el.className = "promo-wheel" + (inline ? " promo-wheel--inline" : "");
+  el.setAttribute("aria-label", "Nos deux offres — rentrée et saison");
+  /* Le ruban porte les faits des DEUX offres : même arrêtée sur l'une,
+     la roulette dit qu'il en existe une seconde. */
+  const strip = offers.flatMap((o) => [
+    { t: o.price, d: o.name.replace(/^L[’']/, "").replace(/^La /, "") },
+    { t: o.cut, d: `au lieu de ${o.was}` },
+  ]);
+  el.innerHTML = `
+    <a class="promo-wheel__link" href="${offers[0].href}">
       <span class="promo-wheel__flag">Offre à saisir</span>
       <span class="promo-wheel__stage" aria-hidden="true">
         <span class="promo-wheel__pointer"></span>
         <span class="promo-wheel__disc">
-          <span class="promo-wheel__slice promo-wheel__slice--top">29€</span>
-          <span class="promo-wheel__slice promo-wheel__slice--right">4 sem.</span>
-          <span class="promo-wheel__slice promo-wheel__slice--bottom">-34%</span>
-          <span class="promo-wheel__slice promo-wheel__slice--left">Boxe</span>
+          <span class="promo-wheel__slice promo-wheel__slice--top">${offers[0].price}</span>
+          <span class="promo-wheel__slice promo-wheel__slice--right">${offers[0].cut}</span>
+          <span class="promo-wheel__slice promo-wheel__slice--bottom">${(offers[1] || offers[0]).price}</span>
+          <span class="promo-wheel__slice promo-wheel__slice--left">${(offers[1] || offers[0]).cut}</span>
         </span>
-        <span class="promo-wheel__core">${rentree?.price || "29€"}</span>
+        <span class="promo-wheel__core"><span class="promo-wheel__core-v">${offers[0].price}</span></span>
       </span>
       <span class="promo-wheel__copy">
-        <b>${rentree?.name || "L’offre Rentrée"}</b>
-        <span>${rentree?.price || "29€"} ${rentree?.unit || "par personne"} · ${rentree?.period?.replace(/^·\s*/, "") || "4 semaines"} illimitées</span>
+        <b class="promo-wheel__name">${offers[0].name}</b>
+        <span class="promo-wheel__detail">${offers[0].detail}</span>
+        <span class="promo-wheel__go">${offers[0].cta} <i aria-hidden="true">→</i></span>
       </span>
       <span class="promo-wheel__ticker" aria-hidden="true">
         ${strip.map((s) => `<span><b>${s.t}</b>${s.d}</span>`).join("")}
       </span>
     </a>`;
+  return el;
+}
+
+/* Fait tourner la roulette entre les offres et recâble le lien.
+   S'arrête dès que la roulette sort de l'écran ou que l'onglet passe en
+   arrière-plan : une animation qu'on ne regarde pas ne doit rien coûter. */
+function armWheel(el, offers) {
+  if (offers.length < 2) return;
+  const link = el.querySelector(".promo-wheel__link");
+  const core = el.querySelector(".promo-wheel__core-v");
+  const name = el.querySelector(".promo-wheel__name");
+  const detail = el.querySelector(".promo-wheel__detail");
+  const go = el.querySelector(".promo-wheel__go");
+  let i = 0, timer = null, visible = true;
+
+  const land = (n) => {
+    const o = offers[n];
+    core.textContent = o.price;
+    name.textContent = o.name;
+    detail.textContent = o.detail;
+    go.firstChild.nodeValue = o.cta + " ";
+    link.setAttribute("href", o.href);
+    el.dataset.offer = String(n);
+  };
+
+  const tour = () => {
+    i = (i + 1) % offers.length;
+    if (reduce) { land(i); return; }      /* pas de spin : on échange, point */
+    el.classList.add("is-spinning");
+    /* la case change AU MILIEU du tour — quand le disque va trop vite
+       pour qu'on lise l'ancienne valeur. Changer avant ou après, c'est
+       montrer la bascule au lieu de la faire. */
+    setTimeout(() => land(i), 520);
+    setTimeout(() => el.classList.remove("is-spinning"), 1150);
+  };
+
+  const start = () => { if (!timer && visible) timer = setInterval(tour, 5200); };
+  const stop = () => { if (timer) { clearInterval(timer); timer = null; } };
+
+  land(0);
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(([e]) => { visible = e.isIntersecting; visible ? start() : stop(); },
+      { threshold: 0.25 }).observe(el);
+  } else start();
+  document.addEventListener("visibilitychange", () => { document.hidden ? stop() : start(); });
+}
+
+function mountPromoWheels() {
+  const offers = promoOffers();
+  if (!offers.length) return;
+
+  /* 1. LES ROULETTES INTÉGRÉES — une par ancre `[data-promo]`, posée par
+        la page à l'endroit où le prix devient la question suivante. */
+  const ancres = document.querySelectorAll("[data-promo]:not([data-promo-mounted])");
+  ancres.forEach((a) => {
+    a.setAttribute("data-promo-mounted", "1");
+    const el = buildWheel(offers, true);
+    a.appendChild(el);
+    armWheel(el, offers);
+  });
+
+  /* 2. LA ROULETTE FLOTTANTE — le rappel permanent. Elle s'efface quand
+        une roulette intégrée est à l'écran : deux fois la même offre au
+        même moment, c'est une de trop. */
+  if (document.querySelector("aside.promo-wheel")) return;
+  const wheel = buildWheel(offers, false);
   document.body.appendChild(wheel);
+  armWheel(wheel, offers);
 
   const hero = document.querySelector(".hero, .page-head");
   const foot = document.querySelector(".footer, #footer");
-  let pastHero = !hero, atFoot = false;
-  const sync = () => wheel.classList.toggle("is-in", pastHero && !atFoot);
+  let pastHero = !hero, atFoot = false, surInline = false;
+  const sync = () => wheel.classList.toggle("is-in", pastHero && !atFoot && !surInline);
   if ("IntersectionObserver" in window) {
     if (hero) new IntersectionObserver(([e]) => { pastHero = !e.isIntersecting; sync(); },
       { threshold: 0, rootMargin: "-48% 0px 0px 0px" }).observe(hero);
     if (foot) new IntersectionObserver(([e]) => { atFoot = e.isIntersecting; sync(); },
       { threshold: 0, rootMargin: "0px 0px -12% 0px" }).observe(foot);
+    if (ancres.length) {
+      const io = new IntersectionObserver((es) => {
+        surInline = es.some((e) => e.isIntersecting) ||
+          [...ancres].some((a) => { const r = a.getBoundingClientRect(); return r.top < innerHeight && r.bottom > 0; });
+        sync();
+      }, { threshold: 0 });
+      ancres.forEach((a) => io.observe(a));
+    }
   } else {
     pastHero = true; sync();
   }
@@ -831,7 +944,7 @@ alternate();
 revealNative();
 mountRatings();
 mountActionBar();
-mountPromoWheel();
+mountPromoWheels();
 initSmooth();
 initCursor();
 hydrateMedia(document);   // hydrate menu/footer bg video etc.
