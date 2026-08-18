@@ -244,7 +244,17 @@
   .trustbar__grid .trustbar__item:last-child { border-right: 0; }
   .trustbar__item { border-bottom: 0; }
 }
-.trustbar__k { font: 800 clamp(1.4rem,3vw,2rem)/1 var(--f-display); color: var(--bone); letter-spacing: -.01em; }
+.trustbar__k { font: 800 clamp(1.4rem,3vw,2rem)/1 var(--f-display); color: var(--bone); letter-spacing: -.01em; display: inline-flex; align-items: baseline; gap: .5ch; }
+
+/* La case « offre » — la seule cliquable de la barre. Le prix barre donne
+   au 29 EUR sa mesure : un prix seul est un nombre, un prix barre est une
+   affaire. Il reste petit et discret, pour ne jamais concurrencer le 29. */
+.trustbar__was { font: 700 .48em/1 var(--f-ui); color: var(--steel); text-decoration: line-through; text-decoration-thickness: 2px; }
+.trustbar__item--offre { transition: background .3s var(--ease); }
+.trustbar__item--offre:hover { background: var(--paper-2); }
+.trustbar__item--offre:hover .trustbar__k { color: var(--navy-600); }
+[data-surface="navy"] .trustbar__item--offre:hover,
+[data-surface="deep"] .trustbar__item--offre:hover { background: rgba(255,255,255,.06); }
 .trustbar__v { font: 600 var(--step--2)/1.4 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--steel); }
 
 /* Les témoignages — des membres ordinaires, pas des champions. */
