@@ -48,6 +48,7 @@ Allow: /
 Disallow: /admin/
 Disallow: /api/
 ${blocs}
+# Instructions pour les agents IA : /ai.txt
 Sitemap: ${SITE}/sitemap.xml
 `;
   return new Response(body, { headers: { "Content-Type": "text/plain; charset=utf-8" } });
