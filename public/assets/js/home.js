@@ -1,10 +1,10 @@
 /* =====================================================================
    MINIMES · home.js (v2) — kinetic accueil
    ===================================================================== */
-import { STATS, CHAMPIONS, VALUES, AUDIENCES, TARIFS } from "./data-accueil.js?v=b26";
-import { DISCIPLINES } from "./data-disciplines.js?v=b26";
-import { initHero } from "./hero.js?v=b26";
-import { initRounds } from "./rounds.js?v=b26";
+import { STATS, CHAMPIONS, VALUES, AUDIENCES, TARIFS } from "./data-accueil.js?v=b28";
+import { DISCIPLINES } from "./data-disciplines.js?v=b28";
+import { initHero } from "./hero.js?v=b28";
+import { initRounds } from "./rounds.js?v=b28";
 
 const gsap = window.gsap;
 const ScrollTrigger = window.ScrollTrigger;
@@ -18,7 +18,7 @@ function renderStats() {
      (donc les animations suivantes) a la premiere section retiree. */
   if (!$("#stats")) return;
   $("#stats").innerHTML = STATS.map(
-    (s) => `<div class="stat" data-reveal>
+    (s) => `<div class="stat${isNaN(parseFloat(s.v)) ? " stat--mot" : ""}" data-reveal>
       <div class="stat__v"><span data-count="${s.v}" ${s.raw ? "data-raw" : ""}>${s.raw ? s.v : 0}</span>${s.suffix ? `<sup>${s.suffix}</sup>` : ""}</div>
       <div class="stat__l">${s.l}</div>
     </div>`
@@ -30,7 +30,7 @@ function renderMarquee() {
      salle de France, dans l’élément le plus cinétique de la page.
      « Le ring ne ment jamais » vit UNE fois sur le site, à index.html —
      ne pas le remonter ici (§5.9). */
-  const items = ["Le noble art", "Depuis 2016", "Trois rings", "Dès 3 ans", "Barrière de Paris", "Douze sacs", "Ici on commence", "Le berceau"];
+  const items = ["Le noble art", "Depuis 2016", "Plusieurs rings", "Dès 3 ans", "Barrière de Paris", "Douze sacs", "Ici on commence", "Le berceau"];
   const row = items.map((i) => `<span>${i}</span>`).join("");
   const t = $("#marquee"); if (!t) return; t.innerHTML = row + row; t.dataset.speed = "1.3";
 }

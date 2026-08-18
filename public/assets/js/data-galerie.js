@@ -10,7 +10,7 @@
    LA GALERIE — pool photo RÉEL Boxing Center (servi en placeholder depuis
    le site Portet), gradé N&B par le CSS. ⚠ à remplacer par les vraies
    photos des Minimes. Les légendes décrivent l’ACTIVITÉ, jamais un claim
-   sur le lieu exact : « Les trois rings » attend la vraie photo des trois
+   sur le lieu exact : « Les rings » attend la vraie photo des trois
    rings des Minimes. `big:true` = cellule mise en avant (mur de champion).
    ===================================================================== */
 export const GALLERY = {
@@ -32,7 +32,7 @@ export const GALLERY = {
     {
       n: "01",
       t: "Le bruit",
-      d: "Douze sacs, trois rings, et le minuteur qui claque toutes les trois minutes. Une photo est muette — ici, tu entends la salle avant de la voir.",
+      d: "Douze sacs, plusieurs rings, et le minuteur qui claque toutes les trois minutes. Une photo est muette — ici, tu entends la salle avant de la voir.",
     },
     {
       n: "02",

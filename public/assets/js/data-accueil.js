@@ -8,8 +8,8 @@
 
 /* La toise — chiffres qui content le palmarès, pas la surface */
 export const STATS = [
-  { v: 3, suffix: "", l: "rings — pas une salle de sport" },
-  { v: 3, suffix: "", l: "pros sortis de ces cordes" },
+  { v: "Plusieurs", suffix: "", l: "rings — pas une salle de sport", raw: true },
+  { v: "Nombreux", suffix: "", l: "boxeurs professionnels formés ici", raw: true },
   { v: 30, suffix: "+", l: "amateurs passés par l’école" },
   { v: 2016, suffix: "", l: "depuis", raw: true },
 ];
@@ -35,7 +35,7 @@ export const AUDIENCES = [
   { t: "Les femmes", tag: "Boxing Lady", d: "Boxing Lady le lundi avec Chloé, le mercredi avec David — 18h30, la salle est à elles. Beaucoup y débutent, certaines rejoignent ensuite les cours mixtes. Les deux sont très bien.", img: "/assets/img/photos/lady-sac-1200.webp" },
   { t: "Les enfants", tag: "Dès 3 ans", d: "Baby Boxe dès 3 ans, éducative 7/11, ados 12/16 : on touche, on ne frappe pas — règle fédérale. De la motricité, du respect, et toute cette énergie qui trouve enfin où aller.", img: "/assets/img/photos/ecole-enfant-1200.webp" },
   { t: "Les parents", tag: "On s’y remet", d: "Vous accompagnez votre enfant ? Restez. Le mercredi et le samedi, pendant son cours, les sacs de l’accès libre sont à vous — la famille transpire ensemble.", img: "/assets/img/photos/coach-garde-1200.webp" },
-  { t: "Les compétiteurs", tag: "Le ring", d: "Quand tu seras prêt — et seulement si tu en as envie — Mehdi t’amène du cours du soir à l’open sparring du samedi, puis au ring. Trois pros ont pris ce chemin avant toi, préparés.", img: "/assets/img/photos/sparring-graff-1200.webp" },
+  { t: "Les compétiteurs", tag: "Le ring", d: "Quand tu seras prêt — et seulement si tu en as envie — Mehdi t’amène du cours du soir à l’open sparring du samedi, puis au ring. De nombreux pros ont pris ce chemin avant toi, préparés.", img: "/assets/img/photos/sparring-graff-1200.webp" },
 ];
 /* L’offre — teaser accueil (3 cartes). Le détail vit sur /tarifs/ (PROMOS).
    Essai + enfants pointent vers box-plus ; la carte saison reste interne → /tarifs/. */

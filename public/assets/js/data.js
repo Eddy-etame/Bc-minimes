@@ -212,7 +212,7 @@ export const NETWORK = [
 export const FAQ = [
   { q: "Où se trouve Boxing Center Minimes ?", a: "Au 12 rue de Fenouillet, 31200 Toulouse, dans le quartier des Minimes — Barrière de Paris, à 3 minutes du métro ligne B." },
   { q: "Je n’ai jamais boxé. Je peux venir ?", a: "Oui. Tu ne seras ni le premier ni le seul — on a des créneaux débutants et du cardio boxing où tu ne prends aucun coup. Tu apprends le geste avant de le recevoir." },
-  { q: "Quelle est la spécialité de la salle des Minimes ?", a: "La boxe anglaise. C’est la salle historique du groupe, le berceau de plusieurs boxeurs professionnels et amateurs — avec trois rings dédiés." },
+  { q: "Quelle est la spécialité de la salle des Minimes ?", a: "La boxe anglaise. C’est la salle historique du groupe, le berceau de nombreux boxeurs professionnels et amateurs — avec plusieurs rings dédiés." },
   { q: "Y a-t-il des cours pour les enfants ?", a: "Oui, dès 3 ans. Baby Boxe pour les 3/6 ans (250€ l’année), boxe éducative 7/11, ados 12/16 puis compétiteurs (295€ l’année, t-shirt du club inclus) — du jeu au ring, un créneau par âge." },
   { q: "Il y a des cours pour les femmes ?", a: "Le Boxing Lady est 100 % féminin : lundi 18h30 avec Chloé, mercredi 18h30 avec David. Et tous les autres cours te sont ouverts." },
   { q: "Quels sont les horaires ?", a: "Du lundi au samedi, de 10h00 à 21h30. Fermé le dimanche." },

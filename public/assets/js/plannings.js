@@ -20,14 +20,14 @@
       écrit l’état dans l’URL (partageable, revenable au bouton Retour).
    3. Rien ne disait où on en est MAINTENANT dans la semaine.
    ===================================================================== */
-import { SEASON_LABEL } from "./data.js?v=b26";
+import { SEASON_LABEL } from "./data.js?v=b28";
 import {
   PLANNING,
   PLANNING_FREE,
   PLANNING_DAYS,
   PLANNING_DISCIPLINES,
   PLANNING_KEYS,
-} from "./data-planning.js?v=b26";
+} from "./data-planning.js?v=b28";
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
