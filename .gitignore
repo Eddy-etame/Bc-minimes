@@ -13,3 +13,6 @@ _dist_before/
 .env
 .env.*
 !.env.example
+
+# captures de verification generees localement (jamais versionnees)
+.tmp/
