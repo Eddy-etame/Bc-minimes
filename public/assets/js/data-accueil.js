@@ -47,7 +47,7 @@ export const TARIFS = [
     feature: "Cours illimités, toutes disciplines — encore mieux à deux",
     items: ["29€ par personne (au lieu de 44€)", "Toutes les disciplines", "Sans engagement"],
     cta: "Je prends ma place — 29€",
-    href: "https://box-plus.vercel.app/abonnements#promo",
+    href: "https://boutique.boxingcenter.fr/abonnements#promo",
     highlight: true,
   },
   {
@@ -67,7 +67,7 @@ export const TARIFS = [
     feature: "Baby Boxe 250€ · éducative · ados",
     items: ["Baby Boxe, éducative, ados", "Mercredi et samedi", "Matériel fourni"],
     cta: "Inscrire mon enfant",
-    href: "https://box-plus.vercel.app/abonnements#enfants",
+    href: "https://boutique.boxingcenter.fr/abonnements#enfants",
     highlight: false,
   },
 ];

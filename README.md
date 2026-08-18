@@ -215,7 +215,7 @@ revalidation en arrière-plan), le `no-store` sur `/api/` et le `noindex` sur
 4. **Vérifier les en-têtes** — une fois en ligne : `curl -I https://minimes.boxingcenter.fr` doit montrer `strict-transport-security`, `x-content-type-options`, `x-frame-options`, `referrer-policy`, `permissions-policy` et `content-security-policy`. Ils ne s'activent que sur Vercel, jamais en local.
 
 ### La boutique
-Les liens boutique pointent vers **`https://box-plus.vercel.app/`** (la nouvelle boutique Box-Plus).
+Les liens boutique pointent vers **`https://boutique.boxingcenter.fr/`** (la nouvelle boutique Box-Plus).
 Le jour où le domaine payant est en place, il n'y a qu'UN endroit à changer : `LINKS.boutique`
 dans `public/assets/js/data.js` — tout le site, le maillage et le JSON-LD suivent.
 

@@ -99,12 +99,12 @@ function marque(url) {
    clés fermées (un lien halluciné est impossible), boutique box-plus +
    pages internes de CE site, « rappel » reste une action du chat. */
 const ACTIONS = {
-  offre:       { label: "Je prends ma place — 29€", href: marque("https://box-plus.vercel.app/abonnements#promo") },
-  saison:      { label: "Je réserve ma saison · 259€", href: marque("https://box-plus.vercel.app/abonnements#promo") },
-  essai:       { label: "Je viens essayer · 10€", href: marque("https://box-plus.vercel.app/seance-essai") },
-  enfants:     { label: "J’inscris mon enfant", href: marque("https://box-plus.vercel.app/abonnements#enfants") },
-  abonnements: { label: "Voir les abonnements", href: marque("https://box-plus.vercel.app/abonnements") },
-  boutique:    { label: "La boutique du club", href: marque("https://box-plus.vercel.app/") },
+  offre:       { label: "Je prends ma place — 29€", href: marque("https://boutique.boxingcenter.fr/abonnements#promo") },
+  saison:      { label: "Je réserve ma saison · 259€", href: marque("https://boutique.boxingcenter.fr/abonnements#promo") },
+  essai:       { label: "Je viens essayer · 10€", href: marque("https://boutique.boxingcenter.fr/seance-essai") },
+  enfants:     { label: "J’inscris mon enfant", href: marque("https://boutique.boxingcenter.fr/abonnements#enfants") },
+  abonnements: { label: "Voir les abonnements", href: marque("https://boutique.boxingcenter.fr/abonnements") },
+  boutique:    { label: "La boutique du club", href: marque("https://boutique.boxingcenter.fr/") },
   premiere:    { label: "Ta première séance, pas à pas", href: "/premiere-seance/" },
   tarifs:      { label: "Les tarifs en détail", href: "/tarifs/" },
   planning:    { label: "Voir le planning", href: "/plannings/" },
@@ -136,8 +136,21 @@ function parseReply(rawText) {
     keys.push(...list.split(",").map((s) => s.trim()).filter(Boolean));
     return "";
   });
-  text = text.replace(/(?:https?:\/\/)?box-plus\.vercel\.app[\w\/#-]*/gi, (u) => {
-    const href = (u.startsWith("http") ? u : "https://" + u).replace(/\/$/, "");
+  /* ⚠ LES DEUX HÔTES, ET LE VIEUX RAMENÉ SUR LE NEUF.
+     La boutique a déménagé de box-plus.vercel.app vers
+     boutique.boxingcenter.fr. Ce filtre — celui qui transforme une URL
+     citée par le modèle en BOUTON — ne connaissait que l'ancien hôte : il
+     ne voyait plus passer les liens que le site lui donne aujourd'hui, et
+     la comparaison avec ACTIONS[].href (migré, lui) ne pouvait plus
+     aboutir. Aucun bouton ne se serait plus formé, l'URL serait restée
+     affichée en clair dans la bulle.
+     On accepte donc les deux, et on NORMALISE l'ancien vers le nouveau
+     avant comparaison : un lien hérité continue de trouver son bouton, et
+     le visiteur n'est jamais envoyé sur un domaine mort. */
+  text = text.replace(/(?:https?:\/\/)?(?:box-plus\.vercel\.app|boutique\.boxingcenter\.fr)[\w\/#-]*/gi, (u) => {
+    const href = (u.startsWith("http") ? u : "https://" + u)
+      .replace("box-plus.vercel.app", "boutique.boxingcenter.fr")
+      .replace(/\/$/, "");
     /* Le modèle écrit l’URL NUE ; nos boutons la portent balisée d’UTM. On
        compare donc sans les paramètres — mais AVEC l’ancre, seule à
        distinguer #promo de #enfants. Sans ce nettoyage, une URL citée en
