@@ -255,7 +255,13 @@
 .trustbar__item--offre:hover .trustbar__k { color: var(--navy-600); }
 [data-surface="navy"] .trustbar__item--offre:hover,
 [data-surface="deep"] .trustbar__item--offre:hover { background: rgba(255,255,255,.06); }
-.trustbar__v { font: 600 var(--step--2)/1.4 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--steel); }
+.trustbar__v { font: 600 var(--step--2)/1.4 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--steel); text-wrap: balance; }
+
+/* Une case dont la cle est un MOT et non un nombre. « 29€ » tient a
+   2 rem dans une colonne de 290 px ; « Tous niveaux » deborde. La cle
+   descend donc d'un cran et cesse d'etre condensee au maximum — la case
+   garde son poids visuel sans casser la grille a quatre colonnes. */
+.trustbar__item--large .trustbar__k { font-size: clamp(1.1rem, 2.1vw, 1.5rem); line-height: 1.05; }
 
 /* Les témoignages — des membres ordinaires, pas des champions. */
 .reviews { display: grid; gap: clamp(1.2rem, 2.5vw, 1.8rem); grid-template-columns: 1fr; }
