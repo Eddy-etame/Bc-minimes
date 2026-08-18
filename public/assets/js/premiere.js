@@ -8,7 +8,7 @@
        club déménage depuis le vestiaire, le plan suit ;
      · les moteurs d’animation partagés (media / reveal / magnetic).
    ===================================================================== */
-import { SALLE } from "./data.js?v=b22";
+import { SALLE } from "./data.js?v=b23";
 
 const $ = (s, r = document) => r.querySelector(s);
 

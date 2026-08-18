@@ -6,7 +6,7 @@
    Les embarquer partout coûtait leur poids sur chaque page pour rien.
    ===================================================================== */
 
-import { bcRegister } from "./data.js?v=b22";
+import { bcRegister } from "./data.js?v=b23";
 
 /* Avis Google réels (verbatim, curés le 2026-07-12) — jamais inventés.
    Source : fiche Google Boxing Center Minimes.
@@ -20,7 +20,7 @@ import { bcRegister } from "./data.js?v=b22";
    plutôt qu’un compte périmé. Les verbatims, eux, restent des citations
    datées et attribuées. */
 export const REVIEWS = {
-  rating: "4,3",
+  rating: "4,5",
   scale: "5",
   count: "155",
   source: "Avis Google",

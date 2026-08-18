@@ -3,8 +3,8 @@
    window.BC = { reveal, magnetic, refresh, media, split, scramble,
                  initKinetics, faq, lenis, velocity }
    ===================================================================== */
-import { NAV, LINKS, SALLE, MEDIA, CTA, CTA_HREF, NETWORK, PROMOS } from "./data.js?v=b22";
-import { initPlaces } from "./places.js?v=b22";
+import { NAV, LINKS, SALLE, MEDIA, CTA, CTA_HREF, NETWORK, PROMOS } from "./data.js?v=b23";
+import { initPlaces } from "./places.js?v=b23";
 /* L’assistant : il promeut la pastille `.chatbot` (qui reste un lien tel:
    dans le HTML) en vraie conversation. Voir armChatbot() plus bas — le
    module ne descend QU’À l’intention de parler, jamais au premier rendu. */
@@ -527,7 +527,7 @@ function armChatbot() {
   const load = () => {
     if (state !== "idle") return pending;
     state = "loading";
-    pending = import("./chatbot.js?v=b22")
+    pending = import("./chatbot.js?v=b23")
       .then(() => { state = "ready"; })
       .catch(() => { state = "failed"; });
     return pending;
@@ -911,14 +911,14 @@ function mountPromoWheels() {
 }
 
 /* ------------------------- LES ÉTOILES D'AVIS ---------------------
-   La note Google (4,3 sur 155 avis) ne vivait que dans le JSON-LD : elle
+   La note Google (4,5 sur 155 avis) ne vivait que dans le JSON-LD : elle
    servait au moteur de recherche et à personne d'autre. Ce composant la
    rend visible partout où l'on écrit `<span data-rating>`. */
 function mountRatings(scope = document) {
   const nodes = scope.querySelectorAll("[data-rating]:not([data-rated])");
   nodes.forEach((el) => {
     el.dataset.rated = "1";
-    const val = parseFloat(el.dataset.rating) || 4.3;
+    const val = parseFloat(el.dataset.rating) || 4.5;
     const count = el.dataset.ratingCount || "";
     let stars = "";
     for (let i = 1; i <= 5; i++) {
