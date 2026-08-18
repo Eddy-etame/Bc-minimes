@@ -16,11 +16,45 @@
 const gsap = window.gsap;
 const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+/* Fin de boucle du hero, en secondes. Le clip ne joue que ce segment et
+   repart : au-delà, l'attention est déjà ailleurs et on ne fait plus que
+   payer de la bande passante. Une seule valeur, ici — pas un nombre
+   recopié dans le markup et dans le script. */
+const HERO_LOOP_END = 10;
+
+/* La boucle s'arrête à HERO_LOOP_END au lieu de dérouler tout le fichier.
+   `loop` natif ne sait boucler que sur la durée ENTIÈRE : on le retire et
+   on referme la boucle à la main. `timeupdate` ne suffit pas seul — il
+   n'est émis que ~4 fois par seconde et laisserait passer jusqu'à 250 ms
+   de trop ; on double donc la surveillance avec la boucle d'animation,
+   qui elle est synchrone avec l'affichage. */
+function capVideoLoop(video, end = HERO_LOOP_END) {
+  if (!video || !end) return;
+  video.loop = false;
+  const rewind = () => {
+    if (video.currentTime >= end - 0.03) {
+      video.currentTime = 0;
+      if (video.paused) video.play().catch(() => {});
+    }
+  };
+  video.addEventListener("timeupdate", rewind);
+  video.addEventListener("ended", () => { video.currentTime = 0; video.play().catch(() => {}); });
+  const tick = () => { if (!video.paused) rewind(); requestAnimationFrame(tick); };
+  requestAnimationFrame(tick);
+}
+
 export function initHero() {
   const hero = document.querySelector(".hero");
   if (!hero) return;
   setupToggle(hero);
   intro(hero);
+  const video = document.getElementById("hero-video");
+  /* le src arrive par hydratation (data-video) : on attend l'élément
+     prêt plutôt que de supposer qu'il l'est déjà */
+  if (video) {
+    if (video.readyState >= 1) capVideoLoop(video);
+    else video.addEventListener("loadedmetadata", () => capVideoLoop(video), { once: true });
+  }
   if (!reduce && gsap) { try { initWebGL(hero); } catch (e) { /* B falls back to plain video */ } }
 }
 
