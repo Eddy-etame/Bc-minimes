@@ -19,7 +19,7 @@ import SiteContent from "../components/SiteContent.astro";
   <!-- LCP : le poster du hero est peint avant la vidéo ; il est chargé par
        le JS, donc invisible au preload scanner. Le preload rattrape la
        découverte perdue (§5.8 « preload de l’image LCP »). -->
-  <link rel="preload" as="image" href="/assets/img/photos/hero-sacs.webp" fetchpriority="high" />
+  <link rel="preload" as="image" href="/assets/img/photos/hero-ring.webp" fetchpriority="high" />
 
   <link rel="stylesheet" href="/assets/css/base.css?v=b35" />
   <link rel="stylesheet" href="/assets/css/home.css?v=b35" />
@@ -330,7 +330,7 @@ import SiteContent from "../components/SiteContent.astro";
          où ils mènent. -->
     <header class="hero" data-hero="a" data-surface="deep" aria-label="Boxing Center Minimes">
       <div class="hero__stage" aria-hidden="true">
-        <video id="hero-video" class="hero__src" data-video="/assets/media/clip-bags.mp4" data-poster="/assets/img/photos/hero-sacs.webp" muted autoplay playsinline preload="auto"></video>
+        <video id="hero-video" class="hero__src" data-video="/assets/media/clip-sparring.mp4" data-poster="/assets/img/photos/hero-ring.webp" muted autoplay playsinline preload="auto"></video>
         <div class="hero-a__knock">
           <div class="hero__word">
             <span class="hero__word-top" data-split>Boxing Center</span>
