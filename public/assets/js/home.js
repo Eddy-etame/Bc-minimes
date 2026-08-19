@@ -30,7 +30,7 @@ function renderMarquee() {
      salle de France, dans l’élément le plus cinétique de la page.
      « Le ring ne ment jamais » vit UNE fois sur le site, à index.html —
      ne pas le remonter ici (§5.9). */
-  const items = ["Le noble art", "Depuis 2016", "Plusieurs rings", "Dès 3 ans", "Barrière de Paris", "Douze sacs", "Ici on commence", "Le berceau"];
+  const items = ["Le noble art", "Depuis 2016", "Plusieurs rings", "Dès 3 ans", "Barrière de Paris", "Douze sacs", "École de boxe", "Le berceau"];
   const row = items.map((i) => `<span>${i}</span>`).join("");
   const t = $("#marquee"); if (!t) return; t.innerHTML = row + row; t.dataset.speed = "1.3";
 }
@@ -226,7 +226,7 @@ function parallax() {
 
 /* ------------------------------ BOOT ------------------------------ */
 function boot() {
-  renderStats(); renderMarquee(); renderChampions();
+  renderStats(); renderMarquee();
   renderDisciplines(); renderValues(); renderWhoFor(); renderTarifs();
 
   window.BC.media(document);
