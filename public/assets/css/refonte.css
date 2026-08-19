@@ -211,7 +211,7 @@
   margin-top: clamp(1rem, 2.5vw, 1.5rem);
   display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .9ch;
   font-size: var(--step--1); line-height: 1.5; color: rgba(255,255,255,.88);
-  max-width: 62ch;
+  max-width: 76ch;
 }
 .hero__proof-sep { opacity: .5; }
 .hero__proof-txt { color: rgba(255,255,255,.88); }
