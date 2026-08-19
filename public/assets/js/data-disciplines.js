@@ -171,6 +171,12 @@ export const DISCIPLINES = [
     plan: null,
     freeNote: "En accès libre, sur les sacs",
     name: "Cardio Boxing",
+    /* `actName` / `actPlace` ne sont lus QUE par /activites/ : la ligne de
+       l’accueil garde « Cardio Boxing ». Le titre de la fiche porte la
+       localité pour le référencement — c’est le seul h2 de la page qui
+       nomme le quartier, et il le fait sans mentir sur le contenu. */
+    actName: "Entraînement en accès libre",
+    actPlace: "Minimes Toulouse",
     tag: "Sans contact",
     teaser: "Tu frappes le sac, personne ne te frappe.",
     desc: "Tout le geste, toute la sueur, aucun coup encaissé. La porte d’entrée quand on n’a jamais boxé.",

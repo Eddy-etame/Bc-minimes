@@ -14,9 +14,9 @@
       disciplines qui n’ONT pas de créneau (paos, cross, cardio), il ne
       ment plus : il le dit et renvoie vers l’accès libre.
    ===================================================================== */
-import { LINKS, CTA, CTA_HREF } from "./data.js?v=b43";
-import { DISCIPLINES } from "./data-disciplines.js?v=b43";
-import { PLANNING } from "./data-planning.js?v=b43";
+import { LINKS, CTA, CTA_HREF } from "./data.js?v=b44";
+import { DISCIPLINES } from "./data-disciplines.js?v=b44";
+import { PLANNING } from "./data-planning.js?v=b44";
 
 const $ = (s, r = document) => r.querySelector(s);
 
@@ -59,7 +59,7 @@ function renderIndex() {
   if (!box) return;
   box.innerHTML = DISCIPLINES.map(
     (d, i) => `<a class="act-chip" href="#${d.key}" data-magnetic>
-      <span class="act-chip__n">${String(i + 1).padStart(2, "0")}</span>${d.name}
+      <span class="act-chip__n">${String(i + 1).padStart(2, "0")}</span>${d.actName || d.name}
     </a>`
   ).join("");
 }
@@ -73,7 +73,7 @@ function renderRows() {
       <div class="act__body">
         <span class="act__bigidx" aria-hidden="true">${String(i + 1).padStart(2, "0")}</span>
         <span class="act__tag">${d.tag}</span>
-        <h2 class="act__name">${d.name}</h2>
+        <h2 class="act__name">${d.actName || d.name}${d.actPlace ? ` — ${d.actPlace}` : ""}</h2>
         ${badgeOf(d)}
         <p class="act__desc">${d.desc}</p>
         <p class="act__for"><span>Pour qui</span>${d.for}</p>
