@@ -213,8 +213,12 @@
   font-size: var(--step--1); line-height: 1.5; color: rgba(255,255,255,.88);
   max-width: 76ch;
 }
-.hero__proof-sep { opacity: .5; }
+/* Le point separateur etait un element a lui seul : quand la ligne passait
+   a deux, il restait orphelin en bout de premiere ligne. Rendu solidaire du
+   texte qui le suit, il ne peut plus se detacher, quelle que soit la largeur. */
+.hero__proof-sep { display: none; }
 .hero__proof-txt { color: rgba(255,255,255,.88); }
+.hero__proof-txt::before { content: "· "; opacity: .5; }
 @media (min-width: 600px) { .hero__proof { padding-right: 200px; } }
 /* Sous 600 px, réserver de la largeur ne suffit plus : la phrase passe
    sur deux lignes et redescend sur le bouton (mesuré à 375 px — bas de
