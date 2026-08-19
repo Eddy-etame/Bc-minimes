@@ -137,7 +137,7 @@ export const DISCIPLINES = [
     tag: "Travail technique",
     teaser: "Le travail aux pattes, à l’intérieur du cours d’anglaise.",
     desc: "Face au coach, sur les pattes : précision, vitesse, lecture. Le vrai boulot de boxeur, celui qu’on ne triche pas.",
-    img: "/assets/img/photos/coach-garde-1200.webp",
+    img: "/assets/img/photos/coach-garde-v2-1200.webp",
     for: "Ceux qui veulent le geste juste, pas juste la sueur.",
     points: [
       "Pas de créneau à part : ça vit dans le cours d’anglaise",
