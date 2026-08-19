@@ -1,10 +1,10 @@
 /* =====================================================================
    MINIMES · home.js (v2) — kinetic accueil
    ===================================================================== */
-import { STATS, VALUES, AUDIENCES, TARIFS } from "./data-accueil.js?v=b34";
-import { DISCIPLINES } from "./data-disciplines.js?v=b34";
-import { initHero } from "./hero.js?v=b34";
-import { initRounds } from "./rounds.js?v=b34";
+import { STATS, VALUES, AUDIENCES, TARIFS } from "./data-accueil.js?v=b35";
+import { DISCIPLINES } from "./data-disciplines.js?v=b35";
+import { initHero } from "./hero.js?v=b35";
+import { initRounds } from "./rounds.js?v=b35";
 
 const gsap = window.gsap;
 const ScrollTrigger = window.ScrollTrigger;

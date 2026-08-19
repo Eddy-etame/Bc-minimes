@@ -26,7 +26,9 @@
    laisser croire que tout est au planning — et le badge « N créneaux »
    est DÉRIVÉ de PLANNING, donc il ne peut pas se désynchroniser.
 
-   `noPhoto: true` = aucune photo du pool ne montre ce geste. Même loi
+   `noPhoto: true` = aucune photo du pool ne montre ce geste. Plus aucune
+   discipline ne l’invoque depuis que les pieds-poings ont leur propre prise
+   de vue ; le mecanisme reste la pour la prochaine. Même loi
    que le roster des coachs : on assume l’absence avec une tuile dessinée
    plutôt que d’illustrer des pieds-poings avec une photo de poings. */
 export const DISCIPLINES = [
@@ -117,15 +119,13 @@ export const DISCIPLINES = [
     name: "Boxe Pieds-Poings",
     tag: "L’autre garde",
     teaser: "Le mercredi soir, on boxe aussi avec les jambes.",
-    noPhoto: true,
     desc: "Une fois par semaine, la garde change et les jambes entrent dans l’histoire. Même exigence de geste que l’anglaise, deux fois plus de gestes à apprendre.",
-    img: "/assets/img/photos/shadow-graff-1200.webp",
+    img: "/assets/img/photos/pieds-poings-1200.webp",
     for: "Tous niveaux — y compris ceux qui n’ont jamais lancé un coup de pied.",
     points: [
       "Mercredi 19h40 à 21h, avec David",
       "Le seul créneau pieds-poings de la semaine",
       "La garde et le placement d’abord, la puissance après",
-      "Aucune photo de ce cours ici — on ne t’en montrera pas une fausse",
     ],
   },
   {
