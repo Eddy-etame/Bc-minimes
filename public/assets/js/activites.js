@@ -14,9 +14,9 @@
       disciplines qui n’ONT pas de créneau (paos, cross, cardio), il ne
       ment plus : il le dit et renvoie vers l’accès libre.
    ===================================================================== */
-import { LINKS, CTA, CTA_HREF } from "./data.js?v=b42";
-import { DISCIPLINES } from "./data-disciplines.js?v=b42";
-import { PLANNING } from "./data-planning.js?v=b42";
+import { LINKS, CTA, CTA_HREF } from "./data.js?v=b43";
+import { DISCIPLINES } from "./data-disciplines.js?v=b43";
+import { PLANNING } from "./data-planning.js?v=b43";
 
 const $ = (s, r = document) => r.querySelector(s);
 
@@ -26,7 +26,11 @@ const slotCount = (d) => (d.plan ? PLANNING.filter((s) => s.disc === d.plan).len
 
 function badgeOf(d) {
   const n = slotCount(d);
-  if (n > 0) return `<span class="act__slots"><b>${n}</b> créneau${n > 1 ? "x" : ""} par semaine</span>`;
+  /* Le compte de créneaux ne s’affiche plus : le détail vit dans les points
+     de la fiche et dans le planning, où il est daté et heure par heure.
+     slotCount reste calculé — il sert encore à distinguer une discipline qui
+     a des créneaux d’une qui vit en accès libre. */
+  if (n > 0) return "";
   /* état honnête : pas un placeholder, une information */
   return `<span class="act__slots act__slots--free">${d.freeNote}</span>`;
 }

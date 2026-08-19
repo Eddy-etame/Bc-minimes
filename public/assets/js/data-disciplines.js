@@ -159,6 +159,7 @@ export const DISCIPLINES = [
     img: "/assets/img/photos/cross-rack-1200.webp",
     for: "Ceux qui veulent la caisse d’un boxeur.",
     points: [
+      "Coach Clément s’occupe de vous",
       "Pas de créneau : la zone prépa est à toi en accès libre",
       "10h–12h et 13h20–18h, du lundi au samedi",
       "À l’étage, au-dessus des rings",
