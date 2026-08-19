@@ -72,7 +72,7 @@ export const DISCIPLINES = [
     tag: "Dès 3 ans",
     teaser: "Le mercredi et le samedi appartiennent aux enfants.",
     desc: "De la Baby Boxe 3/6 aux jeunes compétiteurs, la règle est fédérale et stricte : on touche, on ne frappe pas. Ils arrivent en courant partout, ils repartent en marchant droit.",
-    img: "/assets/img/photos/ecole-enfant-1200.webp",
+    img: "/assets/img/photos/ecole-medailles-1200.webp",
     for: "Les enfants et les ados, du jeu au ring.",
     points: [
       "Baby Boxe 3/6 ans, le samedi à 14h15",

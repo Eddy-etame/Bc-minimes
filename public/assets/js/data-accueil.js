@@ -22,7 +22,7 @@ export const VALUES = [
 export const AUDIENCES = [
   { t: "Les débutants", tag: "Première fois", d: "Jamais mis un gant ? C’est exactement pour toi. Le premier jour, tout le monde frappe à côté du sac — Mehdi te reprend le geste dix fois s’il le faut, et il ne lâche pas avant que tu l’aies rentré.", img: "/assets/img/photos/ballon-vitesse-1200.webp" },
   { t: "Les femmes", tag: "Boxing Lady", d: "Boxing Lady le lundi avec Chloé, le mercredi avec David — 18h30, la salle est à elles. Beaucoup y débutent, certaines rejoignent ensuite les cours mixtes. Les deux sont très bien.", img: "/assets/img/photos/lady-garde-1200.webp" },
-  { t: "Les enfants", tag: "Dès 3 ans", d: "Baby Boxe dès 3 ans, éducative 7/11, ados 12/16 : on touche, on ne frappe pas — règle fédérale. De la motricité, du respect, et toute cette énergie qui trouve enfin où aller.", img: "/assets/img/photos/ecole-enfant-1200.webp" },
+  { t: "Les enfants", tag: "Dès 3 ans", d: "Baby Boxe dès 3 ans, éducative 7/11, ados 12/16 : on touche, on ne frappe pas — règle fédérale. De la motricité, du respect, et toute cette énergie qui trouve enfin où aller.", img: "/assets/img/photos/ecole-medailles-1200.webp" },
 ];
 /* L’offre — teaser accueil (3 cartes). Le détail vit sur /tarifs/ (PROMOS).
    Essai + enfants pointent vers box-plus ; la carte saison reste interne → /tarifs/. */
