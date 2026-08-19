@@ -39,7 +39,7 @@ export const DISCIPLINES = [
     tag: "La spécialité maison",
     teaser: "Le geste de base, repris jusqu’à ce qu’il tienne tout seul.",
     desc: "Le noble art, à la source. Jab, esquive, jeu de jambes — sept créneaux par semaine, midi et soir. Le loisir, ici, c’est la vraie boxe, à ton rythme — et aucun coup à recevoir tant que tu ne le demandes pas.",
-    img: "/assets/img/photos/cours-sacs-1200.webp",
+    img: "/assets/img/photos/cours-assaut-1200.webp",
     for: "Du grand débutant au boxeur expérimenté.",
     points: [
       "Le midi de 12h40 à 13h20 : mardi, mercredi, jeudi",

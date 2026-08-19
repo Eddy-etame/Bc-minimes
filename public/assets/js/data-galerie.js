@@ -62,7 +62,7 @@ export const GALLERY = {
      Google classe mal une image dont il ignore la taille. */
   shots: [
     { img: "/assets/img/photos/salle-plongee-1200.webp", w: 768, h: 512, label: "Entre les cordes", alt: "Le ring vu depuis le coin, cordes tendues et sacs de frappe en arrière-plan — Boxing Center, Toulouse.", zone: "salle", big: true },
-    { img: "/assets/img/photos/cours-sacs-1200.webp", w: 768, h: 512, label: "Sur le ring", alt: "Cours de boxe anglaise sur le ring : deux boxeurs gantés, garde haute, en round d'assaut — Boxing Center, Toulouse.", zone: "anglaise" },
+    { img: "/assets/img/photos/cours-assaut-1200.webp", w: 1200, h: 800, label: "Le round d’assaut", alt: "Cours de boxe anglaise : deux boxeurs gantés, garde haute, en round d'assaut devant le ring — Boxing Center, Toulouse.", zone: "anglaise" },
     { img: "/assets/img/photos/sparring-graff-1200.webp", w: 768, h: 512, label: "Le noble art", alt: "Travail de déplacements et de garde en boxe anglaise, gants et casque de protection — Boxing Center, Toulouse.", zone: "anglaise" },
     { img: "/assets/img/photos/ecole-medailles-1200.webp", w: 1200, h: 800, label: "Les médailles", alt: "Boxe éducative : deux jeunes boxeuses du club, médaille aux dents, en maillot Boxing Center après une compétition — Toulouse.", zone: "educative", big: true },
     { img: "/assets/img/photos/ring-cours-rouge-1200.webp", w: 768, h: 512, label: "Le sparring", alt: "Sparring encadré sur le ring, casque et protège-dents, le coach au bord des cordes — Boxing Center, Toulouse.", zone: "anglaise" },
