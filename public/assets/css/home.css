@@ -145,7 +145,10 @@
 .disc-list { border-top: 2px solid var(--mark); }
 .disc { position: relative; isolation: isolate; overflow: hidden; border-bottom: 1px solid var(--line); }
 .disc__bg { position: absolute; inset: 0; z-index: 0; opacity: 0; transform: scale(1.12); transition: opacity .55s var(--ease), transform .9s var(--ease-out); }
-.disc__bg img { filter: saturate(1.02) contrast(1.04) brightness(.72); object-position: center 28%; }
+/* 28 % convient aux photos larges du pool. Une prise serrée (un buste qui
+   remplit le cadre) n’y survit pas : dans une bande de 4,7:1 on ne voit plus
+   qu’un menton coupé. `--disc-focus` laisse la donnée corriger au cas par cas. */
+.disc__bg img { filter: saturate(1.02) contrast(1.04) brightness(.72); object-position: center var(--disc-focus, 28%); }
 .disc__bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.82) 20%, rgba(0,0,0,.25) 100%); }
 .disc:hover .disc__bg, .disc:focus-within .disc__bg { opacity: 1; transform: scale(1); }
 /* discipline sans photo (aucune image du pool ne montre ce geste) : le

@@ -1,10 +1,10 @@
 /* =====================================================================
    MINIMES · home.js (v2) — kinetic accueil
    ===================================================================== */
-import { STATS, VALUES, AUDIENCES, TARIFS } from "./data-accueil.js?v=b35";
-import { DISCIPLINES } from "./data-disciplines.js?v=b35";
-import { initHero } from "./hero.js?v=b35";
-import { initRounds } from "./rounds.js?v=b35";
+import { STATS, VALUES, AUDIENCES, TARIFS } from "./data-accueil.js?v=b36";
+import { DISCIPLINES } from "./data-disciplines.js?v=b36";
+import { initHero } from "./hero.js?v=b36";
+import { initRounds } from "./rounds.js?v=b36";
 
 const gsap = window.gsap;
 const ScrollTrigger = window.ScrollTrigger;
@@ -55,7 +55,7 @@ function renderDisciplines() {
   if (!$("#disciplines")) return;
   $("#disciplines").innerHTML = DISCIPLINES.map(
     (d, i) => `<div class="disc${d.img ? "" : " disc--nobg"}" data-key="${d.key}" tabindex="0">
-      ${d.img ? `<div class="disc__bg media" data-img="${d.img}" aria-hidden="true"></div>` : ""}
+      ${d.img ? `<div class="disc__bg media"${d.focus ? ` style="--disc-focus:${d.focus}"` : ""} data-img="${d.img}" aria-hidden="true"></div>` : ""}
       <div class="disc__row">
         <span class="disc__idx">${String(i + 1).padStart(2, "0")}</span>
         <span class="disc__name">${d.name}</span>

@@ -88,7 +88,7 @@ export const DISCIPLINES = [
     tag: "100 % féminin",
     teaser: "Entre femmes, le lundi et le mercredi soir.",
     desc: "Deux soirs, une bande, et le sac qui prend tout. Chloé le lundi, David le mercredi — entre femmes, avec un vrai apprentissage de la technique. Beaucoup y débutent ; certaines passent ensuite en mixte. Les deux sont très bien.",
-    img: "/assets/img/photos/lady-sac-1200.webp",
+    img: "/assets/img/photos/lady-garde-1200.webp",
     for: "Les femmes, débutantes comme habituées.",
     points: [
       "Lundi 18h30 avec Chloé, mercredi 18h30 avec David",
@@ -121,6 +121,8 @@ export const DISCIPLINES = [
     teaser: "Le mercredi soir, on boxe aussi avec les jambes.",
     desc: "Une fois par semaine, la garde change et les jambes entrent dans l’histoire. Même exigence de geste que l’anglaise, deux fois plus de gestes à apprendre.",
     img: "/assets/img/photos/pieds-poings-1200.webp",
+    /* prise serrée : à 28 % la bande large ne montrait qu’un menton coupé. */
+    focus: "45%",
     for: "Tous niveaux — y compris ceux qui n’ont jamais lancé un coup de pied.",
     points: [
       "Mercredi 19h40 à 21h, avec David",
