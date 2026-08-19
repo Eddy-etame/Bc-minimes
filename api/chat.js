@@ -26,7 +26,7 @@ const STATIC_INFO = `- Boxing Center Minimes : salle historique du groupe Boxing
 - Horaires : du lundi au samedi, 10h00 – 21h30. Fermé le dimanche.
 - Tarifs (dans l’ordre où on les propose) : offre RENTRÉE 29€ PAR PERSONNE pour 4 semaines illimitées (au lieu de 44€) ; saison complète 259€ les 12 mois payable en 4× sans frais (au lieu de 400€) ; école 295€ l’année t-shirt du club inclus, Baby Boxe 250€ ; séance d’essai 10€ EN DERNIER.
 - Disciplines : boxe anglaise (loisirs et compétiteurs), boxe éducative dès 3 ans (Baby Boxe 3/6, enfants 7/11, ados 12/16), Boxing Lady 100 % féminin, Boxing camp, boxe pieds-poings, PAOS et pattes d’ours, cross training et cardio boxing en accès libre.
-- Coachs : Mehdi B (coach principal, anglaise, école, compétiteurs, camp, sparring), Chloé (Boxing Lady du lundi), David (Boxing Lady du mercredi et pieds-poings), Clément (Boxing camp mardi et jeudi).
+- Coachs : Mehdi B (coach principal, anglaise, école, compétiteurs, camp, sparring), Chloé et David (Boxing Lady, pieds-poings), Clément (Boxing camp). Ne JAMAIS dire quel coach tient quel créneau ni quel jour : renvoyer vers le planning.
 - Planning : anglaise loisirs le midi 12h40 (mardi, mercredi, jeudi) et le soir 19h40 (lundi, mardi, jeudi, vendredi) ; compétiteurs 18h (lundi, mardi, jeudi, vendredi) ; Boxing Lady lundi et mercredi 18h30 ; Boxing camp lundi et vendredi 12h40, mardi et jeudi 18h30, samedi 11h ; pieds-poings mercredi 19h40 ; l’école mercredi et samedi après-midi ; open sparring samedi 18h30.`;
 
 /** Le bloc d’infos construit depuis le contenu éditable du backoffice. */
@@ -162,13 +162,13 @@ export const KB = [
   { re: /adresse|\boù\b|(?:c['’]est|vous [êe]tes|se trouve|situ[ée]e?)\s*o[ùu]|o[ùu]\s*(?:est|se|vous|[êe]tes)|situ[ée]e?\b|acc[èe]s|m[ée]tro|parking|comment venir|\bplan\b|\brue\b|barri[èe]re/i,
     a: "12 rue de Fenouillet, 31200 Toulouse — quartier des Minimes, Barrière de Paris. Métro ligne B, station Barrière de Paris, 3 minutes à pied. Rocade sortie 31, ou bus 70 / 27 arrêt Minimes-Roquelaine." },
   { re: /enfant|gamin|fils|fille|baby|[ée]ducative|ado|3 ans|7 ans|\b(?:mon|ma) (?:gosse|petit)/i,
-    a: "L’école commence dès 3 ans : Baby Boxe 3/6 ans le samedi à 14h15, enfants 7/11 à 15h, ados 12/16 à 16h, jeunes compétiteurs à 17h — le mercredi et le samedi. C’est Mehdi B qui les tient, du premier gant jusqu’au ring. 250€ l’année pour la Baby Boxe, 295€ au-delà, t-shirt du club inclus." },
+    a: "L’école commence dès 3 ans : Baby Boxe 3/6 ans le samedi à 14h15, enfants 7/11 à 15h, ados 12/16 à 16h, jeunes compétiteurs à 17h — le mercredi et le samedi. C’est Mehdi B qui tient l’école, du premier gant jusqu’au ring. 250€ l’année pour la Baby Boxe, 295€ au-delà, t-shirt du club inclus." },
   { re: /femme|lady|f[ée]minin|entre filles/i,
-    a: "Le Boxing Lady est 100 % féminin : lundi 18h30 avec Chloé, mercredi 18h30 avec David, une heure pleine. Le lundi, le second espace de la salle est rien que pour elles. Et tous les autres cours te sont ouverts." },
+    a: "Le Boxing Lady est 100 % féminin : lundi et mercredi 18h30, une heure pleine. Le lundi, le second espace de la salle est rien que pour elles. Et tous les autres cours te sont ouverts." },
   { re: /discipline|cours|anglaise|pieds.?poings|camp|sparring|cardio|cross|paos|comp[ée]tit|mma|kick/i,
     a: "La spécialité maison, c’est la boxe anglaise : loisirs le midi et le soir, compétiteurs à 18h quatre soirs par semaine, open sparring le samedi 18h30. À côté : Boxing Lady, Boxing camp, pieds-poings le mercredi, l’école dès 3 ans, plus le cross training et le cardio boxing en accès libre." },
   { re: /coach|entra[îi]neur|prof|encadr|[ée]quipe|mehdi|chlo|david|hicham/i,
-    a: "Mehdi B tient la maison : anglaise, école, compétiteurs, boxing camp, sparring — presque tous les créneaux de la semaine. Chloé mène le Boxing Lady du lundi, David celui du mercredi puis les pieds-poings, et Clément le boxing camp du mardi et du jeudi." },
+    a: "Mehdi B tient la maison : anglaise, école, compétiteurs, boxing camp, sparring. Chloé et David mènent le Boxing Lady, David les pieds-poings, Clément le boxing camp. Pour savoir qui encadre quel créneau, le mieux est de passer ou d’appeler la salle." },
   { re: /d[ée]butant|jamais box|niveau|peur|forme|condition/i,
     a: "Tu ne seras ni le premier ni le seul à arriver sans avoir jamais mis un gant. Le coach te met en garde, te corrige, recommence — dix fois s’il le faut. Personne ne monte sur le ring sans en avoir envie : ça se demande, ça ne s’impose pas. Le déroulé complet d’une première séance est écrit noir sur blanc. [boutons: premiere, offre]" },
   { re: /salle|ring|sac|mat[ée]riel|[ée]quipement|vestiaire|[ée]tage|histoire|champion|pro\b/i,

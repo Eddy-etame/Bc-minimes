@@ -4,18 +4,13 @@
    en avant (Mehdi, photo prouvée), les autres en tuiles nom N&B.
    Loi §0.10 : nom ≡ photo, jamais de stock, jamais de croisement.
    ===================================================================== */
-import { COACHES, LINKS, CTA, CTA_HREF } from "./data.js?v=b47";
-import { PLANNING, PLANNING_DAYS } from "./data-planning.js?v=b47";
+import { COACHES, LINKS, CTA, CTA_HREF } from "./data.js?v=b48";
 
 const $ = (s, r = document) => r.querySelector(s);
 
-/* Le nom du coach dans PLANNING est la clé de jointure. `weekOf` compte
-   ses créneaux et `linkOf` construit le lien filtré : « Ses créneaux »
-   livre enfin SES créneaux, et pas la semaine entière comme avant. */
-const weekOf = (name) => PLANNING.filter((s) => s.coach === name).length;
-const linkOf = (name) => `/plannings/?coach=${encodeURIComponent(name)}`;
-/* les jours où il/elle est là — dérivés, jamais tapés */
-const daysOf = (name) => [...new Set(PLANNING.filter((s) => s.coach === name).map((s) => s.d))];
+/* Le site ne publie plus quel coach tient quel créneau : les aides qui
+   comptaient et liaient ses heures (weekOf, linkOf, daysOf) sont retirées
+   avec la grille qu’elles servaient. */
 
 function renderPillar() {
   const el = $("#pillar");
@@ -33,7 +28,7 @@ function renderPillar() {
       <p class="pillar__bio">${c.bio}</p>
       <div class="pillar__cta">
         <a class="btn btn--primary" data-magnetic href="${CTA_HREF.primary}"><span>${CTA.primary}</span></a>
-        <a class="btn btn--ghost" data-magnetic href="${linkOf(c.planName)}"><span>Ses créneaux</span></a>
+        <a class="btn btn--ghost" data-magnetic href="/plannings/"><span>Voir le planning</span></a>
       </div>
     </div>`;
 }
@@ -54,46 +49,9 @@ function renderRoster() {
     .join("");
 }
 
-/* ---------------------- QUI EST LÀ, QUEL JOUR ----------------------
-   La page répondait « qui coache ici » mais pas « il est là quand ? ».
-   Tout est DÉRIVÉ de PLANNING : l’ordre des jours, les noms présents, le
-   nombre de créneaux. Aucun nom, aucun jour tapé dans le markup (§0.10) —
-   si Clément prend le vendredi dans data.js, il apparaît ici tout seul.
-
-   L’ordre à l’intérieur d’un jour n’est PAS alphabétique : c’est l’ordre
-   d’entrée sur le parquet (premier créneau du jour). Le premier nom de la
-   colonne est donc celui que tu croises si tu arrives à l’ouverture. */
-function renderWeek() {
-  const box = document.getElementById("cweek");
-  if (!box) return;
-  const mins = (h) => { const [a, b] = String(h).split("h"); return Number(a) * 60 + Number(b || 0); };
-
-  box.innerHTML = PLANNING_DAYS.map((day) => {
-    const slots = PLANNING.filter((s) => s.d === day).sort((a, b) => mins(a.h) - mins(b.h));
-    const order = [];
-    slots.forEach((s) => { if (!order.includes(s.coach)) order.push(s.coach); });
-    const lines = order
-      .map((name) => {
-        const n = slots.filter((s) => s.coach === name).length;
-        const href = `/plannings/?jour=${encodeURIComponent(day.toLowerCase())}&coach=${encodeURIComponent(name)}`;
-        return `<li><a class="cwd__a" href="${href}">
-          <span class="cwd__n">${name}</span>
-          <span class="cwd__c">${n} créneau${n > 1 ? "x" : ""}</span>
-          <span class="sr-only">— voir le ${day.toLowerCase()} de ${name} dans la grille</span>
-        </a></li>`;
-      })
-      .join("");
-    return `<div class="cwd">
-      <h3 class="cwd__h">${day}<i>${slots.length} cours</i></h3>
-      <ul class="cwd__list">${lines}</ul>
-    </div>`;
-  }).join("");
-}
-
 function boot() {
   renderPillar();
   renderRoster();
-  renderWeek();
 
   window.BC.media(document);
   window.BC.reveal(document);

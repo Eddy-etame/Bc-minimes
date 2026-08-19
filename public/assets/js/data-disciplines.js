@@ -44,7 +44,7 @@ export const DISCIPLINES = [
     points: [
       "Le midi de 12h40 à 13h20 : mardi, mercredi, jeudi",
       "Le soir de 19h40 à 21h : lundi, mardi, jeudi, vendredi",
-      "Sept créneaux loisirs par semaine, tous tenus par Mehdi",
+      "Sept créneaux loisirs par semaine, midi et soir",
       "Gants et protections prêtés le temps de l’essai",
       "Le sparring ne s’impose jamais — il se demande",
     ],
@@ -87,11 +87,11 @@ export const DISCIPLINES = [
     name: "Boxing Lady",
     tag: "100 % féminin",
     teaser: "Entre femmes, le lundi et le mercredi soir.",
-    desc: "Deux soirs, une bande, et le sac qui prend tout. Chloé le lundi, David le mercredi — entre femmes, avec un vrai apprentissage de la technique. Beaucoup y débutent ; certaines passent ensuite en mixte. Les deux sont très bien.",
+    desc: "Deux soirs, une bande, et le sac qui prend tout. Le lundi et le mercredi — entre femmes, avec un vrai apprentissage de la technique. Beaucoup y débutent ; certaines passent ensuite en mixte. Les deux sont très bien.",
     img: "/assets/img/photos/lady-garde-1200.webp",
     for: "Les femmes, débutantes comme habituées.",
     points: [
-      "Lundi 18h30 avec Chloé, mercredi 18h30 avec David",
+      "Lundi et mercredi, 18h30",
       "Une heure pleine, 18h30 à 19h30",
       "Sac, technique, cardio — la boxe sans le cliché",
       "Tu viens comme tu es, on te prête le reste",
@@ -108,8 +108,8 @@ export const DISCIPLINES = [
     for: "Les adultes, tous niveaux — aucune technique exigée.",
     points: [
       "Lundi et vendredi à 12h40, sur la pause déjeuner",
-      "Mardi et jeudi à 18h30 avec Clément",
-      "Samedi 11h à 12h avec Mehdi",
+      "Mardi et jeudi à 18h30",
+      "Samedi de 11h à 12h",
       "Le seul cours où tu peux venir sans rien savoir faire",
     ],
   },
@@ -126,7 +126,7 @@ export const DISCIPLINES = [
     focus: "0%",
     for: "Tous niveaux — y compris ceux qui n’ont jamais lancé un coup de pied.",
     points: [
-      "Mercredi 19h40 à 21h, avec David",
+      "Mercredi de 19h40 à 21h",
       "Le seul créneau pieds-poings de la semaine",
       "La garde et le placement d’abord, la puissance après",
     ],

@@ -16,18 +16,18 @@
    1. L’ACCÈS LIBRE — la moitié du poster — n’apparaissait nulle part.
    2. Les liens « voir les créneaux » des autres pages arrivaient ici sans
       filtre : on promettait « ses créneaux » et on livrait la semaine
-      entière. La grille lit maintenant ?disc= / ?coach= / ?jour= et
+      entière. La grille lit maintenant ?disc= / ?jour= et
       écrit l’état dans l’URL (partageable, revenable au bouton Retour).
    3. Rien ne disait où on en est MAINTENANT dans la semaine.
    ===================================================================== */
-import { SEASON_LABEL } from "./data.js?v=b47";
+import { SEASON_LABEL } from "./data.js?v=b48";
 import {
   PLANNING,
   PLANNING_FREE,
   PLANNING_DAYS,
   PLANNING_DISCIPLINES,
   PLANNING_KEYS,
-} from "./data-planning.js?v=b47";
+} from "./data-planning.js?v=b48";
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -41,11 +41,11 @@ const mins = (h) => {
 };
 
 /* état des trois filtres — "all" = tout */
-const state = { d: "all", disc: "all", coach: "all" };
+const state = { d: "all", disc: "all" };
 
-/* les coachs viennent du planning lui-même — jamais d’une liste parallèle
-   qui se désynchronise */
-const COACHES_IN_PLANNING = [...new Set(PLANNING.map((s) => s.coach))];
+/* Le nom du coach ne sort plus du planning : ni sur les créneaux, ni en
+   filtre, ni dans l’URL. La donnée reste dans data-planning.js (elle sert
+   à l’exploitation), elle n’est simplement plus publiée. */
 
 /* « Accès libre » est un filtre à part entière côté page, mais PAS une
    discipline dans data.js : ce n’est pas un cours, il n’a pas de coach.
@@ -55,28 +55,23 @@ const FILTER_DISCIPLINES = [...PLANNING_DISCIPLINES, { key: "libre", label: "Acc
 const labelOf = (key) => (FILTER_DISCIPLINES.find((d) => d.key === key) || {}).label || key;
 
 /* --------------------------- URL ↔ ÉTAT ----------------------------
-   Les valeurs sont validées contre les données : un ?coach=Dupont
+   Les valeurs sont validées contre les données : un ?disc=Dupont
    inventé (ou périmé) ne doit pas vider la grille en silence, il doit
    être ignoré comme s’il n’était pas là. */
 function readURL() {
   const q = new URLSearchParams(location.search);
   const day = q.get("jour");
   const disc = q.get("disc");
-  const coach = q.get("coach");
   if (day && PLANNING_DAYS.some((d) => d.toLowerCase() === day.toLowerCase())) {
     state.d = PLANNING_DAYS.find((d) => d.toLowerCase() === day.toLowerCase());
   }
   if (disc && FILTER_DISCIPLINES.some((d) => d.key === disc)) state.disc = disc;
-  if (coach && COACHES_IN_PLANNING.some((c) => c.toLowerCase() === coach.toLowerCase())) {
-    state.coach = COACHES_IN_PLANNING.find((c) => c.toLowerCase() === coach.toLowerCase());
-  }
 }
 
 function writeURL() {
   const q = new URLSearchParams();
   if (state.d !== "all") q.set("jour", state.d.toLowerCase());
   if (state.disc !== "all") q.set("disc", state.disc);
-  if (state.coach !== "all") q.set("coach", state.coach);
   const qs = q.toString();
   history.replaceState(null, "", qs ? `?${qs}` : location.pathname);
 }
@@ -106,9 +101,6 @@ function renderFilters() {
       <span class="pl-fgroup__l">Discipline</span>
       <div class="pl-fgroup__row">${chipRow("disc", FILTER_DISCIPLINES.map((d) => ({ val: d.key, label: d.label })), "Toutes")}</div>
     </div>
-    <div class="pl-fgroup" role="radiogroup" aria-label="Filtrer par coach">
-      <span class="pl-fgroup__l">Coach</span>
-      <div class="pl-fgroup__row">${chipRow("coach", COACHES_IN_PLANNING.map((c) => ({ val: c, label: c })), "Tous")}</div>
     </div>`;
 }
 
@@ -121,17 +113,15 @@ function renderFilters() {
 
    Les bandes d’ACCÈS LIBRE sont mêlées aux cours et triées avec eux : sur
    le poster elles occupent la moitié de la grille, et c’est l’info qui
-   fait venir la moitié des adhérents. Elles ne portent pas de coach, donc
-   le filtre coach les masque — c’est le comportement juste : « les
-   créneaux de Chloé » ne contient pas l’accès libre du jeudi. */
+   fait venir la moitié des adhérents. */
 function slotHTML(s) {
   const free = s.free === true;
   const dur = `${s.h}<i>–${s.end}</i>`;
   const meta = free
     ? `<span class="pl-slot__m">Sans réservation${s.space ? ` · Espace ${s.space}` : ""}</span>`
-    : `<span class="pl-slot__m"><b>${s.coach}</b> · ${s.age}${s.space ? ` · Espace ${s.space}` : ""}</span>`;
+    : `<span class="pl-slot__m">${s.age}${s.space ? ` · Espace ${s.space}` : ""}</span>`;
   return `<li class="pl-slot${free ? " pl-slot--free" : ""}"
-      data-day="${s.d}" data-disc="${free ? "libre" : s.disc}" data-coach="${free ? "" : s.coach}"
+      data-day="${s.d}" data-disc="${free ? "libre" : s.disc}"
       data-start="${mins(s.h)}" data-end="${mins(s.end)}">
       <span class="pl-slot__h">${dur}</span>
       <span class="pl-slot__n">${free ? "Accès libre" : s.name}</span>
@@ -214,8 +204,7 @@ function markNow() {
 function matches(el, { ignoreDay = false } = {}) {
   return (
     (ignoreDay || state.d === "all" || el.dataset.day === state.d) &&
-    (state.disc === "all" || el.dataset.disc === state.disc) &&
-    (state.coach === "all" || el.dataset.coach === state.coach)
+    (state.disc === "all" || el.dataset.disc === state.disc)
   );
 }
 
@@ -264,7 +253,6 @@ function apply() {
   if (out) {
     const bits = [];
     if (state.disc !== "all") bits.push(labelOf(state.disc));
-    if (state.coach !== "all") bits.push(`avec ${state.coach}`);
     if (state.d !== "all") bits.push(state.d.toLowerCase());
     const cours = shown - shownFree;
     const parts = [];
@@ -278,7 +266,7 @@ function apply() {
 
   /* le bouton « tout voir » n’existe que quand il sert à quelque chose */
   const reset = $("#pl-reset");
-  if (reset) reset.hidden = state.d === "all" && state.disc === "all" && state.coach === "all";
+  if (reset) reset.hidden = state.d === "all" && state.disc === "all";
 
   writeURL();
   window.BC.refresh();
@@ -300,7 +288,7 @@ function initFilters() {
   const reset = $("#pl-reset");
   if (reset)
     reset.addEventListener("click", () => {
-      state.d = state.disc = state.coach = "all";
+      state.d = state.disc = "all";
       $$(".pl-chip").forEach((b) => {
         const on = b.dataset.val === "all";
         b.classList.toggle("is-on", on);
@@ -342,7 +330,7 @@ function renderWeek() {
   );
 }
 
-/* Le rail suit le filtre discipline/coach — pas le filtre jour, dont il
+/* Le rail suit le filtre discipline — pas le filtre jour, dont il
    est le sélecteur. « Mer · 6 cours » au-dessus d’un mercredi filtré à 2
    créneaux, c’est la même erreur que le bandeau, un cran plus haut :
    corrigée à la même source, le prédicat matches(). */

@@ -130,7 +130,7 @@
       "planName": "Mehdi",
       "role": "Coach principal",
       "tag": "Le patron de la maison",
-      "note": "Présent presque tous les créneaux de la semaine, du lundi au samedi."
+      "note": "Présent dans la salle du lundi au samedi."
     },
     "roster": [
       {
@@ -138,21 +138,21 @@
         "name": "Chloé",
         "planName": "Chloé",
         "role": "Boxing Lady",
-        "note": "Le Boxing Lady du lundi soir, de 18h30 à 19h30. Elle mène la bande et elle ne lâche rien."
+        "note": "Elle mène la bande du Boxing Lady, et elle ne lâche rien."
       },
       {
         "initials": "D",
         "name": "David",
         "planName": "David",
         "role": "Boxing Lady · Pieds-poings",
-        "note": "Le Lady du mercredi 18h30, puis les pieds-poings à 19h40 dans la foulée. Le geste propre, la garde haute."
+        "note": "Le Boxing Lady, puis les pieds-poings dans la foulée. Le geste propre, la garde haute."
       },
       {
         "initials": "C",
         "name": "Clément",
         "planName": "Clément",
         "role": "Boxing camp",
-        "note": "Le boxing camp du mardi et du jeudi, 18h30. Le cardio qui te construit une caisse."
+        "note": "Le boxing camp. Le cardio qui te construit une caisse."
       }
     ]
   },
@@ -426,7 +426,7 @@
     },
     {
       "q": "Il y a des cours pour les femmes ?",
-      "a": "Le Boxing Lady est 100 % féminin : lundi 18h30 avec Chloé, mercredi 18h30 avec David. Et tous les autres cours te sont ouverts."
+      "a": "Le Boxing Lady est 100 % féminin : lundi et mercredi, 18h30. Et tous les autres cours te sont ouverts."
     },
     {
       "q": "Quels sont les horaires ?",

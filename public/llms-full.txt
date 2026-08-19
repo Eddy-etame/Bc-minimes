@@ -25,7 +25,7 @@
 
 ### Boxe compétiteurs — 4 créneaux/semaine
 - Pour : les licenciés, et ceux que le coach juge prêts à le devenir.
-- 18h00–19h30 : lundi, mardi, jeudi, vendredi. Coach Mehdi
+- 18h00–19h30 : lundi, mardi, jeudi, vendredi.
 - Open sparring le samedi 18h30–19h30.
 - Lundi, mardi et jeudi, un second espace tourne en parallèle.
 
@@ -38,15 +38,15 @@
 
 ### Boxing Lady (100 % féminin) — 2 créneaux/semaine
 - Pour : les femmes, débutantes comme habituées.
-- Lundi 18h30–19h30 avec Chloé, mercredi 18h30–19h30 avec David.
+- Lundi et mercredi 18h30–19h30.
 - Sac, technique, cardio.
 
 ### Boxing camp — 5 créneaux/semaine
 - Pour : les adultes, tous niveaux, aucune technique exigée.
-- Lundi et vendredi 12h40–13h20 (Mehdi), mardi et jeudi 18h30–19h30 (Clément), samedi 11h00–12h00 (Mehdi).
+- Lundi et vendredi 12h40–13h20, mardi et jeudi 18h30–19h30, samedi 11h00–12h00.
 
 ### Boxe pieds-poings — 1 créneau/semaine
-- Mercredi 19h40–21h00 avec David. Tous niveaux.
+- Mercredi 19h40–21h00. Tous niveaux.
 - Aucune photo de ce cours n’est publiée : le pool photo n’en contient pas, et le site n’illustre pas des pieds-poings avec une image de boxe anglaise.
 
 ### PAOS & pattes d’ours — pas de créneau dédié
@@ -69,21 +69,12 @@
 
 ## Les coachs — https://bc-minimes.vercel.app/coachs/
 
-- Mehdi — coach principal. Disciplines : boxe anglaise, boxe éducative, compétiteurs, Baby Boxe, boxing camp, open sparring. 22 des 27 créneaux de la semaine, du lundi au samedi. Portrait vérifié en ligne.
-- Chloé — Boxing Lady, lundi 18h30–19h30 (1 créneau).
-- David — Boxing Lady mercredi 18h30–19h30 et boxe pieds-poings mercredi 19h40–21h00 (2 créneaux).
-- Clément — boxing camp, mardi et jeudi 18h30–19h30 (2 créneaux).
+- Mehdi — coach principal. Disciplines : boxe anglaise, boxe éducative, compétiteurs, Baby Boxe, boxing camp, open sparring. Portrait vérifié en ligne.
+- Chloé — Boxing Lady.
+- David — Boxing Lady et boxe pieds-poings.
+- Clément — boxing camp.
+- Le site ne publie pas quel coach encadre quel créneau.
 - Note : seul Mehdi a un portrait vérifié ; aucune photo n’est attribuée aux autres coachs.
-
-### Qui encadre, jour par jour (dérivé du planning)
-
-- Lundi (4 cours) : Mehdi (3 créneaux), Chloé (1).
-- Mardi (4 cours) : Mehdi (3), Clément (1).
-- Mercredi (6 cours) : Mehdi (4), David (2).
-- Jeudi (4 cours) : Mehdi (3), Clément (1).
-- Vendredi (3 cours) : Mehdi (3).
-- Samedi (6 cours) : Mehdi (6).
-- Dimanche : salle fermée, aucun encadrement.
 
 ## Galerie — https://bc-minimes.vercel.app/galerie/
 
@@ -97,57 +88,57 @@ Transcription du poster officiel de la saison (grille filtrable jour / disciplin
 
 ### Lundi
 - 10h00–12h00 · Accès libre
-- 12h40–13h20 · Boxing camp · Mehdi · adultes
+- 12h40–13h20 · Boxing camp · adultes
 - 13h20–18h00 · Accès libre
-- 18h00–19h30 · Boxe compétiteurs · Mehdi · licenciés (espace 1)
+- 18h00–19h30 · Boxe compétiteurs · licenciés (espace 1)
 - 18h00–19h30 · Accès libre (espace 2)
-- 18h30–19h30 · Boxing Lady · Chloé · 100 % féminin (espace 2)
-- 19h40–21h00 · Boxe anglaise (loisirs) · Mehdi · tous niveaux
+- 18h30–19h30 · Boxing Lady · 100 % féminin (espace 2)
+- 19h40–21h00 · Boxe anglaise (loisirs) · tous niveaux
 
 ### Mardi
 - 10h00–12h00 · Accès libre
-- 12h40–13h20 · Boxe anglaise (loisirs) · Mehdi · tous niveaux
+- 12h40–13h20 · Boxe anglaise (loisirs) · tous niveaux
 - 13h20–18h00 · Accès libre
-- 18h00–19h30 · Boxe compétiteurs · Mehdi · licenciés (espace 1)
+- 18h00–19h30 · Boxe compétiteurs · licenciés (espace 1)
 - 18h00–19h30 · Accès libre (espace 2)
-- 18h30–19h30 · Boxing camp · Clément · adultes (espace 2)
-- 19h40–21h00 · Boxe anglaise (loisirs) · Mehdi · tous niveaux
+- 18h30–19h30 · Boxing camp · adultes (espace 2)
+- 19h40–21h00 · Boxe anglaise (loisirs) · tous niveaux
 
 ### Mercredi
 - 10h00–12h00 · Accès libre
-- 12h40–13h20 · Boxe anglaise (loisirs) · Mehdi · tous niveaux
+- 12h40–13h20 · Boxe anglaise (loisirs) · tous niveaux
 - 13h20–15h00 · Accès libre
-- 15h00–16h00 · Boxe éducative enfants · Mehdi · 7/11 ans
-- 16h00–17h00 · Boxe éducative ados · Mehdi · 12/16 ans
-- 17h00–18h30 · Boxe éducative compétiteurs · Mehdi · jeunes licenciés
-- 18h30–19h30 · Boxing Lady · David · 100 % féminin
-- 19h40–21h00 · Boxe pieds-poings · David · tous niveaux
+- 15h00–16h00 · Boxe éducative enfants · 7/11 ans
+- 16h00–17h00 · Boxe éducative ados · 12/16 ans
+- 17h00–18h30 · Boxe éducative compétiteurs · jeunes licenciés
+- 18h30–19h30 · Boxing Lady · 100 % féminin
+- 19h40–21h00 · Boxe pieds-poings · tous niveaux
 
 ### Jeudi
 - 10h00–12h00 · Accès libre
-- 12h40–13h20 · Boxe anglaise (loisirs) · Mehdi · tous niveaux
+- 12h40–13h20 · Boxe anglaise (loisirs) · tous niveaux
 - 13h20–18h00 · Accès libre
-- 18h00–19h30 · Boxe compétiteurs · Mehdi · licenciés (espace 1)
+- 18h00–19h30 · Boxe compétiteurs · licenciés (espace 1)
 - 18h00–19h30 · Accès libre (espace 2)
-- 18h30–19h30 · Boxing camp · Clément · adultes (espace 2)
-- 19h40–21h00 · Boxe anglaise (loisirs) · Mehdi · tous niveaux
+- 18h30–19h30 · Boxing camp · adultes (espace 2)
+- 19h40–21h00 · Boxe anglaise (loisirs) · tous niveaux
 
 ### Vendredi
 - 10h00–12h00 · Accès libre
-- 12h40–13h20 · Boxing camp · Mehdi · adultes
+- 12h40–13h20 · Boxing camp · adultes
 - 13h20–18h00 · Accès libre
-- 18h00–19h30 · Boxe compétiteurs · Mehdi · licenciés
-- 19h40–21h00 · Boxe anglaise (loisirs) · Mehdi · tous niveaux
+- 18h00–19h30 · Boxe compétiteurs · licenciés
+- 19h40–21h00 · Boxe anglaise (loisirs) · tous niveaux
 
 ### Samedi
 - 10h00–12h00 · Accès libre
-- 11h00–12h00 · Boxing camp · Mehdi · adultes
+- 11h00–12h00 · Boxing camp · adultes
 - 12h40–14h00 · Accès libre
-- 14h15–15h00 · Baby Boxe · Mehdi · 3/6 ans
-- 15h00–16h00 · Boxe éducative enfants · Mehdi · 7/11 ans
-- 16h00–17h00 · Boxe éducative ados · Mehdi · 12/16 ans
-- 17h00–18h30 · Boxe éducative compétiteurs · Mehdi · jeunes licenciés
-- 18h30–19h30 · Open sparring · Mehdi · licenciés
+- 14h15–15h00 · Baby Boxe · 3/6 ans
+- 15h00–16h00 · Boxe éducative enfants · 7/11 ans
+- 16h00–17h00 · Boxe éducative ados · 12/16 ans
+- 17h00–18h30 · Boxe éducative compétiteurs · jeunes licenciés
+- 18h30–19h30 · Open sparring · licenciés
 - 19h40–21h00 · Accès libre
 
 ### Repères
@@ -162,7 +153,7 @@ Transcription du poster officiel de la saison (grille filtrable jour / disciplin
 Le déroulé réel d’une première venue, dans l’ordre :
 1. Arrivée : 12 rue de Fenouillet, métro ligne B station Barrière de Paris (3 min à pied). Venir un quart d’heure avant le créneau. Salle ouverte du lundi au samedi 10h–21h30. Téléphone si hésitation : 05 62 24 46 82.
 2. Annonce : il suffit de dire que c’est une première fois. Aucun formulaire, aucun dossier, aucun certificat médical avant l’essai.
-3. Accueil : un coach du créneau (Mehdi, Chloé, David ou Clément) prête les gants et les protections et fait le tour de la salle (plusieurs rings, 12 sacs, prépa physique à l’étage, vestiaires hommes/femmes).
+3. Accueil : le coach du créneau prête les gants et les protections et fait le tour de la salle (plusieurs rings, 12 sacs, prépa physique à l’étage, vestiaires hommes/femmes).
 4. Le cours : échauffement, puis un geste technique repris (garde, jab, déplacement), puis le sac. Le coach corrige et arrête avant la blessure.
 5. Sortie : rien à signer. Le retour se décide sur place ou pas du tout.
 
@@ -211,5 +202,5 @@ Créneaux conseillés pour une première : anglaise loisirs 19h40 (lundi, mardi,
 - Je n’ai jamais boxé. Je peux venir ? — Oui. Il y a des créneaux débutants et du cardio boxing sans aucun coup reçu.
 - Quelle est la spécialité de la salle des Minimes ? — La boxe anglaise. C’est la salle historique du groupe, le berceau de plusieurs boxeurs professionnels et amateurs — avec plusieurs rings dédiés.
 - Y a-t-il des cours pour les enfants ? — Oui, dès 3 ans : Baby Boxe 3/6, éducative 7/11, ados 12/16, puis compétiteurs. 250 € l’année pour la Baby Boxe, 295 € au-delà, t-shirt du club inclus.
-- Il y a des cours pour les femmes ? — Le Boxing Lady est 100 % féminin : lundi 18h30 avec Chloé, mercredi 18h30 avec David. Tous les autres cours sont ouverts.
+- Il y a des cours pour les femmes ? — Le Boxing Lady est 100 % féminin : lundi et mercredi 18h30. Tous les autres cours sont ouverts.
 - Quels sont les horaires ? — Du lundi au samedi, de 10h00 à 21h30. Fermé le dimanche.

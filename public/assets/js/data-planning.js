@@ -5,7 +5,7 @@
    pages (site.js en dépend), ces données-là n’en concernent que trois pages (planning, activités, coachs).
    Les embarquer partout coûtait leur poids sur chaque page pour rien.
    ===================================================================== */
-import { bcRegister } from "./data.js?v=b47";
+import { bcRegister } from "./data.js?v=b48";
 
 /* =====================================================================
    LE PLANNING — transcription du poster officiel SAISON 2026-2027
@@ -99,7 +99,7 @@ export const PLANNING_FREE = [
 export const PLANNING_KEYS = [
   { n: "01", t: "L’accès libre", d: "Tous les jours de 10h à 12h, et tout l’après-midi de 13h20 à 18h : rings et sacs en autonomie, sans réservation. Le mercredi ça s’arrête à 15h, l’école prend la salle." },
   { n: "02", t: "L’école, dès 3 ans", d: "Baby Boxe 3/6 ans le samedi à 14h15. Puis les 7/11 à 15h, les 12/16 à 16h, les jeunes compétiteurs à 17h — le mercredi et le samedi, la même montée d’âge." },
-  { n: "03", t: "Boxing Lady", d: "Lundi 18h30 avec Chloé, mercredi 18h30 avec David. Une heure, deux soirs, et le second espace de la salle rien que pour elles le lundi." },
+  { n: "03", t: "Boxing Lady", d: "Lundi et mercredi, 18h30. Une heure, deux soirs, et le second espace de la salle rien que pour elles le lundi." },
   { n: "04", t: "La boxe sérieuse", d: "Compétiteurs de 18h à 19h30 le lundi, le mardi, le jeudi et le vendredi. Open sparring le samedi 18h30. Et l’anglaise loisirs à 19h40, les quatre mêmes soirs." },
 ];
 

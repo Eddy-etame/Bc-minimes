@@ -214,7 +214,7 @@ export const FAQ = [
   { q: "Je n’ai jamais boxé. Je peux venir ?", a: "Oui. Tu ne seras ni le premier ni le seul — on a des créneaux débutants et du cardio boxing où tu ne prends aucun coup. Tu apprends le geste avant de le recevoir." },
   { q: "Quelle est la spécialité de la salle des Minimes ?", a: "La boxe anglaise. C’est la salle historique du groupe, le berceau de plus de 8 boxeurs professionnels et amateurs — avec plusieurs rings dédiés." },
   { q: "Y a-t-il des cours pour les enfants ?", a: "Oui, dès 3 ans. Baby Boxe pour les 3/6 ans (250€ l’année), boxe éducative 7/11, ados 12/16 puis compétiteurs (295€ l’année, t-shirt du club inclus) — du jeu au ring, un créneau par âge." },
-  { q: "Il y a des cours pour les femmes ?", a: "Le Boxing Lady est 100 % féminin : lundi 18h30 avec Chloé, mercredi 18h30 avec David. Et tous les autres cours te sont ouverts." },
+  { q: "Il y a des cours pour les femmes ?", a: "Le Boxing Lady est 100 % féminin : lundi et mercredi, 18h30. Et tous les autres cours te sont ouverts." },
   { q: "Quels sont les horaires ?", a: "Du lundi au samedi, de 10h00 à 21h30. Fermé le dimanche." },
 ];
 
@@ -242,12 +242,12 @@ export const COACHES = {
     bigname: "Mehdi",
     disciplines: ["Boxe anglaise", "Boxe éducative", "Compétiteurs", "Baby Boxe", "Boxing camp", "Open sparring"],
     bio: "Il tient l’école du premier gant de Baby Boxe jusqu’au sparring des compétiteurs. Anglaise loisirs, éducative, compétition, boxing camp : c’est lui qui trace la ligne. Le genre de coach qui te reprend le jab dix fois s’il le faut — et qui te lâche jamais avant que tu l’aies rentré.",
-    note: "Présent presque tous les créneaux de la semaine, du lundi au samedi.",
+    note: "Présent dans la salle du lundi au samedi.",
   },
   roster: [
-    { initials: "C", name: "Chloé", planName: "Chloé", role: "Boxing Lady", note: "Le Boxing Lady du lundi soir, de 18h30 à 19h30. Elle mène la bande et elle ne lâche rien." },
-    { initials: "D", name: "David", planName: "David", role: "Boxing Lady · Pieds-poings", note: "Le Lady du mercredi 18h30, puis les pieds-poings à 19h40 dans la foulée. Le geste propre, la garde haute." },
-    { initials: "C", name: "Clément", planName: "Clément", role: "Boxing camp", note: "Le boxing camp du mardi et du jeudi, 18h30. Le cardio qui te construit une caisse." },
+    { initials: "C", name: "Chloé", planName: "Chloé", role: "Boxing Lady", note: "Elle mène la bande du Boxing Lady, et elle ne lâche rien." },
+    { initials: "D", name: "David", planName: "David", role: "Boxing Lady · Pieds-poings", note: "Le Boxing Lady, puis les pieds-poings dans la foulée. Le geste propre, la garde haute." },
+    { initials: "C", name: "Clément", planName: "Clément", role: "Boxing camp", note: "Le boxing camp. Le cardio qui te construit une caisse." },
   ],
   /* honnêteté §0.10 : on assume publiquement l’absence de portrait */
   pending: "Chloé, David et Clément rejoindront le mur dès qu’on aura leur vrai portrait. Pas de photo d’illustration : ici, un visage = la bonne personne.",
