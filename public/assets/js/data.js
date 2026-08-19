@@ -52,7 +52,7 @@ export const SEASON_LABEL = "Saison 2026 — 2027";
    ⚠ Ne PAS inventer une 3e formulation. */
 export const CTA = {
   chrome: "Ma place · 29€",
-  primary: "Je prends ma place — 29€",
+  primary: "Je profite de l’offre à 29€",
   /* Le CTA de repli, celui qu'on propose à qui hésite encore. Il porte
      SON prix, pour qu'aucun bouton du site n'annonce un tarif différent
      de la page où il mène. */
@@ -114,7 +114,7 @@ export const PROMOS = {
       period: "· 4 semaines",
       feature: "Cours illimités, toutes disciplines, sans engagement",
       items: ["29€ par personne (au lieu de 44€)", "4 semaines de cours illimités", "Toutes les disciplines", "Encore mieux à deux — 29€ chacun"],
-      cta: "Je prends ma place — 29€",
+      cta: "Je profite de l’offre à 29€",
       href: "https://boutique.boxingcenter.fr/offre/29",
       tag: "La priorité",
       highlight: true,

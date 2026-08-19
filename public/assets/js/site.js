@@ -3,8 +3,8 @@
    window.BC = { reveal, magnetic, refresh, media, split, scramble,
                  initKinetics, faq, lenis, velocity }
    ===================================================================== */
-import { NAV, LINKS, SALLE, MEDIA, CTA, CTA_HREF, NETWORK, PROMOS } from "./data.js?v=b41";
-import { initPlaces } from "./places.js?v=b41";
+import { NAV, LINKS, SALLE, MEDIA, CTA, CTA_HREF, NETWORK, PROMOS } from "./data.js?v=b42";
+import { initPlaces } from "./places.js?v=b42";
 /* L’assistant : il promeut la pastille `.chatbot` (qui reste un lien tel:
    dans le HTML) en vraie conversation. Voir armChatbot() plus bas — le
    module ne descend QU’À l’intention de parler, jamais au premier rendu. */
@@ -527,7 +527,7 @@ function armChatbot() {
   const load = () => {
     if (state !== "idle") return pending;
     state = "loading";
-    pending = import("./chatbot.js?v=b41")
+    pending = import("./chatbot.js?v=b42")
       .then(() => { state = "ready"; })
       .catch(() => { state = "failed"; });
     return pending;
@@ -776,7 +776,7 @@ function promoOffers() {
        offre pour la LIRE. rentree.href vaut /offre/29, exactement comme la
        carte tarifs — la saison lisait déjà sa donnée, la rentrée l’écrasait. */
     href: rentree.href || CTA_HREF.primary,
-    cta: "Je prends ma place",
+    cta: "Je profite de l’offre",
   });
   if (saison) out.push({
     price: saison.price || "259€",

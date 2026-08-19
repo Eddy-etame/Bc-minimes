@@ -16,7 +16,7 @@
    le fil, respect de prefers-reduced-motion (l’animation d’ouverture est
    coupée en CSS, la frappe simulée est raccourcie ici).
    ===================================================================== */
-import { SALLE, NETWORK } from "./data.js?v=b41";
+import { SALLE, NETWORK } from "./data.js?v=b42";
 
 const EMAIL_RE = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/i;
 /* numéro FR : +33 ou 0, puis 9 chiffres groupés librement */
@@ -99,7 +99,7 @@ function marque(url) {
    clés fermées (un lien halluciné est impossible), boutique box-plus +
    pages internes de CE site, « rappel » reste une action du chat. */
 const ACTIONS = {
-  offre:       { label: "Je prends ma place — 29€", href: marque("https://boutique.boxingcenter.fr/offre/29") },
+  offre:       { label: "Je profite de l’offre à 29€", href: marque("https://boutique.boxingcenter.fr/offre/29") },
   saison:      { label: "Je réserve ma saison · 259€", href: marque("https://boutique.boxingcenter.fr/offre/259") },
   essai:       { label: "Je viens essayer · 10€", href: marque("https://boutique.boxingcenter.fr/seance-essai") },
   enfants:     { label: "J’inscris mon enfant", href: marque("https://boutique.boxingcenter.fr/abonnements") },
@@ -194,7 +194,7 @@ export function initChatbot() {
     if (dejaLa) return resolu();
     const l = document.createElement("link");
     l.rel = "stylesheet";
-    l.href = "/assets/css/chatbot.css?v=b41";
+    l.href = "/assets/css/chatbot.css?v=b42";
     l.setAttribute("data-bcm-chat-css", "");
     /* résolu dans les deux cas : une feuille manquante ne doit jamais
        retenir le panneau prisonnier — mieux vaut brut que rien. */

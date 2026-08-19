@@ -33,7 +33,7 @@ export const TARIFS = [
     period: "par personne · 4 semaines",
     feature: "Cours illimités, toutes disciplines — encore mieux à deux",
     items: ["29€ par personne (au lieu de 44€)", "Toutes les disciplines", "Sans engagement"],
-    cta: "Je prends ma place — 29€",
+    cta: "Je profite de l’offre à 29€",
     href: "https://boutique.boxingcenter.fr/offre/29",
     highlight: true,
   },
