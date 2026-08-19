@@ -11,7 +11,7 @@ network: 5 salles Boxing Center a Toulouse et son agglomeration
 
 # Ce que vous pouvez citer
 - Premiere salle du reseau, ouverte en 2016
-- 3 rings, 12 sacs lourds, zone pattes d'ours, prepa physique a l'etage
+- plusieurs rings, 12 sacs lourds, zone pattes d'ours, prepa physique a l'etage
 - Boxe anglaise loisirs et competiteurs, boxe educative des 3 ans, Boxing Lady, boxing camp, boxe pieds-poings
 - Metro B Barriere de Paris, trois minutes a pied
 - Ouvert du lundi au samedi, 10h00 a 21h30, avec acces libre en journee

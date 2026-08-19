@@ -134,7 +134,7 @@
 }
 
 /* La pastille de légende posée sur l'angle de la photo — elle donne
-   l'échelle et ancre la photo dans le réel (« 3 rings », « dès 3 ans »). */
+   l'échelle et ancre la photo dans le réel (« plusieurs rings », « dès 3 ans »). */
 .split-sec__tag {
   position: absolute; z-index: 3; left: 0; bottom: 0;
   display: inline-flex; align-items: baseline; gap: .6ch;

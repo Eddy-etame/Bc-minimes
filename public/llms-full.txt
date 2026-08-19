@@ -8,7 +8,7 @@
 
 - Boxing Center Minimes est la salle historique (la première, ouverte en 2016) du réseau Boxing Center à Toulouse.
 - Quartier : Les Minimes / Barrière de Paris (31200), métro ligne B.
-- Spécialité : boxe anglaise. 3 rings, 12 sacs lourds, zone pattes d’ours, prépa physique à l’étage.
+- Spécialité : boxe anglaise. plusieurs rings, 12 sacs lourds, zone pattes d’ours, prépa physique à l’étage.
 - Palmarès de l’école : 3 boxeurs professionnels et plus de 30 amateurs formés sur ces rings.
 - Disciplines avec créneau : boxe anglaise loisirs, boxe compétiteurs, boxe éducative dès 3 ans (Baby Boxe 3/6), Boxing Lady, boxing camp, boxe pieds-poings. En accès libre, sans créneau : PAOS & pattes d’ours, cross training, cardio boxing.
 - Publics : débutants, femmes (Boxing Lady 100 % féminin), enfants dès 3 ans, compétiteurs.
@@ -60,8 +60,8 @@
 
 ## Le club — https://bc-minimes.vercel.app/le-club/
 
-- Histoire : Boxing Center ouvre sa première salle aux Minimes en 2016 (concept des salles américaines, accès six jours sur sept, trois rings). En 2018, la boxe éducative et le Boxing Lady décollent. Johnson Suffo et Salomon Kitoko passent professionnels. Une trentaine de boxeurs amateurs formés à la maison.
-- Équipement : 3 rings de boxe, 12 sacs lourds, zone pattes d’ours, prépa physique à l’étage, vestiaires hommes/femmes.
+- Histoire : Boxing Center ouvre sa première salle aux Minimes en 2016 (concept des salles américaines, accès six jours sur sept, plusieurs rings). En 2018, la boxe éducative et le Boxing Lady décollent. Johnson Suffo et Salomon Kitoko passent professionnels. Une trentaine de boxeurs amateurs formés à la maison.
+- Équipement : plusieurs rings de boxe, 12 sacs lourds, zone pattes d’ours, prépa physique à l’étage, vestiaires hommes/femmes.
 - Affiliations : FFBoxe, FFKMDA, FMMAF.
 - Adresse : 12 rue de Fenouillet, 31200 Toulouse.
 - Le réseau Boxing Center : Portet-sur-Garonne (vaisseau amiral — 600 m², ring de boxe anglaise, cage MMA, 24 sacs — https://www.boxing-center-portet.fr/), États-Unis, Saint-Cyprien (1 200 m²), Ramonville (ring + octogone 7 m) — https://boxingcenter.fr/
@@ -162,7 +162,7 @@ Transcription du poster officiel de la saison (grille filtrable jour / disciplin
 Le déroulé réel d’une première venue, dans l’ordre :
 1. Arrivée : 12 rue de Fenouillet, métro ligne B station Barrière de Paris (3 min à pied). Venir un quart d’heure avant le créneau. Salle ouverte du lundi au samedi 10h–21h30. Téléphone si hésitation : 05 62 24 46 82.
 2. Annonce : il suffit de dire que c’est une première fois. Aucun formulaire, aucun dossier, aucun certificat médical avant l’essai.
-3. Accueil : un coach du créneau (Mehdi, Chloé, David ou Hicham) prête les gants et les protections et fait le tour de la salle (3 rings, 12 sacs, prépa physique à l’étage, vestiaires hommes/femmes).
+3. Accueil : un coach du créneau (Mehdi, Chloé, David ou Hicham) prête les gants et les protections et fait le tour de la salle (plusieurs rings, 12 sacs, prépa physique à l’étage, vestiaires hommes/femmes).
 4. Le cours : échauffement, puis un geste technique repris (garde, jab, déplacement), puis le sac. Le coach corrige et arrête avant la blessure.
 5. Sortie : rien à signer. Le retour se décide sur place ou pas du tout.
 
@@ -209,7 +209,7 @@ Créneaux conseillés pour une première : anglaise loisirs 19h40 (lundi, mardi,
 ### FAQ
 - Où se trouve Boxing Center Minimes ? — Au 12 rue de Fenouillet, 31200 Toulouse, dans le quartier des Minimes — Barrière de Paris, à 3 minutes du métro ligne B.
 - Je n’ai jamais boxé. Je peux venir ? — Oui. Il y a des créneaux débutants et du cardio boxing sans aucun coup reçu.
-- Quelle est la spécialité de la salle des Minimes ? — La boxe anglaise. C’est la salle historique du groupe, le berceau de plusieurs boxeurs professionnels et amateurs — avec trois rings dédiés.
+- Quelle est la spécialité de la salle des Minimes ? — La boxe anglaise. C’est la salle historique du groupe, le berceau de plusieurs boxeurs professionnels et amateurs — avec plusieurs rings dédiés.
 - Y a-t-il des cours pour les enfants ? — Oui, dès 3 ans : Baby Boxe 3/6, éducative 7/11, ados 12/16, puis compétiteurs. 250 € l’année pour la Baby Boxe, 295 € au-delà, t-shirt du club inclus.
 - Il y a des cours pour les femmes ? — Le Boxing Lady est 100 % féminin : lundi 18h30 avec Chloé, mercredi 18h30 avec David. Tous les autres cours sont ouverts.
 - Quels sont les horaires ? — Du lundi au samedi, de 10h00 à 21h30. Fermé le dimanche.
