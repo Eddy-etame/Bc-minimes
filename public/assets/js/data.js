@@ -198,10 +198,10 @@ export const NAV = [
    (`go`) — un bouton « Découvrir » qui atterrit sur la home du groupe ment.
    §0.6 : Balma-Gramont est VENDUE — ne jamais la citer. */
 export const NETWORK = [
-  { id: "portet", name: "Portet-sur-Garonne", flagship: true, tag: "Le vaisseau amiral", feat: "600 m² · ring de boxe anglaise · cage MMA · 24 sacs", url: "https://www.boxing-center-portet.fr/", go: "Découvrir" },
-  { id: "etats-unis", name: "États-Unis", tag: "Le colosse", feat: "Toutes les disciplines du réseau — la salle est présentée sur le site du groupe", url: "https://boxingcenter.fr/", go: "Voir sur boxingcenter.fr" },
-  { id: "saint-cyprien", name: "Saint-Cyprien", tag: "Rive gauche", feat: "1 200 m² · toutes disciplines", url: "https://bc-st-cyprien.vercel.app/", go: "Découvrir" },
-  { id: "ramonville", name: "Ramonville", tag: "L’octogone", feat: "Ring + octogone 7 m · extérieur", url: "https://bc-ramonville.vercel.app/", go: "Découvrir" },
+  { id: "portet", name: "Portet-sur-Garonne", flagship: true, tag: "Le vaisseau amiral", feat: "600 m² · ring de boxe anglaise · cage MMA · 24 sacs", url: "https://boxingcenter.fr/salle-de-sport-toulouse/salle-de-boxe-portet-sur-garonne-2/", go: "Découvrir" },
+  { id: "etats-unis", name: "États-Unis", tag: "Le colosse", feat: "Toutes les disciplines du réseau", url: "https://boxingcenter.fr/salle-de-sport-toulouse/boxing-center-salle-de-toulouse-etats-unis/", go: "Découvrir" },
+  { id: "saint-cyprien", name: "Saint-Cyprien", tag: "Rive gauche", feat: "1 200 m² · toutes disciplines", url: "https://boxingcenter.fr/salle-de-sport-toulouse/boxing-center-salle-de-toulouse-saint-cyprien/", go: "Découvrir" },
+  { id: "ramonville", name: "Ramonville", tag: "L’octogone", feat: "Ring + octogone 7 m · extérieur", url: "https://boxingcenter.fr/salle-de-sport-toulouse/salle-de-boxe-toulouse-ramonville/", go: "Découvrir" },
 ];
 
 /* La FAQ CANONIQUE du site — rendue sur /contact/ UNIQUEMENT, et miroir

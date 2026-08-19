@@ -483,6 +483,15 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
 .menu__link { font-family: var(--f-display); font-size: clamp(1.5rem, min(10.5vw, 5.5vh), 7rem); line-height: .95; padding-block: .12em; text-transform: uppercase; color: var(--bone); display: inline-flex; align-items: baseline; gap: 1.2rem; width: max-content; max-width: 100%; min-width: 0; transition: color .3s, transform .5s var(--ease-out); }
 .menu__link .n { font: 700 clamp(.7rem,1.4vw,1rem)/1 var(--f-mono); color: var(--bone-dim); }
 .menu__link:hover, .menu__link:active { color: var(--silver); transform: translateX(18px); }
+/* Sur téléphone, 10.5vw donnait 39 px de capitales dans une boîte de 44 :
+   7 px d’air en tout, et le plus long libellé courait sur 337 px de 375.
+   Neuf lignes ainsi tassées se lisent comme un mur, pas comme un menu. On
+   descend le corps pour rendre l’air à la cible tactile — qui garde ses
+   44 px — et on desserre l’interligne. */
+@media (max-width: 620px){
+  .menu__link { font-size: clamp(1.4rem, 7.2vw, 2.2rem); }
+  .menu__nav { gap: .5rem; }
+}
 .menu__link:hover .n, .menu__link:active .n { color: var(--bone); }
 .menu__foot { position: relative; z-index: 2; display: flex; flex-wrap: wrap; gap: 1rem 2rem; justify-content: space-between; align-items: center; border-top: 1px solid var(--line); padding-top: 1.4rem; }
 /* :not(.btn) — sinon cette règle repeignait le CTA principal du menu mobile
