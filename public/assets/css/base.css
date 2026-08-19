@@ -463,7 +463,12 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
 .menu__close { font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .2em; text-transform: uppercase; color: var(--bone); display: inline-flex; align-items: center; gap: .7ch; min-height: 44px; padding: .4em .2em; transition: color .3s; }
 /* le survol éclaircit : sur le noir, seule la lumière porte le petit texte */
 .menu__close:hover, .menu__close:active { color: var(--white); }
-.menu__nav { position: relative; z-index: 2; align-self: center; display: flex; flex-direction: column; gap: clamp(.35rem,1vw,.4rem); }
+/* align-self:center laissait la liste grandir hors du cadre : neuf liens a
+   10.5vw font 1357 px dans un ecran de 841, et « Contact » devenait
+   inatteignable — .menu est fixed, rien ne defile. La rangee 1fr borne
+   desormais la liste (stretch + min-height:0), qui reste centree tant qu elle
+   tient et defile au-dela. */
+.menu__nav { position: relative; z-index: 2; align-self: stretch; justify-content: center; min-height: 0; overflow-y: auto; overscroll-behavior: contain; display: flex; flex-direction: column; gap: clamp(.35rem,1vw,.4rem); }
 /* padding-block : la taille du mot est l'identité, la boîte autour ne l'est
    pas — 39.5px → ~49px sans toucher à l'échelle typo (QA thumb ≥44px) */
 /* Le mot du menu se mesure sur la LARGEUR, pas seulement sur la hauteur de
@@ -473,7 +478,9 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
    tiennent toujours d'un coup d'œil, et le mot le plus long tient sur sa
    ligne. `min-width: 0` autorise le rétrécissement si un jour il le faut —
    un mot coupé reste lisible, un bouton hors écran ne l'est pas. */
-.menu__link { font-family: var(--f-display); font-size: clamp(2.05rem,10.5vw,7rem); line-height: .95; padding-block: .12em; text-transform: uppercase; color: var(--bone); display: inline-flex; align-items: baseline; gap: 1.2rem; width: max-content; max-width: 100%; min-width: 0; transition: color .3s, transform .5s var(--ease-out); }
+/* 10.5vw seul est aveugle a la hauteur : le plafond en vh fait tenir les
+   neuf entrees dans un seul ecran, quelle que soit la fenetre. */
+.menu__link { font-family: var(--f-display); font-size: clamp(1.5rem, min(10.5vw, 5.5vh), 7rem); line-height: .95; padding-block: .12em; text-transform: uppercase; color: var(--bone); display: inline-flex; align-items: baseline; gap: 1.2rem; width: max-content; max-width: 100%; min-width: 0; transition: color .3s, transform .5s var(--ease-out); }
 .menu__link .n { font: 700 clamp(.7rem,1.4vw,1rem)/1 var(--f-mono); color: var(--bone-dim); }
 .menu__link:hover, .menu__link:active { color: var(--silver); transform: translateX(18px); }
 .menu__link:hover .n, .menu__link:active .n { color: var(--bone); }
