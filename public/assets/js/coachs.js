@@ -4,8 +4,8 @@
    en avant (Mehdi, photo prouvée), les autres en tuiles nom N&B.
    Loi §0.10 : nom ≡ photo, jamais de stock, jamais de croisement.
    ===================================================================== */
-import { COACHES, LINKS, CTA, CTA_HREF } from "./data.js?v=b44";
-import { PLANNING, PLANNING_DAYS } from "./data-planning.js?v=b44";
+import { COACHES, LINKS, CTA, CTA_HREF } from "./data.js?v=b45";
+import { PLANNING, PLANNING_DAYS } from "./data-planning.js?v=b45";
 
 const $ = (s, r = document) => r.querySelector(s);
 
@@ -32,7 +32,6 @@ function renderPillar() {
       <ul class="pillar__disc">${c.disciplines.map((d) => `<li>${d}</li>`).join("")}</ul>
       <p class="pillar__bio">${c.bio}</p>
       <p class="pillar__note">${c.note}</p>
-      <p class="pillar__week"><b>${weekOf(c.planName)}</b> créneaux par semaine, sur ${daysOf(c.planName).length} jours</p>
       <div class="pillar__cta">
         <a class="btn btn--primary" data-magnetic href="${CTA_HREF.primary}"><span>${CTA.primary}</span></a>
         <a class="btn btn--ghost" data-magnetic href="${linkOf(c.planName)}"><span>Ses créneaux</span></a>
@@ -51,7 +50,6 @@ function renderRoster() {
           <span class="coach__role">${c.role}</span>
           <h3 class="coach__name">${c.name}</h3>
           <p class="coach__note">${c.note}</p>
-          <a class="coach__link" href="${linkOf(c.planName)}">${weekOf(c.planName)} créneau${weekOf(c.planName) > 1 ? "x" : ""} par semaine <span aria-hidden="true">→</span><span class="sr-only">— voir les créneaux de ${c.name}</span></a>
         </div>
         <span class="coach__pending">Portrait à venir</span>
       </article>`

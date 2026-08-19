@@ -20,16 +20,16 @@ import SiteContent from "../../components/SiteContent.astro";
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-black-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-latin.woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/css/fonts.css?v=b44" />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=b45" />
 
   <!-- LCP : l’image du hero est construite en JS, donc invisible au preload
        scanner (parse → module → import data.js → new Image()). Le preload
        rattrape la découverte perdue (§5.8 « preload de l’image LCP »). -->
   <link rel="preload" as="image" href="/assets/img/photos/ring-cours-rouge-1200.webp" fetchpriority="high" />
 
-  <link rel="stylesheet" href="/assets/css/base.css?v=b44" />
-  <link rel="stylesheet" href="/assets/css/home.css?v=b44" />
-  <link rel="stylesheet" href="/assets/css/refonte.css?v=b44" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=b45" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=b45" />
+  <link rel="stylesheet" href="/assets/css/refonte.css?v=b45" />
 
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="geo.region" content="FR-31" />
@@ -736,7 +736,7 @@ import SiteContent from "../../components/SiteContent.astro";
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=b44"></script>
-  <script is:inline type="module" src="/assets/js/plannings.js?v=b44"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=b45"></script>
+  <script is:inline type="module" src="/assets/js/plannings.js?v=b45"></script>
 </body>
 </html>

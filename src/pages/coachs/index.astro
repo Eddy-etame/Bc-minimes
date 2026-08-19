@@ -14,15 +14,15 @@ import SiteContent from "../../components/SiteContent.astro";
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-black-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-latin.woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/css/fonts.css?v=b44" />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=b45" />
 
   <!-- LCP : le portrait de Mehdi est le sujet de la page, et il est construit
        en JS → invisible au preload scanner (§5.8) -->
   <link rel="preload" as="image" href="/assets/img/bc/cutouts/coach-mehdi.webp" fetchpriority="high" />
 
-  <link rel="stylesheet" href="/assets/css/base.css?v=b44" />
-  <link rel="stylesheet" href="/assets/css/home.css?v=b44" />
-  <link rel="stylesheet" href="/assets/css/refonte.css?v=b44" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=b45" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=b45" />
+  <link rel="stylesheet" href="/assets/css/refonte.css?v=b45" />
 
   <meta name="keywords" content="coach boxe Minimes Toulouse, entraîneur boxe anglaise Toulouse, Mehdioxing Center, coach Boxing Lady, coach boxe éducative enfant, encadrement boxe 31200, boxing gym Toulouse, boxing club Toulouse, boxing lessons Toulouse, boxing classes Toulouse Minimes, English boxing Toulouse, kids boxing Toulouse, women boxing Toulouse, martial arts gym Toulouse, gym near Barrière de Paris" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -509,30 +509,6 @@ import SiteContent from "../../components/SiteContent.astro";
     <div class="wrap" data-promo></div>
 
 
-    <!-- ================== QUI EST LÀ, QUEL JOUR ===================
-         La page présentait quatre personnes et laissait la question
-         suivante sans réponse : « d’accord, mais il est là QUAND ? ».
-         On répondait « va voir le planning » — et le planning s’ouvrait
-         sur la semaine entière.
-
-         Cette grille est DÉRIVÉE de PLANNING (data.js) : les jours, les
-         noms et les comptes sont calculés, jamais tapés ici (§0.10).
-         Elle ne peut donc pas se désynchroniser du poster, et chaque
-         nom ouvre la grille déjà filtrée sur ce coach ET ce jour-là. -->
-    <section class="section section--tight" aria-label="Les coachs jour par jour">
-      <div class="wrap">
-        <div class="reel__head" style="margin-bottom:clamp(1.8rem,4vw,2.6rem)">
-          <div data-reveal>
-            <span class="eyebrow">La semaine</span>
-            <h2 class="display display--sm" style="margin-top:1rem">Qui est là, <span class="tint">quel jour</span></h2>
-          </div>
-          <p class="muted" data-reveal style="max-width:34ch">Tu cherches quelqu’un en particulier ? Clique sur son nom : la grille s’ouvre déjà filtrée sur lui, ce jour-là.</p>
-        </div>
-        <div class="cweek" id="cweek" data-reveal-group></div>
-        <p class="muted" data-reveal style="margin-top:clamp(1.4rem,3vw,2rem);font:500 var(--step--1)/1.6 var(--f-mono);letter-spacing:.04em;max-width:64ch;border-left:2px solid var(--mark);padding-left:1rem">Le dimanche n’est pas dans cette liste : la salle est fermée. Le reste du temps, en dehors des cours, les rings et les sacs sont en accès libre — personne ne t’encadre, mais il y a toujours quelqu’un dans la salle.</p>
-      </div>
-    </section>
-
     <!-- ========================= FINAL GONG ====================== -->
     <section class="gong" aria-label="Réserver une séance">
       <div class="gong__bg" aria-hidden="true"><div class="media" data-img="/assets/img/photos/allee-sacs-1200.webp" data-label=""></div></div>
@@ -561,7 +537,7 @@ import SiteContent from "../../components/SiteContent.astro";
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=b44"></script>
-  <script is:inline type="module" src="/assets/js/coachs.js?v=b44"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=b45"></script>
+  <script is:inline type="module" src="/assets/js/coachs.js?v=b45"></script>
 </body>
 </html>
