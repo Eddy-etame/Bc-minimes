@@ -152,7 +152,7 @@ export const PROMOS = {
       price: "295€",
       period: "l’année · t-shirt inclus",
       feature: "Baby Boxe 3/6 à 250€ · éducative 7/11 · ados 12/16",
-      items: ["Boxe éducative et ados : 295€/an, t-shirt du club inclus", "Baby Boxe 3/6 ans : 250€/an", "Un créneau par âge, mercredi et samedi", "Compétiteurs encadrés par Mehdi B"],
+      items: ["Boxe éducative et ados : 295€/an, t-shirt du club inclus", "Baby Boxe 3/6 ans : 250€/an", "Un créneau par âge, mercredi et samedi", "Compétiteurs encadrés par Mehdi"],
       cta: "J’inscris mon enfant",
       href: "https://boutique.boxingcenter.fr/abonnements",
     },
@@ -221,7 +221,7 @@ export const FAQ = [
 /* =====================================================================
    LES COACHS — roster Minimes VÉRIFIÉ (source : roster.json, 2026-07-12).
    Loi §0.10 : nom ≡ photo, jamais croisés, jamais de stock.
-   - Mehdi B = Mehdi Boutlelis → photo PROUVÉE (le cutout coach-mehdi.png
+   - Mehdi = Mehdioutlelis → photo PROUVÉE (le cutout coach-mehdi.png
      est la même prise que mehdi-boutlelis.webp du scrape officiel). Pilier.
    - Chloé / David / Hicham : AUCUNE photo prouvée → tuiles nom N&B
      (monogramme + discipline), pas de silhouette empruntée, pas de stock.
@@ -230,12 +230,12 @@ export const FAQ = [
    ===================================================================== */
 export const COACHES = {
   pillar: {
-    name: "Mehdi B.",
+    name: "Mehdi",
     /* clé de jointure avec PLANNING.coach — le poster écrit « MEHDI B »
-       sans point, la page écrit « Mehdi B. » avec. Sans ce champ, le
+       sans point, la page écrit « Mehdi » avec. Sans ce champ, le
        compte de créneaux et le lien filtré tombent silencieusement à
        zéro : exactement le genre de bug qui ne casse rien et ment. */
-    planName: "Mehdi B",
+    planName: "Mehdi",
     role: "Coach principal",
     tag: "Le patron de la maison",
     img: "/assets/img/bc/cutouts/coach-mehdi.webp",
@@ -292,7 +292,16 @@ function bcOverrides() {
   try {
     if (new URLSearchParams(location.search).has("apercu")) {
       const draft = JSON.parse(localStorage.getItem("bcm:draft") || "null");
-      if (draft && typeof draft === "object") base = draft;
+      /* Un brouillon survit aux deploiements dans le navigateur du staff.
+         Sans garde, un brouillon d'une ancienne saison MASQUE le contenu
+         publie et fait croire que le site est casse. Le brouillon porte
+         donc le jeton de cache sous lequel il a ete ecrit : un jeton
+         different = un brouillon perime, on l'ignore et on le purge. */
+      const jeton = new URL(import.meta.url).searchParams.get("v") || "dev";
+      if (draft && typeof draft === "object") {
+        if (draft.__jeton === jeton) base = draft;
+        else { try { localStorage.removeItem("bcm:draft"); } catch { /* rien */ } }
+      }
     }
   } catch { /* localStorage indisponible : on garde le contenu publié */ }
   return base;

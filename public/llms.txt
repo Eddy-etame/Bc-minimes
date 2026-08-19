@@ -7,7 +7,7 @@
 - [Accueil](https://bc-minimes.vercel.app/): la salle historique du groupe Boxing Center à Toulouse (31200) — 3 rings, boxe anglaise, boxe éducative dès 3 ans, Boxing Lady, séance d’essai 10 €.
 - [Activités & disciplines](https://bc-minimes.vercel.app/activites/): les 9 disciplines — boxe anglaise loisirs, boxe compétiteurs, boxe éducative dès 3 ans, Boxing Lady, boxing camp, boxe pieds-poings (six avec créneau au planning), puis PAOS & pattes d’ours, cross training et cardio boxing (en accès libre, sans créneau dédié).
 - [Le club](https://bc-minimes.vercel.app/le-club/): histoire depuis 2016, équipement (3 rings, 12 sacs lourds, zone pattes d’ours, prépa physique à l’étage, vestiaires H/F), accès et réseau des salles.
-- [Les coachs](https://bc-minimes.vercel.app/coachs/): Mehdi B (coach principal — anglaise, éducative, compétiteurs, baby boxe, boxing camp), Chloé (Boxing Lady), David (Boxing Lady, pieds-poings), Hicham (boxing camp) — plus le détail de qui encadre quel jour, dérivé du planning.
+- [Les coachs](https://bc-minimes.vercel.app/coachs/): Mehdi (coach principal — anglaise, éducative, compétiteurs, baby boxe, boxing camp), Chloé (Boxing Lady), David (Boxing Lady, pieds-poings), Hicham (boxing camp) — plus le détail de qui encadre quel jour, dérivé du planning.
 - [Galerie photos](https://bc-minimes.vercel.app/galerie/): la boxe en images (pool photo du réseau Boxing Center), filtrable par zone — ring, sparring, école, Lady, technique — plus un renvoi de chaque zone vers sa discipline.
 - [Planning des cours](https://bc-minimes.vercel.app/plannings/): les 27 cours de la semaine + les 16 bandes d’accès libre, en grille filtrable (jour / discipline / coach, partageable par URL) + le poster officiel de la saison.
 - [Ta première séance](https://bc-minimes.vercel.app/premiere-seance/): le déroulé réel d’une première venue (arrivée, accueil, gants prêtés, échauffement/technique/sac, sortie), ce que le club NE fait PAS (aucun sparring imposé, aucun test de niveau, aucun engagement signé), la tenue à apporter, le prix de l’essai (10 €) et le créneau conseillé selon le profil.
@@ -36,11 +36,11 @@
 - Vestiaires hommes / femmes.
 
 ### Disciplines et coachs (vérifiés — poster officiel de la saison en cours)
-- Boxe anglaise loisirs (la spécialité maison) : 12h40–13h20 le mardi, le mercredi et le jeudi ; 19h40–21h00 le lundi, le mardi, le jeudi et le vendredi — coach Mehdi B. Sept créneaux par semaine.
-- Boxe compétiteurs : 18h00–19h30 le lundi, le mardi, le jeudi et le vendredi — coach Mehdi B. Open sparring le samedi 18h30–19h30.
-- Boxe éducative dès 3 ans : Baby Boxe 3/6 ans samedi 14h15–15h00 ; enfants 7/11 ans 15h00–16h00 ; ados 12/16 ans 16h00–17h00 ; jeunes compétiteurs 17h00–18h30 — le mercredi et le samedi (le mercredi commence à 15h, sans Baby Boxe) — coach Mehdi B.
+- Boxe anglaise loisirs (la spécialité maison) : 12h40–13h20 le mardi, le mercredi et le jeudi ; 19h40–21h00 le lundi, le mardi, le jeudi et le vendredi — coach Mehdi Sept créneaux par semaine.
+- Boxe compétiteurs : 18h00–19h30 le lundi, le mardi, le jeudi et le vendredi — coach Mehdi Open sparring le samedi 18h30–19h30.
+- Boxe éducative dès 3 ans : Baby Boxe 3/6 ans samedi 14h15–15h00 ; enfants 7/11 ans 15h00–16h00 ; ados 12/16 ans 16h00–17h00 ; jeunes compétiteurs 17h00–18h30 — le mercredi et le samedi (le mercredi commence à 15h, sans Baby Boxe) — coach Mehdi
 - Boxing Lady (100 % féminin) : lundi 18h30–19h30 avec Chloé, mercredi 18h30–19h30 avec David.
-- Boxing camp : lundi et vendredi 12h40–13h20 avec Mehdi B ; mardi et jeudi 18h30–19h30 avec Hicham ; samedi 11h00–12h00 avec Mehdi B.
+- Boxing camp : lundi et vendredi 12h40–13h20 avec Mehdi ; mardi et jeudi 18h30–19h30 avec Hicham ; samedi 11h00–12h00 avec Mehdi
 - Boxe pieds-poings : mercredi 19h40–21h00 avec David — le seul créneau pieds-poings de la semaine.
 - PAOS & pattes d’ours (intégré au cours d’anglaise), cross training et cardio boxing (à l’étage et sur les sacs, en accès libre) : ces trois-là n’ont PAS de créneau dédié au planning.
 - Accès libre (rings et sacs en autonomie, sans réservation) : tous les jours 10h00–12h00 et 13h20–18h00 ; le mercredi 13h20–15h00 seulement ; le samedi 12h40–14h00 et 19h40–21h00. Le lundi, le mardi et le jeudi, un second espace reste libre de 18h00 à 19h30.
@@ -62,7 +62,7 @@
 
 ### Réassurance
 - Note Google : affichée et tenue à jour par le club sur /tarifs/. Ce fichier ne la recopie pas — un compte d’avis bouge chaque semaine, et une copie figée ici deviendrait une affirmation fausse que personne à la salle ne peut corriger.
-- Berceau de plusieurs boxeurs professionnels et amateurs formés sur ces rings (Johnson Suffo, Salomon Kitoko, Elyasse Azap — passés professionnels).
+- Berceau de plusieurs boxeurs professionnels et amateurs formés sur ces rings.
 
 ## L’assistant du site
 
@@ -77,7 +77,7 @@
 ## Notes
 
 - Le pool photo actuel provient du réseau Boxing Center (site Portet) : ne pas présenter ces images comme des vues certifiées de la salle des Minimes tant que le shooting dédié n’a pas eu lieu.
-- Seul portrait de coach vérifié : Mehdi B. Ne pas attribuer de photo aux autres coachs.
+- Seul portrait de coach vérifié : Mehdi Ne pas attribuer de photo aux autres coachs.
 - Balma-Gramont a été vendue : ne pas la citer comme salle actuelle du réseau.
 - Les enfants sont accueillis DÈS 3 ANS (Baby Boxe 3/6) — pas « dès 7 ans ».
 - Le planning a été recollationné cellule par cellule sur le poster officiel : il n’y a PAS d’anglaise loisirs le samedi, PAS de compétiteurs le mercredi ni le samedi, et le boxing camp du lundi est à 12h40 (pas à 11h). Ne pas réintroduire ces créneaux.

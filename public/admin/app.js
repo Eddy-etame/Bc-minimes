@@ -130,8 +130,11 @@ const SCHEMA = {
 
 /* ---------- brouillon, état « modifié », aperçu ---------- */
 const DRAFT_KEY = "bcm:draft";
+/* Jeton de cache du site : un brouillon ecrit sous un autre jeton est
+   perime, data.js l'ignore et le purge. A bumper avec le v=bNN. */
+const BC_JETON = "b30";
 let DIRTY = false, BUSY = false, draftT;
-function saveDraft() { clearTimeout(draftT); draftT = setTimeout(() => { try { localStorage.setItem(DRAFT_KEY, JSON.stringify(DATA)); } catch (e) {} }, 400); }
+function saveDraft() { clearTimeout(draftT); draftT = setTimeout(() => { try { localStorage.setItem(DRAFT_KEY, JSON.stringify({ ...DATA, __jeton: BC_JETON })); } catch (e) {} }, 400); }
 function markDirty() { DIRTY = true; saveDraft(); updateDirtyUI(); }
 function clearDirty() { DIRTY = false; try { localStorage.removeItem(DRAFT_KEY); } catch (e) {} updateDirtyUI(); }
 function updateDirtyUI() {
@@ -180,7 +183,7 @@ function updatePublishUI() {
 }
 addEventListener("beforeunload", (e) => { if (DIRTY) { e.preventDefault(); e.returnValue = ""; } });
 function openPreview() {
-  try { localStorage.setItem(DRAFT_KEY, JSON.stringify(DATA)); } catch (e) {}
+  try { localStorage.setItem(DRAFT_KEY, JSON.stringify({ ...DATA, __jeton: BC_JETON })); } catch (e) {}
   window.open("/?apercu=1", "bcm-apercu");
 }
 

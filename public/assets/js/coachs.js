@@ -1,11 +1,11 @@
 /* =====================================================================
    MINIMES · coachs.js — "Les coachs" subpage
    Roster Minimes vérifié (data.js COACHES ← roster.json). Un pilier mis
-   en avant (Mehdi B, photo prouvée), les autres en tuiles nom N&B.
+   en avant (Mehdi, photo prouvée), les autres en tuiles nom N&B.
    Loi §0.10 : nom ≡ photo, jamais de stock, jamais de croisement.
    ===================================================================== */
-import { COACHES, LINKS, CTA, CTA_HREF } from "./data.js?v=b29";
-import { PLANNING, PLANNING_DAYS } from "./data-planning.js?v=b29";
+import { COACHES, LINKS, CTA, CTA_HREF } from "./data.js?v=b30";
+import { PLANNING, PLANNING_DAYS } from "./data-planning.js?v=b30";
 
 const $ = (s, r = document) => r.querySelector(s);
 

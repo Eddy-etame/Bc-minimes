@@ -5,7 +5,7 @@
    pages (site.js en dépend), ces données-là n’en concernent que trois pages (planning, activités, coachs).
    Les embarquer partout coûtait leur poids sur chaque page pour rien.
    ===================================================================== */
-import { bcRegister } from "./data.js?v=b29";
+import { bcRegister } from "./data.js?v=b30";
 
 /* =====================================================================
    LE PLANNING — transcription du poster officiel SAISON 2026-2027
@@ -32,43 +32,43 @@ export const PLANNING_DISCIPLINES = [
    parallèle le soir. C’est une info du poster qu’on perdait entièrement. */
 export const PLANNING = [
   /* ---- Lundi ---- */
-  { d: "Lundi", h: "12h40", end: "13h20", disc: "camp", name: "Boxing camp", coach: "Mehdi B", age: "Adultes" },
-  { d: "Lundi", h: "18h00", end: "19h30", disc: "competiteurs", name: "Boxe compétiteurs", coach: "Mehdi B", age: "Licenciés", space: 1 },
+  { d: "Lundi", h: "12h40", end: "13h20", disc: "camp", name: "Boxing camp", coach: "Mehdi", age: "Adultes" },
+  { d: "Lundi", h: "18h00", end: "19h30", disc: "competiteurs", name: "Boxe compétiteurs", coach: "Mehdi", age: "Licenciés", space: 1 },
   { d: "Lundi", h: "18h30", end: "19h30", disc: "lady", name: "Boxing Lady", coach: "Chloé", age: "100 % féminin", space: 2 },
-  { d: "Lundi", h: "19h40", end: "21h00", disc: "anglaise", name: "Boxe anglaise (loisirs)", coach: "Mehdi B", age: "Tous niveaux" },
+  { d: "Lundi", h: "19h40", end: "21h00", disc: "anglaise", name: "Boxe anglaise (loisirs)", coach: "Mehdi", age: "Tous niveaux" },
 
   /* ---- Mardi ---- */
-  { d: "Mardi", h: "12h40", end: "13h20", disc: "anglaise", name: "Boxe anglaise (loisirs)", coach: "Mehdi B", age: "Tous niveaux" },
-  { d: "Mardi", h: "18h00", end: "19h30", disc: "competiteurs", name: "Boxe compétiteurs", coach: "Mehdi B", age: "Licenciés", space: 1 },
+  { d: "Mardi", h: "12h40", end: "13h20", disc: "anglaise", name: "Boxe anglaise (loisirs)", coach: "Mehdi", age: "Tous niveaux" },
+  { d: "Mardi", h: "18h00", end: "19h30", disc: "competiteurs", name: "Boxe compétiteurs", coach: "Mehdi", age: "Licenciés", space: 1 },
   { d: "Mardi", h: "18h30", end: "19h30", disc: "camp", name: "Boxing camp", coach: "Hicham", age: "Adultes", space: 2 },
-  { d: "Mardi", h: "19h40", end: "21h00", disc: "anglaise", name: "Boxe anglaise (loisirs)", coach: "Mehdi B", age: "Tous niveaux" },
+  { d: "Mardi", h: "19h40", end: "21h00", disc: "anglaise", name: "Boxe anglaise (loisirs)", coach: "Mehdi", age: "Tous niveaux" },
 
   /* ---- Mercredi ---- */
-  { d: "Mercredi", h: "12h40", end: "13h20", disc: "anglaise", name: "Boxe anglaise (loisirs)", coach: "Mehdi B", age: "Tous niveaux" },
-  { d: "Mercredi", h: "15h00", end: "16h00", disc: "educative", name: "Boxe éducative enfants", coach: "Mehdi B", age: "7/11 ans" },
-  { d: "Mercredi", h: "16h00", end: "17h00", disc: "educative", name: "Boxe éducative ados", coach: "Mehdi B", age: "12/16 ans" },
-  { d: "Mercredi", h: "17h00", end: "18h30", disc: "educative", name: "Boxe éducative compétiteurs", coach: "Mehdi B", age: "Jeunes licenciés" },
+  { d: "Mercredi", h: "12h40", end: "13h20", disc: "anglaise", name: "Boxe anglaise (loisirs)", coach: "Mehdi", age: "Tous niveaux" },
+  { d: "Mercredi", h: "15h00", end: "16h00", disc: "educative", name: "Boxe éducative enfants", coach: "Mehdi", age: "7/11 ans" },
+  { d: "Mercredi", h: "16h00", end: "17h00", disc: "educative", name: "Boxe éducative ados", coach: "Mehdi", age: "12/16 ans" },
+  { d: "Mercredi", h: "17h00", end: "18h30", disc: "educative", name: "Boxe éducative compétiteurs", coach: "Mehdi", age: "Jeunes licenciés" },
   { d: "Mercredi", h: "18h30", end: "19h30", disc: "lady", name: "Boxing Lady", coach: "David", age: "100 % féminin" },
   { d: "Mercredi", h: "19h40", end: "21h00", disc: "pieds-poings", name: "Boxe pieds-poings", coach: "David", age: "Tous niveaux" },
 
   /* ---- Jeudi ---- */
-  { d: "Jeudi", h: "12h40", end: "13h20", disc: "anglaise", name: "Boxe anglaise (loisirs)", coach: "Mehdi B", age: "Tous niveaux" },
-  { d: "Jeudi", h: "18h00", end: "19h30", disc: "competiteurs", name: "Boxe compétiteurs", coach: "Mehdi B", age: "Licenciés", space: 1 },
+  { d: "Jeudi", h: "12h40", end: "13h20", disc: "anglaise", name: "Boxe anglaise (loisirs)", coach: "Mehdi", age: "Tous niveaux" },
+  { d: "Jeudi", h: "18h00", end: "19h30", disc: "competiteurs", name: "Boxe compétiteurs", coach: "Mehdi", age: "Licenciés", space: 1 },
   { d: "Jeudi", h: "18h30", end: "19h30", disc: "camp", name: "Boxing camp", coach: "Hicham", age: "Adultes", space: 2 },
-  { d: "Jeudi", h: "19h40", end: "21h00", disc: "anglaise", name: "Boxe anglaise (loisirs)", coach: "Mehdi B", age: "Tous niveaux" },
+  { d: "Jeudi", h: "19h40", end: "21h00", disc: "anglaise", name: "Boxe anglaise (loisirs)", coach: "Mehdi", age: "Tous niveaux" },
 
   /* ---- Vendredi ---- */
-  { d: "Vendredi", h: "12h40", end: "13h20", disc: "camp", name: "Boxing camp", coach: "Mehdi B", age: "Adultes" },
-  { d: "Vendredi", h: "18h00", end: "19h30", disc: "competiteurs", name: "Boxe compétiteurs", coach: "Mehdi B", age: "Licenciés" },
-  { d: "Vendredi", h: "19h40", end: "21h00", disc: "anglaise", name: "Boxe anglaise (loisirs)", coach: "Mehdi B", age: "Tous niveaux" },
+  { d: "Vendredi", h: "12h40", end: "13h20", disc: "camp", name: "Boxing camp", coach: "Mehdi", age: "Adultes" },
+  { d: "Vendredi", h: "18h00", end: "19h30", disc: "competiteurs", name: "Boxe compétiteurs", coach: "Mehdi", age: "Licenciés" },
+  { d: "Vendredi", h: "19h40", end: "21h00", disc: "anglaise", name: "Boxe anglaise (loisirs)", coach: "Mehdi", age: "Tous niveaux" },
 
   /* ---- Samedi ---- */
-  { d: "Samedi", h: "11h00", end: "12h00", disc: "camp", name: "Boxing camp", coach: "Mehdi B", age: "Adultes" },
-  { d: "Samedi", h: "14h15", end: "15h00", disc: "educative", name: "Baby Boxe", coach: "Mehdi B", age: "3/6 ans" },
-  { d: "Samedi", h: "15h00", end: "16h00", disc: "educative", name: "Boxe éducative enfants", coach: "Mehdi B", age: "7/11 ans" },
-  { d: "Samedi", h: "16h00", end: "17h00", disc: "educative", name: "Boxe éducative ados", coach: "Mehdi B", age: "12/16 ans" },
-  { d: "Samedi", h: "17h00", end: "18h30", disc: "educative", name: "Boxe éducative compétiteurs", coach: "Mehdi B", age: "Jeunes licenciés" },
-  { d: "Samedi", h: "18h30", end: "19h30", disc: "sparring", name: "Open sparring", coach: "Mehdi B", age: "Licenciés" },
+  { d: "Samedi", h: "11h00", end: "12h00", disc: "camp", name: "Boxing camp", coach: "Mehdi", age: "Adultes" },
+  { d: "Samedi", h: "14h15", end: "15h00", disc: "educative", name: "Baby Boxe", coach: "Mehdi", age: "3/6 ans" },
+  { d: "Samedi", h: "15h00", end: "16h00", disc: "educative", name: "Boxe éducative enfants", coach: "Mehdi", age: "7/11 ans" },
+  { d: "Samedi", h: "16h00", end: "17h00", disc: "educative", name: "Boxe éducative ados", coach: "Mehdi", age: "12/16 ans" },
+  { d: "Samedi", h: "17h00", end: "18h30", disc: "educative", name: "Boxe éducative compétiteurs", coach: "Mehdi", age: "Jeunes licenciés" },
+  { d: "Samedi", h: "18h30", end: "19h30", disc: "sparring", name: "Open sparring", coach: "Mehdi", age: "Licenciés" },
 ];
 /* L’ACCÈS LIBRE — les blocs gris du poster, qui en occupent la moitié et
    que la grille ignorait complètement. Chaque bande correspond à un

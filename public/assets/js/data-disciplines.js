@@ -42,7 +42,7 @@ export const DISCIPLINES = [
     points: [
       "Le midi de 12h40 à 13h20 : mardi, mercredi, jeudi",
       "Le soir de 19h40 à 21h : lundi, mardi, jeudi, vendredi",
-      "Sept créneaux loisirs par semaine, tous tenus par Mehdi B",
+      "Sept créneaux loisirs par semaine, tous tenus par Mehdi",
       "Gants et protections prêtés le temps de l’essai",
       "Le sparring ne s’impose jamais — il se demande",
     ],
@@ -53,14 +53,14 @@ export const DISCIPLINES = [
     name: "Boxe Compétiteurs",
     tag: "Le ring, pour de vrai",
     teaser: "Le cours qui mène au ring, et nulle part ailleurs.",
-    desc: "18h à 19h30, quatre soirs par semaine — plus l’open sparring du samedi. Ceux qui montent à l’open sparring du samedi ont fait leurs heures ici. On n’y entre pas en s’inscrivant : c’est Mehdi B qui te fait passer, quand tu es prêt — et seulement si tu en as envie.",
+    desc: "18h à 19h30, quatre soirs par semaine — plus l’open sparring du samedi. Ceux qui montent à l’open sparring du samedi ont fait leurs heures ici. On n’y entre pas en s’inscrivant : c’est Mehdi qui te fait passer, quand tu es prêt — et seulement si tu en as envie.",
     img: "/assets/img/photos/sparring-graff-1200.webp",
     for: "Les licenciés — et ceux qui le deviendront, à leur rythme.",
     points: [
       "De 18h à 19h30 : lundi, mardi, jeudi, vendredi",
       "Open sparring le samedi 18h30 — le test de la semaine",
       "Lundi, mardi et jeudi, le second espace tourne en parallèle",
-      "On ne s’inscrit pas : c’est Mehdi B qui te fait passer",
+      "On ne s’inscrit pas : c’est Mehdi qui te fait passer",
     ],
   },
   {
@@ -108,7 +108,7 @@ export const DISCIPLINES = [
     points: [
       "Lundi et vendredi à 12h40, sur la pause déjeuner",
       "Mardi et jeudi à 18h30 avec Hicham",
-      "Samedi 11h à 12h avec Mehdi B",
+      "Samedi 11h à 12h avec Mehdi",
       "Le seul cours où tu peux venir sans rien savoir faire",
     ],
   },

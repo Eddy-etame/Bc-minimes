@@ -97,7 +97,7 @@
           "Boxe éducative et ados : 295€/an, t-shirt du club inclus",
           "Baby Boxe 3/6 ans : 250€/an",
           "Un créneau par âge, mercredi et samedi",
-          "Compétiteurs encadrés par Mehdi B"
+          "Compétiteurs encadrés par Mehdi"
         ],
         "cta": "J’inscris mon enfant",
         "href": "https://boutique.boxingcenter.fr/abonnements"
@@ -126,8 +126,8 @@
   },
   "coaches": {
     "pillar": {
-      "name": "Mehdi B.",
-      "planName": "Mehdi B",
+      "name": "Mehdi",
+      "planName": "Mehdi",
       "role": "Coach principal",
       "tag": "Le patron de la maison",
       "note": "Présent presque tous les créneaux de la semaine, du lundi au samedi."
@@ -163,7 +163,7 @@
       "end": "13h20",
       "disc": "camp",
       "name": "Boxing camp",
-      "coach": "Mehdi B",
+      "coach": "Mehdi",
       "age": "Adultes"
     },
     {
@@ -172,7 +172,7 @@
       "end": "19h30",
       "disc": "competiteurs",
       "name": "Boxe compétiteurs",
-      "coach": "Mehdi B",
+      "coach": "Mehdi",
       "age": "Licenciés",
       "space": 1
     },
@@ -192,7 +192,7 @@
       "end": "21h00",
       "disc": "anglaise",
       "name": "Boxe anglaise (loisirs)",
-      "coach": "Mehdi B",
+      "coach": "Mehdi",
       "age": "Tous niveaux"
     },
     {
@@ -201,7 +201,7 @@
       "end": "13h20",
       "disc": "anglaise",
       "name": "Boxe anglaise (loisirs)",
-      "coach": "Mehdi B",
+      "coach": "Mehdi",
       "age": "Tous niveaux"
     },
     {
@@ -210,7 +210,7 @@
       "end": "19h30",
       "disc": "competiteurs",
       "name": "Boxe compétiteurs",
-      "coach": "Mehdi B",
+      "coach": "Mehdi",
       "age": "Licenciés",
       "space": 1
     },
@@ -230,7 +230,7 @@
       "end": "21h00",
       "disc": "anglaise",
       "name": "Boxe anglaise (loisirs)",
-      "coach": "Mehdi B",
+      "coach": "Mehdi",
       "age": "Tous niveaux"
     },
     {
@@ -239,7 +239,7 @@
       "end": "13h20",
       "disc": "anglaise",
       "name": "Boxe anglaise (loisirs)",
-      "coach": "Mehdi B",
+      "coach": "Mehdi",
       "age": "Tous niveaux"
     },
     {
@@ -248,7 +248,7 @@
       "end": "16h00",
       "disc": "educative",
       "name": "Boxe éducative enfants",
-      "coach": "Mehdi B",
+      "coach": "Mehdi",
       "age": "7/11 ans"
     },
     {
@@ -257,7 +257,7 @@
       "end": "17h00",
       "disc": "educative",
       "name": "Boxe éducative ados",
-      "coach": "Mehdi B",
+      "coach": "Mehdi",
       "age": "12/16 ans"
     },
     {
@@ -266,7 +266,7 @@
       "end": "18h30",
       "disc": "educative",
       "name": "Boxe éducative compétiteurs",
-      "coach": "Mehdi B",
+      "coach": "Mehdi",
       "age": "Jeunes licenciés"
     },
     {
@@ -293,7 +293,7 @@
       "end": "13h20",
       "disc": "anglaise",
       "name": "Boxe anglaise (loisirs)",
-      "coach": "Mehdi B",
+      "coach": "Mehdi",
       "age": "Tous niveaux"
     },
     {
@@ -302,7 +302,7 @@
       "end": "19h30",
       "disc": "competiteurs",
       "name": "Boxe compétiteurs",
-      "coach": "Mehdi B",
+      "coach": "Mehdi",
       "age": "Licenciés",
       "space": 1
     },
@@ -322,7 +322,7 @@
       "end": "21h00",
       "disc": "anglaise",
       "name": "Boxe anglaise (loisirs)",
-      "coach": "Mehdi B",
+      "coach": "Mehdi",
       "age": "Tous niveaux"
     },
     {
@@ -331,7 +331,7 @@
       "end": "13h20",
       "disc": "camp",
       "name": "Boxing camp",
-      "coach": "Mehdi B",
+      "coach": "Mehdi",
       "age": "Adultes"
     },
     {
@@ -340,7 +340,7 @@
       "end": "19h30",
       "disc": "competiteurs",
       "name": "Boxe compétiteurs",
-      "coach": "Mehdi B",
+      "coach": "Mehdi",
       "age": "Licenciés"
     },
     {
@@ -349,7 +349,7 @@
       "end": "21h00",
       "disc": "anglaise",
       "name": "Boxe anglaise (loisirs)",
-      "coach": "Mehdi B",
+      "coach": "Mehdi",
       "age": "Tous niveaux"
     },
     {
@@ -358,7 +358,7 @@
       "end": "12h00",
       "disc": "camp",
       "name": "Boxing camp",
-      "coach": "Mehdi B",
+      "coach": "Mehdi",
       "age": "Adultes"
     },
     {
@@ -367,7 +367,7 @@
       "end": "15h00",
       "disc": "educative",
       "name": "Baby Boxe",
-      "coach": "Mehdi B",
+      "coach": "Mehdi",
       "age": "3/6 ans"
     },
     {
@@ -376,7 +376,7 @@
       "end": "16h00",
       "disc": "educative",
       "name": "Boxe éducative enfants",
-      "coach": "Mehdi B",
+      "coach": "Mehdi",
       "age": "7/11 ans"
     },
     {
@@ -385,7 +385,7 @@
       "end": "17h00",
       "disc": "educative",
       "name": "Boxe éducative ados",
-      "coach": "Mehdi B",
+      "coach": "Mehdi",
       "age": "12/16 ans"
     },
     {
@@ -394,7 +394,7 @@
       "end": "18h30",
       "disc": "educative",
       "name": "Boxe éducative compétiteurs",
-      "coach": "Mehdi B",
+      "coach": "Mehdi",
       "age": "Jeunes licenciés"
     },
     {
@@ -403,7 +403,7 @@
       "end": "19h30",
       "disc": "sparring",
       "name": "Open sparring",
-      "coach": "Mehdi B",
+      "coach": "Mehdi",
       "age": "Licenciés"
     }
   ],

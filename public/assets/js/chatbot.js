@@ -16,7 +16,7 @@
    le fil, respect de prefers-reduced-motion (l’animation d’ouverture est
    coupée en CSS, la frappe simulée est raccourcie ici).
    ===================================================================== */
-import { SALLE, NETWORK } from "./data.js?v=b29";
+import { SALLE, NETWORK } from "./data.js?v=b30";
 
 const EMAIL_RE = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/i;
 /* numéro FR : +33 ou 0, puis 9 chiffres groupés librement */
@@ -194,7 +194,7 @@ export function initChatbot() {
     if (dejaLa) return resolu();
     const l = document.createElement("link");
     l.rel = "stylesheet";
-    l.href = "/assets/css/chatbot.css?v=b29";
+    l.href = "/assets/css/chatbot.css?v=b30";
     l.setAttribute("data-bcm-chat-css", "");
     /* résolu dans les deux cas : une feuille manquante ne doit jamais
        retenir le panneau prisonnier — mieux vaut brut que rien. */
@@ -423,7 +423,7 @@ export function initChatbot() {
         "/tarifs/": ["Bonjour \u{1F44B} Vous \u00eates sur les tarifs.", "Cinq formules. La rentr\u00e9e \u00e0 29\u20ac par personne est la plus prise. Je vous aide \u00e0 choisir\u00a0?"],
         "/activites/": ["Bonjour \u{1F44B} Vous regardez les disciplines.", "Neuf, de l\u2019\u00e9cole d\u00e8s 3 ans au sparring encadr\u00e9. Dites-moi votre objectif."],
         "/plannings/": ["Bonjour \u{1F44B} Vous cherchez un cr\u00e9neau.", "Ouvert du lundi au samedi, 10h\u201321h30. Donnez-moi vos dispos, je vous dis lequel prendre."],
-        "/coachs/": ["Bonjour \u{1F44B} Vous regardez l\u2019\u00e9quipe.", "Quatre encadrants, Mehdi B. \u00e0 leur t\u00eate. Une question sur l\u2019un d\u2019eux\u00a0?"],
+        "/coachs/": ["Bonjour \u{1F44B} Vous regardez l\u2019\u00e9quipe.", "Quatre encadrants, Mehdi \u00e0 leur t\u00eate. Une question sur l\u2019un d\u2019eux\u00a0?"],
         "/le-club/": ["Bonjour \u{1F44B} Vous d\u00e9couvrez le club.", "C\u2019est la salle historique du r\u00e9seau, 12 rue de Fenouillet. Envie de venir voir\u00a0?"],
         "/galerie/": ["Bonjour \u{1F44B} Vous parcourez la galerie.", "Douze cl\u00e9ich\u00e9s \u2014 mais rien ne vaut la salle en vrai. Une question avant de passer\u00a0?"],
         "/premiere-seance/": ["Bonjour \u{1F44B} Vous pr\u00e9parez votre premi\u00e8re s\u00e9ance.", "Gants pr\u00eat\u00e9s, aucun niveau demand\u00e9, pas de sparring impos\u00e9. Une question\u00a0?"],

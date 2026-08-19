@@ -1,10 +1,10 @@
 /* =====================================================================
    MINIMES · home.js (v2) — kinetic accueil
    ===================================================================== */
-import { STATS, CHAMPIONS, VALUES, AUDIENCES, TARIFS } from "./data-accueil.js?v=b29";
-import { DISCIPLINES } from "./data-disciplines.js?v=b29";
-import { initHero } from "./hero.js?v=b29";
-import { initRounds } from "./rounds.js?v=b29";
+import { STATS, VALUES, AUDIENCES, TARIFS } from "./data-accueil.js?v=b30";
+import { DISCIPLINES } from "./data-disciplines.js?v=b30";
+import { initHero } from "./hero.js?v=b30";
+import { initRounds } from "./rounds.js?v=b30";
 
 const gsap = window.gsap;
 const ScrollTrigger = window.ScrollTrigger;
@@ -34,33 +34,10 @@ function renderMarquee() {
   const row = items.map((i) => `<span>${i}</span>`).join("");
   const t = $("#marquee"); if (!t) return; t.innerHTML = row + row; t.dataset.speed = "1.3";
 }
-function renderChampions() {
-  const stage = $("#berceau-stage"), rail = $("#berceau-rail");
-  if (!stage) return;
-  stage.innerHTML = CHAMPIONS.map((c, i) => `
-    <article class="berceau__fig ${i === 0 ? "is-active" : ""}" data-i="${i}">
-      <span class="berceau__bigname" aria-hidden="true">${c.last}</span>
-      <img class="berceau__cut" src="${c.img}" alt="${c.name}, boxeur formé à Boxing Center Minimes" decoding="async" />
-      <div class="berceau__card">
-        <span class="berceau__idx">N°${String(i + 1).padStart(2, "0")} <i>· ${c.years}</i></span>
-        <h3 class="berceau__name">${c.name}</h3>
-        <p class="berceau__note">${c.note}</p>
-      </div>
-    </article>`).join("");
-  if (rail) rail.innerHTML = CHAMPIONS.map((c, i) => `<li class="berceau__tick ${i === 0 ? "is-active" : ""}" data-i="${i}"></li>`).join("");
-  /* Précharge les silhouettes pour qu’elles soient instantanées à
-     l’activation — mais JAMAIS pendant le premier paint, et jamais sur un
-     forfait compté. (Avant : 1 062 Ko de PNG en eager au boot, en
-     concurrence avec le LCP. Les cut-outs sont maintenant en webp — ~125 Ko
-     à trois — et la chauffe attend que le thread soit libre.) */
-  const warm = () => {
-    const c = navigator.connection;
-    if (c && (c.saveData || /2g/.test(c.effectiveType || ""))) return;
-    CHAMPIONS.forEach((ch) => { const im = new Image(); im.src = ch.img; });
-  };
-  if ("requestIdleCallback" in window) requestIdleCallback(warm, { timeout: 4000 });
-  else setTimeout(warm, 2500);
-}
+/* Le Mur des Champions est retire — decision du boss du 19/08 :
+   « les boxeurs, toute la section ». Le conteneur #berceau-stage avait
+   deja disparu de la refonte ; on retire code et donnees pour qu'il ne
+   revienne pas par accident. */
 function renderDisciplines() {
   /* ⚠ `d.teaser`, PAS `d.desc` : le texte long est celui de /activites/.
      Les deux pages lisaient le même champ — dix-sept lignes de copie

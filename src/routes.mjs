@@ -54,10 +54,7 @@ const I = {
   lady2:     ["/assets/img/bc/lady-2.webp", "Frappe au sac en Lady Boxing — Boxing Center", `Séance Lady Boxing au sac — ${RESEAU}.`],
   educative: ["/assets/img/bc/educative-1.webp", "Boxe éducative pour les enfants — Boxing Center", `L'école de boxe : apprendre à boxer sans prendre de coups — ${RESEAU}. Au programme du ${CLUB}.`],
   niveaux:   ["/assets/img/bc/levels-1.webp", "Tous les niveaux sur le même plateau — Boxing Center", `Débutants et compétiteurs s'entraînent côte à côte — ${RESEAU}.`],
-  mehdi:     ["/assets/img/bc/cutouts/coach-mehdi.webp", `Mehdi B., coach principal du ${CLUB}`, "Mehdi B. dirige la salle des Minimes, Barrière de Paris à Toulouse."],
-  elyasse:   ["/assets/img/bc/cutouts/elyasse-azap.webp", `Elyasse Azap, boxeur du ${CLUB}`, "Elyasse Azap, boxeur du Boxing Center Minimes."],
-  johnson:   ["/assets/img/bc/cutouts/johnson-suffo.webp", `Johnson Suffo, boxeur du ${CLUB}`, "Johnson Suffo, boxeur du Boxing Center Minimes."],
-  salomon:   ["/assets/img/bc/cutouts/salomon-kitoko.webp", `Salomon Kitoko, boxeur du ${CLUB}`, "Salomon Kitoko, boxeur du Boxing Center Minimes."],
+  mehdi:     ["/assets/img/bc/cutouts/coach-mehdi.webp", `Mehdi, coach principal du ${CLUB}`, "Mehdi dirige la salle des Minimes, Barrière de Paris à Toulouse."],
   planning:  ["/assets/img/bc/planning-2026-full.webp", `Planning officiel des cours — ${CLUB}`, "Le planning 2026 des cours de la salle des Minimes, Barrière de Paris."],
 };
 
@@ -84,7 +81,7 @@ export const ROUTES = [
     path: "/coachs/",
     priority: "0.8",
     changefreq: "monthly",
-    images: [I.mehdi, I.elyasse, I.johnson, I.salomon],
+    images: [I.mehdi],   // les boxeurs sont retires du site (decision du 19/08)
   },
   {
     path: "/galerie/",

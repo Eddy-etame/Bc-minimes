@@ -13,17 +13,6 @@ export const STATS = [
   { v: 50, suffix: "+", l: "enfants formés chaque année dans notre école de boxe" },
   { v: 2016, suffix: "", l: "depuis", raw: true },
 ];
-/* Le Mur des Champions — interaction signature.
-   Boxeurs réels formés aux Minimes (source boxingcenter.fr).
-   ⚠ CONTENT GATE : le club n’a confirmé NI la catégorie de poids, NI le
-   palmarès, NI la date de passage pro. Tant que ce n’est pas signé, on ne
-   publie QUE ce qu’il ne peut pas contester : le nom + une ligne. Ne PAS
-   réintroduire `weight` / `record` sans validation écrite du club. */
-export const CHAMPIONS = [
-  { name: "Johnson Suffo", last: "Suffo", years: "Pro", note: "Formé sur ces rings, passé professionnel.", img: "/assets/img/bc/cutouts/johnson-suffo.webp" },
-  { name: "Salomon Kitoko", last: "Kitoko", years: "Pro", note: "Monté de l’école amateur de la maison jusqu’au professionnel.", img: "/assets/img/bc/cutouts/salomon-kitoko.webp" },
-  { name: "Elyasse Azap", last: "Azap", years: "Pro", note: "Pur produit de l’école amateur des Minimes.", img: "/assets/img/bc/cutouts/elyasse-azap.webp" },
-];
 export const VALUES = [
   { n: "01", t: "L’humilité d’abord", d: "Le premier round te dit qui tu es. Tout le monde repart corrigé — les pros aussi." },
   { n: "02", t: "La transmission", d: "Ceux qui tiennent les pattes aujourd’hui ont pris des jabs sur ce ring hier." },
