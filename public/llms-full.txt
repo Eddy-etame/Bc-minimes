@@ -178,9 +178,9 @@ Créneaux conseillés pour une première : anglaise loisirs 19h40 (lundi, mardi,
 ## Tarifs & offres — https://bc-minimes.vercel.app/tarifs/
 
 - Séance d’essai : 10 € la séance — toutes les disciplines, gants et protections prêtés, sans engagement, sans dossier. → https://boutique.boxingcenter.fr/seance-essai
-- Offre Rentrée : 29 € par personne (au lieu de 44,99 €) — 4 semaines de cours illimités, toutes disciplines, sans engagement. Encore mieux à deux : chacun 29 €. → https://boutique.boxingcenter.fr/abonnements#promo
-- Saison complète : 259 € les 12 mois (au lieu de 400 €) — payable en 4× sans frais ; anglaise, MMA, pieds-poings, Lady, fitness ; accès libre aux 5 clubs du réseau. → https://boutique.boxingcenter.fr/abonnements#promo
-- École de boxe : 295 € l’année t-shirt inclus, baby 250 € — Baby Boxe dès 3 ans (3/6), éducative 7/11, ados 12/16, compétiteurs encadrés par Mehdi B. → https://boutique.boxingcenter.fr/abonnements#enfants
+- Offre Rentrée : 29 € par personne (au lieu de 44,99 €) — 4 semaines de cours illimités, toutes disciplines, sans engagement. Encore mieux à deux : chacun 29 €. → https://boutique.boxingcenter.fr/offre/29
+- Saison complète : 259 € les 12 mois (au lieu de 400 €) — payable en 4× sans frais ; anglaise, MMA, pieds-poings, Lady, fitness ; accès libre aux 5 clubs du réseau. → https://boutique.boxingcenter.fr/offre/259
+- École de boxe : 295 € l’année t-shirt inclus, baby 250 € — Baby Boxe dès 3 ans (3/6), éducative 7/11, ados 12/16, compétiteurs encadrés par Mehdi B. → https://boutique.boxingcenter.fr/abonnements
 - Bonus : le t-shirt Boxing Center est inclus dans toute inscription enfant — pour tous, sans condition et sans quota.
 ### Les questions d’argent (rendues sur /tarifs/, hors FAQPage)
 

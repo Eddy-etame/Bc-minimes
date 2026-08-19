@@ -67,7 +67,7 @@ export const CTA = {
    Le visiteur lisait un prix, cliquait, en trouvait un autre : c'est la
    fuite de conversion la plus chère qu'un site puisse s'offrir.
    Trois libellés identiques menaient par ailleurs à trois URL distinctes
-   (/inscription?product=offre-duo, /abonnements#promo, /seance-essai).
+   (/inscription?product=offre-duo, /offre/29, /offre/259, /seance-essai).
    RÈGLE : un libellé = une destination. Elles vivent ici, et nulle part
    ailleurs. Toute page qui écrit une URL box-plus en dur la viole. */
 export const CTA_HREF = {
@@ -83,8 +83,8 @@ export const CTA_HREF = {
 export const LINKS = {
   essai: "https://boutique.boxingcenter.fr/seance-essai",   // essai 10€ — dernier recours (gong, FAQ), jamais en tête
   abonnements: "https://boutique.boxingcenter.fr/abonnements",
-  enfants: "https://boutique.boxingcenter.fr/abonnements#enfants",
-  promos: "https://boutique.boxingcenter.fr/abonnements#promo",
+  enfants: "https://boutique.boxingcenter.fr/abonnements",
+  promos: "https://boutique.boxingcenter.fr/offres-speciales",
   coachings: "https://boutique.boxingcenter.fr/coachings",
   materiel: "https://boutique.boxingcenter.fr/materiel",
   // maillage de marque : « Boutique » mène à la BOUTIQUE, pas à un rayon.
@@ -115,7 +115,7 @@ export const PROMOS = {
       feature: "Cours illimités, toutes disciplines, sans engagement",
       items: ["29€ par personne (au lieu de 44€)", "4 semaines de cours illimités", "Toutes les disciplines", "Encore mieux à deux — 29€ chacun"],
       cta: "Je prends ma place — 29€",
-      href: "https://boutique.boxingcenter.fr/abonnements#promo",
+      href: "https://boutique.boxingcenter.fr/offre/29",
       tag: "La priorité",
       highlight: true,
     },
@@ -128,7 +128,7 @@ export const PROMOS = {
       feature: "4× sans frais · accès libre aux 5 clubs — moins de 5€ par semaine",
       items: ["259€ les 12 mois (au lieu de 400€)", "Payable en 4× 64,75€ sans frais", "Anglaise, MMA, pieds-poings, Lady, Fitness", "Accès libre aux 5 clubs du réseau"],
       cta: "Je réserve ma saison — 4× 64,75€",
-      href: "https://boutique.boxingcenter.fr/abonnements#promo",
+      href: "https://boutique.boxingcenter.fr/offre/259",
       tag: "L’abonnement",
     },
     /* L'abonnement de tous les jours. Il manquait : la page sautait de
@@ -154,7 +154,7 @@ export const PROMOS = {
       feature: "Baby Boxe 3/6 à 250€ · éducative 7/11 · ados 12/16",
       items: ["Boxe éducative et ados : 295€/an, t-shirt du club inclus", "Baby Boxe 3/6 ans : 250€/an", "Un créneau par âge, mercredi et samedi", "Compétiteurs encadrés par Mehdi B"],
       cta: "J’inscris mon enfant",
-      href: "https://boutique.boxingcenter.fr/abonnements#enfants",
+      href: "https://boutique.boxingcenter.fr/abonnements",
     },
     {
       key: "essai",

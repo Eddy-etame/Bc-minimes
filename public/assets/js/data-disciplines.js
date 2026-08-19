@@ -38,7 +38,7 @@ export const DISCIPLINES = [
     teaser: "Le geste de base, repris jusqu’à ce qu’il tienne tout seul.",
     desc: "Le noble art, à la source. Jab, esquive, jeu de jambes — sept créneaux par semaine, midi et soir. Le loisir, ici, c’est la vraie boxe, à ton rythme — et aucun coup à recevoir tant que tu ne le demandes pas.",
     img: "/assets/img/photos/cours-sacs-1200.webp",
-    for: "Du grand débutant au compétiteur licencié.",
+    for: "Du grand débutant au boxeur expérimenté.",
     points: [
       "Le midi de 12h40 à 13h20 : mardi, mercredi, jeudi",
       "Le soir de 19h40 à 21h : lundi, mardi, jeudi, vendredi",
@@ -53,7 +53,7 @@ export const DISCIPLINES = [
     name: "Boxe Compétiteurs",
     tag: "Le ring, pour de vrai",
     teaser: "Le cours qui mène au ring, et nulle part ailleurs.",
-    desc: "18h à 19h30, quatre soirs par semaine. Ceux qui montent à l’open sparring du samedi ont fait leurs heures ici. On n’y entre pas en s’inscrivant : c’est Mehdi B qui te fait passer, quand tu es prêt — et seulement si tu en as envie.",
+    desc: "18h à 19h30, quatre soirs par semaine — plus l’open sparring du samedi. Ceux qui montent à l’open sparring du samedi ont fait leurs heures ici. On n’y entre pas en s’inscrivant : c’est Mehdi B qui te fait passer, quand tu es prêt — et seulement si tu en as envie.",
     img: "/assets/img/photos/sparring-graff-1200.webp",
     for: "Les licenciés — et ceux qui le deviendront, à leur rythme.",
     points: [
@@ -69,7 +69,7 @@ export const DISCIPLINES = [
     name: "Boxe Éducative",
     tag: "Dès 3 ans",
     teaser: "Le mercredi et le samedi appartiennent aux enfants.",
-    desc: "De la Baby Boxe 3/6 aux jeunes compétiteurs, la règle est fédérale et non négociable : on touche, on ne frappe pas. Ils arrivent en courant partout, ils repartent en marchant droit.",
+    desc: "De la Baby Boxe 3/6 aux jeunes compétiteurs, la règle est fédérale et stricte : on touche, on ne frappe pas. Ils arrivent en courant partout, ils repartent en marchant droit.",
     img: "/assets/img/photos/ecole-enfant-1200.webp",
     for: "Les enfants et les ados, du jeu au ring.",
     points: [
@@ -86,7 +86,7 @@ export const DISCIPLINES = [
     name: "Boxing Lady",
     tag: "100 % féminin",
     teaser: "Entre femmes, le lundi et le mercredi soir.",
-    desc: "Deux soirs, une bande, et le sac qui prend tout. Chloé le lundi, David le mercredi — entre femmes, avec une vraie exigence et zéro galerie. Beaucoup y débutent ; certaines passent ensuite en mixte. Les deux sont très bien.",
+    desc: "Deux soirs, une bande, et le sac qui prend tout. Chloé le lundi, David le mercredi — entre femmes, avec un vrai apprentissage de la technique. Beaucoup y débutent ; certaines passent ensuite en mixte. Les deux sont très bien.",
     img: "/assets/img/photos/lady-sac-1200.webp",
     for: "Les femmes, débutantes comme habituées.",
     points: [
@@ -102,7 +102,7 @@ export const DISCIPLINES = [
     name: "Boxing Camp",
     tag: "Le circuit",
     teaser: "Cinq rendez-vous par semaine, juste pour le moteur.",
-    desc: "Le cours qui te construit la caisse d’un boxeur sans te demander de savoir boxer. Ça enchaîne, ça ne discute pas, et à la fin tu es cuit.",
+    desc: "Le cours qui te construit la caisse d’un boxeur sans te demander de savoir boxer. Ça enchaîne, ça ne discute pas — et à la fin, tu as la sensation d’avoir vraiment bossé.",
     img: "/assets/img/photos/jumps-groupe-1200.webp",
     for: "Les adultes, tous niveaux — aucune technique exigée.",
     points: [

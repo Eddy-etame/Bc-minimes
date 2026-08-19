@@ -14,16 +14,16 @@ import SiteContent from "../components/SiteContent.astro";
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-black-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-latin.woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/css/fonts.css?v=b29" />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=b30" />
 
   <!-- LCP : le poster du hero est peint avant la vidéo ; il est chargé par
        le JS, donc invisible au preload scanner. Le preload rattrape la
        découverte perdue (§5.8 « preload de l’image LCP »). -->
   <link rel="preload" as="image" href="/assets/img/photos/hero-sacs.webp" fetchpriority="high" />
 
-  <link rel="stylesheet" href="/assets/css/base.css?v=b29" />
-  <link rel="stylesheet" href="/assets/css/home.css?v=b29" />
-  <link rel="stylesheet" href="/assets/css/refonte.css?v=b29" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=b30" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=b30" />
+  <link rel="stylesheet" href="/assets/css/refonte.css?v=b30" />
 
   <meta name="keywords" content="salle de boxe Minimes, boxe anglaise Toulouse, club de boxe 31200, boxe Barrière de Paris, boxe éducative enfant Toulouse, Boxing Lady, séance d’essai boxe Toulouse, Boxing Center Minimes, boxing gym Toulouse, boxing club Toulouse, boxing lessons Toulouse, boxing classes Toulouse Minimes, English boxing Toulouse, kids boxing Toulouse, women boxing Toulouse, martial arts gym Toulouse, gym near Barrière de Paris" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -205,7 +205,7 @@ import SiteContent from "../components/SiteContent.astro";
               "price": "29",
               "priceCurrency": "EUR",
               "description": "4 semaines de cours illimités, toutes disciplines, sans engagement — 29€ par personne (au lieu de 44€).",
-              "url": "https://boutique.boxingcenter.fr/abonnements#promo"
+              "url": "https://boutique.boxingcenter.fr/offre/29"
             },
             {
               "@type": "Offer",
@@ -213,7 +213,7 @@ import SiteContent from "../components/SiteContent.astro";
               "price": "259",
               "priceCurrency": "EUR",
               "description": "Payable en 4× sans frais, accès libre aux 5 clubs du réseau (au lieu de 400€).",
-              "url": "https://boutique.boxingcenter.fr/abonnements#promo"
+              "url": "https://boutique.boxingcenter.fr/offre/259"
             },
             {
               "@type": "Offer",
@@ -221,7 +221,7 @@ import SiteContent from "../components/SiteContent.astro";
               "price": "295",
               "priceCurrency": "EUR",
               "description": "L’année, t-shirt du club inclus — éducative 7/11, ados 12/16. Baby Boxe 3/6 ans : 250€.",
-              "url": "https://boutique.boxingcenter.fr/abonnements#enfants"
+              "url": "https://boutique.boxingcenter.fr/abonnements"
             }
           ]
         },
@@ -386,7 +386,7 @@ import SiteContent from "../components/SiteContent.astro";
              tarifs qui font vivre le club se lisent cote a cote, comme dans la
              roulette. La seance d'essai a 10 EUR n'est pas perdue : elle reste
              dans le hero (second bouton), sur la page tarifs et dans le gong. -->
-        <a class="trustbar__item trustbar__item--offre" href="https://boutique.boxingcenter.fr/abonnements?utm_source=site&utm_medium=trustbar&utm_campaign=bc-minimes#promo"><span class="trustbar__k"><s class="trustbar__was">400€</s>259€</span><span class="trustbar__v">La saison · 4× sans frais</span></a>
+        <a class="trustbar__item trustbar__item--offre" href="https://boutique.boxingcenter.fr/offre/259?utm_source=site&utm_medium=trustbar&utm_campaign=bc-minimes"><span class="trustbar__k"><s class="trustbar__was">400€</s>259€</span><span class="trustbar__v">La saison · 4× sans frais</span></a>
         <!-- La phrase demandee est portee par les DEUX lignes de la case : le
              gros caractere dit le niveau requis (aucun), la ligne du dessous
              dit jusqu'ou ca va. Ecrite d'un seul tenant dans le petit libelle,
@@ -471,13 +471,13 @@ import SiteContent from "../components/SiteContent.astro";
         </div>
         <div class="split-sec__body reveal-up">
           <span class="eyebrow">Débuter</span>
-          <h2 id="t-debut" class="display display--sm">Jamais mis un gant ?<br>C’est le cas de <span class="tint">la moitié</span> de la salle.</h2>
+          <h2 id="t-debut" class="display display--sm">Jamais mis un gant ?<br>On est <span class="tint">tous passés</span> par là.</h2>
           <p class="lead">On n’attend de vous ni condition physique, ni technique, ni matériel. Vous venez en tenue de sport, on vous prête le reste.</p>
           <p>Le premier cours commence par l’échauffement, la position de garde et le direct. Vous ne serez jamais mis face à quelqu’un sans l’avoir voulu : l’opposition est une étape que l’on choisit, jamais une surprise.</p>
           <ul class="benefits">
             <li><b>Tenue de sport suffisante</b> — short ou legging, t-shirt, chaussures propres</li>
-            <li><b>Gants prêtés</b> — le temps de savoir si vous continuez</li>
-            <li><b>Un créneau débutant chaque jour</b> — du lundi au samedi, 10h–21h30</li>
+            <li><b>Gants prêtés</b> — le temps de vous équiper</li>
+            <li><b>Un créneau débutant du lundi au vendredi</b> — le cours loisirs de 19h40</li>
           </ul>
           <div class="btn-row">
             <a class="btn btn--primary" data-magnetic href="https://boutique.boxingcenter.fr/seance-essai?utm_source=site&utm_medium=cta&utm_campaign=bc-minimes"><span>Tester une séance · 10€</span></a>
@@ -514,7 +514,7 @@ import SiteContent from "../components/SiteContent.astro";
           <p class="lead">Le Boxing Lady réunit des femmes de tous âges et de tous niveaux, encadrées par une coach, dans un cours qui leur est réservé.</p>
           <p>Cardio, technique, travail au sac et aux pattes d’ours : le contenu est celui d’un vrai cours de boxe, pas d’une version allégée. Beaucoup arrivent pour la remise en forme et restent pour la technique.</p>
           <ul class="benefits">
-            <li><b>Entre femmes</b> — lundi et mercredi, 19h</li>
+            <li><b>Entre femmes</b> — lundi et mercredi, 18h30</li>
             <li><b>Sans opposition obligatoire</b> — le sac suffit à progresser</li>
             <li><b>Accès à toutes les autres disciplines</b> avec le même abonnement</li>
           </ul>
@@ -546,7 +546,7 @@ import SiteContent from "../components/SiteContent.astro";
             <li><b>T-shirt du club inclus</b> dans l’inscription annuelle</li>
           </ul>
           <div class="btn-row">
-            <a class="btn btn--primary" data-magnetic href="https://boutique.boxingcenter.fr/abonnements#enfants"><span>Inscrire mon enfant</span></a>
+            <a class="btn btn--primary" data-magnetic href="https://boutique.boxingcenter.fr/abonnements"><span>Inscrire mon enfant</span></a>
             <a class="btn btn--ghost" data-magnetic href="/plannings/"><span>Voir les créneaux</span></a>
           </div>
         </div>
@@ -605,12 +605,12 @@ import SiteContent from "../components/SiteContent.astro";
                srcset="/assets/img/photos/jumps-groupe-700.webp 700w, /assets/img/photos/jumps-groupe-1200.webp 1200w, /assets/img/photos/jumps-groupe.webp 2000w"
                sizes="(min-width: 940px) 46vw, 92vw"
                alt="Groupe en préparation physique : sauts sur box en bois entre les sacs de frappe" width="1200" height="798" loading="lazy" decoding="async" />
-          <span class="split-sec__tag"><b>5</b> séances / semaine</span>
+          <span class="split-sec__tag">Du lundi au <b>samedi</b></span>
         </div>
         <div class="split-sec__body reveal-up">
           <span class="eyebrow">Préparation physique</span>
           <h2 id="t-cross" class="display display--sm">La condition physique<br>vient avec le <span class="tint">reste.</span></h2>
-          <p class="lead">Cross training, cardio boxing, Boxing Camp : cinq rendez-vous hebdomadaires pour le souffle et la force, inclus dans l’abonnement.</p>
+          <p class="lead">Cross training, cardio boxing, Boxing Camp : des rendez-vous tout au long de la semaine pour le souffle et la force, inclus dans l’abonnement.</p>
           <p>L’étage est équipé en rack, barres, box et machines cardio, et reste accessible en libre pratique aux heures d’ouverture. Beaucoup d’adhérents viennent d’abord pour la boxe et finissent par y passer autant de temps.</p>
           <ul class="benefits">
             <li><b>Inclus dans l’abonnement</b> — aucune option à ajouter</li>
@@ -628,7 +628,7 @@ import SiteContent from "../components/SiteContent.astro";
           <div class="whofor__head">
             <span class="eyebrow">Pour qui</span>
             <h2 class="display whofor__title">Un créneau pour <span class="tint">chaque profil</span></h2>
-            <p class="muted whofor__intro">De l’enfant de 3 ans au compétiteur, cinq façons d’entrer dans la salle — et aucune ne demande d’avoir déjà boxé.</p>
+            <p class="muted whofor__intro">Débutants, femmes, enfants : trois façons d’entrer dans la salle — et aucune ne demande d’avoir déjà boxé.</p>
             <ol class="whofor__rail" id="whofor-rail"></ol>
           </div>
           <div class="whofor__stage" id="whofor-stage"></div>
@@ -729,7 +729,7 @@ import SiteContent from "../components/SiteContent.astro";
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=b29"></script>
-  <script is:inline type="module" src="/assets/js/home.js?v=b29"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=b30"></script>
+  <script is:inline type="module" src="/assets/js/home.js?v=b30"></script>
 </body>
 </html>

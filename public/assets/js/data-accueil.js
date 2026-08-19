@@ -10,7 +10,7 @@
 export const STATS = [
   { v: "Plusieurs", suffix: "", l: "rings — pas une salle de fitness", raw: true },
   { v: 8, suffix: "+", l: "pros sortis de ces cordes — une vraie école de boxe" },
-  { v: 50, suffix: "+", l: "amateurs passés par l’école" },
+  { v: 50, suffix: "+", l: "enfants formés chaque année dans notre école de boxe" },
   { v: 2016, suffix: "", l: "depuis", raw: true },
 ];
 /* Le Mur des Champions — interaction signature.
@@ -34,8 +34,6 @@ export const AUDIENCES = [
   { t: "Les débutants", tag: "Première fois", d: "Jamais mis un gant ? C’est exactement pour toi. Le premier jour, tout le monde frappe à côté du sac — Mehdi te reprend le geste dix fois s’il le faut, et il ne lâche pas avant que tu l’aies rentré.", img: "/assets/img/photos/ballon-vitesse-1200.webp" },
   { t: "Les femmes", tag: "Boxing Lady", d: "Boxing Lady le lundi avec Chloé, le mercredi avec David — 18h30, la salle est à elles. Beaucoup y débutent, certaines rejoignent ensuite les cours mixtes. Les deux sont très bien.", img: "/assets/img/photos/lady-sac-1200.webp" },
   { t: "Les enfants", tag: "Dès 3 ans", d: "Baby Boxe dès 3 ans, éducative 7/11, ados 12/16 : on touche, on ne frappe pas — règle fédérale. De la motricité, du respect, et toute cette énergie qui trouve enfin où aller.", img: "/assets/img/photos/ecole-enfant-1200.webp" },
-  { t: "Les parents", tag: "On s’y remet", d: "Vous accompagnez votre enfant ? Restez. Le mercredi et le samedi, pendant son cours, les sacs de l’accès libre sont à vous — la famille transpire ensemble.", img: "/assets/img/photos/coach-garde-1200.webp" },
-  { t: "Les compétiteurs", tag: "Le ring", d: "Quand tu seras prêt — et seulement si tu en as envie — Mehdi t’amène du cours du soir à l’open sparring du samedi, puis au ring. Plus de 8 pros ont pris ce chemin avant toi, préparés.", img: "/assets/img/photos/sparring-graff-1200.webp" },
 ];
 /* L’offre — teaser accueil (3 cartes). Le détail vit sur /tarifs/ (PROMOS).
    Essai + enfants pointent vers box-plus ; la carte saison reste interne → /tarifs/. */
@@ -47,7 +45,7 @@ export const TARIFS = [
     feature: "Cours illimités, toutes disciplines — encore mieux à deux",
     items: ["29€ par personne (au lieu de 44€)", "Toutes les disciplines", "Sans engagement"],
     cta: "Je prends ma place — 29€",
-    href: "https://boutique.boxingcenter.fr/abonnements#promo",
+    href: "https://boutique.boxingcenter.fr/offre/29",
     highlight: true,
   },
   {
@@ -67,7 +65,7 @@ export const TARIFS = [
     feature: "Baby Boxe 250€ · éducative · ados",
     items: ["Baby Boxe, éducative, ados", "Mercredi et samedi", "Matériel fourni"],
     cta: "Inscrire mon enfant",
-    href: "https://boutique.boxingcenter.fr/abonnements#enfants",
+    href: "https://boutique.boxingcenter.fr/abonnements",
     highlight: false,
   },
 ];

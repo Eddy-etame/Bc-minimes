@@ -50,7 +50,7 @@
           "Encore mieux à deux — 29€ chacun"
         ],
         "cta": "Je prends ma place — 29€",
-        "href": "https://boutique.boxingcenter.fr/abonnements#promo",
+        "href": "https://boutique.boxingcenter.fr/offre/29",
         "tag": "La priorité",
         "highlight": true
       },
@@ -68,7 +68,7 @@
           "Accès libre aux 5 clubs du réseau"
         ],
         "cta": "Je réserve ma saison — 4× 64,75€",
-        "href": "https://boutique.boxingcenter.fr/abonnements#promo",
+        "href": "https://boutique.boxingcenter.fr/offre/259",
         "tag": "L’abonnement"
       },
       {
@@ -100,7 +100,7 @@
           "Compétiteurs encadrés par Mehdi B"
         ],
         "cta": "J’inscris mon enfant",
-        "href": "https://boutique.boxingcenter.fr/abonnements#enfants"
+        "href": "https://boutique.boxingcenter.fr/abonnements"
       },
       {
         "key": "essai",
