@@ -7,22 +7,22 @@ import SiteContent from "../../components/SiteContent.astro";
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Coachs sport de combat | Boxing Center Minimes Toulouse</title>
-  <meta name="description" content="Mehdi tient la maison, du premier gant de Baby Boxe au sparring. Chloé et David sur le Boxing Lady, Hicham sur le camp. Voilà qui te coache." />
+  <meta name="description" content="Mehdi tient la maison, du premier gant de Baby Boxe au sparring. Chloé et David sur le Boxing Lady, Clément sur le camp. Voilà qui te coache." />
 
   <!-- Préconnexion CDN (les libs sont différées) — polices auto-hébergées :
        plus aucune requête vers fonts.googleapis.com / fonts.gstatic.com -->
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-black-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-latin.woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/css/fonts.css?v=b45" />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=b46" />
 
   <!-- LCP : le portrait de Mehdi est le sujet de la page, et il est construit
        en JS → invisible au preload scanner (§5.8) -->
   <link rel="preload" as="image" href="/assets/img/bc/cutouts/coach-mehdi.webp" fetchpriority="high" />
 
-  <link rel="stylesheet" href="/assets/css/base.css?v=b45" />
-  <link rel="stylesheet" href="/assets/css/home.css?v=b45" />
-  <link rel="stylesheet" href="/assets/css/refonte.css?v=b45" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=b46" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=b46" />
+  <link rel="stylesheet" href="/assets/css/refonte.css?v=b46" />
 
   <meta name="keywords" content="coach boxe Minimes Toulouse, entraîneur boxe anglaise Toulouse, Mehdioxing Center, coach Boxing Lady, coach boxe éducative enfant, encadrement boxe 31200, boxing gym Toulouse, boxing club Toulouse, boxing lessons Toulouse, boxing classes Toulouse Minimes, English boxing Toulouse, kids boxing Toulouse, women boxing Toulouse, martial arts gym Toulouse, gym near Barrière de Paris" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -42,7 +42,7 @@ import SiteContent from "../../components/SiteContent.astro";
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="Boxing Center Minimes" />
   <meta property="og:title" content="Les coachs | Boxing Center Minimes, Toulouse" />
-  <meta property="og:description" content="Mehdi, coach principal : anglaise, éducative dès 3 ans, compétiteurs. Boxing Lady avec Chloé et David, boxing camp avec Hicham." />
+  <meta property="og:description" content="Mehdi, coach principal : anglaise, éducative dès 3 ans, compétiteurs. Boxing Lady avec Chloé et David, boxing camp avec Clément." />
   <meta property="og:url" content="https://bc-minimes.vercel.app/coachs/" />
   <meta property="og:image" content="https://bc-minimes.vercel.app/assets/img/og.jpg" />
   <meta property="og:image:width" content="1200" />
@@ -253,7 +253,7 @@ import SiteContent from "../../components/SiteContent.astro";
         "@id": "https://bc-minimes.vercel.app/coachs/#webpage",
         "url": "https://bc-minimes.vercel.app/coachs/",
         "name": "Les coachs — Boxing Center Minimes, Toulouse (Mehdi, Boxing Lady, boxing camp)",
-        "description": "Mehdi tient la maison, du premier gant de Baby Boxe au sparring. Chloé et David sur le Boxing Lady, Hicham sur le camp. Voilà qui te coache.",
+        "description": "Mehdi tient la maison, du premier gant de Baby Boxe au sparring. Chloé et David sur le Boxing Lady, Clément sur le camp. Voilà qui te coache.",
         "isPartOf": {
           "@id": "https://bc-minimes.vercel.app/#website"
         },
@@ -349,7 +349,7 @@ import SiteContent from "../../components/SiteContent.astro";
       {
         "@type": "Person",
         "@id": "https://bc-minimes.vercel.app/coachs/#hicham",
-        "name": "Hicham",
+        "name": "Clément",
         "jobTitle": "Coach",
         "knowsAbout": [
           "Boxing camp"
@@ -363,7 +363,7 @@ import SiteContent from "../../components/SiteContent.astro";
   </script>
   <!-- Person : les 4 coachs VISIBLES sur la page sont dans le graphe ; seul
        Mehdi (portrait prouvé, roster.json) porte une image. Chloé / David /
-       Hicham = nœud Person SANS image tant que leur visage n’est pas vérifié. -->
+       Clément = nœud Person SANS image tant que leur visage n’est pas vérifié. -->
 
   <!-- page-scoped : pilier (photo prouvée sur fond sombre, énergie mur de
        champion) + tuiles nom N&B pour les coachs sans portrait vérifié -->
@@ -499,7 +499,6 @@ import SiteContent from "../../components/SiteContent.astro";
           <h2 class="display display--sm" style="margin-top:1rem">Et derrière <span class="tint">le patron</span></h2>
         </div>
         <div class="roster" id="roster" data-reveal-group></div>
-        <p class="co-pending" id="pending" data-reveal></p>
       </div>
     </section>
 
@@ -537,7 +536,7 @@ import SiteContent from "../../components/SiteContent.astro";
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=b45"></script>
-  <script is:inline type="module" src="/assets/js/coachs.js?v=b45"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=b46"></script>
+  <script is:inline type="module" src="/assets/js/coachs.js?v=b46"></script>
 </body>
 </html>

@@ -5,7 +5,7 @@
    pages (site.js en dépend), ces données-là n’en concernent que trois pages (planning, activités, coachs).
    Les embarquer partout coûtait leur poids sur chaque page pour rien.
    ===================================================================== */
-import { bcRegister } from "./data.js?v=b45";
+import { bcRegister } from "./data.js?v=b46";
 
 /* =====================================================================
    LE PLANNING — transcription du poster officiel SAISON 2026-2027
@@ -40,7 +40,7 @@ export const PLANNING = [
   /* ---- Mardi ---- */
   { d: "Mardi", h: "12h40", end: "13h20", disc: "anglaise", name: "Boxe anglaise (loisirs)", coach: "Mehdi", age: "Tous niveaux" },
   { d: "Mardi", h: "18h00", end: "19h30", disc: "competiteurs", name: "Boxe compétiteurs", coach: "Mehdi", age: "Licenciés", space: 1 },
-  { d: "Mardi", h: "18h30", end: "19h30", disc: "camp", name: "Boxing camp", coach: "Hicham", age: "Adultes", space: 2 },
+  { d: "Mardi", h: "18h30", end: "19h30", disc: "camp", name: "Boxing camp", coach: "Clément", age: "Adultes", space: 2 },
   { d: "Mardi", h: "19h40", end: "21h00", disc: "anglaise", name: "Boxe anglaise (loisirs)", coach: "Mehdi", age: "Tous niveaux" },
 
   /* ---- Mercredi ---- */
@@ -54,7 +54,7 @@ export const PLANNING = [
   /* ---- Jeudi ---- */
   { d: "Jeudi", h: "12h40", end: "13h20", disc: "anglaise", name: "Boxe anglaise (loisirs)", coach: "Mehdi", age: "Tous niveaux" },
   { d: "Jeudi", h: "18h00", end: "19h30", disc: "competiteurs", name: "Boxe compétiteurs", coach: "Mehdi", age: "Licenciés", space: 1 },
-  { d: "Jeudi", h: "18h30", end: "19h30", disc: "camp", name: "Boxing camp", coach: "Hicham", age: "Adultes", space: 2 },
+  { d: "Jeudi", h: "18h30", end: "19h30", disc: "camp", name: "Boxing camp", coach: "Clément", age: "Adultes", space: 2 },
   { d: "Jeudi", h: "19h40", end: "21h00", disc: "anglaise", name: "Boxe anglaise (loisirs)", coach: "Mehdi", age: "Tous niveaux" },
 
   /* ---- Vendredi ---- */

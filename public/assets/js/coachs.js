@@ -4,8 +4,8 @@
    en avant (Mehdi, photo prouvée), les autres en tuiles nom N&B.
    Loi §0.10 : nom ≡ photo, jamais de stock, jamais de croisement.
    ===================================================================== */
-import { COACHES, LINKS, CTA, CTA_HREF } from "./data.js?v=b45";
-import { PLANNING, PLANNING_DAYS } from "./data-planning.js?v=b45";
+import { COACHES, LINKS, CTA, CTA_HREF } from "./data.js?v=b46";
+import { PLANNING, PLANNING_DAYS } from "./data-planning.js?v=b46";
 
 const $ = (s, r = document) => r.querySelector(s);
 
@@ -31,7 +31,6 @@ function renderPillar() {
       <h2 class="pillar__name">${c.name}</h2>
       <ul class="pillar__disc">${c.disciplines.map((d) => `<li>${d}</li>`).join("")}</ul>
       <p class="pillar__bio">${c.bio}</p>
-      <p class="pillar__note">${c.note}</p>
       <div class="pillar__cta">
         <a class="btn btn--primary" data-magnetic href="${CTA_HREF.primary}"><span>${CTA.primary}</span></a>
         <a class="btn btn--ghost" data-magnetic href="${linkOf(c.planName)}"><span>Ses créneaux</span></a>
@@ -49,21 +48,17 @@ function renderRoster() {
         <div class="coach__body">
           <span class="coach__role">${c.role}</span>
           <h3 class="coach__name">${c.name}</h3>
-          <p class="coach__note">${c.note}</p>
         </div>
-        <span class="coach__pending">Portrait à venir</span>
       </article>`
     )
     .join("");
-  const pend = $("#pending");
-  if (pend) pend.textContent = COACHES.pending;
 }
 
 /* ---------------------- QUI EST LÀ, QUEL JOUR ----------------------
    La page répondait « qui coache ici » mais pas « il est là quand ? ».
    Tout est DÉRIVÉ de PLANNING : l’ordre des jours, les noms présents, le
    nombre de créneaux. Aucun nom, aucun jour tapé dans le markup (§0.10) —
-   si Hicham prend le vendredi dans data.js, il apparaît ici tout seul.
+   si Clément prend le vendredi dans data.js, il apparaît ici tout seul.
 
    L’ordre à l’intérieur d’un jour n’est PAS alphabétique : c’est l’ordre
    d’entrée sur le parquet (premier créneau du jour). Le premier nom de la

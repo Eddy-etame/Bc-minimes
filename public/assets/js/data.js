@@ -223,7 +223,7 @@ export const FAQ = [
    Loi §0.10 : nom ≡ photo, jamais croisés, jamais de stock.
    - Mehdi = Mehdioutlelis → photo PROUVÉE (le cutout coach-mehdi.png
      est la même prise que mehdi-boutlelis.webp du scrape officiel). Pilier.
-   - Chloé / David / Hicham : AUCUNE photo prouvée → tuiles nom N&B
+   - Chloé / David / Clément : AUCUNE photo prouvée → tuiles nom N&B
      (monogramme + discipline), pas de silhouette empruntée, pas de stock.
    Les textes ne décrivent QUE ce que le poster prouve (disciplines/créneaux) ;
    aucun palmarès inventé.
@@ -247,10 +247,10 @@ export const COACHES = {
   roster: [
     { initials: "C", name: "Chloé", planName: "Chloé", role: "Boxing Lady", note: "Le Boxing Lady du lundi soir, de 18h30 à 19h30. Elle mène la bande et elle ne lâche rien." },
     { initials: "D", name: "David", planName: "David", role: "Boxing Lady · Pieds-poings", note: "Le Lady du mercredi 18h30, puis les pieds-poings à 19h40 dans la foulée. Le geste propre, la garde haute." },
-    { initials: "H", name: "Hicham", planName: "Hicham", role: "Boxing camp", note: "Le boxing camp du mardi et du jeudi, 18h30. Le cardio qui te construit une caisse." },
+    { initials: "C", name: "Clément", planName: "Clément", role: "Boxing camp", note: "Le boxing camp du mardi et du jeudi, 18h30. Le cardio qui te construit une caisse." },
   ],
   /* honnêteté §0.10 : on assume publiquement l’absence de portrait */
-  pending: "Chloé, David et Hicham rejoindront le mur dès qu’on aura leur vrai portrait. Pas de photo d’illustration : ici, un visage = la bonne personne.",
+  pending: "Chloé, David et Clément rejoindront le mur dès qu’on aura leur vrai portrait. Pas de photo d’illustration : ici, un visage = la bonne personne.",
 };
 
 /* =====================================================================

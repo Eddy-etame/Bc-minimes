@@ -26,7 +26,7 @@ const STATIC_INFO = `- Boxing Center Minimes : salle historique du groupe Boxing
 - Horaires : du lundi au samedi, 10h00 – 21h30. Fermé le dimanche.
 - Tarifs (dans l’ordre où on les propose) : offre RENTRÉE 29€ PAR PERSONNE pour 4 semaines illimitées (au lieu de 44€) ; saison complète 259€ les 12 mois payable en 4× sans frais (au lieu de 400€) ; école 295€ l’année t-shirt du club inclus, Baby Boxe 250€ ; séance d’essai 10€ EN DERNIER.
 - Disciplines : boxe anglaise (loisirs et compétiteurs), boxe éducative dès 3 ans (Baby Boxe 3/6, enfants 7/11, ados 12/16), Boxing Lady 100 % féminin, Boxing camp, boxe pieds-poings, PAOS et pattes d’ours, cross training et cardio boxing en accès libre.
-- Coachs : Mehdi B (coach principal, anglaise, école, compétiteurs, camp, sparring), Chloé (Boxing Lady du lundi), David (Boxing Lady du mercredi et pieds-poings), Hicham (Boxing camp mardi et jeudi).
+- Coachs : Mehdi B (coach principal, anglaise, école, compétiteurs, camp, sparring), Chloé (Boxing Lady du lundi), David (Boxing Lady du mercredi et pieds-poings), Clément (Boxing camp mardi et jeudi).
 - Planning : anglaise loisirs le midi 12h40 (mardi, mercredi, jeudi) et le soir 19h40 (lundi, mardi, jeudi, vendredi) ; compétiteurs 18h (lundi, mardi, jeudi, vendredi) ; Boxing Lady lundi et mercredi 18h30 ; Boxing camp lundi et vendredi 12h40, mardi et jeudi 18h30, samedi 11h ; pieds-poings mercredi 19h40 ; l’école mercredi et samedi après-midi ; open sparring samedi 18h30.`;
 
 /** Le bloc d’infos construit depuis le contenu éditable du backoffice. */
@@ -168,7 +168,7 @@ export const KB = [
   { re: /discipline|cours|anglaise|pieds.?poings|camp|sparring|cardio|cross|paos|comp[ée]tit|mma|kick/i,
     a: "La spécialité maison, c’est la boxe anglaise : loisirs le midi et le soir, compétiteurs à 18h quatre soirs par semaine, open sparring le samedi 18h30. À côté : Boxing Lady, Boxing camp, pieds-poings le mercredi, l’école dès 3 ans, plus le cross training et le cardio boxing en accès libre." },
   { re: /coach|entra[îi]neur|prof|encadr|[ée]quipe|mehdi|chlo|david|hicham/i,
-    a: "Mehdi B tient la maison : anglaise, école, compétiteurs, boxing camp, sparring — presque tous les créneaux de la semaine. Chloé mène le Boxing Lady du lundi, David celui du mercredi puis les pieds-poings, et Hicham le boxing camp du mardi et du jeudi." },
+    a: "Mehdi B tient la maison : anglaise, école, compétiteurs, boxing camp, sparring — presque tous les créneaux de la semaine. Chloé mène le Boxing Lady du lundi, David celui du mercredi puis les pieds-poings, et Clément le boxing camp du mardi et du jeudi." },
   { re: /d[ée]butant|jamais box|niveau|peur|forme|condition/i,
     a: "Tu ne seras ni le premier ni le seul à arriver sans avoir jamais mis un gant. Le coach te met en garde, te corrige, recommence — dix fois s’il le faut. Personne ne monte sur le ring sans en avoir envie : ça se demande, ça ne s’impose pas. Le déroulé complet d’une première séance est écrit noir sur blanc. [boutons: premiere, offre]" },
   { re: /salle|ring|sac|mat[ée]riel|[ée]quipement|vestiaire|[ée]tage|histoire|champion|pro\b/i,

@@ -108,7 +108,7 @@ export const DISCIPLINES = [
     for: "Les adultes, tous niveaux — aucune technique exigée.",
     points: [
       "Lundi et vendredi à 12h40, sur la pause déjeuner",
-      "Mardi et jeudi à 18h30 avec Hicham",
+      "Mardi et jeudi à 18h30 avec Clément",
       "Samedi 11h à 12h avec Mehdi",
       "Le seul cours où tu peux venir sans rien savoir faire",
     ],
