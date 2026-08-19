@@ -77,7 +77,6 @@ export const DISCIPLINES = [
       "Enfants 7/11 ans à 15h, ados 12/16 ans à 16h",
       "Jeunes compétiteurs à 17h — pour ceux qui veulent le ring",
       "Mercredi et samedi, la même montée d’âge, le même coach",
-      "Parents : restez au bord du ring, posez toutes vos questions au coach",
     ],
   },
   {
