@@ -56,7 +56,7 @@ export const DISCIPLINES = [
     tag: "Le ring, pour de vrai",
     teaser: "Le cours qui mène au ring, et nulle part ailleurs.",
     desc: "18h à 19h30, quatre soirs par semaine — plus l’open sparring du samedi. Ceux qui montent à l’open sparring du samedi ont fait leurs heures ici. On n’y entre pas en s’inscrivant : c’est Mehdi qui te fait passer, quand tu es prêt — et seulement si tu en as envie.",
-    img: "/assets/img/photos/sparring-graff-1200.webp",
+    img: "/assets/img/photos/competiteurs-ring-1200.webp",
     for: "Les licenciés — et ceux qui le deviendront, à leur rythme.",
     points: [
       "De 18h à 19h30 : lundi, mardi, jeudi, vendredi",
@@ -121,8 +121,9 @@ export const DISCIPLINES = [
     teaser: "Le mercredi soir, on boxe aussi avec les jambes.",
     desc: "Une fois par semaine, la garde change et les jambes entrent dans l’histoire. Même exigence de geste que l’anglaise, deux fois plus de gestes à apprendre.",
     img: "/assets/img/photos/pieds-poings-1200.webp",
-    /* prise serrée : à 28 % la bande large ne montrait qu’un menton coupé. */
-    focus: "45%",
+    /* Prise serrée : dans la bande large de l’accueil, 28 % coupait le menton
+       et 45 % ne montrait qu’un torse. À 0 % le visage tient en entier. */
+    focus: "0%",
     for: "Tous niveaux — y compris ceux qui n’ont jamais lancé un coup de pied.",
     points: [
       "Mercredi 19h40 à 21h, avec David",
