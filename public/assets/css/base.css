@@ -707,9 +707,13 @@ a:hover > .ext, a:focus-visible > .ext { opacity: 1; }
    le pied de page definissait --muted mais pas --read, et les cartes du
    reseau heritaient donc du gris de LECTURE CLAIRE (#474D6D) sur un fond
    navy — 2:1, illisible.
-   La liste complete est posee ici, une fois, pour les quatre.
+   La liste complete est posee ici, une fois, pour toutes.
    ===================================================================== */
-.footer, .menu, .gong, .page-head {
+/* .club-head et .ambiance ont rejoint la liste : elles posent leur texte sur
+   une photo passée en brightness(.5) / .42 sans jamais déclarer d’encres
+   claires. Le titre, le chapô et la citation héritaient donc du navy #14162F
+   de la surface papier — du navy sur une photo noire. */
+.footer, .menu, .gong, .page-head, .club-head, .ambiance {
   --bone:      #FFFFFF;
   --read:      #C9CBE4;
   --muted:     #C9CBE4;

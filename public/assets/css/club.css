@@ -29,31 +29,38 @@
    /le-club/ garde son hero bespoke : c'est la page « la salle » de cette
    salle (il n'y a pas de /la-salle/ — c'est correct, pas un bug). Les 5
    autres sous-pages partagent .page-head (base.css) + un élément propre. */
-.club-head { position: relative; min-height: 78svh; display: flex; align-items: flex-end; padding-bottom: clamp(3rem,8vh,6rem); overflow: hidden; }
+.club-head { color: #fff; position: relative; min-height: 78svh; display: flex; align-items: flex-end; padding-bottom: clamp(3rem,8vh,6rem); overflow: hidden; }
 .club-head__media { position: absolute; inset: 0; z-index: 0; }
 .club-head__media .media { position: absolute; inset: 0; }
 .club-head__inner { position: relative; z-index: 3; }
 .club-head__title { font-family: var(--f-display); text-transform: uppercase; line-height: .86; font-size: clamp(3.4rem, 11vw, 9rem); margin-top: .8rem; }
 
 /* ------------------------------ TIMELINE -------------------------- */
-.timeline { position: relative; margin-top: 1rem; padding-left: 0; }
-.timeline::before { content: ""; position: absolute; left: clamp(64px, 9vw, 120px); top: 0; bottom: 0; width: 1px; background: var(--line); }
-.tl { display: grid; grid-template-columns: clamp(64px,9vw,120px) 1fr; gap: clamp(1.2rem,3vw,2.6rem); padding-block: clamp(1.6rem,3.5vw,2.6rem); position: relative; }
-.tl::before { content: ""; position: absolute; left: clamp(64px,9vw,120px); top: clamp(2rem,4vw,3rem); width: 11px; height: 11px; background: var(--mark); border-radius: 50%; transform: translateX(-5px); box-shadow: 0 0 0 4px var(--bg); }
+/* La colonne de gauche n a jamais contenu que des millesimes a 4 chiffres
+   dans l esprit du gabarit ; les donnees y mettent aussi des mots.
+   « Aujourd hui » demandait 204 px dans une cellule de 99 et se peignait
+   par-dessus le titre voisin. Le rail devient une variable : la ligne, le
+   point et la colonne la partagent, donc l elargir ne desaligne rien. */
+.timeline { --tl-rail: clamp(84px, 14vw, 170px); position: relative; margin-top: 1rem; padding-left: 0; }
+.timeline::before { content: ""; position: absolute; left: var(--tl-rail); top: 0; bottom: 0; width: 1px; background: var(--line); }
+.tl { display: grid; grid-template-columns: var(--tl-rail) 1fr; gap: clamp(1.2rem,3vw,2.6rem); padding-block: clamp(1.6rem,3.5vw,2.6rem); position: relative; }
+.tl::before { content: ""; position: absolute; left: var(--tl-rail); top: clamp(2rem,4vw,3rem); width: 11px; height: 11px; background: var(--mark); border-radius: 50%; transform: translateX(-5px); box-shadow: 0 0 0 4px var(--bg); }
 /* le millésime est du display (≥18px) → l'argent y est légal et il porte
    l'identité. Sous 1.15rem au plus petit clamp on reste au-dessus du seuil
    3:1 grand-texte gras. */
-.tl__y { font-family: var(--f-display); font-size: clamp(1.15rem,3vw,2.2rem); color: var(--bone); line-height: 1; }
+.tl__y { font-family: var(--f-display); font-size: clamp(1.15rem,2.2vw,1.6rem); color: var(--bone); line-height: 1.05; min-width: 0; overflow-wrap: break-word; hyphens: auto; }
 .tl__t { font-family: var(--f-display); text-transform: uppercase; font-size: clamp(1.4rem,3.4vw,2.4rem); line-height: 1; margin-bottom: .6rem; }
 .tl__d { color: var(--muted); max-width: 56ch; }
 
 /* ------------------------------ AMBIANCE -------------------------- */
-.ambiance { position: relative; min-height: 86svh; display: grid; place-items: center; overflow: hidden; }
+.ambiance { color: #fff; position: relative; min-height: 86svh; display: grid; place-items: center; overflow: hidden; }
 .ambiance__media { position: absolute; inset: -12% 0; z-index: 0; }
 .ambiance__media .media { position: absolute; inset: 0; }
 .ambiance::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(120deg, rgba(38,64,115,.4), rgba(0,0,0,.4)); }
 .ambiance__quote { position: relative; z-index: 2; text-align: center; }
-.ambiance__quote .serif { font-family: var(--f-display); text-transform: uppercase; font-size: clamp(1.9rem,5.2vw,4.2rem); line-height: .98; max-width: 18ch; margin-inline: auto; color: var(--bone); }
+/* .98 sur des CAPITALES ACCENTUÉES : le É de « MÊMES » et de
+   « RÉELS » mordait la ligne du dessus — les mots s’emboîtaient. */
+.ambiance__quote .serif { font-family: var(--f-display); text-transform: uppercase; font-size: clamp(1.9rem,5.2vw,4.2rem); line-height: 1.1; max-width: 18ch; margin-inline: auto; color: var(--bone); }
 .ambiance__quote .serif .tint { color: var(--mark); }
 
 /* ------------------------------ SPECS ----------------------------- */
