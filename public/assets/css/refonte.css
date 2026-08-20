@@ -211,7 +211,10 @@
   margin-top: clamp(1rem, 2.5vw, 1.5rem);
   display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .9ch;
   font-size: var(--step--1); line-height: 1.5; color: rgba(255,255,255,.88);
-  max-width: 76ch;
+  /* La boite faisait 613 px dont 200 reserves au bouton de vue : 413 px
+     utilisables pour 418 px de contenu — il manquait 5 px, et la ligne
+     cassait. On elargit la boite, la reserve reste intacte. */
+  max-width: 90ch;
 }
 /* Le point separateur etait un element a lui seul : quand la ligne passait
    a deux, il restait orphelin en bout de premiere ligne. Rendu solidaire du
