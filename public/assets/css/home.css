@@ -24,7 +24,12 @@
 .hero__word-top { font-size: clamp(1.05rem, 4.3vw, 3rem); letter-spacing: .16em; margin-bottom: .06em; }
 .hero__word-main { font-size: clamp(3.8rem, 19vw, 15rem); line-height: .76; letter-spacing: -.03em; }
 /* prior 'knock' overlay disabled: remove tint/band that split the image */
-.hero-a__knock { position: absolute; inset: 0; display: grid; place-items: center; padding-bottom: clamp(9rem,30vh,18rem); background: none; mix-blend-mode: normal; opacity: 0; pointer-events: none; }
+/* Ce bloc porte le lettrage du mode « pochoir », celui par defaut. Il avait
+   ete fige a opacity:0, ce qui le supprimait — et l opacite forcee du bloc
+   !important ressuscitait alors celui du mode B par-dessus : deux lettrages
+   a l ecran, puis zero une fois l !important retire. Il reprend son opacite,
+   les regles de mode font le reste : un seul lettrage, celui du mode actif. */
+.hero-a__knock { position: absolute; inset: 0; display: grid; place-items: center; padding-bottom: clamp(9rem,30vh,18rem); background: none; mix-blend-mode: normal; pointer-events: none; }
 .hero-b__canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
 .hero__word--solid { position: absolute; inset: 0; justify-content: center; padding-bottom: clamp(9rem,30vh,18rem); color: var(--bone); }
 .hero-b__canvas, .hero-a__knock, .hero__word--solid { transition: opacity .5s var(--ease); }
@@ -103,7 +108,11 @@
    background-image: none !important;
    box-shadow: none !important;
    border-color: transparent !important;
-   opacity: 1 !important;
+   /* PAS d opacite ici : ce bloc sert a retirer des fonds, pas a forcer
+      la visibilite. En la forçant, il annulait
+      .hero[data-hero="a"] .hero__word--solid { opacity: 0 } — les DEUX
+      lettrages s affichaient l un sur l autre, et le bouton « vue » ne
+      basculait plus rien. */
    pointer-events: none !important;
 }
 
