@@ -116,7 +116,11 @@
       et « JE PROFITE DE / L OFFRE A 29€ » cassait en deux. */
    .hero__cta .btn { padding-inline: 1.4rem; }
    .hero { padding-bottom: calc(33.33svh - 105px); }
-   .hero-a__knock { place-items: start center; padding-top: calc(33.33svh - 105px); padding-bottom: 0; }
+   /* Le bloc descend de 46 px pour occuper le centre de l ecran, et le vide
+      qui le separait du chapo tombe de 133 a ~87 px. L espace INTERNE, lui,
+      etait deja au minimum : 2 px entre BOXING et CENTER, 1 px entre CENTER
+      et MINIMES — on le grignote encore via l interlignage. */
+   .hero-a__knock { place-items: start center; padding-top: calc(33.33svh - 34px); padding-bottom: 0; }
 }
 
 /* ---------------- LE VERROUILLAGE DU LOGO ------------------------------
@@ -148,6 +152,15 @@
    content: ""; flex: none; height: 2px;
    width: clamp(1.4rem, 6vw, 3.4rem);
    background: currentColor;
+}
+
+/* Sur telephone le bloc doit etre le plus compact possible : l interlignage
+   des deux grandes lignes descend a .74 et CENTER colle a ses voisines. Ces
+   regles viennent APRES le verrouillage, sinon elles sont ecrasees — une
+   media query n ajoute pas de specificite, c est l ordre qui tranche. */
+@media (max-width: 820px) {
+   .hero__word-top, .hero__word-main { line-height: .74; }
+   .hero__word-mid { margin: .02em 0; }
 }
 
 /* Mobile: hide the huge decorative word to avoid crowding */
