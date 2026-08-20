@@ -58,7 +58,12 @@
 
 /* Reduce dominance of the giant wordmark so it stays decorative */
 .hero__word-main {
-   font-size: clamp(7rem, 16vw, 12rem);
+   /* Le minimum etait a 7rem = 112 px : sur 375 px de large, « MINIMES »
+      reclame 530 px pour 345 disponibles — le mot se coupait en MINIM/ES.
+      A 18vw il demande 319 px et tient sur une ligne, du petit telephone
+      au grand ecran. nowrap garantit qu il ne se coupera plus jamais. */
+   font-size: clamp(3.6rem, 18vw, 12rem);
+   white-space: nowrap;
    -webkit-text-stroke: 2px rgba(255,255,255,.96);
    color: rgba(255,255,255,0.06);
 }
