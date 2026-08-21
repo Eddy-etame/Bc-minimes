@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
+    "prebuild": "node scripts/avis-google.mjs",
     "build": "astro build",
     "postbuild": "node scripts/cuire-galerie.mjs && node scripts/cuire-pages.mjs",
     "preview": "astro preview"

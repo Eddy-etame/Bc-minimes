@@ -1,0 +1,74 @@
+# =====================================================================
+# La note Google, tenue a jour toute seule
+#
+# POURQUOI. Le 21/08/2026, le site annoncait 4,5/5 sur 155 avis quand
+# Google en donnait 4,3 sur 156. Le chiffre etait recopie a la main dans
+# quatre fichiers : il ne pouvait que deriver. La correction ne suffit
+# pas — sans rafraichissement, l'ecart reviendra dans six mois.
+#
+# CE QUE FAIT CETTE ROUTINE. Chaque lundi matin, elle relit la fiche
+# Google, met src/avis-google.json a jour, repand la valeur dans les
+# fichiers qui l'affichent, et ne commite QUE si quelque chose a change.
+# Un commit declenche le redeploiement Vercel : le site suit Google.
+#
+# CE QU'IL FAUT POUR QU'ELLE TOURNE. Un secret de depot nomme
+# GOOGLE_PLACES_API_KEY (Settings > Secrets and variables > Actions).
+# Sans lui, la routine s'arrete proprement en le disant : elle ne
+# touche a rien et n'echoue pas.
+# =====================================================================
+name: Note Google
+
+on:
+  schedule:
+    - cron: "17 6 * * 1"   # tous les lundis, 6h17 UTC
+  workflow_dispatch:        # et a la demande, depuis l'onglet Actions
+
+permissions:
+  contents: write
+
+jobs:
+  rafraichir:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verifier que la cle existe
+        id: cle
+        run: |
+          if [ -z "${{ secrets.GOOGLE_PLACES_API_KEY }}" ]; then
+            echo "Pas de GOOGLE_PLACES_API_KEY : rien a faire, la note reste figee." >> $GITHUB_STEP_SUMMARY
+            echo "ok=false" >> $GITHUB_OUTPUT
+          else
+            echo "ok=true" >> $GITHUB_OUTPUT
+          fi
+
+      - uses: actions/setup-node@v4
+        if: steps.cle.outputs.ok == 'true'
+        with:
+          node-version: 20
+
+      - name: Relire la fiche Google
+        if: steps.cle.outputs.ok == 'true'
+        env:
+          GOOGLE_PLACES_API_KEY: ${{ secrets.GOOGLE_PLACES_API_KEY }}
+        run: node scripts/avis-google.mjs
+
+      - name: Commiter si la note a bouge
+        if: steps.cle.outputs.ok == 'true'
+        run: |
+          if git diff --quiet; then
+            echo "La note n'a pas bouge." >> $GITHUB_STEP_SUMMARY
+            exit 0
+          fi
+          note=$(node -e "console.log(require('./src/avis-google.json').note)")
+          avis=$(node -e "console.log(require('./src/avis-google.json').avis)")
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "avis: la note Google passe a $note/5 sur $avis avis
+
+          Releve automatique du lundi. La source est src/avis-google.json ;
+          scripts/avis-google.mjs a repandu la valeur dans les fichiers qui
+          l'affichent. Aucune retouche manuelle a faire."
+          git push
+          echo "Note mise a jour : $note/5 sur $avis avis" >> $GITHUB_STEP_SUMMARY

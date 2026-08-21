@@ -20,9 +20,9 @@ import { bcRegister } from "./data.js?v=b56";
    plutôt qu’un compte périmé. Les verbatims, eux, restent des citations
    datées et attribuées. */
 export const REVIEWS = {
-  rating: "4,5",
+  rating: "4,3",
   scale: "5",
-  count: "155",
+  count: "156",
   source: "Avis Google",
   quotes: [
     { text: "Très belle salle de boxe. Matos au top, coach et staff accueillant.", author: "Hamed S.", stars: 5 },

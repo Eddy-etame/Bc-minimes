@@ -914,14 +914,19 @@ function mountPromoWheels() {
 }
 
 /* ------------------------- LES ÉTOILES D'AVIS ---------------------
-   La note Google (4,5 sur 155 avis) ne vivait que dans le JSON-LD : elle
+   La note Google ne vivait que dans le JSON-LD : elle
    servait au moteur de recherche et à personne d'autre. Ce composant la
    rend visible partout où l'on écrit `<span data-rating>`. */
 function mountRatings(scope = document) {
   const nodes = scope.querySelectorAll("[data-rating]:not([data-rated])");
   nodes.forEach((el) => {
     el.dataset.rated = "1";
-    const val = parseFloat(el.dataset.rating) || 4.5;
+    /* Aucun repli chiffre ici : une note en dur finit toujours par mentir
+       (c'est ainsi que 4,5 a survecu alors que Google disait 4,3). Sans
+       valeur, on n'affiche pas d'etoiles. La source est
+       src/avis-google.json, repandue au build par scripts/avis-google.mjs. */
+    const val = parseFloat(el.dataset.rating);
+    if (!Number.isFinite(val)) return;
     const count = el.dataset.ratingCount || "";
     let stars = "";
     for (let i = 1; i <= 5; i++) {
