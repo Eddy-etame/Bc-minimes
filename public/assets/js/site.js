@@ -392,7 +392,15 @@ function hydrateMedia(scope = document) {
     if (v.dataset.mediaBound) return; v.dataset.mediaBound = "1";
     v.muted = true; v.defaultMuted = true; v.playsInline = true; v.loop = true;
     if (v.dataset.poster) v.poster = (local(v.dataset.poster) ? "" : MEDIA) + v.dataset.poster;
-    v.src = (local(v.dataset.video) ? "" : MEDIA) + v.dataset.video;
+    /* [data-video-mobile] : sur téléphone on sert une copie plus petite.
+       Le hero pesait 1 171 Ko servis à tout le monde ; la version mobile en
+       fait 382. Le seuil est 820px — au-delà, l'écran est assez large pour
+       que la version 1280 se justifie. On lit la largeur UNE fois, avant
+       d'affecter le src : changer de source après coup relancerait un
+       téléchargement, ce qui coûterait plus que ça ne rapporte. */
+    const petit = window.matchMedia("(max-width: 820px)").matches;
+    const source = petit && v.dataset.videoMobile ? v.dataset.videoMobile : v.dataset.video;
+    v.src = (local(source) ? "" : MEDIA) + source;
     v.load();
     const play = () => { v.muted = true; v.play().catch(() => {}); };
     v.addEventListener("loadeddata", play, { once: true });

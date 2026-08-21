@@ -431,6 +431,18 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
    deborder ni chevaucher le burger. Le masquer, c'etait retirer le seul
    chemin d'achat permanent sur l'appareil qui fait l'essentiel du trafic. */
 .nav__cta { display: inline-flex; }
+/* Sous 520px, le bouton porte « Ma place · 29€ » : 158px de large, assez
+   pour percuter .nav__salle (« MINIMES »). Mesuré : le libellé débordait de
+   son propre conteneur — il s'arrêtait à 159px quand .nav__brand finissait
+   à 152 — et passait SOUS le bouton. On resserre le bouton (107→118px)
+   plutôt que de masquer le nom de la salle : le chevauchement disparaît de
+   320 à 520px et l'information reste. min-width:0 sur la marque empeche
+   tout futur débordement du même genre. */
+@media (max-width: 520px){
+  .nav__cta { font-size: .72rem; letter-spacing: .02em; padding-inline: .7rem; }
+  .nav__brand { min-width: 0; }
+  .nav__salle { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+}
 /* 1240 et non 1100 : à 1100 les libellés se chevauchaient avec la marque. */
 @media (min-width: 1240px){ .nav__links { display: flex; } .nav__cta { display: inline-flex; } }
 
