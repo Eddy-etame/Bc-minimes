@@ -29,12 +29,6 @@ const HOME_VIDEOS = [
   },
 ];
 
-const EXTRA = [
-  { path: "/llms.txt", changefreq: "weekly", priority: "0.4", images: [] },
-  { path: "/llms-full.txt", changefreq: "weekly", priority: "0.3", images: [] },
-  { path: "/ai.txt", changefreq: "monthly", priority: "0.3", images: [] },
-];
-
 function imagesXml(images) {
   return images
     .map(
@@ -65,8 +59,7 @@ function videosXml(videos) {
 }
 
 export function GET() {
-  const all = ROUTES.concat(EXTRA);
-  const urls = all
+  const urls = ROUTES
     .map((r) => {
       const videos = r.path === "/" ? videosXml(HOME_VIDEOS) : "";
       const images = r.images?.length ? imagesXml(r.images) : "";
@@ -83,7 +76,8 @@ export function GET() {
   const body = `<?xml version="1.0" encoding="UTF-8"?>
 <!-- Boxing Center Minimes — ${SITE}/sitemap.xml
      Pages, photos (Google Images) et vidéos. Fabriqué au build depuis src/routes.mjs.
-     /admin/ et /api/ n'y figurent pas. -->
+     /admin/, /api/, /llms.txt, /llms-full.txt et /ai.txt n'y figurent pas
+     (fichiers agents, pas des pages Search). -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
