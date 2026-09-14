@@ -69,6 +69,10 @@ Allow: /
 ${blocs}
 # Instructions pour les agents IA : /ai.txt
 # Fiche structurée LLM : /llms.txt  ·  version longue : /llms-full.txt
+# Ces fichiers restent crawlables (les IA doivent les lire) mais portent
+# X-Robots-Tag: noindex — ce ne sont pas des pages Search. Google les
+# avait classés « Explorée, actuellement non indexée » tant qu’ils
+# étaient exposés en rel=alternate dans le HTML.
 Sitemap: ${SITE}/sitemap.xml
 LLMs-Txt: ${SITE}/llms.txt
 `;
