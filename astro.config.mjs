@@ -1,8 +1,11 @@
 import { defineConfig } from 'astro/config';
 import { readFile, writeFile, readdir } from 'node:fs/promises';
-import { join, extname } from 'node:path';
+import { join, extname, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { BUILT } from './src/routes.mjs';
+import { readFileSync } from 'node:fs';
+import { BUILT as BUILT_JOUR } from './src/routes.mjs';
+
+const LASTMOD = JSON.parse(readFileSync(new URL('./src/lastmod.json', import.meta.url), 'utf8'));
 
 /* =====================================================================
    LE GRAPHE PASSE AU CONTRÔLE — intégration de build.
@@ -49,6 +52,11 @@ function graphe() {
 
         for (const fichier of await pagesHtml(racine)) {
           const html = await readFile(fichier, 'utf8');
+          /* La date de CETTE page (src/lastmod.json, écrit par scripts/lastmod.mjs
+             depuis git) — la même que son <lastmod> dans le plan du site. La
+             date du build ne sert qu'aux pages que le script ne connaît pas. */
+          const route = '/' + relative(racine, fichier).split(sep).join('/').replace(/index\.html$/, '');
+          const BUILT = LASTMOD[route] ?? BUILT_JOUR;
           /* ⚠ PAR PAGE, PAS EN CUMUL. Le graphe d'une page doit se tenir
              SEUL : un moteur ne lit pas les 8 pages avant de résoudre un
              @id. Un relevé global masquait le défaut — l'accueil pouvait
@@ -87,7 +95,7 @@ function graphe() {
         }
         logger.info(
           `JSON-LD : ${blocs} graphes valides, ${total} @id définis, 0 pendant · ` +
-          `${brut} → ${net} octets (−${brut - net}) · dateModified = ${BUILT}`
+          `${brut} → ${net} octets (−${brut - net}) · dateModified = la date git de chaque page (src/lastmod.json)`
         );
       },
     },

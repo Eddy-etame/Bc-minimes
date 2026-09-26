@@ -1,4 +1,7 @@
 import { SITE, ROUTES, BUILT } from "../routes.mjs";
+/* La vraie date de chaque page (scripts/lastmod.mjs, commité) ; la date du
+   build ne sert plus que de repli pour une route que le script ignorerait. */
+import LASTMOD from "../lastmod.json";
 
 const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
@@ -66,7 +69,7 @@ export function GET() {
       const extras = [images, videos].filter(Boolean).join("\n");
       return `  <url>
     <loc>${SITE}${r.path}</loc>
-    <lastmod>${BUILT}</lastmod>
+    <lastmod>${LASTMOD[r.path] ?? BUILT}</lastmod>
     <changefreq>${r.changefreq}</changefreq>
     <priority>${r.priority}</priority>${extras ? `\n${extras}` : ""}
   </url>`;
