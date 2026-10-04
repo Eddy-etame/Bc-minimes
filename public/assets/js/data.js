@@ -197,6 +197,14 @@ export const NAV = [
    pas SON domaine en ligne, le libellé dit la vérité sur la destination
    (`go`) — un bouton « Découvrir » qui atterrit sur la home du groupe ment.
    §0.6 : Balma-Gramont est VENDUE — ne jamais la citer. */
+/* Les sites de départ : un satellite par commune, qui envoie ses habitants ici.
+   Ce ne sont PAS des salles (aucune salle n'existe à Blagnac) : ils se rendent
+   dans la colonne « Le réseau » du pied de page, jamais parmi les salles sœurs.
+   Un lien n'entre ici qu'une fois son domaine en ligne. */
+export const DEPARTS = [
+  { ville: "Blagnac", label: "Tu pars de Blagnac ?", url: "https://boxingcenter-blagnac.fr/" },
+];
+
 export const NETWORK = [
   { id: "portet", name: "Portet-sur-Garonne", flagship: true, tag: "Le vaisseau amiral", feat: "600 m² · ring de boxe anglaise · cage MMA · 24 sacs", url: "https://boxingcenter.fr/salle-de-sport-toulouse/salle-de-boxe-portet-sur-garonne-2/", go: "Découvrir" },
   { id: "etats-unis", name: "États-Unis", tag: "Le colosse", feat: "Toutes les disciplines du réseau", url: "https://boxingcenter.fr/salle-de-sport-toulouse/boxing-center-salle-de-toulouse-etats-unis/", go: "Découvrir" },

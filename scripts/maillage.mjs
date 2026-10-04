@@ -30,7 +30,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const DIST = join(ROOT, "dist");
 
-const { NAV, LINKS, NETWORK, SALLE, CTA, CTA_HREF } = await import(
+const { NAV, LINKS, NETWORK, DEPARTS, SALLE, CTA, CTA_HREF } = await import(
   pathToFileURL(join(ROOT, "public/assets/js/data.js")).href
 );
 
@@ -70,7 +70,7 @@ const NAVIGATION =
 const cols = [
   { h: "Le club", links: (NAV || []).slice(1, 5) },
   { h: "Pratique", links: [{ href: "/premiere-seance/", label: "Ta première séance" }, { href: "/plannings/", label: "Planning" }, { href: "/tarifs/", label: "Tarifs" }, { href: "/contact/", label: "Contact" }, { href: LINKS.boutique, label: "Boutique", ext: true }] },
-  { h: "Le réseau", links: [{ href: LINKS.groupe, label: "Boxing Center", ext: true }, { href: LINKS.boutique, label: "La boutique", ext: true }, { href: LINKS.instagram, label: "Instagram", ext: true }, { href: LINKS.facebook, label: "Facebook", ext: true }] },
+  { h: "Le réseau", links: [{ href: LINKS.groupe, label: "Boxing Center", ext: true }, { href: LINKS.boutique, label: "La boutique", ext: true }, { href: LINKS.instagram, label: "Instagram", ext: true }, { href: LINKS.facebook, label: "Facebook", ext: true }, ...(DEPARTS || []).map((d) => ({ href: d.url, label: d.label, ext: true }))] },
 ];
 const salles = (NETWORK || []).map((s) =>
   `<a class="netcard" href="${attr(s.url)}" target="_blank" rel="noopener">` +

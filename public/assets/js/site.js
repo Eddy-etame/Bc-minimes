@@ -3,8 +3,8 @@
    window.BC = { reveal, magnetic, refresh, media, split, scramble,
                  initKinetics, faq, lenis, velocity }
    ===================================================================== */
-import { NAV, LINKS, SALLE, MEDIA, CTA, CTA_HREF, NETWORK, PROMOS } from "./data.js?v=b56";
-import { initPlaces } from "./places.js?v=b56";
+import { NAV, LINKS, SALLE, MEDIA, CTA, CTA_HREF, NETWORK, PROMOS, DEPARTS } from "./data.js?v=b57";
+import { initPlaces } from "./places.js?v=b57";
 /* L’assistant : il promeut la pastille `.chatbot` (qui reste un lien tel:
    dans le HTML) en vraie conversation. Voir armChatbot() plus bas — le
    module ne descend QU’À l’intention de parler, jamais au premier rendu. */
@@ -138,7 +138,7 @@ function mountFooter() {
     /* « Première fois » ouvre la colonne Pratique : c’est la question que
        se pose le visiteur avant l’horaire et avant le prix. */
     { h: "Pratique", links: [{ href: "/premiere-seance/", label: "Ta première séance" }, { href: "/plannings/", label: "Planning" }, { href: "/tarifs/", label: "Tarifs" }, { href: "/contact/", label: "Contact" }, { href: LINKS.boutique, label: "Boutique", ext: true }] },
-    { h: "Le réseau", links: [{ href: LINKS.groupe, label: "Boxing Center", ext: true }, { href: LINKS.boutique, label: "La boutique", ext: true }, { href: LINKS.instagram, label: "Instagram", ext: true }, { href: LINKS.facebook, label: "Facebook", ext: true }] },
+    { h: "Le réseau", links: [{ href: LINKS.groupe, label: "Boxing Center", ext: true }, { href: LINKS.boutique, label: "La boutique", ext: true }, { href: LINKS.instagram, label: "Instagram", ext: true }, { href: LINKS.facebook, label: "Facebook", ext: true }, ...(DEPARTS || []).map((d) => ({ href: d.url, label: d.label, ext: true }))] },
   ];
   /* Les salles sœurs — le bloc réseau existait en données et n’était
      rendu nulle part. `go` dit la VÉRITÉ sur la destination : tant qu’une
@@ -535,7 +535,7 @@ function armChatbot() {
   const load = () => {
     if (state !== "idle") return pending;
     state = "loading";
-    pending = import("./chatbot.js?v=b56")
+    pending = import("./chatbot.js?v=b57")
       .then(() => { state = "ready"; })
       .catch(() => { state = "failed"; });
     return pending;
