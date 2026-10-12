@@ -1,0 +1,51 @@
+/* ==========================================================================
+   Le stage enfants des vacances — « Les Vacances des Boxeurs » (26–31 octobre 2026, 8–16 ans).
+   Posé juste après l'école de boxe : la page vient de parler des enfants. Surface navy profond,
+   comme le gong et le pied ; une seule touche du vert des fresques, la couleur du stage aux
+   Minimes. Feuille à part, chargée seulement là où le bandeau existe : la clé ?v=b56 des
+   autres feuilles n'a pas à bouger. Le bandeau se retire de lui-même après le stage.
+   ========================================================================== */
+.stage-vacances {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(2.2rem, 5vw, 3.4rem);
+  background:
+    radial-gradient(55% 150% at 100% 50%, rgba(124, 198, 74, 0.22), transparent 62%),
+    radial-gradient(40% 120% at 0% 0%, rgba(124, 198, 74, 0.08), transparent 70%),
+    var(--bg);
+}
+.stage-vacances__in {
+  display: grid;
+  gap: 1.4rem;
+  align-items: center;
+}
+@media (min-width: 940px) {
+  .stage-vacances__in {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 2.6rem;
+  }
+}
+.stage-vacances .eyebrow::before {
+  background: #7cc64a;
+}
+.stage-vacances .display {
+  margin-top: 0.8rem;
+}
+.stage-vacances .lead {
+  margin-top: 0.8rem;
+}
+.stage-vacances__faits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 1rem;
+  list-style: none;
+}
+.stage-vacances__faits li {
+  padding: 0.32rem 0.78rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font: 700 var(--step--2) / 1.2 var(--f-mono);
+  letter-spacing: 0.06em;
+  color: var(--fg);
+}

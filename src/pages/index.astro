@@ -24,6 +24,7 @@ import SiteContent from "../components/SiteContent.astro";
   <link rel="stylesheet" href="/assets/css/base.css?v=b56" />
   <link rel="stylesheet" href="/assets/css/home.css?v=b56" />
   <link rel="stylesheet" href="/assets/css/refonte.css?v=b56" />
+  <link rel="stylesheet" href="/assets/css/stage-vacances.css?v=1" />
 
   <meta name="keywords" content="club de boxe à Toulouse, club de boxe Toulouse 31, club de boxe toulousain, salle de boxe Minimes, boxe anglaise Toulouse, boxe pieds-poings, kick-boxing Toulouse, tarifs boxe Toulouse, horaires des cours, photos salle de boxe, plan d’accès, boxe éducative filles et garçons, Boxing Lady femme, 5 salles de sport, cross training, fitness, FFBoxe, club de boxe 31200, boxe Barrière de Paris, Boxing Center Minimes, boxe Toulouse nord, club de boxe Les Minimes, salle de boxe 12 rue de Fenouillet, boxe métro B Barrière de Paris, boxe Lalande, boxe Borderouge, boxe Bonnefoy, boxe Sept Deniers, boxe Aucamville, boxe Launaguet, sports de combat Toulouse 31200, club FFBoxe Toulouse, apprendre la boxe Toulouse, boxe débutant Minimes, boxing gym Toulouse, boxing club Toulouse Minimes, English boxing Toulouse, kids boxing Toulouse, women boxing Toulouse" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
@@ -573,6 +574,32 @@ import SiteContent from "../components/SiteContent.astro";
         </div>
       </div>
     </section>
+
+    <!-- ============ LE STAGE ENFANTS DES VACANCES (26–31 octobre 2026) ============
+         Juste après l'école de boxe : la page vient de parler des enfants. Il se retire
+         de lui-même une fois le stage passé (script ci-dessous). -->
+    <aside class="stage-vacances" data-surface="deep" aria-labelledby="stage-vacances-accueil" data-stage-vacances>
+      <div class="wrap stage-vacances__in">
+        <div>
+          <span class="eyebrow">Stage enfants · vacances de la Toussaint</span>
+          <h2 id="stage-vacances-accueil" class="display display--sm">Les Vacances des Boxeurs</h2>
+          <p class="lead">Pendant la deuxième semaine des vacances, les 8–16 ans boxent six jours aux Minimes, du lundi 26 au samedi 31 octobre, avec Mehdi, head coach de la salle, et Johnson Suffo, boxeur professionnel.</p>
+          <ul class="stage-vacances__faits">
+            <li>26–31 octobre</li>
+            <li>8–16 ans</li>
+            <li>Débutants acceptés</li>
+            <li>Dès 80 €</li>
+          </ul>
+        </div>
+        <div class="btn-row">
+          <a class="btn btn--primary" data-magnetic href="https://stage-boxing.vercel.app/stage-enfants-minimes" target="_blank" rel="noopener"><span>Voir le stage</span></a>
+          <a class="btn btn--ghost" data-magnetic href="https://stage-boxing.vercel.app/programme?club=minimes" target="_blank" rel="noopener"><span>Le programme heure par heure</span></a>
+        </div>
+      </div>
+    </aside>
+    <script is:inline>
+      if (Date.now() > Date.parse("2026-10-31T18:00:00+01:00")) document.querySelectorAll("[data-stage-vacances]").forEach(function (el) { el.remove(); });
+    </script>
 
     <!-- ==================== 10 · LES DISCIPLINES =================== -->
     <section class="section reel" data-surface="paper" data-round="6" data-round-name="Les disciplines" aria-label="Les disciplines">
