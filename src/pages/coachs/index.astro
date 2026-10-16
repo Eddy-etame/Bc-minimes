@@ -1,5 +1,75 @@
 ---
 import SiteContent from "../../components/SiteContent.astro";
+import { coachsDe, creneaux, listeFr, COACH_ETAGE } from "../../semaine.mjs";
+
+/* =====================================================================
+   À CHAQUE OBJECTIF, SON COACH — ajout du 13/10/2026.
+
+   La page disait QUI (le patron, l'équipe) ; le visiteur arrive avec un
+   QUOI (« je veux monter sur le ring », « j'ai un enfant de 5 ans »).
+   Une ligne par objectif. Les prénoms sont lus dans le planning publié
+   (coachsDe, src/semaine.mjs) : si un cours change de mains depuis le
+   vestiaire, la ligne suit. Une discipline sans créneau ne s'affiche pas.
+
+   ⚠ Règle du 19/08/2026 (brad) : un prénom n'est jamais posé à côté
+   d'une heure ni d'un jour. On dit qui tient la discipline, pas quand.
+   ===================================================================== */
+const qui = (...discs) => listeFr(coachsDe(...discs));
+const ecole = creneaux((c) => c.disc === "educative");
+const premierAge = ecole.find((c) => /baby/i.test(c.name)) || ecole[0];
+const lady = coachsDe("lady");
+
+const objectifs = [
+  {
+    discs: ["anglaise"],
+    but: "Apprendre la boxe anglaise",
+    d: "La spécialité de la salle, du premier jab au jeu de jambes. Tu n’encaisses rien tant que tu ne l’as pas demandé.",
+    href: "/activites/#anglaise",
+    lien: "L’anglaise loisirs",
+  },
+  {
+    discs: ["competiteurs", "sparring"],
+    but: "Monter sur le ring",
+    d: "Le groupe compétiteurs et l’open sparring. L’entrée ne se prend pas à l’inscription : c’est le feu vert du coach qui t’y fait passer, et uniquement si tu le veux.",
+    href: "/activites/#competiteurs",
+    lien: "Le groupe compétiteurs",
+  },
+  {
+    discs: ["educative"],
+    but: "Inscrire un enfant",
+    d: coachsDe("educative").length === 1 && premierAge
+      ? `Un seul coach de la ${/baby/i.test(premierAge.name) ? `Baby Boxe (${premierAge.age})` : premierAge.age} aux jeunes licenciés : ton enfant grandit dans la salle sans changer d’interlocuteur.`
+      : "L’école de boxe, de la Baby Boxe aux jeunes licenciés.",
+    href: "/activites/#educative",
+    lien: "L’école de boxe",
+  },
+  {
+    discs: ["lady"],
+    but: "Boxer entre femmes",
+    d: `${lady.length > 1 ? "Ils se partagent le Boxing Lady" : "Le Boxing Lady"}, réservé aux femmes. Le reste du planning t’est ouvert aussi, en mixte.`,
+    href: "/activites/#lady",
+    lien: "Le Boxing Lady",
+  },
+  {
+    discs: ["pieds-poings"],
+    but: "Ajouter les jambes",
+    d: "La boxe pieds-poings : la garde change, on soigne le placement, la puissance vient ensuite.",
+    href: "/activites/#pieds-poings",
+    lien: "La boxe pieds-poings",
+  },
+  {
+    discs: ["camp"],
+    but: "Te construire une caisse",
+    d: [
+      "Le Boxing camp, sans technique exigée ni passé de boxeur.",
+      COACH_ETAGE ? `À l’étage, en accès libre, c’est ${COACH_ETAGE} qui suit ta préparation physique.` : "",
+    ].filter(Boolean).join(" "),
+    href: "/activites/#camp",
+    lien: "Le Boxing camp",
+  },
+]
+  .map((o) => ({ ...o, qui: qui(...o.discs) }))
+  .filter((o) => o.qui);
 ---
 <!doctype html>
 <html lang="fr" data-theme="light">
@@ -469,6 +539,23 @@ import SiteContent from "../../components/SiteContent.astro";
     .cwd__a:hover, .cwd__a:focus-visible, .cwd__a:active { border-left-color: var(--mark); background: var(--char); }
     .cwd__n { font: 700 var(--step--1)/1.2 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--bone); }
     .cwd__c { font: 500 .75rem/1 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--bone-dim); white-space: nowrap; }
+
+    /* ---- À CHAQUE OBJECTIF, SON COACH (ajout du 13/10/2026) ----
+       Une ligne par objectif : ce que tu viens chercher à gauche, qui
+       t'encadre et le cours à droite. Empilé au téléphone. Même famille
+       que .pas et .roster : filet de 1 px, carte blanche, barre au survol.
+       Le lien ne passe JAMAIS en blanc au survol (sur papier, il
+       disparaîtrait) : il fonce. */
+    .cvise { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+    .cvise__row { background: var(--paper); padding: clamp(1.3rem,3vw,1.9rem) clamp(1.2rem,3vw,2.2rem); display: grid; gap: .7rem clamp(1.6rem,4vw,3rem); grid-template-columns: 1fr; border-left: 2px solid transparent; transition: border-color .35s, box-shadow .35s; }
+    .cvise__row:hover, .cvise__row:focus-within { border-left-color: var(--mark); box-shadow: var(--shadow-md); }
+    @media (min-width: 900px){ .cvise__row { grid-template-columns: minmax(0,1fr) minmax(0,1.4fr); align-items: start; } }
+    .cvise__t { font-family: var(--f-display); text-transform: uppercase; font-size: clamp(1.3rem,2.8vw,1.9rem); line-height: 1; color: var(--bone); }
+    .cvise__qui { display: inline-flex; align-items: center; gap: .7ch; margin-top: .75rem; font: 700 var(--step--1)/1.3 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--bone); }
+    .cvise__qui::before { content: ""; width: 14px; height: 2px; background: var(--mark); flex: 0 0 14px; }
+    .cvise__d { color: var(--read); line-height: 1.6; max-width: 60ch; }
+    .cvise__lien { display: inline-flex; align-items: center; gap: .7ch; min-height: 44px; margin-top: .4rem; font: 700 var(--step--1)/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--bone); border-bottom: 2px solid var(--mark); transition: gap .3s, color .3s; }
+    .cvise__lien:hover, .cvise__lien:focus-visible, .cvise__lien:active { gap: 1.4ch; color: var(--mark); }
   </style>
 
   <script is:inline>
@@ -535,6 +622,36 @@ import SiteContent from "../../components/SiteContent.astro";
          Les deux offres phares y tournent en alternance ; le lien suit la
          case affichee. Montee par site.js > mountPromoWheels(). -->
     <div class="wrap" data-promo></div>
+
+    <!-- ================ À CHAQUE OBJECTIF, SON COACH ===============
+         Ajout du 13/10/2026. La page disait qui ; elle dit maintenant
+         pour quoi. Prénoms lus dans le planning publié (frontmatter +
+         src/semaine.mjs), jamais à côté d'une heure (règle du 19/08). -->
+    {objectifs.length > 0 && (
+    <section class="section" aria-label="Qui t’encadre selon ton objectif">
+      <div class="wrap">
+        <div data-reveal style="margin-bottom:clamp(1.8rem,4vw,2.6rem)">
+          <span class="eyebrow">Selon ton objectif</span>
+          <h2 class="display display--sm" style="margin-top:1rem">À chaque objectif, <span class="tint">son coach</span></h2>
+          <p class="muted" style="margin-top:1rem;max-width:52ch">Tu sais ce que tu veux travailler, pas encore avec qui. Voilà qui tient chaque cours de la salle.</p>
+        </div>
+        <div class="cvise" data-reveal-group>
+          {objectifs.map((o) => (
+            <article class="cvise__row">
+              <div>
+                <h3 class="cvise__t">{o.but}</h3>
+                <span class="cvise__qui">Avec {o.qui}</span>
+              </div>
+              <div>
+                <p class="cvise__d">{o.d}</p>
+                <a class="cvise__lien" href={o.href}>{o.lien} <span aria-hidden="true">→</span></a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+    )}
 
 
     <!-- ========================= FINAL GONG ====================== -->

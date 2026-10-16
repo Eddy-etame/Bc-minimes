@@ -12,6 +12,11 @@
       ]
     },
     {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "bc-minimes.vercel.app" }],
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+    },
+    {
       "source": "/fonts/(.*)",
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
     },
@@ -74,6 +79,20 @@
       "has": [{ "type": "host", "value": "www.boxe-toulouse.com" }],
       "destination": "https://boxe-toulouse.com/:path*",
       "statusCode": 308
-    }
+    },
+    {
+      "source": "/",
+      "has": [{ "type": "host", "value": "bc-minimes.vercel.app" }],
+      "destination": "https://boxe-toulouse.com/",
+      "statusCode": 308
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "bc-minimes.vercel.app" }],
+      "destination": "https://boxe-toulouse.com/:path*",
+      "statusCode": 308
+    },
+    { "source": "/index.html", "destination": "/", "statusCode": 308 },
+    { "source": "/:path*/index.html", "destination": "/:path*/", "statusCode": 308 }
   ]
 }

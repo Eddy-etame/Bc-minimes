@@ -16,6 +16,7 @@ const pages = {
   "/premiere-seance/": "premiere-seance/index.html",
   "/tarifs/": "tarifs/index.html",
   "/contact/": "contact/index.html",
+  "/mentions-legales/": "mentions-legales/index.html",
 };
 
 const htmlOf = (route) => readFile(dist(pages[route]), "utf8");
@@ -43,6 +44,13 @@ test("rendu SEO/GEO/AEO : les faits essentiels sont dans le HTML", async () => {
     ["/contact/", "access", /Barrière de Paris/i],
     ["/contact/", "hours", /10h00/i],
     ["/contact/", "faq", /Où se trouve Boxing Center Minimes/i],
+    ["/le-club/", "timeline", /Le point de départ/i],
+    ["/le-club/", "specs", /Sacs lourds/i],
+    ["/le-club/", "asks", /vestiaire/i],
+    ["/le-club/", "network", /clubmma\.fr/i],
+    ["/le-club/", "addr", /12 rue de Fenouillet/i],
+    ["/galerie/", "ga-offframe", /Le bruit/i],
+    ["/galerie/", "ga-bridge", /\/activites\/#anglaise/],
   ];
   const byRoute = Object.fromEntries(entries);
   for (const [route, id, pattern] of expectedContent) {
@@ -73,4 +81,37 @@ test("sitemap images : une URL, une page réelle, un fichier réel", async () =>
     }
   }
   assert.ok(count >= 10, `seulement ${count} images déclarées`);
+});
+
+test("le matériel du cours : des liens simples, ni prix, ni photo, ni balisage produit", async () => {
+  const html = await htmlOf("/premiere-seance/");
+  const debut = html.indexOf('class="section band mat"');
+  assert.ok(debut >= 0, "/premiere-seance/ doit porter le bloc matériel");
+  const bloc = html.slice(debut, html.indexOf("</section>", debut));
+  const liens = [...bloc.matchAll(/href="(https:\/\/boutique\.boxingcenter\.fr\/materiel\/produit\/[^"]+)"/g)].map((m) => m[1]);
+  assert.equal(liens.length, 12, "les 12 articles qui se retirent aux Minimes");
+  assert.equal(new Set(liens).size, 12, "un article, un lien");
+  assert.doesNotMatch(bloc, /the-shell/i, "les gants MMA The Shell ne se retirent pas aux Minimes");
+  assert.doesNotMatch(bloc, /€|EUR/, "aucun prix dans le bloc");
+  assert.doesNotMatch(bloc, /<img\b/, "aucune photo de la boutique");
+  assert.doesNotMatch(html, /"@type":\s*"(Product|ItemList)"/, "aucun balisage produit");
+});
+
+test("les sections calculées du planning : présentes, et aucun prénom à côté d'une heure", async () => {
+  const sections = [
+    ["/le-club/", 'aria-label="La salle heure par heure"'],
+    ["/coachs/", 'aria-label="Qui t’encadre selon ton objectif"'],
+    ["/galerie/", 'aria-label="Quand venir voir ces scènes"'],
+  ];
+  for (const [route, marque] of sections) {
+    const html = await htmlOf(route);
+    const debut = html.indexOf(marque);
+    assert.ok(debut >= 0, `${route} doit porter sa section calculée`);
+    const texte = html.slice(debut, html.indexOf("</section>", debut)).replace(/<[^>]+>/g, " ");
+    for (const phrase of texte.split(/(?<=[.!?:;])\s+/)) {
+      if (/\b\d{1,2}h\d{0,2}\b/.test(phrase)) {
+        assert.doesNotMatch(phrase, /Mehdi|Chloé|David|Clément/, `${route} : un prénom à côté d'une heure (règle du 19/08) — « ${phrase.trim()} »`);
+      }
+    }
+  }
 });

@@ -1,5 +1,95 @@
 ---
 import SiteContent from "../../components/SiteContent.astro";
+import { SALLE, combien, creneaux, enLettres, joursFr } from "../../semaine.mjs";
+
+/* =====================================================================
+   LE MATÉRIEL DU COURS, À RETIRER À L'ACCUEIL DES MINIMES
+   Ajout du 13/10/2026, validé par Eddy.
+
+   SOURCE. Le catalogue matériel de la boutique Boxing Center
+   (boutique.boxingcenter.fr), relevé le 12/10/2026 :
+   .research/boxplus/catalogue-2026-10-12.json, champ `retrait_salles`
+   contenant « Barrière de Paris - Minimes » — 12 articles sur 13 (les
+   gants MMA The Shell ne se retirent pas ici, ils n'y sont pas).
+
+   CE QU'ON NE MET PAS, ET POURQUOI (.research/boxplus/
+   produits-sur-sites-clubs-2026-10-12.md, § 7) :
+     · aucun prix — ce sont des prix de déstockage de rentrée, ils
+       bougent sans que ce site le sache ;
+     · aucune photo de la boutique — droits du fabricant non établis, et
+       ce serait la troisième copie de la même image ;
+     · aucun balisage Product, Offer ni ItemList — l'achat se fait sur un
+       autre domaine, Google n'en veut pas ici ;
+     · aucune description recopiée de la fiche : le texte dit à quel
+       cours des Minimes sert l'article, la fiche dit le reste.
+
+   Un article retiré de la boutique : on enlève sa ligne ici. Le lien
+   mènerait à une fiche vide.
+   ===================================================================== */
+const B = "https://boutique.boxingcenter.fr/materiel/produit/";
+const JOUR_MEME = "retrait possible le jour même";
+const H48 = "retrait sous 48 h";
+const pieds = creneaux((c) => c.disc === "pieds-poings");
+const sparring = creneaux((c) => c.disc === "sparring");
+const jourDe = (cs) => (cs.length === 1 ? ` du ${cs[0].d.toLowerCase()} soir` : "");
+const joursEcole = [...new Set(creneaux((c) => c.disc === "educative").map((c) => c.d))];
+
+const materiel = [
+  {
+    cours: "Boxe anglaise loisirs",
+    t: "Ta première paire",
+    d: `L’anglaise loisirs revient ${enLettres(combien("anglaise"))} fois dans la semaine : c’est le cours où une paire à toi sert le plus. Avant de choisir, demande au coach le poids qui te va.`,
+    articles: [
+      { nom: "Gants Blade noir et blanc", detail: `10, 12 ou 14 oz · ${JOUR_MEME}`, url: B + "gants-boxe-blade-noir-blanc" },
+      { nom: "Gants ERGO 90, 14 oz", detail: H48, url: B + "gants-ergo-90-mbg301k14" },
+    ],
+  },
+  {
+    cours: "Avant les gants",
+    t: "Les bandes",
+    d: "Deux longueurs, 4 m et 2,50 m, vendues à la paire en rouge, blanc et bleu. Si tu hésites entre les deux, montre ta main au coach.",
+    articles: [
+      { nom: "Bandes de boxe 4 m", detail: `la paire · ${H48}`, url: B + "bandes-4m-mb120bt" },
+      { nom: "Bandes de boxe 2,50 m", detail: `la paire · ${H48}`, url: B + "bandes-2m50-mb120t" },
+    ],
+  },
+  {
+    cours: "Compétiteurs · open sparring",
+    t: "Pour l’assaut",
+    d: `L’assaut n’arrive que si tu le demandes, au groupe compétiteurs puis à l’open sparring${jourDe(sparring)}. Pour ce jour-là :`,
+    articles: [
+      { nom: "Gants de sparring, 16 oz", detail: H48, url: B + "gants-sparring-mbgan010n14-16oz" },
+      { nom: "Protège-dents adulte thermoformable", detail: `livré avec sa boîte · ${H48}`, url: B + "protege-dents-adulte-mbpro458srt" },
+    ],
+  },
+  {
+    cours: "L’école, dès 3 ans",
+    t: "Le premier équipement d’un enfant",
+    d: `Pour l’école${joursEcole.length ? `, ${joursFr(joursEcole)}` : ""}. Les tailles vont de 4/7 ans à 8/15 ans : pour un tout-petit de la Baby Boxe, demande conseil au coach.`,
+    articles: [
+      { nom: "Pack enfant : gants, mitaines et porte-clés", detail: `4/7 ou 8/15 ans · ${JOUR_MEME}`, url: B + "pack-enfants-gants-mitaines-porte-cles" },
+      { nom: "Gants de boxe enfant ONE", detail: `4/7 ou 8/15 ans · ${H48}`, url: B + "gants-boxe-enfant-one" },
+    ],
+  },
+  {
+    cours: "L’école",
+    t: "La tenue de l’école",
+    d: "Le t-shirt du club, lui, vient avec l’inscription à l’école. Le short, le débardeur et le protège-dents se commandent à part.",
+    articles: [
+      { nom: "Ensemble short et débardeur enfant", detail: `du 6/8 au 10/12 ans · ${H48}`, url: B + "ensemble-enfants-short-debardeur" },
+      { nom: "Protège-dents enfant, à mouler à l’eau chaude", detail: H48, url: B + "protege-dents-enfants-mb459jrw" },
+    ],
+  },
+  {
+    cours: "Pieds-poings · Boxing camp",
+    t: "Les jambes et la caisse",
+    d: `Les protège-tibias pour la boxe pieds-poings${jourDe(pieds)} ; le débardeur pour le Boxing camp et l’étage de prépa physique.`,
+    articles: [
+      { nom: "Protège-tibias avec protège-pieds, en coton", detail: `S à XL · ${H48}`, url: B + "protege-tibias-pieds-coton-mb153wm" },
+      { nom: "Débardeur d’entraînement Training Tank", detail: `S à XL · ${H48}`, url: B + "debardeur-entrainement-metal-boxe-training-tank" },
+    ],
+  },
+];
 ---
 <!doctype html>
 <html lang="fr" data-theme="light">
@@ -298,6 +388,20 @@ import SiteContent from "../../components/SiteContent.astro";
     .prix-note__v { font-family: var(--f-display); text-transform: uppercase; font-size: clamp(2.8rem,9vw,5.4rem); line-height: .85; color: var(--bone); }
     .prix-note__cta { display: flex; flex-wrap: wrap; gap: .9rem; margin-top: .4rem; }
     @media (min-width: 900px) { .prix-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(2rem,4vw,3.4rem); align-items: start; } }
+    /* Le matériel du cours (ajout du 13/10/2026) : les cartes .ask de
+       club.css, une par cours ; dedans, une liste de liens dont TOUTE la
+       ligne clique (44 px au moins). Pas de photo, pas de prix : le nom,
+       la taille, le délai de retrait. Le survol fonce, il ne blanchit
+       jamais — sur papier, du blanc disparaîtrait. */
+    .mat .asks { margin-top: clamp(1.6rem,3vw,2.2rem); }
+    .mat__cours { display: inline-flex; align-items: center; gap: .7ch; font: 700 var(--step--2)/1.3 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--bone-dim); }
+    .mat__cours::before { content: ""; width: 14px; height: 2px; background: var(--mark); flex: 0 0 14px; }
+    .mat__liste { margin-top: auto; border-top: 1px solid var(--line); }
+    .mat__liste li { border-bottom: 1px solid var(--line); }
+    .mat__liste a { display: flex; flex-direction: column; justify-content: center; gap: .25rem; min-height: 44px; padding-block: .75rem; color: var(--bone); font-weight: 600; line-height: 1.3; transition: color .3s, padding-left .3s var(--ease-out); }
+    .mat__liste a:hover, .mat__liste a:focus-visible, .mat__liste a:active { color: var(--mark); padding-left: .45rem; }
+    .mat__liste small { font: 500 var(--step--2)/1.35 var(--f-mono); letter-spacing: .04em; color: var(--read); }
+    .mat__note { margin-top: clamp(1.4rem,3vw,2rem); color: var(--muted); font: 500 var(--step--1)/1.6 var(--f-mono); letter-spacing: .04em; max-width: 64ch; border-left: 2px solid var(--mark); padding-left: 1rem; }
   </style>
 
   <script is:inline>
@@ -474,6 +578,37 @@ import SiteContent from "../../components/SiteContent.astro";
             <iframe id="map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Carte Boxing Center Minimes — 12 rue de Fenouillet, Toulouse"></iframe>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- ============ LE MATÉRIEL DU COURS, À RETIRER ICI ============
+         Ajout du 13/10/2026, validé par Eddy. Après le créneau : on
+         s'achète une paire le jour où l'on s'installe, pas avant l'essai
+         (« Dans ton sac » le dit plus haut). Liens simples vers les fiches
+         de la boutique Boxing Center ; ni prix, ni photo, ni balisage
+         produit — le pourquoi est dans le frontmatter. -->
+    <section class="section band mat" aria-label="Le matériel du cours, à retirer aux Minimes">
+      <div class="wrap">
+        <div class="sec-head" data-reveal>
+          <span class="eyebrow">Quand tu t’installes</span>
+          <h2 class="display display--sm" style="margin-top:1rem">Le matériel du cours, <span class="tint">à retirer à l’accueil des Minimes</span></h2>
+          <p class="lead" style="margin-top:1.2rem;max-width:58ch">Pour l’essai, on te prête tout. Le jour où tu prends ton matériel à toi, voilà ce qui se commande en ligne et se retire ici, au {SALLE.address.street}, rangé par cours.</p>
+        </div>
+        <div class="asks" data-reveal-group>
+          {materiel.map((m) => (
+            <article class="ask">
+              <span class="mat__cours">{m.cours}</span>
+              <h3 class="ask__q">{m.t}</h3>
+              <p class="ask__a">{m.d}</p>
+              <ul class="mat__liste">
+                {m.articles.map((a) => (
+                  <li><a href={a.url}><span>{a.nom} <span aria-hidden="true">↗</span></span><small>{a.detail}</small></a></li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+        <p class="mat__note" data-reveal>Tu commandes sur la fiche de l’article et tu le retires à l’accueil des Minimes. Les gants Blade et le pack enfant peuvent partir dès le jour de la commande ; compte 48 h pour les autres articles. Les horaires de retrait sont indiqués sur chaque fiche. Liste relevée le 12 octobre 2026.</p>
       </div>
     </section>
 

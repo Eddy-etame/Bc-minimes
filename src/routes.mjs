@@ -126,6 +126,17 @@ export const ROUTES = [
     changefreq: "monthly",
     images: [I.gants],
   },
+  {
+    /* Indexable (meta robots index, follow) mais absente du plan jusqu'au
+       12/10/2026 : l'état technique du réseau l'a relevée « hors plan ».
+       Une page qu'on laisse indexer se déclare. Priorité basse : elle ne
+       vend rien, elle répond à qui cherche l'éditeur ou l'hébergeur.
+       Aucune image : la page n'en affiche pas. */
+    path: "/mentions-legales/",
+    priority: "0.3",
+    changefreq: "yearly",
+    images: [],
+  },
 ];
 
 /** Date du build, au format ISO court — jamais un millésime écrit à la main. */

@@ -1,5 +1,172 @@
 ---
 import SiteContent from "../../components/SiteContent.astro";
+import { SEASON } from "../../../public/assets/js/data.js";
+import {
+  creneaux, joursFr, heure, minutes, listeFr, enLettres,
+  ETAGE, OUVERTURE, FERMETURE, JOURS_FERMES,
+} from "../../semaine.mjs";
+
+/* =====================================================================
+   LA SALLE, HEURE PAR HEURE — ajout du 13/10/2026.
+
+   /le-club/ est la VISITE : elle disait les murs (rings, sacs, étage),
+   pas ce qui s'y passe selon l'heure. Chaque ligne ci-dessous est
+   CALCULÉE depuis le planning publié (src/semaine.mjs) : si un créneau
+   bouge depuis le vestiaire, la ligne suit ; si un fait disparaît, la
+   ligne disparaît. Aucun prénom de coach ici (règle du 19/08/2026).
+   ===================================================================== */
+const COURS = { anglaise: "boxe anglaise loisirs", camp: "Boxing camp", lady: "Boxing Lady", "pieds-poings": "boxe pieds-poings", competiteurs: "groupe compétiteurs", sparring: "open sparring" };
+const LE_COURS = { anglaise: "la boxe anglaise loisirs", camp: "le Boxing camp", lady: "le Boxing Lady", "pieds-poings": "la boxe pieds-poings", competiteurs: "le groupe compétiteurs", sparring: "l’open sparring" };
+const cours = (c) => COURS[c.disc] || c.name;
+const leCours = (c) => LE_COURS[c.disc] || c.name;
+const Maj = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+const unique = (xs) => [...new Set(xs)];
+/* « Boxing camp le lundi et le vendredi ; boxe anglaise loisirs le mardi… » */
+const parCours = (cs) => {
+  const g = new Map();
+  for (const c of cs) g.set(cours(c), [...(g.get(cours(c)) || []), c.d]);
+  return [...g].map(([nom, jours]) => `${nom} ${joursFr(jours)}`).join(" ; ");
+};
+
+const heures = [];
+const semaineSeule = JOURS_FERMES.length === 1 && JOURS_FERMES[0] === "dimanche";
+
+/* 1 — l'ouverture, l'étage du matin, le samedi matin */
+if (OUVERTURE) {
+  const samMatin = creneaux((c) => c.d === "Samedi" && minutes(c.h) < 12 * 60);
+  heures.push({
+    h: heure(OUVERTURE),
+    t: "La porte s’ouvre",
+    d: [
+      `${semaineSeule ? "Du lundi au samedi, l" : "L"}a salle ouvre à ${heure(OUVERTURE)}.`,
+      ETAGE && minutes(ETAGE.matin[0]) <= minutes(OUVERTURE) + 30
+        ? `Jusqu’à ${heure(ETAGE.matin[1])}, l’étage de préparation physique est en accès libre : aucun cours à suivre, tu montes et tu t’entraînes.`
+        : "",
+      ...samMatin.map((c) => `Le samedi matin, ${leCours(c)} a lieu de ${heure(c.h)} à ${heure(c.end)}.`),
+    ].filter(Boolean).join(" "),
+  });
+}
+
+/* 2 — le cours du midi, en semaine */
+const midi = creneaux((c) => c.d !== "Samedi" && minutes(c.h) >= 11 * 60 + 30 && minutes(c.h) < 14 * 60);
+if (midi.length) {
+  const debut = unique(midi.map((c) => c.h));
+  const fin = unique(midi.map((c) => c.end));
+  const memeHoraire = debut.length === 1 && fin.length === 1 && fin[0];
+  const duree = memeHoraire ? minutes(fin[0]) - minutes(debut[0]) : 0;
+  heures.push({
+    h: heure(debut.sort((a, b) => minutes(a) - minutes(b))[0]),
+    t: "Le cours du midi",
+    d: memeHoraire
+      ? `${Maj(enLettres(duree))} minutes, de ${heure(debut[0])} à ${heure(fin[0])}, ${joursFr(midi.map((c) => c.d), { article: false })} : ${parCours(midi)}. Tu boxes, tu te changes, tu retournes au bureau.`
+      : `${Maj(listeFr(midi.map((c) => `${cours(c)} le ${c.d.toLowerCase()} à ${heure(c.h)}`)))}.`,
+  });
+}
+
+/* 3 — l'étage rouvre l'après-midi */
+if (ETAGE) {
+  const finMidi = midi.length ? unique(midi.map((c) => c.end)) : [];
+  const enchaine = finMidi.length === 1 && minutes(finMidi[0]) === minutes(ETAGE.apresMidi[0]);
+  heures.push({
+    h: heure(ETAGE.apresMidi[0]),
+    t: "L’étage rouvre",
+    d: `${enchaine ? "Le cours du midi à peine fini, l" : "L"}a prépa physique repasse en accès libre jusqu’à ${heure(ETAGE.apresMidi[1])}. Gainage, cardio, explosivité, à ton rythme et au-dessus des rings.`,
+  });
+}
+
+/* 4 — l'après-midi de l'école, jour par jour */
+const ecole = creneaux((c) => c.disc === "educative");
+if (ecole.length) {
+  const jours = unique(ecole.map((c) => c.d))
+    .map((j) => ecole.filter((c) => c.d === j))
+    .sort((a, b) => minutes(a[0].h) - minutes(b[0].h));
+  const age = (c) => (/baby/i.test(c.name) ? `la Baby Boxe (${c.age})` : `les ${String(c.age || "").replace(/^\p{Lu}/u, (l) => l.toLowerCase())}`);
+  /* le second jour reprend-il la fin de la montée du premier ? « même
+     enchaînement, sans la Baby Boxe » plutôt que la liste redite */
+  const ages = (cs) => cs.map(age);
+  const reprend = (a, b) => b.length < a.length && ages(b).every((x, i) => x === ages(a)[a.length - b.length + i]);
+  const jourEcole = (cs, i) => {
+    const tete = `Le ${cs[0].d.toLowerCase()}, de ${heure(cs[0].h)} à ${heure(cs[cs.length - 1].end)}`;
+    if (i > 0 && reprend(jours[0], cs)) {
+      return `${tete}, même enchaînement, sans ${listeFr(ages(jours[0]).slice(0, jours[0].length - cs.length))}.`;
+    }
+    return `${tete} : ${listeFr(ages(cs))}.`;
+  };
+  const sansChevauchement = jours.every((cs) => cs.every((c, i) => i === 0 || minutes(c.h) >= minutes(cs[i - 1].end)));
+  heures.push({
+    h: heure(jours[0][0].h),
+    t: "L’après-midi de l’école",
+    d: [
+      ...jours.map(jourEcole),
+      sansChevauchement ? "Chaque âge a son heure, les groupes se succèdent sans se croiser." : "",
+    ].filter(Boolean).join(" "),
+  });
+}
+
+/* 5 — 18h : le groupe compétiteurs, et le second espace */
+const compet = creneaux((c) => c.disc === "competiteurs");
+const second = creneaux((c) => c.space === 2);
+if (compet.length) {
+  const debut = unique(compet.map((c) => c.h));
+  const fin = unique(compet.map((c) => c.end));
+  const relais = creneaux((c) =>
+    c.d !== "Samedi" && c.space !== 2 && !["competiteurs", "educative", "sparring"].includes(c.disc) &&
+    minutes(c.h) >= minutes(debut[0]) && minutes(c.h) < 19 * 60 + 30);
+  heures.push({
+    h: heure(debut[0]),
+    t: second.length ? "Deux cours en même temps" : "Le groupe compétiteurs",
+    d: [
+      debut.length === 1 && fin.length === 1
+        ? `${Maj(joursFr(compet.map((c) => c.d)))}, le groupe compétiteurs s’entraîne de ${heure(debut[0])} à ${heure(fin[0])}.`
+        : `Le groupe compétiteurs s’entraîne ${joursFr(compet.map((c) => c.d))}.`,
+      second.length && unique(second.map((c) => c.h)).length === 1
+        ? `${Maj(joursFr(second.map((c) => c.d)))}, un second espace démarre en parallèle à ${heure(second[0].h)} : ${parCours(second)}.`
+        : "",
+      ...relais.map((c) => {
+        const apresEcole = ecole.some((e) => e.d === c.d && minutes(e.end) === minutes(c.h));
+        return `Le ${c.d.toLowerCase()}, ${leCours(c)} ${apresEcole ? "prend la suite de l’école" : "commence"} à ${heure(c.h)}.`;
+      }),
+    ].filter(Boolean).join(" "),
+  });
+}
+
+/* 6 — le samedi soir, l'open sparring */
+const sparring = creneaux((c) => c.disc === "sparring");
+for (const c of sparring) {
+  const dernier = !creneaux((x) => x.d === c.d && minutes(x.h) > minutes(c.h)).length;
+  heures.push({
+    h: heure(c.h),
+    t: "L’open sparring",
+    d: `Le ${c.d.toLowerCase()}, de ${heure(c.h)} à ${heure(c.end)}, entre licenciés${dernier ? " : la semaine se termine sur le ring" : ""}. Personne n’y monte sans l’avoir demandé.`,
+  });
+}
+
+/* 7 — le dernier cours du soir */
+const soir = creneaux((c) => c.d !== "Samedi" && minutes(c.h) >= 19 * 60 + 30);
+if (soir.length) {
+  const debut = unique(soir.map((c) => c.h));
+  const fin = unique(soir.map((c) => c.end));
+  heures.push({
+    h: heure(debut.sort((a, b) => minutes(a) - minutes(b))[0]),
+    t: "Le dernier cours",
+    d: fin.length === 1
+      ? `Jusqu’à ${heure(fin[0])} : ${parCours(soir)}.`
+      : `${Maj(parCours(soir))}.`,
+  });
+}
+
+/* 8 — la fermeture */
+if (FERMETURE) {
+  heures.push({
+    h: heure(FERMETURE),
+    t: "La porte se ferme",
+    d: semaineSeule
+      ? `Six soirs sur sept. Le dimanche, la salle reste fermée et rouvre le lundi à ${heure(OUVERTURE)}.`
+      : `La salle ferme à ${heure(FERMETURE)}.`,
+  });
+}
+/* l'ordre de la journée, quel que soit l'ordre de calcul */
+heures.sort((a, b) => minutes(a.h) - minutes(b.h));
 ---
 <!doctype html>
 <html lang="fr" data-theme="light">
@@ -466,6 +633,34 @@ import SiteContent from "../../components/SiteContent.astro";
         <div class="network" id="network" data-reveal-group></div>
       </div>
     </section>
+
+    <!-- ===================== HEURE PAR HEURE ======================
+         Ajout du 13/10/2026. La visite disait les murs ; elle dit
+         maintenant ce qui s'y passe selon l'heure. Rendu au build depuis
+         le planning publié (frontmatter + src/semaine.mjs) : lisible sans
+         JavaScript, et rien d'écrit à la main qui puisse dériver. Même
+         rail que l'histoire de la salle : les années là-haut, les heures
+         ici. -->
+    {heures.length > 0 && (
+    <section class="section" aria-label="La salle heure par heure">
+      <div class="wrap">
+        <div class="sec-head" data-reveal>
+          <span class="eyebrow">Une journée aux Minimes</span>
+          <h2 class="display" style="margin-top:1rem">La salle <span class="tint">heure par heure</span></h2>
+          <p class="lead" style="margin-top:1.2rem;max-width:56ch">Selon l’heure où tu pousses la porte, ce n’est pas la même salle qui t’attend. Voilà qui l’occupe, d’après le planning de la saison {SEASON}.</p>
+        </div>
+        <ol class="timeline">
+          {heures.map((x) => (
+            <li class="tl" data-reveal>
+              <span class="tl__y">{x.h}</span>
+              <div><h3 class="tl__t">{x.t}</h3><p class="tl__d">{x.d}</p></div>
+            </li>
+          ))}
+        </ol>
+        <p data-reveal style="margin-top:clamp(1.6rem,3vw,2.2rem)"><a class="btn btn--ghost" data-magnetic href="/plannings/"><span>Toute la semaine, cours par cours</span></a></p>
+      </div>
+    </section>
+    )}
 
     <!-- ========================= FINAL GONG ====================== -->
     <section class="gong" aria-label="Rejoindre la salle">

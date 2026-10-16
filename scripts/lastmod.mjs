@@ -18,7 +18,7 @@
    ===================================================================== */
 import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
-import { join, dirname } from "node:path";
+import { join, dirname, relative, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -49,18 +49,37 @@ function dateDe(rel) {
 }
 const laPlusRecente = (dates) => dates.filter(Boolean).sort().pop() || aujourdhui;
 
-/* Les données que toutes les pages affichent : un changement les re-date toutes. */
+/* Les données que toutes les pages affichent : un changement les re-date toutes.
+   src/content.json en fait partie : c'est le contenu publié depuis le
+   vestiaire, et SiteContent.astro l'injecte dans chaque page.
+
+   13/10/2026 — src/routes.mjs N'Y EST PLUS. Il ne s'affiche sur aucune
+   page : il porte la liste des URL et les légendes d'images du plan du
+   site. Y déclarer une page de plus (les mentions légales) re-datait
+   d'un coup les dix pages du jour, celles qui n'avaient pas bougé
+   comprises — la fausse fraîcheur que ce script existe pour éviter. */
 const DONNEES = [
   ...readdirSync(join(ROOT, "public/assets/js")).filter((f) => /^data.*\.js$/.test(f)).map((f) => "public/assets/js/" + f),
-  "src/routes.mjs",
+  "src/content.json",
 ];
 const dateDonnees = laPlusRecente(DONNEES.map(dateDe));
+
+/* Ce qu'une page importe elle-même (src/semaine.mjs, depuis le 13/10/2026,
+   pour /le-club/, /coachs/, /galerie/ et /premiere-seance/) re-date
+   cette page-là, et elle seule. Les data*.js de public/ sont déjà comptés
+   plus haut. */
+function importsDe(page) {
+  const source = readFileSync(join(ROOT, page), "utf8");
+  return [...source.matchAll(/^import\s[^;]*?from\s+["'](\.{1,2}\/[^"']+)["']/gm)]
+    .map((m) => relative(ROOT, resolve(dirname(join(ROOT, page)), m[1])).split(sep).join("/"))
+    .filter((f) => !f.startsWith("public/") && existsSync(join(ROOT, f)));
+}
 
 const routes = [...readFileSync(join(ROOT, "src/routes.mjs"), "utf8").matchAll(/path:\s*"([^"]+)"/g)].map((m) => m[1]);
 const carte = {};
 for (const path of routes) {
   const page = path === "/" ? "src/pages/index.astro" : `src/pages${path}index.astro`;
-  carte[path] = laPlusRecente([dateDe(page), dateDonnees]);
+  carte[path] = laPlusRecente([dateDe(page), ...importsDe(page).map(dateDe), dateDonnees]);
 }
 writeFileSync(OUT, JSON.stringify(carte, null, 2) + "\n");
 console.log(`[lastmod] ${routes.length} routes datées, la plus récente ${laPlusRecente(Object.values(carte))}`);

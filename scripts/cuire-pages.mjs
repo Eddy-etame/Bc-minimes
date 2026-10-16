@@ -35,11 +35,13 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const url = (f) => pathToFileURL(join(ROOT, "public", "assets", "js", f)).href;
-const { COACHES, FAQ, SALLE, PROMOS } = await import(url("data.js"));
+const { COACHES, FAQ, SALLE, PROMOS, NETWORK } = await import(url("data.js"));
 const { TARIFS } = await import(url("data-accueil.js"));
 const { MONEY_FAQ, REVIEWS } = await import(url("data-argent.js"));
 const { PLANNING, PLANNING_DAYS } = await import(url("data-planning.js"));
 const { DISCIPLINES } = await import(url("data-disciplines.js"));
+const { TIMELINE, SPECS, CLUB_QUESTIONS } = await import(url("data-club.js"));
+const { GALLERY } = await import(url("data-galerie.js"));
 
 const e = (s = "") =>
   String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -107,6 +109,43 @@ const reviews = (REVIEWS.quotes || [])
   .join("");
 const bonus = `<span class="bonus__badge">Bonus</span><p class="bonus__txt">${e(PROMOS.bonus)}</p>`;
 
+/* /le-club/ et /galerie/ — MESURÉ LE 12/10/2026 : /le-club/ servait
+   160 mots de contenu et /galerie/ 245, les deux plus maigres du site.
+   L'histoire, l'équipement, les questions du lieu, les salles sœurs, ce
+   que le cadre coupe et le pont vers les disciplines n'existaient que
+   dans club.js et galerie.js. On écrit ici le MÊME balisage que ces
+   modules peignent (mêmes classes, mêmes attributs) : le JavaScript le
+   réécrit à l'identique, rien ne saute à l'écran. */
+const timeline = TIMELINE.map(
+  (t) => `<li class="tl" data-reveal><span class="tl__y">${e(t.y)}</span><div><h3 class="tl__t">${e(t.t)}</h3><p class="tl__d">${e(t.d)}</p></div></li>`
+).join("");
+const specs = SPECS.map(
+  (s) => `<div class="spec"><span class="spec__l">${e(s.l)}</span><span class="spec__v">${e(s.v)}</span></div>`
+).join("");
+const asks = CLUB_QUESTIONS.map(
+  (f) => `<article class="ask"><h3 class="ask__q">${e(f.q)}</h3><p class="ask__a">${e(f.a)}</p></article>`
+).join("");
+const network = NETWORK.map(
+  (n) => `<a class="net" href="${e(n.url)}" target="_blank" rel="noopener"><span class="net__tag">${e(n.tag)}</span><div><h3 class="net__name">${e(n.name)}${
+    n.flagship ? '<span class="flag">★ vaisseau amiral</span>' : ""
+  }</h3><p class="net__feat">${e(n.feat)}</p></div><span class="net__go">${e(n.go)} <span aria-hidden="true">↗</span></span></a>`
+).join("");
+const offFrame = GALLERY.offFrame.map(
+  (v) => `<div class="value"><span class="value__n">${e(v.n)}</span><div><h3 class="value__t">${e(v.t)}</h3><p class="value__d">${e(v.d)}</p></div></div>`
+).join("");
+/* la jointure zone → discipline de galerie.js (ZONE_TO_DISC), recopiée :
+   une zone sans discipline (« La salle ») n'a pas de carte. */
+const ZONE_TO_DISC = { anglaise: "anglaise", lady: "lady", educative: "educative", technique: "paos", salle: null };
+const bridge = GALLERY.filters
+  .filter((f) => ZONE_TO_DISC[f.key])
+  .map((f) => {
+    const d = DISCIPLINES.find((x) => x.key === ZONE_TO_DISC[f.key]);
+    return d
+      ? `<a class="ga-bridge__card" href="/activites/#${e(d.key)}"><span class="ga-bridge__z">${e(f.label)}</span><span class="ga-bridge__n">${e(d.name)}</span><span class="ga-bridge__d">${e(d.tag)}</span><span class="ga-bridge__go" aria-hidden="true">Voir la discipline →</span></a>`
+      : "";
+  })
+  .join("");
+
 const FOURNEES = [
   ["coachs", "pillar", pillar, "le pilier"],
   ["coachs", "roster", roster, (COACHES.roster || []).length + " coachs"],
@@ -116,6 +155,12 @@ const FOURNEES = [
   ["tarifs", "bonus", bonus, "le bonus enfant"],
   ["tarifs", "money-faq", moneyFaq, MONEY_FAQ.length + FAQ.length + " questions"],
   ["tarifs", "reviews", reviews, (REVIEWS.quotes || []).length + " avis"],
+  ["le-club", "timeline", timeline, TIMELINE.length + " jalons"],
+  ["le-club", "specs", specs, SPECS.length + " lignes d'équipement"],
+  ["le-club", "asks", asks, CLUB_QUESTIONS.length + " questions du lieu"],
+  ["le-club", "network", network, NETWORK.length + " salles sœurs"],
+  ["galerie", "ga-offframe", offFrame, GALLERY.offFrame.length + " hors-champ"],
+  ["galerie", "ga-bridge", bridge, "le pont vers les disciplines"],
 ];
 
 const pages = new Map();
@@ -157,6 +202,25 @@ for (const [from, to] of contactReplacements) {
 await writeFile(contactFile, contact);
 console.log(`[pages] /contact/ : adresse, ${(SALLE.access || []).length} accès, ${(SALLE.hoursData || []).length} horaires et ${FAQ.length} réponses`);
 
+/* /le-club/ : la ligne d'adresse était un lien vide (href="#", sans
+   texte) et la carte une iframe sans source, jusqu'au JavaScript. Mêmes
+   formes exactes que club.js > renderContact() ; une dérive fait tomber
+   le build. */
+const clubFile = join(ROOT, "dist", "le-club", "index.html");
+let club = await readFile(clubFile, "utf8");
+for (const [from, to] of [
+  ['<a id="addr" href="#" target="_blank" rel="noopener"></a>', `<a id="addr" href="${e(SALLE.mapsLink)}" target="_blank" rel="noopener">${e(SALLE.address.full)}</a>`],
+  ['<iframe id="map" loading="lazy"', `<iframe id="map" src="${e(SALLE.mapsUrl)}" loading="lazy"`],
+]) {
+  if (!club.includes(from)) {
+    console.error(`[pages] cible /le-club/ introuvable : ${from}`);
+    process.exit(1);
+  }
+  club = club.replace(from, to);
+}
+await writeFile(clubFile, club);
+console.log("[pages] /le-club/ : adresse et carte");
+
 /* /activites/ : le sommaire est un <nav>, hors du four générique. */
 const activitiesFile = join(ROOT, "dist", "activites", "index.html");
 let activities = await readFile(activitiesFile, "utf8");
@@ -168,4 +232,4 @@ if (!activities.includes(emptyIndex)) {
 activities = activities.replace(emptyIndex, `<nav class="wrap act-index" id="act-index" aria-label="Sommaire des disciplines">${actIndex}</nav>`);
 await writeFile(activitiesFile, activities);
 
-console.log("[pages] contenu cuit — activités, coachs, planning, tarifs et contact sont lisibles sans JavaScript");
+console.log("[pages] contenu cuit — activités, coachs, planning, tarifs, contact, le club et la galerie sont lisibles sans JavaScript");

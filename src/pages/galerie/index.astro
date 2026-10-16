@@ -1,5 +1,61 @@
 ---
 import SiteContent from "../../components/SiteContent.astro";
+import { creneaux, joursFr, heure, listeFr, enLettres, combien, ETAGE, SACS } from "../../semaine.mjs";
+
+/* =====================================================================
+   CES SCÈNES, EN VRAI — ajout du 13/10/2026.
+
+   La galerie montre ; elle ne disait pas quand venir voir. Or /le-club/
+   répond déjà « Pousse la porte… regarde un cours depuis le bord du
+   ring ». Quatre cartes, une par scène de la série, avec l'heure à
+   laquelle on la retrouve. Tout est lu dans le planning publié et les
+   fiches de la salle (src/semaine.mjs) : une carte dont le fait
+   disparaît ne s'affiche plus. On ne prétend jamais savoir pendant quel
+   cours une photo a été prise — on dit où retrouver la scène.
+   ===================================================================== */
+const Maj = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+const ABR = { Lundi: "Lun", Mardi: "Mar", Mercredi: "Mer", Jeudi: "Jeu", Vendredi: "Ven", Samedi: "Sam" };
+const unique = (xs) => [...new Set(xs)];
+
+const compet = creneaux((c) => c.disc === "competiteurs");
+const sparring = creneaux((c) => c.disc === "sparring");
+const ecole = creneaux((c) => c.disc === "educative");
+const joursEcole = unique(ecole.map((c) => c.d)).map((j) => ecole.filter((c) => c.d === j));
+const bebe = ecole.find((c) => /baby/i.test(c.name));
+const camp = combien("camp");
+
+const scenes = [];
+if (compet.length && unique(compet.map((c) => c.h)).length === 1 && unique(compet.map((c) => c.end)).length === 1) {
+  scenes.push({
+    n: `${heure(compet[0].h)} – ${heure(compet[0].end)}`,
+    t: "Le ring et l’assaut",
+    d: [
+      `Pour voir des assauts encadrés comme sur ces photos, passe pendant le groupe compétiteurs, ${joursFr(compet.map((c) => c.d), { article: false, lien: "ou" })}.`,
+      ...sparring.map((c) => `L’open sparring, lui, a lieu le ${c.d.toLowerCase()} à ${heure(c.h)}.`),
+    ].join(" "),
+  });
+}
+if (SACS) {
+  scenes.push({
+    n: "Accès libre",
+    t: "Les sacs",
+    d: `${Maj(enLettres(SACS))} sacs lourds en accès libre : pas de cours à réserver pour venir frapper. Tout le geste, sans un coup en retour.`,
+  });
+}
+if (joursEcole.length) {
+  scenes.push({
+    n: joursEcole.map((cs) => ABR[cs[0].d] || cs[0].d).join(" · "),
+    t: "L’école",
+    d: `${Maj(listeFr(joursEcole.map((cs) => `le ${cs[0].d.toLowerCase()} de ${heure(cs[0].h)} à ${heure(cs[cs.length - 1].end)}`)))} : l’école fait défiler ses groupes d’âge${bebe ? `, la Baby Boxe (${bebe.age}) en tête le ${bebe.d.toLowerCase()}` : ""}. Les parents peuvent regarder depuis le bord du ring.`,
+  });
+}
+if (ETAGE) {
+  scenes.push({
+    n: `${heure(ETAGE.matin[0])}–${heure(ETAGE.matin[1])} · ${heure(ETAGE.apresMidi[0])}–${heure(ETAGE.apresMidi[1])}`,
+    t: "La préparation physique",
+    d: `Elle a son étage, au-dessus des rings, en accès libre à ces heures-là.${camp ? ` En groupe, c’est le Boxing camp : ${enLettres(camp)} créneaux dans la semaine.` : ""}`,
+  });
+}
 ---
 <!doctype html>
 <html lang="fr" data-theme="light">
@@ -558,6 +614,30 @@ import SiteContent from "../../components/SiteContent.astro";
         <div class="ga-bridge" id="ga-bridge" data-reveal-group></div>
       </div>
     </section>
+
+    <!-- ===================== CES SCÈNES, EN VRAI ==================
+         Ajout du 13/10/2026 : quand venir voir, en vrai, ce que la série
+         montre. Rendu au build depuis le planning publié (frontmatter +
+         src/semaine.mjs). Surface navy : sur le papier, .value__t passe
+         en blanc au toucher et sous 820 px (home.css) — ici il reste
+         lisible. -->
+    {scenes.length > 0 && (
+    <section class="section" data-surface="navy" aria-label="Quand venir voir ces scènes">
+      <div class="wrap">
+        <div data-reveal style="margin-bottom:clamp(1.6rem,4vw,2.4rem)">
+          <span class="eyebrow">Venir regarder</span>
+          <h2 class="display display--sm" style="margin-top:1rem">Ces scènes, <span class="tint">en vrai</span></h2>
+          <p class="lead" style="margin-top:1.2rem;max-width:56ch">Tu peux passer voir un cours avant de t’inscrire. Voilà quand retrouver, pour de vrai, ce que montrent les photos.</p>
+        </div>
+        <div class="values" data-reveal-group>
+          {scenes.map((v) => (
+            <div class="value"><span class="value__n">{v.n}</span><div><h3 class="value__t">{v.t}</h3><p class="value__d">{v.d}</p></div></div>
+          ))}
+        </div>
+        <p data-reveal style="margin-top:clamp(1.6rem,3vw,2.2rem)"><a class="btn btn--ghost" data-magnetic href="/plannings/"><span>Les horaires de toute la semaine</span></a></p>
+      </div>
+    </section>
+    )}
 
     <!-- ========================= FINAL GONG ====================== -->
     <section class="gong" aria-label="Réserver une séance">
